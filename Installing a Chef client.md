@@ -61,6 +61,28 @@ The Clearwater chef plugins use features from Ruby 1.9.3.  Run the following to 
 
 At this point, `ruby --version` should indicate that 1.9.3 is in use.
 
+## Installing the Clearwater Chef extensions
+
+On the chef-client machine, install git and dependent libraries.
+
+    sudo apt-get install git libxml2-dev libxslt1-dev
+
+Clone the Clearwater Chef repository.
+
+    git clone git://github.com/Metaswitch/chef.git ~/chef
+
+This will have created a `chef` folder in your home directory, navigate there now.
+
+    cd ~/chef
+
+Fetch the submodules used by the Clearwater Chef extensions.
+
+    git submodule update --init
+
+Finally install the Ruby libraries that are needed by our scripts.
+
+    bundle install
+
 ## Create a Chef client for the chef-client machine
 
 In a browser of your choice, navigate to `http://chef-server.<zone>:4040` to access the Web UI of the server.  Log in using `admin` and `<webUIPass>` and follow the on-screen instructions to change the WebUI password (you can 'change' it to its current value if you don't want to remember a new password).
@@ -77,9 +99,14 @@ Back on the chef-client machine, create a `.chef` folder in your home directory.
 
 Create `~/.chef/chef-client.pem` and paste the private key from the server into it.
 
-Copy the validator key from the chef server to your client
+Copy the validator key from the chef server to your client. You will need to either copy the Amazon SSH key to the client and use it, or copy the validator
 
-    scp ubuntu@chef-server.<zone>:.chef/validation.pem ~/.chef/
+    scp -i <amazon_ssh_key>.pem ubuntu@chef-server.<zone>:.chef/validation.pem ~/.chef/
+
+or (on an intermediate box with the SSH key available)
+
+    scp -i <amazon_ssh_key>.pem ubuntu@chef-server.<zone>:.chef/validation.pem .
+    scp -i <amazon_ssh_key>.pem validation.pem ubuntu@chef-client.<zone>:~/.chef/
 
 Configure knife using the built in auto-configuration tool.
 
@@ -135,8 +162,8 @@ file.
 
     # MMonit server credentials, if any.
     knife[:mmonit_server]     = "0.0.0.0"
-    knife[:mmonit_username]   = ""
-    knife[:mmonit_password]   = ""
+    knife[:mmonit_username]   = "dummy"
+    knife[:mmonit_password]   = "dummy"
 
 Fill in the values appropriate to your deployment using a text editor
 as directed.
@@ -172,30 +199,6 @@ Test that knife is configured correctly
     knife client list
 
 This should return a list of clients and not raise any errors.
-
-## Installing the Clearwater Chef extensions
-
-On the chef-client machine, install git and dependent libraries.
-
-    sudo apt-get install git libxml2-dev libxslt1-dev
-
-Clone the Clearwater Chef repository.
-
-@@@ TODO Use real URL and branch name
-
-    git clone git@bitbucket.org:metaswitch/chef.git -b dev ~/chef
-
-This will have created a `chef` folder in your home directory, navigate there now.
-
-    cd ~/chef
-
-Fetch the submodules used by the Clearwater Chef extensions.
-
-    git submodule update --init
-
-Finally install the Ruby libraries that are needed by our scripts.
-
-    bundle install
 
 ## Next steps
 
