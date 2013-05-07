@@ -28,7 +28,7 @@ This will:
 
 The automated install of Cassandra on the Homer and Homestead instances is not clean (this is a known bug) and requires the Cassandra service to be restarted before Homer or Homestead becomes functional.  This command will stop the Cassandra instances, causing Monit to restart them.
 
-    knife ssh "chef_environment:<name> AND (role:homer OR role:homestead)" "sudo service cassandra stop"
+    knife ssh -i ~/.chef/<keypair>.pem "chef_environment:<name> AND (role:homer OR role:homestead)" "sudo service cassandra stop"
 
 ## Optional arguments
 
