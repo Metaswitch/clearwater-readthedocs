@@ -43,7 +43,7 @@ No special application server configuration is required.
    `sprout.<deployment-domain>:5058` over either TCP or UDP.
 
 The headers set by Clearwater are described in the [Application Server
-Guide](Application Server Guide.md).
+Guide](Application Server Guide).
 
 iFC configuration
 =================

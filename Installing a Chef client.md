@@ -6,7 +6,7 @@ These instructions cover commissioning a Chef client node on an EC2 server as pa
 
 * An Amazon EC2 account.
 * A DNS root domain configured with Route53, this domain will be referred to as `<zone>` in this document.
-* You must have [installing a Chef server](installed a Chef server) and thus know the `<webUIPass>` for your server.
+* You must have [installed a Chef server](Installing a Chef server) and thus know the `<webUIPass>` for your server.
 * A web-browser with which you can visit the Chef server Web UI.
 
 ## Create the instance

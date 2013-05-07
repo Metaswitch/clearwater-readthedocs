@@ -1,12 +1,12 @@
 # OpenIMS HSS Integration
 
-As discussed on the [External HSS Integration](External%20HSS%20Integration.md)
+As discussed on the [External HSS Integration](External HSS Integration)
 page, Clearwater can integrate with an external HSS.
 
 This page describes how to install and configure the
 [OpenIMSCore](http://www.openimscore.org/) HSS as this external HSS.  It
 assumes that you have already read the
-[External HSS Integration](External%20HSS%20Integration.md) page.
+[External HSS Integration](External HSS Integration) page.
 
 ## Installing OpenIMSCore HSS
 

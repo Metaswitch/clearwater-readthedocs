@@ -9,8 +9,8 @@ These instructions will take you through the process of making a call on a Clear
   - [X-Lite](http://www.counterpath.com/x-lite.html)
   - [Jitsi](https://jitsi.org/)
   - [Blink](http://icanblink.com/)
-  - [Stock Android SIP client](Configuring the native Android SIP client.html)
-  - [Zoiper Android SIP client](Configuring Zoiper Android Client.html)
+  - [Stock Android SIP client](Configuring the native Android SIP client)
+  - [Zoiper Android SIP client](Configuring Zoiper Android Client)
 * You have access to a web-browser.  We've tested with:
   - Google Chrome
 
