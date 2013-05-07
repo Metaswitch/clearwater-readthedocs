@@ -25,7 +25,7 @@ Clearwater has a number of call features provided by its built in TAS, including
 
 Clearwater is designed from the ground up to scale horizontally across multiple instances to allow it to handle large subscriber counts and to support a high level of redundancy.
 
-* [Scaling Numbers]() @@@ TODO link to ProjectClearwater scaling page
+* [Scaling Numbers](http://www.projectclearwater.org/technical/clearwater-performance/)
 * The local redundancy story is described in the [Clearwater Architecture](Clearwater Architecture) page.
 * [Geographic redundancy](Geographic redundancy)
 
