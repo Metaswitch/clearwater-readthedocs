@@ -40,7 +40,7 @@ The following modifiers are available to set the scale of your deployment.
 * `--homestead-count NUM` - Create `NUM` Homestead nodes (default is 1)
 * `--subscribers NUM` - Auto-scale the deployment to handle `NUM` subscribers.
   - Due to a known limitation of the install process, Ellis will allocate 1000 numbers regardless of this value.
-  - To bulk provision subscriber (without using Ellis), follow [these instructions]() @@@ TODO Link this
+  - To bulk provision subscribers (without using Ellis), follow [these instructions](https://github.com/Metaswitch/crest/blob/master/src/metaswitch/crest/tools/sstable_provisioning/README.md)
 
 ## Next steps
 
