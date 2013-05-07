@@ -9,9 +9,9 @@ These instructions make up part of the [automated install process](Automated Ins
 
 ## Creating a keypair
 
-You need to configure the AWS keypair used to access your Clearwater deployment. You may reuse the one you created when creating your Chef client and server; or you may create a new one (EC2 Dashboard > Network & Security > Key Pairs > Create Key Pair) for finer-grained access rights. The name you give your keypair will be referred to as <keypair_name> from this point.
+You need to configure the AWS keypair used to access your Clearwater deployment. You may reuse the one you created when creating your Chef client and server; or you may create a new one (EC2 Dashboard > Network & Security > Key Pairs > Create Key Pair) for finer-grained access rights. The name you give your keypair will be referred to as `<keypair_name>` from this point.
 
-Amazon will give you a <keypair_name>.pem file; copy that file to the /home/ubuntu/.chef/ directory on your Chef client, and make it readable only to your user with `chmod 0700 /home/ubuntu/.chef ; chmod 0400 /home/ubuntu/.chef/<keypair_name>.pem`.
+Amazon will give you a `<keypair_name>`.pem file; copy that file to the `/home/ubuntu/.chef/` directory on your Chef client, and make it readable only to your user with `chmod 0700 /home/ubuntu/.chef ; chmod 0400 /home/ubuntu/.chef/<keypair_name>.pem`.
 
 ## Creating the environment
 
