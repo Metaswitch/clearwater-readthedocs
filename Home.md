@@ -42,3 +42,10 @@ All the source code is on [github](https://github.com/Metaswitch), in the follow
 
 If you want help, or want to help others by making Clearwater better, see the
 [[Support]] page.
+
+
+## License and Acknowledgements
+
+Clearwater's license is documented in [LICENSE.txt](https://github.com/Metaswitch/clearwater-docs/blob/master/LICENSE.txt).
+
+It uses other open-source components as acknowledged in [README.txt](https://github.com/Metaswitch/clearwater-docs/blob/master/README.txt).
