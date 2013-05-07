@@ -34,7 +34,7 @@ references below are to 3GPP TS 24.229 unless otherwise specified.
 Clearwater interfaces
 =====================
 
-**This section describes the goal, not the current state of Clearwater. See [below][current-limitations] for the current limitations.**
+**This section describes the goal, not the current state of Clearwater. See [below](Application Server Guide#current-limitations) for the current limitations.**
 
 In Clearwater most S-CSCF function, including the ISC interface, is
 implemented in Sprout. Sprout invokes application servers over the ISC
