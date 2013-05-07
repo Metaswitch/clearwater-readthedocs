@@ -21,7 +21,7 @@ various functional components that comprise it.
 * [[Running the live tests]]
 * [[A tour of Clearwater|Clearwater Tour]]
 
-## Looking deeper
+## Looking Deeper
 
 To look at the optional extra features and function of your Clearwater deployment and for discussions about Clearwater scaling and redundancy, see [[Exploring Clearwater]].
 
