@@ -11,7 +11,7 @@ These instructions cover commissioning a Chef client node on an EC2 server as pa
 
 ## Create the instance
 
-Create a `m1.small` AWS EC2 instance running Ubuntu 12.04 - Precise Pangolin using the AWS web interface.  Configure its security group to allow access on port 22 (for SSH).
+Create a `m1.small` AWS EC2 instance running `Ubuntu Server 12.04.1 LTS` using the AWS web interface.  Configure its security group to allow access on port 22 (for SSH).
 
 Configure a DNS entry for this machine, `chef-client.<zone>`.
 
