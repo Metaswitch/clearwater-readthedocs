@@ -49,17 +49,17 @@ here are the steps to create and configure a Cacti node:
 
             sudo apt-get install -y --force-yes git ruby1.9.3 build-essential libzmq3-dev
             sudo gem install bundler --no-ri --no-rdoc
-            git clone git@bitbucket.org:metaswitch/sprout.git
+            git clone git@github.com:Metaswitch/sprout.git
             cd sprout/scripts/stats
             sudo bundle install
 
 ### Pointing Cacti at a Node
 
 Before you point Cacti at a node, make sure the node has the required
-packages installed. All nodes need clearwater-snmpd installed ("sudo
-apt-get install clearwater-snmpd"). Additionally, sipp nodes need
-clearwater-sip-stress-stats ("sudo apt-get install
-clearwater-sip-stress-stats").
+packages installed. All nodes need clearwater-snmpd installed (`sudo
+apt-get install clearwater-snmpd`). Additionally, sipp nodes need
+clearwater-sip-stress-stats (`sudo apt-get install
+clearwater-sip-stress-stats`).
 
 To manually point Cacti at a new node,
 
