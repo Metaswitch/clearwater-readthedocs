@@ -55,6 +55,11 @@ backup files are located in:
     /var/lib/cassandra/data/homestead/sip\_digests/snapshots and
     /var/lib/cassandra/data/homestead/filter\_criteria/snapshots
 
+When restoring from a remote backup (i.e. backup files copied from another machine), it is necessary to fix file permissions. Execute:
+
+-   **homer/homestead:** `sudo chown -R cassandra:cassandra /var/lib/cassandra/`
+-   **ellis:** `sudo chown -R root:root /usr/share/clearwater/ellis/backup/backups/`
+
 ### Periodic backups
 
 Backups are setup by Chef as a daily cron job, which is run at midnight.
