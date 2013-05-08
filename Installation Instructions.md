@@ -34,7 +34,7 @@ Once you've decided on your install method, follow the appropriate link below.
 
 * [Manual Install](Manual Install)
 * [Automated Install](Automated Install)
-* For source installs, see the per-component instructions ([Sprout/Bono](), [Ellis](), [Homer/Homestead]()).
+* For source installs, see the per-component instructions ([Sprout/Bono](https://github.com/Metaswitch/sprout/blob/master/docs/Development.md), [Ellis](https://github.com/Metaswitch/ellis/blob/master/docs/development.md), [Homer/Homestead](https://github.com/Metaswitch/crest/blob/master/docs/development.md)).
 
 ## Next Steps
 
