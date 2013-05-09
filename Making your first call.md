@@ -41,7 +41,7 @@ Client configuration methods vary by client, but the following information shoul
  - Username: `<username>@<domain>`
  - Password: `<password>`
 
-Once these settings have been applied, your client will register with Clearwater.
+Once these settings have been applied, your client will register with Clearwater. Note that X-Lite may need to be restarted before it will set up a STUN connection.
 
 ## Configure a second number and client
 
