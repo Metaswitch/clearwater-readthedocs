@@ -22,7 +22,7 @@ If you installed Clearwater manually, your base DNS name will simply by `<zone>`
 
 In your browser, navigate to your Ellis node at `http://ellis.<domain>`.
 
-Sign up as a new user, using the signup code `vby77rb7e`.
+Sign up as a new user, using the signup code you set as `signup_key` when [configuring your deployment](https://github.com/Metaswitch/clearwater-docs/wiki/Installing%20a%20Chef%20client#add-deployment-specific-configuration).
 
 Ellis will automatically allocate you a new number and display its password to you.  Remember this password as it will only be displayed once.  From now on, we will use `<username>` to refer to the SIP username (e.g. `6505551234`) and `<password>` to refer to the password.
 
