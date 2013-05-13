@@ -36,7 +36,7 @@ If you installed Clearwater manually, your base DNS name will simply be `<zone>`
 ## Work out your signup code
 
 The tests need your signup code to create a test user.
-You set this as `signup_code` during install:
+You set this as `signup_key` during install:
 [manually in /etc/clearwater/config](Manual Install)
 or [automatically in knife.rb](Installing a Chef client). For the rest of these instructions, the
 signup code will be referred to as `<code>`.
