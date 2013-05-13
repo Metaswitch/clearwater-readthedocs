@@ -36,6 +36,8 @@ Once you've decided on your install method, follow the appropriate link below.
 * [Automated Install](Automated Install)
 * For source installs, see the per-component instructions ([Sprout/Bono](https://github.com/Metaswitch/sprout/blob/master/docs/Development.md), [Ellis](https://github.com/Metaswitch/ellis/blob/master/docs/development.md), [Homer/Homestead](https://github.com/Metaswitch/crest/blob/master/docs/development.md)).
 
+If you hit problems during this process, see the [Troubleshooting and Recovery](Troubleshooting and Recovery) steps.
+
 ## Next Steps
 
 Once you have installed your deployment, you'll want to test that it works.
