@@ -44,6 +44,18 @@ The most common problem on bono is lack of communication with sprout.  Check tha
 
 If this doesn't help, bono logs to `/var/log/bono/sprout*.log`.
 
+## Chef
+
+*   After stopping/restarting the Chef server, you might see logs as follows.
+
+        merb : chef-server (api) : worker (port 4000) ~ Connection failed - user: chef - (Bunny::ProtocolError)
+
+    This can be worked around by recreating the chef account, as follows, including the `<rabbitMQPass>` you supplied when you [installed the Chef server](Installing a Chef server).
+
+        rabbitmqctl add_vhost /chef
+        rabbitmqctl add_user chef <rabbitMQPass>
+        rabbitmqctl set_permissions -p /chef chef ".*" ".*" ".*"
+
 ## Getting Help
 
 If none of the above helped, please try the [mailing list](http://lists.projectclearwater.org/listinfo/clearwater).
