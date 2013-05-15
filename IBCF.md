@@ -10,7 +10,7 @@ To use the IBCF function you must install and configure at least one IBCF node, 
 
 Install and configure an IBCF node with the following steps.
 
-- Install the node as if installing a Bono node, either manually (ref) or using Chef (ref).  If using Chef, use the `ibcf` role, for example
+- Install the node as if installing a Bono node, either [manually](Manual Install) or [using Chef](Automated Install).  If using Chef, use the `ibcf` role, for example
 
         knife box create -E <name> ibcf
 
