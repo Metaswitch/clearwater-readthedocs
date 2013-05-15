@@ -82,6 +82,7 @@ To update the configuration, invoke `curl` as follows.  The first stage builds t
     for as_hostname in $as_hostnames ; do
       cat <<EOF
       <InitialFilterCriteria>
+        <Priority>1</Priority>
         <TriggerPoint>
           <ConditionTypeCNF>0</ConditionTypeCNF>
           <SPT>
