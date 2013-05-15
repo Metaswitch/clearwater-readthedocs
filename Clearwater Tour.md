@@ -36,25 +36,25 @@ Now register for the new PSTN line on your newly created account with
 your as yet unregistered X-Lite phone.
 
 - [Download X-Lite](http://www.counterpath.com/x-lite-download.html).
-- bring up X-Lite
-- Softphone / Account Settings
+- Install and start X-Lite
+- Navigate to Softphone / Account Settings
 - Account tab:
-- Account name can be whatever you like.
-- User ID as per "SIP Username" from the line you're adding
-- Domain &lt;deployment domain>, e.g., `ngv.example.com`
-- Password "SIP Password" from the line you're adding
-- Display name: anything you like, or omit
-- Authorization name: &lt;SIP Username\>@&lt;domain> eg
-  `6505550611@ngv.example.com`
-- Register with domain and receive calls should be ticked
-- Send outbound via: Domain
-- Topology
-- select: Auto-detect firewall traversal method using ICE (recommended)
-- Server address: &lt;domain>
-- User name: &lt;SIP Username\>@&lt;domain>
-- Password: "SIP Password" from the line
-- Transport
-- select: Signaling transport: TCP
+    - Account name: Whatever you like.
+    - User ID: "SIP Username" from the line you're adding
+    - Domain: `<deployment domain>`, e.g., `ngv.example.com`
+    - Password: "SIP Password" from the line you're adding
+    - Display name: Whatever you like, or omit
+    - Authorization name: `<SIP Username>@<domain>` e.g.
+      `6505550611@ngv.example.com`
+    - "Register with domain and receive calls" should be selected
+    - Send outbound via: Domain
+- Topology tab:
+    - Select "Auto-detect firewall traversal method using ICE (recommended)"
+    - Server address: `<domain>`
+    - User name: `<SIP Username>@<domain>`
+    - Password: "SIP Password" from the line
+- Transport tab:
+    - Signaling transport: TCP
 - hit "OK"
 - phone should register.
 
