@@ -69,9 +69,9 @@ for your deployment:
     as_hostnames="as1.example.com mmtel.example.com" # the list of zero or more application servers to invoke - don't forget mmtel
     hs_hostname=hs.example.com:8888
 
-To retrieve the current configuration, invoke `curl` as follows.
+To retrieve the current configuration, invoke `curl` as follows. You must be able to access $hs_hostname; check your firewall configuration.
 
-    curl -H "NGV-API-Key: <API-key>" http://$hs_hostname/filtercriteria/$user
+    curl http://$hs_hostname/filtercriteria/$user
 
 To update the configuration, invoke `curl` as follows.  The first stage builds the new XML document and the second pushes it to the server.
 
