@@ -102,6 +102,6 @@ To update the configuration, invoke `curl` as follows.  The first stage builds t
     cat <<EOF
     </ServiceProfile>
     EOF
-    } | curl -X PUT -H "NGV-API-Key: <API-key>" http://$hs_hostname/filtercriteria/$user --data-binary @-
+    } | curl -X PUT http://$hs_hostname/filtercriteria/$user --data-binary @-
 
 The subscriber will now have the desired configuration. You can confirm this by running the retrieval command again.
