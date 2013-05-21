@@ -38,7 +38,7 @@ Note that the value of  "keypair" should *not* include the trailing .pem.
 The newly created environment needs to be uploaded to the Chef server before it can be used.
 
     cd ~/chef
-    ./update_chef_server.sh <name>
+    knife environment from file environments/<name>.rb
 
 ## Next steps
 
