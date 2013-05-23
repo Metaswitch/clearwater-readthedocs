@@ -200,6 +200,17 @@ Test that knife is configured correctly
 
 This should return a list of clients and not raise any errors.
 
+## Upload Clearwater definitions to Chef server
+
+The Chef server needs to be told the definitions for the various Clearwater node types.  To do this, run
+
+    cd ~/chef
+    knife cookbook upload apt
+    knife cookbook upload clearwater
+    find roles/*.rb -exec knife role from file {} \;
+
+You will need to re-do this step if make any changes to your `knife.rb` settings.
+
 ## Next steps
 
 At this point, the Chef server is up and running and ready to manage installs and the chef client is ready to create deployments.  The next step is to [create a deployment environment](Creating a deployment environment).
