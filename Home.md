@@ -4,7 +4,7 @@
 
 ## Latest Release
 
-The latest stable release of Clearwater is "Groundhog Day".
+The latest stable release of Clearwater is "How to Train Your Dragon".
 
 ## Architecture
 
