@@ -7,7 +7,7 @@ These instructions will take you through the process of making a call on a Clear
 * You've [installed Clearwater](Installation Instructions)
 * You have access to two SIP clients.  We've tested with the following:
   - [X-Lite](http://www.counterpath.com/x-lite.html)
-  - [Bria](www.counterpath.com/bria.html‎)
+  - [Bria](http://www.counterpath.com/bria.html‎)
   - [Jitsi](https://jitsi.org/)
   - [Blink](http://icanblink.com/)
   - [Stock Android SIP client](Configuring the native Android SIP client)
