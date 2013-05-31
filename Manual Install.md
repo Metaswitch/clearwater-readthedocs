@@ -75,8 +75,8 @@ On each machine, create the file `/etc/clearwater/config` with the following con
     hs_hostname=hs.<zone>:8888
     xdms_hostname=homer.<zone>:7888
     mmonit_hostname=localhost
-    mmonit_username=
-    mmonit_password=
+    mmonit_username=username
+    mmonit_password=password
 
     # Local IP configuration
     local_ip=<privateIP>
