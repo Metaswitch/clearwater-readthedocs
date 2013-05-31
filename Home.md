@@ -38,6 +38,12 @@ All the source code is on [github](https://github.com/Metaswitch), in the follow
 *   [ellis](https://github.com/Metaswitch/ellis) - Clearwater provisioning server
 *   [sprout](https://github.com/Metaswitch/sprout) - sprout and bono, the Clearwater SIP router and edge proxy
 
+## Contributing
+
+You can contribute by making a Github pull request. See our documented [[Pull request process]].
+
+There is more information about contributing to Project Clearwater on the [community page of our project website](http://www.projectclearwater.org/community/).
+
 ## Help
 
 If you want help, or want to help others by making Clearwater better, see the
