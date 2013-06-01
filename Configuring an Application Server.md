@@ -18,7 +18,7 @@ Bono in both directions.
    iFCs (typically TCP and UDP port 5060).
 
  * The application server must also be able to exchange SIP messages
-   (in both directions) with any other SIP entity that may appear in
+   (in both directions) with any other application server that may appear in
    the signalling path of any call going through it.
 
  * Since the application server is in the trusted zone, it should
