@@ -13,7 +13,7 @@ These instructions cover commissioning a Chef client node on an EC2 server as pa
 
 Create a `m1.small` AWS EC2 instance running `Ubuntu Server 12.04.1 LTS` using the AWS web interface.  Configure its security group to allow access on port 22 (for SSH).
 
-Configure a DNS entry for this machine, `chef-client.<zone>`.
+Configure a DNS entry for this machine, `chef-client.<zone>`. (The precise name isn't important, but we use this consistently in the documentation that follows.)
 
 Once the instance is up and running and you can connect to it over SSH, you may continue to the next steps.
 
