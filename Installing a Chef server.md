@@ -5,7 +5,7 @@ This is the first step in preparing to install a Clearwater deployment using the
 ## Prerequisites
 
 * An Amazon EC2 account.
-* A DNS root domain configured as a hosted zone with Route53, this domain will be referred to as `<zone>` in this document.
+* A DNS root domain configured as a hosted zone with Route53 (Amazon's built-in DNS service, accessible from the EC2 console). This domain will be referred to as `<zone>` in this document.
 
 ## Create the instance
 
@@ -14,6 +14,8 @@ Create a `m1.small` AWS EC2 instance running `Ubuntu Server 12.04.1 LTS` using t
 Configure a DNS entry for this machine, `chef-server.<zone>`. (The precise name isn't important, but we use this consistently in the documentation that follows.)
 
 Once the instance is up and running and you can connect to it over SSH, you may continue to the next steps.
+
+If you make a mistake, simply delete the instance permanently by selecting "Terminate" in the EC2 console, and start again. The terminated instance may take a few minutes to disappear from the console.
 
 ## Prepare your package manager
 
