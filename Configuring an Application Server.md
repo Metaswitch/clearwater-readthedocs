@@ -63,11 +63,13 @@ Here is an example of how to use `curl` to configure iFCs directly.
 
 To simplify the following commands, define the following variables -
 set the user, application server(s), and Homestead name as appropriate
-for your deployment:
+for your deployment.
 
     user=sip:6505550269@example.com
     as_hostnames="as1.example.com mmtel.example.com" # the list of zero or more application servers to invoke - don't forget mmtel
     hs_hostname=hs.example.com:8888
+
+Be careful - the user must be *exactly* right, including the `sip:` prefix, and also `+1` if and only if it is a PSTN line. We have seen problems with PSTN lines; if the above syntax does not work, try URL-encoding the user, e.g., for +16505550269@example.com write `user=sip%3A%2B16505550269%40example.com`.
 
 To retrieve the current configuration, invoke `curl` as follows. You must be able to access $hs_hostname; check your firewall configuration.
 
