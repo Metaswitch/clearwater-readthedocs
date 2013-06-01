@@ -59,7 +59,7 @@ can configure them directly using Homestead.
 Example
 -------
 
-Here is an example of how to use `curl` to configure iFCs directly.
+Here is an example of how to use `curl` to configure iFCs directly. This configures a very basic iFC, which fires on INVITEs only, with no conditions on session case. See an iFC reference for more details, e.g., [3GPP TS 29.228](http://www.3gpp.org/ftp/Specs/archive/29_series/29.228/29228-b70.zip) appendices B and F.
 
 To simplify the following commands, define the following variables -
 set the user, application server(s), and Homestead name as appropriate
