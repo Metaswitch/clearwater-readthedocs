@@ -33,6 +33,8 @@ Before creating an environment, choose a name (e.g. "clearwater") which will be 
 
 Note that the value of  "keypair" should *not* include the trailing .pem.
 
+These fields override attributes defined and documented in the [clearwater-infrastructure role](https://github.com/Metaswitch/chef/blob/master/roles/clearwater-infrastructure.rb).
+
 ## Uploading the environment
 
 The newly created environment needs to be uploaded to the Chef server before it can be used.
