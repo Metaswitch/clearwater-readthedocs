@@ -31,6 +31,8 @@ information can be found in [3GPP TS
 23.228](http://www.3gpp.org/ftp/Specs/html-info/23228.htm). Section
 references below are to 3GPP TS 24.229 unless otherwise specified.
 
+For a more detailed look at the ISC interface, and how it is implemented in Clearwater, see the [ISC interface guide](https://github.com/Metaswitch/sprout/blob/dev/docs/IscInterface.md) in the Sprout developer documentation.
+
 Clearwater interfaces
 =====================
 
