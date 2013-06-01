@@ -9,7 +9,9 @@ This is the first step in preparing to install a Clearwater deployment using the
 
 ## Create the instance
 
-Create a `m1.small` AWS EC2 instance running `Ubuntu Server 12.04.1 LTS` using the AWS web interface.  Configure its security group to allow access on ports `TCP/22`, `TCP/4040` and `TCP/4000` (for SSH, Chef WebUI and Chef control respectively).
+Create a `m1.small` AWS EC2 instance running `Ubuntu Server 12.04.1 LTS` using the AWS web interface. The SSH keypair you provide here is referred to below as `<amazon_ssh_key>`. It is easiest if you use the same SSH keypair for all of your instances.
+
+Configure its security group to allow access on ports `TCP/22`, `TCP/4040` and `TCP/4000` (for SSH, Chef WebUI and Chef control respectively).
 
 Configure a DNS entry for this machine, `chef-server.<zone>`. (The precise name isn't important, but we use this consistently in the documentation that follows.) It should have a non-aliased A record pointing at the public IP address of the instance as displayed in the EC2 console.
 
