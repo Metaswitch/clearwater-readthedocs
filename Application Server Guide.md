@@ -73,18 +73,9 @@ Limitations
 Current limitations
 -------------------
 
-**The initial (May 2013) release of Clearwater has only a partial implementation of the ISC interface. The specific additional limitations of this partial implementation are as follows:**
+**The early-June 2013 release of Clearwater has the following limitation on the ISC interface:**
 
- * Initial filter criteria (iFCs):
-   - Clearwater currently supports iFCs with zero or one criteria only. Any subsequent criteria may be ignored. It does not support AS chains.
-   - Clearwater currently ignores the conditions of each iFC; instead it invokes the named application server if and only if the method is INVITE.
  * Dead AS handling is not currently implemented.
- * AS invocation on REGISTER and deregister is not currently implemented.
- * Headers:
-   - Clearwater does not currently set `P-Asserted-Identity` or `P-Served-User`.
- * UDP:
-   - Clearwater currently supports UDP access only for application servers.
-   - Clearwater currently inserts itself into the signalling path (`Record-Route`) on either side of an external AS. This is forced by the UDP limitation.
 
 Future phases
 -------------
