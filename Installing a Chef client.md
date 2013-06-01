@@ -123,7 +123,7 @@ Configure knife using the built in auto-configuration tool.
 
 ## Obtain AWS access keys
 
-To allow the Clearwater extensions to create AWS instances or configure Route53 DNS entries, you will need to supply your AWS access key and secret access key.  To find your AWS keys, go to [http://aws.amazon.com](http://aws.amazon.com) and click on `My Account/Console` then `Security Credentials`. From there, under the `Access Credentials` section of the page, click on the `Access Keys` tab to view your access key.  The access key is referred to as `<accessKey>` below. To see your secret access key, just click on the `Show` link under `Secret Access Key`.  The secret access key will be referred to as `<secretKey>` below.
+To allow the Clearwater extensions to create AWS instances or configure Route53 DNS entries, you will need to supply your AWS access key and secret access key.  To find your AWS keys, you must be logged in as the main AWS user, not an IAM user. Go to [http://aws.amazon.com](http://aws.amazon.com) and click on `My Account/Console` then `Security Credentials`. From there, under the `Access Credentials` section of the page, click on the `Access Keys` tab to view your access key.  The access key is referred to as `<accessKey>` below. To see your secret access key, just click on the `Show` link under `Secret Access Key`.  The secret access key will be referred to as `<secretKey>` below.
 
 ## Add deployment-specific configuration
 
