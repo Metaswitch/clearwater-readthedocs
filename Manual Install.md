@@ -144,8 +144,8 @@ Install the Ellis package with:
 
 Provision a pool of numbers in Ellis.  The command given here will generate 1000 numbers starting at `sip:6505550000@<zone>`, meaning none of the generated numbers will be routeable outside of the Clearwater deployment.  For more details on creating numbers, see the [create_numbers.py documentation]().
 
-    sudo bash -c "export PATH=/usr/share/clearwater/ellis/env/bin:$PATH
-                  cd /usr/share/clearwater/ellis/src/metaswitch/ellis/tools/
+    sudo bash -c "export PATH=/usr/share/clearwater/ellis/env/bin:$PATH ;
+                  cd /usr/share/clearwater/ellis/src/metaswitch/ellis/tools/ ;
                   python create_numbers.py --start 6505550000 --count 1000"
 
 ### Bono
