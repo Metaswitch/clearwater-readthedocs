@@ -148,6 +148,14 @@ Provision a pool of numbers in Ellis.  The command given here will generate 1000
                   cd /usr/share/clearwater/ellis/src/metaswitch/ellis/tools/ ;
                   python create_numbers.py --start 6505550000 --count 1000"
 
+On success, you should see some output from python about importing eggs and then the following.
+
+    Created 1000 numbers, 0 already present in database
+
+This command is idempotent, so it's safe to run it multiple times.  If you've run it once before, you'll see the following instead.
+
+    Created 0 numbers, 1000 already present in database
+
 ### Bono
 
 Install the Bono and Restund packages with:
