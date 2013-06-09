@@ -4,7 +4,7 @@
 
 ## Latest Release
 
-The latest stable release of Clearwater is "How to Train Your Dragon".
+The latest stable release of Clearwater is "Into the Wild".
 
 ## Architecture
 
