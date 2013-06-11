@@ -29,6 +29,8 @@ Run the following to download and install the Clearwater test suite
     cd clearwater-live-test
     bundle install
 
+Make sure that you have an ssh key - if not, see the [github instructions](https://help.github.com/articles/generating-ssh-keys) for how to create one.
+
 ## Work out your base domain
 
 If you installed Clearwater manually, your base DNS name will simply be `<zone>`. If you installed using the automated install process, your base DNS name will be `<name>.<zone>`. For the rest of these instructions, the base DNS name will be referred to as `<domain>`.
