@@ -10,12 +10,10 @@ Valgrind will slow down the running of bono and sprout by a factor of 5-10.  It 
 
 ## GDB 
 ### Installing
-To install gdb, simply type "sudo apt-get install gdb".  gdb is already installed on build machines, but not on live nodes.
+To install gdb, simply type `sudo apt-get install gdb`.  gdb is already installed on build machines, but not on live nodes.
 
-If you're debugging on a live node, it's also worth installing the sprout or bono debug packages.  When we build the standard (release) versions, we strip all the symbols out and these are saved off separately in the debug package.  Note that you will still be running the release code - the debug symbols will just be loaded by gdb when you start it up.  To install these packages, type "sudo apt-get install sprout-dbg" or "sudo apt-get install bono-dbg".
+If you're debugging on a live node, it's also worth installing the sprout or bono debug packages.  When we build the standard (release) versions, we strip all the symbols out and these are saved off separately in the debug package.  Note that you will still be running the release code - the debug symbols will just be loaded by gdb when you start it up.  To install these packages, type `sudo apt-get install sprout-dbg` or `sudo apt-get install bono-dbg`.
 
 ### Unpacking crash dumps
 
-We use apport to manage crash dumps.  The dumps temporarily exist in /var/crash before being copied to www/crash on the build machine and user account that built them.  They are copied off the local machine by clearwater_crash_monitor - kill this process is you want them to stay local.
-
-To unpack a crash dump, run "apport-unpack <crash dump name> <directory to unpack into>".  The core file is called CoreDump.
+We use apport to manage crash dumps.  The dumps exist temporarily in `/var/crash`. To unpack a crash dump, run `apport-unpack <crash dump name> <directory to unpack into>`.  The core file is called CoreDump.
