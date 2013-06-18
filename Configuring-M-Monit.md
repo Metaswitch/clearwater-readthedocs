@@ -18,6 +18,6 @@
 
 ## Pointing servers at M/Monit
 
-When creating a instance pass it the mmonit hostname in `/etc/clearwater/config`, eg: mmonit_hostname=mmonit.cw-ngv.com. To configure an existing instance without this in the user data, simply stop the instance, modify the file and start it again.
+When creating a instance pass it the mmonit hostname in `/etc/clearwater/config`, eg: mmonit_hostname=mmonit.example.com. To configure an existing instance without this in the user data, simply stop the instance, modify the file and start it again.
 
 The clearwater-infrastructure package will add an mmonit script to /etc/clearwater/scripts/ and configure the monit daemon to point at the M/Monit host specfied in the user data. To monitor specific processes, add .monit config files to /etc/monit/conf.d/
