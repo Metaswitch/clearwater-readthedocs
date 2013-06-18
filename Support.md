@@ -41,6 +41,7 @@ you're interested in contributing,
 *   see [the github docs](https://help.github.com/articles/using-pull-requests)
     for how to create a pull request
 *   before creating a pull request, please make sure you've successfully
+    *   ensured the code matches our [Ruby](https://github.com/Metaswitch/clearwater-docs/wiki/Clearwater-Ruby-Coding-Guidelines) or [C++](https://github.com/Metaswitch/clearwater-docs/wiki/Clearwater-CPP-Coding-Guidelines) coding guidelines
     *   compiled the code
     *   run the unit tests for the component
     *   run the live tests against your changes.
