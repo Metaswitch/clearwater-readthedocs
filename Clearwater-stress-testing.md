@@ -24,7 +24,7 @@ This section describes step-by-step how to run stress.  It includes setting up a
 
 1.  If you haven't done so already, set up chef/knife (as described in [the install guide](https://github.com/Metaswitch/clearwater-docs/wiki/Automated%20Install)).
 2.  cd to your chef directory.
-3.  Edit your environment (e.g. `environments/stress-test-env.rb`) to override attributes as follows.
+3.  Edit your environment (e.g. `environments/ENVIRONMENT.rb`) to override attributes as follows.
 
     For example (replacing ENVIRONMENT with your environment name and DOMAIN with your Route 53-hosted root domain):
 
@@ -43,7 +43,7 @@ This section describes step-by-step how to run stress.  It includes setting up a
 ```
 
 4.  Upload your new environment to the chef server by typing `knife environment from file environments/ENVIRONMENT.rb`
-5. Create the deployment by typing `knife deployment resize -E stress-test-env`.  If you want more nodes, supply parameters such "--bono-count 5" or "--sprout-count 3" to control this.
+5. Create the deployment by typing `knife deployment resize -E ENVIRONMENT`.  If you want more nodes, supply parameters such "--bono-count 5" or "--sprout-count 3" to control this.
 6. Follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision subscribers. Create 100,000 subscribers per SIPp node.
 7. Create an ENUM server.  You need a dedicated ENUM server because the DN range that stress tests use needs to be routed back to your own deployment.  To create an ENUM server, type `knife box create -E ENVIRONMENT enum --index 1`.
 8. Add a DNS entry for the ENUM server - `knife dns record create -E ENVIRONMENT enum -z DOMAIN -T A --local enum -p ENVIRONMENT`.
