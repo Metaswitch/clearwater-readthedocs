@@ -191,7 +191,7 @@ as directed.
   If you leave them unchanged, this function will not work.
 
 * The M/Monit credentials are only required if you have an
-  [M/Monit](http://mmonit.com/) server. Otherwise you can leave them
+  [M/Monit](https://github.com/Metaswitch/clearwater-docs/wiki/Configuring-M-Monit) server. Otherwise you can leave them
   unchanged.
 
 ## Test your settings
