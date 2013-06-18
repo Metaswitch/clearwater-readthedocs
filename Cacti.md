@@ -28,7 +28,7 @@ here are the steps to create and configure a Cacti node:
 5.  login (admin/admin) and set a new password
 6.  modify configuration by
     1.  going to Devices and deleting "localhost"
-    2.  going to Settings-\>Poller and set "Poller Type" to "spin" and
+    2.  going to Settings-\>Poller and set "Poller Type" to "spine" and
         "Poller Interval" to "Every Minute"
     3.  going to Data Templates and, for each of "ucd/net - CPU Usage -
         \*" set "Associated RRA's" to "Hourly (1 Minute Average)" and
@@ -49,7 +49,7 @@ here are the steps to create and configure a Cacti node:
 
             sudo apt-get install -y --force-yes git ruby1.9.3 build-essential libzmq3-dev
             sudo gem install bundler --no-ri --no-rdoc
-            git clone git@github.com:Metaswitch/sprout.git
+            git clone https://github.com/Metaswitch/sprout.git
             cd sprout/scripts/stats
             sudo bundle install
 
