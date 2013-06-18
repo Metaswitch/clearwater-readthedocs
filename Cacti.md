@@ -23,7 +23,7 @@ here are the steps to create and configure a Cacti node:
     ENVIRONMENT cacti"
 2.  set up a DNS entry for it - "knife dns record create -E ENVIRONMENT
     cacti -z DOMAIN -T A --public cacti -p ENVIRONMENT"
-3.  point your web browser at cacti.ENVIRONMENT.DOMAIN
+3.  point your web browser at cacti.ENVIRONMENT.DOMAIN/cacti/
 4.  accept all the configuration defaults
 5.  login (admin/admin) and set a new password
 6.  modify configuration by
