@@ -4,7 +4,7 @@ Strongly based on https://github.com/chneukirchen/styleguide/ with some local ch
 
 *     Use UTF-8 encoding in your source files.
 *     Use 2 space indent, no tabs.
-*     Use Unix-style line endings.  On the last line of the file, too.
+*     Use Unix-style line endings, including on the last line of the file.
 *     Use spaces around operators, after commas, colons and semicolons, around { and before }.
 *     No spaces after (, [ and before ], ).
 *     Prefer postfix modifiers (if, unless, rescue) when possible.
@@ -102,7 +102,7 @@ Strongly based on https://github.com/chneukirchen/styleguide/ with some local ch
 *     Write ruby -w safe code.
 *     Avoid alias, use alias_method if you absolutely must alias something (for Monkey Patching).
 *     Use OptionParser for parsing command line options.
-*     Target Ruby 2.0 (except where libraries are not compatible... Chef).
+*     Target Ruby 2.0 (except where libraries are not compatible, such as Chef).
 *     Do not mutate arguments unless that is the purpose of the method.
 *     Do not mess around in core classes when writing libraries.
 *     Do not program defensively.
