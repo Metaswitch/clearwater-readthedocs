@@ -34,7 +34,7 @@ To examine homer or homestead's database, run `cqlsh -3` and then type `use home
 
 The most common problem on sprout is lack of communication with other nodes, causing registration or calls to fail.  Check that homer and homestead are reachable and responding.
 
-If this doesn't help, sprout logs to `/var/log/sprout/sprout*.log`.  By default, it is set to log level 2, which only includes errors and very high-level events.  To enable more detailed trace, change the log level to 5 by writing `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), and then restarting sprout.
+If this doesn't help, sprout logs to `/var/log/sprout/sprout*.txt`.  By default, it is set to log level 2, which only includes errors and very high-level events.  To enable more detailed trace, change the log level to 5 by writing `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), and then restarting sprout.
 
 Sprout maintains registration state in a memcached cluster.  It's a little clunky to examine this data but you can get some basic information out by running `. /etc/clearwater/config ; telnet $local_ip 11211` to connect to memcached, issuing `stats items`.  This returns a list of entries of the form `STAT items:<slab ID>:...`.  You can then query the keys in each of the slabs with `stats cachedump <slab ID> 0`.
 
@@ -42,7 +42,7 @@ Sprout maintains registration state in a memcached cluster.  It's a little clunk
 
 The most common problem on bono is lack of communication with sprout.  Check that sprout is reachable and responding.
 
-If this doesn't help, bono logs to `/var/log/bono/sprout*.log`.  By default, it is set to log level 2, which only includes errors and very high-level events.  To enable more detailed trace, change the log level to 5 by writing `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), and then restarting bono.
+If this doesn't help, bono logs to `/var/log/bono/sprout*.txt`.  By default, it is set to log level 2, which only includes errors and very high-level events.  To enable more detailed trace, change the log level to 5 by writing `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), and then restarting bono.
 
 ## Chef
 
