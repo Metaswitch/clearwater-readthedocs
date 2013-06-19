@@ -69,14 +69,13 @@ hss_hostname=0.0.0.0
 hss_port=3868
 ```
 4.  Modify it to read
-
 ```
 # HSS configuration
 hss_hostname=<address of your HSS>
 hss_port=<port of your HSS's Cx interface>
 ```
-6.  save the file and exit the editor
-7.  run `sudo service clearwater-infrastructure restart; sudo monit restart homestead` to reload the config and restart Homestead.
+5.  save the file and exit the editor
+6.  run `sudo service clearwater-infrastructure restart; sudo monit restart homestead` to reload the config and restart Homestead.
 
 ### Configuring your external HSS
 
