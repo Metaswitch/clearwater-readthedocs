@@ -55,23 +55,30 @@ Do not configure any Clearwater subscribers via Ellis!
     through Ellis at all - they must be created through the HSS's own
     management interface.
 
-### Enabling external HSS support
+### Enabling external HSS support on an existing deployment
 
 To enable external HSS support, for each of your Homestead nodes,
 
 1.  log in over ssh
 2.  edit the file
-    `/usr/share/clearwater/homestead/env/lib/python2.7/site-packages/crest-0.1-py2.7.egg/metaswitch/crest/settings.py`
-3.  find the block
+    `/etc/clearwater/config`
+3.  find the block (or add it if it does not exist)
+```
+# HSS configuration
+hss_enabled=False
+hss_hostname=0.0.0.0
+hss_port=3868
+```
+4.  Modify it to read
 
-        # HSS configuration (by default, synchronization with the HSS is disabled)
-        HSS_ENABLED = False
-        HSS_IP = "0.0.0.0"
-        HSS_PORT = 3868
-4.  set `HSS_ENABLED` to `True`
-5.  set `HSS_IP` to the IP address of your HSS
+```
+# HSS configuration
+hss_enabled=True
+hss_hostname=<address of your HSS>
+hss_port=<port of your HSS's Cx interface>
+```
 6.  save the file and exit the editor
-7.  run `sudo monit restart homestead` to restart Homestead.
+7.  run `sudo service clearwater-infrastructure restart; sudo monit restart homestead` to reload the config and restart Homestead.
 
 ### Configuring your external HSS
 
