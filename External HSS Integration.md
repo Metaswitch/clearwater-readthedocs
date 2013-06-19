@@ -65,7 +65,6 @@ To enable external HSS support, for each of your Homestead nodes,
 3.  find the block (or add it if it does not exist)
 ```
 # HSS configuration
-hss_enabled=False
 hss_hostname=0.0.0.0
 hss_port=3868
 ```
@@ -73,7 +72,6 @@ hss_port=3868
 
 ```
 # HSS configuration
-hss_enabled=True
 hss_hostname=<address of your HSS>
 hss_port=<port of your HSS's Cx interface>
 ```
