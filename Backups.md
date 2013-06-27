@@ -6,12 +6,14 @@ Homestead) have an automatic backup facility.
 
 ### Backup scripts
 
+**Please see note on restoring from remote backups below, before running these commands**.
+
 Backup scripts for a node are found in
 **/usr/share/clearwater/&lt;node\_name\>/backup** - i.e. for an ellis node
 **/usr/share/clearwater/ellis/backup**. Available scripts:
 
 -   **sudo ./list\_backups.sh** displays a list of available backups
--   **sudo ./do\_backup.sh** performs a backup right now. **Please see note on restoring from remote backups below, before running this command**.
+-   **sudo ./do\_backup.sh** performs a backup right now.
 -   **sudo ./restore\_backup.sh** restores from a backup - defaulting to
     the latest backup. Optionally pass in a specific backup, e.g.
     **./restore\_backup.sh 1234**
