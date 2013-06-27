@@ -11,7 +11,7 @@ Backup scripts for a node are found in
 **/usr/share/clearwater/ellis/backup**. Available scripts:
 
 -   **sudo ./list\_backups.sh** displays a list of available backups
--   **sudo ./do\_backup.sh** performs a backup right now
+-   **sudo ./do\_backup.sh** performs a backup right now. **Please see note on restoring from remote backups below, before running this command**.
 -   **sudo ./restore\_backup.sh** restores from a backup - defaulting to
     the latest backup. Optionally pass in a specific backup, e.g.
     **./restore\_backup.sh 1234**
