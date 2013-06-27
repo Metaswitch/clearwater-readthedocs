@@ -65,7 +65,7 @@ Ellis allows you to specify a mapping between application server names and <Init
 "Voicemail" : "<InitialFilterCriteria><Priority>1</Priority><TriggerPoint><ConditionTypeCNF></ConditionTypeCNF><SPT><ConditionNegated>0</ConditionNegated><Group>0</Group><Method>INVITE</Method><Extension></Extension></SPT></TriggerPoint><ApplicationServer><ServerName>sip:vm.example.com</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria>"
 }
 ``` 
-Once this is saved, the list of application server names will appear in the Ellis UI (on the 'Application Servers' tab of the Configure dialog), and selecting or deselecting them will add or remove the relevant XML from Homestead. If an <InitialFilterCriteria> node in the iFC XML is not included in app-servers.json, Ellis will leave it untouched.
+Once this is saved, the list of application server names will appear in the Ellis UI (on the 'Application Servers' tab of the Configure dialog), and selecting or deselecting them will add or remove the relevant XML from Homestead. This change takes effect immediately. If an <InitialFilterCriteria> node in the iFC XML is not included in app-servers.json, Ellis will leave it untouched.
 
 Direct configuration via cURL
 -------
