@@ -53,8 +53,17 @@ configure the appropriate iFCs for that subscriber. You can do this
 via the Homestead API, or if you are using an HSS, directly in the
 HSS.
 
-Ellis does not currently provide a GUI for altering the iFCs, but you
-can configure them directly using Homestead.
+Ellis allows you to specify a mapping between application server names and <InitialFilterCriteria> XML nodes. This is done by editing the `/usr/share/clearwater/ellis/web-content/js/app-servers.json` file, which is in [JSON](http://en.wikipedia.org/wiki/JSON#Data_types.2C_syntax_and_example) format. An example file would be:
+
+```
+{
+"MMTEL" : "<InitialFilterCriteria><Priority>0</Priority><TriggerPoint><ConditionTypeCNF></ConditionTypeCNF><SPT><ConditionNegated>0</ConditionNegated><Group>0</Group><Method>INVITE</Method><Extension></Extension></SPT></TriggerPoint><ApplicationServer><ServerName>sip:mmtel.example.com</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria>", 
+"Voicemail" : "<InitialFilterCriteria><Priority>1</Priority><TriggerPoint><ConditionTypeCNF></ConditionTypeCNF><SPT><ConditionNegated>0</ConditionNegated><Group>0</Group><Method>INVITE</Method><Extension></Extension></SPT></TriggerPoint><ApplicationServer><ServerName>sip:vm.example.com</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria>"
+}
+``` 
+Once this is saved, the list of application server names will appear in the Ellis UI (on the 'Application Servers' tab of the Configure dialog), and selecting or deselecting them will add or remove the relevant XML from Homestead. If an <InitialFilterCriteria> node in the iFC XML is not included in app-servers.json, Ellis will leave it untouched.
+
+You can also configure iFCs directly using Homestead.
 
 Example
 -------
