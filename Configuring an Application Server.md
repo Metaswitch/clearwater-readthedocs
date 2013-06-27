@@ -50,8 +50,12 @@ iFC configuration
 
 To configure a subscriber to invoke your application server, you must
 configure the appropriate iFCs for that subscriber. You can do this
-via the Homestead API, or if you are using an HSS, directly in the
+via the Ellis UI, the Homestead API, or if you are using an HSS, directly in the
 HSS.
+
+
+Web UI configuration via Ellis
+-------
 
 Ellis allows you to specify a mapping between application server names and <InitialFilterCriteria> XML nodes. This is done by editing the `/usr/share/clearwater/ellis/web-content/js/app-servers.json` file, which is in [JSON](http://en.wikipedia.org/wiki/JSON#Data_types.2C_syntax_and_example) format. An example file would be:
 
@@ -63,10 +67,10 @@ Ellis allows you to specify a mapping between application server names and <Init
 ``` 
 Once this is saved, the list of application server names will appear in the Ellis UI (on the 'Application Servers' tab of the Configure dialog), and selecting or deselecting them will add or remove the relevant XML from Homestead. If an <InitialFilterCriteria> node in the iFC XML is not included in app-servers.json, Ellis will leave it untouched.
 
-You can also configure iFCs directly using Homestead.
-
-Example
+Direct configuration via cURL
 -------
+
+You can also configure iFCs directly using Homestead.
 
 Here is an example of how to use `curl` to configure iFCs directly. This configures a very basic iFC, which fires on INVITEs only, with no conditions on session case. See an iFC reference for more details, e.g., [3GPP TS 29.228](http://www.3gpp.org/ftp/Specs/archive/29_series/29.228/29228-b70.zip) appendices B and F.
 
