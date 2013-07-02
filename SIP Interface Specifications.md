@@ -2,7 +2,7 @@
 
 This document is a review of all the SIP related RFCs referenced by IMS (in particular [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm) [Rel 10](http://www.etsi.org/deliver/etsi_ts/124200_124299/124229/10.10.00_60/ts_124229v101000p.pdf)), particularly how they relate to Clearwater's SIP support.  The bulk of the document goes through the RFCs grouped in the following 4 categories.
 
-*   RFCs already supported by Clearwater (at least sufficient for IMS compliance for Clearwater as a combined P/I/S-CSCF/BGCF/IBCF.
+*   RFCs already supported by Clearwater (at least sufficient for IMS compliance for Clearwater as a combined P/I/S-CSCF/BGCF/IBCF).
 *   RFCs that are relevant to Clearwater but not currently supported.
 *   RFCs relevant to media processing, which Clearwater doesn't currently need to handle as it is not involved in the media path.
 *   RFCs that are not relevant to Clearwater.
