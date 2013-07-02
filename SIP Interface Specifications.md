@@ -37,6 +37,11 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   Required for privacy service.
 *   Clearwater supports this header.
 
+### P-Asserted-Identity and P-Preferred-Identity headers ([RFC 3325](http://www.ietf.org/rfc/rfc3325.txt))
+
+*   Defines headers that allow a UE to select which identity it wants to use on a call-by-call basis.  Ties in with authentication and the P-Associated-URIs header defined in [RFC 3455](http://www.ietf.org/rfc/rfc3455.txt) (see below).
+*   Clearwater supports these headers.
+
 ### Path header ([RFC 3327](http://www.ietf.org/rfc/rfc3327.txt))
 
 *   Defines handling of registrations from devices which are not adjacent (in SIP routing terms) to the registrar.
@@ -48,6 +53,15 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   Support for this is mandatory according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm), but it does not describe any particular use cases.
 *   Transparent to proxy components, so supported by Clearwater.
 
+### P-Access-Network-Info, P-Associated-URI, P-Called-Party-ID, P-Charging-Function-Address, P-Charging-Vector and P-Visited-Network-ID headers ([RFC 3455](http://www.ietf.org/rfc/rfc3455.txt))
+
+*   Defines various private headers specifically for IMS.
+*   P-Access-Network-Info is added to incoming messages by the UE or the P-CSCF to provide information about the access network and possibly the UEs location within the network (for example cell).  IMS specifications talk about various uses for this information, including routing emergency calls, an alternative to ï¿½phone-contextï¿½ for interpreting dialled digits, determining the security scheme.  This header is supported by Clearwater.
+*   P-Associated-URI is returned by registrar to include the list of alternative user identities defined for the IMS subscription.  This header is supported by Clearwater.
+*   P-Called-Party-ID is added to a SIP request by an IMS network to ensure the called UE knows which of the user identities within the IMS subscription was actually called.  This header is supported by Clearwater.
+*   P-Charging-Function-Address and P-Charging-Vector headers are both related to billing, and not yet supported in Clearwater.
+*   P-Visited-Network-ID is used when roaming to identify the network the user has roamed to. The specs say it is a free-form string, and should be used to check that there is a roaming agreement in place. Clearwater supports receiving this header, but does not check its value.
+
 ### Symmetric SIP response routing ([RFC 3581](http://www.ietf.org/rfc/rfc3581.txt))
 
 *   Defines how SIP responses should be routed to ensure they traverse NAT pinholes.
@@ -58,6 +72,12 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 
 *   Covers REFER method, Refer-To header and event packages for transferring referral state ([RFC 3515](http://www.ietf.org/rfc/rfc3515.txt)), Replaces header ([RFC 3891](http://www.ietf.org/rfc/rfc3891.txt)), Referred-By header ([RFC 3892](http://www.ietf.org/rfc/rfc3892.txt)), Join header ([RFC 3911](http://www.ietf.org/rfc/rfc3911.txt)), Refer-Sub header ([RFC 4488](http://www.ietf.org/rfc/rfc4488.txt)), and the Target-Dialog header ([RFC 4538](http://www.ietf.org/rfc/rfc4538.txt)).
 *   Transparent to proxies, so supported by Clearwater - although needs support for GRUUs (see below) to work in all use cases.
+
+### Service-Route header ([RFC 3608](http://www.ietf.org/rfc/rfc3608.txt))
+
+*   In IMS an S-CSCF includes Service-Route header on REGISTER responses, so UE can use to construct Route headers to ensure subsequent requests get to the appropriate S-CSCF.
+*   Optional according to TS 24.229(http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
+*   This header is supported by Clearwater.
 
 ### ENUM ([RFC 3761](http://www.ietf.org/rfc/rfc3761.txt) and [RFC 4769](http://www.ietf.org/rfc/rfc4769.txt))
 
@@ -103,7 +123,7 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 
 ### MRFC control ([RFC 4240](http://www.ietf.org/rfc/rfc4240.txt), [RFC 5552](http://www.ietf.org/rfc/rfc5552.txt), [RFC 6230](http://www.ietf.org/rfc/rfc6230.txt), [RFC 6231](http://www.ietf.org/rfc/rfc6231.txt), [RFC 6505](http://www.ietf.org/rfc/rfc6505.txt))
 
-*   These RFCs define three different ways of controlling the function of an MRFC from an AS. [RFC 4240](http://www.ietf.org/rfc/rfc4240.txt) is a simple “play an announcement” service, [RFC 5552](http://www.ietf.org/rfc/rfc5552.txt) uses VoiceXML and [RFC 6230](http://www.ietf.org/rfc/rfc6230.txt)/6231/6505 use SIP/SDP to establish a two-way control channel between the AS and MRFC.
+*   These RFCs define three different ways of controlling the function of an MRFC from an AS. [RFC 4240](http://www.ietf.org/rfc/rfc4240.txt) is a simple ï¿½play an announcementï¿½ service, [RFC 5552](http://www.ietf.org/rfc/rfc5552.txt) uses VoiceXML and [RFC 6230](http://www.ietf.org/rfc/rfc6230.txt)/6231/6505 use SIP/SDP to establish a two-way control channel between the AS and MRFC.
 *   IMS allows any of the three mechanisms to be used, or combinations depending on circumstances.
 *   All three mechanisms are transparent to proxy components, so supported by Clearwater.
 
@@ -157,9 +177,27 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm), and only applicable to UEs and any application servers that can receive REFER requests.
 *   Transparent to proxies, so supported by Clearwater.
 
+### P-Served-User header ([RFC 5502](http://www.ietf.org/rfc/rfc5502.txt))
+
+*   Only applicable on the ISC interface - used to clear up some ambiguities about exactly which user the AS should be providing service for.
+*   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
+*   This header is supported by Clearwater and included on requests sent to application servers.
+
+### Message body handling ([RFC 5621](http://www.ietf.org/rfc/rfc5621.txt))
+
+*   Defines how multiple message bodies can be encoded in a SIP message.
+*   Relevant in handling of third-party REGISTERs on ISC where XML encoded data from iFC may be passed to AS.
+
+### SIP outbound support ([RFC 5626](http://www.ietf.org/rfc/rfc5626.txt))
+
+*   Defines mechanisms for clients behind NATs to connect to a SIP network so SIP requests can be routed to the client through the NAT.
+*   Mandatory according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
+*   Supported by Clearwater for NAT traversal, except for the Flow-Timer header (which tells the client how often to send keepalives).
+
 ### Fixes to Record-Route processing ([RFC 5658](http://www.ietf.org/rfc/rfc5658.txt))
 
 *   Fixes some interoperability issues in basic SIP handling of Record-Route headers, particularly in proxies which have multiple IP addresses.
+*   Clearwater used RFC5658 double-record routing in Bono nodes when transitioning between the trusted and untrusted zones on different port numbers.
 
 ### Fixes for IPv6 addresses in URIs ([RFC 5954](http://www.ietf.org/rfc/rfc5954.txt))
 
@@ -195,25 +233,11 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 
 These are the RFCs which are relevant to Clearwater and not yet supported.
 
-### P-Asserted-Identity and P-Preferred-Identity headers ([RFC 3325](http://www.ietf.org/rfc/rfc3325.txt))
-
-*   Defines headers that allow a UE to select which identity it wants to use on a call-by-call basis.  Ties in with authentication and the P-Associated-URIs header defined in [RFC 3455](http://www.ietf.org/rfc/rfc3455.txt) (see below).
-*   Not currently supported by Clearwater.
-
 ### SIP Instant Messaging ([RFC 3428](http://www.ietf.org/rfc/rfc3428.txt))
 
 *   Defines the use of the SIP MESSAGE method to implement an instant messaging service.
 *   Mandatory in proxy components according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
 *   We've never tested MESSAGE handling in Clearwater - may require some bug fixes to get working.
-
-### P-Access-Network-Info, P-Associated-URI, P-Called-Party-ID, P-Charging-Function-Address, P-Charging-Vector and P-Visited-Network-ID headers ([RFC 3455](http://www.ietf.org/rfc/rfc3455.txt))
-
-*   Defines various private headers specifically for IMS.
-*   P-Access-Network-Info is added to incoming messages by the UE or the P-CSCF to provide information about the access network and possibly the UEs location within the network (for example cell).  IMS specifications talk about various uses for this information, including routing emergency calls, an alternative to “phone-context” for interpreting dialled digits, determining the security scheme.  Already supported by Clearwater.  Should also be passed to app servers on 3rd party REGISTER requests, which Clearwater does not yet support.
-*   P-Associated-URI is returned by registrar to include the list of alternative user identities defined for the IMS subscription.
-*   P-Called-Party-ID is added to a SIP request by an IMS network to ensure the called UE knows which of the user identities within the IMS subscription was actually called.
-*   P-Charging-Function-Address and P-Charging-Vector headers are both related to billing, and not yet supported.
-*   P-Visited-Network-ID is used when roaming to identify the network the user has roamed to. The specs say it is a free-form string, and should be used to check that there is a roaming agreement in place. Clearwater supports receiving this head, but does not check its value.
 
 ### Registration Events ([RFC 3680](http://www.ietf.org/rfc/rfc3680.txt))
 
@@ -234,7 +258,7 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 
 ### Dialstring URI parameter ([RFC 4967](http://www.ietf.org/rfc/rfc4967.txt))
 
-*   Defines a “user=dialstring” parameter used in SIP URIs to indicate that the user portion of the URI is a dial string (as opposed to a number that definitely identifies a phone as in the “user=phone” case).
+*   Defines a ï¿½user=dialstringï¿½ parameter used in SIP URIs to indicate that the user portion of the URI is a dial string (as opposed to a number that definitely identifies a phone as in the ï¿½user=phoneï¿½ case).
 *   IMS allows this encoding from UEs initiating calls, but doesn't specify any particular processing within the core of the network.  The intention is that this can be handled by an application server, or captured by filter criteria.
 *   Clearwater doesn't currently support this.
 
@@ -242,29 +266,11 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 
 *   Used to authorize and control early media.
 *   If P-CSCF is not gating media then required function is as simple as
-    *   adding P-Early-Media header with “supported” value on requests from clients (or modifying header from clients if already in message)
+    *   adding P-Early-Media header with ï¿½supportedï¿½ value on requests from clients (or modifying header from clients if already in message)
     *   passing the header through transparently on responses.
 *   If P-CSCF is gating media then function is more complex as P-CSCF has to operate on values in P-Early-Media headers sent to/from UEs.
 *   Mandatory in a P-CSCF according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
 *   Clearwater doesn't currently support this.
-
-### P-Served-User header ([RFC 5502](http://www.ietf.org/rfc/rfc5502.txt))
-
-*   Only applicable on the ISC interface - used to clear up some ambiguities about exactly which user the AS should be providing service for.
-*   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
-*   Not clear whether Clearwater whether the abiguity applies in Clearwater's case (and so whether support is required), but not currently supported.
-
-### Message body handling ([RFC 5621](http://www.ietf.org/rfc/rfc5621.txt))
-
-*   Defines how multiple message bodies can be encoded in a SIP message.
-*   Relevant in handling of third-party REGISTERs where XML encoded data from iFC may be passed to AS.
-*   Clearwater doesn't currently support this.
-
-### SIP outbound support ([RFC 5626](http://www.ietf.org/rfc/rfc5626.txt))
-
-*   Defines mechanisms for clients behind NATs to connect to a SIP network so SIP requests can be routed to the client through the NAT.
-*   Mandatory according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
-*   Supported by Clearwater for NAT traversal, except for the Flow-Timer header (which tells the client how often to send keepalives).
 
 ### GRUUs ([RFC 5627](http://www.ietf.org/rfc/rfc5627.txt), plus [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt), [draft-montemurro-gsma-imei-urn-11](http://datatracker.ietf.org/doc/draft-montemurro-gsma-imei-urn/) and [draft-atarius-device-id-meid-urn-01](http://datatracker.ietf.org/doc/draft-atarius-device-id-meid-urn/))
 
@@ -403,7 +409,7 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 ### SIP INFO messages ([RFC 6086](http://www.ietf.org/rfc/rfc6086.txt))
 
 *   Framework for exchanging application specification information within a SIP dialog context.
-*   Not currenty supported by Clearwater.
+*   Not currently supported by Clearwater.
 *   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
 
 ### Indication of support for keepalives ([RFC 6223](http://www.ietf.org/rfc/rfc6223.txt))
@@ -478,11 +484,6 @@ The following is a brief explanation of each RFC, and its relevance to IMS.
 
 *   Only relevance to IMS is that it defines a billing correlation parameter (bcid) which is passed in the P-Charging-Vector header from DOCSIS access networks.
 
-### Service-Route header ([RFC 3608](http://www.ietf.org/rfc/rfc3608.txt))
-
-*   Strictly speaking, Clearwater should return Service-Route headers on REGISTER responses, so UE can use to construct Route headers to ensure subsequent requests get to the appropriate S-CSCF.
-*   In Clearwater's stateless model this isn't required, and [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm) says it is optional.
-
 ### Geolocation ([RFC 4119](http://www.ietf.org/rfc/rfc4119.txt) and [RFC 6442](http://www.ietf.org/rfc/rfc6442.txt))
 
 *   Frameworks for passing geo-location information within SIP messages - [RFC 4119](http://www.ietf.org/rfc/rfc4119.txt) encodes geo-location in a message body, [RFC 6442](http://www.ietf.org/rfc/rfc6442.txt) encodes a URI reference where the UEs location can be found.
@@ -514,4 +515,3 @@ The following is a brief explanation of each RFC, and its relevance to IMS.
 *   Defines a mechanism for a caller to control the answer mode at the target of the call. Use cases can include invoking some kind of auto-answer loopback.  Covers the Answer-Mode and Priv-Answer-Mode headers.
 *   In general is transparent to proxies (provided proxies pass headers through), but the RFC recommends the mechanism is not used in environments that support parallel forking.
 *   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm) - and arguably not a good idea because of bad interactions with forking.
-
