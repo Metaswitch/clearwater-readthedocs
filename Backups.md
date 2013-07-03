@@ -85,7 +85,7 @@ This produces output of the following form, reporting the successfully-created b
     ...
     Deleting old backup: /usr/share/clearwater/homestead/backup/backups/1372812963174
     Creating backup for keyspace homestead...
-    Requested snapshot for: homestead 
+    Requested snapshot for: homestead
     Snapshot directory: 1372850637124
     Backups can be found at: /usr/share/clearwater/homestead/backup/backups
 
@@ -93,7 +93,7 @@ Make a note of the snapshot directory - this will be referred to as `<snapshot>`
 
 The backups are only stored locally - the resulting backup is stored in `/usr/share/clearwater/homestead/backup/backups/<snapshot>`
 
-These should, be copied off the homestead or homer node to a secure backup server. E.g. from a remote location execute `scp -r ubuntu@<homestead node>:/usr/share/clearwater/homestead/backup/backups/<snapshot> .`
+These should be copied off the homestead or homer node to a secure backup server.  For example, from a remote location execute `scp -r ubuntu@<homestead node>:/usr/share/clearwater/homestead/backup/backups/<snapshot> .`.
 
 ## Periodic Automated Local Backups
 
@@ -117,7 +117,7 @@ The first step in restoring from a backup is getting the backup files/directorie
 
 If you are restoring from a backup that was taken on the node on which you are restoring (and haven't moved it), you can just move onto the next step.
 
-If not, create a directory on your system that you want to put your backups into (we'll use `~/backup` in this example). Then copy the backups the, i.e. from a remote location that contains your backup directory `<snapshot>` execute `scp -r <snapshot> ubuntu@<homestead node>:backup/<snapshot>`
+If not, create a directory on your system that you want to put your backups into (we'll use `~/backup` in this example). Then copy the backups there.  For example, from a remote location that contains your backup directory `<snapshot>` execute `scp -r <snapshot> ubuntu@<homestead node>:backup/<snapshot>`.
 
 On ellis, run the following commands.
 
@@ -185,13 +185,13 @@ into an ellis box and execute:
 
 This will:
 
--   Run through all the lines on ellis that have an owner and verify 
-    that there is a private identity associated with the public 
-    identity stored in ellis. If successful, it will verify that a 
-    digest exists in homestead for that private identity. 
-    If either of these checks fail, the line is considered lost and 
-    is removed from ellis. 
-    If both checks pass, it will check that there is a valid IFC - 
+-   Run through all the lines on ellis that have an owner and verify
+    that there is a private identity associated with the public
+    identity stored in ellis. If successful, it will verify that a
+    digest exists in homestead for that private identity.
+    If either of these checks fail, the line is considered lost and
+    is removed from ellis.
+    If both checks pass, it will check that there is a valid IFC -
     if this is missing, it will be replaced with the default IFC.
 -   Run through all the lines on ellis without an owner and make sure
     there is no orphaned data in homestead and homer, i.e. deleting the
