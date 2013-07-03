@@ -1,28 +1,177 @@
-Clearwater Backups
-==================
+# Backups
 
-All the database backed nodes in Clearwater (currently Ellis, Homer &
-Homestead) have an automatic backup facility.
+Within a Clearwater deployment, ellis, homestead and homer all store persistent data.  (Bono and sprout do not.)  To prevent data loss in disaster scenarios, ellis, homestead and homer all have data backup and restore mechanisms.  Specifically, all support
 
-### Backup scripts
+*   manual backup
+*   periodic automated local backup
+*   manual restore.
 
-**Please see note on restoring from remote backups below, before running these commands**.
+This document describes
 
-Backup scripts for a node are found in
-**/usr/share/clearwater/&lt;node\_name\>/backup** - i.e. for an ellis node
-**/usr/share/clearwater/ellis/backup**. Available scripts:
+*   how to list the backups that have been taken
+*   how to take a manual backup
+*   the periodic automated local backup behavior
+*   how to restore from a backup.
 
--   **sudo ./list\_backups.sh** displays a list of available backups
--   **sudo ./do\_backup.sh** performs a backup right now.
--   **sudo ./restore\_backup.sh** restores from a backup - defaulting to
-    the latest backup. Optionally pass in a specific backup, e.g.
-    **./restore\_backup.sh 1234**
+## Listing Backups
 
-Note for homer and homestead nodes it is necessary to also supply the
-node type as the first parameter to the above scripts, e.g.
-**./list\_backups.sh homer** or **./restore\_backup.sh homestead 666**
+The process for listing backups varies between ellis, homestead and homer.
 
-### Synchronizing backups
+### Ellis
+
+To list the backups that have been taken on ellis, run `sudo /usr/share/clearwater/ellis/backup/list_backups.sh`.
+
+    Backups for ellis:
+    1372294741  /usr/share/clearwater/ellis/backup/backups/1372294741
+    1372294681  /usr/share/clearwater/ellis/backup/backups/1372294681
+    1372294621  /usr/share/clearwater/ellis/backup/backups/1372294621
+    1372294561  /usr/share/clearwater/ellis/backup/backups/1372294561
+
+### Homestead and Homer
+
+To list the backups that have been taken on homestead or homer, run
+
+*   `sudo /usr/share/clearwater/homestead/backup/list_backups.sh homestead` for homestead
+*   `sudo /usr/share/clearwater/homer/backup/list_backups.sh homer` for homer.
+
+This produces output of the following form, listing each of the available backups.
+
+    No backup directory specified, defaulting to /usr/share/clearwater/homestead/backup/backups
+    1372812963174
+    1372813022822
+    1372813082506
+    1372813143119
+
+You can also specify a directory to search in for backups, e.g. for homestead:
+
+`sudo /usr/share/clearwater/homestead/backup/list_backups.sh homestead <backup dir>`
+
+## Taking a Manual Backup
+
+The process for taking a manual backup varies between ellis, homestead and homer.  Note that in all cases,
+
+*   the backup is stored locally and should be copied to a secure backup server to ensure resilience
+*   this process only backs up a single local node, so the same process must be run on all nodes in a cluster to ensure a complete set of backups
+*   these processes cause a small amount of extra load on the disk, so it is recommended not to perform this during periods of high load
+*   only 4 backups are stored locally - when a fifth backup is taken, the oldest is deleted.
+
+### Ellis
+
+To take a manual backup on ellis, run `sudo /usr/share/clearwater/ellis/backup/do_backup.sh`.
+
+This produces output of the following form, reporting the successfully-created backup.
+
+    Creating backup in /usr/share/clearwater/ellis/backup/backups/1372336317/db_backup.sql
+
+Make a note of the snapshot directory (`1372336317` in the example above) - this will be referred to as `<snapshot>` below.
+
+This file is only accessible by the root user.  To copy it to the current user's home directory, run
+
+    snapshot=<snapshot>
+    sudo bash -c 'cp /usr/share/clearwater/ellis/backup/backups/'$snapshot'/db_backup.sql ~'$USER' &&
+                  chown '$USER.$USER' db_backup.sql'
+
+This file can, and should, be copied off the ellis node to a secure backup server.
+
+### Homestead and Homer
+
+To take a manual backup on homestead or homer, run
+
+*   `sudo /usr/share/clearwater/homestead/backup/do_backup.sh homestead` on homestead
+*   `sudo /usr/share/clearwater/homer/backup/do_backup.sh homer` on homer.
+
+This produces output of the following form, reporting the successfully-created backup.
+
+    ...
+    Deleting old backup: /usr/share/clearwater/homestead/backup/backups/1372812963174
+    Creating backup for keyspace homestead...
+    Requested snapshot for: homestead
+    Snapshot directory: 1372850637124
+    Backups can be found at: /usr/share/clearwater/homestead/backup/backups
+
+Make a note of the snapshot directory - this will be referred to as `<snapshot>` below.
+
+The backups are only stored locally - the resulting backup is stored in `/usr/share/clearwater/homestead/backup/backups/<snapshot>`
+
+These should be copied off the homestead or homer node to a secure backup server.  For example, from a remote location execute `scp -r ubuntu@<homestead node>:/usr/share/clearwater/homestead/backup/backups/<snapshot> .`.
+
+## Periodic Automated Local Backups
+
+Ellis, homestead and homer are all automatically configured to take daily backups, at midnight local time every night.
+
+These backups are stored locally, in the same locations as they would be generated for a manual backup.
+
+## Restoring from a Backup
+
+There are three stages to restoring from a backup.
+
+1.  Copying the backup files to the correct location.
+2.  Running the restore backup script.
+3.  Synchronizing ellis, homestead and homer's views of the system state.
+
+**This process will impact service and overwrite data in your database.**
+
+### Copying Backup Files
+
+The first step in restoring from a backup is getting the backup files/directories into the correct locations on the ellis, homer or homestead node.
+
+If you are restoring from a backup that was taken on the node on which you are restoring (and haven't moved it), you can just move onto the next step.
+
+If not, create a directory on your system that you want to put your backups into (we'll use `~/backup` in this example). Then copy the backups there.  For example, from a remote location that contains your backup directory `<snapshot>` execute `scp -r <snapshot> ubuntu@<homestead node>:backup/<snapshot>`.
+
+On ellis, run the following commands.
+
+    snapshot=<snapshot>
+    sudo chown root.root db_backup.sql
+    sudo mkdir -p /usr/share/clearwater/ellis/backup/backups/$snapshot
+    sudo mv ~/backup/$snapshot/db_backup.sql /usr/share/clearwater/ellis/backup/backups/$snapshot
+
+On homestead/homer there is no need to further move the files as the backup script takes a optional backup directory parameter.
+
+### Running the Restore Backup Script
+
+To actually restore from the backup file, run
+
+*   `sudo /usr/share/clearwater/ellis/backup/restore_backup.sh <snapshot>` on ellis
+*   `sudo /usr/share/clearwater/homestead/backup/restore_backup.sh homestead <snapshot> ~/backup` on homestead
+*   `sudo /usr/share/clearwater/homer/backup/restore_backup.sh homer <snapshot> ~/backup` on homer.
+
+Ellis will produce output of the following form.
+
+    Will attempt to backup from backup 1372336317
+    Found backup directory 1372336317
+    Restoring backup for ellis...
+    --------------
+    /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */
+    --------------
+
+    ...
+
+    --------------
+    /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
+    --------------
+
+Homestead or homer will produce output of the following form.
+
+    Will attempt to backup from backup 1372336442947
+    Will attempt to backup from directory /home/ubuntu/bkp_test/
+    Found backup directory /home/ubuntu/bkp_test//1372336442947
+    Restoring backup for keyspace homestead...
+    xss =  -ea -javaagent:/usr/share/cassandra/lib/jamm-0.2.5.jar -XX:+UseThreadPriorities -XX:ThreadPriorityPolicy=42 -Xm
+    s826M -Xmx826M -Xmn100M -XX:+HeapDumpOnOutOfMemoryError -Xss180k
+    Clearing commitlog...
+    filter_criteria: Deleting old .db files...
+    filter_criteria: Restoring from backup: 1372336442947
+    private_ids: Deleting old .db files...
+    private_ids: Restoring from backup: 1372336442947
+    public_ids: Deleting old .db files...
+    public_ids: Restoring from backup: 1372336442947
+    sip_digests: Deleting old .db files...
+    sip_digests: Restoring from backup: 1372336442947
+
+At this point, this node has been restored.
+
+### Synchronization
 
 It is possible (and likely) that when backups are taken on different
 boxes the data will be out of sync, e.g. ellis will know about a
@@ -37,47 +186,13 @@ into an ellis box and execute:
 This will:
 
 -   Run through all the lines on ellis that have an owner and verify
-    that their digest exists in homestead. If it does not, the line is
-    considered lost and is removed from ellis. If the digest exists, it
-    will check that there is a valid IFC - if this is missing, it will
-    be replaced with the default IFC.
+    that there is a private identity associated with the public
+    identity stored in ellis. If successful, it will verify that a
+    digest exists in homestead for that private identity.
+    If either of these checks fail, the line is considered lost and
+    is removed from ellis.
+    If both checks pass, it will check that there is a valid IFC -
+    if this is missing, it will be replaced with the default IFC.
 -   Run through all the lines on ellis without an owner and make sure
     there is no orphaned data in homestead and homer, i.e. deleting the
     simservs, IFC and digest for those lines.
-
-### Restoring from a remote backup
-
-Remote backups are currently not implemented, to backup remotely you
-will need to manually copy the backups files to a remote location. The
-backup files are located in:
-
--   **ellis:** /usr/share/clearwater/ellis/backup/backups
--   **homer:** /var/lib/cassandra/data/homer/simservs/snapshots
--   **homestead:**
-    /var/lib/cassandra/data/homestead/sip\_digests/snapshots and
-    /var/lib/cassandra/data/homestead/filter\_criteria/snapshots
-
-When restoring from a remote backup (i.e. backup files copied from another machine), it is necessary to fix file permissions. Execute:
-
--   **homer/homestead:** `sudo chown -R cassandra:cassandra /var/lib/cassandra/`
--   **ellis:** `sudo chown -R root:root /usr/share/clearwater/ellis/backup/backups/`
-
-### Periodic backups
-
-Backups are setup by Chef as a daily cron job, which is run at midnight.
-
-### Backup rotation
-
-The backup scripts only keep the last 4 backups. When creating a new
-backup **do\_backup** will delete the oldest backup if 4 backups already
-exist.
-
-### Cassandra backups
-
-The backup scripts for Homer and Homestead build on the backup
-functionality [available in
-Cassandra](http://www.datastax.com/docs/1.1/backup_restore). As such,
-the daily backups will be put into the same place as those already
-created by Cassandra. Cassandra automatically creates a backup before a
-TRUNCATE or DROP command is executed. These backups can be restored in
-the same way as the daily backups, using the **restore\_backup** script.
