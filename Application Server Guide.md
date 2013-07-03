@@ -6,7 +6,8 @@ application server.  Clearwater supports application servers through
 the standard IMS interface ISC. This article explains the
 features and limitations of this support. See [Configuring an
 Application Server](Configuring an Application Server) for details of
-how to configure Clearwater to use this function.
+how to configure Clearwater to use this function, or [Plivo](Plivo) for
+an open-source application server/framework to work with.
 
 What is an application server?
 ==============================
