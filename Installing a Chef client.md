@@ -163,9 +163,9 @@ file.
     knife[:email_sender]      = "clearwater@example.com"
 
     # MMonit server credentials, if any.
-    knife[:mmonit_server]     = "0.0.0.0"
-    knife[:mmonit_username]   = "dummy"
-    knife[:mmonit_password]   = "dummy"
+    knife[:mmonit_server]     = ""
+    knife[:mmonit_username]   = ""
+    knife[:mmonit_password]   = ""
 
 Fill in the values appropriate to your deployment using a text editor
 as directed.
