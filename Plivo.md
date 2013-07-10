@@ -12,7 +12,7 @@ This documentation describes how to
 *   make a test call
 *   troubleshoot problems.
 
-If you followed the Clearwater [Automated Install](Automated Install) instructions, you can install Plivo using chef by running `knife box create -E <environment> plivo` - note that often this takes around an hour to complete.  This automatically installs, configures and starts Plivo, so you can jump straight to [Installing and Running Services](#installing-and-running-services).
+If you followed the Clearwater [Automated Install](Automated Install) instructions, you can install Plivo using chef by running `knife box create -E <environment> plivo` - note that often this takes around an hour to complete.  This automatically installs, configures and starts Plivo, so you can jump straight to [Installing and Running Services](Plivo#installing-and-running-services).
 
 ## Installing Plivo
 
