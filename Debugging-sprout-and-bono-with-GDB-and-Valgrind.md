@@ -2,7 +2,7 @@
 
 [Valgrind](http://valgrind.org/) is a very powerful profiling and debugging tool. 
 
-Before you run valgrind, you'll want to tweak pjsip's code slightly.  Valgrind's memory access tracking hooks into malloc and free.  Unfortunately, valgrind uses its own memory management functions, and so mallocs/frees relatively rarely.  To disable this, modify `pjlib/src/pj/pool_caching`'s `pj_caching_pool_init` function to always set cp->max_capacity to 0.  Then rebuild and patch your nodes.
+Before you run valgrind, you'll want to tweak pjsip's code slightly.  Valgrind's memory access tracking hooks into malloc and free.  Unfortunately, pjsip uses its own memory management functions, and so mallocs/frees relatively rarely.  To disable this, modify `pjlib/src/pj/pool_caching`'s `pj_caching_pool_init` function to always set cp->max_capacity to 0.  Then rebuild and patch your nodes.
 
 To run bono and sprout under valgrind, just use the normal command-line command prefixed by "valgrind", e.g. `valgrind /usr/share/clearwater/bin/sprout`.
 
