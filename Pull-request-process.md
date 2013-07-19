@@ -17,7 +17,7 @@ Each component/repository (with a few exceptions) has 2 main branches, <strong>d
 
 4. <strong>Push</strong> your feature branch to github.
 
-5. Create a <strong>pull request</strong> using github, from your branch to <strong>dev</strong> (never master, unless the codebase has no dev branch), assigning it to a specific individual in the team using the Github &ldquo;is assigned&rdquo; field <strong>and also</strong> by prefixing the subject with "[Reviewer: &lt;name&gt;]".
+5. Create a <strong>pull request</strong> using github, from your branch to <strong>dev</strong> (never master, unless the codebase has no dev branch).
 
 6. <strong>Reviewer process:</strong>
   * Receive <strong>notice</strong> of review by Github email, Github notification, or by checking <a href="https://github.com/organizations/Metaswitch/dashboard/issues/assigned?direction=desc&amp;state=open">all your Metaswitch Github issues</a>.
