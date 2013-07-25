@@ -20,10 +20,10 @@ Assuming you've followed the [Automated Chef install](Automated Install),
 here are the steps to create and configure a Cacti node:
 
 1.  use knife box create to create a Cacti node - "knife box create -E
-    ENVIRONMENT cacti"
-2.  set up a DNS entry for it - "knife dns record create -E ENVIRONMENT
-    cacti -z DOMAIN -T A --public cacti -p ENVIRONMENT"
-3.  point your web browser at cacti.ENVIRONMENT.DOMAIN/cacti/
+    <name> cacti"
+2.  set up a DNS entry for it - "knife dns record create -E <name>
+    cacti -z DOMAIN -T A --public cacti -p <name>"
+3.  point your web browser at cacti.<name>.<root>/cacti/
 4.  accept all the configuration defaults
 5.  login (admin/admin) and set a new password
 6.  modify configuration by
@@ -35,23 +35,17 @@ here are the steps to create and configure a Cacti node:
         "Step" to 60
     4.  going to Graph Templates and change "ucd/net - CPU Usage" to
         disable "Auto Scale"
-    5.  going to Import Templates and import the attached XML files
-        [cacti\_sip\_stress\_status.xml](cacti_sip_stress_status.xml)
-        and
-        [cacti\_client\_count.xml](cacti_client_count.xml) -
-        these define new data input methods and graph templates for
-        retrieving statistics from our components via
-        [0MQ](http://www.zeromq.org/)
+    5.  going to Import Templates and import (in the following order) the attached XML files [cacti\_client\_count.xml](cacti_client_count.xml) and [cacti\_sip\_stress\_status.xml](cacti_sip_stress_status.xml) - these define new data input methods and graph templates for retrieving statistics from our components via [0MQ](http://www.zeromq.org/)
 
-7.  set up the 0MQ-querying script by
-    1.  ssh-ing into the cacti node
-    2.  running the following
+    6.  set up the 0MQ-querying script by
+        1.  ssh-ing into the cacti node
+        2.  running the following
 
-            sudo apt-get install -y --force-yes git ruby1.9.3 build-essential libzmq3-dev
-            sudo gem install bundler --no-ri --no-rdoc
-            git clone https://github.com/Metaswitch/sprout.git
-            cd sprout/scripts/stats
-            sudo bundle install
+                sudo apt-get install -y --force-yes git ruby1.9.3 build-essential libzmq3-dev
+                sudo gem install bundler --no-ri --no-rdoc
+                git clone https://github.com/Metaswitch/sprout.git
+                cd sprout/scripts/stats
+                sudo bundle install
 
 ### Pointing Cacti at a Node
 
@@ -79,8 +73,8 @@ To manually point Cacti at a new node,
 Alternatively, you can add nodes to Cacti based on chef configuration
 using the following chunk of bash, run from the `~/chef` directory.
 
-    knife box list -E ENVIROMENT | grep "Found node" | cut -d\  -f 3,8 | sort | while read description ip ; do
-      knife ssh -E ENVIRONMENT -x ubuntu "role:cacti" '
+    knife box list -E <name> | grep "Found node" | cut -d\  -f 3,8 | sort | while read description ip ; do
+      knife ssh -x ubuntu "role:cacti AND chef_environment:<name>" '
         description='$description'
         ip='$ip'
         echo Configuring $description $ip...
