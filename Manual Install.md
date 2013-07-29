@@ -97,6 +97,8 @@ for more information on how to fill these in. The values marked
 `<secret>` **must** be set to secure values to protect your deployment
 from unauthorized access.
 
+To modify these settings after the deployment is created, follow [these instructions](https://github.com/Metaswitch/clearwater-docs/wiki/Modifying-Clearwater-settings).
+
 ## Crash monitoring
 
 Clearwater can be configured to upload crash reports to the Clearwater
