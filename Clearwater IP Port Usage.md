@@ -71,7 +71,7 @@ The Sprout nodes need the following ports open to all Bono nodes:
 
 * Internal SIP signalling:
 
-        TCP/5058
+        TCP/5054
 
 They also need the following ports opened to all other Sprout nodes:
 
