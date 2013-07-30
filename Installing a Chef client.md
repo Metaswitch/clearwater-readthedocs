@@ -71,7 +71,7 @@ On the chef-client machine, install git and dependent libraries.
 
 Clone the Clearwater Chef repository.
 
-    git clone git://github.com/Metaswitch/chef.git ~/chef
+    git clone -b stable git://github.com/Metaswitch/chef.git ~/chef
 
 This will have created a `chef` folder in your home directory, navigate there now.
 
