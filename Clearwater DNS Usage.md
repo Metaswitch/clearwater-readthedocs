@@ -1,5 +1,7 @@
 # Clearwater DNS Usage
 
+*If you are installing an All-in-One Clearwater node, you do not need any DNS records and can ignore the rest of this page.*
+
 Clearwater uses DNS records to allow the individual devices in the deployment to discover each other.
 
 Below `<root>` is used to represent the DNS root domain which is hosting your deployment.  For a manual deployment this is just `<zone>`, for an automated install, this will be `<name>.<zone>`.

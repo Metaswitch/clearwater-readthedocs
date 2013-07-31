@@ -31,6 +31,30 @@ Lastly, to use the statistics interface, the following port should be opened to 
 
         TCP/6666
 
+## All-in-one
+
+All-in-one nodes need the following ports opened to the world
+
+* Web UI
+
+        TCP/80
+        TCP/443
+
+* STUN signalling:
+
+        TCP/3478
+        UDP/3478
+
+* SIP signalling:
+
+        TCP/5060
+        UDP/5060
+        TCP/5062
+
+* RTP forwarding:
+
+        UDP/32768-65535
+
 ## Ellis
 
 The Ellis node needs the following ports opened to the world:
@@ -71,7 +95,7 @@ The Sprout nodes need the following ports open to all Bono nodes:
 
 * Internal SIP signalling:
 
-        TCP/5058
+        TCP/5054
 
 They also need the following ports opened to all other Sprout nodes:
 

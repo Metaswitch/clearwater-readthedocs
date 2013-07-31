@@ -17,7 +17,11 @@ These instructions will take you through the process of making a call on a Clear
 
 ## Work out your base domain
 
-If you installed Clearwater manually, your base DNS name will simply by `<zone>`.  If you installed using the automated install process, your base DNS name will be `<name>.<zone>`.  For the rest of these instructions, the base DNS name will be referred to as `<domain>`.
+If you installed Clearwater manually, your base DNS name will simply by `<zone>`.  
+If you installed using the automated install process, your base DNS name will be `<name>.<zone>`.  
+If you installed an All-in-One node, you base name will be `example.com`.
+
+For the rest of these instructions, the base DNS name will be referred to as `<domain>`.
 
 ## Create a number for your client
 
@@ -41,6 +45,13 @@ Client configuration methods vary by client, but the following information shoul
  - Server: `<domain>`
  - Username: `<username>@<domain>`
  - Password: `<password>`
+
+*Extra configuration to use an All-in-One node*
+
+If you are using an All-in-One node, you will also need to configure an outbound proxy at your client.  You need the public DNS name that EC2 has assigned to your node, which will look something like `ec2-54-226-94-242.compute-1.amazonaws.com` and can be found on the EC2 Dashboard on the "instances" panel.  This is referred to as `<ec2domain>`.
+
+* Outbound Proxy address: `<ec2domain>`
+* Port: 5060
 
 Once these settings have been applied, your client will register with Clearwater. Note that X-Lite may need to be restarted before it will set up a STUN connection.
 

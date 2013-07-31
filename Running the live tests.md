@@ -31,10 +31,6 @@ Run the following to download and install the Clearwater test suite
 
 Make sure that you have an ssh key - if not, see the [github instructions](https://help.github.com/articles/generating-ssh-keys) for how to create one.
 
-## Work out your base domain
-
-If you installed Clearwater manually, your base DNS name will simply be `<zone>`. If you installed using the automated install process, your base DNS name will be `<name>.<zone>`. For the rest of these instructions, the base DNS name will be referred to as `<domain>`.
-
 ## Work out your signup code
 
 The tests need your signup code to create a test user.
@@ -43,7 +39,30 @@ You set this as `signup_key` during install:
 or [automatically in knife.rb](Installing a Chef client). For the rest of these instructions, the
 signup code will be referred to as `<code>`.
 
-## Running the tests
+## Running the tests against an All-in-One node
+
+### Determine your EC2 domain
+
+You now need the public DNS name that EC2 has assigned to your node.  This will look something like `ec2-54-226-94-242.compute-1.amazonaws.com` and can be found on the EC2 Dashboard on the "instances" panel.  This is referred to as `<ec2domain>`.
+
+### Run the tests
+
+To run the subset of the tests that don't require PSTN interconnect to be configured, simply run
+
+    rake test[example.com] SIGNUP_CODE=<code> PROXY=<ec2domain> ELLIS=<ec2domain>
+
+The suite of tests will be run and the results will be printed on-screen.
+
+## Running the tests against a full deployment
+
+### Work out your base domain
+
+- If you installed Clearwater manually, your base DNS name will simply be `<zone>`.
+- If you installed using the automated install process, your base DNS name will be `<name>.<zone>`. 
+
+For the rest of these instructions, the base DNS name will be referred to as `<domain>`.
+
+### Running the tests
 
 To run the subset of the tests that don't require PSTN interconnect to be configured, simply run
 
