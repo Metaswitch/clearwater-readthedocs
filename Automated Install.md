@@ -1,6 +1,6 @@
 # Automated Install Instructions
 
-These instructions will take you through preparing for an automated install  of Clearwater using Chef.  For a high level look at the install process, and a discussion of the various install methods, see [Installation Instructions](Installation Instructions).  The automated install is the suggested method for installing a large-scale deployment of Clearwater.
+These instructions will take you through preparing for an automated install  of Clearwater using Chef.  For a high level look at the install process, and a discussion of the various install methods, see [Installation Instructions](Installation Instructions).  The automated install is the suggested method for installing a large-scale deployment of Clearwater.  It can also be used to install an all-in-one node.
 
 The automated install is only supported for deployments running in Amazon's EC2 cloud, where DNS is being provided by Amazon's Route53 service.  If your proposed deployment doesn't meet these requirements, you should use the [Manual Install](Manual Install) instructions instead.
 

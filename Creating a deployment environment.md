@@ -31,7 +31,7 @@ Before creating an environment, choose a name (e.g. "clearwater") which will be 
       "pstn_number_count" => 0
     }
 
-Note that the value of `keypair` should *not* include the trailing .pem.
+Note that the value of `keypair` should *not* include the trailing .pem.  Note also that for an all-in-one node the root-domain parameter is superfluous and will be ignored.
 
 By default, your deployment will be created in the US East (North Virginia) region.  However, if you want to deploy in another region, you must
 
