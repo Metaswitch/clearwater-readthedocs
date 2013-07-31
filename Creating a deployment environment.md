@@ -41,6 +41,8 @@ By default, your deployment will be created in the US East (North Virginia) regi
 
 These fields override attributes defined and documented in the [clearwater-infrastructure role](https://github.com/Metaswitch/chef/blob/master/roles/clearwater-infrastructure.rb).
 
+To modify these settings after the deployment is created, follow [these instructions](https://github.com/Metaswitch/clearwater-docs/wiki/Modifying-Clearwater-settings).
+
 ## Uploading the environment
 
 The newly created environment needs to be uploaded to the Chef server before it can be used.
