@@ -16,7 +16,7 @@ At a high level, the following steps will need to be performed to install a Clea
 
 ### What are my choices?
 
-1. All-in-one image, either using an [AMI](https://aws.amazon.com/amis/) on [Amazon EC2](http://aws.amazon.com/ec2/) or an [OVF](http://dmtf.org/standards/ovf) image on a private virtualization platform such as [VMware](http://www.vmware.com/) or [https://www.virtualbox.org/](Virtualbox).  This is the recommended method for trying Clearwater out.
+1. All-in-one image, either using an [AMI](https://aws.amazon.com/amis/) on [Amazon EC2](http://aws.amazon.com/ec2/) or an [OVF](http://dmtf.org/standards/ovf) image on a private virtualization platform such as [VMware](http://www.vmware.com/) or [Virtualbox](https://www.virtualbox.org/).  This is the recommended method for trying Clearwater out.
 
    This installation method is very easy but offers no redundancy or scalability and relatively limited performance.  As a result, it is great for familiarizing yourself with Clearwater before moving up to a larger-scale deployment using one of the following methods.
 
