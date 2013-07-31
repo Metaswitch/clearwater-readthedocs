@@ -41,15 +41,20 @@ signup code will be referred to as `<code>`.
 
 ## Running the tests against an All-in-One node
 
-### Determine your EC2 domain
+## Work out your All-in-One node's identity
 
-You now need the public DNS name that EC2 has assigned to your node.  This will look something like `ec2-54-226-94-242.compute-1.amazonaws.com` and can be found on the EC2 Dashboard on the "instances" panel.  This is referred to as `<ec2domain>`.
+This step is only required if you installed an All-in-One node, either from an AMI or an OVF.  If you installed manually or using the automated install process, just move on to the next step.
+
+If you installed an All-in-One node from an Amazon AMI, you need the public DNS name that EC2 has assigned to your node.  This will look something like `ec2-12-34-56-78.compute-1.amazonaws.com` and can be found on the EC2 Dashboard on the "instances" panel.
+If you installed an All-in-One node from an OVF image, you need the IP address that was assigned to the node via DHCP.  You can find this out by logging into the node's console and typing `hostname -I`.
+
+For the rest of these instructions, the All-in-One node's identity will be referred to as `<aio-identity>`.
 
 ### Run the tests
 
 To run the subset of the tests that don't require PSTN interconnect to be configured, simply run
 
-    rake test[example.com] SIGNUP_CODE=<code> PROXY=<ec2domain> ELLIS=<ec2domain>
+    rake test[example.com] SIGNUP_CODE=<code> PROXY=<aio-identity> ELLIS=<aio-identity>
 
 The suite of tests will be run and the results will be printed on-screen.
 
@@ -58,7 +63,7 @@ The suite of tests will be run and the results will be printed on-screen.
 ### Work out your base domain
 
 - If you installed Clearwater manually, your base DNS name will simply be `<zone>`.
-- If you installed using the automated install process, your base DNS name will be `<name>.<zone>`. 
+- If you installed using the automated install process, your base DNS name will be `<name>.<zone>`.
 
 For the rest of these instructions, the base DNS name will be referred to as `<domain>`.
 

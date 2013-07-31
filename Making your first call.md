@@ -17,15 +17,29 @@ These instructions will take you through the process of making a call on a Clear
 
 ## Work out your base domain
 
-If you installed Clearwater manually, your base DNS name will simply by `<zone>`.  
-If you installed using the automated install process, your base DNS name will be `<name>.<zone>`.  
-If you installed an All-in-One node, you base name will be `example.com`.
+If you installed Clearwater manually, your base DNS name will simply be `<zone>`.
+If you installed using the automated install process, your base DNS name will be `<name>.<zone>`.
+If you installed an All-in-One node, your base name will be `example.com`.
 
 For the rest of these instructions, the base DNS name will be referred to as `<domain>`.
 
+## Work out your All-in-One node's identity
+
+This step is only required if you installed an All-in-One node, either from an AMI or an OVF.  If you installed manually or using the automated install process, just move on to the next step.
+
+If you installed an All-in-One node from an Amazon AMI, you need the public DNS name that EC2 has assigned to your node.  This will look something like `ec2-12-34-56-78.compute-1.amazonaws.com` and can be found on the EC2 Dashboard on the "instances" panel.
+If you installed an All-in-One node from an OVF image, you need the IP address that was assigned to the node via DHCP.  You can find this out by logging into the node's console and typing `hostname -I`.
+
+For the rest of these instructions, the All-in-One node's identity will be referred to as `<aio-identity>`.
+
+## Work out your Ellis URL
+
+If you installed Clearwater manually or using the automated install process, your Ellis URL will simply be `http://<domain>`.
+If you installed an All-in-One node, your Ellis URL will be `http://<aio-identity>`.
+
 ## Create a number for your client
 
-In your browser, navigate to your Ellis node at `http://ellis.<domain>`.
+In your browser, navigate to the Ellis URL you worked out above.
 
 Sign up as a new user, using the signup code you set as `signup_key` when [configuring your deployment](https://github.com/Metaswitch/clearwater-docs/wiki/Installing%20a%20Chef%20client#add-deployment-specific-configuration).
 
@@ -48,9 +62,9 @@ Client configuration methods vary by client, but the following information shoul
 
 *Extra configuration to use an All-in-One node*
 
-If you are using an All-in-One node, you will also need to configure an outbound proxy at your client.  You need the public DNS name that EC2 has assigned to your node, which will look something like `ec2-54-226-94-242.compute-1.amazonaws.com` and can be found on the EC2 Dashboard on the "instances" panel.  This is referred to as `<ec2domain>`.
+If you are using an All-in-One node, you will also need to configure an outbound proxy at your client.
 
-* Outbound Proxy address: `<ec2domain>`
+* Outbound Proxy address: `<aio-identity>`
 * Port: 5060
 
 Once these settings have been applied, your client will register with Clearwater. Note that X-Lite may need to be restarted before it will set up a STUN connection.
