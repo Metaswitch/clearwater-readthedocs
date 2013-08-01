@@ -141,7 +141,7 @@ Install the Ellis package with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install ellis --yes
 
-Provision a pool of numbers in Ellis.  The command given here will generate 1000 numbers starting at `sip:6505550000@<zone>`, meaning none of the generated numbers will be routeable outside of the Clearwater deployment.  For more details on creating numbers, see the [create_numbers.py documentation]().
+Provision a pool of numbers in Ellis.  The command given here will generate 1000 numbers starting at `sip:6505550000@<zone>`, meaning none of the generated numbers will be routeable outside of the Clearwater deployment.  For more details on creating numbers, see the [create_numbers.py documentation](https://github.com/Metaswitch/ellis/blob/dev/src/metaswitch/ellis/tools/create_numbers.py).
 
     sudo bash -c "export PATH=/usr/share/clearwater/ellis/env/bin:$PATH ;
                   cd /usr/share/clearwater/ellis/src/metaswitch/ellis/tools/ ;
