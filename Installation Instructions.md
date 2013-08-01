@@ -2,16 +2,6 @@
 
 These pages will guide you through installing a Clearwater deployment from scratch.
 
-## Installation Steps
-
-At a high level, the following steps will need to be performed to install a Clearwater deployment:
-
-* Sourcing enough machines to host the deployment (minimum is 5) and installing an OS on them all.  [Ubuntu 12.04](http://releases.ubuntu.com/precise/) is the recommended and tested OS for hosting Clearwater.
-* Preparing each machine to allow installation of the Clearwater software.
-* Installing the Clearwater software onto the machines.
-* Configuring firewalls to allow the various machines to talk to each other as required.
-* Configuring DNS records to allow the machines to find each other and to expose the deployment to clients.
-
 ## Installation Methods
 
 ### What are my choices?
@@ -31,6 +21,16 @@ At a high level, the following steps will need to be performed to install a Clea
 4. Installing from source.  If you are running on a non-Ubuntu-based OS, or need to test a code fix or enhancement you've made, you can also install Clearwater from source, building the code yourself.  Per-component instructions are provided that cover the route from source code to running services.  Familiarity with performing a manual install on Ubuntu will help with configuring your network correctly after the software is installed.
 
    If you install from source, especially on a non-Ubuntu OS, we'd love to hear about your experience, good or bad.
+
+## Installation Steps
+
+The installation process for a full Clearwater deployment (i.e. not an all-in-one) can be described at a high level as follows:   
+
+* Sourcing enough machines to host the deployment (minimum is 5) and installing an OS on them all.  [Ubuntu 12.04](http://releases.ubuntu.com/precise/) is the recommended and tested OS for hosting Clearwater.
+* Preparing each machine to allow installation of the Clearwater software.
+* Installing the Clearwater software onto the machines.
+* Configuring firewalls to allow the various machines to talk to each other as required.
+* Configuring DNS records to allow the machines to find each other and to expose the deployment to clients.
 
 ### Detailed Instructions
 
