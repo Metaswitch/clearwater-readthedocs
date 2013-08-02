@@ -27,7 +27,7 @@ Before creating an environment, choose a name (e.g. "clearwater") which will be 
       "number_start" => "6505550000",
       "number_count" => 1000,
       "keypair" => "<keypair_name>",
-      "keypair_dir" => "/home/ubuntu/.chef/",
+      "keypair_dir" => "~/.chef/",
       "pstn_number_count" => 0
     }
 
