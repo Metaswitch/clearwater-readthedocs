@@ -31,7 +31,7 @@ If you attach to the console, you should see an Ubuntu loading screen and then b
 
 The OVF provides 3 network services.
 *   SSH - username is `ubuntu` and password is `cw-aio`
-*   HTTP to ellis for subscriber management - sign-up code is `secret`
+*   HTTP to ellis for subscriber management - sign-up code is `secret`. You will probably want to change this to a more secure value - see ["Modifying Clearwater settings"](Modifying Clearwater settings) for how to do this.
 *   SIP to bono for call signaling - credentials are provisioned through ellis.
 
 How these network services are exposed can vary depending on the capabilities of the platform.
