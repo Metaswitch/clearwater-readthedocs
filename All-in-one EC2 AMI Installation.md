@@ -4,12 +4,12 @@ This pages describes how to launch and run an [all-in-one image](All-in-one Imag
 
 ## Launch Process
 
-Project Clearwater's all-in-one node is already available as a pre-built AMI, which can be found in the Community AMIs list on EC2.  Launching this follows exactly the same process as for other EC2 AMIs.
+Project Clearwater's all-in-one node is already available as a pre-built AMI, which can be found in the Community AMIs list on the US East region of EC2.  Launching this follows exactly the same process as for other EC2 AMIs.
 
 Before you launch the node, you will need an EC2 keypair, and a security group configured to provide access to the [required ports](Clearwater IP Port Usage).
 
 To launch the node
-*  From the EC2 console, select "Instances", and then "Launch instance" and then "Classic Wizard"
+*  From the EC2 console, make sure you're in the US East region, then select "Instances", "Launch instance" and then "Classic Wizard"
 *  Select the "Community AMIs" tab, and search for "Clearwater"
 *  Press "Select" for the Clearwater all-in-one AMI
 *  Choose the Instance Type you require (m1.small is sufficient to run the node)
