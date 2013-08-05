@@ -21,4 +21,4 @@ On the last page, press "Launch", and wait for the node to be started by EC2.
 
 Once the node has launched, you can SSH to it using the keypair you supplied at launch time, and username `ubuntu`.
 
-You can then try [making your first call](Making your first call) and [running the live tests](Running the live tests) - for these you will need the signup key, which is `secret`.
+You can then try [making your first call](Making your first call) and [running the live tests](Running the live tests) - for these you will need the signup key, which is `secret`.  You will probably want to change this to a more secure value - see ["Modifying Clearwater settings"](Modifying Clearwater settings) for how to do this.
