@@ -27,7 +27,7 @@ Then, you must import it into your virtualization platform.  The process for thi
 
 Once you've installed the virtual machine, you should start it in the usual way for your virtualization platform.
 
-If you attach to the console, you should see an Ubuntu loading screen and then be dropped at a `cw-aio` login prompt.  The username is `ubuntu` and the password is `cw-aio`.
+If you attach to the console, you should see an Ubuntu loading screen and then be dropped at a `cw-aio` login prompt.  The username is `ubuntu` and the password is `cw-aio`.  Note that the console is hard-coded to use a US keyboard, so if you have a different keyboard you might find that keys are remapped - in particular the `-` key.
 
 The OVF provides 3 network services.
 *   SSH - username is `ubuntu` and password is `cw-aio`
