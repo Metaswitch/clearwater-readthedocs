@@ -35,7 +35,7 @@ here are the steps to create and configure a Cacti node:
         "Step" to 60
     4.  going to Graph Templates and change "ucd/net - CPU Usage" to
         disable "Auto Scale"
-    5.  going to Import Templates and import (in the following order) the attached XML files [cacti\_client\_count.xml](cacti_client_count.xml) and [cacti\_sip\_stress\_status.xml](cacti_sip_stress_status.xml) - these define new data input methods and graph templates for retrieving statistics from our components via [0MQ](http://www.zeromq.org/)
+    5.  going to Import Templates and import (in the following order) the attached XML files [cacti\_client\_count.xml](cacti_client_count.xml), [cacti\_sip\_stress\_status.xml](cacti_sip_stress_status.xml) and [cacti\_latency.xml](cacti_latency.xml) - these define new data input methods and graph templates for retrieving statistics from our components via [0MQ](http://www.zeromq.org/)
 
     6.  set up the 0MQ-querying script by
         1.  ssh-ing into the cacti node
@@ -87,6 +87,10 @@ using the following chunk of bash, run from the `~/chef` directory.
         fi
         if echo $description | grep -q sipp ; then
           graph_id=$(sudo php -q /usr/share/cacti/cli/add_graphs.php --graph-type=cg --graph-template-id=36 --host-id=$host_id | tee -a /tmp/knife-ssh.cacti | grep "Graph Added" | sed -e "s/\(^[^)]*(\|).*$\)//g")
+          sudo php -q /usr/share/cacti/cli/add_tree.php --type=node --node-type=graph --tree-id=1 --graph-id=$graph_id >> /tmp/knife-ssh.cacti
+        fi
+        if echo $description | egrep -q "(bono|sprout)" ; then
+          graph_id=$(sudo php -q /usr/share/cacti/cli/add_graphs.php --graph-type=cg --graph-template-id=37 --host-id=$host_id | tee -a /tmp/knife-ssh.cacti | grep "Graph Added" | sed -e "s/\(^[^)]*(\|).*$\)//g")
           sudo php -q /usr/share/cacti/cli/add_tree.php --type=node --node-type=graph --tree-id=1 --graph-id=$graph_id >> /tmp/knife-ssh.cacti
         fi
         cat /tmp/knife-ssh.cacti
