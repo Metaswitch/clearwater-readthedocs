@@ -46,7 +46,8 @@ interface, as specified in the iFCs.
  * Per the IMS specs, this invocation occurs on dialog-initiating requests such as INVITE, SUBSCRIBE, MESSAGE, etc, and according to the triggers within the iFCs (s5.4.3.2, s5.4.3.3):
    * When specified, Sprout will route the message to the AS; the AS can either route it onward, act as a B2BUA for e.g. call diversion, or give a final response. Handling of dead ASs (408, 5xx, or no response, not preceded by a 1xx response) follows the spec: per the iFC, either the response is treated as final or the AS is bypassed. Clearwater does not attempt to avoid dead ASs on subsequent calls.
    * Clearwater has full support for chained iFCs. The original dialog is tracked by Sprout using an ODI token in the Route header. This support includes support for forking ASs at any point in the chain.
-   * Service trigger points (i.e., conditions) are implemented, but the only conditions allowed are SIP method and service case. Conditions based on SIP headers, SDP lines, registration parameters, and request URIs are not implemented - they will always evaluate to false.
+   * Service trigger points (i.e., conditions) are implemented, but the only conditions allowed are SIP method, SIP headers and service case. Conditions based on SDP lines, registration parameters, and request URIs are not implemented - they will always evaluate to false.
+   * Service trigger points can have session case configuration, allowing the AS to only be invoked on originating calls or on terminating calls.
  * No per-AS configuration is required; ASs are invoked simply by their URI appearing in the iFCs.
  * AS invocation also occurs on REGISTER - this is called third-party registration (3GPP TS 24.229 s5.4.1.7 and 7A):
    * When a UE registers with Sprout, if the iFCs require it, it passes a third-party registration onto an AS.
