@@ -25,8 +25,7 @@ This will install Ruby version 1.9.3 and its dependencies.
 
 Run the following to download and install the Clearwater test suite
 
-    git clone -b stable git@github.com:Metaswitch/clearwater-live-test.git
-    git submodule update --init
+    git clone -b stable --recursive git@github.com:Metaswitch/clearwater-live-test.git
     cd clearwater-live-test
     bundle install
 
