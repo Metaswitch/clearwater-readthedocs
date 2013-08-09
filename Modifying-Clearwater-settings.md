@@ -1,9 +1,9 @@
 This page discusses how to change settings on a Clearwater system. Most settings can be changed on an existing deployment (e.g. security keys and details of external servers), but some are so integral to the system (e.g. the SIP home domain) that the best way to change it is to recreate the Clearwater deployment entirely.
 
 ## Reconfiguring existing deployments
- 
+
 *This will have a service impact of up to five minutes.*
- 
+
 The following settings can safely be changed without entirely recreating the system. If you want to change a setting not in this list, go to the "Starting from scratch" section instead.
 
 All nodes:
@@ -12,13 +12,20 @@ mmonit_hostname
 mmonit_username
 mmonit_password
 ```
- 
-Sprout/bono:
+
+Sprout:
+```
+sas_server
+enum_server
+reg_max_expires
+```
+
+Bono:
 ```
 sas_server
 enum_server
 ```
- 
+
 Ellis:
 ```
 smtp_smarthost
@@ -29,7 +36,7 @@ signup_key
 ellis_api_key
 ellis_cookie_key
 ```
- 
+
 Homestead:
 ```
 hss_hostname
@@ -44,5 +51,5 @@ To change one of these settings:
 ## Starting from scratch
 
 *This will have a service impact of up to half an hour.*
- 
+
 If other settings (such as the Clearwater home domain) are being changed, we recommend that users delete their old deployment and create a new one from scratch, either [with Chef](https://github.com/Metaswitch/clearwater-docs/wiki/Creating%20a%20deployment%20with%20Chef) or [manually](https://github.com/Metaswitch/clearwater-docs/wiki/Manual%20Install). This ensures that the new settings are consistently applied.
