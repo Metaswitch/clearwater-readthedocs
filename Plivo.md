@@ -81,7 +81,7 @@ Clearwater invokes Application Servers according to the Initial Filter Criteria 
 
 * determine the SIP URI to invoke Plivo
 * choose a user for which the Application Server will be invoked
-* add an entry to that user's iFC, specifying the SIP URI as the `&lt;ServerName&gt;` element.
+* add an entry to that user's iFC, specifying the SIP URI as the `<ServerName>` element.
 
 The SIP URI is constructed as `sip:<hostname>:5058;transport=tcp`, where `<hostname>` is the public hostname of your Plivo server.  On an EC2 node, you can find this out by issuing the command `curl http://169.254.169.254/latest/meta-data/public-hostname`.
 
