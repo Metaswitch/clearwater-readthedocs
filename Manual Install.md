@@ -199,3 +199,35 @@ Once you've reached this point, your Clearwater deployment is ready to handle ca
 
 * [Making your first call](Making your first call)
 * [Running the live test suite](Running the live tests)
+
+## Larger-Scale Deployments
+
+If you're intending to spin up a larger-scale deployment containing more than one node of each types, it's recommended that you use the [Automated Install](automated install process), as this makes scaling up and down very straight-forward.  If for some reason you can't, you'll need to configure DNS correctly and cluster the nodes in the sprout, homestead and homer tiers.
+
+### Configuring DNS
+
+When configuring DNS for a multi-node deployment, it's crucial that
+
+*   each node's `public_hostname` property (in `/etc/clearwater/config`) resolves to an IP address that belongs solely to that node (not to the cluster)
+*   the `sprout_hostname`, `hs_hostname` and `xdms_hostname` properties resolve to the set of all IP addresses in that tier so, for example, the value of `sprout_hostname` resolves to the IP addresses of all sprout nodes.
+
+### Clustering Sprout
+
+Sprout uses [Infinispan](http://www.jboss.org/infinispan/) as its registration datastore.
+
+After installing the sprout nodes, you must reconfigure the Infinispan processes on these nodes to cluster together.  To do this,
+
+*   open `/var/lib/infinispan/configuration/clustered.xml` for editing
+*   find the `initial_hosts` property and set it to a comma-separated list of the IP addresses in your sprout cluster, each appended with `[7800]` (the port number to communicate on)
+*   find the `num_initial_members` property and set it to the number of nodes in your sprout cluster
+*   find the `public` interface and set its `inet-address` to `${jboss.bind.address:<private_ip>}`, replacing `<private IP>` with the same you value used in `/etc/clearwater/config`
+*   save the file and exit
+*   restart Infinispan with `sudo monit restart infinispan`.
+
+### Clustering Homestead and Homer
+
+Homestead and homer use [Cassandra](http://cassandra.apache.org/) as their datastore.
+
+After installing the homestead and homer nodes, you must reconfigure the Cassandra processes on these nodes to cluster together.  To do this, follow the [instructions on the Cassandra website](http://www.datastax.com/docs/0.8/install/cluster_init).  Note that we generally cluster homestead Cassandra instances separately from homer Cassandra instances, rather than as one big cluster.
+
+The clustering process might cause you to lose the homestead or homer schema.  To restore it, the simplest process is, on one homestead node and on one homer node, to uninstall homestead/homer (using `sudo apt-get purge homestead` or `sudo apt-get purge homer`) and then reinstall it (using `sudo apt-get install homestead` or `sudo apt-get install homer`).  As part of the installation process, the schema is reinjected into Cassandra.
