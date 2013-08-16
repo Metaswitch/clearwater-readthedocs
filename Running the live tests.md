@@ -41,7 +41,7 @@ signup code will be referred to as `<code>`.
 
 ## Running the tests against an All-in-One node
 
-## Work out your All-in-One node's identity
+### Work out your All-in-One node's identity
 
 This step is only required if you installed an All-in-One node, either from an AMI or an OVF.  If you installed manually or using the automated install process, just move on to the next step.
 
