@@ -161,7 +161,7 @@ On that node,
                                                                 3600 ;minimum TTL
         )
         @ IN NS e164.arpa.
-        @ IN A &lt;this server's IP address>
+        @ IN A <this server's IP address>
 
 5.  add additional rules of the form '&lt;enum domain name\> &lt;order\>
     &lt;preference\> "&lt;flags\>" "&lt;service\>" "&lt;regexp\>" .' to this file
