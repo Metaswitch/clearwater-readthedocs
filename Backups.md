@@ -13,6 +13,8 @@ This document describes
 *   the periodic automated local backup behavior
 *   how to restore from a backup.
 
+Note that if your Clearwater deployment is [integrated with an external HSS](https://github.com/Metaswitch/clearwater-docs/wiki/External-HSS-Integration), the HSS is the master of ellis and homestead's data, and those nodes do not need to be backed up.  However, homer's data still needs to be backed up.
+
 ## Listing Backups
 
 The process for listing backups varies between ellis, homestead and homer.
