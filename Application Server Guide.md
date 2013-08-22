@@ -93,7 +93,7 @@ The following features may be implemented by Clearwater in future phases:
  * `user=dialstring` handling (RFC4967). The specs (3GPP TS 24.229 s5.4.3.2, esp step 10) are quite clear that this is handed off to an AS or handled in a deployment-specific way, as for various other URI formats, so there is nothing to do here.
  * `P-Asserted-Service` / `P-Preferred-Service` (RFC6050, TS 23.228 s4.13), i.e., IMS Communication Services and ICSIs.
  * IMS debug package, IMS logging.
- * Full support for ISC service trigger point conditions: conditions on SIP headers, SDP lines, registration parameters, and request URIs.
+ * Full support for ISC service trigger point conditions: conditions on SDP lines, registration parameters, and request URIs.
  * Support for untrusted ASs.
  * Support for terminating ASs changing to an alias URI.
  * Support for `Request-Disposition: no-fork`, which should pick a single endpoint to INVITE.
