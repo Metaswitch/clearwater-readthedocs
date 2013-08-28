@@ -67,7 +67,7 @@ To install these, run
     sudo pip install plivo==0.4.1 # 0.9 is the default version, but this has API changes
     git clone git@github.com:Metaswitch/plivo-apps.git
 
-To start them, simply run `python plivo-apps/plivo_conf.py` or `python plivo-apps/plivo_vm.py`.
+To start them, simply run `python plivo-apps/plivo_conf.py` or `sudo python plivo-apps/plivo_vm.py`.  (The VM application must be run under sudo as it needs to access media recordings, and unfortunately Freeswitch stores these in a directory that is only accessible by root.)
 
 Note that plivo_conf.py optionally supports playing back on-hold music while the first attendee is waiting for other attendees to join.  To enable this function, you must source a suitable MP3 music file and host it as `http://localhost/music.mp3`.  To do this using nginx on Ubuntu,
 
