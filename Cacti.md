@@ -22,20 +22,20 @@ here are the steps to create and configure a Cacti node:
 1.  use knife box create to create a Cacti node - "knife box create -E
     &lt;name&gt; cacti"
 2.  set up a DNS entry for it - "knife dns record create -E &lt;name&gt;
-    cacti -z DOMAIN -T A --public cacti -p &lt;name&gt;"
-3.  point your web browser at cacti.&lt;name&gt;.&lt;root&gt;/cacti/
+    cacti -z &lt;root&gt; -T A --public cacti -p &lt;name&gt;"
+3.  point your web browser at cacti.&lt;name&gt;.&lt;root&gt;/cacti/  (you may need to wait for the DNS entry to propagate before this step works)
 4.  accept all the configuration defaults
 5.  login (admin/admin) and set a new password
 6.  modify configuration by
     1.  going to Devices and deleting "localhost"
     2.  going to Settings-\>Poller and set "Poller Type" to "spine" and
-        "Poller Interval" to "Every Minute"
+        "Poller Interval" to "Every Minute" - then click Save at the bottom of the page
     3.  going to Data Templates and, for each of "ucd/net - CPU Usage -
         \*" set "Associated RRA's" to "Hourly (1 Minute Average)" and
         "Step" to 60
     4.  going to Graph Templates and change "ucd/net - CPU Usage" to
         disable "Auto Scale"
-    5.  going to Import Templates and import (in the following order) the attached XML files [cacti\_client\_count.xml](cacti_client_count.xml), [cacti\_sip\_stress\_status.xml](cacti_sip_stress_status.xml) and [cacti\_latency.xml](cacti_latency.xml) - these define new data input methods and graph templates for retrieving statistics from our components via [0MQ](http://www.zeromq.org/)
+    5.  going to Import Templates and import (in the following order) the attached XML files [cacti\_client\_count.xml](cacti_client_count.xml), [cacti\_sip\_stress\_status.xml](cacti_sip_stress_status.xml) and [cacti\_latency.xml](cacti_latency.xml) - these define new data input methods and graph templates for retrieving statistics from our components via [0MQ](http://www.zeromq.org/). For each template you import, select "Select your RRA settings below" and "Hourly (1 Minute Average)
 
     6.  set up the 0MQ-querying script by
         1.  ssh-ing into the cacti node
@@ -58,8 +58,8 @@ clearwater-sip-stress-stats`).
 To manually point Cacti at a new node,
 
 1.  go to Devices and Add a new node, giving a Description and Hostname,
-    setting a Host Template of "ucd/net host" and setting Downed Device
-    Detection to "SNMP"
+    setting a Host Template of "ucd/net SNMP host" and setting Downed Device
+    Detection to "SNMP Uptime"
 2.  click "Create Graphs for this Host" and select the graphs that you
     want - "ucd/net - CPU Usage" is a safe bet, but you might also want
     "Client Counts" (if a bono node) or "SIP Stress Status" (if a sipp
@@ -106,5 +106,5 @@ Graphs can be viewed on the top "graphs" tab. Useful features include
 -   the search box, which matches on graph name
 -   the thumbnail view checkbox, which gets you many more graphs on
     screen
--   the auto-refresh interval, configured on the settings panel
+-   the auto-refresh interval, configured on the settings panel (the default is 5 minutes, so if you're looking for a more responsive UI, you'll need to set a smaller value)
 -   CSV export, achievable via the icon on the right of the graph.
