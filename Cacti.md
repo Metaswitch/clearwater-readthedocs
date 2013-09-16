@@ -19,11 +19,11 @@ This document describes how to
 Assuming you've followed the [Automated Chef install](Automated Install),
 here are the steps to create and configure a Cacti node:
 
-1.  use knife box create to create a Cacti node - "knife box create -E
-    &lt;name&gt; cacti"
-2.  set up a DNS entry for it - "knife dns record create -E &lt;name&gt;
-    cacti -z &lt;root&gt; -T A --public cacti -p &lt;name&gt;"
-3.  point your web browser at cacti.&lt;name&gt;.&lt;root&gt;/cacti/  (you may need to wait for the DNS entry to propagate before this step works)
+1.  use knife box create to create a Cacti node - `knife box create -E
+    <name> cacti`
+2.  set up a DNS entry for it - `knife dns record create -E <name>
+    cacti -z <root> -T A --public cacti -p <name>`
+3.  point your web browser at `cacti.<name>.<root>/cacti/`  (you may need to wait for the DNS entry to propagate before this step works)
 4.  accept all the configuration defaults
 5.  login (admin/admin) and set a new password
 6.  modify configuration by
@@ -74,7 +74,7 @@ Alternatively, you can add nodes to Cacti based on chef configuration
 using the following chunk of bash, run from the `~/chef` directory.
 
     knife box list -E <name> | grep "Found node" | cut -d\  -f 3,8 | sort | while read description ip ; do
-      knife ssh -x ubuntu "role:cacti AND chef_environment:&lt;name&gt;" '
+      knife ssh -x ubuntu "role:cacti AND chef_environment:<name>" '
         description='$description'
         ip='$ip'
         echo Configuring $description $ip...
