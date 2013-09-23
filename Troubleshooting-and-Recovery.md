@@ -38,11 +38,15 @@ If this doesn't help, sprout logs to `/var/log/sprout/sprout*.txt`.  By default,
 
 Sprout maintains registration state in a memcached cluster.  It's a little clunky to examine this data but you can get some basic information out by running `. /etc/clearwater/config ; telnet $local_ip 11211` to connect to memcached, issuing `stats items`.  This returns a list of entries of the form `STAT items:<slab ID>:...`.  You can then query the keys in each of the slabs with `stats cachedump <slab ID> 0`.
 
+If you see sprout dying/restarting with no apparent cause in `/var/log/sprout/sprout*.txt`, check `/var/log/monit.log` and `/var/log/syslog` around that time - these can sometimes give clues as to the cause. 
+
 ## Bono
 
 The most common problem on bono is lack of communication with sprout.  Check that sprout is reachable and responding.
 
 If this doesn't help, bono logs to `/var/log/bono/sprout*.txt`.  By default, it is set to log level 2, which only includes errors and very high-level events.  To enable more detailed trace, change the log level to 5 by writing `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), and then restarting bono.
+
+If you see bono dying/restarting with no apparent cause in `/var/log/bono/bono*.txt`, check `/var/log/monit.log` and `/var/log/syslog` around that time - these can sometimes give clues as to the cause. 
 
 ## Chef
 
