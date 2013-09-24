@@ -8,9 +8,13 @@ This page describes how to install and configure the
 assumes that you have already read the
 [External HSS Integration](External HSS Integration) page.
 
-## Installing OpenIMSCore HSS
+## Installation with Chef
 
-To install and configure OpenIMSCore HSS,
+If you have a deployment environment created by following the [automated install instructions](https://github.com/Metaswitch/clearwater-docs/wiki/Automated-Install), then you can create a HSS by running `knife box create -E <env> openimscorehss`. You should then follow [the configuration instructions below](https://github.com/Metaswitch/clearwater-docs/wiki/OpenIMSCore-HSS-Integration#configuration).
+
+## Installing OpenIMSCore HSS manually
+
+To install OpenIMSCore HSS,
 
 1.  follow the "FHoSS"-related steps in the Quick Install section of the full
     [OpenIMSCore Installation Guide](http://www.openimscore.org/installation_guide)
@@ -23,7 +27,9 @@ To install and configure OpenIMSCore HSS,
     the
     [OpenIMSCore Installation Guide](http://www.openimscore.org/installation_guide).
 
-## Adding the MMTEL Application Server
+## Configuration
+
+### Adding the MMTEL Application Server
 
 To enable the MMTEL application server built into Clearwater for all
 subscribers,
@@ -37,7 +43,7 @@ subscribers,
    `your.home.domain` is replaced with your home domain
 7.  save your change.
 
-## Configuring Subscribers
+### Configuring Subscribers
 
 To configure a subscriber,
 
