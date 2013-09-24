@@ -87,7 +87,7 @@ They also need the following ports open to all other Bono nodes and to all the S
 
 * Internal SIP signalling:
 
-        TCP/5058
+        TCP/5054
 
 ## Sprout
 
