@@ -11,7 +11,7 @@ Each application server must be able to communicate with Sprout and
 Bono in both directions.
 
  * The application server must be able to contact all sprout and bono
-   nodes on the trusted SIP port, 5054 (both TCP and UDP).
+   nodes on the trusted SIP ports, 5054 and 5058 (respectively, for both TCP and UDP).
 
  * All sprout and bono nodes must be able to contact the application
    server on the port and protocol configured in your subscribers'
