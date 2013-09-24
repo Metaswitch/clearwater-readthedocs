@@ -11,7 +11,7 @@ Each application server must be able to communicate with Sprout and
 Bono in both directions.
 
  * The application server must be able to contact all sprout and bono
-   nodes on the trusted SIP port, 5058 (both TCP and UDP).
+   nodes on the trusted SIP port, 5054 (both TCP and UDP).
 
  * All sprout and bono nodes must be able to contact the application
    server on the port and protocol configured in your subscribers'
@@ -40,7 +40,7 @@ No special application server configuration is required.
 
  * If your application server needs to spontaneously originate calls,
    it should do this via Sprout's trusted interface:
-   `sprout.<deployment-domain>:5058` over either TCP or UDP.
+   `sprout.<deployment-domain>:5054` over either TCP or UDP.
 
 The headers set by Clearwater are described in the [Application Server
 Guide](Application Server Guide).
