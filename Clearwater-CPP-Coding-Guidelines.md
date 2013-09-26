@@ -24,3 +24,6 @@ if (x)
  int* foo = do_something();
 }
 ```
+
+## Language Features
+* Use of the `auto` keyword is forbidden.
