@@ -232,7 +232,7 @@ In releases 29 (Memento) and 30 (No Country for Old Men), Sprout used Infinispan
 In release 32, Sprout reverted to using memcached as the store, but with enhanced support for redundancy and dynamic scaling without interrupting service.  If using this release or later, after initially installing the Sprout nodes you must reconfigure them to ensure they cluster together.  To do this,
 
 *   edit `/etc/clearwater/cluster_settings` file on each node to contain a single line of the form
-`servers=<Sprout IP address:11211>,<Sprout IP address:11211>,...` with the order of the IP addresses identical on each node
+`servers=<Sprout IP address:11211>,<Sprout IP address:11211>,...` ensuring the order of the IP addresses is identical on each node
 *   force Sprout to reload its configuration with `sudo service sprout reload`.
 
 ### Clustering Homestead and Homer
