@@ -213,9 +213,14 @@ When configuring DNS for a multi-node deployment, it's crucial that
 
 ### Clustering Sprout
 
-Sprout uses [Infinispan](http://www.jboss.org/infinispan/) as its registration datastore.
+Depending on the release you are using Sprout uses [memcached] (http://memcached.org) or [Infinispan](http://www.jboss.org/infinispan/) as its registration datastore.
 
-After installing the sprout nodes, you must reconfigure the Infinispan processes on these nodes to cluster together.  To do this,
+Up to and including release 28 (Lock Stock and Two Smoking Barrels), Sprout used memcached as the store.  If using these releases, after installing the Sprout nodes you must reconfigure them to ensure they cluster together.  To do this,
+
+*   edit the `/etc/clearwater/cluster_settings` file on each node to contain a single line of the form `memcached_servers=<sprout IP address>:11211,<sprout IP address>:11211,...` ensuring the order of the IP addresses is identical on each node
+*   restart sprout with `sudo service sprout stop`.
+
+In releases 29 (Memento) and 30 (No Country for Old Men), Sprout used Infinispan.  If using either of these releases, after installing the sprout nodes, you must reconfigure the Infinispan processes on these nodes to cluster together.  To do this,
 
 *   open `/var/lib/infinispan/configuration/clustered.xml` for editing
 *   find the `initial_hosts` property and set it to a comma-separated list of the IP addresses in your sprout cluster, each appended with `[7800]` (the port number to communicate on)
@@ -223,6 +228,12 @@ After installing the sprout nodes, you must reconfigure the Infinispan processes
 *   find the `public` interface and set its `inet-address` to `${jboss.bind.address:<private_ip>}`, replacing `<private IP>` with the same you value used in `/etc/clearwater/config`
 *   save the file and exit
 *   restart Infinispan with `sudo monit restart infinispan`.
+
+In release 32, Sprout reverted to using memcached as the store, but with enhanced support for redundancy and dynamic scaling without interrupting service.  If using this release or later, after initially installing the Sprout nodes you must reconfigure them to ensure they cluster together.  To do this,
+
+*   edit `/etc/clearwater/cluster_settings` file on each node to contain a single line of the form
+`servers=<Sprout IP address:11211>,<Sprout IP address:11211>,...` with the order of the IP addresses identical on each node
+*   force Sprout to reload its configuration with `sudo service sprout reload`.
 
 ### Clustering Homestead and Homer
 
