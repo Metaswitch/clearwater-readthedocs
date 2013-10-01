@@ -32,3 +32,30 @@ All-in-one images can be installed on EC2 or on your own virtualization platform
 *   To install on EC2, follow the [all-in-one EC2 AMI installation instructions](All-in-one EC2 AMI Installation).
 *   To install on your own virtualization platform, follow the [all-in-one OVF installation instructions](All-in-one OVF Installation).
 
+## Manual Build
+
+If your virtualization platform is not EC2 and doesn't support OVF, you may still be able to manually build an all-in-one node.  To do so,
+
+1.  install [Ubuntu 12.04 - 64bit server edition](http://releases.ubuntu.com/precise/)
+2.  find the `preseed/late_command` entry in the [all-in-one image's install script](https://github.com/Metaswitch/clearwater-vm-images/blob/master/ubuntu-ovf/ubuntu-server.seed) - as of writing this is as follows, but please check the linked file for the latest version
+
+        d-i preseed/late_command string in-target bash -c '{ echo "#!/bin/bash" ; \
+                                                             echo "set -e" ; \
+                                                             echo "echo deb http://repo.cw-ngv.com/stable binary/ > /etc/apt/sources.list.d/clearwater.list" ; \
+                                                             echo "curl -L http://repo.cw-ngv.com/repo_key | sudo apt-key add -" ; \
+                                                             echo "echo deb http://debian.datastax.com/community stable main > /etc/apt/sources.list.d/cassandra.list" ; \
+                                                             echo "curl -L http://debian.datastax.com/debian/repo_key | sudo apt-key add -" ; \
+                                                             echo "apt-get update" ; \
+                                                             echo "export DEBIAN_FRONTEND=noninteractive" ; \
+                                                             echo "apt-get install -y --force-yes python-cql dsc1.1=1.1.9-1 cassandra=1.1.9 clearwater-auto-config-generic" ; \
+                                                             echo "apt-get install -y --force-yes ellis bono restund sprout homer homestead" ; \
+                                                             echo "export PATH=/usr/share/clearwater/ellis/env/bin:$PATH" ; \
+                                                             echo "cd /usr/share/clearwater/ellis/src/metaswitch/ellis/tools/" ; \
+                                                             echo "python create_numbers.py --start 6505550000 --count 1000" ; \
+                                                             echo "rm /etc/rc2.d/S99zclearwater-aio-first-boot" ; \
+                                                             echo "poweroff" ; } > /etc/rc2.d/S99zclearwater-aio-first-boot ; \
+                                                           chmod a+x /etc/rc2.d/S99zclearwater-aio-first-boot'
+
+3.  run the command (stripping the `d-i preseed/late_command string in-target` prefix) - this will create an `/etc/rc2.d/S99zclearwater-aio-first-boot` script
+4.  run the `/etc/rc2.d/S99zclearwater-aio-first-boot` script - this will install the all-in-one software and then shutdown (ready for an image to be taken)
+4.  restart the node.
