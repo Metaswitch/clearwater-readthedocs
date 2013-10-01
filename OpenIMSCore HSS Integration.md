@@ -35,7 +35,7 @@ OpenHSS provides the administration UI over port 8080.  Rather than exposing thi
 
 In the PuTTY SSH client this is done by by right-clicking on the titlebar, choosing "Change Settings..." then navigating to "Connection->SSH->Tunnels", filling in Source port "8080" and Destination "127.0.0.1:8080", clicking Add and then clicking Apply.
 
-If using Linux/Mac with ssh installed, you can do: ssh -L 8080:localhost:8080 <hss_server>.
+If using Linux/Mac with ssh installed, you can do: ssh -L 8080:localhost:8080 &lt;hss_server&gt;.
 
 ### Adding the MMTEL Application Server
 
