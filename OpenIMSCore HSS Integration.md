@@ -29,6 +29,14 @@ To install OpenIMSCore HSS,
 
 ## Configuration
 
+### Setting up a SSH tunnel
+
+OpenHSS provides the administration UI over port 8080.  Rather than exposing this configuration interface to the public internet, we recommend configuring an SSH tunnel to access it securely.
+
+In the PuTTY SSH client this is done by by right-clicking on the titlebar, choosing "Change Settings..." then navigating to "Connection->SSH->Tunnels", filling in Source port "8080" and Destination "127.0.0.1:8080", clicking Add and then clicking Apply.
+
+If using Linux/Mac with ssh installed, you can do: ssh -L 8080:localhost:8080 <hss_server>.
+
 ### Adding the MMTEL Application Server
 
 To enable the MMTEL application server built into Clearwater for all
