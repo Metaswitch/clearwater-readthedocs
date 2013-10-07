@@ -15,11 +15,12 @@ The architecture of a geographically-redundant system is as follows.
 
 ![Diagram](Geographic redundancy diagram.png)
 
-Sprout is a single cluster split over the geographic regions.
-memcached does not support the concept of local and remote peers, so
-this is the best we can do at present. Communication between the nodes
-is encrypted and authenticated with IPsec. Each sprout uses homers and
-homesteads in the same region only.
+Sprout has one memcached cluster per geographic region.  Although
+memcached itself does not support the concept of local and remote peers,
+sprout builds this on top - writing to both local and remote clusters and
+reading from the local but falling back to the remote. Communication
+between the nodes is encrypted and authenticated with IPsec. Each sprout
+uses homers and homesteads in the same region only.
 
 Separate instances of bono in each geographic region front the sprouts
 in that region.  Clearwater uses a geo-routing DNS service such as
@@ -61,9 +62,9 @@ Limitations
 -----------
 
 -   It's not possible to build a geographically-redundant deployment
-    automatically with chef. The basic servers can be set up
-    automatically but there is still some manual orchestration after
-    this.
+    automatically with chef. The servers can be installed and configured
+    automatically but the certificates used for secure communication
+    can't be.
 -   We use a single per-repository certificate for authenticating our
     secure connections. It would be more secure to use individual,
     per-region or per-deployment certificates but this would make
@@ -72,9 +73,6 @@ Limitations
 -   Communication with splunk and mmonit are not secured, so they must
     be deployed in each region. We could enable IPsec for these
     connections too and have centralized instances.
--   memcached is not aware of the concept of local and remote peers, so
-    often stores local subscriber registration information in a remote
-    geographic region. This is a restriction of memcached.
 
 Impact
 ------
@@ -108,33 +106,17 @@ the DNS TTL since they last connected, they will probably wait 5 minutes
 before they try to re-register (using the correct DNS entry this time).
 
 If the subscriber was connected to a bono node in region B, their TCP
-connection does not fail and they do not re-register. However, they have
-a 50% chance that their registration was stored in region A, in which
-case their incoming calls will fail until they re-register. By default,
-we propose re-registering every 5 minutes, so on average the subscriber
-would be without incoming service for 2.5 minutes.
+connection does not fail, they do not re-register and their service is
+unaffected.
 
-Overall, the subscriber's expected outgoing call service outage would be
-as follows.
+Overall, the subscriber's expected incoming or outgoing call service
+outage would be as follows.
 
       50% chance of being on a bono node in region A *
       30s/300s chance of having a stale DNS entry *
       300s re-registration time
     = 5% chance of a 300s outage
     = 15s average outage
-
-Likewise, a subscriber's expected incoming call service outage would be
-as follows.
-
-      ( 50% chance of being on a bono node in region A *
-        30s/300s chance of having a stale DNS entry *
-        300s re-registration time ) +
-      ( 50% chance of being on a bono node in region B *
-        50% chance of having registration stored in region A *
-        50% average amount through the registration period when the failure occurred *
-        300s re-registration time )
-    = 5% chance of a 300s outage + 25% chance of a 150s outage
-    = 52.5s average outage
 
 Realistically, if 50% of subscribers all re-registered almost
 simultaneously (due to their TCP connection dropping and their DNS being
@@ -144,8 +126,8 @@ Also, depending on the failure mode of the nodes in region A, it's
 possible that the TCP connection failure would be silent and the clients
 would not notice until they next re-REGISTERed. In this case, all
 clients connected to bonos in region A would take an average of 150s to
-notice the failure. This equates to a 75% chance of a 150s outage, or an
-average outage of 112.5s.
+notice the failure. This equates to a 50% chance of a 150s outage, or an
+average outage of 75s.
 
 ### HTTP to homer
 
@@ -178,12 +160,14 @@ follows.
     and UDP-encapsulated IPsec.
 3.  Install the clearwater-secure-connections package on all sprout,
     homestead and homer nodes.
-4.  Modify the `/etc/clearwater/cluster_settings` file on each sprout,
-    homestead and homer node to include all nodes of that type across
-    all regions. (chef will have set the `cluster_settings` file up to
-    just contain those nodes within the same region.)  Specify the
-    public IP address of remote nodes.
-5.  Configure Route 53 to forward requests for bono and homer
+4.  Set the `/etc/clearwater/cluster_settings` file on each sprout to
+    just contain the local nodes, and the
+    `/etc/clearwater/remote_cluster_settings` file to contain the remote
+    nodes.
+5.  Configure Cassandra on homestead and homer to be aware of all nodes
+    in all deployments, but use a Snitch (e.g. PropertyFileSnitch) to
+    set each node's data center according to its region.
+6.  Configure Route 53 to forward requests for bono and homer
     according to latency. To do this, for each of bono and homer,
     and for each region, create one record set, as follows.
     -   Name: &lt;shared (non-geographically-redundant) DNS name\>
@@ -195,4 +179,3 @@ follows.
     -   Routing Policy: **Latency**
     -   Region: &lt;AWS region matching geographic region\>
     -   Set ID: &lt;make up a unique name, e.g. gr-bono-us-east-1\>
-
