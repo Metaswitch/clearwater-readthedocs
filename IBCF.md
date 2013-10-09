@@ -41,7 +41,7 @@ Refer to the [ENUM guide](ENUM) for more about how to configure ENUM.
 
 ## BGCF Configuration
 
-BGCF (Border Gateway Control Function) configuration is stored in the bgcf.json file in `/etc/clearwater` on each sprout node.  The file stores mappings from SIP trunk IP addresses and/or host names to IBCF host names, and these mappings control which IBCF nodes are used to route to a particular destination.
+BGCF (Border Gateway Control Function) configuration is stored in the bgcf.json file in `/etc/clearwater` on each sprout node.  The file stores mappings from SIP trunk IP addresses and/or host names to IBCF host names, and these mappings control which IBCF nodes are used to route to a particular destination. Multiple nodes can be specified; in this case the message will be routed through the nodes in turn.
 
 The file is in JSON format, for example.
 
