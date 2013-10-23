@@ -26,6 +26,6 @@ Sprout nodes provide the following statistics:
 * The average latency, variance, highest latency and lowest latency (all in microseconds) seen on the Cx interface over the past five minutes.
 * The average latency, variance, highest latency and lowest latency (all in microseconds) seen on Multimedia-Auth Requests on the Cx interface over the past five minutes.
 * The average latency, variance, highest latency and lowest latency (all in microseconds) seen on Server-Assignment Requests on the Cx interface over the past five minutes.
-* The average latency, variance, highest latency and lowest latency (all in microseconds) seen on Server-Assignment Requests between Sprout and the Homer XDMS over the past five minutes.
+* The average latency, variance, highest latency and lowest latency (all in microseconds) between Sprout and the Homer XDMS over the past five minutes.
 * The number of parallel TCP connections to each Homestead node.
 * The number of parallel TCP connections to each Homer node.
