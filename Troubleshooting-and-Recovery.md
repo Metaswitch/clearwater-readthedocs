@@ -20,15 +20,19 @@ To examine ellis' database, run `mysql` (as root), then type `use ellis;` to set
 
 The most common problem on homer and homestead is failing to read or write to the Cassandra database.
 
-*   Check that Cassandra is running.  If not, check its `/var/log/cassandra/*.log` files.
+*   Check that Cassandra is running (`sudo monit status`).  If not, check its `/var/log/cassandra/*.log` files.
 
-*   Check that Cassandra is configured correctly.  First access the command-line CQL interface by running `cqlsh -3`.  Then type `use homer;` or `use homestead;` to set the correct database.  Finally, issue `describe tables;` - this should report `simservs` on homer and `filter_criteria` and `sip_digests` on homestead.  If these are missing, recreate them by running the section of the [homer](https://github.com/Metaswitch/crest/blob/dev/debian/homer.postinst) or [homestead](https://github.com/Metaswitch/crest/blob/dev/debian/homestead.postinst) post-install scripts, starting at the `echo Connecting to Cassandra on localhost...` line and ending just before the `# Start monit monitoring ourselves` line.
+*   Check that Cassandra is configured correctly.  First access the command-line CQL interface by running `cqlsh -3`.
+
+    *   If you're on homer, type `use homer;` to set the correct database and then `describe tables;` - this should report `simservs`.  If this is missing, recreate it by running the section of the [homer post-install script](https://github.com/Metaswitch/crest/blob/dev/debian/homer.postinst), starting at the `echo Connecting to Cassandra on localhost...` line and ending just before the `# Start monit monitoring ourselves` line.
+
+   *    If you're on homestead, there are 2 databases.  Type `use homestead_provisioning;` to set the provisioning database and then `describe tables;` - this should report `service_profiles`, `public`, `implicit_registration_sets` and `private`.  Then type `use homestead_cache;` to set the cache database and then `describe tables;` as before - this should report `impi` and `impu`.  If any of these are missing, recreate them by running the section of the [homestead post-install script](https://github.com/Metaswitch/crest/blob/dev/debian/homestead.postinst), starting at the `echo Connecting to Cassandra on localhost...` line and ending just before the `# Start monit monitoring ourselves` line.
 
 *   Check that Cassandra is clustered correctly (if running a multi-node system).  `nodetool ring` tells you which nodes are in the cluster, and how the keyspace is distributed among them.
 
 If this doesn't help, homer logs to `/var/log/homer/homer-*.log` and homestead logs to `/var/log/homestead/homestead-*.log`.
 
-To examine homer or homestead's database, run `cqlsh -3` and then type `use homer;` or `use homestead;` to set the correct database.  You can then issue CQL queries such as `SELECT * FROM sip_digests WHERE private_id = '<private user ID>'`.
+To examine homer or homestead's database, run `cqlsh -3` and then type `use homer;`, `use homestead_provisioning;` or `use homestead_cache` to set the correct database.  You can then issue CQL queries such as `SELECT * FROM impi WHERE private_id = '<private user ID>'`.
 
 ## Sprout
 
