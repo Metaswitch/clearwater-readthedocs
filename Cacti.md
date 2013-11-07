@@ -78,7 +78,7 @@ using the following chunk of bash, run from the `~/chef` directory.
         description='$description'
         ip='$ip'
         echo Configuring $description $ip...
-        host_id=$(sudo php -q /usr/share/cacti/cli/add_device.php --template=3 --avail=snmp --description=$description --ip=$ip | tee -a /tmp/knife-ssh.cacti | grep Success | sed -e "s/\(^.*(\|).*$\)//g")
+        host_id=$(sudo php -q /usr/share/cacti/cli/add_device.php --template=3 --community=clearwater --avail=snmp --description=$description --ip=$ip | tee -a /tmp/knife-ssh.cacti | grep Success | sed -e "s/\(^.*(\|).*$\)//g")
         graph_id=$(sudo php -q /usr/share/cacti/cli/add_graphs.php --graph-type=cg --graph-template-id=4 --host-id=$host_id | tee -a /tmp/knife-ssh.cacti | grep "Graph Added" | sed -e "s/\(^[^)]*(\|).*$\)//g")
         sudo php -q /usr/share/cacti/cli/add_tree.php --type=node --node-type=graph --tree-id=1 --graph-id=$graph_id >> /tmp/knife-ssh.cacti
         if echo $description | grep -q bono ; then
