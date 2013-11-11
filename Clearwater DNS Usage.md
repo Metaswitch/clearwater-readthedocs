@@ -11,6 +11,7 @@ Below `<root>` is used to represent the DNS root domain which is hosting your de
 The following A records are required for Clearwater function:
 
 * `<root>` - Public IP addresses of all of the Bono nodes
+* `bono.<root>` - Private IP addresses of all of the Bono nodes.
 * `sprout.<root>` - Private IP addresses of all of the Sprout nodes
 * `hs.<root>` - Private IP addresses of all of the Homestead nodes
 * `homer.<root>` - Private IP addresses of all of the Homer nodes
