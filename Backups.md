@@ -31,22 +31,24 @@ To list the backups that have been taken on ellis, run `sudo /usr/share/clearwat
 
 ### Homestead and Homer
 
+Homestead actually contains two databases (`homestead_provisioning` and `homestead_cache`) and these must be backed up together.  This is why there are two commands for each homestead operation.  Homer only contains one database and so there is only one command for each operation.
+
 To list the backups that have been taken on homestead or homer, run
 
-*   `sudo /usr/share/clearwater/homestead/backup/list_backups.sh homestead` for homestead
+*   `sudo /usr/share/clearwater/homestead/backup/list_backups.sh homestead_provisioning` and `sudo /usr/share/clearwater/homestead/backup/list_backups.sh homestead_cache` for homestead
 *   `sudo /usr/share/clearwater/homer/backup/list_backups.sh homer` for homer.
 
 This produces output of the following form, listing each of the available backups.
 
     No backup directory specified, defaulting to /usr/share/clearwater/homestead/backup/backups
-    1372812963174
-    1372813022822
-    1372813082506
-    1372813143119
+    provisioning1372812963174
+    provisioning1372813022822
+    provisioning1372813082506
+    provisioning1372813143119
 
 You can also specify a directory to search in for backups, e.g. for homestead:
 
-`sudo /usr/share/clearwater/homestead/backup/list_backups.sh homestead <backup dir>`
+`sudo /usr/share/clearwater/homestead/backup/list_backups.sh homestead_provisioning <backup dir>`
 
 ## Taking a Manual Backup
 
@@ -79,23 +81,23 @@ This file can, and should, be copied off the ellis node to a secure backup serve
 
 To take a manual backup on homestead or homer, run
 
-*   `sudo /usr/share/clearwater/homestead/backup/do_backup.sh homestead` on homestead
+*   `sudo /usr/share/clearwater/homestead/backup/do_backup.sh homestead_provisioning` and `sudo /usr/share/clearwater/homestead/backup/do_backup.sh homestead_cache` on homestead
 *   `sudo /usr/share/clearwater/homer/backup/do_backup.sh homer` on homer.
 
 This produces output of the following form, reporting the successfully-created backup.
 
     ...
     Deleting old backup: /usr/share/clearwater/homestead/backup/backups/1372812963174
-    Creating backup for keyspace homestead...
-    Requested snapshot for: homestead
+    Creating backup for keyspace homestead_provisoning...
+    Requested snapshot for: homestead_provisioning
     Snapshot directory: 1372850637124
-    Backups can be found at: /usr/share/clearwater/homestead/backup/backups
+    Backups can be found at: /usr/share/clearwater/homestead/backup/backups/provisioning/
 
 Make a note of the snapshot directory - this will be referred to as `<snapshot>` below.
 
-The backups are only stored locally - the resulting backup is stored in `/usr/share/clearwater/homestead/backup/backups/<snapshot>`
+The backups are only stored locally - the resulting backup is stored in `/usr/share/clearwater/homestead/backup/backups/provisioning/<snapshot>`
 
-These should be copied off the homestead or homer node to a secure backup server.  For example, from a remote location execute `scp -r ubuntu@<homestead node>:/usr/share/clearwater/homestead/backup/backups/<snapshot> .`.
+These should be copied off the homestead or homer node to a secure backup server.  For example, from a remote location execute `scp -r ubuntu@<homestead node>:/usr/share/clearwater/homestead/backup/backups/provisioning/<snapshot> .`.
 
 ## Periodic Automated Local Backups
 
@@ -135,7 +137,7 @@ On homestead/homer there is no need to further move the files as the backup scri
 To actually restore from the backup file, run
 
 *   `sudo /usr/share/clearwater/ellis/backup/restore_backup.sh <snapshot>` on ellis
-*   `sudo /usr/share/clearwater/homestead/backup/restore_backup.sh homestead <snapshot> ~/backup` on homestead
+*   `sudo /usr/share/clearwater/homestead/backup/restore_backup.sh homestead_provisioning <snapshot> ~/backup` and `sudo /usr/share/clearwater/homestead/backup/restore_backup.sh homestead_cache <snapshot> ~/backup` on homestead
 *   `sudo /usr/share/clearwater/homer/backup/restore_backup.sh homer <snapshot> ~/backup` on homer.
 
 Ellis will produce output of the following form.
@@ -158,7 +160,7 @@ Homestead or homer will produce output of the following form.
     Will attempt to backup from backup 1372336442947
     Will attempt to backup from directory /home/ubuntu/bkp_test/
     Found backup directory /home/ubuntu/bkp_test//1372336442947
-    Restoring backup for keyspace homestead...
+    Restoring backup for keyspace homestead_provisioning...
     xss =  -ea -javaagent:/usr/share/cassandra/lib/jamm-0.2.5.jar -XX:+UseThreadPriorities -XX:ThreadPriorityPolicy=42 -Xm
     s826M -Xmx826M -Xmn100M -XX:+HeapDumpOnOutOfMemoryError -Xss180k
     Clearing commitlog...
