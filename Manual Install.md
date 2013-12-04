@@ -24,7 +24,7 @@ The following steps should be followed on all the machines that will make up the
 
 ### Configuring the APT software sources
 
-The machines need to be configured so that APT can use the Clearwater repository server and the [DataStax](http://www.datastax.com/) Cassandra repository.
+The machines need to be configured so that APT can use the Clearwater repository server.
 
 #### Project Clearwater
 
@@ -48,16 +48,6 @@ The output should contain the following - check the fingerprint carefully.
           Key fingerprint = 9213 4604 DE32 7DF7 FEB7  2026 111D BE47 22B9 7904
     uid                  Project Clearwater Maintainers <maintainers@projectclearwater.org>
     sub   4096R/46EC5B7F 2013-04-30
-
-#### DataStax
-
-Under sudo, create `/etc/apt/sources.list.d/cassandra.list` with the following contents:
-
-    deb http://debian.datastax.com/community stable main
-
-Once this is created install the PGP signing key used by the DataStax server with:
-
-    curl -L http://debian.datastax.com/debian/repo_key | sudo apt-key add -
 
 #### Finishing up
 
@@ -171,15 +161,13 @@ Install the Sprout package with:
 
 Install the Homer and Cassandra packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install python-cql dsc1.1=1.1.9-1 cassandra=1.1.9 --yes
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install homer --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra homer --yes
 
 ### Homestead
 
 Install the Homestead and Cassandra packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install python-cql dsc1.1=1.1.9-1 cassandra=1.1.9 --yes
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra homestead --yes
 
 ## DNS Records
 
