@@ -22,7 +22,7 @@ To create a single machine instance running all the Clearwater components, run t
 
 The following modifier is available.
 
-* `--index <value>` - Name the new node "<name>-cw_aio-<value>" to permit distinguishing it from others.
+* `--index <value>` - Name the new node `<name>-cw_aio-<value>` to permit distinguishing it from others.
 
 ## Creating a larger deployment
 
