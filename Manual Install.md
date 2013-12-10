@@ -89,28 +89,6 @@ from unauthorized access.
 
 To modify these settings after the deployment is created, follow [these instructions](https://github.com/Metaswitch/clearwater-docs/wiki/Modifying-Clearwater-settings).
 
-## Crash monitoring
-
-Clearwater can be configured to upload crash reports to the Clearwater
-repository server. This is useful for diagnosing problems. The crash
-report contains, among other things, the entire contents of the
-crashed process. This may include sensitive data such as usernames,
-passwords, the content of any SIP messages passing through the server,
-DNS hostnames, and many other potentially-sensitive items.
-
-**Crash monitoring is disabled by default. You should not enable it
-unless you are sure that your system has no sensitive information on
-it, and you are happy for all data within a Clearwater process to be
-sent to the Clearwater maintainers.**
-
-To enable crash monitoring, simply install the relevant package on
-each box in your deployment:
-
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-crash-monitor --yes
-
-To remove it, remove the package and confirm that the
-`clearwater-crash-monitoring` process is no longer running.
-
 ## Node specific installation instructions
 
 At this point, you should decide (if you haven't already) which of the five machines will take on which of the Clearwater roles.
