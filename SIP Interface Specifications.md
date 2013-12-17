@@ -56,7 +56,7 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 ### P-Access-Network-Info, P-Associated-URI, P-Called-Party-ID, P-Charging-Function-Address, P-Charging-Vector and P-Visited-Network-ID headers ([RFC 3455](http://www.ietf.org/rfc/rfc3455.txt))
 
 *   Defines various private headers specifically for IMS.
-*   P-Access-Network-Info is added to incoming messages by the UE or the P-CSCF to provide information about the access network and possibly the UEs location within the network (for example cell).  IMS specifications talk about various uses for this information, including routing emergency calls, an alternative to �phone-context� for interpreting dialled digits, determining the security scheme.  This header is supported by Clearwater.
+*   P-Access-Network-Info is added to incoming messages by the UE or the P-CSCF to provide information about the access network and possibly the UEs location within the network (for example cell).  IMS specifications talk about various uses for this information, including routing emergency calls, an alternative to `phone-context` for interpreting dialled digits, determining the security scheme.  This header is supported by Clearwater.
 *   P-Associated-URI is returned by registrar to include the list of alternative user identities defined for the IMS subscription.  This header is supported by Clearwater.
 *   P-Called-Party-ID is added to a SIP request by an IMS network to ensure the called UE knows which of the user identities within the IMS subscription was actually called.  This header is supported by Clearwater.
 *   P-Charging-Function-Address and P-Charging-Vector headers are both related to billing, and not yet supported in Clearwater.
@@ -123,7 +123,7 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 
 ### MRFC control ([RFC 4240](http://www.ietf.org/rfc/rfc4240.txt), [RFC 5552](http://www.ietf.org/rfc/rfc5552.txt), [RFC 6230](http://www.ietf.org/rfc/rfc6230.txt), [RFC 6231](http://www.ietf.org/rfc/rfc6231.txt), [RFC 6505](http://www.ietf.org/rfc/rfc6505.txt))
 
-*   These RFCs define three different ways of controlling the function of an MRFC from an AS. [RFC 4240](http://www.ietf.org/rfc/rfc4240.txt) is a simple �play an announcement� service, [RFC 5552](http://www.ietf.org/rfc/rfc5552.txt) uses VoiceXML and [RFC 6230](http://www.ietf.org/rfc/rfc6230.txt)/6231/6505 use SIP/SDP to establish a two-way control channel between the AS and MRFC.
+*   These RFCs define three different ways of controlling the function of an MRFC from an AS. [RFC 4240](http://www.ietf.org/rfc/rfc4240.txt) is a simple "play an announcement" service, [RFC 5552](http://www.ietf.org/rfc/rfc5552.txt) uses VoiceXML and [RFC 6230](http://www.ietf.org/rfc/rfc6230.txt)/6231/6505 use SIP/SDP to establish a two-way control channel between the AS and MRFC.
 *   IMS allows any of the three mechanisms to be used, or combinations depending on circumstances.
 *   All three mechanisms are transparent to proxy components, so supported by Clearwater.
 
@@ -258,7 +258,7 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 
 ### Dialstring URI parameter ([RFC 4967](http://www.ietf.org/rfc/rfc4967.txt))
 
-*   Defines a �user=dialstring� parameter used in SIP URIs to indicate that the user portion of the URI is a dial string (as opposed to a number that definitely identifies a phone as in the �user=phone� case).
+*   Defines a `user=dialstring` parameter used in SIP URIs to indicate that the user portion of the URI is a dial string (as opposed to a number that definitely identifies a phone as in the `user=phone` case).
 *   IMS allows this encoding from UEs initiating calls, but doesn't specify any particular processing within the core of the network.  The intention is that this can be handled by an application server, or captured by filter criteria.
 *   Clearwater doesn't currently support this.
 
@@ -266,7 +266,7 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 
 *   Used to authorize and control early media.
 *   If P-CSCF is not gating media then required function is as simple as
-    *   adding P-Early-Media header with �supported� value on requests from clients (or modifying header from clients if already in message)
+    *   adding P-Early-Media header with `supported` value on requests from clients (or modifying header from clients if already in message)
     *   passing the header through transparently on responses.
 *   If P-CSCF is gating media then function is more complex as P-CSCF has to operate on values in P-Early-Media headers sent to/from UEs.
 *   Mandatory in a P-CSCF according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
