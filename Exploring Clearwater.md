@@ -35,3 +35,4 @@ To help you run your deployment, Clearwater provides:
 
 * [Deployment monitoring](Cacti)
 * [Backup](Backups)
+* [A troubleshooting guide](Troubleshooting and Recovery) with instructions for viewing the database entries on Sprout and Homestead/Homer.
