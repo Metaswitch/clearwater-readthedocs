@@ -32,6 +32,10 @@ Clearwater uses the following Cx message types.
 
 *   Push-Profile - to be notified of changes to Initial Filter Criteria documents
 
+*   User-Authorization - to retrieve S-CSCF details on initial registrations
+
+*   Location-Information - to retrieve S-CSCF details on calls
+
 ## How to Enable It
 
 This section discusses how to enable support for an external HSS.
