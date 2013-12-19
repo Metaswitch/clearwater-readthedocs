@@ -70,10 +70,6 @@ On each machine, create the file `/etc/clearwater/config` with the following con
     public_ip=<publicIP>
     public_hostname=<hostname>
 
-    # I-CSCF/S-CSCF configuration
-    icscf=5054
-    scscf=5052
-
     # Email server configuration
     smtp_smarthost=<smtp server>
     smtp_username=<username>
