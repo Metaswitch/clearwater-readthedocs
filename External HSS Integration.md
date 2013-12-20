@@ -23,6 +23,10 @@ Clearwater uses the following Cx message types.
 *   Server-Assignment - to retrieve Initial Filter Criteria documents and register for change notifications
 *   Push-Profile - to be notified of changes to Initial Filter Criteria documents
 
+*   User-Authorization - to retrieve S-CSCF details on initial registrations
+
+*   Location-Information - to retrieve S-CSCF details on calls
+
 ## How to Enable It
 
 This section discusses how to enable support for an external HSS.
