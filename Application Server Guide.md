@@ -24,7 +24,7 @@ In Clearwater most S-CSCF function, including the ISC interface, is implemented 
  * Per the IMS specs, this invocation occurs on dialog-initiating requests such as INVITE, SUBSCRIBE, MESSAGE, etc, and according to the triggers within the iFCs (s5.4.3.2, s5.4.3.3):
    * When specified, Sprout will route the message to the AS; the AS can either route it onward, act as a B2BUA for e.g. call diversion, or give a final response.
    * Clearwater has full support for chained iFCs. The original dialog is tracked by Sprout using an ODI token in the Route header. This support includes support for forking ASs at any point in the chain.
-   * Service trigger points (i.e., conditions) are implemented, but the only conditions allowed are SIP method, SIP headers and service case. Conditions based on SDP lines, registration parameters, and request URIs are not implemented - they will always evaluate to false.
+   * Service trigger points (i.e., conditions) are implemented, including SIP method, SIP headers, SDP lines, registration parameters, and request URIs.
    * Service trigger points can have session case configuration, allowing the AS to only be invoked on originating calls or on terminating calls.
  * No per-AS configuration is required; ASs are invoked simply by their URI appearing in the iFCs.
  * AS invocation also occurs on REGISTER - this is called third-party registration (3GPP TS 24.229 s5.4.1.7 and 7A):
@@ -91,7 +91,7 @@ Clearwater implements the ISC interface only. An AS may also expect to communica
 The built-in MMTEL application server
 =====================================
 
-Clearwater has a built-in application server, `mmtel.<deployment-domain>`, which implements a subset of the MMTEL services defined in [GSMA PRD IR.92](http://www.gsma.com/newsroom/wp-content/uploads/2012/03/ir9250.pdf), [ETSI TS 129.364] http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=42062) and [3GPP TS 24.623] http://www.3gpp.org/ftp/Specs/html-info/24623.htm):
+Clearwater has a built-in application server, `mmtel.<deployment-domain>`, which implements a subset of the MMTEL services defined in [GSMA PRD IR.92](http://www.gsma.com/newsroom/wp-content/uploads/2012/03/ir9250.pdf), [ETSI TS 129.364](http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=42062) and [3GPP TS 24.623](http://www.3gpp.org/ftp/Specs/html-info/24623.htm):
 
  * Originating Identification Presentation (OIP)
  * Originating Identification Restriction (OIR)
