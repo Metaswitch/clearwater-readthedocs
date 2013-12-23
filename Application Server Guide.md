@@ -47,7 +47,7 @@ Points of Note
  * Trust:
    - Some ISC signaling is trust-dependent. For Clearwater, all ASs are trusted - we think support for untrusted ASs is unlikely to be required.
  * IP Connectivity
-   - Related to the previous point, we assume all ASs reside on the same subnet as the Clearwater core (in particular, Sprout).
+   - We assume that there is no NAT (static or otherwise) between the AS and the Clearwater core.
 
 Current Spec Deltas
 -------------------
