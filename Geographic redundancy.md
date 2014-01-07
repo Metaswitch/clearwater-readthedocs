@@ -167,15 +167,14 @@ follows.
 5.  Configure Cassandra on homestead and homer to be aware of all nodes
     in all deployments, but use a Snitch (e.g. PropertyFileSnitch) to
     set each node's data center according to its region.
-6.  Configure Route 53 to forward requests for bono and homer
-    according to latency. To do this, for each of bono and homer,
-    and for each region, create one record set, as follows.
+6.  Configure Route 53 to forward requests for bono according to latency.
+    To do this, for each region, create one record set, as follows.
     -   Name: &lt;shared (non-geographically-redundant) DNS name\>
-    -   Type: CNAME - Canonical name
+    -   Type: "A - IPv4 address" or "AAAA - IPv6 address"
     -   Alias: No
     -   TTL (Seconds): 30 (or as low as you can go - in a failure
         scenario, we need to go back to DNS ASAP)
-    -   Value: &lt;DNS name for bono or homer load balancer\>
+    -   Value: &lt;list of IPv4 or IPv6 addresses for this region\>
     -   Routing Policy: **Latency**
     -   Region: &lt;AWS region matching geographic region\>
     -   Set ID: &lt;make up a unique name, e.g. gr-bono-us-east-1\>
