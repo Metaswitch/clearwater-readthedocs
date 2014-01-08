@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "V for Vendetta".
+The latest stable release of Clearwater is "WALL-E".
 
 ## Architecture
 
