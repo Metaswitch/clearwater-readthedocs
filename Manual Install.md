@@ -165,6 +165,22 @@ _Be aware that DNS record creation can take time to propagate, you can check whe
 
 Lastly, we need to make sure the Clearwater nodes can all talk to each other.  To do this, you will need to open up some ports in the firewalls in your network.  The ports used by Clearwater are listed in [Clearwater IP Port Usage](Clearwater IP Port Usage).  Configure all of these ports to be open to the appropriate hosts before continuing to the next step.
 
+### Setting up S-CSCF configuration
+
+If I-CSCF functionality is enabled, then you will need to set up the S-CSCF configuration. S-CSCF configuration is stored in the s_cscf.json file in `/etc/clearwater` on each sprout node. The file stores the configuration of each S-CSCF, their capabilities, and their relative weighting and priorities.
+
+The file is in stored in JSON format, an example is:
+
+    {
+       "s-cscfs" : [
+           {   "server" : "sip:<sprout_domain>:5052;transport=TCP",
+               "priority" : 0,
+               "weight" : 100,
+               "capabilities" : [<comma separated capabilities]
+           }
+       ]
+    }
+
 ## Where next?
 
 Once you've reached this point, your Clearwater deployment is ready to handle calls.  See the following pages for instructions on making your first call and running the supplied regression test suite.
@@ -206,22 +222,6 @@ In release 32, Sprout reverted to using memcached as the store, but with enhance
 *   edit `/etc/clearwater/cluster_settings` file on each node to contain a single line of the form
 `servers=<Sprout IP address:11211>,<Sprout IP address:11211>,...` ensuring the order of the IP addresses is identical on each node
 *   force Sprout to reload its configuration with `sudo service sprout reload`.
-
-### Setting up S-CSCF configuration
-
-If I-CSCF functionality is enabled, then you will need to set up the S-CSCF configuration. S-CSCF configuration is stored in the s_cscf.json file in `/etc/clearwater` on each sprout node. The file stores the configuration of each S-CSCF, their capabilities, and their relative weighting and priorities.
-
-The file is in stored in JSON format, an example is:
-
-    {
-       "s-cscfs" : [
-           {   "server" : "sip:<sprout_domain>:5052;transport=TCP",
-               "priority" : 0,
-               "weight" : 100,
-               "capabilities" : [<comma separated capabilities]
-           }
-       ]
-    }
 
 ### Clustering Homestead and Homer
 
