@@ -43,4 +43,4 @@ The following Supplementary Services require an external application server.
 
 The following Supplementary Service is not currently supported by Clearwater.
 
-*   Barring of Incoming Calls - When Roaming - Clearwater does not currently support roaming, and so can't support barring on this basis.
+*   Barring of Incoming Calls - When Roaming - Clearwater does not currently support roaming, as we believe from our involvement in industry discussions that operators are generally a number of years away from deploying VoLTE roaming.
