@@ -12,9 +12,7 @@ The services fall into one of four categories.
 The following Supplementary Services are supported by Clearwater's [built-in MMTel Application Server](Application-Server-Guide#the-built-in-mmtel-application-server).
 
 *   Originating Identification Presentation - See the [Privacy Feature document](Clearwater-Privacy-Feature) for more information.
-*   Terminating Identification Presentation - See the [Privacy Feature document](Clearwater-Privacy-Feature) for more information.
 *   Originating Identification Restriction - See the [Privacy Feature document](Clearwater-Privacy-Feature) for more information.
-*   Terminating Identification Restriction - See the [Privacy Feature document](Clearwater-Privacy-Feature) for more information.
 *   Call Forwarding Unconditional - See the [Call Diversion Support document](Clearwater-Call-Diversion-Support) for more information.
 *   Call Forwarding on not Logged in - See the [Call Diversion Support document](Clearwater-Call-Diversion-Support) for more information.
 *   Call Forwarding on Busy - See the [Call Diversion Support document](Clearwater-Call-Diversion-Support) for more information.
@@ -35,7 +33,9 @@ The following Supplementary Services are primarily implemented on the UE, and ju
 
 The following Supplementary Services require an external application server.
 
-*   Barring of Outgoing International Calls - ex Home Country - Clearwater does not have sufficient configuration
+*   Terminating Identification Presentation
+*   Terminating Identification Restriction
+*   Barring of Outgoing International Calls - ex Home Country - Clearwater does not currently have sufficient configuration to know the subscriber's home country.
 *   Message Waiting Indication - Clearwater proxies SUBSCRIBE and NOTIFY messages for the MWI event package ([RFC 3842](http://tools.ietf.org/rfc/rfc3842.txt)), but requires an external application server to handle/generate them.
 *   Ad-Hoc Multi Party Conference - Clearwater proxies messages between the UE and an external application server that conferences sessions together.
 
