@@ -7,7 +7,7 @@ The services fall into one of four categories.
 *   Requiring an external application server
 *   Not supported
 
-# Supported by Clearwater's Built-In MMTel Application Server
+### Supported by Clearwater's Built-In MMTel Application Server
 
 The following Supplementary Services are supported by Clearwater's [built-in MMTel Application Server](Application-Server-Guide#the-built-in-mmtel-application-server).
 
@@ -24,14 +24,14 @@ The following Supplementary Services are supported by Clearwater's [built-in MMT
 *   Barring of All Outgoing Calls - See the [Call Barring Support document](Clearwater-Call-Barring-Support) for more information.
 *   Barring of Outgoing International Calls - See the [Call Barring Support document](Clearwater-Call-Barring-Support) for more information.
 
-# Supported by Clearwater Inherently
+### Supported by Clearwater Inherently
 
 The following Supplementary Services are primarily implemented on the UE, and just require Clearwater to proxy messages and headers, which it does.
 
 *   Communication Hold
 *   Communication Waiting
 
-# Requiring an External Application Server
+### Requiring an External Application Server
 
 The following Supplementary Services require an external application server.
 
@@ -39,7 +39,7 @@ The following Supplementary Services require an external application server.
 *   Message Waiting Indication - Clearwater proxies SUBSCRIBE and NOTIFY messages for the MWI event package ([RFC 3842](http://tools.ietf.org/rfc/rfc3842.txt)), but requires an external application server to handle/generate them.
 *   Ad-Hoc Multi Party Conference - Clearwater proxies messages between the UE and an external application server that conferences sessions together.
 
-# Not Supported
+### Not Supported
 
 The following Supplementary Service is not currently supported by Clearwater.
 
