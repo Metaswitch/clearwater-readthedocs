@@ -95,8 +95,6 @@ Clearwater has a built-in application server, `mmtel.<deployment-domain>`, which
 
  * Originating Identification Presentation (OIP)
  * Originating Identification Restriction (OIR)
- * Terminating Identification Presentation (TIP)
- * Terminating Identification Restriction (TIR)
  * Communication Diversion (CDIV)
  * Communication Barring (CB)
 
