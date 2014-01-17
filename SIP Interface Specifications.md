@@ -229,6 +229,12 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
 *   Transparent to proxies, so supported by Clearwater.
 
+### AKA Authentication ([RFC 3310](http://www.ietf.org/rfc/rfc3310.txt))
+
+*   This RFC defines how AKA authentication parameters map into the authentication and authorization headers used for digest authentication.
+*   IMS allows AKA authentication as an alternative to SIP digest, although it is not mandatory.
+*   Supported in Clearwater since sprint 39 “WALL-E”.
+
 ## Relevant to Clearwater but not currently supported
 
 These are the RFCs which are relevant to Clearwater and not yet supported.
@@ -300,16 +306,10 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 *   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
 *   Clearwater doesn't need to support for current use of TCP transport.  Not supported for UDP transport.
 
-### AKA Authentication ([RFC 3310](http://www.ietf.org/rfc/rfc3310.txt))
-
-*   This RFC defines how AKA authentication parameters map into the authentication and authorization headers used for digest authentication.
-*   IMS allows AKA authentication as an alternative to SIP digest, although it is not mandatory.
-*   Clearwater does not currently support AKA authentication, although the PJSIP stack has some support.
-
 ### P-Media-Authorization header ([RFC 3313](http://www.ietf.org/rfc/rfc3313.txt))
 
 *   According to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm), only required if P-CSCF supporting IMS AKA authentication with IPsec ESP encryption, or SIP digest authentication with TLS encryption.
-*   Not supported, as Clearwater does not currently support AKA authentication.
+*   Not supported, as this is P-CSCF only (and Bono doesn't support AKA). 
 
 ### Signalling Compression aka SigComp ([RFC 3320](http://www.ietf.org/rfc/rfc3320.txt), [RFC 3485](http://www.ietf.org/rfc/rfc3485.txt), [RFC 3486](http://www.ietf.org/rfc/rfc3486.txt), [RFC 4077](http://www.ietf.org/rfc/rfc4077.txt), [RFC 4896](http://www.ietf.org/rfc/rfc4896.txt), [RFC 5049](http://www.ietf.org/rfc/rfc5049.txt), [RFC 5112](http://www.ietf.org/rfc/rfc5112.txt))
 
@@ -326,7 +326,7 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 
 *   Defines headers that can be used to negotiate authentication mechanisms.
 *   Only required if P-CSCF supporting IMS AKA authentication with IPsec ESP encryption, or SIP digest authentication with TLS encryption.
-*   Clearwater doesn't currently support this.
+*   Not supported, as these headers are always caught by the P-CSCF (and Bono doesn't support AKA).  
 
 ### SMS over IP ([RFC 3862](http://www.ietf.org/rfc/rfc3862.txt) and [RFC 5438](http://www.ietf.org/rfc/rfc5438.txt))
 
