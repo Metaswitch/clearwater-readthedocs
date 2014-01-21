@@ -90,9 +90,9 @@ If you wish to enable the optional I-CSCF function, also add the following:
 
 If you wish to enable the optional external HSS lookups, add the following:
 
-   # HSS configuration
-   hss_hostname=<address of your HSS>
-   hss_port=3868
+    # HSS configuration
+    hss_hostname=<address of your HSS>
+    hss_port=3868
  
 See the [Chef instructions](Installing a Chef client#add-deployment-specific-configuration)
 for more information on how to fill these in. The values marked
