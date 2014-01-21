@@ -82,11 +82,17 @@ On each machine, create the file `/etc/clearwater/config` with the following con
     ellis_api_key=<secret>
     ellis_cookie_key=<secret>
 
-To enable I-CSCF function, also add the following
+If you wish to enable the optional I-CSCF function, also add the following:
 
     # I-CSCF/S-CSCF configuration
     icscf=5052
     upstream_hostname=<sprout_hostname>:5052
+
+If you wish to enable the optional external HSS lookups, add the following:
+
+   # HSS configuration
+   hss_hostname=<address of your HSS>
+   hss_port=3868
  
 See the [Chef instructions](Installing a Chef client#add-deployment-specific-configuration)
 for more information on how to fill these in. The values marked
