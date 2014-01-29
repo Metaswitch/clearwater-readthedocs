@@ -173,13 +173,13 @@ Lastly, we need to make sure the Clearwater nodes can all talk to each other.  T
 
 ### Setting up S-CSCF configuration
 
-If I-CSCF functionality is enabled, then you will need to set up the S-CSCF configuration. S-CSCF configuration is stored in the s_cscf.json file in `/etc/clearwater` on each sprout node. The file stores the configuration of each S-CSCF, their capabilities, and their relative weighting and priorities.
+If I-CSCF functionality is enabled, then you will need to set up the S-CSCF configuration. S-CSCF configuration is stored in the `s-cscf.json` file in `/etc/clearwater` on each sprout node. The file stores the configuration of each S-CSCF, their capabilities, and their relative weighting and priorities.
 
 The file is in stored in JSON format, an example is:
 
     {
        "s-cscfs" : [
-           {   "server" : "sip:<sprout_domain>:5052;transport=TCP",
+           {   "server" : "sip:<sprout_domain>:5054;transport=TCP",
                "priority" : 0,
                "weight" : 100,
                "capabilities" : [<comma separated capabilities]
