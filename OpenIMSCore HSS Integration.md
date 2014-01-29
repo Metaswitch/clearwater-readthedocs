@@ -10,7 +10,7 @@ assumes that you have already read the
 
 ## Installation with Chef
 
-If you have a deployment environment created by following the [automated install instructions](https://github.com/Metaswitch/clearwater-docs/wiki/Automated-Install), then you can create a HSS by running `knife box create -E <env> openimscorehss`. You should then follow [the configuration instructions below](https://github.com/Metaswitch/clearwater-docs/wiki/OpenIMSCore-HSS-Integration#configuration).
+If you have a deployment environment created by following the [automated install instructions](https://github.com/Metaswitch/clearwater-docs/wiki/Automated-Install), then you can create a HSS by running `knife box create -E <env> openimscorehss`. This may take a long time (more than 10 minutes). You should then follow [the configuration instructions below](https://github.com/Metaswitch/clearwater-docs/wiki/OpenIMSCore-HSS-Integration#configuration).
 
 ## Installing OpenIMSCore HSS manually
 
