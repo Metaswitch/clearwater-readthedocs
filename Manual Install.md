@@ -169,7 +169,7 @@ _Be aware that DNS record creation can take time to propagate, you can check whe
 
 ## Firewall configuration
 
-Lastly, we need to make sure the Clearwater nodes can all talk to each other.  To do this, you will need to open up some ports in the firewalls in your network.  The ports used by Clearwater are listed in [Clearwater IP Port Usage](Clearwater IP Port Usage).  Configure all of these ports to be open to the appropriate hosts before continuing to the next step.
+We need to make sure the Clearwater nodes can all talk to each other.  To do this, you will need to open up some ports in the firewalls in your network.  The ports used by Clearwater are listed in [Clearwater IP Port Usage](Clearwater IP Port Usage).  Configure all of these ports to be open to the appropriate hosts before continuing to the next step.
 
 ### Setting up S-CSCF configuration
 
@@ -182,7 +182,7 @@ The file is in stored in JSON format, an example is:
            {   "server" : "sip:<sprout_domain>:5054;transport=TCP",
                "priority" : 0,
                "weight" : 100,
-               "capabilities" : [<comma separated capabilities]
+               "capabilities" : [<comma separated capabilities>]
            }
        ]
     }
