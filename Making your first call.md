@@ -5,13 +5,14 @@ These instructions will take you through the process of making a call on a Clear
 ## Prerequisites
 
 * You've [installed Clearwater](Installation Instructions)
-* You have access to two SIP clients.  We've tested with the following:
-  - [X-Lite](http://www.counterpath.com/x-lite.html)
-  - [Bria](http://www.counterpath.com/bria.html‎)
-  - [Jitsi](https://jitsi.org/)
-  - [Blink](http://icanblink.com/)
-  - [Stock Android SIP client](Configuring the native Android SIP client)
-  - [Zoiper Android SIP client](Configuring Zoiper Android Client)
+* You have access to two SIP clients.
+  - If you have installed Clearwater on VirtualBox using the All-In-One image you must use [Zoiper](http://www.zoiper.com/en) as one of your clients.  For the other client (or for other install modes) you may use any standard SIP client, we've tested with the following:
+    -Lite](http://www.counterpath.com/x-lite.html)
+    - [Bria](http://www.counterpath.com/bria.html‎)
+    - [Jitsi](https://jitsi.org/)
+    - [Blink](http://icanblink.com/)
+    - [Stock Android SIP client](Configuring the native Android SIP client)
+    - [Zoiper Android SIP client](Configuring Zoiper Android Client)
 * You have access to a web-browser.  We've tested with:
   - Google Chrome
 
@@ -28,7 +29,10 @@ For the rest of these instructions, the base DNS name will be referred to as `<d
 This step is only required if you installed an All-in-One node, either from an AMI or an OVF.  If you installed manually or using the automated install process, just move on to the next step.
 
 If you installed an All-in-One node from an Amazon AMI, you need the public DNS name that EC2 has assigned to your node.  This will look something like `ec2-12-34-56-78.compute-1.amazonaws.com` and can be found on the EC2 Dashboard on the "instances" panel.
-If you installed an All-in-One node from an OVF image, you need the IP address that was assigned to the node via DHCP.  You can find this out by logging into the node's console and typing `hostname -I`.
+
+If you installed an All-in-One node from an OVF image in VMPlayer or VMWare, you need the IP address that was assigned to the node via DHCP.  You can find this out by logging into the node's console and typing `hostname -I`.
+
+If you installed an All-in-One node from an OVF in VirtualBox, you simply need `localhost`.
 
 For the rest of these instructions, the All-in-One node's identity will be referred to as `<aio-identity>`.
 
@@ -65,7 +69,7 @@ Client configuration methods vary by client, but the following information shoul
 If you are using an All-in-One node, you will also need to configure an outbound proxy at your client.
 
 * Outbound Proxy address: `<aio-identity>`
-* Port: 5060
+* Port: 5060 (or 8060 if installed in Virtualbox)
 
 Once these settings have been applied, your client will register with Clearwater. Note that X-Lite may need to be restarted before it will set up a STUN connection.
 
@@ -77,7 +81,7 @@ Configure a second SIP client with the new number's credentials as above.
 
 ## Make the call
 
-From one client, dial the `<username>` of the other client to make the call.  Answer the call and check you have two-way media.
+From one client (Zoiper if running an All-in-One node in Virtualbox), dial the `<username>` of the other client to make the call.  Answer the call and check you have two-way media.
 
 ## Next steps
 
