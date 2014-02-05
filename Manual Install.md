@@ -63,6 +63,7 @@ On each machine, create the file `/etc/clearwater/config` with the following con
     home_domain=<zone>
     sprout_hostname=sprout.<zone>
     hs_hostname=hs.<zone>:8888
+    hs_provisioning_hostname=hs.<zone>:8889
     xdms_hostname=homer.<zone>:7888
 
     # Local IP configuration
@@ -157,7 +158,7 @@ Install the Homer and Cassandra packages with:
 
 Install the Homestead and Cassandra packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra homestead --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra homestead homestead-prov --yes
 
 ## DNS Records
 
