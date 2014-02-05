@@ -118,6 +118,12 @@ The Homestead nodes need the following ports open to all the Sprout nodes and th
 
         TCP/8888
 
+They also need the following ports open to just the Ellis node:
+
+* RESTful interface:
+
+        TCP/8889
+
 They also need the following ports opened to all other Homestead nodes:
 
 * Cassandra:
