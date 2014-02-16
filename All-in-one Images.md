@@ -43,12 +43,10 @@ If your virtualization platform is not EC2 and doesn't support OVF, you may stil
                                                              echo "set -e" ; \
                                                              echo "echo deb http://repo.cw-ngv.com/stable binary/ > /etc/apt/sources.list.d/clearwater.list" ; \
                                                              echo "curl -L http://repo.cw-ngv.com/repo_key | sudo apt-key add -" ; \
-                                                             echo "echo deb http://debian.datastax.com/community stable main > /etc/apt/sources.list.d/cassandra.list" ; \
-                                                             echo "curl -L http://debian.datastax.com/debian/repo_key | sudo apt-key add -" ; \
                                                              echo "apt-get update" ; \
                                                              echo "export DEBIAN_FRONTEND=noninteractive" ; \
-                                                             echo "apt-get install -y --force-yes python-cql dsc1.1=1.1.9-1 cassandra=1.1.9 clearwater-auto-config-generic" ; \
-                                                             echo "apt-get install -y --force-yes ellis bono restund sprout homer homestead" ; \
+                                                             echo "apt-get install -y --force-yes clearwater-cassandra clearwater-auto-config-generic" ; \
+                                                             echo "apt-get install -y --force-yes ellis bono restund sprout homer homestead homestead-prov" ; \
                                                              echo "export PATH=/usr/share/clearwater/ellis/env/bin:$PATH" ; \
                                                              echo "cd /usr/share/clearwater/ellis/src/metaswitch/ellis/tools/" ; \
                                                              echo "python create_numbers.py --start 6505550000 --count 1000" ; \
