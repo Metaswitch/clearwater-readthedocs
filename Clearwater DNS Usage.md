@@ -1,18 +1,271 @@
 # Clearwater DNS Usage
 
+DNS is the [Domain Name System](http://en.wikipedia.org/wiki/DNS).  It maps service names to hostnames and then hostnames to IP addresses.  Clearwater uses DNS.
+
+This document describes
+
+*   Clearwater's DNS strategy and requirements
+*   how to configure [AWS Route 53](http://aws.amazon.com/route53/) and [BIND](https://www.isc.org/downloads/bind/) to meet these.
+
+DNS is also used as part of the [ENUM](http://tools.ietf.org/rfc/rfc6116.txt) system for mapping E.164 numbers to SIP URIs.  This isn't discussed in this document - instead see the separate [ENUM](enum) document.
+
 *If you are installing an All-in-One Clearwater node, you do not need any DNS records and can ignore the rest of this page.*
 
-Clearwater uses DNS records to allow the individual devices in the deployment to discover each other.
+## Strategy
 
-Below `<root>` is used to represent the DNS root domain which is hosting your deployment.  For a manual deployment this is just `<zone>`, for an automated install, this will be `<name>.<zone>`.
+Clearwater makes heavy use of DNS to refer to its nodes.  It uses it for
 
-## Required DNS entries
+*   identifying individual nodes, e.g. sprout-1.example.com might resolve the IP address of the first sprout node
+*   identifying the nodes within a cluster, e.g. sprout.example.com resolves to all the IP addresses in the cluster
+*   fault-tolerance
+*   selecting the nearest site in a multi-site deployments, using latency-based routing.
 
-The following A records are required for Clearwater function:
+Clearwater also supports using DNS for identifying non-Clearwater nodes.  In particular, it supports DNS for
 
-* `<root>` - Public IP addresses of all of the Bono nodes
-* `bono.<root>` - Private IP addresses of all of the Bono nodes.
-* `sprout.<root>` - Private IP addresses of all of the Sprout nodes
-* `hs.<root>` - Private IP addresses of all of the Homestead nodes
-* `homer.<root>` - Private IP addresses of all of the Homer nodes
-* `ellis.<root>` - Public IP address of the Ellis node
+*   identifying SIP peers using NAPTR and SRV records, as described in [RFC 3263](http://tools.ietf.org/rfc/rfc3263.txt)
+*   identifying Diameter peers using NAPTR and SRV records, as described in section 5.2 of [RFC 3588](http://tools.ietf.org/rfc/rfc3588.txt).
+
+## Requirements
+
+### DNS Server
+
+Clearwater requires the DNS server to support
+
+*   [RFC 1034](http://tools.ietf.org/rfc/rfc1034.txt) and [RFC 1035](http://tools.ietf.org/rfc/rfc1035.txt) - basic DNS
+*   [RFC 2181](http://tools.ietf.org/rfc/rfc2181.txt) - clarifications to DNS
+*   [RFC 2782](http://tools.ietf.org/rfc/rfc2782.txt) - SRV records
+*   [RFC 3596](http://tools.ietf.org/rfc/rfc3596.txt) - AAAA records (if IPv6 is required).
+
+Support for latency-based routing and health-checking are required for multi-site deployments.
+
+Support for [RFC 2915](http://tools.ietf.org/rfc/rfc2915.txt) (NAPTR records) is also suggested, but not required.  NAPTR records specify the transport (UDP, TCP, etc.) to use for a particular service - without it, UEs will default (probably to UDP).
+
+AWS Route 53 supports all these features except NAPTR.  BIND supports all these features except latency-based routing and health-checking.
+
+### DNS Records
+
+Clearwater requires the following DNS records to be configured.
+
+*   bono
+    *   `bono-1.<zone>`, `bono-2.<zone>`... (A and/or AAAA) - per-node records for bono
+    *   `<zone>` (A and/or AAAA) - cluster record for bono, resolving to all bono nodes - used by UEs that don't support RFC 3263 (NAPTR/SRV)
+    *   `<zone>` (NAPTR, optional) - specifies transport requirements for accessing bono - service `SIP+D2T` maps to `_sip._tcp.<zone>` and `SIP+D2U` maps to `_sip._udp.<zone>`
+    *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV) - cluster SRV records for bono, resolving to port 5060 on each of the per-node records
+*   sprout
+    *   `sprout-1.<zone>`, `sprout-2.<zone>`... (A and/or AAAA) - per-node records for sprout
+    *   `sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
+    *   `sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.sprout.<zone>`
+    *   `_sip._tcp.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5054 on each of the per-node records
+    *   `icscf.sprout.<zone>` (NAPTR, only required if using sprout as an I-CSCF) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.icscf.sprout.<zone>`
+    *   `_sip._tcp.icscf.sprout.<zone>` (SRV, only required if using sprout as an I-CSCF) - cluster SRV record for sprout, resolving to port 5052 on each of the per-node records
+*   homestead
+    *   `homestead-1.<zone>`, `homestead-2.<zone>`... (A and/or AAAA) - per-node records for homestead
+    *   `homestead.<zone>` (A and/or AAAA) - cluster record for homestead, resolving to all homestead nodes
+*   homer
+    *   `homer-1.<zone>`, `homer-2.<zone>`... (A and/or AAAA) - per-node records for homer
+    *   `homer.<zone>` (A and/or AAAA) - cluster record for homer, resolving to all homer nodes
+*   ellis
+    *   `ellis-1.<zone>` (A and/or AAAA) - per-node record for ellis
+    *   `ellis.<zone>` (A and/or AAAA) - "cluster"/access record for ellis
+
+Of these, the following must be resolvable by UEs - the others need only be resolvable within the core of the network.  If you have a NAT-ed network, the following must resolve to public IP addresses, while the others should resolve to private IP addresses.
+
+*   bono
+    *   `<zone>` (A and/or AAAA)
+    *   `<zone>` (NAPTR, optional)
+    *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV)
+*   ellis
+    *   `ellis.<zone>` (A and/or AAAA)
+
+If you are not deploying with some of these components, you do not need the DNS records to be configured for them.  For example, if you are using a different P-CSCF (and so don't need bono), you don't need the bono DNS records.  Likewise, if you are deploying with an external HSS (and so don't need ellis), you don't need the ellis DNS records.
+
+## Configuration
+
+Clearwater can work with any DNS server that meets the [requirements above](#dns-server).  However, most of our testing has been performed with
+
+*   [AWS Route 53](http://aws.amazon.com/route53/) - see [configuration instructions](#aws-route-53)
+*   [BIND](https://www.isc.org/downloads/bind/) - see [configuration instructions](#bind).
+
+The Clearwater nodes also need to know the identity of their DNS server.  Ideally, this is done via [DHCP](http://en.wikipedia.org/wiki/DHCP) within your virtualization infrastructure.  Alternatively, you can [configure it manually](#client-configuration).
+
+The UEs need to know the identity of the DNS server too.  In a testing environment, you may be able to use DHCP or manual configuration.  In a public network, you will need to register the `<zone>` domain name you are using and arranging for an NS record for `<zone>` to point to your DNS server.
+
+### AWS Route 53
+
+Clearwater's [automated install](https://github.com/Metaswitch/clearwater-docs/wiki/Automated-Install) automatically configures AWS Route 53.  There is no need to follow the following instructions if you are using the automated install.
+
+The official [AWS Route 53 documentation](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html) is a good reference, and most of the following steps are links into it.
+
+To use AWS Route 53 for Clearwater, you need to
+
+*   [create a domain](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewDNS.html)
+*   [create record sets](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/RRSchanges_console.html) for each of the non-geographically-redundant [records Clearwater requires](#dns-records).
+
+For the geographically-redundant records, you need to
+
+*   [create a health-check](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html) for each of your sites
+*   [create latency-based-routing records](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/HowToLatencyRRS.html) for each of your sites
+*   associate each site's records with its health-check.
+
+Note that AWS Route 53 does not support NAPTR records.
+
+### BIND
+
+To use BIND, you need to
+
+*   install it
+*   create an entry for your root "zone" (DNS suffix your deployment uses)
+*   configure the zone with a "zone file"
+*   restart BIND.
+
+Note that BIND does not support latency-based routing or health-checking.
+
+#### Installation
+
+To install BIND on Ubuntu, issue `sudo apt-get install bind9`.
+
+#### Creating Zone Entry
+
+To create an entry for your root zone, edit the `/etc/bind/named.conf.local` file to add a line of the following form, replacing `<zone>` with your zone name.
+
+    zone "<zone>" IN { type master; file "/etc/bind/db.<zone>"; };
+
+#### Configuring Zone
+
+Zones are configured through "zone files" (defined in [RFC 1034](http://tools.ietf.org/rfc/rfc1034.txt) and [RFC 1035](http://tools.ietf.org/rfc/rfc1035.txt)).
+
+If you followed the instructions above, the zone file for your root zone is at `/etc/bind/db.<zone>`.
+
+For Clearwater, you should be able to adapt the following example zone file by correcting the IP addresses and duplicating (or removing) entries where you have more (or fewer) than 2 nodes in each tier.
+
+    $TTL 5m ; Default TTL
+
+    ; SOA, NS and A record for DNS server itself
+    @                 3600 IN SOA  ns admin ( 2014010800 ; Serial
+                                              3600       ; Refresh
+                                              3600       ; Retry
+                                              3600       ; Expire
+                                              300 )      ; Minimum TTL
+    @                 3600 IN NS   ns
+    ns                3600 IN A    1.0.0.1 ; IPv4 address of BIND server
+    ns                3600 IN AAAA 1::1    ; IPv6 address of BIND server
+
+    ; bono
+    ; ====
+    ;
+    ; Per-node records - not required to have both IPv4 and IPv6 records
+    bono-1                 IN A     2.0.0.1
+    bono-2                 IN A     2.0.0.2
+    bono-1                 IN AAAA  2::1
+    bono-2                 IN AAAA  2::2
+    ;
+    ; Cluster A and AAAA records - UEs that don't support RFC 3263 will simply
+    ; resolve the A or AAAA records and pick randomly from this set of addresses.
+    @                      IN A     2.0.0.1
+    @                      IN A     2.0.0.2
+    @                      IN AAAA  2::1
+    @                      IN AAAA  2::2
+    ;
+    ; NAPTR and SRV records - these indicate a preference for TCP and then resolve
+    ; to port 5060 on the per-node records defined above.
+    @                      IN NAPTR 1 1 "S" "SIP+D2T" "" _sip._tcp
+    @                      IN NAPTR 2 1 "S" "SIP+D2U" "" _sip._udp
+    _sip._tcp              IN SRV   0 0 5060 bono-1
+    _sip._tcp              IN SRV   0 0 5060 bono-2
+    _sip._udp              IN SRV   0 0 5060 bono-1
+    _sip._udp              IN SRV   0 0 5060 bono-2
+
+    ; sprout
+    ; ======
+    ;
+    ; Per-node records - not required to have both IPv4 and IPv6 records
+    sprout-1               IN A     3.0.0.1
+    sprout-2               IN A     3.0.0.2
+    sprout-1               IN AAAA  3::1
+    sprout-2               IN AAAA  3::2
+    ;
+    ; Cluster A and AAAA records - P-CSCFs that don't support RFC 3263 will simply
+    ; resolve the A or AAAA records and pick randomly from this set of addresses.
+    sprout                 IN A     3.0.0.1
+    sprout                 IN A     3.0.0.2
+    sprout                 IN AAAA  3::1
+    sprout                 IN AAAA  3::2
+    ;
+    ; NAPTR and SRV records - these indicate TCP support only and then resolve
+    ; to port 5054 on the per-node records defined above.
+    sprout                 IN NAPTR 1 1 "S" "SIP+D2T" "" _sip._tcp.sprout
+    _sip._tcp.sprout       IN SRV   0 0 5054 sprout-1
+    _sip._tcp.sprout       IN SRV   0 0 5054 sprout-2
+    ;
+    ; NAPTR and SRV records for I-CSCF (if enabled) - these indicate TCP
+    ; support only and then resolve to port 5052 on the per-node records
+    ; defined above.
+    icscf.sprout           IN NAPTR 1 1 "S" "SIP+D2T" "" _sip._tcp.sprout
+    _sip._tcp.icscf.sprout IN SRV   0 0 5054 sprout-1
+    _sip._tcp.icscf.sprout IN SRV   0 0 5054 sprout-2
+
+    ; homestead
+    ; =========
+    ;
+    ; Per-node records - not required to have both IPv4 and IPv6 records
+    homestead-1            IN A     4.0.0.1
+    homestead-2            IN A     4.0.0.2
+    homestead-1            IN AAAA  4::1
+    homestead-2            IN AAAA  4::2
+    ;
+    ; Cluster A and AAAA records - sprout picks randomly from these.
+    hs                     IN A     4.0.0.1
+    hs                     IN A     4.0.0.2
+    hs                     IN AAAA  4::1
+    hs                     IN AAAA  4::2
+    ;
+    ; (No need for NAPTR or SRV records as homestead doesn't handle SIP traffic.)
+
+    ; homer
+    ; =====
+    ;
+    ; Per-node records - not required to have both IPv4 and IPv6 records
+    homer-1                IN A     5.0.0.1
+    homer-2                IN A     5.0.0.2
+    homer-1                IN AAAA  5::1
+    homer-2                IN AAAA  5::2
+    ;
+    ; Cluster A and AAAA records - sprout picks randomly from these.
+    homer                  IN A     5.0.0.1
+    homer                  IN A     5.0.0.2
+    homer                  IN AAAA  5::1
+    homer                  IN AAAA  5::2
+    ;
+    ; (No need for NAPTR or SRV records as homer doesn't handle SIP traffic.)
+
+    ; ellis
+    ; =====
+    ;
+    ; ellis is not clustered, so there's only ever one node.
+    ;
+    ; Per-node record - not required to have both IPv4 and IPv6 records
+    ellis-1                IN A     6.0.0.1
+    ellis-1                IN AAAA  6::1
+    ;
+    ; "Cluster"/access A and AAAA record
+    ellis                  IN A     6.0.0.1
+    ellis                  IN AAAA  6::1
+
+#### Restarting
+
+To restart BIND, issue `sudo service bind9 restart`.  Check /var/log/syslog for any error messages.
+
+### Client Configuration
+
+Clearwater nodes need to know the identity of their DNS server.  Ideally, this is achieved through DHCP.  There are two main situations in which it might need to be configured manually.
+
+*   When DNS configuration is not provided via DHCP.
+*   When incorrect DNS configuration is provided via DHCP.
+
+Either way, you must
+
+*   create a `/var/run/dnsmasq/resolv.static.conf` file containing the desired DNS configuration (probably just the single line `nameserver <IP address>`)
+*   add `RESOLV_CONF=/var/run/dnsmasq/resolv.static.conf` to `/etc/default/dnsmasq`
+*   run `service dnsmasq restart`.
+
+(As background, [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) is a DNS forwarder that runs on each Clearwater node to act as a cache.  Local processes look in `/etc/resolv.conf` for DNS configuration, and this points them to localhost, where dnsmasq runs.  In turn, dnsmasq takes its configuration from `/var/run/dnsmasq/resolv.static.conf`.  By default, dnsmasq would use `/var/run/dnsmasq/resolv.conf`, but this is controlled by DHCP.)
