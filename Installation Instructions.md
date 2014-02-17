@@ -24,7 +24,7 @@ These pages will guide you through installing a Clearwater deployment from scrat
 
 ## Installation Steps
 
-The installation process for a full Clearwater deployment (i.e. not an all-in-one) can be described at a high level as follows:   
+The installation process for a full Clearwater deployment (i.e. not an all-in-one) can be described at a high level as follows:
 
 * Sourcing enough machines to host the deployment (minimum is 5) and installing an OS on them all.  [Ubuntu 12.04](http://releases.ubuntu.com/precise/) is the recommended and tested OS for hosting Clearwater.
 * Preparing each machine to allow installation of the Clearwater software.
@@ -42,6 +42,8 @@ Once you've decided on your install method, follow the appropriate link below.
 * For source installs, see the per-component instructions ([Sprout/Bono](https://github.com/Metaswitch/sprout/blob/master/docs/Development.md), [Ellis](https://github.com/Metaswitch/ellis/blob/master/docs/development.md), [Homer/Homestead](https://github.com/Metaswitch/crest/blob/master/docs/development.md)).
 
 If you hit problems during this process, see the [Troubleshooting and Recovery](Troubleshooting and Recovery) steps.
+
+If you want to deploy with IPv6 addresses, see the [IPv6](IPv6) notes.
 
 ## Next Steps
 
