@@ -18,6 +18,7 @@ Sprout:
 sas_server
 enum_server
 reg_max_expires
+chronos_hostname
 ```
 
 Bono:

@@ -62,6 +62,7 @@ On each machine, create the file `/etc/clearwater/config` with the following con
     # Deployment definitions
     home_domain=<zone>
     sprout_hostname=sprout.<zone>
+    chronos_hostname=localhost:7253
     hs_hostname=hs.<zone>:8888
     hs_provisioning_hostname=hs.<zone>:8889
     xdms_hostname=homer.<zone>:7888
