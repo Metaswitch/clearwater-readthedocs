@@ -38,7 +38,7 @@ For the rest of these instructions, the All-in-One node's identity will be refer
 
 ## Work out your Ellis URL
 
-If you installed Clearwater manually or using the automated install process, your Ellis URL will simply be `http://<domain>`.
+If you installed Clearwater manually or using the automated install process, your Ellis URL will simply be `http://ellis.<domain>`.
 If you installed an All-in-One node, your Ellis URL will be `http://<aio-identity>`.
 
 ## Create a number for your client
