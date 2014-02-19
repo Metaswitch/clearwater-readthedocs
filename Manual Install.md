@@ -235,6 +235,6 @@ In release 32, Sprout reverted to using memcached as the store, but with enhance
 
 Homestead and homer use [Cassandra](http://cassandra.apache.org/) as their datastore.
 
-After installing the homestead and homer nodes, you must reconfigure the Cassandra processes on these nodes to cluster together.  To do this, follow the [instructions on the Cassandra website](http://www.datastax.com/docs/0.8/install/cluster_init).  Note that we generally cluster homestead Cassandra instances separately from homer Cassandra instances, rather than as one big cluster.
+After installing the homestead and homer nodes, you must reconfigure the Cassandra processes on these nodes to cluster together.  To do this, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/initialize/initializeTOC.html).  Note that we generally cluster homestead Cassandra instances separately from homer Cassandra instances, rather than as one big cluster.
 
 The clustering process might cause you to lose the homestead or homer schema.  To restore it, the simplest process is, on one homestead node and on one homer node, to uninstall homestead/homer (using `sudo apt-get purge homestead` or `sudo apt-get purge homer`) and then reinstall it (using `sudo apt-get install homestead` or `sudo apt-get install homer`).  As part of the installation process, the schema is reinjected into Cassandra.
