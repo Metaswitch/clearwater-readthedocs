@@ -59,8 +59,8 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   P-Access-Network-Info is added to incoming messages by the UE or the P-CSCF to provide information about the access network and possibly the UEs location within the network (for example cell).  IMS specifications talk about various uses for this information, including routing emergency calls, an alternative to `phone-context` for interpreting dialled digits, determining the security scheme.  This header is supported by Clearwater.
 *   P-Associated-URI is returned by registrar to include the list of alternative user identities defined for the IMS subscription.  This header is supported by Clearwater.
 *   P-Called-Party-ID is added to a SIP request by an IMS network to ensure the called UE knows which of the user identities within the IMS subscription was actually called.  This header is supported by Clearwater.
-*   P-Charging-Function-Address and P-Charging-Vector headers are both related to billing, and not yet supported in Clearwater.
-*   P-Visited-Network-ID is used when roaming to identify the network the user has roamed to. The specs say it is a free-form string, and should be used to check that there is a roaming agreement in place. Clearwater supports receiving this header, but does not check its value.
+*   P-Charging-Function-Address and P-Charging-Vector headers are related to billing, and are supported by Clearwater.
+*   P-Visited-Network-ID is used when roaming to identify the network the user has roamed to. The specs say it is a free-form string, and should be used to check that there is a roaming agreement in place. This header is supported by Clearwater.
 
 ### Symmetric SIP response routing ([RFC 3581](http://www.ietf.org/rfc/rfc3581.txt))
 
@@ -123,7 +123,7 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 
 ### MRFC control ([RFC 4240](http://www.ietf.org/rfc/rfc4240.txt), [RFC 5552](http://www.ietf.org/rfc/rfc5552.txt), [RFC 6230](http://www.ietf.org/rfc/rfc6230.txt), [RFC 6231](http://www.ietf.org/rfc/rfc6231.txt), [RFC 6505](http://www.ietf.org/rfc/rfc6505.txt))
 
-*   These RFCs define three different ways of controlling the function of an MRFC from an AS. [RFC 4240](http://www.ietf.org/rfc/rfc4240.txt) is a simple "play an announcement" service, [RFC 5552](http://www.ietf.org/rfc/rfc5552.txt) uses VoiceXML and [RFC 6230](http://www.ietf.org/rfc/rfc6230.txt)/6231/6505 use SIP/SDP to establish a two-way control channel between the AS and MRFC.
+*   These RFCs define three different ways of controlling the function of an MRFC from an AS. [RFC 4240](http://www.ietf.org/rfc/rfc4240.txt) is a simple "play an announcement" service, [RFC 5552](http://www.ietf.org/rfc/rfc5552.txt) uses VoiceXML and [RFC 6230](http://www.ietf.org/rfc/rfc6230.txt)/[RFC 6231](http://www.ietf.org/rfc/rfc6231.txt)/[RFC 6505](http://www.ietf.org/rfc/rfc6505.txt) use SIP/SDP to establish a two-way control channel between the AS and MRFC.
 *   IMS allows any of the three mechanisms to be used, or combinations depending on circumstances.
 *   All three mechanisms are transparent to proxy components, so supported by Clearwater.
 
@@ -235,20 +235,27 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   IMS allows AKA authentication as an alternative to SIP digest, although it is not mandatory.
 *   Supported in Clearwater since sprint 39 “WALL-E”.
 
-## Relevant to Clearwater but not currently supported
-
-These are the RFCs which are relevant to Clearwater and not yet supported.
-
 ### SIP Instant Messaging ([RFC 3428](http://www.ietf.org/rfc/rfc3428.txt))
 
 *   Defines the use of the SIP MESSAGE method to implement an instant messaging service.
 *   Mandatory in proxy components according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
-*   We've never tested MESSAGE handling in Clearwater - may require some bug fixes to get working.
+*   Supported in Clearwater.
 
 ### Registration Events ([RFC 3680](http://www.ietf.org/rfc/rfc3680.txt))
 
 *   Defines an event package supported by SIP registrars to notify other devices of registrations.
 *   Must be supported by IMS core for the ISC interface, and also needed by some UEs.
+*   Supported in Clearwater since sprint 40 "Yojimbo"
+
+### PRACK support ([RFC 3262](http://www.ietf.org/rfc/rfc3262.txt))
+
+*   Defines a mechanism for ensuring the reliability of provisional responses when using an unreliable transport.  Covers the PRACK method and the Rseq and Rack headers.
+*   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
+*   Supported in Clearwater.
+
+## Relevant to Clearwater but not currently supported
+
+These are the RFCs which are relevant to Clearwater and not yet supported.
 
 ### User agent capabilities and caller preferences ([RFC 3840](http://www.ietf.org/rfc/rfc3840.txt) and [RFC 3841](http://www.ietf.org/rfc/rfc3841.txt))
 
@@ -288,7 +295,7 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 
 *   Defines an extension to the [RFC 3680](http://www.ietf.org/rfc/rfc3680.txt) registration event package to include GRUUs.
 *   Mandatory on S-CSCF and UEs in an IMS network.
-*   Clearwater does not currently support either GRUUs or the registration event package.
+*   Clearwater does not currently support GRUUs.
 
 ### Alternative URIs ([RFC 2806](http://www.ietf.org/rfc/rfc2806.txt), [RFC 2368](http://www.ietf.org/rfc/rfc2368.txt), [RFC 3859](http://www.ietf.org/rfc/rfc3859.txt), [RFC 3860](http://www.ietf.org/rfc/rfc3860.txt), [RFC 3966](http://www.ietf.org/rfc/rfc3966.txt))
 
@@ -297,14 +304,7 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
     *   as a public user identity associated with a subscription (although a subscription must have at least on public user identity which is a SIP URI)
     *   as the target URI for a call.
 *   Other URIs can be specified as Request URI for a SIP message.
-*   Clearwater's Bono and Sprout components have some support for Tel URIs, but we haven't done any thorough testing since all the UEs we've tested with use SIP URIs. There is currently no support for other URIs.
-
-### PRACK support ([RFC 3262](http://www.ietf.org/rfc/rfc3262.txt))
-
-*   Defines a mechanism for ensuring the reliability of provisional responses when using an unreliable transport.  Covers the PRACK method and the Rseq and Rack headers.
-*   This must be supported hop-by-hop through stateful proxies, so is not currently supported in Clearwater.
-*   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
-*   Clearwater doesn't need to support for current use of TCP transport.  Not supported for UDP transport.
+*   Clearwater only supports SIP URIs. 
 
 ### P-Media-Authorization header ([RFC 3313](http://www.ietf.org/rfc/rfc3313.txt))
 
