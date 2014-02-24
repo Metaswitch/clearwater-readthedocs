@@ -60,7 +60,7 @@ Client configuration methods vary by client, but the following information shoul
 * Transport: `TCP`
 * STUN/TURN/ICE:
  - Enabled: `true`
- - Server: `<domain>`
+ - Server: `<domain>` (or `<aio-identity>` on an All-in-One node)
  - Username: `<username>@<domain>`
  - Password: `<password>`
 
