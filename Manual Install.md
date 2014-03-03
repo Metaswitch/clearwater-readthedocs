@@ -171,7 +171,7 @@ _Be aware that DNS record creation can take time to propagate, you can check whe
 
 ## Firewall configuration
 
-We need to make sure the Clearwater nodes can all talk to each other.  To do this, you will need to open up some ports in the firewalls in your network.  The ports used by Clearwater are listed in [Clearwater IP Port Usage](Clearwater IP Port Usage).  Configure all of these ports to be open to the appropriate hosts before continuing to the next step.
+We need to make sure the Clearwater nodes can all talk to each other.  To do this, you will need to open up some ports in the firewalls in your network.  The ports used by Clearwater are listed in [Clearwater IP Port Usage](Clearwater IP Port Usage).  Configure all of these ports to be open to the appropriate hosts before continuing to the next step.  If you are running on a platform that has multiple physical or virtual interfaces and the option to apply different firewall rules on each, make sure that you open these ports on the correct interfaces.
 
 ### Setting up S-CSCF configuration
 
