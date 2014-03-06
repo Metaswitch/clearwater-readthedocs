@@ -89,6 +89,7 @@ If you wish to enable the optional I-CSCF function, also add the following:
     # I-CSCF/S-CSCF configuration
     icscf=5052
     upstream_hostname=<sprout_hostname>
+    upstream_port=5052
 
 If you wish to enable the optional external HSS lookups, add the following:
 
