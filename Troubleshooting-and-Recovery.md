@@ -42,6 +42,8 @@ If this doesn't help, sprout logs to `/var/log/sprout/sprout*.txt`.  By default,
 
 Sprout maintains registration state in a memcached cluster.  It's a little clunky to examine this data but you can get some basic information out by running `. /etc/clearwater/config ; telnet $local_ip 11211` to connect to memcached, issuing `stats items`.  This returns a list of entries of the form `STAT items:<slab ID>:...`.  You can then query the keys in each of the slabs with `stats cachedump <slab ID> 0`.
 
+Memcached logs to `/var/log/memcached.log`. It logs very little by default, but it is possible to make it more verbose by editing `/etc/memcached_11211.conf`, uncommenting the `-vv` line, and running `sudo monit restart memcached`.
+
 If you see sprout dying/restarting with no apparent cause in `/var/log/sprout/sprout*.txt`, check `/var/log/monit.log` and `/var/log/syslog` around that time - these can sometimes give clues as to the cause. 
 
 ## Bono
