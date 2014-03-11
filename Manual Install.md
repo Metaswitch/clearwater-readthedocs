@@ -232,6 +232,12 @@ In release 32, Sprout reverted to using memcached as the store, but with enhance
 `servers=<Sprout IP address:11211>,<Sprout IP address:11211>,...` ensuring the order of the IP addresses is identical on each node
 *   force Sprout to reload its configuration with `sudo service sprout reload`.
 
+In release 41, Chronos was added to Sprout. If using this release or later, after initially installing the Sprout nodes you must also follow these instructions to ensure that the Sprouts are correctly clustered.
+
+*   edit `/etc/chronos/chronos.conf` to include a node entry for each Sprout node in the cluster.
+*   ensure that the `localhost` entry in `/etc/chronos/chronos.conf` is set to the local IP address and not the word 'localhost'.
+*   force Chronos to reload its configuration with `sudo service chronos reload`.
+
 ### Clustering Homestead and Homer
 
 Homestead and homer use [Cassandra](http://cassandra.apache.org/) as their datastore.
