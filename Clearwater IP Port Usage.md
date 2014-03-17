@@ -25,11 +25,6 @@ If your deployment uses monitoring software ([cacti](http://www.cacti.net/) or [
 
         TCP/2812
 
-Lastly, to use the statistics interface, the following port should be opened to the world.  Currently statistics are only served from Bono and Sprout nodes, but, in the future, may be served from any node in the system.
-
-* Statistics interface
-
-        TCP/6666
 
 ## All-in-one
 
@@ -55,6 +50,14 @@ All-in-one nodes need the following ports opened to the world
 
         UDP/32768-65535
 
+* Statistics interface:
+      
+        TCP/6665
+        TCP/6666
+        TCP/6667
+        TCP/6668
+        TCP/6669
+        
 ## Ellis
 
 The Ellis node needs the following ports opened to the world:
@@ -66,7 +69,7 @@ The Ellis node needs the following ports opened to the world:
 
 ## Bono
 
-The Bono nodes need the following ports open to the world:
+The Bono nodes need the following ports opened to the world:
 
 * STUN signalling:
 
@@ -82,6 +85,10 @@ The Bono nodes need the following ports open to the world:
 * RTP forwarding:
 
         UDP/32768-65535
+
+* Statistics interface:
+
+        TCP/6669
 
 They also need the following ports open to all other Bono nodes and to all the Sprout nodes:
 
@@ -110,6 +117,12 @@ They also need the following ports opened to all other Sprout nodes:
 
         TCP/7800
 
+They also need the following ports opened to the world:
+
+* Statistics interface:
+
+        TCP/6666
+
 ## Homestead
 
 The Homestead nodes need the following ports open to all the Sprout nodes and the Ellis node:
@@ -131,6 +144,13 @@ They also need the following ports opened to all other Homestead nodes:
         TCP/7000
         TCP/9160
 
+They also need the following ports opened to the world:
+
+* Statistics interface:
+
+        TCP/6667
+        TCP/6668
+
 ## Homer
 
 The Homer nodes need the following ports open to all the Sprout nodes and the Ellis node:
@@ -145,3 +165,10 @@ They also need the following ports opened to all other Homer nodes:
 
         TCP/7000
         TCP/9160
+
+They also need the following ports opened to the world:
+
+* Statistics interface:
+
+        TCP/6665
+
