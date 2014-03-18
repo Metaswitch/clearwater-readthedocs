@@ -6,7 +6,7 @@
 *   Member variable names are lowercase with underscores separating words and also begin with an underscore, e.g. `_member_variable`.
 
 ## Formatting
-C++ code contributed to Clearwater should be formatted consistently using [astyle](http://astyle.sourceforge.net/). The particular options we use for Clearwater code are `astyle --style=ansi -s2 -G -k1 -j`. This enforces the following conventions:
+C++ code contributed to Clearwater should be formatted consistently using [astyle](http://astyle.sourceforge.net/). The particular options we use for Clearwater code are `astyle --style=ansi -s2 -M80 -O -S -G -k1 -j`. This enforces the following conventions:
 * Braces on a separate line from function definitions, `if` statements, etc.
 * Two-space indentation
 * Pointer operators attached to the variable type (i.e. `int* foo` rather than `int *foo`)
@@ -27,3 +27,19 @@ if (x)
 
 ## Language Features
 * Use of the `auto` keyword is forbidden.
+
+## Commenting
+
+Where it is necessary to document the interface of classes, this should be done with Doxygen-style comments - three slashes and appropriate `@param` and `@returns` tags.
+
+```
+/// Apply first AS (if any) to initial request.
+//
+// See 3GPP TS 23.218, especially s5.2 and s6, for an overview of how
+// this works, and 3GPP TS 24.229 s5.4.3.2 and s5.4.3.3 for
+// step-by-step details.
+//
+// @Returns whether processing should stop, continue, or skip to the end.
+AsChainLink::Disposition
+AsChainLink::on_initial_request(CallServices* call_services,
+```
