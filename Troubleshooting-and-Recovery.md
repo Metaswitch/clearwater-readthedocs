@@ -6,6 +6,8 @@ This document describes how to troubleshoot some common problems, and associated
 
 *   Clearwater components are monitored by [monit](http://mmonit.com/monit/) and should be restarted by it if the component fails or hangs.  You can check that components are running by issuing `monit status`.  If components are not running as expected, run `monit start <component>` to start a component or `monit stop <component>` to stop it.
 
+*  The [Clearwater diagnostics monitor](https://github.com/Metaswitch/clearwater-infrastructure/blob/master/clearwater-diags-monitor.md) detects crashes in native clearwater processes (bono, sprout and homestead) and captures a diagnostics bundle containing a core file (among other useful information).  A diagnostics bundle can also be created by running a command line script. 
+
 ## Ellis
 
 The most common problem from ellis is it reporting "Failed to update server".  This can happen for several reasons.
