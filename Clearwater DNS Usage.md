@@ -60,7 +60,7 @@ Clearwater requires the following DNS records to be configured.
     *   `_sip._tcp.icscf.sprout.<zone>` (SRV, only required if using sprout as an I-CSCF) - cluster SRV record for sprout, resolving to port 5052 on each of the per-node records
 *   homestead
     *   `homestead-1.<zone>`, `homestead-2.<zone>`... (A and/or AAAA) - per-node records for homestead
-    *   `homestead.<zone>` (A and/or AAAA) - cluster record for homestead, resolving to all homestead nodes
+    *   `hs.<zone>` (A and/or AAAA) - cluster record for homestead, resolving to all homestead nodes
 *   homer
     *   `homer-1.<zone>`, `homer-2.<zone>`... (A and/or AAAA) - per-node records for homer
     *   `homer.<zone>` (A and/or AAAA) - cluster record for homer, resolving to all homer nodes
