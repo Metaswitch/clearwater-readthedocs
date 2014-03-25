@@ -20,10 +20,7 @@ Clearwater makes heavy use of DNS to refer to its nodes.  It uses it for
 *   fault-tolerance
 *   selecting the nearest site in a multi-site deployments, using latency-based routing.
 
-Clearwater also supports using DNS for identifying non-Clearwater nodes.  In particular, it supports DNS for
-
-*   identifying SIP peers using NAPTR and SRV records, as described in [RFC 3263](http://tools.ietf.org/rfc/rfc3263.txt)
-*   identifying Diameter peers using NAPTR and SRV records, as described in section 5.2 of [RFC 3588](http://tools.ietf.org/rfc/rfc3588.txt).
+Clearwater also supports using DNS for identifying non-Clearwater nodes.  In particular, it supports DNS for identifying SIP peers using NAPTR and SRV records, as described in [RFC 3263](http://tools.ietf.org/rfc/rfc3263.txt).
 
 ## Requirements
 
