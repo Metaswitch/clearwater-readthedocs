@@ -19,6 +19,8 @@ sas_server
 enum_server
 reg_max_expires
 chronos_hostname
+hs_hostname
+xdms_hostname
 ```
 
 Bono:
@@ -29,6 +31,8 @@ enum_server
 
 Ellis:
 ```
+hs_provisioning_hostname
+xdms_hostname
 smtp_smarthost
 smtp_username
 smtp_password
