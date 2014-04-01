@@ -22,10 +22,9 @@ Clearwater uses the following Cx message types.
 *   Multimedia-Auth - to retrieve authentication details
 *   Server-Assignment - to retrieve Initial Filter Criteria documents and register for change notifications
 *   Push-Profile - to be notified of changes to Initial Filter Criteria documents
-
 *   User-Authorization - to retrieve S-CSCF details on initial registrations
-
 *   Location-Information - to retrieve S-CSCF details on calls
+*   Registration-Termination - to be notified of de-registrations
 
 ## How to Enable It
 
