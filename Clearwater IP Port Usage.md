@@ -117,7 +117,7 @@ They also need the following ports opened to all other Sprout nodes:
 
         TCP/7800
 
-The following ports need to be open to all homestead nodes:
+They also need the following ports opened to all homestead nodes:
 
 * Registration Termination Requests (if using an HSS):
 
