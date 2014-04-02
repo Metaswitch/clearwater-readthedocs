@@ -123,6 +123,10 @@ They also need the following ports opened to the world:
 
         TCP/6666
 
+* Registration Termination Requests (if using an HSS):
+
+        TCP/9888
+
 ## Homestead
 
 The Homestead nodes need the following ports open to all the Sprout nodes and the Ellis node:
