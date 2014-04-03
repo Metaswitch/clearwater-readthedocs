@@ -29,6 +29,10 @@ Homestead provides a web services interface to Sprout for retrieving authenticat
 
 Homer is a standard XDMS used to store MMTEL service settings documents for each user of the system.  Documents are be created, read, updated and deleted using a standard XCAP interface.  As with Homestead, the Homer nodes runs as a cluster using Cassandra as the data store.
 
+### Ralf (CTF)
+
+Ralf provides as HTTP API that both Bono and Sprout can use to report billable events that should be passed to the CDF (Charging Data Function) over the Rf billing interface.  Ralf uses a cluster of Memcached instances and a cluster of Chronos instances to store and manage session state, allowing it to conform to the Rf protocol.
+
 ### Ellis
 
 Ellis is a sample provisioning portal providing self sign-up, password management, line management and control of MMTEL service settings.  It is not intended to be a part of production Clearwater deployments (it is not easy to horizontally scale because of the MySQL underpinnings for one thing) but to make the system easy to use out of the box.

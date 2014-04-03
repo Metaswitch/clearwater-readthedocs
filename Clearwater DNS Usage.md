@@ -61,6 +61,9 @@ Clearwater requires the following DNS records to be configured.
 *   homer
     *   `homer-1.<zone>`, `homer-2.<zone>`... (A and/or AAAA) - per-node records for homer
     *   `homer.<zone>` (A and/or AAAA) - cluster record for homer, resolving to all homer nodes
+*   ralf
+	*   `ralf-1.<zone>`, `ralf-2.<zone>`... (A and/or AAAA) - per-node records for ralf
+	*   `ralf.<zone>` (A and/or AAAA) - cluster record for ralf, resolving to all ralf nodes
 *   ellis
     *   `ellis-1.<zone>` (A and/or AAAA) - per-node record for ellis
     *   `ellis.<zone>` (A and/or AAAA) - "cluster"/access record for ellis
@@ -234,6 +237,23 @@ For Clearwater, you should be able to adapt the following example zone file by c
     homer                  IN AAAA  5::2
     ;
     ; (No need for NAPTR or SRV records as homer doesn't handle SIP traffic.)
+
+    ; ralf
+    ; =====
+    ;
+    ; Per-node records - not required to have both IPv4 and IPv6 records
+    ralf-1                IN A     6.0.0.1
+    ralf-2                IN A     6.0.0.2
+    ralf-1                IN AAAA  6::1
+    ralf-2                IN AAAA  6::2
+    ;
+    ; Cluster A and AAAA records - sprout and bono pick randomly from these.
+    ralf                  IN A     6.0.0.1
+    ralf                  IN A     6.0.0.2
+    ralf                  IN AAAA  6::1
+    ralf                  IN AAAA  6::2
+    ;
+    ; (No need for NAPTR or SRV records as ralf doesn't handle SIP traffic.)
 
     ; ellis
     ; =====

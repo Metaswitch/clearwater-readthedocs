@@ -7,6 +7,7 @@ This page discusses how to change settings on a Clearwater system. Most settings
 The following settings can safely be changed without entirely recreating the system. If you want to change a setting not in this list, go to the "Starting from scratch" section instead.
 
 All nodes:
+
 ```
 mmonit_hostname
 mmonit_username
@@ -14,6 +15,7 @@ mmonit_password
 ```
 
 Sprout:
+
 ```
 sas_server
 enum_server
@@ -24,12 +26,15 @@ xdms_hostname
 ```
 
 Bono:
+
 ```
 sas_server
 enum_server
+cdf_address
 ```
 
 Ellis:
+
 ```
 hs_provisioning_hostname
 xdms_hostname
@@ -43,6 +48,7 @@ ellis_cookie_key
 ```
 
 Homestead:
+
 ```
 hss_hostname
 hss_port

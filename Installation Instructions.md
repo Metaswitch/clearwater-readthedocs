@@ -32,6 +32,10 @@ The installation process for a full Clearwater deployment (i.e. not an all-in-on
 * Configuring firewalls to allow the various machines to talk to each other as required.
 * Configuring DNS records to allow the machines to find each other and to expose the deployment to clients.
 
+### Optional Extra Steps
+
+If you have an IMS CDF in your network that Project Clearwater should contact to send Rf billing records, you will install an extra node, Ralf, to handle the integration of Clearwater and the CDF.  In this case, you'll need to know the diameter identity of your CDF in order to configure your Clearwater nodes to contact it.
+
 ### Detailed Instructions
 
 Once you've decided on your install method, follow the appropriate link below.

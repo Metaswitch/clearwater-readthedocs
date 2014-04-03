@@ -33,6 +33,8 @@ To kick off construction of the deployment, run the following on the chef-client
 
 Follow the on-screen prompts.
 
+_Note, if you have decided to use Rf billing, add `--ralf-count 1` to the above command to add a Ralf instance and the associated DNS entries to your deployment._
+
 This will:
 
 * Commission AWS instances
@@ -49,15 +51,20 @@ The following modifiers are available to set the scale of your deployment.
 * `--sprout-count NUM` - Create `NUM` Sprout nodes (default is 1)
 * `--homer-count NUM` - Create `NUM` Homer nodes (default is 1)
 * `--homestead-count NUM` - Create `NUM` Homestead nodes (default is 1)
+* `--ralf-count NUM` - Create `NUM` Ralf nodes (default is 0)
 * `--subscribers NUM` - Auto-scale the deployment to handle `NUM` subscribers.
   - Due to a known limitation of the install process, Ellis will allocate 1000 numbers regardless of this value.
   - To bulk provision subscribers (without using Ellis), follow [these instructions](https://github.com/Metaswitch/crest/blob/master/src/metaswitch/crest/tools/sstable_provisioning/README.md)
 
-# Restart Cassandra
+## Enabling Rf Billing
 
-The automated install of Cassandra on the Homer and Homestead instances is not clean (this is a known bug) and requires the Cassandra service to be restarted before Homer or Homestead becomes functional.  This command will stop the Cassandra instances, causing Monit to restart them.
+If you have decided to enable Rf billing on your deployment, you will need to modify the `/etc/clearwater/config` file on your Bono node to contain the following line:
 
-    knife ssh -i ~/.chef/<keypair>.pem "chef_environment:<name> AND (role:homer OR role:homestead)" "sudo service cassandra stop"
+    cdf_address=<CDF DIAMETER Identity>
+
+Once you have done this, run the following command to cause Bono to pick up the changes.
+
+    sudo monit restart bono
 
 ## Next steps
 

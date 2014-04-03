@@ -15,6 +15,7 @@ Before starting this process you will need the following:
 * SSH access to the above machines to a user authorised to use sudo.  If your system does not come with such a user pre-configured, add a user with `sudo adduser <username>` and then authorize them to use sudo with `sudo adduser <username> sudo`.
 * A DNS root zone in which to install your repository and the ability to configure records within that zone.  This root zone will be referred to as `<zone>` below.
 * If you are not using the Project Clearwater provided Debian repository, you will need to know the URL (and, if applicable, the public GPG key) of your repository.
+* If you want to integrate your Clearwater deployment with your own CDF, you will need to determine the DIAMETER identity of your CDF and source one more instance to add to the five from the first bullet.  This node will host the Ralf process that acts as the CTF in the Clearwater deployment.
 
 ## Bootstrapping the Machines
 
@@ -65,6 +66,7 @@ On each machine, create the file `/etc/clearwater/config` with the following con
     chronos_hostname=localhost:7253
     hs_hostname=hs.<zone>:8888
     hs_provisioning_hostname=hs.<zone>:8889
+    ralf_hostname=ralf.<zone>:10888
     xdms_hostname=homer.<zone>:7888
 
     # Local IP configuration
@@ -162,6 +164,12 @@ Install the Homestead and Cassandra packages with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra homestead homestead-prov --yes
 
+### Ralf
+
+If you are using Ralf to provide the CTF for Rf billing, you should install the Ralf software on the sixth instance with:
+
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install ralf --yes
+
 ## DNS Records
 
 Clearwater uses DNS records to allow each node to find the others it needs to talk to to carry calls.  At this point, you should create the DNS entries for your deployment before continuing to the next step.  [Clearwater DNS Usage](Clearwater DNS Usage) describes the entries that are required before Clearwater will be able to carry service.
@@ -245,3 +253,17 @@ Homestead and homer use [Cassandra](http://cassandra.apache.org/) as their datas
 After installing the homestead and homer nodes, you must reconfigure the Cassandra processes on these nodes to cluster together.  To do this, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/initialize/initializeTOC.html).  Note that we generally cluster homestead Cassandra instances separately from homer Cassandra instances, rather than as one big cluster.
 
 The clustering process might cause you to lose the homestead or homer schema.  To restore it, the simplest process is, on one homestead node and on one homer node, to uninstall homestead/homer (using `sudo apt-get purge homestead` or `sudo apt-get purge homer`) and then reinstall it (using `sudo apt-get install homestead` or `sudo apt-get install homer`).  As part of the installation process, the schema is reinjected into Cassandra.
+
+### Clustering Ralf
+
+Ralf, like Sprout, uses Memcached as a local data store, with the same support for redundancy and dynamic scaling.  To configure the Memcached cluster,
+
+*   edit `/etc/clearwater/cluster_settings` file on each node to contain a single line of the form
+`servers=<Ralf IP address:11211>,<Ralf IP address:11211>,...` ensuring the order of the IP addresses is identical on each node
+*   force Ralf to reload its configuration with `sudo service sprout reload`.
+
+Ralf also makes use of the Chronos timer service cluster.  To ensure that the Ralfs are correctly clustered.
+
+*   edit `/etc/chronos/chronos.conf` to include a node entry for each Ralf node in the cluster.
+*   ensure that the `localhost` entry in `/etc/chronos/chronos.conf` is set to the local IP address and not the word 'localhost'.
+*   force Chronos to reload its configuration with `sudo service chronos reload`.

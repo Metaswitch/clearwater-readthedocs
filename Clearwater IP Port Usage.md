@@ -178,3 +178,27 @@ They also need the following ports opened to the world:
 
         TCP/6665
 
+## Ralf
+
+The Ralf nodes need the following ports open to all the Sprout and Bono nodes:
+
+* RESTful interface:
+
+        TCP/10888
+
+They also need to following ports open to all other Ralf nodes:
+
+* Chronos:
+
+        TCP/7253
+
+* Memcached:
+
+        TCP/11211
+
+They also need the following ports opened to the world:
+
+* Statistics interface:
+
+        TCP/666?
+
