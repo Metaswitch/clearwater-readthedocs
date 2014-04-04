@@ -52,7 +52,7 @@ If you see sprout dying/restarting with no apparent cause in `/var/log/sprout/sp
 
 The most common problem on bono is lack of communication with sprout.  Check that sprout is reachable and responding.
 
-If this doesn't help, bono logs to `/var/log/bono/sprout*.txt`.  By default, it is set to log level 2, which only includes errors and very high-level events.  To enable more detailed trace, change the log level to 5 by writing `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), and then restarting bono.
+If this doesn't help, bono logs to `/var/log/bono/bono*.txt`.  By default, it is set to log level 2, which only includes errors and very high-level events.  To enable more detailed trace, change the log level to 5 by writing `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), and then restarting bono.
 
 If you see bono dying/restarting with no apparent cause in `/var/log/bono/bono*.txt`, check `/var/log/monit.log` and `/var/log/syslog` around that time - these can sometimes give clues as to the cause. 
 
