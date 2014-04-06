@@ -21,6 +21,7 @@ reg_max_expires
 chronos_hostname
 hs_hostname
 xdms_hostname
+additional_home_domains
 ```
 
 Bono:
