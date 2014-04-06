@@ -96,6 +96,11 @@ If you wish to enable the optional external HSS lookups, add the following:
     # HSS configuration
     hss_hostname=<address of your HSS>
     hss_port=3868
+
+If you want to host multiple domains from the same Clearwater deployment, add the following (and configure DNS to route all domains to the same servers):
+
+    # Additional domains
+    additional_home_domains=<domain 1>,<domain 2>,<domain 3>...
  
 See the [Chef instructions](Installing a Chef client#add-deployment-specific-configuration)
 for more information on how to fill these in. The values marked
