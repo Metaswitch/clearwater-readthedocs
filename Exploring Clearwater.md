@@ -11,6 +11,7 @@ An install of Clearwater will, by default, run with no external requirements and
 * [IBCF function](IBCF)
 * [Application Server](Application Server Guide)
 * [External HSS Integration](External HSS Integration)
+* [CDF Integration](CDF Integration)
 * [SIP RFCs supported](SIP Interface Specifications)
 
 ## Call features

@@ -26,15 +26,11 @@ These pages will guide you through installing a Clearwater deployment from scrat
 
 The installation process for a full Clearwater deployment (i.e. not an all-in-one) can be described at a high level as follows:
 
-* Sourcing enough machines to host the deployment (minimum is 5) and installing an OS on them all.  [Ubuntu 12.04](http://releases.ubuntu.com/precise/) is the recommended and tested OS for hosting Clearwater.
+* Sourcing enough machines to host the deployment (minimum is 6) and installing an OS on them all.  [Ubuntu 12.04](http://releases.ubuntu.com/precise/) is the recommended and tested OS for hosting Clearwater.
 * Preparing each machine to allow installation of the Clearwater software.
 * Installing the Clearwater software onto the machines.
 * Configuring firewalls to allow the various machines to talk to each other as required.
 * Configuring DNS records to allow the machines to find each other and to expose the deployment to clients.
-
-### Optional Extra Steps
-
-If you have an IMS CDF in your network that Project Clearwater should contact to send Rf billing records, you will install an extra node, Ralf, to handle the integration of Clearwater and the CDF.  In this case, you'll need to know the diameter identity of your CDF in order to configure your Clearwater nodes to contact it.
 
 ### Detailed Instructions
 

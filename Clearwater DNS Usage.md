@@ -261,12 +261,12 @@ For Clearwater, you should be able to adapt the following example zone file by c
     ; ellis is not clustered, so there's only ever one node.
     ;
     ; Per-node record - not required to have both IPv4 and IPv6 records
-    ellis-1                IN A     6.0.0.1
-    ellis-1                IN AAAA  6::1
+    ellis-1                IN A     7.0.0.1
+    ellis-1                IN AAAA  7::1
     ;
     ; "Cluster"/access A and AAAA record
-    ellis                  IN A     6.0.0.1
-    ellis                  IN AAAA  6::1
+    ellis                  IN A     7.0.0.1
+    ellis                  IN AAAA  7::1
 
 #### Restarting
 

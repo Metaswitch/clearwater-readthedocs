@@ -6,7 +6,7 @@ These instructions will take you through installing a minimal Clearwater system 
 
 Before starting this process you will need the following:
 
-* Five machines running clean installs of [Ubuntu 12.04 - 64bit server edition](http://releases.ubuntu.com/precise/).
+* Six machines running clean installs of [Ubuntu 12.04 - 64bit server edition](http://releases.ubuntu.com/precise/).
     * The software has been tested on Amazon EC2 `m1.small` instances, so any machines at least as powerful as one of them will be sufficient.
     * Each machine will take on a separate role in the final deployment.  The system requirements for each role are the same thus the allocation of roles to machines can be arbitrary.
     * The firewalls of these devices must be independently configurable.  This may require some attention when commissioning the machines.  For example, in Amazon's EC2, they should all be created in separate security groups.
@@ -15,7 +15,6 @@ Before starting this process you will need the following:
 * SSH access to the above machines to a user authorised to use sudo.  If your system does not come with such a user pre-configured, add a user with `sudo adduser <username>` and then authorize them to use sudo with `sudo adduser <username> sudo`.
 * A DNS root zone in which to install your repository and the ability to configure records within that zone.  This root zone will be referred to as `<zone>` below.
 * If you are not using the Project Clearwater provided Debian repository, you will need to know the URL (and, if applicable, the public GPG key) of your repository.
-* If you want to integrate your Clearwater deployment with your own CDF, you will need to determine the DIAMETER identity of your CDF and source one more instance to add to the five from the first bullet.  This node will host the Ralf process that acts as the CTF in the Clearwater deployment.
 
 ## Bootstrapping the Machines
 
@@ -108,15 +107,16 @@ To modify these settings after the deployment is created, follow [these instruct
 
 ## Node specific installation instructions
 
-At this point, you should decide (if you haven't already) which of the five machines will take on which of the Clearwater roles.
+At this point, you should decide (if you haven't already) which of the six machines will take on which of the Clearwater roles.
 
-The five roles are:
+The six roles are:
 
 * ellis
 * bono - This role also hosts a restund STUN server
 * sprout
 * homer
 * homestead
+* ralf
 
 Once this is determined, `ssh` onto each box in turn and follow the appropriate instructions below:
 
@@ -166,7 +166,7 @@ Install the Homestead and Cassandra packages with:
 
 ### Ralf
 
-If you are using Ralf to provide the CTF for Rf billing, you should install the Ralf software on the sixth instance with:
+Install the Ralf package with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install ralf --yes
 

@@ -31,7 +31,7 @@ Homer is a standard XDMS used to store MMTEL service settings documents for each
 
 ### Ralf (CTF)
 
-Ralf provides as HTTP API that both Bono and Sprout can use to report billable events that should be passed to the CDF (Charging Data Function) over the Rf billing interface.  Ralf uses a cluster of Memcached instances and a cluster of Chronos instances to store and manage session state, allowing it to conform to the Rf protocol.
+Ralf provides an HTTP API that both Bono and Sprout can use to report billable events that should be passed to the CDF (Charging Data Function) over the Rf billing interface.  Ralf uses a cluster of Memcached instances and a cluster of Chronos instances to store and manage session state, allowing it to conform to the Rf protocol.
 
 ### Ellis
 
