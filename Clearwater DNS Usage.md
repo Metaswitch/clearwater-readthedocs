@@ -37,7 +37,7 @@ Support for latency-based routing and health-checking are required for multi-sit
 
 Support for [RFC 2915](http://tools.ietf.org/rfc/rfc2915.txt) (NAPTR records) is also suggested, but not required.  NAPTR records specify the transport (UDP, TCP, etc.) to use for a particular service - without it, UEs will default (probably to UDP).
 
-AWS Route 53 supports all these features except NAPTR.  BIND supports all these features except latency-based routing and health-checking.
+AWS Route 53 supports all these features except NAPTR.  BIND supports all these features except latency-based routing (although there is a [patch](http://www.caraytech.com/geodns/) for this) and health-checking.
 
 ### DNS Records
 
