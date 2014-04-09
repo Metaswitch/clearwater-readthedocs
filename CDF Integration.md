@@ -28,7 +28,7 @@ Before connecting your deployment to a CDF, you must
 
 If you have a CDF set up to receive Rf billing messages from your deployment, you will need to modify the `/etc/clearwater/config` file on your Bono node to contain the following line:
 
-    cdf_address=<CDF DIAMETER Identity>
+    billing_cdf=<CDF DIAMETER Identity>
 
 Once you have done this, run the following command to cause Bono to pick up the changes.
 
