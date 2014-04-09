@@ -197,12 +197,21 @@ For Clearwater, you should be able to adapt the following example zone file by c
     _sip._tcp.sprout       IN SRV   0 0 5054 sprout-1
     _sip._tcp.sprout       IN SRV   0 0 5054 sprout-2
     ;
+    ; Per-node records for I-CSCF (if enabled) - not required to have both
+    ; IPv4 and IPv6 records 
+    sprout-3               IN A     3.0.0.3
+    sprout-3               IN AAAA  3::3
+    ;
+    ; Cluster A and AAAA records - P-CSCFs that don't support RFC 3263 will simply
+    ; resolve the A or AAAA records and pick randomly from this set of addresses.
+    icscf.sprout           IN A     3.0.0.3
+    icscf.sprout           IN AAAA  3::3 
+    ;
     ; NAPTR and SRV records for I-CSCF (if enabled) - these indicate TCP
     ; support only and then resolve to port 5052 on the per-node records
     ; defined above.
-    icscf.sprout           IN NAPTR 1 1 "S" "SIP+D2T" "" _sip._tcp.sprout
-    _sip._tcp.icscf.sprout IN SRV   0 0 5054 sprout-1
-    _sip._tcp.icscf.sprout IN SRV   0 0 5054 sprout-2
+    icscf.sprout           IN NAPTR 1 1 "S" "SIP+D2T" "" _sip._tcp.icscf.sprout
+    _sip._tcp.icscf.sprout IN SRV   0 0 5052 sprout-3
 
     ; homestead
     ; =========
