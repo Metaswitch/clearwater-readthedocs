@@ -48,8 +48,3 @@ list.
 
 -   Samsung Galaxy Nexus - 4.2.2
 -   Orange San Francisco II - 2.3.5
--   ...?
-
-### Known unsuppported devices
-
--   ...?
