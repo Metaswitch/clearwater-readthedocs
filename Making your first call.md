@@ -13,7 +13,7 @@ These instructions will take you through the process of making a call on a Clear
     - [Blink](http://icanblink.com/)
     - [Stock Android SIP client](Configuring the native Android SIP client)
     - [Zoiper Android/iOS SIP client](Configuring Zoiper Android iOS Client)
-    - Media5-fone iOS SIP client
+    - Media5-fone iOS SIP client (on iPhone 4 and 4S)
 * You have access to a web-browser.  We've tested with:
   - Google Chrome
 
