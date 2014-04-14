@@ -25,7 +25,12 @@ Known supported devices
 - Samsung Galaxy S2
 - Samsung Galaxy S4
 - Nexus One
-- iPhone
+- Huawei G510
+- Huawei G610
+- Qmobile A8
+- HTC 1X
+- iPhone 4
+- iPhone 4S
 
 Known unsupported devices
 =========================
