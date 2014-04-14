@@ -21,9 +21,11 @@ Instructions
 Known supported devices
 =======================
 
-- Galaxy S3
-- Galaxy S2
+- Samsung Galaxy S3
+- Samsung Galaxy S2
+- Samsung Galaxy S4
 - Nexus One
+- iPhone
 
 Known unsupported devices
 =========================
