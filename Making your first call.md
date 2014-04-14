@@ -12,7 +12,7 @@ These instructions will take you through the process of making a call on a Clear
     - [Jitsi](https://jitsi.org/)
     - [Blink](http://icanblink.com/)
     - [Stock Android SIP client](Configuring the native Android SIP client)
-    - [Zoiper Android/iOS SIP client](Configuring Zoiper Android Client)
+    - [Zoiper Android/iOS SIP client](Configuring Zoiper Android iOS Client)
     - Media5-fone iOS SIP client
 * You have access to a web-browser.  We've tested with:
   - Google Chrome
