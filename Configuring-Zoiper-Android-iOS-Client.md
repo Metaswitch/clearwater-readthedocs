@@ -1,9 +1,9 @@
-These instructions detail how to configure the Zoiper Android SIP client to work against a Clearwater system.
+These instructions detail how to configure the Zoiper Android/iOS SIP client to work against a Clearwater system.
 
 Instructions
 ============
 
-1. Download the application from the [Play Store](https://play.google.com/store/apps/details?id=com.zoiper.android.app)
+1. Download the application from the [Play Store](https://play.google.com/store/apps/details?id=com.zoiper.android.app) or [iTunes](https://itunes.apple.com/us/app/zoiper-softphone/id438949960?mt=8).
 2. Once installed, go to Config -> Accounts -> Add account -> SIP
 3. Fill in the following details:
   - Account name: Clearwater
