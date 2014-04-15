@@ -290,8 +290,8 @@ Clearwater nodes need to know the identity of their DNS server.  Ideally, this i
 
 Either way, you must
 
-*   create a `/var/run/dnsmasq/resolv.static.conf` file containing the desired DNS configuration (probably just the single line `nameserver <IP address>`)
-*   add `RESOLV_CONF=/var/run/dnsmasq/resolv.static.conf` to `/etc/default/dnsmasq`
+*   create an `/etc/dnsmasq.resolv.conf` file containing the desired DNS configuration (probably just the single line `nameserver <IP address>`)
+*   add `RESOLV_CONF=/etc/dnsmasq.resolv.conf` to `/etc/default/dnsmasq`
 *   run `service dnsmasq restart`.
 
-(As background, [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) is a DNS forwarder that runs on each Clearwater node to act as a cache.  Local processes look in `/etc/resolv.conf` for DNS configuration, and this points them to localhost, where dnsmasq runs.  In turn, dnsmasq takes its configuration from `/var/run/dnsmasq/resolv.static.conf`.  By default, dnsmasq would use `/var/run/dnsmasq/resolv.conf`, but this is controlled by DHCP.)
+(As background, [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) is a DNS forwarder that runs on each Clearwater node to act as a cache.  Local processes look in `/etc/resolv.conf` for DNS configuration, and this points them to localhost, where dnsmasq runs.  In turn, dnsmasq takes its configuration from `/etc/dnsmasq.resolv.conf`.  By default, dnsmasq would use `/var/run/dnsmasq/resolv.conf`, but this is controlled by DHCP.)
