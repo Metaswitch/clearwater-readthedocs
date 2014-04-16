@@ -219,7 +219,7 @@ If you're intending to spin up a larger-scale deployment containing more than on
 When configuring DNS for a multi-node deployment, it's crucial that
 
 *   each node's `public_hostname` property (in `/etc/clearwater/config`) resolves to an IP address that belongs solely to that node (not to the cluster)
-*   the `sprout_hostname`, `hs_hostname` and `xdms_hostname` properties resolve to the set of all IP addresses in that tier so, for example, the value of `sprout_hostname` resolves to the IP addresses of all sprout nodes.
+*   the `sprout_hostname`, `hs_hostname`, `ralf_hostname` and `xdms_hostname` properties resolve to the set of all IP addresses in that tier so, for example, the value of `sprout_hostname` resolves to the IP addresses of all sprout nodes.
 
 ### Clustering Sprout
 
