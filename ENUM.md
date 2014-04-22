@@ -396,3 +396,10 @@ you can instead change the suffix, e.g. to .e164.arpa.ngv.example.com, by
     e164.arpa.ngv.example.com to your DNS server by creating an NS (Name
     Server) record with name "e164.arpa.ngv.example.com" and value set to the
     name/IP address of your DNS server.
+
+ENUM and Sprout
+---------------
+To enable ENUM lookups on Sprout, edit `/etc/clearwater/user_settings` and add the following configuration to use either an ENUM server (recommended) or an ENUM file
+
+    enum_server=<hostname of enum server>
+    enum_file=<location of enum file>
