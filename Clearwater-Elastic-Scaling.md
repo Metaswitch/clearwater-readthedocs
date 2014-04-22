@@ -4,7 +4,7 @@ This page explains how to use this elastic scaling function when using a deploym
 
 ## Before scaling your deployment
 
-Before scaling up or down, you should decide how many each of Bono, Sprout, Homestead and Homer nodes you need (ie. your target size). This should be based on your call load profile and measurements of current systems, though http://www.projectclearwater.org/technical/clearwater-performance/ may be useful.
+Before scaling up or down, you should decide how many each of Bono, Sprout, Homestead and Homer nodes you need (ie. your target size). This should be based on your call load profile and measurements of current systems and we recommend scaling up a tier of a given type (sprout, bono, etc) when the average CPU utilization within that tier reaches 60%. The [Deployment Sizing Spreadsheet](http://www.projectclearwater.org/technical/clearwater-performance/) may also prove useful.
 
 ## Starting the resize
 
