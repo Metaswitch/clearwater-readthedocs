@@ -134,10 +134,11 @@ must be added separately.
 
 ### BIND
 
-Create a new node to run BIND, and open port 53 on it to the world (`0.0.0.0/0`)
+Create a new node to run BIND, and open port 53 on it to the world (`0.0.0.0/0`).
+
 If you are using chef, you can do this by adding a new 'enum' node.
 
-On that node,
+On the new node,
 
 1.  install bind by typing "sudo apt-get install bind9"
 2.  modify /etc/bind/named.conf to add a line 'include
