@@ -134,8 +134,8 @@ must be added separately.
 
 ### BIND
 
-Create a new node to run BIND, and add it to the enum security group.
-You can do this using chef and the "enum" node type.
+Create a new node to run BIND, and open port 53 on it to the world (`0.0.0.0/0`)
+If you are using chef, you can do this by adding a new 'enum' node.
 
 On that node,
 
