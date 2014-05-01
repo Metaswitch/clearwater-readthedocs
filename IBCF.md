@@ -49,11 +49,11 @@ The file is in JSON format, for example.
         "routes" : [
             {   "name" : "<route 1 descriptive name>",
                 "domain" : "<SIP trunk IP address or host name>",
-                "route" : ["<IBCF host name>"]
+                "route" : ["<IBCF SIP URI>"]
             },
             {   "name" : "<route 2 descriptive name>",
                 "domain" : "<SIP trunk IP address or host name>",
-                "route" : ["<IBCF host name>", "<IBCF host name>"]
+                "route" : ["<IBCF SIP URI>", "<IBCF SIP URI>"]
             }
         ]
     }
