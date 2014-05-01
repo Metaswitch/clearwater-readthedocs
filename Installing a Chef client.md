@@ -208,6 +208,7 @@ The Chef server needs to be told the definitions for the various Clearwater node
 
     cd ~/chef
     knife cookbook upload apt
+    knife cookbook upload chef-solo-search
     knife cookbook upload clearwater
     find roles/*.rb -exec knife role from file {} \;
 
