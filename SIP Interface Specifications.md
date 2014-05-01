@@ -253,6 +253,12 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
 *   Supported in Clearwater.
 
+### Fixes to issues with SIP non-INVITE transactions ([RFC 4320](http://www.ietf.org/rfc/rfc4320.txt))
+
+*   Defines changes to [RFC 3261](http://www.ietf.org/rfc/rfc3261.txt) procedures for handling non-INVITE transactions to avoid some issues - in particular the potential for an O(N^2) storm of 408 responses if a transaction times out.  
+*   Mandatory for all SIP nodes according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
+*   Supported in Clearwater.
+
 ## Relevant to Clearwater but not currently supported
 
 These are the RFCs which are relevant to Clearwater and not yet supported.
@@ -262,12 +268,6 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 *   User agent capabilities encoded as feature tags in Contact headers during registration ([RFC 3840](http://www.ietf.org/rfc/rfc3840.txt)) and Accept-Contact, Reject-Contact and Request-Disposition headers encode filtering rules to decide which targets subsequent request should be routed/forked to ([RFC 3841](http://www.ietf.org/rfc/rfc3841.txt)).
 *   Used for routing of requests to targets with the appropriate features/capabilities in IMS. Mandatory for proxy components.
 *   Clearwater's Sprout registrar already supports storing all feature tags, but does not yet support forarding requests based on them.
-
-### Fixes to issues with SIP non-INVITE transactions ([RFC 4320](http://www.ietf.org/rfc/rfc4320.txt))
-
-*   Defines changes to [RFC 3261](http://www.ietf.org/rfc/rfc3261.txt) procedures for handling non-INVITE transactions to avoid some issues - in particular the potential for an O(N^2) storm of 408 responses if a transaction times out.  The main changes are to when/if a 100 Trying responses should be sent, and disallowing 408 responses altogether on non-INVITE transactions.
-*   Mandatory for all SIP nodes according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
-*   Clearwater already supports part of this, but probably not all.
 
 ### Dialstring URI parameter ([RFC 4967](http://www.ietf.org/rfc/rfc4967.txt))
 
