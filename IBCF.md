@@ -1,6 +1,6 @@
 # IBCF
 
-The Clearwater IBCF (Interconnect Border Gateway Function) provides an interface point between a Clearwater deployment and one or more trusted SIP trunks.
+The Clearwater IBCF (Interconnection Border Control Function) provides an interface point between a Clearwater deployment and one or more trusted SIP trunks.
 
 The IBCF does not currently provide all of the functions of an IMS compliant IBCF - in particular it does not support topology hiding or an H.248 interface to control a Transition Gateway.
 
