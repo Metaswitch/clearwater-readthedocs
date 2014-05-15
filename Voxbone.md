@@ -1,6 +1,6 @@
 [Voxbone](http://www.voxbone.com/) provides local, geographical, mobile and toll free phone numbers and converts incoming calls and SMSs to SIP INVITE and MESSAGE flows.
 
-Clearwater supports these flows, and this document describes how to configure Voxbone and Clearwater to work together.
+Clearwater supports these flows, and this document describes how to configure Voxbone and Clearwater to work together, and then how to test and troubleshoot.
 
 # Configuration
 
@@ -47,13 +47,13 @@ For each telephone number you own, Voxbone allows you to configure a SIP URI to 
 
 If you are also using the VoxSMS service for receiving SMSes, you additionally need to configure a VoxSMS SIP URI using the same SIP URI as above.
 
-## Testing
+# Testing
 
 The Voxbone web UI allows you to make a test call.  Alternatively, you can make a normal call through the PSTN to your Voxbone number.
 
 The only way to test SMS function is to actually send an SMS to your Voxbone number.
 
-## Troubleshooting
+# Troubleshooting
 
 If your call or SMS doesn't get through, there are three things to check.
 
