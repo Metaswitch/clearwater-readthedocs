@@ -23,8 +23,27 @@ Before connecting your deployment to a CDF, you must
 *   [install Clearwater](Installation Instructions)
 *   install an external CDF - details for this will vary depending on which CDF you are using.
 *   ensure your CDF's firewall allows incoming connections from the nodes in the Ralf cluster on the DIAMETER port (default 3868).
- 
-### Connecting to a CDF
+
+### Setting up DNS
+
+Ralf implements the behavior specified in [RFC3588](http://www.ietf.org/rfc/rfc3588.txt) to locate and connect to the billing realm.  This requires either:
+
+* The DIAMETER realm resolves to a `NAPTR` record which returns an `AAA+D2T` entry which in turn resolves to `SRV`/`A` records which finally resolve to IPv4 addresses of reachable nodes in the realm.
+* The DIAMETER realm resolves to a collection of `A` records which directly resolve to reachable nodes in the realm.
+
+### Configuring the billing realm
+
+To point Ralf at the billing DIAMETER realm, add the following line to `/etc/clearwater/config` on each Ralf node:
+
+    billing_realm=<DIAMETER billing realm>
+
+Then restart Ralf to pick up the change:
+
+    sudo monit restart ralf
+
+### Selecting a specific CDF in the realm
+
+_Note:_ Bono only has support for selecting CDF identies based of static configuration of a single identity.  Other P-CSCFs may have support for load-balancing or enabling backup CDF identities.
 
 If you have a CDF set up to receive Rf billing messages from your deployment, you will need to modify the `/etc/clearwater/config` file on your Bono node to contain the following line:
 
