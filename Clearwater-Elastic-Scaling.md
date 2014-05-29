@@ -20,7 +20,7 @@ If you are scaling down, this will put the excess nodes into a quiescing state, 
 
 In either case, your registration store will be in a transitional state, which will last until all subscribers have re-registered (i.e. your maximum registration interval, which defaults to five minutes).
 
-## Finishing the rezise
+## Finishing the resize
 
 Once enough time has passed for all subscribers to have re-registered, and assuming all Sprout nodes in your deployment have been running *stably* throughout that period, run:
                                                                                       
