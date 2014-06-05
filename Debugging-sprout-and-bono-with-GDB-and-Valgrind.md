@@ -4,7 +4,21 @@
 
 Before you run valgrind, you'll want to tweak pjsip's code slightly.  Valgrind's memory access tracking hooks into malloc and free.  Unfortunately, pjsip uses its own memory management functions, and so mallocs/frees relatively rarely.  To disable this, modify `pjlib/src/pj/pool_caching`'s `pj_caching_pool_init` function to always set cp->max_capacity to 0.  Then rebuild and patch your nodes.
 
-To run bono and sprout under valgrind, just use the normal command-line command prefixed by "valgrind", e.g. `valgrind /usr/share/clearwater/bin/sprout`.
+To run Sprout under valgrind
+
+-  make sure valgrind is installed on your system and you have the Sprout debug packages installed (`sudo apt-get install valgrind` and `sudo apt-get install sprout-dbg`)
+
+-  disable monitoring of sprout (`sudo monit unmonitor poll-sprout; sudo monit unmonitor sprout`)
+
+-  use ps to find the command line you are using to run Sprout (`ps -eaf | grep sprout`)
+
+-  change to the sprout user (`sudo -u sprout bash`)
+
+-  change to the /etc/clearwater directory
+
+-  set up the library path (`export LD_LIBRARY_PATH=/usr/share/clearwater/lib`)
+
+-  run the sprout executable under valgrind, enabling the appropriate valgrind options - for example, to use massif to monitor the heap `valgrind --tools=massif /usr/share/clearwater/bin/sprout <parameters>` (if any of the parameters include a semi-colon, you must prefix this with a backslash otherwise the bash interpreter will interpret this as the end of the command).
 
 Valgrind will slow down the running of bono and sprout by a factor of 5-10.  It will produce output when it detects invalid/illegal memory access - often these turn out to be benign, but they're rarely spurious.
 
