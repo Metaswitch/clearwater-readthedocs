@@ -2,11 +2,11 @@
 
 [Valgrind](http://valgrind.org/) is a very powerful profiling and debugging tool. 
 
-Before you run valgrind, you'll want to tweak pjsip's code slightly.  Valgrind's memory access tracking hooks into malloc and free.  Unfortunately, pjsip uses its own memory management functions, and so mallocs/frees relatively rarely.  To disable this, modify `pjlib/src/pj/pool_caching`'s `pj_caching_pool_init` function to always set cp->max_capacity to 0.  Then rebuild and patch your nodes.
+Before you run Bono or Sprout under valgrind, you may want to tweak pjsip's code slightly, especially if using the memcheck tool.  Valgrind's memory access tracking hooks into malloc and free.  Unfortunately, pjsip uses its own memory management functions, and so mallocs/frees relatively rarely.  To disable this, modify `pjlib/src/pj/pool_caching`'s `pj_caching_pool_init` function to always set cp->max_capacity to 0.  Then rebuild and patch your nodes.
 
-To run Sprout under valgrind
+To run Bono, Sprout or Homestead under valgrind (the example commands assume you are running sprout)
 
--  make sure valgrind is installed on your system and you have the Sprout debug packages installed (`sudo apt-get install valgrind` and `sudo apt-get install sprout-dbg`)
+-  make sure valgrind is installed on your system and you have the appropriate debug packages installed (`sudo apt-get install valgrind` and `sudo apt-get install sprout-dbg`)
 
 -  disable monitoring of sprout (`sudo monit unmonitor poll-sprout; sudo monit unmonitor sprout`)
 
@@ -14,13 +14,15 @@ To run Sprout under valgrind
 
 -  change to the sprout user (`sudo -u sprout bash`)
 
--  change to the /etc/clearwater directory
+-  change to a the /etc/clearwater directory
 
 -  set up the library path (`export LD_LIBRARY_PATH=/usr/share/clearwater/lib`)
 
--  run the sprout executable under valgrind, enabling the appropriate valgrind options - for example, to use massif to monitor the heap `valgrind --tools=massif /usr/share/clearwater/bin/sprout <parameters>` (if any of the parameters include a semi-colon, you must prefix this with a backslash otherwise the bash interpreter will interpret this as the end of the command).
+-  run the executable under valgrind, enabling the appropriate valgrind options - for example, to use massif to monitor the Sprout heap `valgrind --tools=massif --massif-out-file=/var/log/sprout/massif.out.%p /usr/share/clearwater/bin/sprout <parameters>` (the --massif-out-file option is required to ensure the output is written to a directory where the sprout user has write permission).
 
-Valgrind will slow down the running of bono and sprout by a factor of 5-10.  It will produce output when it detects invalid/illegal memory access - often these turn out to be benign, but they're rarely spurious.
+If any of Sprout parameters include a semi-colon, you must prefix this with a backslash otherwise the bash interpreter will interpret this as the end of the command.
+
+Valgrind will slow down the running of Bono, Sprout and Homestead by a factor of 5-10.  It will produce output when it detects invalid/illegal memory access - often these turn out to be benign, but they're rarely spurious.
 
 ## GDB 
 ### Installing
