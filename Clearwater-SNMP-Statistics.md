@@ -6,7 +6,7 @@ These SNMP statistics require the clearwater-snmp-handler-bono, clearwater-snmp-
 
 ## Usage
 
-Clearwater nodes provide SNMP statistics over port 161 using SNMP v2c and community `clearwater`. The MIB definition file can be downloaded from [here](https://github.com/Metaswitch/clearwater-snmp-handlers/blob/master/PROJECT-CLEARWATER-MIB)
+Clearwater nodes provide SNMP statistics over port 161 using SNMP v2c and community `clearwater`. The MIB definition file can be downloaded from [here](https://github.com/Metaswitch/clearwater-snmp-handlers/blob/master/PROJECT-CLEARWATER-MIB), or (for Clearwater nodes on relases before Halo, when the MIB file was updated to support IPv6) [here](https://github.com/Metaswitch/clearwater-snmp-handlers/blob/release-48/PROJECT-CLEARWATER-MIB).
 
 ### Bono statistics
 
