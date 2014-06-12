@@ -200,5 +200,5 @@ They also need the following ports opened to the world:
 
 * Statistics interface:
 
-        TCP/666?
+        TCP/6664
 
