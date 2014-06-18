@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "Guitar Hero".
+The latest stable release of Clearwater is "Halo".
 
 ## Architecture
 
