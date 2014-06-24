@@ -43,8 +43,8 @@ here are the steps to create and configure a Cacti node:
 
                 sudo apt-get install -y --force-yes git ruby1.9.3 build-essential libzmq3-dev
                 sudo gem install bundler --no-ri --no-rdoc
-                git clone https://github.com/Metaswitch/sprout.git
-                cd sprout/scripts/stats
+                git clone https://github.com/Metaswitch/cpp-common.git
+                cd cpp-common/scripts/stats
                 sudo bundle install
 
 ### Pointing Cacti at a Node
