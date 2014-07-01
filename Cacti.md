@@ -35,7 +35,7 @@ here are the steps to create and configure a Cacti node:
         "Step" to 60
     4.  going to Graph Templates and change "ucd/net - CPU Usage" to
         disable "Auto Scale"
-    5.  going to Import Templates and import (in the following order) the attached XML files [cacti\_client\_count.xml](cacti_client_count.xml), [cacti\_sip\_stress\_status.xml](cacti_sip_stress_status.xml), [cacti\_bono\_latency.xml](cacti_bono_latency.xml) and [cacti\_sprout\_latency.xml](cacti_sprout_latency.xml) - these define new data input methods and graph templates for retrieving statistics from our components via [0MQ](http://www.zeromq.org/). For each template you import, select "Select your RRA settings below" and "Hourly (1 Minute Average)
+    5.  going to Import Templates and import (in the following order) the attached XML files [cacti\_client\_count.xml](cacti_client_count.xml), [cacti\_sip\_stress\_status.xml](cacti_sip_stress_status.xml), [cacti\_bono\_latency.xml](cacti_bono_latency.xml) and [cacti\_sprout\_latency.xml](cacti_sprout_latency.xml) - these define new data input methods and graph templates for retrieving statistics from our components via [0MQ](http://www.zeromq.org/). For each template you import, select "Select your RRA settings below" and "Hourly (1 Minute Average)"
 
     6.  set up the 0MQ-querying script by
         1.  ssh-ing into the cacti node
