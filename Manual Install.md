@@ -176,6 +176,10 @@ Install the Ralf package with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install ralf --yes
 
+## SNMP statistics
+
+Sprout, Bono and Homestead nodes expose statistics over SNMP. This function is not installed by default - see [our SNMP documentation](https://github.com/Metaswitch/clearwater-docs/wiki/Clearwater-SNMP-Statistics) for information on how to enable it.
+
 ## DNS Records
 
 Clearwater uses DNS records to allow each node to find the others it needs to talk to to carry calls.  At this point, you should create the DNS entries for your deployment before continuing to the next step.  [Clearwater DNS Usage](Clearwater DNS Usage) describes the entries that are required before Clearwater will be able to carry service.
