@@ -73,7 +73,7 @@ To manually point Cacti at a new node,
 Alternatively, you can add nodes to Cacti based on chef configuration
 using the following chunk of bash, run from the `~/chef` directory.
 
-    knife box list -E <name> | grep "Found node" | cut -d\  -f 3,8 | sort | while read description ip ; do
+    knife box list -E <name> | grep "Found node" | grep -v "cacti" | cut -d\  -f 3,8 | sort | while read description ip ; do
       knife ssh -x ubuntu "role:cacti AND chef_environment:<name>" '
         description='$description'
         ip='$ip'
