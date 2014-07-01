@@ -35,7 +35,7 @@ here are the steps to create and configure a Cacti node:
         "Step" to 60
     4.  going to Graph Templates and change "ucd/net - CPU Usage" to
         disable "Auto Scale"
-    5.  going to Import Templates and import (in the following order) the attached XML files [cacti\_client\_count.xml](cacti_client_count.xml), [cacti\_sip\_stress\_status.xml](cacti_sip_stress_status.xml) and [cacti\_latency.xml](cacti_latency.xml) - these define new data input methods and graph templates for retrieving statistics from our components via [0MQ](http://www.zeromq.org/). For each template you import, select "Select your RRA settings below" and "Hourly (1 Minute Average)
+    5.  going to Import Templates and import (in the following order) the attached XML files [cacti\_client\_count.xml](cacti_client_count.xml), [cacti\_sip\_stress\_status.xml](cacti_sip_stress_status.xml), [cacti\_bono\_latency.xml](cacti_bono_latency.xml) and [cacti\_sprout\_latency.xml](cacti_sprout_latency.xml) - these define new data input methods and graph templates for retrieving statistics from our components via [0MQ](http://www.zeromq.org/). For each template you import, select "Select your RRA settings below" and "Hourly (1 Minute Average)"
 
     6.  set up the 0MQ-querying script by
         1.  ssh-ing into the cacti node
@@ -62,8 +62,8 @@ To manually point Cacti at a new node,
     Detection to "SNMP Uptime" and SNMP Community to "clearwater"
 2.  click "Create Graphs for this Host" and select the graphs that you
     want - "ucd/net - CPU Usage" is a safe bet, but you might also want
-    "Client Counts" (if a bono node) or "SIP Stress Status" (if a sipp
-    node)
+    "Client Counts" and "Bono Latency" (if a bono node), "Sprout Latency" (if a 
+    sprout node), or "SIP Stress Status" (if a sipp node).
 3.  click "Edit this Host" to go back to the device, choose "List
     Graphs", select the new graphs and choose "Add to Default Tree" -
     this exposes them on the "graphs" tab you can see at the top of the
@@ -73,7 +73,7 @@ To manually point Cacti at a new node,
 Alternatively, you can add nodes to Cacti based on chef configuration
 using the following chunk of bash, run from the `~/chef` directory.
 
-    knife box list -E <name> | grep "Found node" | cut -d\  -f 3,8 | sort | while read description ip ; do
+    knife box list -E <name> | grep "Found node" | grep -v "cacti" | cut -d\  -f 3,8 | sort | while read description ip ; do
       knife ssh -x ubuntu "role:cacti AND chef_environment:<name>" '
         description='$description'
         ip='$ip'
@@ -84,13 +84,15 @@ using the following chunk of bash, run from the `~/chef` directory.
         if echo $description | grep -q bono ; then
           graph_id=$(sudo php -q /usr/share/cacti/cli/add_graphs.php --graph-type=cg --graph-template-id=35 --host-id=$host_id | tee -a /tmp/knife-ssh.cacti | grep "Graph Added" | sed -e "s/\(^[^)]*(\|).*$\)//g")
           sudo php -q /usr/share/cacti/cli/add_tree.php --type=node --node-type=graph --tree-id=1 --graph-id=$graph_id >> /tmp/knife-ssh.cacti
+          graph_id=$(sudo php -q /usr/share/cacti/cli/add_graphs.php --graph-type=cg --graph-template-id=37 --host-id=$host_id | tee -a /tmp/knife-ssh.cacti | grep "Graph Added" | sed -e "s/\(^[^)]*(\|).*$\)//g")
+          sudo php -q /usr/share/cacti/cli/add_tree.php --type=node --node-type=graph --tree-id=1 --graph-id=$graph_id >> /tmp/knife-ssh.cacti
         fi
         if echo $description | grep -q sipp ; then
           graph_id=$(sudo php -q /usr/share/cacti/cli/add_graphs.php --graph-type=cg --graph-template-id=36 --host-id=$host_id | tee -a /tmp/knife-ssh.cacti | grep "Graph Added" | sed -e "s/\(^[^)]*(\|).*$\)//g")
           sudo php -q /usr/share/cacti/cli/add_tree.php --type=node --node-type=graph --tree-id=1 --graph-id=$graph_id >> /tmp/knife-ssh.cacti
         fi
-        if echo $description | egrep -q "(bono|sprout)" ; then
-          graph_id=$(sudo php -q /usr/share/cacti/cli/add_graphs.php --graph-type=cg --graph-template-id=37 --host-id=$host_id | tee -a /tmp/knife-ssh.cacti | grep "Graph Added" | sed -e "s/\(^[^)]*(\|).*$\)//g")
+        if echo $description | egrep -q sprout ; then
+          graph_id=$(sudo php -q /usr/share/cacti/cli/add_graphs.php --graph-type=cg --graph-template-id=38 --host-id=$host_id | tee -a /tmp/knife-ssh.cacti | grep "Graph Added" | sed -e "s/\(^[^)]*(\|).*$\)//g")
           sudo php -q /usr/share/cacti/cli/add_tree.php --type=node --node-type=graph --tree-id=1 --graph-id=$graph_id >> /tmp/knife-ssh.cacti
         fi
         cat /tmp/knife-ssh.cacti

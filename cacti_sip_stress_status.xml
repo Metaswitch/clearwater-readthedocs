@@ -131,37 +131,9 @@
 			<rrd_step>60</rrd_step>
 			<t_active></t_active>
 			<active>on</active>
-			<rra_items>hash_150023283ea2bf1634d92ce081ec82a634f513</rra_items>
+			<rra_items>hash_150023c21df5178e5c955013591239eb0afd46|hash_1500230d9c0af8b8acdc7807943937b3208e29|hash_1500236fc2d038fb42950138b0ce3e9874cc60|hash_150023e36f3adb9f152adfa5dc50fd2b23337e</rra_items>
 		</ds>
 		<items>
-			<hash_080023d17c7c9d3e2988c4fe71036cf5b1c987>
-				<t_data_source_name></t_data_source_name>
-				<data_source_name>successful_calls</data_source_name>
-				<t_rrd_minimum></t_rrd_minimum>
-				<rrd_minimum>0</rrd_minimum>
-				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>U</rrd_maximum>
-				<t_data_source_type_id></t_data_source_type_id>
-				<data_source_type_id>1</data_source_type_id>
-				<t_rrd_heartbeat></t_rrd_heartbeat>
-				<rrd_heartbeat>120</rrd_heartbeat>
-				<t_data_input_field_id></t_data_input_field_id>
-				<data_input_field_id>hash_0700230d31c0064c1d422c9615e45cf49fe236</data_input_field_id>
-			</hash_080023d17c7c9d3e2988c4fe71036cf5b1c987>
-			<hash_080023a2f356baa817d345fd3b5afbb95115cd>
-				<t_data_source_name></t_data_source_name>
-				<data_source_name>initial_registers</data_source_name>
-				<t_rrd_minimum></t_rrd_minimum>
-				<rrd_minimum>0</rrd_minimum>
-				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>U</rrd_maximum>
-				<t_data_source_type_id></t_data_source_type_id>
-				<data_source_type_id>1</data_source_type_id>
-				<t_rrd_heartbeat></t_rrd_heartbeat>
-				<rrd_heartbeat>120</rrd_heartbeat>
-				<t_data_input_field_id></t_data_input_field_id>
-				<data_input_field_id>hash_070023682c531c4601a84adf6dc79f1a4ce089</data_input_field_id>
-			</hash_080023a2f356baa817d345fd3b5afbb95115cd>
 			<hash_0800236fc927eafa93949ee206baf026264647>
 				<t_data_source_name></t_data_source_name>
 				<data_source_name>call_attempts</data_source_name>
@@ -176,6 +148,34 @@
 				<t_data_input_field_id></t_data_input_field_id>
 				<data_input_field_id>hash_070023d45d2f27b33fde097324029c6838002e</data_input_field_id>
 			</hash_0800236fc927eafa93949ee206baf026264647>
+			<hash_080023a2f356baa817d345fd3b5afbb95115cd>
+				<t_data_source_name></t_data_source_name>
+				<data_source_name>initial_registers</data_source_name>
+				<t_rrd_minimum></t_rrd_minimum>
+				<rrd_minimum>0</rrd_minimum>
+				<t_rrd_maximum></t_rrd_maximum>
+				<rrd_maximum>U</rrd_maximum>
+				<t_data_source_type_id></t_data_source_type_id>
+				<data_source_type_id>1</data_source_type_id>
+				<t_rrd_heartbeat></t_rrd_heartbeat>
+				<rrd_heartbeat>120</rrd_heartbeat>
+				<t_data_input_field_id></t_data_input_field_id>
+				<data_input_field_id>hash_070023682c531c4601a84adf6dc79f1a4ce089</data_input_field_id>
+			</hash_080023a2f356baa817d345fd3b5afbb95115cd>
+			<hash_080023d17c7c9d3e2988c4fe71036cf5b1c987>
+				<t_data_source_name></t_data_source_name>
+				<data_source_name>successful_calls</data_source_name>
+				<t_rrd_minimum></t_rrd_minimum>
+				<rrd_minimum>0</rrd_minimum>
+				<t_rrd_maximum></t_rrd_maximum>
+				<rrd_maximum>U</rrd_maximum>
+				<t_data_source_type_id></t_data_source_type_id>
+				<data_source_type_id>1</data_source_type_id>
+				<t_rrd_heartbeat></t_rrd_heartbeat>
+				<rrd_heartbeat>120</rrd_heartbeat>
+				<t_data_input_field_id></t_data_input_field_id>
+				<data_input_field_id>hash_0700230d31c0064c1d422c9615e45cf49fe236</data_input_field_id>
+			</hash_080023d17c7c9d3e2988c4fe71036cf5b1c987>
 			<hash_08002348a0f39639760260da0cfa193021982d>
 				<t_data_source_name></t_data_source_name>
 				<data_source_name>ongoing_registers</data_source_name>
@@ -202,7 +202,7 @@
 	<hash_0300238f28ff10edfeecc89e9c866a6cd6ec71>
 		<name>SIP Stress Status</name>
 		<type_id>1</type_id>
-		<input_string>/bin/bash -c &#039;echo $(/home/ubuntu/sprout/scripts/stats/bin/cw_stat &lt;ip&gt; call_stats | grep _delta | sed -e &quot;s/_delta//g&quot;)&#039;</input_string>
+		<input_string>/bin/bash -c &#039;echo $(/home/ubuntu/cpp-common/scripts/stats/bin/cw_stat &lt;ip&gt; 6666 call_stats | grep _delta | sed -e &quot;s/_delta//g&quot;)&#039;</input_string>
 		<fields>
 			<hash_070023efc6a95195772196fee718bfb4ff9a86>
 				<name>Management IP</name>
@@ -251,14 +251,38 @@
 			</hash_0700230d31c0064c1d422c9615e45cf49fe236>
 		</fields>
 	</hash_0300238f28ff10edfeecc89e9c866a6cd6ec71>
-	<hash_150023283ea2bf1634d92ce081ec82a634f513>
-		<name>Hourly (1 Minute Average)</name>
+	<hash_150023c21df5178e5c955013591239eb0afd46>
+		<name>Daily (5 Minute Average)</name>
 		<x_files_factor>0.5</x_files_factor>
 		<steps>1</steps>
-		<rows>500</rows>
-		<timespan>14400</timespan>
+		<rows>600</rows>
+		<timespan>86400</timespan>
 		<cf_items>1|3</cf_items>
-	</hash_150023283ea2bf1634d92ce081ec82a634f513>
+	</hash_150023c21df5178e5c955013591239eb0afd46>
+	<hash_1500230d9c0af8b8acdc7807943937b3208e29>
+		<name>Weekly (30 Minute Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>6</steps>
+		<rows>700</rows>
+		<timespan>604800</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_1500230d9c0af8b8acdc7807943937b3208e29>
+	<hash_1500236fc2d038fb42950138b0ce3e9874cc60>
+		<name>Monthly (2 Hour Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>24</steps>
+		<rows>775</rows>
+		<timespan>2678400</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_1500236fc2d038fb42950138b0ce3e9874cc60>
+	<hash_150023e36f3adb9f152adfa5dc50fd2b23337e>
+		<name>Yearly (1 Day Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>288</steps>
+		<rows>797</rows>
+		<timespan>33053184</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_150023e36f3adb9f152adfa5dc50fd2b23337e>
 	<hash_0500238d1e77b455df5701372515a2737f29a8>
 		<name>REGISTERs to BHCA</name>
 		<items>

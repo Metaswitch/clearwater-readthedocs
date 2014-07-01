@@ -1,6 +1,6 @@
 <cacti>	
-	<hash_000023564498d3a409e39bca8552e692ef716b>
-		<name>Latency</name>
+	<hash_000023b8fb3e6b967f759ff39b9ec0b9f7a53d>
+		<name>Sprout Latency</name>
 		<graph>
 			<t_title></t_title>
 			<title>|host_description| - Latency</title>
@@ -40,8 +40,8 @@
 			<vertical_label>ms</vertical_label>
 		</graph>
 		<items>
-			<hash_1000238552283db118ba65d1e3db5f60160d8f>
-				<task_item_id>hash_080023aa26dbca918530cf695a9fa9243d8651</task_item_id>
+			<hash_100023585d450bf3bedd4b87cc1a43040a6ecf>
+				<task_item_id>hash_0800234dfd7952184da7db44f94ab8233590da</task_item_id>
 				<color_id>FF0000</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>4</graph_type_id>
@@ -52,9 +52,9 @@
 				<text_format>Latency</text_format>
 				<hard_return></hard_return>
 				<sequence>1</sequence>
-			</hash_1000238552283db118ba65d1e3db5f60160d8f>
-			<hash_100023422f1f02701845aca720177e168de8e5>
-				<task_item_id>hash_080023a0744ac25cac425b0cb4c0fc744a9bd2</task_item_id>
+			</hash_100023585d450bf3bedd4b87cc1a43040a6ecf>
+			<hash_1000239bdf475372afbbc0d55d3bf3f58fe466>
+				<task_item_id>hash_0800230ee32d2a6357012a0e5f40c54f7d34c9</task_item_id>
 				<color_id>0000FF</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>4</graph_type_id>
@@ -65,9 +65,9 @@
 				<text_format>Low-water mark</text_format>
 				<hard_return></hard_return>
 				<sequence>2</sequence>
-			</hash_100023422f1f02701845aca720177e168de8e5>
-			<hash_1000235a375e6d8352efaaf6c3bcd6dfcc7350>
-				<task_item_id>hash_080023144614943249c20ce17c11dd0f4d6f90</task_item_id>
+			</hash_1000239bdf475372afbbc0d55d3bf3f58fe466>
+			<hash_1000237afacd93b6e893a7b4d10a14f16744d6>
+				<task_item_id>hash_0800232c03a704552b08e0d3460d7e9398aad9</task_item_id>
 				<color_id>00FF00</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>4</graph_type_id>
@@ -78,9 +78,9 @@
 				<text_format>High-water mark</text_format>
 				<hard_return></hard_return>
 				<sequence>3</sequence>
-			</hash_1000235a375e6d8352efaaf6c3bcd6dfcc7350>
-			<hash_1000238931f0f29f4d69644ec81179f5050b39>
-				<task_item_id>hash_080023be45521a4eef12ec018a01f4dccf3595</task_item_id>
+			</hash_1000237afacd93b6e893a7b4d10a14f16744d6>
+			<hash_100023f2bb416e4726290ce7a6a0c547ea8068>
+				<task_item_id>hash_0800235bd8f8649688e02fbbfdd4c8621ac00d</task_item_id>
 				<color_id>FFF200</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>4</graph_type_id>
@@ -91,41 +91,41 @@
 				<text_format>Standard deviation</text_format>
 				<hard_return></hard_return>
 				<sequence>4</sequence>
-			</hash_1000238931f0f29f4d69644ec81179f5050b39>
+			</hash_100023f2bb416e4726290ce7a6a0c547ea8068>
 		</items>
 		<inputs>
-			<hash_090023bb6825460ad6c384e3875185fbad3a54>
+			<hash_090023538ca0b4c8461fe4e58fe0d2e84eebe0>
 				<name>Data Source [mean]</name>
 				<description></description>
 				<column_name>task_item_id</column_name>
-				<items>hash_0000238552283db118ba65d1e3db5f60160d8f</items>
-			</hash_090023bb6825460ad6c384e3875185fbad3a54>
-			<hash_0900238370995ba9cbc66a50e26ae30c635d03>
+				<items>hash_000023585d450bf3bedd4b87cc1a43040a6ecf</items>
+			</hash_090023538ca0b4c8461fe4e58fe0d2e84eebe0>
+			<hash_0900234f17c42533f64ae0cc46db2efe4c5b2c>
 				<name>Data Source [lwm]</name>
 				<description></description>
 				<column_name>task_item_id</column_name>
-				<items>hash_000023422f1f02701845aca720177e168de8e5</items>
-			</hash_0900238370995ba9cbc66a50e26ae30c635d03>
-			<hash_090023467378a224ac82a6513a3270fb62dd92>
+				<items>hash_0000239bdf475372afbbc0d55d3bf3f58fe466</items>
+			</hash_0900234f17c42533f64ae0cc46db2efe4c5b2c>
+			<hash_0900237d714f0aacf3fbdad4e383d75fe77c64>
 				<name>Data Source [hwm]</name>
 				<description></description>
 				<column_name>task_item_id</column_name>
-				<items>hash_0000235a375e6d8352efaaf6c3bcd6dfcc7350</items>
-			</hash_090023467378a224ac82a6513a3270fb62dd92>
-			<hash_090023b160429118be74987cbbfe75527dcd84>
+				<items>hash_0000237afacd93b6e893a7b4d10a14f16744d6</items>
+			</hash_0900237d714f0aacf3fbdad4e383d75fe77c64>
+			<hash_0900238bd03c40e7bed926ff83b3fdc2dbe123>
 				<name>Data Source [variance]</name>
 				<description></description>
 				<column_name>task_item_id</column_name>
-				<items>hash_0000238931f0f29f4d69644ec81179f5050b39</items>
-			</hash_090023b160429118be74987cbbfe75527dcd84>
+				<items>hash_000023f2bb416e4726290ce7a6a0c547ea8068</items>
+			</hash_0900238bd03c40e7bed926ff83b3fdc2dbe123>
 		</inputs>
-	</hash_000023564498d3a409e39bca8552e692ef716b>
-	<hash_010023388f3120b74237115d29e586847a39e7>
-		<name>Latency</name>
+	</hash_000023b8fb3e6b967f759ff39b9ec0b9f7a53d>
+	<hash_010023aa6900d17838bd0cc4c6394bad7e4d7d>
+		<name>Sprout Latency</name>
 		<ds>
 			<t_name></t_name>
 			<name>|host_description| - Latency</name>
-			<data_input_id>hash_030023f4061f5c9459f0892545f9ff74bc80e2</data_input_id>
+			<data_input_id>hash_030023b4124d06342cabe58defe1447f1dc3d5</data_input_id>
 			<t_rra_id></t_rra_id>
 			<t_rrd_step></t_rrd_step>
 			<rrd_step>60</rrd_step>
@@ -134,7 +134,7 @@
 			<rra_items>hash_150023283ea2bf1634d92ce081ec82a634f513</rra_items>
 		</ds>
 		<items>
-			<hash_080023144614943249c20ce17c11dd0f4d6f90>
+			<hash_0800232c03a704552b08e0d3460d7e9398aad9>
 				<t_data_source_name></t_data_source_name>
 				<data_source_name>hwm</data_source_name>
 				<t_rrd_minimum></t_rrd_minimum>
@@ -146,9 +146,9 @@
 				<t_rrd_heartbeat></t_rrd_heartbeat>
 				<rrd_heartbeat>120</rrd_heartbeat>
 				<t_data_input_field_id></t_data_input_field_id>
-				<data_input_field_id>hash_070023d2b340af5d8e63f626e99a05cc55de6f</data_input_field_id>
-			</hash_080023144614943249c20ce17c11dd0f4d6f90>
-			<hash_080023a0744ac25cac425b0cb4c0fc744a9bd2>
+				<data_input_field_id>hash_070023a96830e2615ce9c58d285f741fd2343b</data_input_field_id>
+			</hash_0800232c03a704552b08e0d3460d7e9398aad9>
+			<hash_0800230ee32d2a6357012a0e5f40c54f7d34c9>
 				<t_data_source_name></t_data_source_name>
 				<data_source_name>lwm</data_source_name>
 				<t_rrd_minimum></t_rrd_minimum>
@@ -160,23 +160,9 @@
 				<t_rrd_heartbeat></t_rrd_heartbeat>
 				<rrd_heartbeat>120</rrd_heartbeat>
 				<t_data_input_field_id></t_data_input_field_id>
-				<data_input_field_id>hash_0700236f1c501e3a75cc4ddd56db5abf86a77b</data_input_field_id>
-			</hash_080023a0744ac25cac425b0cb4c0fc744a9bd2>
-			<hash_080023be45521a4eef12ec018a01f4dccf3595>
-				<t_data_source_name></t_data_source_name>
-				<data_source_name>variance</data_source_name>
-				<t_rrd_minimum></t_rrd_minimum>
-				<rrd_minimum>0</rrd_minimum>
-				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>U</rrd_maximum>
-				<t_data_source_type_id></t_data_source_type_id>
-				<data_source_type_id>1</data_source_type_id>
-				<t_rrd_heartbeat></t_rrd_heartbeat>
-				<rrd_heartbeat>120</rrd_heartbeat>
-				<t_data_input_field_id></t_data_input_field_id>
-				<data_input_field_id>hash_0700239bdd64a98baf80d8b867e75d15102e7d</data_input_field_id>
-			</hash_080023be45521a4eef12ec018a01f4dccf3595>
-			<hash_080023aa26dbca918530cf695a9fa9243d8651>
+				<data_input_field_id>hash_0700234fd50b1d0ce95d013d04fba9facd09de</data_input_field_id>
+			</hash_0800230ee32d2a6357012a0e5f40c54f7d34c9>
+			<hash_0800234dfd7952184da7db44f94ab8233590da>
 				<t_data_source_name></t_data_source_name>
 				<data_source_name>mean</data_source_name>
 				<t_rrd_minimum></t_rrd_minimum>
@@ -188,54 +174,37 @@
 				<t_rrd_heartbeat></t_rrd_heartbeat>
 				<rrd_heartbeat>120</rrd_heartbeat>
 				<t_data_input_field_id></t_data_input_field_id>
-				<data_input_field_id>hash_0700236e3610cc342682d6d4e4d0d485376880</data_input_field_id>
-			</hash_080023aa26dbca918530cf695a9fa9243d8651>
+				<data_input_field_id>hash_07002308924fa7c8977c34805a87364b978c5e</data_input_field_id>
+			</hash_0800234dfd7952184da7db44f94ab8233590da>
+			<hash_0800235bd8f8649688e02fbbfdd4c8621ac00d>
+				<t_data_source_name></t_data_source_name>
+				<data_source_name>variance</data_source_name>
+				<t_rrd_minimum></t_rrd_minimum>
+				<rrd_minimum>0</rrd_minimum>
+				<t_rrd_maximum></t_rrd_maximum>
+				<rrd_maximum>U</rrd_maximum>
+				<t_data_source_type_id></t_data_source_type_id>
+				<data_source_type_id>1</data_source_type_id>
+				<t_rrd_heartbeat></t_rrd_heartbeat>
+				<rrd_heartbeat>120</rrd_heartbeat>
+				<t_data_input_field_id></t_data_input_field_id>
+				<data_input_field_id>hash_070023d5f434049931b70342dbc0eac4c6c6ae</data_input_field_id>
+			</hash_0800235bd8f8649688e02fbbfdd4c8621ac00d>
 		</items>
 		<data>
+			<item_000>
+				<data_input_field_id>hash_070023f4c2a3352591793bb67ebd0c4f259f9e</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_000>
 		</data>
-	</hash_010023388f3120b74237115d29e586847a39e7>
-	<hash_030023f4061f5c9459f0892545f9ff74bc80e2>
-		<name>Latency</name>
+	</hash_010023aa6900d17838bd0cc4c6394bad7e4d7d>
+	<hash_030023b4124d06342cabe58defe1447f1dc3d5>
+		<name>Sprout Latency</name>
 		<type_id>1</type_id>
-		<input_string>/bin/bash -c &#039;echo $(/home/ubuntu/sprout/scripts/stats/bin/cw_stat &lt;ip&gt; latency_us)&#039;</input_string>
+		<input_string>/bin/bash -c &#039;echo $(/home/ubuntu/cpp-common/scripts/stats/bin/cw_stat &lt;ip&gt; 6666 latency_us)&#039;</input_string>
 		<fields>
-			<hash_0700236e3610cc342682d6d4e4d0d485376880>
-				<name>Mean (microseconds)</name>
-				<update_rra>on</update_rra>
-				<regexp_match></regexp_match>
-				<allow_nulls></allow_nulls>
-				<type_code></type_code>
-				<input_output>out</input_output>
-				<data_name>mean</data_name>
-			</hash_0700236e3610cc342682d6d4e4d0d485376880>
-			<hash_0700239bdd64a98baf80d8b867e75d15102e7d>
-				<name>Variance (microseconds squared)</name>
-				<update_rra>on</update_rra>
-				<regexp_match></regexp_match>
-				<allow_nulls></allow_nulls>
-				<type_code></type_code>
-				<input_output>out</input_output>
-				<data_name>variance</data_name>
-			</hash_0700239bdd64a98baf80d8b867e75d15102e7d>
-			<hash_0700236f1c501e3a75cc4ddd56db5abf86a77b>
-				<name>Low-water mark (microseconds)</name>
-				<update_rra>on</update_rra>
-				<regexp_match></regexp_match>
-				<allow_nulls></allow_nulls>
-				<type_code></type_code>
-				<input_output>out</input_output>
-				<data_name>lwm</data_name>
-			</hash_0700236f1c501e3a75cc4ddd56db5abf86a77b>
-			<hash_070023d2b340af5d8e63f626e99a05cc55de6f>
-				<name>High-water mark (microseconds)</name>
-				<update_rra>on</update_rra>
-				<regexp_match></regexp_match>
-				<allow_nulls></allow_nulls>
-				<type_code></type_code>
-				<input_output>out</input_output>
-				<data_name>hwm</data_name>
-			</hash_070023d2b340af5d8e63f626e99a05cc55de6f>
-			<hash_070023daf484fb483b2d6604273c64d150f5e3>
+			<hash_070023f4c2a3352591793bb67ebd0c4f259f9e>
 				<name>Management IP</name>
 				<update_rra></update_rra>
 				<regexp_match></regexp_match>
@@ -243,9 +212,45 @@
 				<type_code>hostname</type_code>
 				<input_output>in</input_output>
 				<data_name>ip</data_name>
-			</hash_070023daf484fb483b2d6604273c64d150f5e3>
+			</hash_070023f4c2a3352591793bb67ebd0c4f259f9e>
+			<hash_070023a96830e2615ce9c58d285f741fd2343b>
+				<name>High-water mark (microseconds)</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>hwm</data_name>
+			</hash_070023a96830e2615ce9c58d285f741fd2343b>
+			<hash_0700234fd50b1d0ce95d013d04fba9facd09de>
+				<name>Low-water mark (microseconds)</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>lwm</data_name>
+			</hash_0700234fd50b1d0ce95d013d04fba9facd09de>
+			<hash_07002308924fa7c8977c34805a87364b978c5e>
+				<name>Mean (microseconds)</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>mean</data_name>
+			</hash_07002308924fa7c8977c34805a87364b978c5e>
+			<hash_070023d5f434049931b70342dbc0eac4c6c6ae>
+				<name>Variance (microseconds squared)</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>variance</data_name>
+			</hash_070023d5f434049931b70342dbc0eac4c6c6ae>
 		</fields>
-	</hash_030023f4061f5c9459f0892545f9ff74bc80e2>
+	</hash_030023b4124d06342cabe58defe1447f1dc3d5>
 	<hash_150023283ea2bf1634d92ce081ec82a634f513>
 		<name>Hourly (1 Minute Average)</name>
 		<x_files_factor>0.5</x_files_factor>
