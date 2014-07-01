@@ -2,8 +2,8 @@ This document describes all the Clearwater configuration options that can be set
 
 To change one of these settings:
 * Modify the configuration file
-* Run "sudo service clearwater-infrastructure restart" to regenerate any dependent configuration files
-* Restart the relevant Clearwater service (e.g. "sudo monit restart bono")
+* Run `sudo service clearwater-infrastructure restart` to regenerate any dependent configuration files
+* Restart the relevant Clearwater service (e.g. `sudo monit restart bono`)
 
 ## Core options
 
