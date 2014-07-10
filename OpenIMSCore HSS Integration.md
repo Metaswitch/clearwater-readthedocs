@@ -17,7 +17,7 @@ If you have a deployment environment created by following the [automated install
 To install OpenIMSCore HSS,
 
 1.  follow the "FHoSS"-related steps in the Quick Install section of the full
-    [OpenIMSCore Installation Guide](http://www.openimscore.org/installation_guide)
+    [OpenIMSCore Installation Guide](http://www.openimscore.org/?q=installation_guide)
 2.  edit the `/opt/OpenIMSCore/FHoSS/deploy/DiameterPeerHSS.xml` file to
     1.  change the realm attribute to be your Clearwater deployment's home
         domain
@@ -25,7 +25,7 @@ To install OpenIMSCore HSS,
         IP address
 3.  follow the FHoSS-related section of the "Start the components" section of
     the
-    [OpenIMSCore Installation Guide](http://www.openimscore.org/installation_guide).
+    [OpenIMSCore Installation Guide](http://www.openimscore.org/?q=installation_guide).
 
 ## Configuration
 
