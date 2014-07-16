@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "International Cricket Captain".
+The latest stable release of Clearwater is "[Jet Set Radio](http://en.wikipedia.org/wiki/Jet_set_radio)".
 
 ## Architecture
 
