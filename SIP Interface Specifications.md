@@ -267,7 +267,7 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 
 *   User agent capabilities encoded as feature tags in Contact headers during registration ([RFC 3840](http://www.ietf.org/rfc/rfc3840.txt)) and Accept-Contact, Reject-Contact and Request-Disposition headers encode filtering rules to decide which targets subsequent request should be routed/forked to ([RFC 3841](http://www.ietf.org/rfc/rfc3841.txt)).
 *   Used for routing of requests to targets with the appropriate features/capabilities in IMS. Mandatory for proxy components.
-*   Clearwater's Sprout registrar already supports storing all feature tags, but does not yet support forarding requests based on them.
+*   Clearwater's Sprout registrar has full support for storing, matching, filtering and prioritizing bindings based on advertised capabilities and requirements as per these specifications.
 
 ### Dialstring URI parameter ([RFC 4967](http://www.ietf.org/rfc/rfc4967.txt))
 
