@@ -10,7 +10,7 @@ The relevant specifications are
 
 -   [3GPP TS 24.604](http://www.etsi.org/deliver/etsi\_ts/124600\_124699/124604/11.04.00\_60/ts\_124604v110400p.pdf)
     - the full specification
--   [GSMA PRD IR.92](http://www.gsma.com/newsroom/wp-content/uploads/2012/03/ir9250.pdf), section 2.3.8
+-   [GSMA PRD IR.92](http://www.gsma.com/newsroom/wp-content/uploads/2013/04/IR.92-v7.0.pdf), section 2.3.8
     - the required subset.
 
 We have implemented all of IR.92 section 2.3.8. We have implemented all
