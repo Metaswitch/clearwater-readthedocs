@@ -56,7 +56,7 @@ This section describes optional configuration options, particularly for ensuring
 * `enum_suffix` - determines the DNS suffix used for ENUM requests (after the digits of the number). Defaults to "e164.arpa"
 * `enum_file` - if set (to a file path), Sprout will use this local JSON file for ENUM lookups rather than a DNS server. An example file is at https://github.com/Metaswitch/clearwater-docs/wiki/ENUM#deciding-on-enum-rules.
 * `icscf_uri` - the SIP address of the external I-CSCF integrated with your Sprout node (if you have one).
-* `scscf_uri` - the SIP address of the external S-CSCF integrated with your Sprout node (if you have one).
+* `scscf_uri` - the SIP address of the Sprout S-CSCF. This defaults to `sip:$sprout_hostname:$scscf;transport=TCP` - this includes a specific port, so if you need NAPTR/SRV resolution, it must be changed to not include the port.
 * `additional_home_domains` - this option defines a set of home domains which Sprout and Bono will regard as locally hosted (i.e. allowing users to register, not routing calls via an external trunk). It is a comma-separated list.
 * `hss_realm` - this sets the realm of your external HSS. When this field is set, Homestead will then attempt to set up multiple Diameter connections.
 * `billing_realm` - this sets the Destination-Realm on Diameter messages to your external CDR. CDR connections are not based on this but on configuration at the P-CSCF (which sets the P-Charging-Function-Addresses header).
