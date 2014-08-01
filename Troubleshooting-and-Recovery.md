@@ -58,8 +58,6 @@ If you see bono dying/restarting with no apparent cause in `/var/log/bono/bono*.
 
 ## Ralf
 
-_In the "CounterStrike" release, an early version of Ralf was included for integration with orchestration platforms and so users could get started with spinning up Ralf nodes.  This version will not attempt to connect to a CDF or to generate any billing records.  The functional changes required in Sprout and Bono to actually trigger billing records to be produced will arrive in the next release._
-
 Ralf logs to `/var/log/ralf/ralf*.txt`.  By default, it is set to log level 2, which only includes errors and very high-level events.  To enable more detailed trace, change the log level to 5 by writing `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), and then restarting ralf.
 
 If you see Ralf dying/restarting with no apparent cause in `/var/log/ralf/ralf*.txt`, check `/var/log/monit.log` and `/var/log/syslog` around that time - these can sometimes give clues as to the cause. 
