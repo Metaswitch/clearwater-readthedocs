@@ -162,13 +162,15 @@ Install the Sprout package with:
 
 Install the Homer and Cassandra packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra homer --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install homer --yes
 
 ### Homestead
 
 Install the Homestead and Cassandra packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra homestead homestead-prov --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead homestead-prov --yes
 
 ### Ralf
 
