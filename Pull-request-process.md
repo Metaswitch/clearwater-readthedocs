@@ -1,4 +1,4 @@
-Each component/repository (with a few exceptions) has 2 main branches, <strong>dev</strong>and <strong>master</strong>. Whenever a commit is pushed to the <strong>dev</strong>branch, Jenkins will automatically run the unit tests for the repository and if they pass, merge into <strong>master</strong>.
+Each component/repository (with a few exceptions) has 2 main branches, <strong>dev</strong> and <strong>master</strong>. Whenever a commit is pushed to the <strong>dev</strong>branch, Jenkins will automatically run the unit tests for the repository and if they pass, merge into <strong>master</strong>.
 
 <strong>Features or any changes to the codebase should be done as follows:</strong>
 
