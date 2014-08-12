@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Katamari Damacy](http://en.wikipedia.org/wiki/Katamari_Damacy)".
+The latest stable release of Clearwater is "[Lemmings](http://en.wikipedia.org/wiki/Lemmings_%28video_game%29)".
 
 ## Architecture
 
