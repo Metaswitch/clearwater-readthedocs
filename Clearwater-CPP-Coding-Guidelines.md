@@ -32,7 +32,7 @@ if (x)
 }
 ```
 
-It's possible to fix up some code automatically using [astyle](http://astyle.sourceforge.net/)and in particular the options `astyle --style=ansi -s2 -M80 -O -G -k1 -j -o`. This fixes up a lot of the most common errors (brace style, indentation, overly long lines), but isn't perfect - there are some cases where breaking the rules makes the code clearer, and some edge cases (e.g. around switch statements and casts on multiple lines) where our style doesn't always match astyle's.
+It's possible to fix up some code automatically using [astyle](http://astyle.sourceforge.net/), with the options `astyle --style=ansi -s2 -M80 -O -G -k1 -j -o`. This fixes up a lot of the most common errors (brace style, indentation, overly long lines), but isn't perfect - there are some cases where breaking the rules makes the code clearer, and some edge cases (e.g. around switch statements and casts on multiple lines) where our style doesn't always match astyle's.
 
 ## Language Features
 * Use of the `auto` keyword is forbidden.
