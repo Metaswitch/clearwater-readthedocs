@@ -13,7 +13,7 @@
 *   Avoid using Boost (or similar) libraries that return special library-specific pointers, to minimize "infection" of the code-base.  Consider using the C++11 equivalents instead.
 
 ## Formatting
-C++ code contributed to Clearwater should be formatted consistently using [astyle](http://astyle.sourceforge.net/). The particular options we use for Clearwater code are `astyle --style=ansi -s2 -M80 -O -S -G -k1 -j`. This enforces the following conventions:
+C++ code contributed to Clearwater should be formatted according to the following conventions:
 * Braces on a separate line from function definitions, `if` statements, etc.
 * Two-space indentation
 * Pointer operators attached to the variable type (i.e. `int* foo` rather than `int *foo`)
@@ -31,6 +31,8 @@ if (x)
  int* foo = do_something();
 }
 ```
+
+It's possible to fix up some code automatically using [astyle](http://astyle.sourceforge.net/)and in particular the options `astyle --style=ansi -s2 -M80 -O -G -k1 -j -o`. This fixes up a lot of the most common errors (brace style, indentation, overly long lines), but isn't perfect - there are some cases where breaking the rules makes the code clearer, and some edge cases (e.g. around switch statements and casts on multiple lines) where our style doesn't always match astyle's.
 
 ## Language Features
 * Use of the `auto` keyword is forbidden.
