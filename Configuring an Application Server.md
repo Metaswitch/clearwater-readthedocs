@@ -86,7 +86,15 @@ Be careful - the user must be *exactly* right, including the `sip:` prefix, and 
 
 To retrieve the current configuration, invoke `curl` as follows. You must be able to access $hs_hostname; check your firewall configuration.
 
-    curl http://$hs_hostname/filtercriteria/$user
+    curl http://$hs_hostname:8889/public/$user/service_profile
+
+This will return a 303 if the user exists, with the service profile URL in the Location header, e.g. 
+
+    Location: /irs/<irs-uuid>/service_profiles/<service-profile-uuid>
+
+Then invoke `curl` as follows, using the values from the Location header retrieved above:
+
+    curl http://$hs_hostname:8889/irs/<irs-uuid>/service_profiles/<service-profile-uuid>/filter_criteria
 
 To update the configuration, invoke `curl` as follows.  The first stage builds the new XML document and the second pushes it to the server.
 
@@ -117,6 +125,6 @@ To update the configuration, invoke `curl` as follows.  The first stage builds t
     cat <<EOF
     </ServiceProfile>
     EOF
-    } | curl -X PUT http://$hs_hostname/filtercriteria/$user --data-binary @-
+    } | curl -X PUT http://$hs_hostname:8889/irs/<irs-uuid>/service_profiles/<service-profile-uuid>/filter_criteria --data-binary @-
 
 The subscriber will now have the desired configuration. You can confirm this by running the retrieval command again.
