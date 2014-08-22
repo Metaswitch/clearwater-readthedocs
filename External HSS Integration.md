@@ -1,6 +1,6 @@
 # External HSS Integration
 
-All Clearwater deployments include a [Homestead](https://github.com/Metaswitch/crest) cluster.  Homestead presents an HTTP REST-ful [interface](https://github.com/Metaswitch/crest/blob/dev/docs/homestead_api.md) to HSS data.  This HSS data can be stored in either
+All Clearwater deployments include a [Homestead](https://github.com/Metaswitch/crest) cluster.  Homestead presents an HTTP REST-ful [interface](https://github.com/Metaswitch/homestead/blob/dev/docs/homestead_api.md) to HSS data.  This HSS data can be stored in either
 
 *   a Cassandra database located on the Homestead cluster
 *   an external HSS, accessible over a standard IMS [Cx/Diameter](http://www.3gpp.org/ftp/Specs/html-info/29228.htm) interface.
@@ -47,21 +47,31 @@ Do not configure any Clearwater subscribers via Ellis!
 To enable external HSS support, for each of your Homestead nodes,
 
 1.  log in over ssh
+
 2.  edit the file
     `/etc/clearwater/config`
+
 3.  find the block (or add it if it does not exist)
-```
-# HSS configuration
-hss_hostname=0.0.0.0
-hss_port=3868
-```
+
+    ```
+    # HSS configuration
+    hss_hostname=0.0.0.0
+    hss_port=3868
+    ```
+
 4.  Modify it to read
-```
-# HSS configuration
-hss_hostname=<address of your HSS>
-hss_port=<port of your HSS's Cx interface>
-```
-5.  save the file and exit the editor
+
+    ```
+    # HSS configuration
+    hss_hostname=<address of your HSS>
+    hss_realm=<realm your HSS is located in>
+    hss_port=<port of your HSS's Cx interface>
+    ```
+
+    Both hss_hostname and hss_realm are optional. If a realm is configured, homestead will try NAPTR/SRV resolution on the realm to find and connect to (2 by default) diameter peers in the realm. If a hostname is also configured, this will be used in the Destination-Host field on the diameter messages, so that the messages will be routed to that host. If just a hostname is configured, homestead will just attempt to create and maintain a single connection to that host.
+
+5.  save the file and exit the editor.
+
 6.  run `sudo service clearwater-infrastructure restart; sudo monit restart homestead` to reload the config and restart Homestead.
 
 ### Configuring your external HSS
