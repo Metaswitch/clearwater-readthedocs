@@ -40,6 +40,7 @@ This section describes optional configuration options, particularly for ensuring
 * `sas_server` - the IP address or hostname of your Metaswitch Service Assurance Server for call logging and troubleshooting. Optional.
 * `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
 * `reg_max_expires` - determines the maximum expires= parameter Sprout will set on Contact headers at registrations, and therefore the amount of time before a UE has to re-register.
+* `sub_max_expires` - determines the maximum Expires header Sprout will set in subscription responses, and therefore the amount of time before a UE has to re-subscribe. 
 * `upstream_hostname` - the I-CSCF which Bono should pass requests to. Defaults to the sprout_hostname.
 * `upstream_port` - the port on the I-CSCF which Bono should pass requests to. Defaults to 5052.
 * `sprout_rr_level` - this determines how the Sprout S-CSCF adds Record-Route headers. Possible values are:
