@@ -3,6 +3,7 @@
 This document is a review of all the SIP related RFCs referenced by IMS (in particular [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm) [Rel 10](http://www.etsi.org/deliver/etsi_ts/124200_124299/124229/10.10.00_60/ts_124229v101000p.pdf)), particularly how they relate to Clearwater's SIP support.  The bulk of the document goes through the RFCs grouped in the following 4 categories.
 
 *   RFCs already supported by Clearwater (at least sufficient for IMS compliance for Clearwater as a combined P/I/S-CSCF/BGCF/IBCF).
+*   RFCs partially supported by Clearwater.
 *   RFCs that are relevant to Clearwater but not currently supported.
 *   RFCs relevant to media processing, which Clearwater doesn't currently need to handle as it is not involved in the media path.
 *   RFCs that are not relevant to Clearwater.
@@ -71,7 +72,7 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 ### Call transfer, multiparty call control (REFER method and related headers) ([RFC 3515](http://www.ietf.org/rfc/rfc3515.txt), [RFC 3891](http://www.ietf.org/rfc/rfc3891.txt), [RFC 3892](http://www.ietf.org/rfc/rfc3892.txt), [RFC 3911](http://www.ietf.org/rfc/rfc3911.txt))
 
 *   Covers REFER method, Refer-To header and event packages for transferring referral state ([RFC 3515](http://www.ietf.org/rfc/rfc3515.txt)), Replaces header ([RFC 3891](http://www.ietf.org/rfc/rfc3891.txt)), Referred-By header ([RFC 3892](http://www.ietf.org/rfc/rfc3892.txt)), Join header ([RFC 3911](http://www.ietf.org/rfc/rfc3911.txt)), Refer-Sub header ([RFC 4488](http://www.ietf.org/rfc/rfc4488.txt)), and the Target-Dialog header ([RFC 4538](http://www.ietf.org/rfc/rfc4538.txt)).
-*   Transparent to proxies, so supported by Clearwater - although needs support for GRUUs (see below) to work in all use cases.
+*   Transparent to proxies, so supported by Clearwater - although needs support for GRUUs (introduced in the Ninja Gaiden release) to work in all use cases.
 
 ### Service-Route header ([RFC 3608](http://www.ietf.org/rfc/rfc3608.txt))
 
@@ -265,6 +266,21 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   Used for routing of requests to targets with the appropriate features/capabilities in IMS. Mandatory for proxy components.
 *   Clearwater's Sprout registrar has full support for storing, matching, filtering and prioritizing bindings based on advertised capabilities and requirements as per these specifications.
 
+## Relevant to Clearwater and partially supported
+
+### GRUUs ([RFC 5627](http://www.ietf.org/rfc/rfc5627.txt), plus [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt), [draft-montemurro-gsma-imei-urn-11](http://datatracker.ietf.org/doc/draft-montemurro-gsma-imei-urn/) and [draft-atarius-device-id-meid-urn-01](http://datatracker.ietf.org/doc/draft-atarius-device-id-meid-urn/))
+
+*   [RFC 5627](http://www.ietf.org/rfc/rfc5627.txt) defines mechanisms to assign and propagate a Globally-Routeable User Agent URI for each client that registers with the SIP network.  A GRUU identifies a specific user agent rather than a SIP user, and is routeable from anywhere in the internet.  GRUUs are intended to be used in scenarios like call transfer where URIs are required for individual user agents to ensure the service operates correctly.  Standard Contact headers would seem to do the job in many cases but don't satisfy the globally routeable requirement in all cases, for example where the client is behind certain types of NAT.
+*   Assignment and use of GRUUs is mandatory for S-CSCF and UEs in an IMS network. [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt), [draft-montemurro-gsma-imei-urn-11](http://datatracker.ietf.org/doc/draft-montemurro-gsma-imei-urn/) and [draft-atarius-device-id-meid-urn-01](http://datatracker.ietf.org/doc/draft-atarius-device-id-meid-urn/) are referenced from the sections of [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm) that discuss exactly how GRUUs should be constructed.
+*   Clearwater supports assigning and routing on public GRUUs as of the Ninja Gaiden release. It does not support temporary GRUUs.
+*   The Blink softphone client can be used to test this, as it provides the +sip.instance parameter needed for GRUU support.
+
+### Registration event package for GRUUs ([RFC 5628](http://www.ietf.org/rfc/rfc5628.txt))
+
+*   Defines an extension to the [RFC 3680](http://www.ietf.org/rfc/rfc3680.txt) registration event package to include GRUUs.
+*   Mandatory on S-CSCF and UEs in an IMS network.
+*   Clearwater includes public GRUUs in these event notifications as of the Ninja Gaiden release. It does not support temporary GRUUs.
+
 ## Relevant to Clearwater but not currently supported
 
 These are the RFCs which are relevant to Clearwater and not yet supported.
@@ -284,18 +300,6 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 *   If P-CSCF is gating media then function is more complex as P-CSCF has to operate on values in P-Early-Media headers sent to/from UEs.
 *   Mandatory in a P-CSCF according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
 *   Clearwater doesn't currently support this.
-
-### GRUUs ([RFC 5627](http://www.ietf.org/rfc/rfc5627.txt), plus [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt), [draft-montemurro-gsma-imei-urn-11](http://datatracker.ietf.org/doc/draft-montemurro-gsma-imei-urn/) and [draft-atarius-device-id-meid-urn-01](http://datatracker.ietf.org/doc/draft-atarius-device-id-meid-urn/))
-
-*   [RFC 5627](http://www.ietf.org/rfc/rfc5627.txt) defines mechanisms to assign and propagate a Globally-Routeable User Agent URI for each client that registers with the SIP network.  A GRUU identifies a specific user agent rather than a SIP user, and is routeable from anywhere in the internet.  GRUUs are intended to be used in scenarios like call transfer where URIs are required for individual user agents to ensure the service operates correctly.  Standard Contact headers would seem to do the job in many cases but don't satisfy the globally routeable requirement in all cases, for example where the client is behind certain types of NAT.
-*   Assignment and use of GRUUs is mandatory for S-CSCF and UEs in an IMS network. [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt), [draft-montemurro-gsma-imei-urn-11](http://datatracker.ietf.org/doc/draft-montemurro-gsma-imei-urn/) and [draft-atarius-device-id-meid-urn-01](http://datatracker.ietf.org/doc/draft-atarius-device-id-meid-urn/) are referenced from the sections of [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm) that discuss exactly how GRUUs should be constructed.
-*   Clearwater currently does not support GRUUs.
-
-### Registration event package for GRUUs ([RFC 5628](http://www.ietf.org/rfc/rfc5628.txt))
-
-*   Defines an extension to the [RFC 3680](http://www.ietf.org/rfc/rfc3680.txt) registration event package to include GRUUs.
-*   Mandatory on S-CSCF and UEs in an IMS network.
-*   Clearwater does not currently support GRUUs.
 
 ### Alternative URIs ([RFC 2806](http://www.ietf.org/rfc/rfc2806.txt), [RFC 2368](http://www.ietf.org/rfc/rfc2368.txt), [RFC 3859](http://www.ietf.org/rfc/rfc3859.txt), [RFC 3860](http://www.ietf.org/rfc/rfc3860.txt), [RFC 3966](http://www.ietf.org/rfc/rfc3966.txt))
 
