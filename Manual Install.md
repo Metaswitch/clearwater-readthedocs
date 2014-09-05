@@ -300,3 +300,5 @@ Ralf also makes use of the Chronos timer service cluster.  To ensure that the Ra
 Gemini and Memento can run integrated into the Sprout nodes, or they can be run as standalone application servers.
 
 To install Gemini or Memento as a standalone server, follow the same process as installing a Sprout node. Make sure not to cluster the new standalone Sprout nodes with the existing Sprout nodes, and don't add them to the existing Sprout DNS cluster.
+
+The `sprout_hostname` setting in `/etc/clearwater/config` on standalone application servers should be set to the cluster of the standalone application servers, for example, `memento.cw-ngv.com`. 
