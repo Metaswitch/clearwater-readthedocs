@@ -16,7 +16,7 @@ To run Bono, Sprout or Homestead under valgrind (the example commands assume you
 
 -  change to a the /etc/clearwater directory
 
--  set up the library path (`export LD_LIBRARY_PATH=/usr/share/clearwater/lib`)
+-  set up the library path (`export LD_LIBRARY_PATH=/usr/share/clearwater/sprout/lib:$LD_LIBRARY_PATH`)
 
 -  run the executable under valgrind, enabling the appropriate valgrind options - for example, to use massif to monitor the Sprout heap `valgrind --tools=massif --massif-out-file=/var/log/sprout/massif.out.%p /usr/share/clearwater/bin/sprout <parameters>` (the --massif-out-file option is required to ensure the output is written to a directory where the sprout user has write permission).
 
