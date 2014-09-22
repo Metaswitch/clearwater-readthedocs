@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Ninja Gaiden](http://en.wikipedia.org/wiki/Ninja_Gaiden)".
+The latest stable release of Clearwater is "Omar Sharif Bridge".
 
 ## Architecture
 
