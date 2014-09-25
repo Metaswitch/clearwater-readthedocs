@@ -301,3 +301,11 @@ Either way, you must
 *   run `service dnsmasq restart`.
 
 (As background, [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) is a DNS forwarder that runs on each Clearwater node to act as a cache.  Local processes look in `/etc/resolv.conf` for DNS configuration, and this points them to localhost, where dnsmasq runs.  In turn, dnsmasq takes its configuration from `/etc/dnsmasq.resolv.conf`.  By default, dnsmasq would use `/var/run/dnsmasq/resolv.conf`, but this is controlled by DHCP.)
+
+### IPv6 AAAA DNS lookups
+
+Clearwater can be installed on an IPv4-only system, an IPv6-only system, or a system with both IPv4 and IPv6 addresses (though the Clearwater software does not use both IPv4 and IPv6 at the same time).
+
+Normally, systems with both IPv4 and IPv6 addresses will prefer IPv6, performing AAAA lookups first and only trying an A record lookup if that fails. This may cause problems (or be inefficient) if you know that all your Clearwater DNS records are A records.
+
+In this case, you can configure a preference for A lookups by editing `/etc/gai.conf` and commenting out the line `precedence ::ffff:0:0/96 100` (as described at http://askubuntu.com/questions/32298/prefer-a-ipv4-dns-lookups-before-aaaaipv6-lookups).
