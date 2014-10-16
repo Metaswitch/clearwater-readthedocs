@@ -17,7 +17,7 @@ They also need the following ports open to the world (`0.0.0.0/0`):
 
 If your deployment uses monitoring software ([cacti](http://www.cacti.net/) or [m/monit](http://mmonit.com/) for example), each node will also have to open appropriate ports for those services.
 
-* SNMP (for cacti)
+* SNMP (e.g. for cacti)
 
         UDP/161-162
 
@@ -50,7 +50,7 @@ All-in-one nodes need the following ports opened to the world
 
         UDP/32768-65535
 
-* Statistics interface:
+* 0MQ statistics interface:
       
         TCP/6665
         TCP/6666
@@ -86,7 +86,7 @@ The Bono nodes need the following ports opened to the world:
 
         UDP/32768-65535
 
-* Statistics interface:
+* 0MQ statistics interface:
 
         TCP/6669
 
@@ -130,7 +130,7 @@ They also need the following ports opened to all homestead nodes:
 
 They also need the following ports opened to the world:
 
-* Statistics interface:
+* 0MQ statistics interface:
 
         TCP/6666
 
@@ -162,7 +162,7 @@ They also need the following ports opened to all other Homestead nodes:
 
 They also need the following ports opened to the world:
 
-* Statistics interface:
+* 0MQ statistics interface:
 
         TCP/6667
         TCP/6668
@@ -184,7 +184,7 @@ They also need the following ports opened to all other Homer nodes:
 
 They also need the following ports opened to the world:
 
-* Statistics interface:
+* 0MQ statistics interface:
 
         TCP/6665
 
@@ -208,7 +208,7 @@ They also need to following ports open to all other Ralf nodes:
 
 They also need the following ports opened to the world:
 
-* Statistics interface:
+* 0MQ statistics interface:
 
         TCP/6664
 
