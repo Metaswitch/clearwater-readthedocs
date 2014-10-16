@@ -158,7 +158,6 @@ They also need the following ports opened to all other Homestead nodes:
 * Cassandra:
 
         TCP/7000
-        TCP/9160
 
 They also need the following ports opened to the world:
 
@@ -180,7 +179,6 @@ They also need the following ports opened to all other Homer nodes:
 * Cassandra:
 
         TCP/7000
-        TCP/9160
 
 They also need the following ports opened to the world:
 
