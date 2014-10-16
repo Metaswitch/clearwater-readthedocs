@@ -1,6 +1,6 @@
 # Backups
 
-Within a Clearwater deployment, ellis, homestead and homer all store persistent data.  (Bono and sprout do not.)  To prevent data loss in disaster scenarios, ellis, homestead and homer all have data backup and restore mechanisms.  Specifically, all support
+Within a Clearwater deployment, ellis, homestead, homer and memento all store persistent data.  (Bono and sprout do not.)  To prevent data loss in disaster scenarios, ellis, homestead, homer and memento all have data backup and restore mechanisms.  Specifically, all support
 
 *   manual backup
 *   periodic automated local backup
@@ -17,7 +17,7 @@ Note that if your Clearwater deployment is [integrated with an external HSS](htt
 
 ## Listing Backups
 
-The process for listing backups varies between ellis, homestead and homer.
+The process for listing backups varies between ellis and homestead, homer and memento.
 
 ### Ellis
 
@@ -29,14 +29,15 @@ To list the backups that have been taken on ellis, run `sudo /usr/share/clearwat
     1372294621  /usr/share/clearwater/ellis/backup/backups/1372294621
     1372294561  /usr/share/clearwater/ellis/backup/backups/1372294561
 
-### Homestead and Homer
+### Homestead, Homer and Memento
 
-Homestead actually contains two databases (`homestead_provisioning` and `homestead_cache`) and these must be backed up together.  This is why there are two commands for each homestead operation.  Homer only contains one database and so there is only one command for each operation.
+Homestead actually contains two databases (`homestead_provisioning` and `homestead_cache`) and these must be backed up together.  This is why there are two commands for each homestead operation.  Homer and memento only contain one database and so there is only one command for each operation.
 
-To list the backups that have been taken on homestead or homer, run
+To list the backups that have been taken on homestead, homer or memento, run
 
-*   `sudo /usr/share/clearwater/homestead/backup/list_backups.sh homestead_provisioning` and `sudo /usr/share/clearwater/homestead/backup/list_backups.sh homestead_cache` for homestead
-*   `sudo /usr/share/clearwater/homer/backup/list_backups.sh homer` for homer.
+*   `sudo /usr/share/clearwater/bin/list_backups.sh homestead_provisioning` and `sudo /usr/share/clearwater/bin/list_backups.sh homestead_cache` for homestead
+*   `sudo /usr/share/clearwater/bin/list_backups.sh homer` for homer
+*   `sudo /usr/share/clearwater/bin/list_backups.sh memento` for memento.
 
 This produces output of the following form, listing each of the available backups.
 
@@ -48,11 +49,11 @@ This produces output of the following form, listing each of the available backup
 
 You can also specify a directory to search in for backups, e.g. for homestead:
 
-`sudo /usr/share/clearwater/homestead/backup/list_backups.sh homestead_provisioning <backup dir>`
+`sudo /usr/share/clearwater/bin/list_backups.sh homestead_provisioning <backup dir>`
 
 ## Taking a Manual Backup
 
-The process for taking a manual backup varies between ellis, homestead and homer.  Note that in all cases,
+The process for taking a manual backup varies between ellis and homestead, homer and memento.  Note that in all cases,
 
 *   the backup is stored locally and should be copied to a secure backup server to ensure resilience
 *   this process only backs up a single local node, so the same process must be run on all nodes in a cluster to ensure a complete set of backups
@@ -77,12 +78,13 @@ This file is only accessible by the root user.  To copy it to the current user's
 
 This file can, and should, be copied off the ellis node to a secure backup server.
 
-### Homestead and Homer
+### Homestead, Homer and Memento
 
-To take a manual backup on homestead or homer, run
+To take a manual backup on homestead, homer or memento, run
 
-*   `sudo /usr/share/clearwater/homestead/backup/do_backup.sh homestead_provisioning` and `sudo /usr/share/clearwater/homestead/backup/do_backup.sh homestead_cache` on homestead
-*   `sudo /usr/share/clearwater/homer/backup/do_backup.sh homer` on homer.
+*   `sudo /usr/share/clearwater/bin/do_backup.sh homestead_provisioning` and `sudo /usr/share/clearwater/bin/do_backup.sh homestead_cache` on homestead
+*   `sudo /usr/share/clearwater/bin/do_backup.sh homer` on homer
+*   `sudo /usr/share/clearwater/bin/do_backup.sh memento` on memento.
 
 This produces output of the following form, reporting the successfully-created backup.
 
@@ -97,11 +99,18 @@ Make a note of the snapshot directory - this will be referred to as `<snapshot>`
 
 The backups are only stored locally - the resulting backup is stored in `/usr/share/clearwater/homestead/backup/backups/provisioning/<snapshot>`
 
-These should be copied off the homestead or homer node to a secure backup server.  For example, from a remote location execute `scp -r ubuntu@<homestead node>:/usr/share/clearwater/homestead/backup/backups/provisioning/<snapshot> .`.
+These should be copied off the node to a secure backup server.  For example, from a remote location execute `scp -r ubuntu@<homestead node>:/usr/share/clearwater/homestead/backup/backups/provisioning/<snapshot> .`.
 
 ## Periodic Automated Local Backups
 
-Ellis, homestead and homer are all automatically configured to take daily backups, at midnight local time every night.
+Ellis, homestead, homer and memento are all automatically configured to take daily backups if you've installed them through chef, at midnight local time every night.
+
+If you want to turn this on, edit your crontab by running `sudo crontab -e` and add the following lines if not already present:
+
+*   `0 0 * * * /usr/share/clearwater/ellis/backup/do_backup.sh` on ellis
+*   `0 0 * * * /usr/share/clearwater/bin/do_backup.sh homestead_provisioning` and `5 0 * * * /usr/share/clearwater/bin/do_backup.sh homestead_cache` on homestead
+*   `0 0 * * * /usr/share/clearwater/bin/do_backup.sh homer` on homer
+*   `0 0 * * * /usr/share/clearwater/bin/do_backup.sh memento` on memento.
 
 These backups are stored locally, in the same locations as they would be generated for a manual backup.
 
@@ -111,13 +120,13 @@ There are three stages to restoring from a backup.
 
 1.  Copying the backup files to the correct location.
 2.  Running the restore backup script.
-3.  Synchronizing ellis, homestead and homer's views of the system state.
+3.  Synchronizing ellis, homestead, homer and memento's views of the system state.
 
 **This process will impact service and overwrite data in your database.**
 
 ### Copying Backup Files
 
-The first step in restoring from a backup is getting the backup files/directories into the correct locations on the ellis, homer or homestead node.
+The first step in restoring from a backup is getting the backup files/directories into the correct locations on the ellis, homer, homestead or memento node.
 
 If you are restoring from a backup that was taken on the node on which you are restoring (and haven't moved it), you can just move onto the next step.
 
@@ -130,15 +139,16 @@ On ellis, run the following commands.
     sudo mkdir -p /usr/share/clearwater/ellis/backup/backups/$snapshot
     sudo mv ~/backup/$snapshot/db_backup.sql /usr/share/clearwater/ellis/backup/backups/$snapshot
 
-On homestead/homer there is no need to further move the files as the backup script takes a optional backup directory parameter.
+On homestead/homer/memento there is no need to further move the files as the backup script takes a optional backup directory parameter.
 
 ### Running the Restore Backup Script
 
 To actually restore from the backup file, run
 
 *   `sudo /usr/share/clearwater/ellis/backup/restore_backup.sh <snapshot>` on ellis
-*   `sudo /usr/share/clearwater/homestead/backup/restore_backup.sh homestead_provisioning <snapshot> ~/backup` and `sudo /usr/share/clearwater/homestead/backup/restore_backup.sh homestead_cache <snapshot> ~/backup` on homestead
-*   `sudo /usr/share/clearwater/homer/backup/restore_backup.sh homer <snapshot> ~/backup` on homer.
+*   `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_provisioning <snapshot> ~/backup` and `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_cache <snapshot> ~/backup` on homestead
+*   `sudo /usr/share/clearwater/bin/restore_backup.sh homer <snapshot> ~/backup` on homer
+*   `sudo /usr/share/clearwater/bin/restore_backup.sh memento <snapshot> ~/backup` on memento.
 
 Ellis will produce output of the following form.
 
@@ -155,7 +165,7 @@ Ellis will produce output of the following form.
     /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
     --------------
 
-Homestead or homer will produce output of the following form.
+Homestead, homer or mememnto will produce output of the following form.
 
     Will attempt to backup from backup 1372336442947
     Will attempt to backup from directory /home/ubuntu/bkp_test/
