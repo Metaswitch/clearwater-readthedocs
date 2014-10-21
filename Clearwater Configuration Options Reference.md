@@ -64,15 +64,25 @@ This section describes optional configuration options, particularly for ensuring
 * `billing_realm` - this sets the Destination-Realm on Diameter messages to your external CDR. CDR connections are not based on this but on configuration at the P-CSCF (which sets the P-Charging-Function-Addresses header).
 * `diameter_timeout_ms` - determines the number of milliseconds Homestead will wait for a response from the HSS before failing a request. Defaults to 200. `
 * `max_peers` - determines the maximum number of Diameter peers which Ralf or Homestead can have open connections to at the same time.
-* `num_http_threads` (Ralf) - determines the number of HTTP worker threads that will be used to process requests. Defaults to 50 times the number of CPU cores on the system. Note that for Homestead, this can only be set in /etc/clearwater/user_settings.
+* `num_http_threads` (Ralf/Memento) - determines the number of threads that will be used to process HTTP requests. For Memento this defaults to the number of CPU cores on the system. For Ralf it defaults to 50 times the number of CPU cores (Memento and Ralf use different threading models, hence the different defaults). Note that for Homestead, this can only be set in /etc/clearwater/user_settings.
+* `num_http_worker_threads` - determines the number of threads that will be used to process HTTP requests once they have been parsed. Only used by Memento. 
 * `ralf_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages Ralf sends. Defaults to public_hostname (with some formatting changes if public_hostname is an IPv6 address).
 * `hs_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages Homestead sends. Defaults to public_hostname (with some formatting changes if public_hostname is an IPv6 address).
 * `gemini_enabled` - When this field is set to 'Y', then the node (either a Sprout or a standalone application server) will include a Gemini AS. 
 * `memento_enabled` - When this field is set to 'Y', then the node (either a Sprout or a standalone application server) will include a Memento AS. 
 * `max_call_list_length` - determines the maximum number of complete calls a subscriber can have in the call list store. This defaults to no limit. This is only relevant if the node includes a Memento AS.
 * `call_list_store_ttl` - determines how long each call list fragment should be kept in the call list store. This defaults to 604800 seconds (1 week). This is only relevant if the node includes a Memento AS.
+* `memento_disk_limit` - determines the maximum size that the call lists database may occupy. This defaults to 20% of disk space. This is only relevant if the node includes a Memento AS. Can be specified in Bytes, Kilobytes, Megabytes, Gigabytes, or a percentage of the available disk. For example:
+
+```
+memento_disk_limit=10240 # Bytes  
+memento_disk_limit=100k  # Kilobytes  
+memento_disk_limit=100M  # Megabytes  
+memento_disk_limit=100G  # Gigabytes  
+memento_disk_limit=45%   # Percentage of available disk
+```
+
 * `memento_threads` - determines the number of threads dedicated to adding call list fragments to the call list store. This defaults to 25 threads. This is only relevant if the node includes a Memento AS.
-* `memento_disk_limit` - determines the maximum size that the call lists database may occupy. This defaults to 20% of disk space. This is only relevant if the node includes a Memento AS.
 
 ## Experimental options
 
