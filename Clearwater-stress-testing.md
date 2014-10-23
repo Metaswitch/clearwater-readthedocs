@@ -15,7 +15,7 @@ Each SIP stress node picks a single bono to generate traffic against.  This bono
 
 The clearwater-sip-stress package includes two important scripts.
 
-* `/etc/clearwater/scripts/sip-stress`, which generates a `/usr/share/clearwater/sip-stress/users.csv.1` file containing the list of all subscribers we should be targeting - these are calculated from properties in `/etc/clearwater/config`.
+* `/usr/share/clearwater/infrastructure/scripts/sip-stress`, which generates a `/usr/share/clearwater/sip-stress/users.csv.1` file containing the list of all subscribers we should be targeting - these are calculated from properties in `/etc/clearwater/config`.
 * `/etc/init.d/clearwater-sip-stress`, which runs `/usr/share/clearwater/bin/sip-stress`, which in turn runs SIPp specifying `/usr/share/clearwater/sip-stress/call_load2.xml` as its test script. This test script simulates a pair of subscribers registering every 5 minutes and then making a call every 30 minutes.
 
 ## Running Stress
@@ -56,6 +56,8 @@ This section describes step-by-step how to run stress.  It includes setting up a
 
 SIP stress nodes can be created manually, instead of via Chef in the process above. To do this, set the following properties in /etc/clearwater/config and install the clearwater-sip-stress Debian package:
 
+* (required) local_ip - the local IP address of this node
+* (required) home_domain - the home domain of the deployment under test
 * (optional) node_idx - the node index (defaults to 1)
 * (optional) bono_servers - a list of bono servers in this deployment
 * (optional) stress_target - the target host (defaults to the $node_idx-th entry in $bono_servers or, if there are no $bono_servers, defaults to $home_realm)
