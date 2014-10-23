@@ -32,7 +32,7 @@ The most common problem on homer and homestead is failing to read or write to th
 
 *   Check that Cassandra is clustered correctly (if running a multi-node system).  `nodetool ring` tells you which nodes are in the cluster, and how the keyspace is distributed among them.
 
-If this doesn't help, homer logs to `/var/log/homer/homer-*.log` and homestead logs to `/var/log/homestead/homestead-*.log`.
+If this doesn't help, homer logs to `/var/log/homer/homer-*.log` and homestead logs to `/var/log/homestead/homestead-*.log` and `/var/log/homestead-prov/homestead-*.log`.
 
 To examine homer or homestead's database, run `cqlsh -3` and then type `use homer;`, `use homestead_provisioning;` or `use homestead_cache` to set the correct database.  You can then issue CQL queries such as `SELECT * FROM impi WHERE private_id = '<private user ID>'`.
 
