@@ -54,7 +54,7 @@ This section describes step-by-step how to run stress.  It includes setting up a
 
 ### Manual (i.e. non-Chef) stress runs
 
-SIP stress nodes can be created manually, instead of via Chef in the process above. To do this, set the following properties in /etc/clearwater/config and install the clearwater-sip-stress Debian package:
+SIP stress nodes can be created manually, instead of via Chef in the process above. To do this, first bootstrap the node as per the [Manual Install instructions](https://github.com/Metaswitch/clearwater-docs/wiki/Manual-Install#bootstrapping-the-machines). Then set the following properties in /etc/clearwater/config and install the clearwater-sip-stress Debian package:
 
 * (required) local_ip - the local IP address of this node
 * (required) home_domain - the home domain of the deployment under test
