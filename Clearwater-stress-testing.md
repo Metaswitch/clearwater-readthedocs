@@ -20,7 +20,9 @@ The clearwater-sip-stress package includes two important scripts.
 
 ## Running Stress
 
-This section describes step-by-step how to run stress.  It includes setting up a new deployment.  It is possible to run stress against an existing deployment but you'll need to reconfigure some things so it's easier just to tear down your existing deployment and start again.
+### Using Chef
+
+This section describes step-by-step how to run stress using Chef automation.  It includes setting up a new deployment.  It is possible to run stress against an existing deployment but you'll need to reconfigure some things so it's easier just to tear down your existing deployment and start again.
 
 1.  If you haven't done so already, set up chef/knife (as described in [the install guide](https://github.com/Metaswitch/clearwater-docs/wiki/Automated%20Install)).
 2.  cd to your chef directory.
@@ -54,7 +56,11 @@ This section describes step-by-step how to run stress.  It includes setting up a
 
 ### Manual (i.e. non-Chef) stress runs
 
-SIP stress nodes can be created manually, instead of via Chef in the process above. To do this, first bootstrap the node as per the [Manual Install instructions](https://github.com/Metaswitch/clearwater-docs/wiki/Manual-Install#bootstrapping-the-machines). Then set the following properties in /etc/clearwater/config and install the clearwater-sip-stress Debian package:
+SIP stress can also be run against a deployment that has been installed manually (as per the [Manual Install instructions](https://github.com/Metaswitch/clearwater-docs/wiki/Manual-Install)).  
+
+Firstly follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision subscribers. Work out how many stress nodes you want, and create 100,000 subscribers per SIPp node.
+
+To create a new SIPp node, create a new virtual machine and [bootstrap](https://github.com/Metaswitch/clearwater-docs/wiki/Manual-Install#bootstrapping-the-machines) it. Then set the following properties in /etc/clearwater/config:
 
 * (required) local_ip - the local IP address of this node
 * (required) home_domain - the home domain of the deployment under test
@@ -63,6 +69,8 @@ SIP stress nodes can be created manually, instead of via Chef in the process abo
 * (optional) stress_target - the target host (defaults to the $node_idx-th entry in $bono_servers or, if there are no $bono_servers, defaults to $home_realm)
 * (optional) base - the base directory number (defaults to 2010000000)
 * (optional) count - the number of calls to run on this node (defaults to 50000) - note that the SIPp script simulates 2 subscribers per "call".
+
+Finally install the clearwater-sip-stress Debian package. Stress will start automatically after the package is installed. 
 
 ### Configuring UDP Stress
 
