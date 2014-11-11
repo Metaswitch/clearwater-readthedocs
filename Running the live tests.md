@@ -73,7 +73,9 @@ To run the subset of the tests that don't require PSTN interconnect to be config
 
     rake test[<domain>] SIGNUP_CODE=<code>
 
-The suite of tests will be run and the results will be printed on-screen.
+The suite of tests will be run and the results will be printed on-screen. If your deployment doesn't have DNS entries for the Bono and Ellis domain, then these can be passed to rake by adding the `PROXY` and `ELLIS` parameters, e.g.
+
+    rake test[<domain>] SIGNUP_CODE=<code> PROXY=<Bono domain> ELLIS=<Ellis domain>
 
 ## PSTN testing
 
