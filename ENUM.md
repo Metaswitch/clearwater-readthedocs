@@ -404,3 +404,5 @@ To enable ENUM lookups on Sprout, edit `/etc/clearwater/user_settings` and add t
 
     enum_server=<hostname of enum server>
     enum_file=<location of enum file>
+
+If you use the ENUM file, enter the ENUM rules in the JSON format (shown above).
