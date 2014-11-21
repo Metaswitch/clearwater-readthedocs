@@ -13,7 +13,6 @@ All nodes need to allow the following ICMP messages:
 They also need the following ports open to the world (`0.0.0.0/0`):
 
     TCP/22 for SSH access
-    UDP/123 for NTP
 
 If your deployment uses monitoring software ([cacti](http://www.cacti.net/) or [m/monit](http://mmonit.com/) for example), each node will also have to open appropriate ports for those services.
 
