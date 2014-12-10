@@ -120,7 +120,7 @@ Note that AWS Route 53 does not support NAPTR records.
 To use BIND, you need to
 
 *   install it
-*   create an entry for your root "zone" (DNS suffix your deployment uses)
+*   create an entry for your "zone" (DNS suffix your deployment uses)
 *   configure the zone with a "zone file"
 *   restart BIND.
 
@@ -132,7 +132,7 @@ To install BIND on Ubuntu, issue `sudo apt-get install bind9`.
 
 #### Creating Zone Entry
 
-To create an entry for your root zone, edit the `/etc/bind/named.conf.local` file to add a line of the following form, replacing `<zone>` with your zone name.
+To create an entry for your zone, edit the `/etc/bind/named.conf.local` file to add a line of the following form, replacing `<zone>` with your zone name.
 
     zone "<zone>" IN { type master; file "/etc/bind/db.<zone>"; };
 
@@ -140,7 +140,7 @@ To create an entry for your root zone, edit the `/etc/bind/named.conf.local` fil
 
 Zones are configured through "zone files" (defined in [RFC 1034](http://tools.ietf.org/rfc/rfc1034.txt) and [RFC 1035](http://tools.ietf.org/rfc/rfc1035.txt)).
 
-If you followed the instructions above, the zone file for your root zone is at `/etc/bind/db.<zone>`.
+If you followed the instructions above, the zone file for your zone is at `/etc/bind/db.<zone>`.
 
 For Clearwater, you should be able to adapt the following example zone file by correcting the IP addresses and duplicating (or removing) entries where you have more (or fewer) than 2 nodes in each tier.
 
