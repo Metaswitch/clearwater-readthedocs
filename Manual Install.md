@@ -14,7 +14,7 @@ Before starting this process you will need the following:
 * A publicly accessible IP address of each of the above machines and a private IP address for each of them (these may be the same address depending on the machine environment).  These will be referred to as `<publicIP>` and `<privateIP>` below.  (If running on Amazon EC2 in a VPC, you must explicitly add this IP address by ticking the "Automatically assign a public IP address" checkbox on creation.)
 * The FQDN of the machine, which resolves to the machine's public IP address (if the machine has no FQDN, you should instead use the public IP).  Referred to as `<hostname>` below.
 * SSH access to the above machines to a user authorised to use sudo.  If your system does not come with such a user pre-configured, add a user with `sudo adduser <username>` and then authorize them to use sudo with `sudo adduser <username> sudo`.
-* A DNS root zone in which to install your repository and the ability to configure records within that zone.  This root zone will be referred to as `<zone>` below.
+* A DNS zone in which to install your deployment and the ability to configure records within that zone.  This zone will be referred to as `<zone>` below.
 * If you are not using the Project Clearwater provided Debian repository, you will need to know the URL (and, if applicable, the public GPG key) of your repository.
 
 ## Bootstrapping the Machines
