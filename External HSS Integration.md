@@ -87,7 +87,7 @@ In order to register and make calls, you need to create subscriber records on yo
 ## Restrictions
 
 *   Since Homestead uses the Cx/Diameter interface to the HSS, and this interface is read-only, the Homestead API is read-only when external HSS integration is enabled.
-*   Since Homestead's API is read-only, this means that [Ellis]() can't be used alongside a deployment using an external HSS.  Provisioning and subscriber management must be performed via the HSS's own management interface.
-*   Since Clearwater currently only supports SIP digest authentication, details for other authentication method (such as [AKA](http://tools.ietf.org/html/rfc3310)) are silently ignored from Multimedia-Auth responses.  Other authentication methods may be added in future.
+*   Since Homestead's API is read-only, this means that [Ellis](https://github.com/Metaswitch/ellis) can't be used alongside a deployment using an external HSS.  Provisioning and subscriber management must be performed via the HSS's own management interface.
+*   Clearwater currently only supports [SIP digest](http://tools.ietf.org/html/rfc3261#section-22.4) or [AKA](http://tools.ietf.org/html/rfc3310) authentication; details for other authentication methods are silently ignored from Multimedia-Auth responses. Other authentication methods may be added in future.
 *   Homestead currently assumes that private user IDs are formed by removing the `sip:` prefix from the public user ID.  This restriction may be relaxed in future.
 *   While Homestead caches positive results from the external HSS, it does not currently cache negative results (e.g. for non-existent users).  Repeated requests for a non-existent user will increase the load on the external HSS. This restriction may be relaxed in future.
