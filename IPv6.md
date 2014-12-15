@@ -41,7 +41,5 @@ Once the all-in-one image determines it has an IPv6 address, it automatically co
 The following function is not yet supported on IPv6.
 
 *   Automated install
-*   Statistics
-*   Ralf node type, and hence Rf billing
 *   SIP/WebSockets (WebRTC)
 
