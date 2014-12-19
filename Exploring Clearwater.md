@@ -34,8 +34,9 @@ Clearwater is designed from the ground up to scale horizontally across multiple 
 
 ## Operational support
 
-To help you run your deployment, Clearwater provides:
+To help you manage your deployment, Clearwater provides:
 
+* [Support for separated management networks](Multiple Network Support)
 * [Deployment monitoring](Cacti)
 * [Backup](Backups)
 * [A troubleshooting guide](Troubleshooting and Recovery) with instructions for viewing the database entries on Sprout and Homestead/Homer.
