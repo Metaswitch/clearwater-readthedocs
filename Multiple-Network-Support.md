@@ -2,7 +2,7 @@
 
 ## Introduction
 
-As of the Tetris release, Project Clearwater can be configured to provide signalling service (SIP/HTTP/Diameter) on a separate physical (or virtual) network to management services (SNMP/SSH/Provisioning).  This may be used to protect management devices (on a firewalled network) from attack from the outside world (on the signalling network).
+As of the Ultima release, Project Clearwater can be configured to provide signalling service (SIP/HTTP/Diameter) on a separate physical (or virtual) network to management services (SNMP/SSH/Provisioning).  This may be used to protect management devices (on a firewalled network) from attack from the outside world (on the signalling network).
 
 ## Technical Details
 
