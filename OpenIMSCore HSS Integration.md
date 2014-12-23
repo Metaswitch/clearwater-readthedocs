@@ -55,9 +55,10 @@ subscribers,
 
 To configure a subscriber,
 
-1.  create a subscription
+1.  create an IMS subscription
 2.  create an associated public user identity
 3.  create an associated private user identity, specifying
     1.  the private ID to be the public ID without the `sip:` scheme prefix
     2.  SIP Digest authentication.
+4.  add the home domain to the subscriber's visited networks
 
