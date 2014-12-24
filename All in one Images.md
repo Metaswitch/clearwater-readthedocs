@@ -57,6 +57,6 @@ d-i preseed/late_command string in-target bash -c '{ echo "#!/bin/bash" ; \
                                                    chmod a+x /etc/rc2.d/S99zclearwater-aio-first-boot'
 ```
 
-3.  run the command (stripping the `d-i preseed/late_command string in-target` prefix and filling in the repo variable - the default is `http://repo.cw-ngv.com/stable`) - this will create an `/etc/rc2.d/S99zclearwater-aio-first-boot` script
+3.  run the command (stripping the `d-i preseed/late_command string in-target` prefix, filling in the repo variable - the default is `http://repo.cw-ngv.com/stable`, and stripping the \) - this will create an `/etc/rc2.d/S99zclearwater-aio-first-boot` script
 4.  run the `/etc/rc2.d/S99zclearwater-aio-first-boot` script - this will install the all-in-one software and then shutdown (ready for an image to be taken)
 4.  restart the node.
