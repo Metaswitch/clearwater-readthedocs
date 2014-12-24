@@ -51,11 +51,7 @@ All-in-one nodes need the following ports opened to the world
 
 * 0MQ statistics interface:
       
-        TCP/6665
-        TCP/6666
-        TCP/6667
-        TCP/6668
-        TCP/6669
+        TCP/6664-6669
         
 ## Ellis
 
