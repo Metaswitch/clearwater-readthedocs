@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "Ultima".
+The latest stable release of Clearwater is "[Virtua Fighter](http://en.wikipedia.org/wiki/Virtua_Fighter_(series))".
 
 ## Architecture
 
