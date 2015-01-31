@@ -2,7 +2,7 @@ site_name: Clearwater
 site_url: 'http://repo.cw-ngv.com/~rkd/example-docs/'
 pages:
 # Overview:
-- ['Home.md', 'Home']
+- ['index.md', 'Home']
 - ['Clearwater Architecture.md', 'Clearwater Architecture']
 - ['Clearwater Tour.md', 'Clearwater Tour']
 - ['Exploring Clearwater.md', 'Exploring Clearwater']
@@ -12,8 +12,9 @@ pages:
 - ['All in one Images.md', 'Installation', 'All in one Images']
 - ['All-in-one OVF Installation.md', 'Installation', 'All-in-one OVF Installation']
 - ['Automated Install.md', 'Installation', 'Automated Install']
+- ['Manual Install.md', 'Installation', 'Manual Install']
 - ['Clearwater Configuration Options Reference.md', 'Installation', 'Clearwater Configuration Options Reference']
-- ['Clearwater-IP-Port-Usage.md', 'Installation', 'Clearwater-IP-Port-Usage']
+- ['Clearwater-IP-Port-Usage.md', 'Installation', 'Clearwater Firewall Configuration']
 - ['Creating a deployment environment.md', 'Installation', 'Creating a deployment environment']
 - ['Creating a deployment with Chef.md', 'Installation', 'Creating a deployment with Chef']
 - ['Modifying-Clearwater-settings.md', 'Installation', 'Modifying-Clearwater-settings']
