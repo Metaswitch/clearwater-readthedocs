@@ -69,5 +69,3 @@ pages:
 - ['Support.md', 'Support']
 - ['Troubleshooting-and-Recovery.md', 'Troubleshooting-and-Recovery']
 theme: readthedocs
-include_search: true
-markdown_extensions: ['wikilinks']
