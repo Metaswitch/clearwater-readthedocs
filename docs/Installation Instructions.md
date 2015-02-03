@@ -8,19 +8,19 @@ These pages will guide you through installing a Clearwater deployment from scrat
 
 1. All-in-one image, either using an [AMI](https://aws.amazon.com/amis/) on [Amazon EC2](http://aws.amazon.com/ec2/) or an [OVF](http://dmtf.org/standards/ovf) image on a private virtualization platform such as [VMware](http://www.vmware.com/) or [Virtualbox](https://www.virtualbox.org/).  This is the recommended method for trying Clearwater out.
 
-   This installation method is very easy but offers no redundancy or scalability and relatively limited performance.  As a result, it is great for familiarizing yourself with Clearwater before moving up to a larger-scale deployment using one of the following methods.
+    This installation method is very easy but offers no redundancy or scalability and relatively limited performance.  As a result, it is great for familiarizing yourself with Clearwater before moving up to a larger-scale deployment using one of the following methods.
 
 2. An automated install, using the [Chef](http://www.opscode.com/chef/) orchestration system.  This is the recommended install for spinning up large scale deployments since it can handle creating an arbitrary sized deployment in a single command.
 
-   This installation method does have its limitations though.  It is currently only supported on Amazon's EC2 cloud and assumes that DNS is being handled by Amazon's Route53 and that Route53 controls the deployment's root domain.  It also requires access to a running Chef server.  Setting this up is non-trivial but only needs to be done once, after which multiple deployments can be spun up very easily.
+    This installation method does have its limitations though.  It is currently only supported on Amazon's EC2 cloud and assumes that DNS is being handled by Amazon's Route53 and that Route53 controls the deployment's root domain.  It also requires access to a running Chef server.  Setting this up is non-trivial but only needs to be done once, after which multiple deployments can be spun up very easily.
 
 3. A manual install, using Debian packages and hand configuring each machine.  This is the recommended method if chef is not supported on your virtualization platform or your DNS is not provided by Amazon's Route53.
 
-   This install can be performed on any collection of machines (at least 5 are needed) running Ubuntu 12.04 as it makes no assumptions about the environment in which the machines are running.  On the other hand, it requires manually configuring every machine, firewalls and DNS entries, meaning it is not a good choice for spinning up a large-scale deployment.
+    This install can be performed on any collection of machines (at least 5 are needed) running Ubuntu 12.04 as it makes no assumptions about the environment in which the machines are running.  On the other hand, it requires manually configuring every machine, firewalls and DNS entries, meaning it is not a good choice for spinning up a large-scale deployment.
 
 4. Installing from source.  If you are running on a non-Ubuntu-based OS, or need to test a code fix or enhancement you've made, you can also install Clearwater from source, building the code yourself.  Per-component instructions are provided that cover the route from source code to running services.  Familiarity with performing a manual install on Ubuntu will help with configuring your network correctly after the software is installed.
 
-   If you install from source, especially on a non-Ubuntu OS, we'd love to hear about your experience, good or bad.
+    If you install from source, especially on a non-Ubuntu OS, we'd love to hear about your experience, good or bad.
 
 ## Installation Steps
 
