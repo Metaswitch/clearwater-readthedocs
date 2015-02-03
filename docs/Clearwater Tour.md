@@ -9,6 +9,7 @@ Self-service account and line creation
 
 In a browser, go to the Account Signup tab at
 `http://ellis.<domain>/signup.html` and supply details as requested:
+
 - Use whatever name you like.
 - Use a real email address, or the password reset function won't work.
 - The signup code to enter in the final box should have been given to
@@ -17,6 +18,7 @@ In a browser, go to the Account Signup tab at
 
 You are now shown a new account with a phone number (which may take a
 second or two to show up).
+
 - The password for each number is only shown once - it is only stored
 encrypted in the system, for security, so cannot be retrieved by the
 system later. It can be reset by the user if they forget it (see button

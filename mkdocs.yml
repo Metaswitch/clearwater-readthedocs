@@ -68,3 +68,4 @@ pages:
 theme: readthedocs
 include_search: true
 use_directory_urls: false
+markdown_extensions: [sane_lists, wikilinks, admonition]
