@@ -10,7 +10,7 @@ pages:
 
 # Installation:
 - ['Installation Instructions.md', 'Installation', 'Installation Instructions']
-- ['All in one Images.md', 'Installation', 'All in one Images']
+- ['All in one Images.md', 'Installation', 'All-in-one Images']
 - ['Automated Install.md', 'Installation', 'Automated Install']
 - ['Manual Install.md', 'Installation', 'Manual Install']
 - ['Making your first call.md', 'Installation', 'Making your first call']

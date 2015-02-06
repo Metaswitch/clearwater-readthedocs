@@ -16,7 +16,7 @@ An install of Clearwater will, by default, run with no external requirements and
 
 ## Call features
 
-Clearwater has a number of call features provided by its [built-in TAS](Application-Server-Guide#the-built-in-mmtel-application-server), including:
+Clearwater has a number of call features provided by its [built-in TAS](Application Server Guide#the-built-in-mmtel-application-server), including:
 
 * [Call barring](Clearwater Call Barring Support)
 * [Call diversion](Clearwater Call Diversion Support)

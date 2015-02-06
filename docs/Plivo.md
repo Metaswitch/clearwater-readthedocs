@@ -1,6 +1,6 @@
 # Plivo
 
-[Plivo](http://plivo.com/open-source/) is an open-source framework for voice applications.  It can connect to Clearwater as an [Application Server](Application-Server-Guide) via the ISC interface.
+[Plivo](http://plivo.com/open-source/) is an open-source framework for voice applications.  It can connect to Clearwater as an [Application Server](Application Server Guide) via the ISC interface.
 
 This documentation describes how to
 
