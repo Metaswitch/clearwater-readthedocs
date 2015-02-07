@@ -1,4 +1,5 @@
-site_name: Clearwater
+site_name: Clearwater Docs Home
+repo_url: https://github.com/Metaswitch/clearwater-readthedocs
 pages:
 # Overview:
 - ['index.md', 'Home']
