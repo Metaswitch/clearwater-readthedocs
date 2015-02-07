@@ -1,4 +1,5 @@
-site_name: Clearwater
+site_name: Clearwater Docs Home
+repo_url: https://github.com/Metaswitch/clearwater-readthedocs
 pages:
 # Overview:
 - ['index.md', 'Home']
@@ -69,6 +70,7 @@ pages:
 - ['Running_the_live_tests.md', 'Testing', 'Running the live tests']
 
 theme: readthedocs
+theme_dir: "custom_theme"
 include_search: true
 use_directory_urls: false
-markdown_extensions: [sane_lists, wikilinks, admonition]
+markdown_extensions: [sane_lists, admonition]
