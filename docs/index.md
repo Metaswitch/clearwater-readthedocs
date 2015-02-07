@@ -10,20 +10,20 @@ The latest stable release of Clearwater is "[Virtua Fighter](http://en.wikipedia
 
 Clearwater is architected from the ground up to be fully horizontally
 scalable, modular and to support running in virtualized environments.
-See our [Clearwater Architecture](Clearwater Architecture) page for a
+See our [Clearwater Architecture](Clearwater_Architecture) page for a
 bird's eye view of a Clearwater deployment and a guided tour of the
 various functional components that comprise it.
 
 ## Getting Started
 
-* [Installation Instructions](Installation Instructions)
-* [Making your first call](Making your first call)
-* [Running the live tests](Running the live tests)
-* [A tour of Clearwater](Clearwater Tour)
+* [Installation Instructions](Installation_Instructions)
+* [Making your first call](Making_your_first_call)
+* [Running the live tests](Running_the_live_tests)
+* [A tour of Clearwater](Clearwater_Tour)
 
 ## Looking Deeper
 
-To look at the optional extra features and function of your Clearwater deployment and for discussions about Clearwater scaling and redundancy, see [Exploring Clearwater](Exploring Clearwater).
+To look at the optional extra features and function of your Clearwater deployment and for discussions about Clearwater scaling and redundancy, see [Exploring Clearwater](Exploring_Clearwater).
 
 ## Getting Source Code
 
@@ -40,7 +40,7 @@ All the source code is on [github](https://github.com/Metaswitch), in the follow
 
 ## Contributing
 
-You can contribute by making a Github pull request. See our documented [Pull request process](Pull request process).
+You can contribute by making a Github pull request. See our documented [Pull request process](Pull_request_process).
 
 There is more information about contributing to Project Clearwater on the [community page of our project website](http://www.projectclearwater.org/community/).
 

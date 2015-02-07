@@ -98,7 +98,7 @@ The UEs need to know the identity of the DNS server too.  In a testing environme
 
 ### AWS Route 53
 
-Clearwater's [automated install](https://github.com/Metaswitch/clearwater-docs/wiki/Automated-Install) automatically configures AWS Route 53.  There is no need to follow the following instructions if you are using the automated install.
+Clearwater's [automated install](Automated_Install) automatically configures AWS Route 53.  There is no need to follow the following instructions if you are using the automated install.
 
 The official [AWS Route 53 documentation](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html) is a good reference, and most of the following steps are links into it.
 

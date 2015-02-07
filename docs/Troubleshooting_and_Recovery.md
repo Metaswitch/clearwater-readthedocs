@@ -12,7 +12,7 @@ This document describes how to troubleshoot some common problems, and associated
 
 The most common problem from ellis is it reporting "Failed to update server".  This can happen for several reasons.
 
-*   If ellis reports "Failed to update server" when allocating a new number (either after an explicit request or as part of creating a whole new account), check that ellis has free numbers to allocate.  The [create_numbers.py script](https://github.com/Metaswitch/clearwater-docs/wiki/Manual%20Install#ellis) is safe to re-run, to ensure that numbers have been allocated.
+*   If ellis reports "Failed to update server" when allocating a new number (either after an explicit request or as part of creating a whole new account), check that ellis has free numbers to allocate.  The [create_numbers.py script](Manual_Install/#ellis) is safe to re-run, to ensure that numbers have been allocated.
 
 *   Check the `/var/log/ellis/ellis-*.log` files.  If these indicate that a timeout occurred communicating with homer or homestead, check that the DNS entries for homer and homestead exist and are configured correctly.  If these are already correct, check homer or homestead to see if they are behaving incorrectly.
 
@@ -68,7 +68,7 @@ If you see Ralf dying/restarting with no apparent cause in `/var/log/ralf/ralf*.
 
         merb : chef-server (api) : worker (port 4000) ~ Connection failed - user: chef - (Bunny::ProtocolError)
 
-    This can be worked around by recreating the chef account, as follows, including the `<rabbitMQPass>` you supplied when you [installed the Chef server](Installing a Chef server).
+    This can be worked around by recreating the chef account, as follows, including the `<rabbitMQPass>` you supplied when you [installed the Chef server](Installing_a_Chef_server).
 
         rabbitmqctl add_vhost /chef
         rabbitmqctl add_user chef <rabbitMQPass>

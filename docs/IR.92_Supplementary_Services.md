@@ -2,25 +2,25 @@
 
 The services fall into one of four categories.
 
-*   Supported by Clearwater's [built-in MMTel application server](Application Server Guide#the-built-in-mmtel-application-server)
+*   Supported by Clearwater's [built-in MMTel application server](Application_Server_Guide#the-built-in-mmtel-application-server)
 *   Supported by Clearwater inherently (i.e. whether or not the MMTel application server is enabled) - these services rely on messages or headers that Clearwater simply passes through
 *   Requiring an external application server
 *   Not supported
 
 ### Supported by Clearwater's Built-In MMTel Application Server
 
-The following Supplementary Services are supported by Clearwater's [built-in MMTel Application Server](Application Server Guide#the-built-in-mmtel-application-server).
+The following Supplementary Services are supported by Clearwater's [built-in MMTel Application Server](Application_Server_Guide#the-built-in-mmtel-application-server).
 
-*   Originating Identification Presentation - See the [Privacy Feature document](Clearwater Privacy Feature) for more information.
-*   Originating Identification Restriction - See the [Privacy Feature document](Clearwater Privacy Feature) for more information.
-*   Call Forwarding Unconditional - See the [Call Diversion Support document](Clearwater Call Diversion Support) for more information.
-*   Call Forwarding on not Logged in - See the [Call Diversion Support document](Clearwater Call Diversion Support) for more information.
-*   Call Forwarding on Busy - See the [Call Diversion Support document](Clearwater Call Diversion Support) for more information.
-*   Call Forwarding on not Reachable - See the [Call Diversion Support document](Clearwater Call Diversion Support) for more information.
-*   Call Forwarding on No Reply - See the [Call Diversion Support document](Clearwater Call Diversion Support) for more information.
-*   Barring of All Incoming Calls - See the [Call Barring Support document](Clearwater Call Barring Support) for more information.
-*   Barring of All Outgoing Calls - See the [Call Barring Support document](Clearwater Call Barring Support) for more information.
-*   Barring of Outgoing International Calls - See the [Call Barring Support document](Clearwater Call Barring Support) for more information.
+*   Originating Identification Presentation - See the [Privacy Feature document](Clearwater_Privacy_Feature) for more information.
+*   Originating Identification Restriction - See the [Privacy Feature document](Clearwater_Privacy_Feature) for more information.
+*   Call Forwarding Unconditional - See the [Call Diversion Support document](Clearwater_Call_Diversion_Support) for more information.
+*   Call Forwarding on not Logged in - See the [Call Diversion Support document](Clearwater_Call_Diversion_Support) for more information.
+*   Call Forwarding on Busy - See the [Call Diversion Support document](Clearwater_Call_Diversion_Support) for more information.
+*   Call Forwarding on not Reachable - See the [Call Diversion Support document](Clearwater_Call_Diversion_Support) for more information.
+*   Call Forwarding on No Reply - See the [Call Diversion Support document](Clearwater_Call_Diversion_Support) for more information.
+*   Barring of All Incoming Calls - See the [Call Barring Support document](Clearwater_Call_Barring_Support) for more information.
+*   Barring of All Outgoing Calls - See the [Call Barring Support document](Clearwater_Call_Barring_Support) for more information.
+*   Barring of Outgoing International Calls - See the [Call Barring Support document](Clearwater_Call_Barring_Support) for more information.
 
 ### Supported by Clearwater Inherently
 

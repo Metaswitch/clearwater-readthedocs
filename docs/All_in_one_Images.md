@@ -1,6 +1,6 @@
 # All-in-one Images
 
-While Clearwater is designed to be massively horizontally scalable, it is also possible to install all Clearwater components on a single node.  This makes installation much simpler, and is useful for familiarizing yourself with Clearwater before moving up to a larger-scale deployment using one of the [other installation methods](Installation Instructions).
+While Clearwater is designed to be massively horizontally scalable, it is also possible to install all Clearwater components on a single node.  This makes installation much simpler, and is useful for familiarizing yourself with Clearwater before moving up to a larger-scale deployment using one of the [other installation methods](Installation_Instructions).
 
 This page describes the all-in-one images, their capabilities and restrictions and the installation options available.
 
@@ -29,8 +29,8 @@ The key restrictions of all-in-one images are
 
 All-in-one images can be installed on EC2 or on your own virtualization platform, as long as it supports [OVF (Open Virtualization Format)](http://dmtf.org/standards/ovf).
 
-*   To install on EC2, follow the [all-in-one EC2 AMI installation instructions](All-in-one EC2 AMI Installation).
-*   To install on your own virtualization platform, follow the [all-in-one OVF installation instructions](All-in-one OVF Installation).
+*   To install on EC2, follow the [all-in-one EC2 AMI installation instructions](All_in_one_EC2_AMI_Installation).
+*   To install on your own virtualization platform, follow the [all-in-one OVF installation instructions](All_in_one_OVF_Installation).
 
 ## Manual Build
 

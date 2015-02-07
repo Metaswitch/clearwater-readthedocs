@@ -1,7 +1,7 @@
 Application Server Guide
 ========================
 
-You can add new call features or functionality to calls by adding an application server.  Clearwater supports application servers through the standard IMS interface ISC. This article explains the features and limitations of this support. See [Configuring an Application Server](Configuring an Application Server) for details of how to configure Clearwater to use this function, or [Plivo](Plivo) for an open-source application server/framework to work with.
+You can add new call features or functionality to calls by adding an application server.  Clearwater supports application servers through the standard IMS interface ISC. This article explains the features and limitations of this support. See [Configuring an Application Server](Configuring_an_Application_Server) for details of how to configure Clearwater to use this function, or [Plivo](Plivo) for an open-source application server/framework to work with.
 
 What is an application server?
 ==============================
@@ -98,6 +98,6 @@ Clearwater has a built-in application server, `mmtel.<deployment-domain>`, which
  * Communication Diversion (CDIV)
  * Communication Barring (CB)
 
-Note that Clearwater is also able to support a number of other IR.92 services, either through inherent support (by transparently passing messages between UEs) or through integration with external application servers.  See the [IR.92 Supplementary Services document](IR.92-Supplementary-Services) for more information.
+Note that Clearwater is also able to support a number of other IR.92 services, either through inherent support (by transparently passing messages between UEs) or through integration with external application servers.  See the [IR.92 Supplementary Services document](IR.92_Supplementary_Services) for more information.
 
 The built-in MMTEL application server is invoked only for calls configured to use it. To use it, simply configure a subscriber's iFCs to indicate the use of `mmtel.<deployment-domain>` as an application server. The MMTEL application server can be used on its own, or as one of a chain of application servers handling a call.  The default iFCs configured by Ellis specify that the built-in MMTEL application server should be used for all originating and terminating calls.

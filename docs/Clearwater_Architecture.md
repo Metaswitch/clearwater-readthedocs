@@ -11,7 +11,7 @@ In particular ...
 
 The following diagram shows a Clearwater deployment.
 
-![Architecture](img/Clearwater%20Architecture.png)
+![Architecture](img/Clearwater_Architecture.png)
 
 ### Bono (Edge Proxy)
 

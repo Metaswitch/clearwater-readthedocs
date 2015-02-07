@@ -1,6 +1,6 @@
 # Manual Install Instructions
 
-These instructions will take you through installing a minimal Clearwater system using the latest binary packages provided by the Clearwater project.  For a high level look at the install process, and a discussion of alternative install methods, see [Installation Instructions](Installation Instructions).
+These instructions will take you through installing a minimal Clearwater system using the latest binary packages provided by the Clearwater project.  For a high level look at the install process, and a discussion of alternative install methods, see [Installation Instructions](Installation_Instructions).
 
 ## Prerequisites
 
@@ -110,12 +110,12 @@ If you want your Sprout nodes to include Gemini/Memento Application Servers add 
     gemini_enabled='Y'
     memento_enabled='Y'
  
-See the [Chef instructions](Installing a Chef client#add-deployment-specific-configuration)
+See the [Chef instructions](Installing_a_Chef_client#add-deployment-specific-configuration)
 for more information on how to fill these in. The values marked
 `<secret>` **must** be set to secure values to protect your deployment
 from unauthorized access.
 
-To modify these settings after the deployment is created, follow [these instructions](https://github.com/Metaswitch/clearwater-docs/wiki/Modifying-Clearwater-settings).
+To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings).
 
 ## Node specific installation instructions
 
@@ -191,11 +191,11 @@ Install the Ralf package with:
 
 ## SNMP statistics
 
-Sprout, Bono and Homestead nodes expose statistics over SNMP. This function is not installed by default - see [our SNMP documentation](https://github.com/Metaswitch/clearwater-docs/wiki/Clearwater-SNMP-Statistics) for information on how to enable it.
+Sprout, Bono and Homestead nodes expose statistics over SNMP. This function is not installed by default - see [our SNMP documentation](Clearwater_SNMP_Statistics) for information on how to enable it.
 
 ## DNS Records
 
-Clearwater uses DNS records to allow each node to find the others it needs to talk to to carry calls.  At this point, you should create the DNS entries for your deployment before continuing to the next step.  [Clearwater DNS Usage](Clearwater DNS Usage) describes the entries that are required before Clearwater will be able to carry service.
+Clearwater uses DNS records to allow each node to find the others it needs to talk to to carry calls.  At this point, you should create the DNS entries for your deployment before continuing to the next step.  [Clearwater DNS Usage](Clearwater_DNS_Usage) describes the entries that are required before Clearwater will be able to carry service.
 
 Although not required, we also suggest that you configure individual DNS records for each of the machines in your deployment to allow easy access to them if needed.
 
@@ -203,7 +203,7 @@ _Be aware that DNS record creation can take time to propagate, you can check whe
 
 ## Firewall configuration
 
-We need to make sure the Clearwater nodes can all talk to each other.  To do this, you will need to open up some ports in the firewalls in your network.  The ports used by Clearwater are listed in [Clearwater IP Port Usage](Clearwater IP Port Usage).  Configure all of these ports to be open to the appropriate hosts before continuing to the next step.  If you are running on a platform that has multiple physical or virtual interfaces and the option to apply different firewall rules on each, make sure that you open these ports on the correct interfaces.
+We need to make sure the Clearwater nodes can all talk to each other.  To do this, you will need to open up some ports in the firewalls in your network.  The ports used by Clearwater are listed in [Clearwater IP Port Usage](Clearwater_IP_Port_Usage).  Configure all of these ports to be open to the appropriate hosts before continuing to the next step.  If you are running on a platform that has multiple physical or virtual interfaces and the option to apply different firewall rules on each, make sure that you open these ports on the correct interfaces.
 
 ### Setting up S-CSCF configuration
 
@@ -225,12 +225,12 @@ The file is in stored in JSON format, an example is:
 
 Once you've reached this point, your Clearwater deployment is ready to handle calls.  See the following pages for instructions on making your first call and running the supplied regression test suite.
 
-* [Making your first call](Making your first call)
-* [Running the live test suite](Running the live tests)
+* [Making your first call](Making_your_first_call)
+* [Running the live test suite](Running_the_live_tests)
 
 ## Larger-Scale Deployments
 
-If you're intending to spin up a larger-scale deployment containing more than one node of each types, it's recommended that you use the [Automated Install](automated install process), as this makes scaling up and down very straight-forward.  If for some reason you can't, you'll need to configure DNS correctly and cluster the nodes in the sprout, homestead and homer tiers.
+If you're intending to spin up a larger-scale deployment containing more than one node of each types, it's recommended that you use the [automated install process](Automated_Install), as this makes scaling up and down very straight-forward.  If for some reason you can't, you'll need to configure DNS correctly and cluster the nodes in the sprout, homestead and homer tiers.
 
 ### Configuring DNS
 

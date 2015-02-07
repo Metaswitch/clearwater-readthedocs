@@ -13,7 +13,7 @@ Architecture
 
 The architecture of a geographically-redundant system is as follows.
 
-![Diagram](img/Geographic%20redundancy%20diagram.png)
+![Diagram](img/Geographic_redundancy_diagram.png)
 
 Sprout has one memcached cluster per geographic region.  Although
 memcached itself does not support the concept of local and remote peers,

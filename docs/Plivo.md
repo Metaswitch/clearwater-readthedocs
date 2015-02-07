@@ -1,6 +1,6 @@
 # Plivo
 
-[Plivo](http://plivo.com/open-source/) is an open-source framework for voice applications.  It can connect to Clearwater as an [Application Server](Application Server Guide) via the ISC interface.
+[Plivo](http://plivo.com/open-source/) is an open-source framework for voice applications.  It can connect to Clearwater as an [Application Server](Application_Server_Guide) via the ISC interface.
 
 This documentation describes how to
 
@@ -12,7 +12,7 @@ This documentation describes how to
 *   make a test call
 *   troubleshoot problems.
 
-If you followed the Clearwater [Automated Install](Automated Install) instructions, you can install Plivo using chef by running `knife box create -E <environment> plivo` - note that often this takes around an hour to complete.  This automatically installs, configures and starts Plivo, so you can jump straight to [Installing and Running Services](Plivo#installing-and-running-services).
+If you followed the Clearwater [Automated Install](Automated_Install) instructions, you can install Plivo using chef by running `knife box create -E <environment> plivo` - note that often this takes around an hour to complete.  This automatically installs, configures and starts Plivo, so you can jump straight to [Installing and Running Services](Plivo#installing-and-running-services).
 
 ## Installing Plivo
 
@@ -85,17 +85,17 @@ Clearwater invokes Application Servers according to the Initial Filter Criteria 
 
 The SIP URI is constructed as `sip:<hostname>:5058;transport=tcp`, where `<hostname>` is the public hostname of your Plivo server.  On an EC2 node, you can find this out by issuing the command `curl http://169.254.169.254/latest/meta-data/public-hostname`.
 
-To add an entry to the user's iFC, see the [Configuring an Application Server](https://github.com/Metaswitch/clearwater-docs/wiki/Configuring%20an%20Application%20Server#ifc-configuration) documentation.
+To add an entry to the user's iFC, see the [Configuring an Application Server](Configuring_an_Application_Server/#ifc-configuration) documentation.
 
 ## Making a Test Call
 
-Any calls to the user that you selected above should invoke the service.  Create a second user and configure a SIP client for them, as described in the [Making your first call](Making-your-first-call) documentation.  Then call the first user and you should hear the service.
+Any calls to the user that you selected above should invoke the service.  Create a second user and configure a SIP client for them, as described in the [Making your first call](Making_your_first_call) documentation.  Then call the first user and you should hear the service.
 
 ## Troubleshooting Problems
 
-The first thing to check is that your calling user can generally make calls.  Walk through the [Making your first call](Making-your-first-call) process and check this is working.  If not, investigate and fix that first.
+The first thing to check is that your calling user can generally make calls.  Walk through the [Making your first call](Making_your_first_call) process and check this is working.  If not, investigate and fix that first.
 
-The next thing to check is that the call is reaching Plivo correctly.  The application service process you started above outputs access logs whenever it is invoked - make a test call and check whether you see any output from it.  If you don't, [enable detailed tracing from sprout](https://github.com/Metaswitch/clearwater-docs/wiki/Troubleshooting%20and%20Recovery#sprout) and see where sprout is sending the call - check that the IFCs are being retrieved and parsed correctly, and that the destination IP address and port (5058) are correct.  If this doesn't help, check that access to port 5058 is open by logging into your sprout node and typing `( nc -z <hostname> 5058 && echo Connection OK ) || echo Connection failed`, where `<hostname>` is the Plivo server's public hostname - if the connection failed, check whether there is a firewall (or EC2 security group) blocking access.
+The next thing to check is that the call is reaching Plivo correctly.  The application service process you started above outputs access logs whenever it is invoked - make a test call and check whether you see any output from it.  If you don't, [enable detailed tracing from sprout](Troubleshooting_and_Recovery/#sprout) and see where sprout is sending the call - check that the IFCs are being retrieved and parsed correctly, and that the destination IP address and port (5058) are correct.  If this doesn't help, check that access to port 5058 is open by logging into your sprout node and typing `( nc -z <hostname> 5058 && echo Connection OK ) || echo Connection failed`, where `<hostname>` is the Plivo server's public hostname - if the connection failed, check whether there is a firewall (or EC2 security group) blocking access.
 
 If the call is reaching Plivo, but the application service process is not responding correctly, you can turn on more debugging from the sample applications by adding the line `app.debug = True` just before the final `app.run(...) line - this will generate more verbose output.
 

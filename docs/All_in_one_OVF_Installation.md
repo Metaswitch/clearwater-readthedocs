@@ -1,6 +1,6 @@
 # All-in-one OVF Installation
 
-This pages describes how to install an [all-in-one image](All-in-one Images) on your own virtualization platform using [OVF (Open Virtualization Format)](http://dmtf.org/standards/ovf).
+This pages describes how to install an [all-in-one image](All_in_one_Images) on your own virtualization platform using [OVF (Open Virtualization Format)](http://dmtf.org/standards/ovf).
 
 ## Supported Platforms
 
@@ -31,7 +31,7 @@ If you attach to the console, you should see an Ubuntu loading screen and then b
 
 The OVF provides 3 network services.
 *   SSH - username is `ubuntu` and password is `cw-aio`
-*   HTTP to ellis for subscriber management - sign-up code is `secret`. You will probably want to change this to a more secure value - see ["Modifying Clearwater settings"](Modifying Clearwater settings) for how to do this.
+*   HTTP to ellis for subscriber management - sign-up code is `secret`. You will probably want to change this to a more secure value - see ["Modifying Clearwater settings"](Modifying_Clearwater_settings) for how to do this.
 *   SIP to bono for call signaling - credentials are provisioned through ellis.
 
 How these network services are exposed can vary depending on the capabilities of the platform.
@@ -42,4 +42,4 @@ How these network services are exposed can vary depending on the capabilities of
 
 *   VMware ESXi runs the host as normal on the network, so you can connect to it directly.  To find out its IP address, log in over the console and type `hostname -I`.  To access ellis, just point your browser at this IP address.  To register over SIP, you'll need to configure an outbound proxy for this IP address.
 
-Once you've successfully connected to ellis, try [making your first call](Making your first call) - just remember to configure the SIP outbound proxy as discussed above.
+Once you've successfully connected to ellis, try [making your first call](Making_your_first_call) - just remember to configure the SIP outbound proxy as discussed above.

@@ -34,8 +34,8 @@ This section discusses how to enable support for an external HSS.
 
 Before enabling support for an external HSS, you must
 
-*   [install Clearwater](Installation Instructions)
-*   install an external HSS - details for this will vary depending on which HSS you choose, but there are instructions for [OpenIMSCore HSS](OpenIMSCore HSS Integration).
+*   [install Clearwater](Installation_Instructions)
+*   install an external HSS - details for this will vary depending on which HSS you choose, but there are instructions for [OpenIMSCore HSS](OpenIMSCore_HSS_Integration).
 
 Do not configure any Clearwater subscribers via Ellis!
 
