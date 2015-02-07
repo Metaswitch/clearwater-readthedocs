@@ -21,12 +21,11 @@ uninterrupted service, see "Seamless Upgrade" below.
 
 ### Manual Install
 
-If you installed your system using the [Manual Install Instructions](Manual Install)
-simply run `sudo clearwater-upgrade` on each node.
+If you installed your system using the [Manual Install Instructions](Manual_Install), simply run `sudo clearwater-upgrade` on each node.
 
 ### Chef Install
 
-If you installed your deployment with [chef](Creating a deployment with Chef):
+If you installed your deployment with [chef](Creating_a_deployment_with_Chef):
 
 * Follow the instructions to [update the Chef server](https://github.com/Metaswitch/chef#updating-the-chef-server)
 * Run `sudo chef-client` on each node.
@@ -56,12 +55,12 @@ Bonos, and one Ellis, you should upgrade them in the following order:
 
 ### Manual Install
 
-If you installed your system using the [Manual Install Instructions](Manual Install)
+If you installed your system using the [Manual Install Instructions](Manual_Install)
 run `sudo clearwater-upgrade` on each node in the order described above.
 
 ### Chef Install
 
-If you installed your deployment with [chef](Creating a deployment with Chef):
+If you installed your deployment with [chef](Creating_a_deployment_with_Chef):
 
 * Follow the instructions to [update the Chef server](https://github.com/Metaswitch/chef#updating-the-chef-server)
 * Run `sudo chef-client` on each node in the order described above.

@@ -20,10 +20,13 @@ pages:
 - ['Installing_a_Chef_server.md', 'Installation', 'Installing a Chef server']
 - ['Creating_a_deployment_environment.md', 'Installation', 'Creating a deployment environment']
 - ['Creating_a_deployment_with_Chef.md', 'Installation', 'Creating a deployment with Chef']
-- ['Modifying_Clearwater_settings.md', 'Installation', 'Modifying Clearwater settings']
-- ['Clearwater_Configuration_Options_Reference.md', 'Installation', 'Clearwater Configuration Options Reference']
 - ['Configuring_the_native_Android_SIP_client.md', 'Installation', 'Configuring the native Android SIP client']
 - ['Configuring_Zoiper_Android_iOS_Client.md', 'Installation', 'Configuring Zoiper Android/iOS Client']
+
+# Upgrading and Modifying
+- ['Upgrading_a_Clearwater_deployment.md', 'Upgrading and Modifying', 'Upgrading a Clearwater deployment']
+- ['Modifying_Clearwater_settings.md', 'Upgrading and Modifying', 'Modifying Clearwater settings']
+- ['Clearwater_Configuration_Options_Reference.md', 'Upgrading and Modifying', 'Clearwater Configuration Options Reference']
 
 # Integration:
 - ['Configuring_an_Application_Server.md', 'Integration', 'Configuring an Application Server']
