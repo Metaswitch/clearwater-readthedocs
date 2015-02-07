@@ -35,7 +35,7 @@ If you don't want to configure all your bono nodes as IBCF nodes, you can do so,
 
 ## Creating a subscriber
 
-Creating a subscriber for Voxbone use is done exactly [as you would normally do so](Making-your-first-call#create-a-number-for-your-client).
+Creating a subscriber for Voxbone use is done exactly [as you would normally do so](Making_your_first_call#create-a-number-for-your-client).
 
 ## Associating the subscriber on Voxbone
 
@@ -61,4 +61,4 @@ If your call or SMS doesn't get through, there are three things to check.
 
 *   Is the SIP message trusted?  You can again check this with network capture - if you see a `403 Forbidden` response, this indicates that the IBCF does not trust the sender of the message.  Check the `trusted_peers` entry in your `/etc/clearwater/user_settings` file and that you have restarted bono since updating it.
 
-*   Would the call go through if it were sent on-net?  Try making a call to the subscriber from another subscriber on Clearwater and check that it goes through (or follow the [standard troubleshooting process](Troubleshooting-and-Recovery)).
+*   Would the call go through if it were sent on-net?  Try making a call to the subscriber from another subscriber on Clearwater and check that it goes through (or follow the [standard troubleshooting process](Troubleshooting_and_Recovery)).

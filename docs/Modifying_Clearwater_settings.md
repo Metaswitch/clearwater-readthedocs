@@ -64,4 +64,4 @@ To change one of these settings:
 
 *This will have a service impact of up to half an hour.*
 
-If other settings (such as the Clearwater home domain) are being changed, we recommend that users delete their old deployment and create a new one from scratch, either [with Chef](https://github.com/Metaswitch/clearwater-docs/wiki/Creating%20a%20deployment%20with%20Chef) or [manually](https://github.com/Metaswitch/clearwater-docs/wiki/Manual%20Install). This ensures that the new settings are consistently applied.
+If other settings (such as the Clearwater home domain) are being changed, we recommend that users delete their old deployment and create a new one from scratch, either [with Chef](Creating_a_deployment_with_Chef) or [manually](Manual_Install). This ensures that the new settings are consistently applied.

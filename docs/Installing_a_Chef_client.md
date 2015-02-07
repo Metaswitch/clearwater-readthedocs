@@ -1,12 +1,12 @@
 # Installing a Chef Client
 
-These instructions cover commissioning a Chef client node on an EC2 server as part of the [automated install process](Automated Install) for Clearwater.
+These instructions cover commissioning a Chef client node on an EC2 server as part of the [automated install process](Automated_Install) for Clearwater.
 
 ## Prerequisites
 
 * An Amazon EC2 account.
 * A DNS root domain configured with Route53 (Amazon's built-in DNS service, accessible from the EC2 console. This domain will be referred to as `<zone>` in this document.
-* You must have [installed a Chef server](Installing a Chef server) and thus know the `<webUIPass>` for your server.
+* You must have [installed a Chef server](Installing_a_Chef_server) and thus know the `<webUIPass>` for your server.
 * A web-browser with which you can visit the Chef server Web UI.
 
 ## Create the instance
@@ -191,7 +191,7 @@ as directed.
   If you leave them unchanged, this function will not work.
 
 * The M/Monit credentials are only required if you have an
-  [M/Monit](https://github.com/Metaswitch/clearwater-docs/wiki/Configuring-M-Monit) server. Otherwise you can leave them
+  [M/Monit](Configuring_MMonit) server. Otherwise you can leave them
   unchanged.
 
 ## Test your settings
@@ -216,4 +216,4 @@ You will need to re-do this step if make any changes to your `knife.rb` settings
 
 ## Next steps
 
-At this point, the Chef server is up and running and ready to manage installs and the chef client is ready to create deployments.  The next step is to [create a deployment environment](Creating a deployment environment).
+At this point, the Chef server is up and running and ready to manage installs and the chef client is ready to create deployments.  The next step is to [create a deployment environment](Creating_a_deployment_environment).

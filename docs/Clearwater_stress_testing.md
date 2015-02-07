@@ -1,6 +1,6 @@
 One of Clearwater's biggest strengths is scalability and in order to demonstrate this, we have easy-to-use settings for running large amounts of SIP stress against a deployment.  This document describes:
-* Clearwater's SIP stress nodes, what they do, and (briefly) how they work
-* how to kick off your own stress test.
+- Clearwater's SIP stress nodes, what they do, and (briefly) how they work
+- how to kick off your own stress test.
 
 ## SIP Stress Nodes
 ### What they do
@@ -24,25 +24,23 @@ The clearwater-sip-stress package includes two important scripts.
 
 This section describes step-by-step how to run stress using Chef automation.  It includes setting up a new deployment.  It is possible to run stress against an existing deployment but you'll need to reconfigure some things so it's easier just to tear down your existing deployment and start again.
 
-1.  If you haven't done so already, set up chef/knife (as described in [the install guide](https://github.com/Metaswitch/clearwater-docs/wiki/Automated%20Install)).
+1.  If you haven't done so already, set up chef/knife (as described in [the install guide](Automated_Install)).
 2.  cd to your chef directory.
 3.  Edit your environment (e.g. `environments/ENVIRONMENT.rb`) to override attributes as follows.
 
     For example (replacing ENVIRONMENT with your environment name and DOMAIN with your Route 53-hosted root domain):
 
-```
-    name "ENVIRONMENT"
-    description "Stress testing environment"
-    cookbook_versions "clearwater" => "= 0.1.0"
-    override_attributes "clearwater" => {
-        "root_domain" => "DOMAIN",
-        "availability_zones" => ["us-east-1a"],
-        "repo_server" => "http://repo.cw-ngv.com/latest",
-        "number_start" => "2010000000",
-        "number_count" => 1000,
-        "pstn_number_count" => 0,
-        "enum_server" => "enum.ENVIRONMENT.DOMAIN"}
-```
+        name "ENVIRONMENT"
+        description "Stress testing environment"
+        cookbook_versions "clearwater" => "= 0.1.0"
+        override_attributes "clearwater" => {
+            "root_domain" => "DOMAIN",
+            "availability_zones" => ["us-east-1a"],
+            "repo_server" => "http://repo.cw-ngv.com/latest",
+            "number_start" => "2010000000",
+            "number_count" => 1000,
+            "pstn_number_count" => 0,
+            "enum_server" => "enum.ENVIRONMENT.DOMAIN"}
 
 4.  Upload your new environment to the chef server by typing `knife environment from file environments/ENVIRONMENT.rb`
 5. Create the deployment by typing `knife deployment resize -E ENVIRONMENT`.  If you want more nodes, supply parameters such "--bono-count 5" or "--sprout-count 3" to control this.
@@ -51,16 +49,16 @@ This section describes step-by-step how to run stress using Chef automation.  It
 8. Add a DNS entry for the ENUM server - `knife dns record create -E ENVIRONMENT enum -z DOMAIN -T A --local enum -p ENVIRONMENT`.
 9. Create your stress test node by typing `knife box create -E ENVIRONMENT sipp --index 1`.  If you have multiple bono nodes, you'll need to create multiple stress test nodes by repeating this command with "--index 2", "--index 3", etc. - each stress test node only sends traffic to the bono with the same index.
   * To create multiple nodes, try `for x in {1..20} ; do { knife box create -E ENVIRONMENT sipp --index $x && sleep 2 ; } ; done`.
-10. Create a Cacti server for monitoring the deployment, as described in [this document](https://github.com/Metaswitch/clearwater-docs/wiki/Cacti).
+10. Create a Cacti server for monitoring the deployment, as described in [this document](Cacti).
 11. When you've finished, destroy your deployment with `knife deployment delete -E ENVIRONMENT`.
 
 ### Manual (i.e. non-Chef) stress runs
 
-SIP stress can also be run against a deployment that has been installed manually (as per the [Manual Install instructions](https://github.com/Metaswitch/clearwater-docs/wiki/Manual-Install)).  
+SIP stress can also be run against a deployment that has been installed manually (as per the [Manual Install instructions](Manual_Install)).
 
 Firstly follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision subscribers. Work out how many stress nodes you want, and create 100,000 subscribers per SIPp node.
 
-To create a new SIPp node, create a new virtual machine and [bootstrap](https://github.com/Metaswitch/clearwater-docs/wiki/Manual-Install#bootstrapping-the-machines) it. Then set the following properties in /etc/clearwater/config:
+To create a new SIPp node, create a new virtual machine and [bootstrap](Manual_Install#bootstrapping-the-machines) it. Then set the following properties in /etc/clearwater/config:
 
 * (required) local_ip - the local IP address of this node
 * (required) home_domain - the home domain of the deployment under test

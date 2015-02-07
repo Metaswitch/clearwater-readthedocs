@@ -1,7 +1,7 @@
 Application Server Guide
 ========================
 
-You can add new call features or functionality to calls by adding an application server.  Clearwater supports application servers through the standard IMS interface ISC. This article explains the features and limitations of this support. See [Configuring an Application Server](Configuring an Application Server) for details of how to configure Clearwater to use this function, or [Plivo](Plivo) for an open-source application server/framework to work with.
+You can add new call features or functionality to calls by adding an application server.  Clearwater supports application servers through the standard IMS interface ISC. This article explains the features and limitations of this support. See [Configuring an Application Server](Configuring_an_Application_Server) for details of how to configure Clearwater to use this function, or [Plivo](Plivo) for an open-source application server/framework to work with.
 
 What is an application server?
 ==============================
@@ -22,15 +22,15 @@ Clearwater interfaces
 In Clearwater most S-CSCF function, including the ISC interface, is implemented in Sprout. Sprout invokes application servers over the ISC interface, as specified in the iFCs.
 
  * Per the IMS specs, this invocation occurs on dialog-initiating requests such as INVITE, SUBSCRIBE, MESSAGE, etc, and according to the triggers within the iFCs (s5.4.3.2, s5.4.3.3):
-   * When specified, Sprout will route the message to the AS; the AS can either route it onward, act as a B2BUA for e.g. call diversion, or give a final response.
-   * Clearwater has full support for chained iFCs. The original dialog is tracked by Sprout using an ODI token in the Route header. This support includes support for forking ASs at any point in the chain.
-   * Service trigger points (i.e., conditions) are implemented, including SIP method, SIP headers, SDP lines, registration parameters, and request URIs.
-   * Service trigger points can have session case configuration, allowing the AS to only be invoked on originating calls or on terminating calls.
+    * When specified, Sprout will route the message to the AS; the AS can either route it onward, act as a B2BUA for e.g. call diversion, or give a final response.
+    * Clearwater has full support for chained iFCs. The original dialog is tracked by Sprout using an ODI token in the Route header. This support includes support for forking ASs at any point in the chain.
+    * Service trigger points (i.e., conditions) are implemented, including SIP method, SIP headers, SDP lines, registration parameters, and request URIs.
+    * Service trigger points can have session case configuration, allowing the AS to only be invoked on originating calls or on terminating calls.
  * No per-AS configuration is required; ASs are invoked simply by their URI appearing in the iFCs.
  * AS invocation also occurs on REGISTER - this is called third-party registration (3GPP TS 24.229 s5.4.1.7 and 7A):
-   * When a UE registers with Sprout, if the iFCs require it, it passes a third-party registration onto an AS.
-   * Message body handling for third-party registration, per 3GPP TS 24.229 s5.4.1.7A: including optionally service info, a copy of the registration, and a copy of the response.
-   * Network-initiated deregister. If the third-party registration fails and the iFC requests it, we must deregister the UE.
+    * When a UE registers with Sprout, if the iFCs require it, it passes a third-party registration onto an AS.
+    * Message body handling for third-party registration, per 3GPP TS 24.229 s5.4.1.7A: including optionally service info, a copy of the registration, and a copy of the response.
+    * Network-initiated deregister. If the third-party registration fails and the iFC requests it, we must deregister the UE.
 
 Supported SIP headers
 ---------------------
@@ -45,9 +45,9 @@ Points of Note
 --------------
 
  * Trust:
-   - Some ISC signaling is trust-dependent. For Clearwater, all ASs are trusted - we think support for untrusted ASs is unlikely to be required.
+     * Some ISC signaling is trust-dependent. For Clearwater, all ASs are trusted - we think support for untrusted ASs is unlikely to be required.
  * IP Connectivity
-   - We assume that there is no NAT (static or otherwise) between the AS and the Clearwater core.
+     * We assume that there is no NAT (static or otherwise) between the AS and the Clearwater core.
 
 Current Spec Deltas
 -------------------
@@ -55,13 +55,13 @@ Current Spec Deltas
 **The December 2013 release of Clearwater has the following limitation on the ISC interface:**
 
  * Dead AS handling:
-   - Handling of dead ASs (408, 5xx, or no response, not preceded by a 1xx response) should follow the spec: per the iFC, either the response is treated as final or the AS is bypassed.
-   - Clearwater does not attempt to avoid dead ASs on subsequent calls.
+     * Handling of dead ASs (408, 5xx, or no response, not preceded by a 1xx response) should follow the spec: per the iFC, either the response is treated as final or the AS is bypassed.
+     * Clearwater does not attempt to avoid dead ASs on subsequent calls.
  * Change of request URI:
-   - 3GPP TS 24.229 s5.4.3.3 step 3 allows a terminating AS to change the request URI to another URI that matches it (i.e., is canonically equal or an alias) without interrupting the interpretation of the iFCs.
-   - Clearwater only supports this for URIs which are canonically equal; it does not support changing to an alias URI (i.e., a different public identity belonging to the same alias group of the same private identity, per 3GPP TS 24.229 s3.1, 3GPP TS 29.228 sB.2.1).
+     * 3GPP TS 24.229 s5.4.3.3 step 3 allows a terminating AS to change the request URI to another URI that matches it (i.e., is canonically equal or an alias) without interrupting the interpretation of the iFCs.
+     * Clearwater only supports this for URIs which are canonically equal; it does not support changing to an alias URI (i.e., a different public identity belonging to the same alias group of the same private identity, per 3GPP TS 24.229 s3.1, 3GPP TS 29.228 sB.2.1).
  * `Request-Disposition: no-fork` (3GPP TS 24.229 s5.4.3.3 step 10, s5.7.3, RFC 3841)
-   - Clearwater ignores this directive - it always INVITEs all registered endpoints.
+     * Clearwater ignores this directive - it always INVITEs all registered endpoints.
 
 Future phases
 -------------
@@ -98,6 +98,6 @@ Clearwater has a built-in application server, `mmtel.<deployment-domain>`, which
  * Communication Diversion (CDIV)
  * Communication Barring (CB)
 
-Note that Clearwater is also able to support a number of other IR.92 services, either through inherent support (by transparently passing messages between UEs) or through integration with external application servers.  See the [IR.92 Supplementary Services document](IR.92-Supplementary-Services) for more information.
+Note that Clearwater is also able to support a number of other IR.92 services, either through inherent support (by transparently passing messages between UEs) or through integration with external application servers.  See the [IR.92 Supplementary Services document](IR.92_Supplementary_Services) for more information.
 
 The built-in MMTEL application server is invoked only for calls configured to use it. To use it, simply configure a subscriber's iFCs to indicate the use of `mmtel.<deployment-domain>` as an application server. The MMTEL application server can be used on its own, or as one of a chain of application servers handling a call.  The default iFCs configured by Ellis specify that the built-in MMTEL application server should be used for all originating and terminating calls.

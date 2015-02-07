@@ -87,7 +87,7 @@ TURN. Configure this as follows:
 
 -   On the 'expert mode' tab, fill in the following field with your
     SIP username and the TURN workaround password set by your administrator
-    (`turn_workaround` in [Installing a Chef client](Installing a Chef client)).
+    (`turn_workaround` in [Installing a Chef client](Installing_a_Chef_client)).
     This is a workaround for Chrome WebRTC [issue
     1508](https://code.google.com/p/webrtc/issues/detail?id=1508) which
     will be fixed in Chrome 28 (not yet released).
