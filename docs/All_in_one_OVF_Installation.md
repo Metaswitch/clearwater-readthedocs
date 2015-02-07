@@ -5,6 +5,7 @@ This pages describes how to install an [all-in-one image](All_in_one_Images) on 
 ## Supported Platforms
 
 This process should work on any virtualization platform that supports OVFs using x86-64 CPUs, but has only been tested on
+
 *   [VMware Player](http://www.vmware.com/products/player/)
 *   [VirtualBox](https://www.virtualbox.org/)
 *   [VMware ESXi](http://www.vmware.com/products/vsphere-hypervisor/overview.html).
@@ -30,6 +31,7 @@ Once you've installed the virtual machine, you should start it in the usual way 
 If you attach to the console, you should see an Ubuntu loading screen and then be dropped at a `cw-aio` login prompt.  The username is `ubuntu` and the password is `cw-aio`.  Note that the console is hard-coded to use a US keyboard, so if you have a different keyboard you might find that keys are remapped - in particular the `-` key.
 
 The OVF provides 3 network services.
+
 *   SSH - username is `ubuntu` and password is `cw-aio`
 *   HTTP to ellis for subscriber management - sign-up code is `secret`. You will probably want to change this to a more secure value - see ["Modifying Clearwater settings"](Modifying_Clearwater_settings) for how to do this.
 *   SIP to bono for call signaling - credentials are provisioned through ellis.

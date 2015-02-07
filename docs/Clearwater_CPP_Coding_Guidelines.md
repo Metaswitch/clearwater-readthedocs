@@ -14,6 +14,7 @@
 
 ## Formatting
 C++ code contributed to Clearwater should be formatted according to the following conventions:
+
 * Braces on a separate line from function definitions, `if` statements, etc.
 * Two-space indentation
 * Pointer operators attached to the variable type (i.e. `int* foo` rather than `int *foo`)

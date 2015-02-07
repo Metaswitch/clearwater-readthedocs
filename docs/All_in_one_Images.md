@@ -7,6 +7,7 @@ This page describes the all-in-one images, their capabilities and restrictions a
 ## Images
 
 All-in-one images consist of
+
 *   Ubuntu 12.04, configured to use DHCP
 *   bono, sprout, homestead, homer and ellis
 *   Clearwater auto-configuration scripts.
@@ -20,6 +21,7 @@ The image is designed to run on a virtual machine with a single core, 1.7GB RAM 
 Since the all-in-one images include all of bono, sprout, homestead, homer and ellis, they are capable of almost anything a full deployment is capable of.
 
 The key restrictions of all-in-one images are
+
 *   hard-coded realm - the all-in-one image uses a hard-coded realm of `example.com` so your SIP URI might be `sip:6505551234@example.com` - by default, SIP uses this realm for routing but `example.com` won't resolve to your host so you need to configure an outbound proxy on all your SIP clients (more details later)
 *   performance - since all software runs on a single virtual machine, performance is significantly lower than even the smallest scale deployment
 *   scalability - there is no option to scale up and add more virtual machines to boost capacity - for this, you must create a normal deployment
@@ -39,8 +41,7 @@ If your virtualization platform is not EC2 and doesn't support OVF, you may stil
 1.  install [Ubuntu 12.04 - 64bit server edition](http://releases.ubuntu.com/precise/)
 2.  find the `preseed/late_command` entry in the [all-in-one image's install script](https://github.com/Metaswitch/clearwater-vm-images/blob/master/ubuntu-ovf/ubuntu-server.seed) - as of writing this is as follows, but please check the linked file for the latest version
 
-```
-d-i preseed/late_command string in-target bash -c '{ echo "#!/bin/bash" ; \
+         d-i preseed/late_command string in-target bash -c '{ echo "#!/bin/bash" ; \
                                                      echo "set -e" ; \
                                                      echo "repo=... # filled in by make_ovf.sh" ; \
                                                      echo "echo deb \$repo binary/ > /etc/apt/sources.list.d/clearwater.list" ; \
@@ -55,7 +56,6 @@ d-i preseed/late_command string in-target bash -c '{ echo "#!/bin/bash" ; \
                                                      echo "rm /etc/rc2.d/S99zclearwater-aio-first-boot" ; \
                                                      echo "poweroff" ; } > /etc/rc2.d/S99zclearwater-aio-first-boot ; \
                                                    chmod a+x /etc/rc2.d/S99zclearwater-aio-first-boot'
-```
 
 3.  run the command (stripping the `d-i preseed/late_command string in-target` prefix, filling in the repo variable - the default is `http://repo.cw-ngv.com/stable`, and stripping the `\`) - this will create an `/etc/rc2.d/S99zclearwater-aio-first-boot` script
 4.  run the `/etc/rc2.d/S99zclearwater-aio-first-boot` script - this will install the all-in-one software and then shutdown (ready for an image to be taken)

@@ -9,6 +9,7 @@ Project Clearwater's all-in-one node is already available as a pre-built AMI, wh
 Before you launch the node, you will need an EC2 keypair, and a security group configured to provide access to the [required ports](Clearwater_IP_Port_Usage).
 
 To launch the node
+
 *  From the EC2 console, make sure you're in the US East region, then select "Instances", "Launch instance" and then "Classic Wizard"
 *  Select the "Community AMIs" tab, and search for "Clearwater"
 *  Press "Select" for the Clearwater all-in-one AMI. Take the most recent version unless you have a good reason not to.

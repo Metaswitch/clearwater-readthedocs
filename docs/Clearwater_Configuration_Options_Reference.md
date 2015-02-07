@@ -1,6 +1,7 @@
 This document describes all the Clearwater configuration options that can be set in /etc/clearwater/config or /etc/clearwater/user_settings.
 
 To change one of these settings:
+
 * Modify the configuration file
 * Run `sudo service clearwater-infrastructure restart` to regenerate any dependent configuration files
 * Restart the relevant Clearwater service (e.g. `sudo monit restart bono`)
@@ -74,13 +75,11 @@ This section describes optional configuration options, particularly for ensuring
 * `call_list_store_ttl` - determines how long each call list fragment should be kept in the call list store. This defaults to 604800 seconds (1 week). This is only relevant if the node includes a Memento AS.
 * `memento_disk_limit` - determines the maximum size that the call lists database may occupy. This defaults to 20% of disk space. This is only relevant if the node includes a Memento AS. Can be specified in Bytes, Kilobytes, Megabytes, Gigabytes, or a percentage of the available disk. For example:
 
-```
-memento_disk_limit=10240 # Bytes  
-memento_disk_limit=100k  # Kilobytes  
-memento_disk_limit=100M  # Megabytes  
-memento_disk_limit=100G  # Gigabytes  
-memento_disk_limit=45%   # Percentage of available disk
-```
+        memento_disk_limit=10240 # Bytes
+        memento_disk_limit=100k  # Kilobytes
+        memento_disk_limit=100M  # Megabytes
+        memento_disk_limit=100G  # Gigabytes
+        memento_disk_limit=45%   # Percentage of available disk
 
 * `memento_threads` - determines the number of threads dedicated to adding call list fragments to the call list store. This defaults to 25 threads. This is only relevant if the node includes a Memento AS.
 

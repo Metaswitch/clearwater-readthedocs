@@ -30,19 +30,17 @@ This section describes step-by-step how to run stress using Chef automation.  It
 
     For example (replacing ENVIRONMENT with your environment name and DOMAIN with your Route 53-hosted root domain):
 
-```
-    name "ENVIRONMENT"
-    description "Stress testing environment"
-    cookbook_versions "clearwater" => "= 0.1.0"
-    override_attributes "clearwater" => {
-        "root_domain" => "DOMAIN",
-        "availability_zones" => ["us-east-1a"],
-        "repo_server" => "http://repo.cw-ngv.com/latest",
-        "number_start" => "2010000000",
-        "number_count" => 1000,
-        "pstn_number_count" => 0,
-        "enum_server" => "enum.ENVIRONMENT.DOMAIN"}
-```
+        name "ENVIRONMENT"
+        description "Stress testing environment"
+        cookbook_versions "clearwater" => "= 0.1.0"
+        override_attributes "clearwater" => {
+            "root_domain" => "DOMAIN",
+            "availability_zones" => ["us-east-1a"],
+            "repo_server" => "http://repo.cw-ngv.com/latest",
+            "number_start" => "2010000000",
+            "number_count" => 1000,
+            "pstn_number_count" => 0,
+            "enum_server" => "enum.ENVIRONMENT.DOMAIN"}
 
 4.  Upload your new environment to the chef server by typing `knife environment from file environments/ENVIRONMENT.rb`
 5. Create the deployment by typing `knife deployment resize -E ENVIRONMENT`.  If you want more nodes, supply parameters such "--bono-count 5" or "--sprout-count 3" to control this.
