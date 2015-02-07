@@ -69,6 +69,7 @@ pages:
 - ['Running_the_live_tests.md', 'Testing', 'Running the live tests']
 
 theme: readthedocs
+themee_dir: "custom_theme"
 include_search: true
 use_directory_urls: false
-markdown_extensions: [sane_lists, wikilinks, admonition]
+markdown_extensions: [sane_lists, admonition]
