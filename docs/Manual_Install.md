@@ -241,15 +241,15 @@ When configuring DNS for a multi-node deployment, it's crucial that
 
 ### Clustering Sprout
 
-Sprout uses [memcached] (http://memcached.org) as its registration datastore, and Chronos as its timer service. After initially installing the Sprout nodes, you must reconfigure them to ensure they cluster together.
+Sprout uses [memcached] (http://memcached.org) as its registration datastore, and [Chronos](https://github.com/Metaswitch/chronos) as its timer service. After initially installing the Sprout nodes, you must reconfigure them to ensure they cluster together.
 
 To do this for memcached:
 
 *   edit `/etc/clearwater/cluster_settings` file on each node to contain a single line of the form
-`servers=<Sprout IP address:11211>,<Sprout IP address:11211>,...` ensuring the order of the IP addresses is identical on each node
+`servers=<Sprout-1 IP address>:11211,<Sprout-2 IP address>:11211,...` (e.g. `servers=10.0.0.1:11211,10.0.0.2:11211`), ensuring the order of the IP addresses is identical on each node. 
 *   force Sprout to reload its configuration with `sudo service sprout reload`.
 
-To do this for Chronos:
+To do this for Chronos, follow the instructions in <https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md>:
 
 *   edit `/etc/chronos/chronos.conf` to include a node entry for each Sprout node in the cluster.
 *   ensure that the `localhost` entry in `/etc/chronos/chronos.conf` is set to the local IP address and not the word 'localhost'.
