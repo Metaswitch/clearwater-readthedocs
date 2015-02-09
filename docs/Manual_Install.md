@@ -241,35 +241,21 @@ When configuring DNS for a multi-node deployment, it's crucial that
 
 ### Clustering Sprout
 
-Depending on the release you are using Sprout uses [memcached] (http://memcached.org) or [Infinispan](http://www.jboss.org/infinispan/) as its registration datastore.
+Sprout uses [memcached] (http://memcached.org) as its registration datastore, and [Chronos](https://github.com/Metaswitch/chronos) as its timer service. After initially installing the Sprout nodes, you must reconfigure them to ensure they cluster together.
 
-Up to and including release 28 (Lock Stock and Two Smoking Barrels), Sprout used memcached as the store.  If using these releases, after installing the Sprout nodes you must reconfigure them to ensure they cluster together.  To do this,
-
-*   edit the `/etc/clearwater/cluster_settings` file on each node to contain a single line of the form `memcached_servers=<sprout IP address>:11211,<sprout IP address>:11211,...` ensuring the order of the IP addresses is identical on each node
-*   restart sprout with `sudo service sprout stop`.
-
-In releases 29 (Memento) and 30 (No Country for Old Men), Sprout used Infinispan.  If using either of these releases, after installing the sprout nodes, you must reconfigure the Infinispan processes on these nodes to cluster together.  To do this,
-
-*   open `/var/lib/infinispan/configuration/clustered.xml` for editing
-*   find the `initial_hosts` property and set it to a comma-separated list of the IP addresses in your sprout cluster, each appended with `[7800]` (the port number to communicate on)
-*   find the `num_initial_members` property and set it to the number of nodes in your sprout cluster
-*   find the `public` interface and set its `inet-address` to `${jboss.bind.address:<private_ip>}`, replacing `<private IP>` with the same you value used in `/etc/clearwater/config`
-*   save the file and exit
-*   restart Infinispan with `sudo monit restart infinispan`.
-
-In release 32, Sprout reverted to using memcached as the store, but with enhanced support for redundancy and dynamic scaling without interrupting service.  If using this release or later, after initially installing the Sprout nodes you must reconfigure them to ensure they cluster together.  To do this,
+To do this for memcached:
 
 *   edit `/etc/clearwater/cluster_settings` file on each node to contain a single line of the form
-`servers=<Sprout IP address:11211>,<Sprout IP address:11211>,...` ensuring the order of the IP addresses is identical on each node
+`servers=<Sprout-1 IP address>:11211,<Sprout-2 IP address>:11211,...` (e.g. `servers=10.0.0.1:11211,10.0.0.2:11211`), ensuring the order of the IP addresses is identical on each node. 
 *   force Sprout to reload its configuration with `sudo service sprout reload`.
 
-In release 41, Chronos was added to Sprout. If using this release or later, after initially installing the Sprout nodes you must also follow these instructions to ensure that the Sprouts are correctly clustered.
+To do this for Chronos, follow the instructions in <https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md>:
 
 *   edit `/etc/chronos/chronos.conf` to include a node entry for each Sprout node in the cluster.
 *   ensure that the `localhost` entry in `/etc/chronos/chronos.conf` is set to the local IP address and not the word 'localhost'.
 *   force Chronos to reload its configuration with `sudo service chronos reload`.
 
-If the Sprout nodes include the Memento Application server, then you must reconfigure the Cassandra processes on these nodes to cluster together.  To do this, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/initialize/initializeTOC.html). 
+If the Sprout nodes include the Memento Application server, then you must reconfigure the Cassandra processes on these nodes to cluster together. To do this, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/initialize/initializeTOC.html). 
 
 The clustering process might cause you to lose the memento schema.  To restore it, the simplest process is, on one sprout node, to uninstall memento (using `sudo apt-get purge memento`) and then reinstall it (using `sudo apt-get install memento`).  As part of the installation process, the schema is reinjected into Cassandra.
 
