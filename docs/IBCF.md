@@ -62,7 +62,7 @@ The file is in JSON format, for example.
                 "domain" : "<SIP trunk IP address or host name>",
                 "route" : ["<IBCF SIP URI>", "<IBCF SIP URI>"]
             },
-            {   "name" : "<route 2 descriptive name>",
+            {   "name" : "<route 3 descriptive name>",
                 "number" : "<Routing number>",
                 "route" : ["<IBCF SIP URI>", "<IBCF SIP URI>"]
             }
