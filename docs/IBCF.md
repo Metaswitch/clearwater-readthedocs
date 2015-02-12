@@ -37,11 +37,18 @@ or by defining a default mapping to the trunk and exceptions for number ranges y
     *.3.2.1.2.4.2 IN NAPTR 1 1 "u" "E2U+sip" "!(^.*$)!sip:\\1@<local domain>!" .
     *.3.2.1.2.4.2.1 IN NAPTR 1 1 "u" "E2U+sip" "!(^.*$)!sip:\\1@<local domain>!" .
 
+You can also use ENUM to provide number portability information, for example
+
+    *.3.2.1.2.4.2 IN NAPTR 1 1 "u" "E2U+pstn:tel" "!(^.*$)!sip:\\1;npdi;rn=+242123@<local domain>!" .
+    *.3.2.1.2.4.2.1 IN NAPTR 1 1 "u" "E2U+pstn:tel" "!(^.*$)!sip:\\1;npdi@<local domain>!" .
+
 Refer to the [ENUM guide](ENUM) for more about how to configure ENUM.
 
 ## BGCF Configuration
 
-BGCF (Border Gateway Control Function) configuration is stored in the `bgcf.json` file in `/etc/clearwater` on each sprout node (both I- and S-CSCF).  The file stores mappings from SIP trunk IP addresses and/or host names to IBCF host names, and these mappings control which IBCF nodes are used to route to a particular destination. Multiple nodes can be specified.  In this case, Route headers are added to the message such that it is sent to the first node and the first node sends it to the second node and so on; the message is not tried at the second node if it fails at the first node.
+BGCF (Border Gateway Control Function) configuration is stored in the `bgcf.json` file in `/etc/clearwater` on each sprout node (both I- and S-CSCF).  The file stores two types of mappings. This first maps from SIP trunk IP addresses and/or host names to IBCF host names, and the second maps from a routing number (using prefix matching) to IBCF host names. These mappings control which IBCF nodes are used to route to a particular destination. Each entry can only apply to one type of mapping. 
+
+Multiple nodes to route to can be specified. In this case, Route headers are added to the message such that it is sent to the first node and the first node sends it to the second node and so on; the message is not tried at the second node if it fails at the first node.
 
 The file is in JSON format, for example.
 
@@ -54,8 +61,12 @@ The file is in JSON format, for example.
             {   "name" : "<route 2 descriptive name>",
                 "domain" : "<SIP trunk IP address or host name>",
                 "route" : ["<IBCF SIP URI>", "<IBCF SIP URI>"]
+            },
+            {   "name" : "<route 2 descriptive name>",
+                "number" : "<Routing number>",
+                "route" : ["<IBCF SIP URI>", "<IBCF SIP URI>"]
             }
         ]
     }
 
-There can be only one route to any given SIP trunk IP address or host name.  If there are multiple routes with the same destination IP address or host name, only the first will be used.
+There can be only one route set for any given SIP trunk IP address or host name.  If there are multiple routes with the same destination IP address or host name, only the first will be used. Likewise, there can only be one route set for any given routing number; if there are multiple routes with the same routing number only the first will be used. 
