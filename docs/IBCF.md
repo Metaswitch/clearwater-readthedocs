@@ -70,3 +70,7 @@ The file is in JSON format, for example.
     }
 
 There can be only one route set for any given SIP trunk IP address or host name.  If there are multiple routes with the same destination IP address or host name, only the first will be used. Likewise, there can only be one route set for any given routing number; if there are multiple routes with the same routing number only the first will be used. 
+
+A default route set can be configured by having an entry where the domain is set to `"*"`. This will be used by the BGCF if it is trying to route based on the the domain and there's no explicit match for the domain in the configuration. 
+
+There is no default route set if the BGCF is routing based on the routing number provided. 
