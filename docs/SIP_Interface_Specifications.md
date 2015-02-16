@@ -281,6 +281,13 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   Mandatory on S-CSCF and UEs in an IMS network.
 *   Clearwater includes public GRUUs in these event notifications as of the Ninja Gaiden release. It does not support temporary GRUUs.
 
+### Number portability parameters in Tel URI ([RFC 4694](http://www.ietf.org/rfc/rfc4694.txt))
+
+*   Defines additional parameters in Tel URI for signalling related to number portability.
+*   Used in IMS in both Tel and SIP URIs for carrier subscription scenarios, and in IMS core for other number portability related scenarios.
+*   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
+*   The `rn` and `npdi` parameters are supported by Clearwater; Clearwater doesn't currently support the other parameters defined in this RFC.
+
 ## Relevant to Clearwater but not currently supported
 
 These are the RFCs which are relevant to Clearwater and not yet supported.
@@ -354,13 +361,6 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 *   Covers Resource-Priority and Accept-Resource-Priority headers.  Intended to allow UEs to signal high priority calls that get preferential treatment by the network (for example, emergency service use).
 *   Not currently supported by Clearwater.
 *   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
-
-### Number portability parameters in Tel URI ([RFC 4694](http://www.ietf.org/rfc/rfc4694.txt))
-
-*   Defines additional parameters in Tel URI for signalling related to number portability.
-*   Used in IMS in both Tel and SIP URIs for carrier subscription scenarios, and in IMS core for other number portability related scenarios.
-*   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
-*   Not currently supported by Clearwater.
 
 ### Service URNs ([RFC 5031](http://www.ietf.org/rfc/rfc5031.txt))
 
