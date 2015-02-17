@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[X-Wing vs. TIE Fighter](http://en.wikipedia.org/wiki/Star_Wars:_X-Wing_vs._TIE_Fighter)".
+The latest stable release of Clearwater is "[Yoshi's Island](http://en.wikipedia.org/wiki/Super_Mario_World_2:_Yoshi%27s_Island)".
 
 ## Architecture
 
