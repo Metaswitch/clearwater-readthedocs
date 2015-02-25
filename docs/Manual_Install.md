@@ -109,7 +109,7 @@ If you want your Sprout nodes to include Gemini/Memento Application Servers add 
     # Application Servers
     gemini_enabled='Y'
     memento_enabled='Y'
- 
+
 See the [Chef instructions](Installing_a_Chef_client#add-deployment-specific-configuration)
 for more information on how to fill these in. The values marked
 `<secret>` **must** be set to secure values to protect your deployment
@@ -160,6 +160,8 @@ Install the Bono and Restund packages with:
 
 ### Sprout
 
+Set up the Chronos configuration file, following [these instructions](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md)
+
 Install the Sprout package with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install sprout --yes
@@ -184,6 +186,8 @@ Install the Homestead and Cassandra packages with:
     sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead homestead-prov --yes
 
 ### Ralf
+
+Set up the Chronos configuration file, following [these instructions](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md)
 
 Install the Ralf package with:
 
@@ -246,7 +250,7 @@ Sprout uses [memcached] (http://memcached.org) as its registration datastore, an
 To do this for memcached:
 
 *   edit `/etc/clearwater/cluster_settings` file on each node to contain a single line of the form
-`servers=<Sprout-1 IP address>:11211,<Sprout-2 IP address>:11211,...` (e.g. `servers=10.0.0.1:11211,10.0.0.2:11211`), ensuring the order of the IP addresses is identical on each node. 
+`servers=<Sprout-1 IP address>:11211,<Sprout-2 IP address>:11211,...` (e.g. `servers=10.0.0.1:11211,10.0.0.2:11211`), ensuring the order of the IP addresses is identical on each node.
 *   force Sprout to reload its configuration with `sudo service sprout reload`.
 
 To do this for Chronos, follow the instructions in <https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md>:
@@ -255,7 +259,7 @@ To do this for Chronos, follow the instructions in <https://github.com/Metaswitc
 *   ensure that the `localhost` entry in `/etc/chronos/chronos.conf` is set to the local IP address and not the word 'localhost'.
 *   force Chronos to reload its configuration with `sudo service chronos reload`.
 
-If the Sprout nodes include the Memento Application server, then you must reconfigure the Cassandra processes on these nodes to cluster together. To do this, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/initialize/initializeTOC.html). 
+If the Sprout nodes include the Memento Application server, then you must reconfigure the Cassandra processes on these nodes to cluster together. To do this, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/initialize/initializeTOC.html).
 
 The clustering process might cause you to lose the memento schema.  To restore it, the simplest process is, on one sprout node, to uninstall memento (using `sudo apt-get purge memento`) and then reinstall it (using `sudo apt-get install memento`).  As part of the installation process, the schema is reinjected into Cassandra.
 
@@ -287,4 +291,4 @@ Gemini and Memento can run integrated into the Sprout nodes, or they can be run 
 
 To install Gemini or Memento as a standalone server, follow the same process as installing a Sprout node. Make sure not to cluster the new standalone Sprout nodes with the existing Sprout nodes, and don't add them to the existing Sprout DNS cluster.
 
-The `sprout_hostname` setting in `/etc/clearwater/config` on standalone application servers should be set to the cluster of the standalone application servers, for example, `memento.cw-ngv.com`. 
+The `sprout_hostname` setting in `/etc/clearwater/config` on standalone application servers should be set to the cluster of the standalone application servers, for example, `memento.cw-ngv.com`.
