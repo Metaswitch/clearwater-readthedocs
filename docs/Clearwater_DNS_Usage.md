@@ -22,6 +22,30 @@ Clearwater makes heavy use of DNS to refer to its nodes.  It uses it for
 
 Clearwater also supports using DNS for identifying non-Clearwater nodes.  In particular, it supports DNS for identifying SIP peers using NAPTR and SRV records, as described in [RFC 3263](http://tools.ietf.org/rfc/rfc3263.txt).
 
+## Resiliency
+
+By default, Clearwater routes all DNS requests through an instance of [dnsmasq](http://www.thekelleys.org.uk/dnsmasq)
+running on localhost. This round-robins requests between the servers in /etc/resolv.conf,
+as described in [its FAQ](http://www.thekelleys.org.uk/dnsmasq/docs/FAQ):
+
+> By default, dnsmasq treats all the nameservers it knows about as
+> equal: it picks the one to use using an algorithm designed to avoid 
+> nameservers which aren't responding.
+
+If the `signaling_dns_server` option is set in `/etc/clearwater/config` (which is mandatory when using
+[traffic separation](Multiple_Network_Support.md)), Clearwater will not use dnsmasq. Instead, resiliency
+is achieved by being able to specify up to three servers in a list (e.g.
+`signaling_dns_server=1.2.3.4,10.0.0.1,192.168.1.1`), and Clearwater will fail over between them as follows:
+
+* It will always query the first server in the list first
+* If this returns SERVFAIL or times out (which happens after a randomised 500ms-1000ms period), Sprout will resend the query to the second server
+* If this returns SERVFAIL or times out, Sprout will resend the query to the third server
+* If all servers return SERVFAIL or time out, the DNS query will fail
+
+Clearwater caches DNS responses for several minutes (to reduce the load on DNS servers, and the latency introduced by querying them). If a cache entry is stale,
+but the DNS servers return SERVFAIL or time out when Clearwater attempts to refresh it, Clearwater will continue to use the cached value until the DNS servers
+become responsive again. This minimises the impact of a DNS server failure on calls.
+
 ## Requirements
 
 ### DNS Server
