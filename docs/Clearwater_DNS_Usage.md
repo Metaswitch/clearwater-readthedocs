@@ -38,8 +38,8 @@ is achieved by being able to specify up to three servers in a list (e.g.
 `signaling_dns_server=1.2.3.4,10.0.0.1,192.168.1.1`), and Clearwater will fail over between them as follows:
 
 * It will always query the first server in the list first
-* If this returns SERVFAIL or times out (which happens after a randomised 500ms-1000ms period), Sprout will resend the query to the second server
-* If this returns SERVFAIL or times out, Sprout will resend the query to the third server
+* If this returns SERVFAIL or times out (which happens after a randomised 500ms-1000ms period), it will resend the query to the second server
+* If this returns SERVFAIL or times out, it will resend the query to the third server
 * If all servers return SERVFAIL or time out, the DNS query will fail
 
 Clearwater caches DNS responses for several minutes (to reduce the load on DNS servers, and the latency introduced by querying them). If a cache entry is stale,
