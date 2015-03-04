@@ -82,6 +82,7 @@ This section describes optional configuration options, particularly for ensuring
         memento_disk_limit=45%   # Percentage of available disk
 
 * `memento_threads` - determines the number of threads dedicated to adding call list fragments to the call list store. This defaults to 25 threads. This is only relevant if the node includes a Memento AS.
+* `exception_max_ttl` - determines the maximum time before a process exits if it crashes. This defaults to 600 seconds
 
 ## Experimental options
 
