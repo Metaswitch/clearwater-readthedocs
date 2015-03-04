@@ -40,6 +40,7 @@ pages:
 - ['Plivo.md', 'Integration', 'Plivo']
 - ['Voxbone.md', 'Integration', 'Voxbone']
 - ['Clearwater_SNMP_Statistics.md', 'Integration', 'Clearwater SNMP Statistics']
+- ['SNMP_Alarms.md', 'Integration', 'SNMP Alarms']
 - ['Configuring_MMonit.md', 'Integration', 'Configuring M/Monit']
 
 # Features:
