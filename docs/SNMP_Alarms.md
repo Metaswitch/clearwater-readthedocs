@@ -26,13 +26,13 @@ obtain the brief description, detailed description, and severity for the alarm:
     report alarms from Clearwater Core. It is also recommended that the EMS must
     display the alarm information provided by the following MIBs.
 
-*   Upon receiving a SNMP INFORM message from Clearwater Core the EMS
-    can obtain the alarm data by the following:
+*   Upon receiving a SNMP INFORM message from Clearwater the EMS can obtain the
+    alarm data by the following:
 
     *   The EMS must retrieve the AlarmModelEntry MIB table data associated
-        with the current SNMP INFORM message from Clearwater Core. This
-        MIB provides the active/clear state, alarm description, and a table index
-        for the ituAlarmEntry MIB.
+        with the current SNMP INFORM message from Clearwater. This MIB provides the
+        active/clear state, alarm description, and a table index for the ituAlarmEntry
+        MIB.
 
     *   The EMS must the retrieve the ituAlarmEntry MIB table data associated
         with the current alarm from Clearwater Core. This MIB provides the alarm
