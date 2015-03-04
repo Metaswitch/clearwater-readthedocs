@@ -23,7 +23,7 @@ To integrate with an EMS, it must support the following capabilities of RFC 3877
 obtain the brief description, detailed description, and severity for the alarm:
 
 *   The EMS must be configured to catch the SNMP INFORM messages used to
-    report alarms from Clearwater Core. It is also recommended that the EMS must
+    report alarms from Clearwater. It is also recommended that the EMS must
     display the alarm information provided by the following MIBs.
 
 *   Upon receiving a SNMP INFORM message from Clearwater the EMS can obtain the
@@ -35,7 +35,7 @@ obtain the brief description, detailed description, and severity for the alarm:
         MIB.
 
     *   The EMS must the retrieve the ituAlarmEntry MIB table data associated
-        with the current alarm from Clearwater Core. This MIB provides the alarm
+        with the current alarm from Clearwater. This MIB provides the alarm
         severity and the additional detailed alarm description.
 
 ## Alarm Models
