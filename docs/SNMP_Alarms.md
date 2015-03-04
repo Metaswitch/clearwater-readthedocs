@@ -12,14 +12,14 @@ Error indications come in two forms:
     notification to a configured external SNMP manager.
 
 *   For errors based on a threshold set on a statistic (such as latency targets or
-    number of failed connections), the Clearwater node exposes that statistic over
-    SNMP. A downstream statistics aggregator from the Management and
+    number of failed connections), the Clearwater node [exposes that statistic over
+    SNMP](Clearwater_SNMP_Statistics.md). A downstream statistics aggregator from the Management and
     Orchestration (MANO) layer monitors these statistics, compares them to its
     configured thresholds, and raises alarms on that basis.
 
 ## EMS
 
-To integrate with an EMS, it must support the following capabilities of RFC 3877 to
+To integrate with an EMS, the EMS must support the following capabilities of RFC 3877 to
 obtain the brief description, detailed description, and severity for the alarm:
 
 *   The EMS must be configured to catch the SNMP INFORM messages used to
