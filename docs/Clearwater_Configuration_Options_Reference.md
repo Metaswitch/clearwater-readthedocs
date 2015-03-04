@@ -97,7 +97,7 @@ This section describes optional configuration options which may be useful, but a
 This section describes settings that may vary between systems in the same deployment, such as log level (which may be increased on certain machines to track down specific issues) and performance settings (which may vary if some servers in your deployment are more powerful than others). These settings are set in `/etc/clearwater/user_settings`, not `/etc/clearwater/config` (in the format `name=value`, e.g. `log_level=5`).
 
 * `log_level` - determines how verbose Clearwater's logging is, from 1 (error logs only) to 5 (debug-level logs). Defaults to 2.
-* `log_directory` - determines which folder the logs are created in. This folder must exist, and be owned by the service. Defaults to /var/log/<service> (and this is created by the install scripts of the service).
+* `log_directory` - determines which folder the logs are created in. This folder must exist, and be owned by the service. Defaults to /var/log/<service> (this folder is created and has the correct permissions set for it by the install scripts of the service).
 * `num_pjsip_threads` - determines how many PJSIP transport-layer threads should run at once. Defaults to 1, and it may be dangerous to change this as it is not necessarily thread-safe.
 * `num_worker_threads` - for Sprout and Bono nodes, determines how many worker threads should be started to do SIP/IMS processing. Defaults to 50 times the number of CPU cores on the system.
 * `upstream_connections` - determines the maximum number of TCP connections which Bono will open to the I-CSCF(s). Defaults to 50.
