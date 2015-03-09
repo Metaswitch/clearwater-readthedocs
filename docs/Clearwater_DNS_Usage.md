@@ -34,7 +34,7 @@ as described in [its FAQ](http://www.thekelleys.org.uk/dnsmasq/docs/FAQ):
 
 If the `signaling_dns_server` option is set in `/etc/clearwater/config` (which is mandatory when using
 [traffic separation](Multiple_Network_Support.md)), Clearwater will not use dnsmasq. Instead, resiliency
-is achieved by being able to specify up to three servers in a list (e.g.
+is achieved by being able to specify up to three servers in a comma-separated list (e.g.
 `signaling_dns_server=1.2.3.4,10.0.0.1,192.168.1.1`), and Clearwater will fail over between them as follows:
 
 * It will always query the first server in the list first

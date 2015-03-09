@@ -58,7 +58,7 @@ This section describes optional configuration options, particularly for ensuring
 * `default_session_expires` - determines the Session-Expires value which Sprout will add to INVITEs, to force UEs to send keepalive messages during calls so they can be tracked for billing purposes.
 * `enum_server` - a comma-separated list of DNS servers which can handle ENUM queries.
 * `enum_suffix` - determines the DNS suffix used for ENUM requests (after the digits of the number). Defaults to "e164.arpa"
-* `enum_file` - if set (to a file path), Sprout will use this local JSON file for ENUM lookups rather than a DNS server. An example file is at https://github.com/Metaswitch/clearwater-docs/wiki/ENUM#deciding-on-enum-rules.
+* `enum_file` - if set (to a file path), and if `enum_server` is not set, Sprout will use this local JSON file for ENUM lookups rather than a DNS server. An example file is at https://github.com/Metaswitch/clearwater-docs/wiki/ENUM#deciding-on-enum-rules.
 * `icscf_uri` - the SIP address of the external I-CSCF integrated with your Sprout node (if you have one).
 * `scscf_uri` - the SIP address of the Sprout S-CSCF. This defaults to `sip:$sprout_hostname:$scscf;transport=TCP` - this includes a specific port, so if you need NAPTR/SRV resolution, it must be changed to not include the port.
 * `additional_home_domains` - this option defines a set of home domains which Sprout and Bono will regard as locally hosted (i.e. allowing users to register, not routing calls via an external trunk). It is a comma-separated list.
@@ -83,7 +83,7 @@ This section describes optional configuration options, particularly for ensuring
         memento_disk_limit=45%   # Percentage of available disk
 
 * `memento_threads` - determines the number of threads dedicated to adding call list fragments to the call list store. This defaults to 25 threads. This is only relevant if the node includes a Memento AS.
-* `dns_server` - a comma-separated list of DNS servers for non-ENUm queries. Defaults to 127.0.0.1 (i.e. uses `dnsmasq`)
+* `signaling_dns_server` - a comma-separated list of DNS servers for non-ENUM queries. Defaults to 127.0.0.1 (i.e. uses `dnsmasq`)
 
 ## Experimental options
 
