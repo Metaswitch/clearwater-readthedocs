@@ -400,9 +400,16 @@ you can instead change the suffix, e.g. to .e164.arpa.ngv.example.com, by
 
 ENUM and Sprout
 ---------------
-To enable ENUM lookups on Sprout, edit `/etc/clearwater/user_settings` and add the following configuration to use either an ENUM server (recommended) or an ENUM file
+To enable ENUM lookups on Sprout, edit `/etc/clearwater/config` and add the following configuration to use either an ENUM server (recommended) or an ENUM file:
 
-    enum_server=<hostname of enum server>
+    enum_server=<IP addresses of enum servers>
     enum_file=<location of enum file>
 
 If you use the ENUM file, enter the ENUM rules in the JSON format (shown above).
+
+It's possible to configure Sprout with secondary and tertiary ENUM servers, by providing a comma-separated list (e.g. `enum_server=1.2.3.4,10.0.0.1,192.168.1.1`). If this is done:
+
+* Sprout will always query the first server in the list first
+* If this returns SERVFAIL or times out (which happens after a randomised 500ms-1000ms period), Sprout will resend the query to the second server
+* If this returns SERVFAIL or times out, Sprout will resend the query to the third server
+* If all servers return SERVFAIL or time out, the ENUM query will fail
