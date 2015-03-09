@@ -28,7 +28,7 @@ If you installed your system using the [Manual Install Instructions](Manual_Inst
 If you installed your deployment with [chef](Creating_a_deployment_with_Chef):
 
 * Follow the instructions to [update the Chef server](https://github.com/Metaswitch/chef#updating-the-chef-server)
-* Run `sudo chef-client` on each node.
+* Run `sudo chef-client` followed by `sudo clearwater-upgrade` on each node.
 
 ## Seamless Upgrade
 
@@ -63,4 +63,4 @@ run `sudo clearwater-upgrade` on each node in the order described above.
 If you installed your deployment with [chef](Creating_a_deployment_with_Chef):
 
 * Follow the instructions to [update the Chef server](https://github.com/Metaswitch/chef#updating-the-chef-server)
-* Run `sudo chef-client` on each node in the order described above.
+* Run `sudo chef-client` followed by `sudo clearwater-upgrade` on each node in the order described above.
