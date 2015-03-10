@@ -281,6 +281,15 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   Mandatory on S-CSCF and UEs in an IMS network.
 *   Clearwater includes public GRUUs in these event notifications as of the Ninja Gaiden release. It does not support temporary GRUUs.
 
+### Alternative URIs ([RFC 2806](http://www.ietf.org/rfc/rfc2806.txt), [RFC 2368](http://www.ietf.org/rfc/rfc2368.txt), [RFC 3859](http://www.ietf.org/rfc/rfc3859.txt), [RFC 3860](http://www.ietf.org/rfc/rfc3860.txt), [RFC 3966](http://www.ietf.org/rfc/rfc3966.txt))
+
+*   Various RFCs defining alternatives to SIP URI - Tel URI ([RFC 2806](http://www.ietf.org/rfc/rfc2806.txt) and [RFC 3966](http://www.ietf.org/rfc/rfc3966.txt)), mailto URI ([RFC 2368](http://www.ietf.org/rfc/rfc2368.txt)), pres URI ([RFC 3859](http://www.ietf.org/rfc/rfc3859.txt)), and im URI ([RFC 3860](http://www.ietf.org/rfc/rfc3860.txt)).
+*   IMS allows use of Tel URIs
+    *   as a public user identity associated with a subscription (although a subscription must have at least on public user identity which is a SIP URI)
+    *   as the target URI for a call.
+*   Other URIs can be specified as Request URI for a SIP message.
+*   Clearwater supports SIP and Tel URIs but not mailto, pres or im URIs. 
+
 ### Number portability parameters in Tel URI ([RFC 4694](http://www.ietf.org/rfc/rfc4694.txt))
 
 *   Defines additional parameters in Tel URI for signalling related to number portability.
@@ -307,15 +316,6 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 *   If P-CSCF is gating media then function is more complex as P-CSCF has to operate on values in P-Early-Media headers sent to/from UEs.
 *   Mandatory in a P-CSCF according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
 *   Clearwater doesn't currently support this.
-
-### Alternative URIs ([RFC 2806](http://www.ietf.org/rfc/rfc2806.txt), [RFC 2368](http://www.ietf.org/rfc/rfc2368.txt), [RFC 3859](http://www.ietf.org/rfc/rfc3859.txt), [RFC 3860](http://www.ietf.org/rfc/rfc3860.txt), [RFC 3966](http://www.ietf.org/rfc/rfc3966.txt))
-
-*   Various RFCs defining alternatives to SIP URI - Tel URI ([RFC 2806](http://www.ietf.org/rfc/rfc2806.txt) and [RFC 3966](http://www.ietf.org/rfc/rfc3966.txt)), mailto URI ([RFC 2368](http://www.ietf.org/rfc/rfc2368.txt)), pres URI ([RFC 3859](http://www.ietf.org/rfc/rfc3859.txt)), and im URI ([RFC 3860](http://www.ietf.org/rfc/rfc3860.txt)).
-*   IMS allows use of Tel URIs
-    *   as a public user identity associated with a subscription (although a subscription must have at least on public user identity which is a SIP URI)
-    *   as the target URI for a call.
-*   Other URIs can be specified as Request URI for a SIP message.
-*   Clearwater only supports SIP URIs. 
 
 ### P-Media-Authorization header ([RFC 3313](http://www.ietf.org/rfc/rfc3313.txt))
 
