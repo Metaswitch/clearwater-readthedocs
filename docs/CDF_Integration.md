@@ -39,7 +39,7 @@ To point Ralf at the billing DIAMETER realm, add the following line to `/etc/cle
 
 Then restart Ralf to pick up the change:
 
-    sudo monit restart ralf
+    sudo service ralf stop (allowing monit to restart Ralf)
 
 ### Selecting a specific CDF in the realm
 
@@ -51,7 +51,7 @@ If you have a CDF set up to receive Rf billing messages from your deployment, yo
 
 Once you have done this, run the following command to cause Bono to pick up the changes.
 
-    sudo monit restart bono
+    sudo service bono stop (allowing monit to restart Bono)
 
 ## Restrictions
 

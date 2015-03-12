@@ -20,7 +20,7 @@ Install and configure an IBCF node with the following steps.
 
 - Restart the Bono daemon.
 
-        monit restart bono
+        service stop bono (allow monit to restart Bono)
 
 ## ENUM Configuration
 
