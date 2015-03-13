@@ -67,7 +67,7 @@ To enable external HSS support, for each of your Homestead nodes,
 
 5.  save the file and exit the editor.
 
-6.  To reload the configuration, run `sudo service clearwater-infrastructure restart; sudo service homestead stop`; allow monit to restart Homestead
+6.  To reload the configuration, run `sudo service clearwater-infrastructure restart; sudo service homestead stop`, and then allow monit to automatically restart Homestead
 
 ### Configuring your external HSS
 
