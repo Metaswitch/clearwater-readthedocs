@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Yoshi's Island](http://en.wikipedia.org/wiki/Super_Mario_World_2:_Yoshi%27s_Island)".
+The latest stable release of Clearwater is "[Anna Karenina](https://www.goodreads.com/book/show/15823480-anna-karenina)".
 
 ## Architecture
 
