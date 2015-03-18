@@ -21,14 +21,14 @@ uninterrupted service, see "Seamless Upgrade" below.
 
 ### Manual Install
 
-If you installed your system using the [Manual Install Instructions](Manual_Install), simply run `sudo clearwater-upgrade` on each node.
+If you installed your system using the [Manual Install Instructions](Manual_Install), run `sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/clearwater.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0" && sudo apt-get install clearwater-infrastructure && sudo clearwater-upgrade` on each node.
 
 ### Chef Install
 
 If you installed your deployment with [chef](Creating_a_deployment_with_Chef):
 
 * Follow the instructions to [update the Chef server](https://github.com/Metaswitch/chef#updating-the-chef-server)
-* Run `sudo chef-client` followed by `sudo clearwater-upgrade` on each node.
+* Run `sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/clearwater.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0" && sudo apt-get install clearwater-infrastructure && sudo chef-client && sudo clearwater-upgrade` on each node.
 
 ## Seamless Upgrade
 
@@ -55,12 +55,11 @@ Bonos, and one Ellis, you should upgrade them in the following order:
 
 ### Manual Install
 
-If you installed your system using the [Manual Install Instructions](Manual_Install)
-run `sudo clearwater-upgrade` on each node in the order described above.
+If you installed your system using the [Manual Install Instructions](Manual_Install) run `sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/clearwater.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0" && sudo apt-get install clearwater-infrastructure && sudo clearwater-upgrade` on each node in the order described above.
 
 ### Chef Install
 
 If you installed your deployment with [chef](Creating_a_deployment_with_Chef):
 
 * Follow the instructions to [update the Chef server](https://github.com/Metaswitch/chef#updating-the-chef-server)
-* Run `sudo chef-client` followed by `sudo clearwater-upgrade` on each node in the order described above.
+* Run `sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/clearwater.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0" && sudo apt-get install clearwater-infrastructure && sudo chef-client && sudo clearwater-upgrade` on each node in the order described above.
