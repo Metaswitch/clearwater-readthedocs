@@ -83,6 +83,11 @@ This section describes optional configuration options, particularly for ensuring
 
 * `memento_threads` - determines the number of threads dedicated to adding call list fragments to the call list store. This defaults to 25 threads. This is only relevant if the node includes a Memento AS.
 * `signaling_dns_server` - a comma-separated list of DNS servers for non-ENUM queries. Defaults to 127.0.0.1 (i.e. uses `dnsmasq`)
+* `target_latency_us` - Target latency (in microsecs) for requests above which [throttling](http://www.projectclearwater.org/clearwater-performance-and-our-load-monitor/) applies. This defaults to 100000 microsecs
+* `max_tokens` - Maximum number of tokens allowed in the token bucket (used by the throttling code). This defaults to 20 tokens
+* `init_token_rate` - Initial token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 100.0
+* `min_token_rate` - Minimum token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 10.0
+* `override_npdi` - Whether the I-CSCF, S-CSCF and BGCF should check for number portability data on requests that already have the 'npdi' indicator. This defaults to false
 * `exception_max_ttl` - determines the maximum time before a process exits if it crashes. This defaults to 600 seconds
 
 ## Experimental options
