@@ -17,7 +17,7 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `hs_provisioning_hostname` - a hostname that resolves by DNS round-robin to all Homesteads in the cluster. Should include the HTTP provisioning port (usually 8889). Not needed when using an external HSS.
 * `chronos_hostname`  - a hostname that resolves to a Chronos node. Because Chronos nodes pass timers balance timers amongst themselves, this typically just points to the local Chronos node. Should include the port (7253).
 * `ralf_hostname` - a hostname that resolves by DNS round-robin to all Ralf nodes in the cluster. Should include the port (usually 9888). This is also used (without the port) as the Origin-Realm of the Diameter messages Ralf sends. Optional if no Ralf nodes exist.
-* `cdf_identity` - a Diameter identity that represents the address of an online Charging Function. Subscribers provisioned through Ellis will have this set as their Primary Charging Collection Function on P-Charging-Function-Addresses headers on responses to their successful REGISTERs.
+* `cdf_identity` - a Diameter identity that represents the address of an online Charging Function. Subscribers provisioned through Ellis will have this set as their Primary Charging Collection Function on P-Charging-Function-Addresses headers on responses to their successful REGISTERs, and Bono will add similarly in originating requests.
 * `xdms_hostname` - a hostname that resolves by DNS round-robin to all Homer nodes in the cluster. Should include the port (usually 7888).
 * `local_ip` - this should be set to an IP address which is configured on an interface on this system, and can communicate on an internal network with other Clearwater nodes and IMS core components like the HSS.
 * `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
@@ -25,7 +25,6 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `hss_hostname` - the hostname of your external HSS, if you have one. The port defaults to 3868 - this cannot be set by static configuration, but can be controlled by setting `hss_realm` and having appropriate NAPTR/SRV records for Diameter.
 * `signup_key` - this sets the password which Ellis will require before allowing self-sign-up.
 * `turn_workaround` - if your STUN/TURN clients are not able to authenticate properly (for example, because they can't send the @ sign), this specifies an additional password which will autenticate clients even without a correct username.
-* `billing_cdf` - when using Ralf for IMS Rf billing, this sets the CDF name which Bono will add to the P-Charging-Function-Addresses header.
 * `smtp_smarthost` - Ellis allows password recovery by email. This sets the SMTP server used to send those emails.
 * `smtp_username` - Ellis allows password recovery by email. This sets the username used to log in to the SMTP server.
 * `smtp_password` - Ellis allows password recovery by email. This sets the password used to log in to the SMTP server.
