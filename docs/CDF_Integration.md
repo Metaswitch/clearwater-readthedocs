@@ -47,7 +47,7 @@ _Note:_ Bono only has support for selecting CDF identies based of static configu
 
 If you have a CDF set up to receive Rf billing messages from your deployment, you will need to modify the `/etc/clearwater/config` file on your Bono node to contain the following line:
 
-    billing_cdf=<CDF DIAMETER Identity>
+    cdf_identity=<CDF DIAMETER Identity>
 
 Once you have done this, run the following command to cause Bono to pick up the changes.
 
