@@ -70,7 +70,7 @@ Client configuration methods vary by client, but the following information shoul
 If you are using an All-in-One node, you will also need to configure an outbound proxy at your client.
 
 * Outbound Proxy address: `<aio-identity>`
-* Port: 5060 (or 8060 if installed in Virtualbox)
+* Port: 5060 (or 8060 if installed in VirtualBox)
 
 Once these settings have been applied, your client will register with Clearwater. Note that X-Lite may need to be restarted before it will set up a STUN connection.
 
@@ -82,7 +82,7 @@ Configure a second SIP client with the new number's credentials as above.
 
 ## Make the call
 
-From one client (Zoiper if running an All-in-One node in Virtualbox), dial the `<username>` of the other client to make the call.  Answer the call and check you have two-way media.
+From one client (Zoiper if running an All-in-One node in VirtualBox), dial the `<username>` of the other client to make the call.  Answer the call and check you have two-way media.
 
 ## Next steps
 

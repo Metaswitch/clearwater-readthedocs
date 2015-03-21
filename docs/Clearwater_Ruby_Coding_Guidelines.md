@@ -46,7 +46,7 @@ Strongly based on https://github.com/chneukirchen/styleguide/ with some local ch
 *     Use one-letter variables for short block/method parameters, according to this scheme:
   *     a,b,c: any object
   *     d: directory names
-  *     e: elements of an Enumerable or a resuced Exception
+  *     e: elements of an Enumerable or a rescued Exception
   *     f: files and file names
   *     i,j: indexes or integers
   *     k: the key part of a hash entry

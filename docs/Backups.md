@@ -165,7 +165,7 @@ Ellis will produce output of the following form.
     /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
     --------------
 
-Homestead, homer or mememnto will produce output of the following form.
+Homestead, homer or memento will produce output of the following form.
 
     Will attempt to backup from backup 1372336442947
     Will attempt to backup from directory /home/ubuntu/bkp_test/
@@ -190,7 +190,7 @@ At this point, this node has been restored.
 It is possible (and likely) that when backups are taken on different
 boxes the data will be out of sync, e.g. ellis will know about a
 subscriber, but there will no digest in homestead. To restore the system
-to a consistent state we have a syncronization tool within ellis, which
+to a consistent state we have a synchronization tool within ellis, which
 can be run over a deployment to get the databases in sync. To run, log
 into an ellis box and execute:
 

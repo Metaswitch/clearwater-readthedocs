@@ -27,20 +27,20 @@ To look at the optional extra features and function of your Clearwater deploymen
 
 ## Getting Source Code
 
-All the source code is on [github](https://github.com/Metaswitch), in the following repositories (and their submodules).
+All the source code is on [GitHub](https://github.com/Metaswitch), in the following repositories (and their submodules).
 
 *   [chef](https://github.com/Metaswitch/chef) - [Chef](http://www.opscode.com/chef/) recipes for Clearwater deployment
 *   [clearwater-infrastructure](https://github.com/Metaswitch/clearwater-infrastructure) - General infrastructure for Clearwater deployments
 *   [clearwater-logging](https://github.com/Metaswitch/clearwater-logging) - Logging infrastructure for Clearwater deployments
 *   [clearwater-live-test](https://github.com/Metaswitch/clearwater-live-test) - Live test for Clearwater deployments
-*   [clearwater-docs](http://clearwater.readthedocs.org/en/latest) - This documentation repository
+*   [clearwater-readthedocs](http://clearwater.readthedocs.org/en/latest) - This documentation repository
 *   [crest](https://github.com/Metaswitch/crest) - RESTful HTTP service built on Cassandra - provides Homer and Homestead.
 *   [ellis](https://github.com/Metaswitch/ellis) - Clearwater provisioning server
 *   [sprout](https://github.com/Metaswitch/sprout) - sprout and bono, the Clearwater SIP router and edge proxy
 
 ## Contributing
 
-You can contribute by making a Github pull request. See our documented [Pull request process](Pull_request_process).
+You can contribute by making a GitHub pull request. See our documented [Pull request process](Pull_request_process).
 
 There is more information about contributing to Project Clearwater on the [community page of our project website](http://www.projectclearwater.org/community/).
 

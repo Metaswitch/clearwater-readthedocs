@@ -15,7 +15,7 @@ The following diagram shows a Clearwater deployment.
 
 ### Bono (Edge Proxy)
 
-The Bono nodes form a horizontally scalable SIP edge proxy providing both a SIP IMS Gm compliant interface and a WebRTC interface to clients.  Client connections are load balanced across the nodes.  The Bono node provides the anchor point for the client's connection to the Clearwater system, including support for various NAT traveral mechanisms.  A client is therefore anchored to a particular Bono node for the duration of its registration, but can move to another Bono node if the connection or client fails.
+The Bono nodes form a horizontally scalable SIP edge proxy providing both a SIP IMS Gm compliant interface and a WebRTC interface to clients.  Client connections are load balanced across the nodes.  The Bono node provides the anchor point for the client's connection to the Clearwater system, including support for various NAT traversal mechanisms.  A client is therefore anchored to a particular Bono node for the duration of its registration, but can move to another Bono node if the connection or client fails.
 
 ### Sprout (SIP Router)
 

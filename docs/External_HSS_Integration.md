@@ -1,6 +1,6 @@
 # External HSS Integration
 
-All Clearwater deployments include a [Homestead](https://github.com/Metaswitch/crest) cluster.  Homestead presents an HTTP REST-ful [interface](https://github.com/Metaswitch/homestead/blob/dev/docs/homestead_api.md) to HSS data.  This HSS data can be stored in either
+All Clearwater deployments include a [Homestead](https://github.com/Metaswitch/crest) cluster.  Homestead presents an HTTP RESTful [interface](https://github.com/Metaswitch/homestead/blob/dev/docs/homestead_api.md) to HSS data.  This HSS data can be stored in either
 
 *   a Cassandra database located on the Homestead cluster
 *   an external HSS, accessible over a standard IMS [Cx/Diameter](http://www.3gpp.org/ftp/Specs/html-info/29228.htm) interface.

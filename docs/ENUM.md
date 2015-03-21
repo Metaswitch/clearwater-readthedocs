@@ -55,7 +55,7 @@ following points/omissions.
     UTF-8 replacements for SIP URIs as SIP URIs themselves must be
     ASCII.
 -   RFC 3761 section 6.1 says that a deployed ENUM service SHOULD
-    include mechanisms to ameloriate security threats and mentions using
+    include mechanisms to ameliorate security threats and mentions using
     DNSSEC. We don't support DNSSEC, so other security approaches (such
     as private ENUM servers) must be used.
 -   RFC 4769 describes ENUM rules that output TEL URIs. Since we have no
@@ -191,7 +191,7 @@ On the new node,
     -   service must be "E2U+SIP", indicating ENUM rather than other
         services
     -   regexp must be a regular expression to apply and is of the form
-        !&lt;pattern\>!&lt;replacement\>! - note that the "!" delimeter is
+        !&lt;pattern\>!&lt;replacement\>! - note that the "!" delimiter is
         only by convention and can be replaced with other symbols (such
         as "/") if "!" occurs within the pattern or replacement.
 

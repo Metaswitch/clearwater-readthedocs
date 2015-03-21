@@ -1,5 +1,5 @@
 These instructions detail how to enable the stock Android SIP client.
-These instruction are tested in a Samaung Galay Nexus running 4.2.2. If
+These instruction are tested in a Samsung Galaxy Nexus running 4.2.2. If
 you get them working on another device, please add to the list below.
 Equally, if they do not work, please add your device to the unsupported
 list.
@@ -22,7 +22,7 @@ list.
         following options.
     -   Set **Transport type** to TCP
     -   Set **Authentication username** to
-        "sip:*&lt;username\>*@*&lt;server\>*", subsituting (note: once we
+        "sip:*&lt;username\>*@*&lt;server\>*", substituting (note: once we
         switch to storing user digest by private id, this will change)
 
 7.  Once done, choose **Save**

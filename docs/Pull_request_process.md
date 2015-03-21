@@ -11,28 +11,28 @@ Features or any changes to the codebase should be done as follows:
     * If the codebase doesn't have a dev branch, branch off `master`.
 
 2. Implement your feature (including any necessary UTs etc). Commits are cheap in git, try to split up your code into many, it makes reviewing easier as well as for saner merging.
-* If your commit fixes an existing issue #123, include the text "fixes #123" in at least one of your commit messages. This ensures the pull request is [attached to the existing issue](http://stackoverflow.com/questions/4528869/how-do-you-attach-a-new-pull-request-to-an-existing-issue-on-github</a>).
+    * If your commit fixes an existing issue #123, include the text "fixes #123" in at least one of your commit messages. This ensures the pull request is [attached to the existing issue](http://stackoverflow.com/questions/4528869/how-do-you-attach-a-new-pull-request-to-an-existing-issue-on-github</a>).
 
 3. Once complete, ensure the following check pass (where relevant):
     * All UTs (including coverage and valgrind) pass.
-    * Your code builds cleanly into a debian package on the repo server.
+    * Your code builds cleanly into a Debian package on the repo server.
     * The resulting package installs cleanly using the clearwater-infrastructure script.
     * The live tests pass.
 
-4. Push your feature branch to Github.
+4. Push your feature branch to GitHub.
 
-5. Create a pull request using Github, from your branch to `dev` (never `master`, unless the codebase has no dev branch).
+5. Create a pull request using GitHub, from your branch to `dev` (never `master`, unless the codebase has no dev branch).
 
 6. Await review.
     * Address code review issues on your feature branch.
-    * Push your changes to the feature branch on github. This automatically updates the pull request.
+    * Push your changes to the feature branch on GitHub. This automatically updates the pull request.
     * If necessary, make a top-level comment along the lines "Please re-review", assign back to the reviewer, and repeat the above.
     * If no further review is necessary and you have the necessary privileges, merge the pull request and close the branch.  Otherwise, make a top-level comment and assign back to the reviewer as above.
 
 
 # Reviewer process:
 
-* Receive notice of review by Github email, Github notification, or by checking [all your Metaswitch Github issues](https://github.com/organizations/Metaswitch/dashboard/issues/assigned?direction=desc&amp;state=open).
+* Receive notice of review by GitHub email, GitHub notification, or by checking [all your Metaswitch GitHub issues](https://github.com/organizations/Metaswitch/dashboard/issues/assigned?direction=desc&amp;state=open).
 * Make comments on the pull request (either line comments or top-level comments).
 * Make a top-level comment saying something along the lines of "Fine; some minor comments" or "Some issues to address before merging".
 * If there are no issues, merge the pull request and close the branch. Otherwise, assign the pull request to the developer and leave this to them.
