@@ -9,7 +9,7 @@
 
 *   We assume a C++11-compliant compiler, so C++11 features are allowed with some exceptions.
 *   No use of `auto` type declarations.
-*   No use of `using namespace ...`, if the namespace is partiularly lengthy, consider using namespace aliasing (e.g. `namespace po = boost::program_options`).
+*   No use of `using namespace ...`, if the namespace is particularly lengthy, consider using namespace aliasing (e.g. `namespace po = boost::program_options`).
 *   Avoid using Boost (or similar) libraries that return special library-specific pointers, to minimize "infection" of the code-base.  Consider using the C++11 equivalents instead.
 
 ## Formatting

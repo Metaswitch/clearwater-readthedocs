@@ -43,7 +43,7 @@ Then restart Ralf to pick up the change:
 
 ### Selecting a specific CDF in the realm
 
-_Note:_ Bono only has support for selecting CDF identies based of static configuration of a single identity.  Other P-CSCFs may have support for load-balancing or enabling backup CDF identities.
+_Note:_ Bono only has support for selecting CDF identities based of static configuration of a single identity.  Other P-CSCFs may have support for load-balancing or enabling backup CDF identities.
 
 If you have a CDF set up to receive Rf billing messages from your deployment, you will need to modify the `/etc/clearwater/config` file on your Bono node to contain the following line:
 

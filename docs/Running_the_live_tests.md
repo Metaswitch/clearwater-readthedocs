@@ -29,7 +29,7 @@ Run the following to download and install the Clearwater test suite
     cd clearwater-live-test
     bundle install
 
-Make sure that you have an ssh key - if not, see the [github instructions](https://help.github.com/articles/generating-ssh-keys) for how to create one.
+Make sure that you have an SSH key - if not, see the [GitHub instructions](https://help.github.com/articles/generating-ssh-keys) for how to create one.
 
 ## Work out your signup code
 

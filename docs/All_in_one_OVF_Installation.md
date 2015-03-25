@@ -21,7 +21,7 @@ To install the OVF, you must first download it from [http://vm-images.cw-ngv.com
 Then, you must import it into your virtualization platform.  The process for this varies.
 
 *   On VMware Player, choose **File->Open a Virtual Machine** from the menu and select the cw-aio.ova file you downloaded.  On the Import Virtual Machine dialog that appears, the defaults are normally fine, so you can just click **Import**.
-*   On VirtualBox, choose **File->Import Applicance...** from the menu.  In the Appliance Import Wizard, click **Choose...**, select the cw-aio.ova file you downloaded and click **Next**.  On the next tab, you can view the settings and then click **Import**.
+*   On VirtualBox, choose **File->Import Appliance...** from the menu.  In the Appliance Import Wizard, click **Choose...**, select the cw-aio.ova file you downloaded and click **Next**.  On the next tab, you can view the settings and then click **Import**.
 *   On VMware ESXi, using the VMware vSphere Client, choose **File->Deploy OVF Template...** from the menu.  Select the cw-aio.ova file you downloaded and click through assigning it a suitable name, location and attached network (which must support DHCP) before finally clicking **Finish** to create the virtual machine.
 
 ## Running and Using the Image

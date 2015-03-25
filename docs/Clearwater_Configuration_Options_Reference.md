@@ -24,7 +24,7 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `public_hostname` - this should be set to a hostname which resolves to `public_ip`, and will communicate with only this node (i.e. not be round-robined to other nodes). It can be set to `public_ip` if necessary.
 * `hss_hostname` - the hostname of your external HSS, if you have one. The port defaults to 3868 - this cannot be set by static configuration, but can be controlled by setting `hss_realm` and having appropriate NAPTR/SRV records for Diameter.
 * `signup_key` - this sets the password which Ellis will require before allowing self-sign-up.
-* `turn_workaround` - if your STUN/TURN clients are not able to authenticate properly (for example, because they can't send the @ sign), this specifies an additional password which will autenticate clients even without a correct username.
+* `turn_workaround` - if your STUN/TURN clients are not able to authenticate properly (for example, because they can't send the @ sign), this specifies an additional password which will authenticate clients even without a correct username.
 * `smtp_smarthost` - Ellis allows password recovery by email. This sets the SMTP server used to send those emails.
 * `smtp_username` - Ellis allows password recovery by email. This sets the username used to log in to the SMTP server.
 * `smtp_password` - Ellis allows password recovery by email. This sets the password used to log in to the SMTP server.
@@ -92,7 +92,7 @@ This section describes optional configuration options, particularly for ensuring
 
 ## Experimental options
 
-This section describes optional configuration options which may be useful, but are not heavily-used or well-tested by the main Clearwater developent team. These options should be set in the `/etc/clearwater/config` file (in the format `name=value`, e.g. `cassandra_hostname=db.example.com`).
+This section describes optional configuration options which may be useful, but are not heavily-used or well-tested by the main Clearwater development team. These options should be set in the `/etc/clearwater/config` file (in the format `name=value`, e.g. `cassandra_hostname=db.example.com`).
 
 * `cassandra_hostname` - if using an external Cassandra cluster (which is a fairly uncommon configuration), a hostname that resolves to one or more Cassandra nodes.
 * `ralf_secure_listen_port` - this determines the port Ralf listens on for TLS-secured Diameter connections.

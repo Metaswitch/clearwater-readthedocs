@@ -42,7 +42,7 @@ of 3GPP TS 24.604 with the following exceptions.
     -   We support up to 5 diversions and then reject the call.
         -   Total number of call diversions for each communication = 5
         -   AS behavior when the maximum number of diversions for a
-            communicaton is reached = Reject the communication
+            communication is reached = Reject the communication
 
     -   The default no-reply timer before Communication Forwarding on no
         Reply occurs is hard-coded to 20s. This is still overridable on
