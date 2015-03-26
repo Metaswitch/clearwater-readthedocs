@@ -1,6 +1,6 @@
 The core Clearwater nodes have the ability to elastically scale; in other words, you can grow and shrink your deployment on demand, without disrupting calls or losing data.
 
-This page explains how to use this elastic scaling function when using a deployment created through the automated install process.
+This page explains how to use this elastic scaling function when using a deployment created through the [automated](Automated Install) or (manual)[Manual Install] install processes.  Note that, although the instructions differ between the automated and manual processes, the underlying operations that will be performed on your deployment are the same - the automated process simply uses chef to drive this rather than issuing the commands manually.
 
 ## Before scaling your deployment
 
@@ -16,15 +16,44 @@ On the other hand, the slow method guarantees that timers are persisted over the
 
 ## Performing the resize (Quick Method)
 
-To resize your deployment, run:
+### If you did an Automated Install
+
+To resize your automated deployment, run:
 
     knife deployment resize -E <env> --sprout-count <n> --bono-count <n> --homer-count <n> --homestead-count <n>
 
 Where the `<n>` values are how many nodes of each type you need.  Once this command has completed, the resize operation has completed and any nodes that are no longer needed will have been terminated.
 
+### If you did a Manual Install
+
+If you're scaling up your manual deployment, follow the following process.
+
+1.  Spin up new nodes, following the [standard install process](Manual Install).
+2.  On Sprout, Memento and Ralf nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (longer) list of the new nodes (`new_servers=...`) and then run `service <process> reload` to re-read this file.
+3.  On new Memento, Homestead and Homer nodes, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_add_node_to_cluster_t.html) to join the new nodes to the existing cluster.
+4.  On Sprout, Homestead and Ralf nodes, update `/etc/chronos/chronos.conf` to contain a list of all the nodes and then run `service chronos reload` to re-read this file.
+5.  On Sprout, Memento and Ralf nodes, run `service astaire reload` to start resynchronization.
+6.  Update DNS to contain the new nodes.
+7.  On Sprout, Memento and Ralf nodes, wait until Astaire has resynchronized, either by running `service astaire wait-sync` or by polling over [SNMP](Clearwater SNMP Statistics).
+8.  On all nodes, update /etc/clearwater/cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
+
+If you're scaling down your manual deployment, follow the following process.
+
+1.  Update DNS to contain the nodes that will remain after the scale-down.
+2.  On Sprout, Memento and Ralf nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (shorter) list of the new nodes (`new_servers=...`) and then run `service <process> reload` to re-read this file.
+3.  On leaving Memento, Homestead and Homer nodes, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_remove_node_t.html) to remove the leaving nodes from the cluster.
+4.  On Sprout, Homestead and Ralf nodes, update `/etc/chronos/chronos.conf` to contain a list of just the remaining nodes and then run `service chronos reload` to re-read this file.
+5.  On Sprout, Memento and Ralf nodes, run `service astaire reload` to start resynchronization.
+6.  On Sprout, Memento and Ralf nodes, wait until Astaire has resynchronized, either by running `service astaire wait-sync` or by polling over [SNMP](Clearwater SNMP Statistics).
+7.  On all nodes, update /etc/clearwater/cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
+8.  On the nodes that are about to be turned down, run "monit unmonitor <process> && service <process> quiesce" to start the main process quiescing.
+9.  Turn down each of these nodes once the process has terminated.
+
 ## Performing the resize (Slow Method)
 
-To resize the deployment:
+### If you did an Automated Install
+
+To resize your automated deployment:
 
 * Run 
 
@@ -38,3 +67,7 @@ To resize the deployment:
         knife deployment resize -E <env> --finish
 
 Once this last command has completed, the resize operation is complete and any nodes that are no longer needed will have been terminated.
+
+### If you did a Manual Install
+
+To resize your manual deployment, follow the quick process described above but, after waiting for Astaire to resynchronize, also wait for the session refresh time to pass.
