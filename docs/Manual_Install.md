@@ -245,7 +245,7 @@ When configuring DNS for a multi-node deployment, it's crucial that
 
 ### Clustering Sprout
 
-Sprout uses [memcached] (http://memcached.org) as its registration datastore, and [Chronos](https://github.com/Metaswitch/chronos) as its timer service. After initially installing the Sprout nodes, you must reconfigure them to ensure they cluster together.
+Sprout uses [memcached](http://memcached.org) as its registration datastore, and [Chronos](https://github.com/Metaswitch/chronos) as its timer service. After initially installing the Sprout nodes, you must reconfigure them to ensure they cluster together.
 
 To do this for memcached:
 
