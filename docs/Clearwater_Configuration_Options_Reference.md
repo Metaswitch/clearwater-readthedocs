@@ -40,8 +40,8 @@ This section describes optional configuration options, particularly for ensuring
 * `homestead_provisioning_port` - the HTTP port the Homestead provisioning interface listens on. Defaults to 8889. Not needed when using an external HSS.
 * `sas_server` - the IP address or hostname of your Metaswitch Service Assurance Server for call logging and troubleshooting. Optional.
 * `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
-* `reg_max_expires` - determines the maximum expires= parameter Sprout will set on Contact headers at registrations, and therefore the amount of time before a UE has to re-register.
-* `sub_max_expires` - determines the maximum Expires header Sprout will set in subscription responses, and therefore the amount of time before a UE has to re-subscribe. 
+* `reg_max_expires` - determines the maximum expires= parameter Sprout will set on Contact headers at registrations, and therefore the amount of time before a UE has to re-register - must be less than 2^31 ms (approximately 25 days).
+* `sub_max_expires` - determines the maximum Expires header Sprout will set in subscription responses, and therefore the amount of time before a UE has to re-subscribe - must be less than 2^31 ms (approximately 25 days). 
 * `upstream_hostname` - the I-CSCF which Bono should pass requests to. Defaults to the sprout_hostname.
 * `upstream_port` - the port on the I-CSCF which Bono should pass requests to. Defaults to 5052.
 * `sprout_rr_level` - this determines how the Sprout S-CSCF adds Record-Route headers. Possible values are:
