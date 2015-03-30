@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Anna Karenina](https://www.goodreads.com/book/show/15823480-anna-karenina)".
+The latest stable release of Clearwater is "[Birdsong](http://www.goodreads.com/book/show/6259.Birdsong)".
 
 ## Architecture
 
