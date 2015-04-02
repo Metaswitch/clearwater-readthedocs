@@ -1,6 +1,6 @@
 The core Clearwater nodes have the ability to elastically scale; in other words, you can grow and shrink your deployment on demand, without disrupting calls or losing data.
 
-This page explains how to use this elastic scaling function when using a deployment created through the [automated](Automated Install) or (manual)[Manual Install] install processes.  Note that, although the instructions differ between the automated and manual processes, the underlying operations that will be performed on your deployment are the same - the automated process simply uses chef to drive this rather than issuing the commands manually.
+This page explains how to use this elastic scaling function when using a deployment created through the [automated](Automated Install) or [manual](Manual Install) install processes.  Note that, although the instructions differ between the automated and manual processes, the underlying operations that will be performed on your deployment are the same - the automated process simply uses chef to drive this rather than issuing the commands manually.
 
 ## Before scaling your deployment
 
@@ -46,7 +46,7 @@ If you're scaling down your manual deployment, follow the following process.
 5.  On Sprout, Memento and Ralf nodes, run `service astaire reload` to start resynchronization.
 6.  On Sprout, Memento and Ralf nodes, wait until Astaire has resynchronized, either by running `service astaire wait-sync` or by polling over [SNMP](Clearwater SNMP Statistics).
 7.  On all nodes, update /etc/clearwater/cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
-8.  On the nodes that are about to be turned down, run "monit unmonitor <process> && service <process> quiesce" to start the main process quiescing.
+8.  On the nodes that are about to be turned down, run `monit unmonitor <process> && service <process> quiesce` to start the main process quiescing.
 9.  Turn down each of these nodes once the process has terminated.
 
 ## Performing the resize (Slow Method)
