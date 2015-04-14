@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Birdsong](http://www.goodreads.com/book/show/6259.Birdsong)".
+The latest stable release of Clearwater is "[Crime and Punishment](http://www.goodreads.com/book/show/7144.Crime_and_Punishment)".
 
 ## Architecture
 
