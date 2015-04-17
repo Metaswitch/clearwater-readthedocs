@@ -49,10 +49,6 @@ All-in-one nodes need the following ports opened to the world
 
         UDP/32768-65535
 
-* 0MQ statistics interface:
-      
-        TCP/6665-6669
-        
 ## Ellis
 
 The Ellis node needs the following ports opened to the world:
@@ -80,10 +76,6 @@ The Bono nodes need the following ports opened to the world:
 * RTP forwarding:
 
         UDP/32768-65535
-
-* 0MQ statistics interface:
-
-        TCP/6669
 
 They also need the following ports open to all other Bono nodes and to all the Sprout nodes:
 
@@ -125,10 +117,6 @@ They also need the following ports opened to all homestead nodes:
 
 They also need the following ports opened to the world:
 
-* 0MQ statistics interface:
-
-        TCP/6666
-
 * HTTP interface (if including a Memento AS):
 
         TCP/443
@@ -156,11 +144,6 @@ They also need the following ports opened to all other Homestead nodes:
 
 They also need the following ports opened to the world:
 
-* 0MQ statistics interface:
-
-        TCP/6667
-        TCP/6668
-
 ## Homer
 
 The Homer nodes need the following ports open to all the Sprout nodes and the Ellis node:
@@ -176,10 +159,6 @@ They also need the following ports opened to all other Homer nodes:
         TCP/7000
 
 They also need the following ports opened to the world:
-
-* 0MQ statistics interface:
-
-        TCP/6665
 
 ## Ralf
 
@@ -198,12 +177,6 @@ They also need to following ports open to all other Ralf nodes:
 * Memcached:
 
         TCP/11211
-
-They also need the following ports opened to the world:
-
-* 0MQ statistics interface:
-
-        TCP/6664
 
 ## Standalone Application Servers
 
