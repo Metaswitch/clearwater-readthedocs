@@ -23,7 +23,7 @@ If you're scaling up your manual deployment, follow the following process.
 1.  Spin up new nodes, following the [standard install process](Manual Install).
 2.  On Sprout, Memento and Ralf nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (longer) list of the new nodes (`new_servers=...`) and then run `service <process> reload` to re-read this file.
 3.  On new Memento, Homestead and Homer nodes, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_add_node_to_cluster_t.html) to join the new nodes to the existing cluster.
-4.  On Sprout and Ralf nodes, update `/etc/chronos/chronos.conf` to contain a list of all the nodes and then run `service chronos reload` to re-read this file.
+4.  On Sprout and Ralf nodes, update `/etc/chronos/chronos.conf` to contain a list of all the nodes (see [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md) for details of how to do this) and then run `service chronos reload` to re-read this file.
 5.  On Sprout, Memento and Ralf nodes, run `service astaire reload` to start resynchronization.
 6.  On Sprout and Ralf nodes, run `service chronos scale-up` to start resynchronization of Chronos timers.
 7.  Update DNS to contain the new nodes.
