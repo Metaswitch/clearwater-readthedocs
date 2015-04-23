@@ -25,7 +25,7 @@ If you're scaling up your manual deployment, follow the following process.
 3.  On new Memento, Homestead and Homer nodes, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_add_node_to_cluster_t.html) to join the new nodes to the existing cluster.
 4.  On Sprout and Ralf nodes, update `/etc/chronos/chronos.conf` to contain a list of all the nodes (see [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md) for details of how to do this) and then run `service chronos reload` to re-read this file.
 5.  On Sprout, Memento and Ralf nodes, run `service astaire reload` to start resynchronization.
-6.  On Sprout and Ralf nodes, run `service chronos scale-up` to start resynchronization of Chronos timers.
+6.  On Sprout and Ralf nodes, run `service chronos resync` to start resynchronization of Chronos timers.
 7.  Update DNS to contain the new nodes.
 8.  On Sprout, Memento and Ralf nodes, wait until Astaire has resynchronized, either by running `service astaire wait-sync` or by polling over [SNMP](Clearwater SNMP Statistics).
 9.  On Sprout and Ralf nodes, wait until Chronos has resynchronized, either by running `service chronos wait-sync` or by polling over [SNMP](Clearwater SNMP Statistics).
@@ -38,7 +38,7 @@ If you're scaling down your manual deployment, follow the following process.
 3.  On leaving Memento, Homestead and Homer nodes, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_remove_node_t.html) to remove the leaving nodes from the cluster.
 4.  On Sprout and Ralf nodes, update `/etc/chronos/chronos.conf` to mark the nodes that are being scaled down as leaving (see [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md) for details of how to do this) and then run `service chronos reload` to re-read this file.
 5.  On Sprout, Memento and Ralf nodes, run `service astaire reload` to start resynchronization.
-6.  On Sprout and Ralf nodes, run `service chronos scale-down` to start resynchronization of Chronos timers.
+6.  On the Sprout and Ralf nodes that are staying in the Chronos cluster, run `service chronos resync` to start resynchronization of Chronos timers.
 7.  On Sprout, Memento and Ralf nodes, wait until Astaire has resynchronized, either by running `service astaire wait-sync` or by polling over [SNMP](Clearwater SNMP Statistics).
 8.  On Sprout and Ralf nodes, wait until Chronos has resynchronized, either by running `service chronos wait-sync` or by polling over [SNMP](Clearwater SNMP Statistics).
 9.  On Sprout, Memento and Ralf nodes, update /etc/clearwater/cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
