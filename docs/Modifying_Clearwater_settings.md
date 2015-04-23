@@ -60,7 +60,7 @@ To change one of these settings:
 * Run `sudo service clearwater-infrastructure restart` to ensure that the configuration changes are applied consistently across the node
 * Restart the individual component by running the appropriate one of the following commands to stop the service and allow monit to restart it.
     * Sprout - `sudo service sprout quiesce`
-    * Bono -, `sudo service bono quiesce`
+    * Bono - `sudo service bono quiesce`
     * Homestead - `sudo service homestead stop`
     * Homer - `sudo service homer stop`
     * Ralf -`sudo service ralf stop`
