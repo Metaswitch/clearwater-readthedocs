@@ -4,7 +4,7 @@ To change one of these settings:
 
 * Modify the configuration file
 * Run `sudo service clearwater-infrastructure restart` to regenerate any dependent configuration files
-* Restart the relevant Clearwater service (e.g. run `sudo service bono stop` and allow monit to restart Bono)
+* Restart the relevant Clearwater service (e.g. run `sudo service bono quiesce` and allow monit to restart Bono)
 
 ## Core options
 
