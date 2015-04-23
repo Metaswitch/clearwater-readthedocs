@@ -89,6 +89,7 @@ This section describes optional configuration options, particularly for ensuring
 * `min_token_rate` - Minimum token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 10.0
 * `override_npdi` - Whether the I-CSCF, S-CSCF and BGCF should check for number portability data on requests that already have the 'npdi' indicator. This defaults to false
 * `exception_max_ttl` - determines the maximum time before a process exits if it crashes. This defaults to 600 seconds
+* `check_destination_host` - determines whether the node checks the Destination-Host on a Diameter request when deciding whether it should process the request. This defaults to true. 
 
 ## Experimental options
 
