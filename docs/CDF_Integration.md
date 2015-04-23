@@ -51,7 +51,7 @@ If you have a CDF set up to receive Rf billing messages from your deployment, yo
 
 Once you have done this, run the following command to cause Bono to pick up the changes.
 
-    sudo service bono stop (allowing monit to restart Bono)
+    sudo service bono quiesce (allowing monit to restart Bono)
 
 ## Restrictions
 
