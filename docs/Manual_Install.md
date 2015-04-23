@@ -234,7 +234,7 @@ Once you've reached this point, your Clearwater deployment is ready to handle ca
 
 ## Larger-Scale Deployments
 
-If you're intending to spin up a larger-scale deployment containing more than one node of each types, it's recommended that you use the [automated install process](Automated_Install), as this makes scaling up and down very straight-forward.  If for some reason you can't, you'll need to configure DNS correctly and cluster the nodes in the sprout, homestead and homer tiers.
+If you're intending to spin up a larger-scale deployment containing more than one node of each types, it's recommended that you use the [automated install process](Automated_Install), as this makes scaling up and down very straight-forward.  If for some reason you can't, you'll need to configure DNS correctly and cluster the nodes in the Sprout, Homestead, Homer and Ralf tiers.
 
 ### Configuring DNS
 
