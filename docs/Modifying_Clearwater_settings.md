@@ -56,9 +56,11 @@ hss_port
 ```
 
 To change one of these settings:
+
 *   Edit `/etc/clearwater/config` on each affected node, and change to the new value
 *   Run `sudo service clearwater-infrastructure restart` to ensure that the configuration changes are applied consistently across the node
 *   Restart the individual component by running the appropriate one of the following commands to stop the service and allow monit to restart it.
+
     *   Sprout - `sudo service sprout quiesce`
     *   Bono - `sudo service bono quiesce`
     *   Homestead - `sudo service homestead stop`
