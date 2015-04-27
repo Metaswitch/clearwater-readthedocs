@@ -362,6 +362,12 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 *   Not currently supported by Clearwater.
 *   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
 
+### P-Profile-Key header ([RFC 5002](http://www.ietf.org/rfc/rfc5002.txt))
+
+*   Used solely between I-CSCF and S-CSCF to signal the public service identity key to be used when a requested public service identity matches a wildcard entry in the HSS. Purely an optimization to avoid having to do wildcard matching twice for a single request.
+*   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm)
+*   Not currently supported by Clearwater.
+
 ### Service URNs ([RFC 5031](http://www.ietf.org/rfc/rfc5031.txt))
 
 *   Defines a URN namespace to identify services.  IMS allows UEs to use such service URNs as target URIs when establishing a call.  In particular, it is mandatory for UEs to signal emergency calls using a service URN of the form urn:service:sos possibly with a subtype, and the P-CSCF must be able to handle these requests appropriately, routing to an E-CSCF.
@@ -503,12 +509,6 @@ The following is a brief explanation of each RFC, and its relevance to IMS.
 
 *   Defines conventions for service URIs for redirection services such as voicemail and IVR.
 *   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
-
-### P-Profile-Key header ([RFC 5002](http://www.ietf.org/rfc/rfc5002.txt))
-
-*   Used solely between I-CSCF and S-CSCF to signal the public service identity key to be used when a requested public service identity matches a wildcard entry in the HSS. Purely an optimization to avoid having to do wildcard matching twice for a single request.
-*   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm)
-*   Not applicable to Clearwater's model which doesn't have I-/S-CSCF separation.
 
 ### Emergency call requirements and terminology ([RFC 5012](http://www.ietf.org/rfc/rfc5012.txt))
 
