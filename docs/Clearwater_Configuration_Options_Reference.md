@@ -91,6 +91,9 @@ This section describes optional configuration options, particularly for ensuring
 * `exception_max_ttl` - determines the maximum time before a process exits if it crashes. This defaults to 600 seconds
 * `check_destination_host` - determines whether the node checks the Destination-Host on a Diameter request when deciding whether it should process the request. This defaults to true. 
 * `astaire_cpu_limit_percentage` - the maximum percentage of total CPU that Astaire is allowed to consume when resyncing memcached data (as part of a scale-up, scale-down, or following a memcached failure). Note that this only limits the CPU usage of the Astaire process, and does not affect memcached's CPU usage. Must be an integer. Defaults to 5.
+* `sip_blacklist_duration` - the time in seconds for which SIP peers are blacklisted when they are unresponsive (defaults to 30 seconds).
+* `http_blacklist_duration` - the time in seconds for which HTTP peers are blacklisted when they are unresponsive (defaults to 30 seconds).
+* `diameter_blacklist_duration` - the time in seconds for which Diameter peers are blacklisted when they are unresponsive (defaults to 30 seconds).
 
 ## Experimental options
 
