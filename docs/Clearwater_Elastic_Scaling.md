@@ -18,7 +18,30 @@ Where the `<n>` values are how many nodes of each type you need.  Once this comm
 
 ### If you did a Manual Install
 
-If you're scaling up your manual deployment, follow the following process.
+Follow these instructions if you manually installed your deployment, but are using Clearwater's [automatic clustering](Clearwater_Automatic_Clustering) functionality.
+
+If you're scaling up your deployment, follow the following process:
+
+1.  Spin up new nodes, following the [standard install process](Manual_Install), but with the following modifications:
+
+    * Set the `etcd_cluster` so that it only includes the nodes that are already in the deployment (so it does not include the nodes being added).
+    * Stop when you get to the "Provide Shared Configuration" step. The nodes will learn their configuration from the existing nodes.
+
+2.  Wait until the new nodes have fully joined the existing deployment. A node has joined the deployment if running the `TODO: RKD` script reports that no clustering operations are in progress, and running the `TODO: AMC` script reports that the node has learned its configuration.
+3.  Update DNS to contain the new nodes.
+
+If you're scaling down your deployment, follow the following process:
+
+1.  Update DNS to contain the nodes that will remain after the scale-down.
+2.  On the nodes that are about to be turned down, run `monit unmonitor <process> && service <process> quiesce|stop` to start the main process quiescing.
+3.  Run `sudo service clearwater-etcd decommission`. This will cause the nodes to leave their existing clusters.
+4.  Once the above steps have completed, turn down the nodes.
+
+### If you did a Manual Install without Automatic Clustering
+
+Follow these instructions if you manually installed your deployment, but are *not* using Clearwater's [automatic clustering](Clearwater_Automatic_Clustering) functionality.
+
+If you're scaling up your deployment, follow the following process.
 
 1.  Spin up new nodes, following the [standard install process](Manual Install).
 2.  On Sprout, Memento and Ralf nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (longer) list of the new nodes (`new_servers=...`) and then run `service <process> reload` to re-read this file.
@@ -31,7 +54,7 @@ If you're scaling up your manual deployment, follow the following process.
 9.  On Sprout and Ralf nodes, wait until Chronos has resynchronized, either by running `service chronos wait-sync` or by polling over [SNMP](Clearwater SNMP Statistics).
 10.  On all nodes, update /etc/clearwater/cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
 
-If you're scaling down your manual deployment, follow the following process.
+If you're scaling down your deployment, follow the following process.
 
 1.  Update DNS to contain the nodes that will remain after the scale-down.
 2.  On Sprout, Memento and Ralf nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (shorter) list of the new nodes (`new_servers=...`) and then run `service <process> reload` to re-read this file.
