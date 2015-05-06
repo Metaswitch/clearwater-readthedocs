@@ -15,7 +15,7 @@ Each SIP stress node picks a single bono to generate traffic against.  This bono
 
 The clearwater-sip-stress package includes two important scripts.
 
-* `/usr/share/clearwater/infrastructure/scripts/sip-stress`, which generates a `/usr/share/clearwater/sip-stress/users.csv.1` file containing the list of all subscribers we should be targeting - these are calculated from properties in `/etc/clearwater/config`.
+* `/usr/share/clearwater/infrastructure/scripts/sip-stress`, which generates a `/usr/share/clearwater/sip-stress/users.csv.1` file containing the list of all subscribers we should be targeting - these are calculated from properties in `/etc/clearwater/shared_config`.
 * `/etc/init.d/clearwater-sip-stress`, which runs `/usr/share/clearwater/bin/sip-stress`, which in turn runs SIPp specifying `/usr/share/clearwater/sip-stress/call_load2.xml` as its test script. This test script simulates a pair of subscribers registering every 5 minutes and then making a call every 30 minutes.
 
 ## Running Stress
@@ -58,17 +58,22 @@ SIP stress can also be run against a deployment that has been installed manually
 
 Firstly follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision subscribers. Work out how many stress nodes you want, and create 100,000 subscribers per SIPp node.
 
-To create a new SIPp node, create a new virtual machine and [bootstrap](Manual_Install#bootstrapping-the-machines) it. Then set the following properties in /etc/clearwater/config:
+To create a new SIPp node, create a new virtual machine and [configure the software sources](Manual_Install#configure-the-apt-software-sources) it.
+
+Then set the following properties in /etc/clearwater/local_config:
 
 * (required) local_ip - the local IP address of this node
-* (required) home_domain - the home domain of the deployment under test
 * (optional) node_idx - the node index (defaults to 1)
+
+Set the following properties in /etc/clearwater/shared_config:
+
+* (required) home_domain - the home domain of the deployment under test
 * (optional) bono_servers - a list of bono servers in this deployment
 * (optional) stress_target - the target host (defaults to the $node_idx-th entry in $bono_servers or, if there are no $bono_servers, defaults to $home_realm)
 * (optional) base - the base directory number (defaults to 2010000000)
 * (optional) count - the number of calls to run on this node (defaults to 50000) - note that the SIPp script simulates 2 subscribers per "call".
 
-Finally install the clearwater-sip-stress Debian package. Stress will start automatically after the package is installed. 
+Finally install the clearwater-sip-stress Debian package. Stress will start automatically after the package is installed.
 
 ### Configuring UDP Stress
 

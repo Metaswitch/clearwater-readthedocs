@@ -44,30 +44,22 @@ Do not configure any Clearwater subscribers via Ellis!
 
 ### Enabling external HSS support on an existing deployment
 
-To enable external HSS support, for each of your Homestead nodes,
+To enable external HSS support, you will need to modify the contents of `/etc/clearwater/shared_config` so that the block that reads
 
-1.  log in over ssh
+    # HSS configuration
+    hss_hostname=0.0.0.0
+    hss_port=3868
 
-2.  edit the file `/etc/clearwater/config`
+instead reads
 
-3.  find the block (or add it if it does not exist)
+    # HSS configuration
+    hss_hostname=<address of your HSS>
+    hss_realm=<realm your HSS is located in>
+    hss_port=<port of your HSS's Cx interface>
 
-        # HSS configuration
-        hss_hostname=0.0.0.0
-        hss_port=3868
+Both hss_hostname and hss_realm are optional. If a realm is configured, homestead will try NAPTR/SRV resolution on the realm to find and connect to (2 by default) diameter peers in the realm. If a hostname is also configured, this will be used in the Destination-Host field on the diameter messages, so that the messages will be routed to that host. If just a hostname is configured, homestead will just attempt to create and maintain a single connection to that host.
 
-4.  Modify it to read
-
-        # HSS configuration
-        hss_hostname=<address of your HSS>
-        hss_realm=<realm your HSS is located in>
-        hss_port=<port of your HSS's Cx interface>
-
-    Both hss_hostname and hss_realm are optional. If a realm is configured, homestead will try NAPTR/SRV resolution on the realm to find and connect to (2 by default) diameter peers in the realm. If a hostname is also configured, this will be used in the Destination-Host field on the diameter messages, so that the messages will be routed to that host. If just a hostname is configured, homestead will just attempt to create and maintain a single connection to that host.
-
-5.  save the file and exit the editor.
-
-6.  To reload the configuration, run `sudo service clearwater-infrastructure restart; sudo service homestead stop`, and then allow monit to automatically restart Homestead
+[This process](Modifying_Clearwater_settings) explains how to modify these settings and ensure that all nodes pick up the changes.
 
 ### Configuring your external HSS
 

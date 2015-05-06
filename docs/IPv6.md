@@ -18,9 +18,9 @@ As discussed in the Clearwater [installation instructions](Installation_Instruct
 
 ### Manual Install
 
-The process to configure Clearwater for IPv6 is very similar to IPv4.  The key difference is to use IPv6 addresses in the `/etc/clearwater/config` file rather than IPv4 addresses when following the [manual install instructions](Manual_Install).
+The process to configure Clearwater for IPv6 is very similar to IPv4.  The key difference is to use IPv6 addresses in the `/etc/clearwater/local_config` file rather than IPv4 addresses when following the [manual install instructions](Manual_Install).
 
-The only complication is if you want to cluster Cassandra (as used on homestead and homer nodes).  In this case, you must edit `/etc/cassandra/cassandra-env.sh`, find the line `JVM_OPTS="$JVM_OPTS -Djava.net.preferIPv4Stack=true"` and comment it out by inserting a `#` at the beginning of the line.  This is in addition to editing `/etc/cassandra/cassandra.yaml` to specify listening and seed addresses as referenced in the [manual install](Manual_Install) instructions.
+The only complication is if you need to manually cluster Cassandra (as used on homestead and homer nodes).  In this case, you must edit `/etc/cassandra/cassandra-env.sh`, find the line `JVM_OPTS="$JVM_OPTS -Djava.net.preferIPv4Stack=true"` and comment it out by inserting a `#` at the beginning of the line.  This is in addition to editing `/etc/cassandra/cassandra.yaml` to specify listening and seed addresses as referenced in the [manual install with manual clustering](Old_Manual_Install) instructions.
 
 Note also that you must configure your DNS server to return IPv6 addresses (AAAA records) rather than (or as well as) IPv4 addresses (A records).  For more information on this, see the [Clearwater DNS usage documentation](Clearwater_DNS_Usage).
 
