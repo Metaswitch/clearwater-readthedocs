@@ -27,7 +27,11 @@ If you're scaling up your deployment, follow the following process:
     * Set the `etcd_cluster` so that it only includes the nodes that are already in the deployment (so it does not include the nodes being added).
     * Stop when you get to the "Provide Shared Configuration" step. The nodes will learn their configuration from the existing nodes.
 
-2.  Wait until the new nodes have fully joined the existing deployment. A node has joined the deployment if running the `TODO: RKD` script reports that no clustering operations are in progress, and running the `TODO: AMC` script reports that the node has learned its configuration.
+2.  Wait until the new nodes have fully joined the existing deployment. To check if a node has joined the deployment:
+
+    * Run `/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_health.py`. This should report that the local node is in all of its clusters and that the cluster is healthy.
+    * Run `TODO: AMC` script reports that the node has learned its configuration.
+
 3.  Update DNS to contain the new nodes.
 
 If you're scaling down your deployment, follow the following process:
