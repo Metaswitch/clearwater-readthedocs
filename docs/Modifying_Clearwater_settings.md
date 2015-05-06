@@ -1,66 +1,43 @@
 This page discusses how to change settings on a Clearwater system. Most settings can be changed on an existing deployment (e.g. security keys and details of external servers), but some are so integral to the system (e.g. the SIP home domain) that the best way to change it is to recreate the Clearwater deployment entirely.
 
-## Reconfiguring existing deployments
+## Modifying Settings in /etc/clearwater/shared_config
 
 *This will have a service impact of up to five minutes.*
 
-The following settings can safely be changed without entirely recreating the system. If you want to change a setting not in this list, go to the "Starting from scratch" section instead.
+The following settings in `/etc/clearwater/shared_config` can safely be changed without entirely recreating the system. If you want to change a setting not in this list, go to the "Starting from scratch" section instead.
 
-All nodes:
+    mmonit_hostname
+    mmonit_username
+    mmonit_password
+    sas_server
+    enum_server
+    reg_max_expires
+    chronos_hostname
+    hs_hostname
+    hs_provisioning_hostname
+    xdms_hostname
+    additional_home_domains
+    cdf_address
+    smtp_smarthost
+    smtp_username
+    smtp_password
+    email_recovery_sender
+    signup_key
+    ellis_api_key
+    ellis_cookie_key
+    hss_hostname
+    hss_port
 
-```
-mmonit_hostname
-mmonit_username
-mmonit_password
-```
+To change one of these settings, if you are using Clearwater's [automatic clustering](Clearwater_Automatic_Clustering) functionality:
 
-Sprout:
+*   Edit `/etc/clearwater/shared_config` on *one* node and change to the new value.
+*   Run `/usr/share/clearwater/bin/upload_shared_config` to upload the new config to etcd.
+*   On each node in turn run `TODO: AMC`. This will download the new config to the node and restart the necessary services to pick up the new settings.
 
-```
-sas_server
-enum_server
-reg_max_expires
-chronos_hostname
-hs_hostname
-xdms_hostname
-additional_home_domains
-```
+If you are not using automatic clustering, do the following on *each* node:
 
-Bono:
-
-```
-sas_server
-enum_server
-cdf_address
-```
-
-Ellis:
-
-```
-hs_provisioning_hostname
-xdms_hostname
-smtp_smarthost
-smtp_username
-smtp_password
-email_recovery_sender
-signup_key
-ellis_api_key
-ellis_cookie_key
-```
-
-Homestead:
-
-```
-hss_hostname
-hss_port
-```
-
-To change one of these settings:
-
-*   Edit `/etc/clearwater/config` on each affected node, and change to the new value
-
-*   Run `sudo service clearwater-infrastructure restart` to ensure that the configuration changes are applied consistently across the node
-
+*   Edit `/etc/clearwater/shared_config` and change the setting to the new value.
+*   Run `sudo service clearwater-infrastructure restart` to ensure that the configuration changes are applied consistently across the node.
 *   Restart the individual component by running the appropriate one of the following commands to stop the service and allow monit to restart it.
 
     *   Sprout - `sudo service sprout quiesce`
@@ -69,6 +46,28 @@ To change one of these settings:
     *   Homer - `sudo service homer stop`
     *   Ralf -`sudo service ralf stop`
     *   Ellis - `sudo service ellis stop`
+
+## Modifying Sprout JSON Configuration
+
+*This configuration can be freely modified without impacting service.*
+
+Some of the more complex sprout-specific configuration is stored in JSON files
+
+* `/etc/clearwater/s-cscf.json` - contains information to allow the Sprout I-CSCF to select an appropriate S-CSCF to handle some requests.
+* `/etc/clearwater/bgcf.json` - contains routing rules for the Sprout BGCF.
+* `/etc/clearwater/enum.json` - contains ENUM rules when using file-based ENUM instead of an external ENUM server.
+
+To change one of these files, if you are using Clearwater's [automatic clustering](Clearwater_Automatic_Clustering) functionality:
+
+* Edit the file on *one* of your sprout nodes.
+* Run one of `/usr/share/clearwater/bin/upload_{s-cscf|bgcf|enum}_json` depending on which file you modified.
+* The change will be automatically propagated around the deployment and will start being used.
+
+If you are not using automatic clustering do the following on *each* node:
+
+* Make the necessary changes to the file.
+* Run `sudo service sprout reload` to make sprout pick up the changes.
+
 
 ## Starting from scratch
 
