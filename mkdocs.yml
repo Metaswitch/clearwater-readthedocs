@@ -28,6 +28,7 @@ pages:
 - ['Upgrading_a_Clearwater_deployment.md', 'Upgrading and Modifying', 'Upgrading a Clearwater deployment']
 - ['Modifying_Clearwater_settings.md', 'Upgrading and Modifying', 'Modifying Clearwater settings']
 - ['Clearwater_Configuration_Options_Reference.md', 'Upgrading and Modifying', 'Clearwater Configuration Options Reference']
+- ['Migrating_To_etcd.md', 'Upgrading and Modifying', 'Migrating to Automatic Clustering and Config Sharing']
 
 # Integration:
 - ['Configuring_an_Application_Server.md', 'Integration', 'Configuring an Application Server']
