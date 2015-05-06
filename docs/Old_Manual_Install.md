@@ -1,6 +1,6 @@
 # Manual Install Instructions with Manual Clustering
 
-**These instructions are deprecated and are presented for reference purposes only. The current manual install instructions take advantage of Clearwater's automatic clustering functionality, and can be found [here](Manual_Install).**
+**These instructions are deprecated and are presented for reference purposes only. The current manual install instructions take advantage of Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) functionality, and can be found [here](Manual_Install).**
 
 These instructions will take you through installing a minimal Clearwater system using the latest binary packages provided by the Clearwater project.  For a high level look at the install process, and a discussion of alternative install methods, see [Installation Instructions](Installation_Instructions).
 

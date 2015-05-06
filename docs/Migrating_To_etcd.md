@@ -1,6 +1,6 @@
 # Migrating to Automatic Clustering and Configuration Sharing
 
-Clearwater now supports a feature where new nodes can automatically join an existing deployment and learn their configuration from the existing nodes. This makes the deployment much easier to manage. However deployments created before the **TODO** release do not have this feature. This article explains how to migrate a deployment to take advantage of the new feature.
+Clearwater now supports an [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) feature. This makes Clearwater deployments much easier to manage. However deployments created before the **TODO** release do not use this feature. This article explains how to migrate a deployment to take advantage of the new feature.
 
 ## Upgrade the Deployment
 

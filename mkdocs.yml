@@ -59,6 +59,7 @@ pages:
 - ['Geographic_redundancy.md', 'Features', 'Geographic redundancy']
 - ['IPv6.md', 'Features', 'IPv6']
 - ['SIP_Interface_Specifications.md', 'Features', 'SIP Interface Specifications']
+- ['Automatic_Clustering_Config_Sharing.md', 'Features', 'Automatic Clustering and Configuration Sharing']
 
 # Development:
 - ['Clearwater_CPP_Coding_Guidelines.md', 'Development', 'Clearwater C++ Coding Guidelines']

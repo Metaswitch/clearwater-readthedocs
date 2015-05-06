@@ -28,7 +28,7 @@ The following settings in `/etc/clearwater/shared_config` can safely be changed 
     hss_hostname
     hss_port
 
-To change one of these settings, if you are using Clearwater's [automatic clustering](Clearwater_Automatic_Clustering) functionality:
+To change one of these settings, if you are using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing) functionality:
 
 *   Edit `/etc/clearwater/shared_config` on *one* node and change to the new value.
 *   Run `/usr/share/clearwater/bin/upload_shared_config` to upload the new config to etcd.
@@ -57,7 +57,7 @@ Some of the more complex sprout-specific configuration is stored in JSON files
 * `/etc/clearwater/bgcf.json` - contains routing rules for the Sprout BGCF.
 * `/etc/clearwater/enum.json` - contains ENUM rules when using file-based ENUM instead of an external ENUM server.
 
-To change one of these files, if you are using Clearwater's [automatic clustering](Clearwater_Automatic_Clustering) functionality:
+To change one of these files, if you are using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing) functionality:
 
 * Edit the file on *one* of your sprout nodes.
 * Run one of `/usr/share/clearwater/bin/upload_{s-cscf|bgcf|enum}_json` depending on which file you modified.
