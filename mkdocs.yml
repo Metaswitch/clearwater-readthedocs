@@ -70,6 +70,9 @@ pages:
 - ['Cacti.md', 'Testing', 'Cacti']
 - ['Running_the_live_tests.md', 'Testing', 'Running the live tests']
 
+# Deprecated:
+- ['Old_Manual_Install.md', 'Deprecated', 'Manual Install with Manual Clustering']
+
 theme: readthedocs
 theme_dir: "custom_theme"
 include_search: true
