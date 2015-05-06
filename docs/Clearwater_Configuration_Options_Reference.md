@@ -1,6 +1,10 @@
 This document describes all the Clearwater configuration options that can be set in /etc/clearwater/shared_config, /etc/clearwater/local_config or /etc/clearwater/user_settings.
 
-Unless otherwise specified, if you need to modify any of these settings you should follow [this process](Modifying_Clearwater_settings).
+You should follow [this process](Modifying_Clearwater_settings) when changing most of these settings. However for settings in the "Local settings" or "User settings" you should:
+
+* Modify the configuration file
+* Run `sudo service clearwater-infrastructure restart` to regenerate any dependent configuration files
+* Restart the relevant Clearwater service (e.g. run `sudo service bono quiesce` and allow monit to restart Bono)
 
 ## Core options
 
@@ -98,7 +102,7 @@ This section describes optional configuration options which may be useful, but a
 
 ## Local Settings
 
-This section describes settings that are specific to a single node and are not applicable to any other nodes in the deployment. They are entered early on in the node's life and cannot be changed.
+This section describes settings that are specific to a single node and are not applicable to any other nodes in the deployment. They are entered early on in the node's life and are not normally changed.
 
 * `local_ip` - this should be set to an IP address which is configured on an interface on this system, and can communicate on an internal network with other Clearwater nodes and IMS core components like the HSS.
 * `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
@@ -122,10 +126,3 @@ This section describes settings that may vary between systems in the same deploy
 * `num_http_threads` (Homestead) - determines the number of HTTP worker threads that will be used to process requests. Defaults to 50 times the number of CPU cores on the system.
 * `impu_cache_ttl` - the number of seconds for which Homestead will cache the SIP Digest from a Multimedia-Auth-Request. Defaults to 0, as Sprout does enough caching to ensure that it can handle an authenticated REGISTER after a challenge, and subsequent challenges should be rare.
 * `hss_reregistration_time` - determines how many seconds should pass before Homestead sends a Server-Assignment-Request with type RE_REGISTRATION to the HSS. (On first registration, it will always send a SAR with type REGISTRATION). This determines a minimum value - after this many seconds have passed, Homestead will send the Server-Assignment-Request when the next REGISTER is received. Note that Homestead invalidates its cache of the registration and iFCs after twice this many seconds have passed, so it is not safe to set this to less than half of `reg_max_expires`.
-
-To change one of these settings:
-
-* Modify the configuration file
-* Run `sudo service clearwater-infrastructure restart` to regenerate any dependent configuration files
-* Restart the relevant Clearwater service (e.g. run `sudo service bono quiesce` and allow monit to restart Bono)
-
