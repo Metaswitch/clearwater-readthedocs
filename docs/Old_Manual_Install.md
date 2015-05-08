@@ -162,7 +162,7 @@ Install the Bono and Restund packages with:
 
 ### Sprout
 
-Set up the Chronos configuration file, following [these instructions](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md)
+Set up the Chronos configuration files, following [these instructions](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md)
 
 Install the Sprout package with:
 
@@ -189,7 +189,7 @@ Install the Homestead and Cassandra packages with:
 
 ### Ralf
 
-Set up the Chronos configuration file, following [these instructions](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md)
+Set up the Chronos configuration files, following [these instructions](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md)
 
 Install the Ralf package with:
 
@@ -257,8 +257,8 @@ To do this for memcached:
 
 To do this for Chronos, follow the instructions in <https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md>:
 
-*   edit `/etc/chronos/chronos.conf` to include a node entry for each Sprout node in the cluster.
-*   ensure that the `localhost` entry in `/etc/chronos/chronos.conf` is set to the local IP address and not the word 'localhost'.
+*   edit `/etc/chronos/chronos_cluster.conf` to include a node entry for each Sprout node in the cluster.
+*   ensure that the `localhost` entry in `/etc/chronos/chronos_cluster.conf` is set to the local IP address and not the word 'localhost'.
 *   force Chronos to reload its configuration with `sudo service chronos reload`.
 
 If the Sprout nodes include the Memento Application server, then you must reconfigure the Cassandra processes on these nodes to cluster together. To do this, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/initialize/initializeTOC.html).
@@ -283,8 +283,8 @@ Ralf, like Sprout, uses Memcached as a local data store, with the same support f
 
 Ralf also makes use of the Chronos timer service cluster.  To ensure that the Ralfs are correctly clustered.
 
-*   edit `/etc/chronos/chronos.conf` to include a node entry for each Ralf node in the cluster.
-*   ensure that the `localhost` entry in `/etc/chronos/chronos.conf` is set to the local IP address and not the word 'localhost'.
+*   edit `/etc/chronos/chronos_cluster.conf` to include a node entry for each Ralf node in the cluster.
+*   ensure that the `localhost` entry in `/etc/chronos/chronos_cluster.conf` is set to the local IP address and not the word 'localhost'.
 *   force Chronos to reload its configuration with `sudo service chronos reload`.
 
 ### Standalone Application Servers
