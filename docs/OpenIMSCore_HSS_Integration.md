@@ -1,13 +1,13 @@
 # OpenIMS HSS Integration
 
-As discussed on the [External HSS Integration](External_HSS_Integration)
+As discussed on the [External HSS Integration](External_HSS_Integration.md)
 page, Clearwater can integrate with an external HSS.
 
-This page describes how to install and configure the [OpenIMSCore](http://www.openimscore.org/) HSS as this external HSS.  It assumes that you have already read the [External HSS Integration](External_HSS_Integration) page.
+This page describes how to install and configure the [OpenIMSCore](http://www.openimscore.org/) HSS as this external HSS.  It assumes that you have already read the [External HSS Integration](External_HSS_Integration.md) page.
 
 ## Installation with Chef
 
-If you have a deployment environment created by following the [automated install instructions](Automated_Install), then you can create a HSS by running `knife box create -E <env> openimscorehss`. This may take a long time (more than 10 minutes). You should then follow [the configuration instructions below](OpenIMSCore_HSS_Integration/#configuration).
+If you have a deployment environment created by following the [automated install instructions](Automated_Install.md), then you can create a HSS by running `knife box create -E <env> openimscorehss`. This may take a long time (more than 10 minutes). You should then follow [the configuration instructions below](OpenIMSCore_HSS_Integration/#configuration).
 
 ## Installing OpenIMSCore HSS manually
 

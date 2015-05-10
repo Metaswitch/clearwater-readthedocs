@@ -1,10 +1,10 @@
 # Creating a deployment environment
 
-These instructions make up part of the [automated install process](Automated_Install) for Clearwater.  They will take you through creating a deployment environment, which will be used to define the specific settings for a Clearwater deployment.
+These instructions make up part of the [automated install process](Automated_Install.md) for Clearwater.  They will take you through creating a deployment environment, which will be used to define the specific settings for a Clearwater deployment.
 
 ## Prerequisites
 
-* You must have [installed a Chef client](Installing_a_Chef_client).
+* You must have [installed a Chef client](Installing_a_Chef_client.md).
 * You must have SSH access to the ubuntu user on the chef-client machine.
 
 ## Creating a keypair
@@ -43,7 +43,7 @@ These fields override attributes defined and documented in the [clearwater-infra
 
 If you want to use a different SIP registration period from the default (which is 5 minutes) add a line like `"reg_max_expires" => <timeout_in_secs>,` to the `override_attributes "clearwater"` block.
 
-To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings).
+To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings.md).
 
 ## Uploading the environment
 
@@ -54,4 +54,4 @@ The newly created environment needs to be uploaded to the Chef server before it 
 
 ## Next steps
 
-At this point, your deployment environment is created and can be used to [create a new deployment](Creating_a_deployment_with_Chef).
+At this point, your deployment environment is created and can be used to [create a new deployment](Creating_a_deployment_with_Chef.md).

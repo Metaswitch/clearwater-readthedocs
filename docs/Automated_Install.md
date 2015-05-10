@@ -1,8 +1,8 @@
 # Automated Install Instructions
 
-These instructions will take you through preparing for an automated install  of Clearwater using Chef.  For a high level look at the install process, and a discussion of the various install methods, see [Installation Instructions](Installation_Instructions).  The automated install is the suggested method for installing a large-scale deployment of Clearwater.  It can also be used to install an all-in-one node.
+These instructions will take you through preparing for an automated install  of Clearwater using Chef.  For a high level look at the install process, and a discussion of the various install methods, see [Installation Instructions](Installation_Instructions.md).  The automated install is the suggested method for installing a large-scale deployment of Clearwater.  It can also be used to install an all-in-one node.
 
-The automated install is only supported for deployments running in Amazon's EC2 cloud, where DNS is being provided by Amazon's Route53 service.  If your proposed deployment doesn't meet these requirements, you should use the [Manual Install](Manual_Install) instructions instead.
+The automated install is only supported for deployments running in Amazon's EC2 cloud, where DNS is being provided by Amazon's Route53 service.  If your proposed deployment doesn't meet these requirements, you should use the [Manual Install](Manual_Install.md) instructions instead.
 
 ## The Install Process
 
@@ -15,16 +15,16 @@ Once the first phase has been completed, multiple deployments (of various sizes)
 
 The first phase:
 
-* [Installing a Chef server](Installing_a_Chef_server)
+* [Installing a Chef server](Installing_a_Chef_server.md)
  - This server will track the created Clearwater nodes and allow the client access to them.
-* [Configuring a Chef client](Installing_a_Chef_client)
+* [Configuring a Chef client](Installing_a_Chef_client.md)
  - This machine will be the one on which deployments will be defined and managed.
 
 The second phase:
 
-* [Creating a deployment environment](Creating_a_deployment_environment)
+* [Creating a deployment environment](Creating_a_deployment_environment.md)
  - The automated install supports the existence and management of multiple deployments simultaneously, each deployment lives in an environment to keep them separate.
-* [Creating the deployment](Creating_a_deployment_with_Chef)
+* [Creating the deployment](Creating_a_deployment_with_Chef.md)
  - Actually provisioning the servers, installing the Clearwater software and configuring DNS.
 
 ## Next steps
@@ -33,5 +33,5 @@ Once you've followed the instructions above, your Clearwater deployment is ready
 
 To test the deployment, you can try making some real calls, or run the provided live test framework.
 
-* [Making your first call](Making_your_first_call)
-* [Running the live test framework](Running_the_live_tests)
+* [Making your first call](Making_your_first_call.md)
+* [Running the live test framework](Running_the_live_tests.md)

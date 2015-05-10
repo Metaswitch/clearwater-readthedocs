@@ -65,7 +65,7 @@ We have now registered for the new line.
 Connecting an Android phone
 ---------------------------
 
-See [here](Configuring_the_native_Android_SIP_client) for instructions.
+See [here](Configuring_the_native_Android_SIP_client.md) for instructions.
 
 Making calls
 ------------
@@ -109,7 +109,7 @@ A brief note on supported dialing formats:
 WebRTC support
 --------------
 
-See [WebRTC support in Clearwater](WebRTC_support_in_Clearwater) for
+See [WebRTC support in Clearwater](WebRTC_support_in_Clearwater.md) for
 how to use a browser instead of a SIP phone as a client.
 
 VoLTE call services
