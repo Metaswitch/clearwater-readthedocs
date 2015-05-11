@@ -14,23 +14,23 @@ This document describes
 
 ## Configuration
 
-As discussed in the Clearwater [installation instructions](Installation_Instructions), there are several ways to install Clearwater, and which way you choose affects how you must configure IPv6.
+As discussed in the Clearwater [installation instructions](Installation_Instructions.md), there are several ways to install Clearwater, and which way you choose affects how you must configure IPv6.
 
 ### Manual Install
 
-The process to configure Clearwater for IPv6 is very similar to IPv4.  The key difference is to use IPv6 addresses in the `/etc/clearwater/config` file rather than IPv4 addresses when following the [manual install instructions](Manual_Install).
+The process to configure Clearwater for IPv6 is very similar to IPv4.  The key difference is to use IPv6 addresses in the `/etc/clearwater/config` file rather than IPv4 addresses when following the [manual install instructions](Manual_Install.md).
 
-The only complication is if you want to cluster Cassandra (as used on homestead and homer nodes).  In this case, you must edit `/etc/cassandra/cassandra-env.sh`, find the line `JVM_OPTS="$JVM_OPTS -Djava.net.preferIPv4Stack=true"` and comment it out by inserting a `#` at the beginning of the line.  This is in addition to editing `/etc/cassandra/cassandra.yaml` to specify listening and seed addresses as referenced in the [manual install](Manual_Install) instructions.
+The only complication is if you want to cluster Cassandra (as used on homestead and homer nodes).  In this case, you must edit `/etc/cassandra/cassandra-env.sh`, find the line `JVM_OPTS="$JVM_OPTS -Djava.net.preferIPv4Stack=true"` and comment it out by inserting a `#` at the beginning of the line.  This is in addition to editing `/etc/cassandra/cassandra.yaml` to specify listening and seed addresses as referenced in the [manual install](Manual_Install.md) instructions.
 
-Note also that you must configure your DNS server to return IPv6 addresses (AAAA records) rather than (or as well as) IPv4 addresses (A records).  For more information on this, see the [Clearwater DNS usage documentation](Clearwater_DNS_Usage).
+Note also that you must configure your DNS server to return IPv6 addresses (AAAA records) rather than (or as well as) IPv4 addresses (A records).  For more information on this, see the [Clearwater DNS usage documentation](Clearwater_DNS_Usage.md).
 
 ### Automated Install
 
-Configuring Clearwater for IPv6 via the [automated install process](Automated_Install) is not yet supported (and Amazon EC2 does not yet support IPv6).
+Configuring Clearwater for IPv6 via the [automated install process](Automated_Install.md) is not yet supported (and Amazon EC2 does not yet support IPv6).
 
 ### All-in-one Images
 
-Clearwater [all-in-one images](All_in_one_Images) support IPv6.
+Clearwater [all-in-one images](All_in_one_Images.md) support IPv6.
 
 Since all-in-one images get their IP configuration via DHCP, the DHCP server must be capable of returning IPv6 addresses.  Not all virtualization platforms support this, but we have successfully tested on OpenStack.
 

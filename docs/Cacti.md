@@ -16,7 +16,7 @@ This document describes how to
 
 ### Setting up a Cacti node
 
-Assuming you've followed the [Automated Chef install](Automated_Install),
+Assuming you've followed the [Automated Chef install](Automated_Install.md),
 here are the steps to create and configure a Cacti node:
 
 1.  use knife box create to create a Cacti node - `knife box create -E

@@ -4,15 +4,15 @@ These instructions will take you through the process of making a call on a Clear
 
 ## Prerequisites
 
-* You've [installed Clearwater](Installation_Instructions)
+* You've [installed Clearwater](Installation_Instructions.md)
 * You have access to two SIP clients.
   - If you have installed Clearwater on VirtualBox using the All-In-One image you must use [Zoiper](http://www.zoiper.com/en) as one of your clients.  For the other client (or for other install modes) you may use any standard SIP client, we've tested with the following:
     - [X-Lite](http://www.counterpath.com/x-lite.html)
     - [Bria](http://www.counterpath.com/bria.html‎)
     - [Jitsi](https://jitsi.org/)
     - [Blink](http://icanblink.com/)
-    - [Stock Android SIP client](Configuring_the_native_Android_SIP_client)
-    - [Zoiper Android/iOS SIP client](Configuring_Zoiper_Android_iOS_Client)
+    - [Stock Android SIP client](Configuring_the_native_Android_SIP_client.md)
+    - [Zoiper Android/iOS SIP client](Configuring_Zoiper_Android_iOS_Client.md)
     - Media5-fone iOS SIP client (on iPhone 4 and 4S)
 * You have access to a web-browser.  We've tested with:
   - Google Chrome
@@ -46,7 +46,7 @@ If you installed an All-in-One node, your Ellis URL will be `http://<aio-identit
 
 In your browser, navigate to the Ellis URL you worked out above.
 
-Sign up as a new user, using the signup code you set as `signup_key` when [configuring your deployment](Installing_a_Chef_client#add-deployment-specific-configuration).
+Sign up as a new user, using the signup code you set as `signup_key` when [configuring your deployment](Installing_a_Chef_client.md#add-deployment-specific-configuration).
 
 Ellis will automatically allocate you a new number and display its password to you.  Remember this password as it will only be displayed once.  From now on, we will use `<username>` to refer to the SIP username (e.g. `6505551234`) and `<password>` to refer to the password.
 
@@ -86,4 +86,4 @@ From one client (Zoiper if running an All-in-One node in VirtualBox), dial the `
 
 ## Next steps
 
-Now that you've got a basic call working, check that all the features of your deployment are working by running the [live tests](Running_the_live_tests) or [explore Clearwater](Exploring_Clearwater) to see what else Clearwater offers.
+Now that you've got a basic call working, check that all the features of your deployment are working by running the [live tests](Running_the_live_tests.md) or [explore Clearwater](Exploring_Clearwater.md) to see what else Clearwater offers.

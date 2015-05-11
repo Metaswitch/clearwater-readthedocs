@@ -1,12 +1,12 @@
 # All-in-one EC2 AMI Installation
 
-This pages describes how to launch and run an [all-in-one image](All_in_one_Images) in Amazon's EC2 environment.
+This pages describes how to launch and run an [all-in-one image](All_in_one_Images.md) in Amazon's EC2 environment.
 
 ## Launch Process
 
 Project Clearwater's all-in-one node is already available as a pre-built AMI, which can be found in the Community AMIs list on the US East region of EC2.  Launching this follows exactly the same process as for other EC2 AMIs.
 
-Before you launch the node, you will need an EC2 keypair, and a security group configured to provide access to the [required ports](Clearwater_IP_Port_Usage).
+Before you launch the node, you will need an EC2 keypair, and a security group configured to provide access to the [required ports](Clearwater_IP_Port_Usage.md).
 
 To launch the node
 
@@ -22,4 +22,4 @@ On the last page, press "Launch", and wait for the node to be started by EC2.
 
 Once the node has launched, you can SSH to it using the keypair you supplied at launch time, and username `ubuntu`.
 
-You can then try [making your first call](Making_your_first_call) and [running the live tests](Running_the_live_tests) - for these you will need the signup key, which is `secret`.  You will probably want to change this to a more secure value - see ["Modifying Clearwater settings"](Modifying_Clearwater_settings) for how to do this.
+You can then try [making your first call](Making_your_first_call.md) and [running the live tests](Running_the_live_tests.md) - for these you will need the signup key, which is `secret`.  You will probably want to change this to a more secure value - see ["Modifying Clearwater settings"](Modifying_Clearwater_settings.md) for how to do this.

@@ -10,7 +10,7 @@ To use the IBCF function you must install and configure at least one IBCF node, 
 
 Install and configure an IBCF node with the following steps.
 
-- Install the node as if installing a Bono node, either [manually](Manual_Install) or [using Chef](Automated_Install).  If using Chef, use the `ibcf` role, for example
+- Install the node as if installing a Bono node, either [manually](Manual_Install.md) or [using Chef](Automated_Install.md).  If using Chef, use the `ibcf` role, for example
 
         knife box create -E <name> ibcf
 
@@ -42,7 +42,7 @@ You can also use ENUM to provide number portability information, for example
     *.3.2.1.2.4.2 IN NAPTR 1 1 "u" "E2U+pstn:tel" "!(^.*$)!sip:\\1;npdi;rn=+242123@<local domain>!" .
     *.3.2.1.2.4.2.1 IN NAPTR 1 1 "u" "E2U+pstn:tel" "!(^.*$)!sip:\\1;npdi@<local domain>!" .
 
-Refer to the [ENUM guide](ENUM) for more about how to configure ENUM.
+Refer to the [ENUM guide](ENUM.md) for more about how to configure ENUM.
 
 ## BGCF Configuration
 

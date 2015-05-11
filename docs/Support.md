@@ -41,7 +41,7 @@ you're interested in contributing,
 *   see [the github docs](https://help.github.com/articles/using-pull-requests)
     for how to create a pull request
 *   before creating a pull request, please make sure you've successfully
-    *   ensured the code matches our [Ruby](Clearwater_Ruby_Coding_Guidelines) or [C++](Clearwater_CPP_Coding_Guidelines) coding guidelines
+    *   ensured the code matches our [Ruby](Clearwater_Ruby_Coding_Guidelines.md) or [C++](Clearwater_CPP_Coding_Guidelines.md) coding guidelines
     *   compiled the code
     *   run the unit tests for the component
     *   run the live tests against your changes.
