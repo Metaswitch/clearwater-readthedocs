@@ -6,6 +6,18 @@ You should follow [this process](Modifying_Clearwater_settings) when changing mo
 * Run `sudo service clearwater-infrastructure restart` to regenerate any dependent configuration files
 * Restart the relevant Clearwater service (e.g. run `sudo service bono quiesce` and allow monit to restart Bono)
 
+## Local Settings
+
+This section describes settings that are specific to a single node and are not applicable to any other nodes in the deployment. They are entered early on in the node's life and are not normally changed. These options should be set in `/etc/clearwater/local_config`.
+
+* `local_ip` - this should be set to an IP address which is configured on an interface on this system, and can communicate on an internal network with other Clearwater nodes and IMS core components like the HSS.
+* `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
+* `public_hostname` - this should be set to a hostname which resolves to `public_ip`, and will communicate with only this node (i.e. not be round-robined to other nodes). It can be set to `public_ip` if necessary.
+* `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
+* `etcd_cluster` - this is a comma separated list of IP addresses, for example `etcd_cluster="10.0.0.1,10.0.0.2`. It should be set on one of two ways:
+  * If the node is forming a new deployment, it should contain the IP addresses of all the nodes that are forming the new deployment (including this node).
+  * If the node is joining an existing deployment, it should contain the IP addresses of all the nodes that are currently in the deployment.
+
 ## Core options
 
 This section describes options for the basic configuration of a Clearwater deployment - such as the hostnames of the six node types and external services such as email servers or the Home Subscriber Server. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `home_domain=example.com`).
@@ -41,9 +53,9 @@ This section describes optional configuration options, particularly for ensuring
 * `upstream_hostname` - the I-CSCF which Bono should pass requests to. Defaults to the sprout_hostname.
 * `upstream_port` - the port on the I-CSCF which Bono should pass requests to. Defaults to 5052.
 * `sprout_rr_level` - this determines how the Sprout S-CSCF adds Record-Route headers. Possible values are:
-  * `pcscf` - a Record-Route header is only added just after requests come from or go to a P-CSCF - that is, at the start of originating handling and the end of terminating handling
-  * `pcscf,icscf` - a Record-Route header is added just after requests come from or go to a P-CSCF or I-CSCF - that is, at the start and end of originating handling and the start and end of terminating handling
-  * `pcscf,icscf,as` - a Record-Route header is added after requests come from or go to a P-CSCF, I-CSCF or application server - that is, at the start and end of originating handling, the start and end of terminating handling, and between each application server invoked
+    * `pcscf` - a Record-Route header is only added just after requests come from or go to a P-CSCF - that is, at the start of originating handling and the end of terminating handling
+    * `pcscf,icscf` - a Record-Route header is added just after requests come from or go to a P-CSCF or I-CSCF - that is, at the start and end of originating handling and the start and end of terminating handling
+    * `pcscf,icscf,as` - a Record-Route header is added after requests come from or go to a P-CSCF, I-CSCF or application server - that is, at the start and end of originating handling, the start and end of terminating handling, and between each application server invoked
 * `hss_mar_lowercase_unknown` - some Home Subscriber Servers (particularly old releases of OpenIMSCore HSS) expect the string 'unknown' rather than 'Unknown' in Multimedia-Auth-Requests when Clearwater cannot tell what authentication type is expected. Setting this option to 'Y' will make Homestead send requests in this format.
 * `enforce_user_phone` - by default, Clearwater will do an ENUM lookup on any SIP URI that looks like a phone number, due to client support for user-phone not being widespread. When this option is set to 'Y', Clearwater will only do ENUM lookups for URIs which have the user=phone parameter.
 * `enforce_global_only_lookups` - by default, Clearwater will do ENUM lookups for SIP and Tel URIs containing global and local numbers (as defined in RFC 3966). When this option is set to ‘Y’, Clearwater will only do ENUM lookups for SIP and Tel URIs that contain global numbers.
@@ -99,18 +111,6 @@ This section describes optional configuration options which may be useful, but a
 * `ralf_secure_listen_port` - this determines the port Ralf listens on for TLS-secured Diameter connections.
 * `hs_secure_listen_port` - this determines the port Homestead listens on for TLS-secured Diameter connections.
 * `ellis_cookie_key` - an arbitrary string that enables Ellis nodes to determine whether they should be in the same cluster. This function is not presently used.
-
-## Local Settings
-
-This section describes settings that are specific to a single node and are not applicable to any other nodes in the deployment. They are entered early on in the node's life and are not normally changed.
-
-* `local_ip` - this should be set to an IP address which is configured on an interface on this system, and can communicate on an internal network with other Clearwater nodes and IMS core components like the HSS.
-* `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
-* `public_hostname` - this should be set to a hostname which resolves to `public_ip`, and will communicate with only this node (i.e. not be round-robined to other nodes). It can be set to `public_ip` if necessary.
-* `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
-* `etcd_cluster` - this is a comma separated list of IP addresses, for example `etcd_cluster="10.0.0.1,10.0.0.2`. It should be set on one of two ways:
-  * If the node is forming a new deployment, it should contain the IP addresses of all the nodes that are forming the new deployment (including this node).
-  * If the node is joining an existing deployment, it should contain the IP addresses of all the nodes that are currently in the deployment.
 
 ## User settings
 

@@ -74,6 +74,12 @@ On each machine create the file `/etc/clearwater/local_config` with the followin
 
 Note that the `etcd_cluster` variable should be set to a comma separated list that contains the private IP address of the nodes you created above. For example if the nodes had addresses 10.0.0.1 to 10.0.0.6, `etcd_cluster` should be set to `"10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5,10.0.0.6"`
 
+Also create the file `/etc/clearwater/config` with the following contents:
+
+    source /etc/clearwater/shared_config
+    source /etc/clearwater/local_config
+    [ -f /etc/clearwater/user_settings ] && source /etc/clearwater/user_settings
+
 If this machine will be a Sprout or Ralf node create the file `/etc/chronos/chronos.conf` with the following contents:
 
     [http]
