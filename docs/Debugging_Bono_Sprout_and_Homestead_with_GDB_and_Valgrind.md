@@ -8,7 +8,7 @@ To run Bono, Sprout or Homestead under valgrind (the example commands assume you
 
 -  make sure valgrind is installed on your system and you have the appropriate debug packages installed (`sudo apt-get install valgrind` and `sudo apt-get install sprout-dbg`)
 
--  disable monitoring of sprout (`sudo monit unmonitor poll-sprout; sudo monit unmonitor sprout`)
+-  disable monitoring of sprout (`sudo monit unmonitor -g sprout`)
 
 -  use ps to find the command line you are using to run Sprout (`ps -eaf | grep sprout`)
 
