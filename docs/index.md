@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Dune](http://www.goodreads.com/book/show/234225.Dune)".
+The latest stable release of Clearwater is "[East Of Eden](http://www.goodreads.com/book/show/4406.East_of_Eden)", which is named after John Steinbeck's brilliant 1952 novel, a must read once you've finished playing around with Clearwater.
 
 ## Architecture
 
