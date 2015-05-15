@@ -18,9 +18,9 @@ Do the following on each node in turn:
 
 4.  Run `sudo touch /etc/clearwater/no_cluster_manager`. This temporarily disables the cluster manager so that you can program it with the current deployment topology.
 
-## Prepare Shared Configurations Files
+## Prepare Shared Configuration Files
 
-This step merges the config from all the nodes into your deployment into a single config file that will be managed by etcd.
+This step merges the config from all the nodes in your deployment into a single config file that will be managed by etcd.
 
 1.  Log onto to one of the nodes in the deployment and create a temporary directory (e.g. `~/config-migration`). Copy the `/etc/clearwater/config` file from each node in the deployment to this directory. Give each of these a name of the form `<node>_orig_config`, e.g. `sprout-1_orig_config`.
 
@@ -71,7 +71,7 @@ Now you need to tell the cluster manager about the current topology of the vario
 
 ## Upload the Shared Configuration
 
-Run the following commands on *one* of your sprout nodes. This will upload the configuration that is shared across the deployment to etcd. If you add any new nodes to the deployment they will automatically learn this configuration from etcd.
+Run the following commands on *one* of your Sprout nodes. This will upload the configuration that is shared across the deployment to etcd. If you add any new nodes to the deployment they will automatically learn this configuration from etcd.
 
 * `/usr/share/clearwater/bin/upload_shared_config`
 * `/usr/share/clearwater/bin/upload_s-cscf_config`
