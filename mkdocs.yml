@@ -61,6 +61,9 @@ pages:
 - ['SIP_Interface_Specifications.md', 'Features', 'SIP Interface Specifications']
 - ['Automatic_Clustering_Config_Sharing.md', 'Features', 'Automatic Clustering and Configuration Sharing']
 
+# Failure Recovery:
+- ['Handling_Failed_Nodes.md', 'Failure Recovery', 'Permanent Node Failures']
+
 # Development:
 - ['Clearwater_CPP_Coding_Guidelines.md', 'Development', 'Clearwater C++ Coding Guidelines']
 - ['Clearwater_Ruby_Coding_Guidelines.md', 'Development', 'Clearwater Ruby Coding Guidelines']
