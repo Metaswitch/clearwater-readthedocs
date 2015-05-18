@@ -54,25 +54,13 @@ described above. Specifically,
 -   communication back to the repository server is via HTTP. There is a
     single repository server. The repository server is not required in
     normal operation, only for upgrades.
--   splunk, mmonit, and cacti communications are not secured, so they must be
-    deployed in each region (meaning that administrators see 2 mmonits
-    and 2 splunks).
 
 Limitations
 -----------
 
--   It's not possible to build a geographically-redundant deployment
-    automatically with chef. The servers can be installed and configured
-    automatically but the certificates used for secure communication
-    can't be.
--   We use a single per-repository certificate for authenticating our
-    secure connections. It would be more secure to use individual,
-    per-region or per-deployment certificates but this would make
-    orchestration more complicated. When orchestration is done via chef
-    (and hence automatic), this would be worth further consideration.
--   Communication with splunk and mmonit are not secured, so they must
-    be deployed in each region. We could enable IPsec for these
-    connections too and have centralized instances.
+-   The local IP addresses of all nodes in a deployment most be reachable from all other nodes -
+    there must not be a NAT between the two GR sites. (This currently precludes having the GR sites
+    in different EC2 regions.)
 
 Impact
 ------
@@ -154,20 +142,11 @@ The process for setting up a geographically-redundant deployment is as
 follows.
 
 1.  Create independent deployments for each of the regions,
-    with separate DNS entries.
-2.  Modify the sprout, homestead and homer security groups to allow
-    inbound traffic on UDP ports 500 and 4500. These are used for IKE
-    and UDP-encapsulated IPsec.
-3.  Install the clearwater-secure-connections package on all sprout,
-    homestead and homer nodes.
-4.  Set the `/etc/clearwater/cluster_settings` file on each sprout to
-    just contain the local nodes, and the
-    `/etc/clearwater/remote_cluster_settings` file to contain the remote
-    nodes.
-5.  Configure Cassandra on homestead and homer to be aware of all nodes
-    in all deployments, but use a Snitch (e.g. PropertyFileSnitch) to
-    set each node's data center according to its region.
-6.  Configure Route 53 to forward requests for bono according to latency.
+    with separate DNS entries. On each node, set up `/etc/clearwater/local_settings` so that
+    `etcd_cluster` contains both the local and remote nodes, and so that the `local_site_name` and
+    `remote_site_name` values reflect which GR site the node is in.
+2.  Ensure that `clearwater-cluster-manager` and `clearwater-config-manager` packages are installed.
+3.  Configure Route 53 to forward requests for bono according to latency.
     To do this, for each region, create one record set, as follows.
     -   Name: &lt;shared (non-geographically-redundant) DNS name\>
     -   Type: "A - IPv4 address" or "AAAA - IPv6 address"
