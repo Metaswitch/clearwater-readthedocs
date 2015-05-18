@@ -50,23 +50,23 @@ The `mark_node_failed` script can be used to remove a failed node from a back-en
 
 ### Sprout
 
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "/sprout/clustering/memcached" <failed node IP>
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "/sprout/clustering/chronos" <failed node IP>
+    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "sprout" "memcached" <failed node IP>
+    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "sprout" "chronos" <failed node IP>
 
 ### Homestead
 
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "/homestead/clustering/cassandra" <failed node IP>
+    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "homestead" "cassandra" <failed node IP>
 
 ### Homer
 
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "/homer/clustering/cassandra" <failed node IP>
+    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "homer" "cassandra" <failed node IP>
 
 ### Ralf
 
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "/ralf/clustering/chronos" <failed node IP>
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "/ralf/clustering/memcached" <failed node IP>
+    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "ralf" "chronos" <failed node IP>
+    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "ralf" "memcached" <failed node IP>
 
 ### Memento
 
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "/ralf/clustering/cassandra" <failed node IP>
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "/ralf/clustering/memcached" <failed node IP>
+    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "ralf" "cassandra" <failed node IP>
+    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "ralf" "memcached" <failed node IP>
