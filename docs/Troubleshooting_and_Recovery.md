@@ -83,8 +83,8 @@ Clearwater comes with a system that [automate clustering and configuration shari
 * `/usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync` will display whether the node has learned shared configuration.
 * The following commands can be useful for inspecting the state of the underlying etcd cluster used by the management system (replace `$local_ip` with the node's actual IP address)
 
-        etcdctl -C $local_ip:4000 cluster-health
-        etcdctl -C $local_ip:4000 member list
+        clearwater-etcdctl cluster-health
+        clearwater-etcdctl member list
 
 
 ## Getting Help

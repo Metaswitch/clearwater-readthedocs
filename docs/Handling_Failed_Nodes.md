@@ -7,10 +7,9 @@ Nodes can be easily removed from a Clearwater deployment by following the instru
 If a node permanently fails scaling the deployment up and down may stop working, or if a scaling operation is in progress it may get stuck (because other nodes in the tier will wait forever for the failed node to react). To recover from this situation the failed node should be removed from the deployment using the following steps:
 
 * Remove the node from the underlying etcd cluster. To do this:
-    * Run `. /etc/clearwater/config` to access clearwater configuration variables.
-    * Run `etcdctl -C $local_ip:4000 cluster-health` and make a note of the ID of the failed node.
-    * Run `etcdctl -C $local_ip:4000 member list` to check that the failed node reported is the one you were expecting (by looking at it's IP address).
-    * Run `etcdctl -C $local_ip:4000 member remove <ID>`, replacing `<ID>` with the ID learned above.
+    * Run `clearwater-etcdctl cluster-health` and make a note of the ID of the failed node.
+    * Run `clearwater-etcdctl member list` to check that the failed node reported is the one you were expecting (by looking at its IP address).
+    * Run `clearwater-etcdctl member remove <ID>`, replacing `<ID>` with the ID learned above.
 * Remove the failed node from any back-end data store clusters it was a part of (see Removing a Node From a Data Store).
 
 ## Multiple Failed Nodes
@@ -27,9 +26,9 @@ To recover from this state:
 * create a new cluster, only on A, by:
     * editing `etcd_cluster` in `/etc/clearwater/local_config` to just contain A's IP (e.g. `etcd_cluster=10.0.0.1`)
     * running `sudo service clearwater-etcd force-new-cluster`. This will warn that this is dangerous and should only be run during this process; choose to proceed.
-    * running `etcdctl -C 10.0.0.1:4000 member list` to check that the cluster only has A in
-    * running `etcdctl -C 10.0.0.1:4000 cluster-health` to check that the cluster is healthy
-    * running `etcdctl -C 10.0.0.1:4000 get ims_domain` to check that the data is safe
+    * running `clearwater-etcdctl member list` to check that the cluster only has A in
+    * running `clearwater-etcdctl cluster-health` to check that the cluster is healthy
+    * running `clearwater-etcdctl get ims_domain` to check that the data is safe
 * get B to join that cluster by:
     * editing `etcd_cluster` in `/etc/clearwater/local_config` to just contain A's IP (e.g. `etcd_cluster=10.0.0.1`)
     * running `service clearwater-etcd force-decommission`. This will warn that this is dangerous and offer the chance to cancel; do not cancel.
@@ -39,9 +38,9 @@ To recover from this state:
     * running `service clearwater-etcd force-decommission`. This will warn that this is dangerous and should only be run during this process; choose to proceed.
     * running `service clearwater-etcd start`.
 * check that the cluster is now OK by doing the following on A:
-    * running `etcdctl -C 10.0.0.1:4000 member list` to check that the cluster now has A, B and C in
-    * running `etcdctl -C 10.0.0.1:4000 cluster-health` to check that the cluster is healthy
-    * running `etcdctl -C 10.0.0.1:4000 get ims_domain` to check that the data is safe
+    * running `clearwater-etcdctl member list` to check that the cluster now has A, B and C in
+    * running `clearwater-etcdctl cluster-health` to check that the cluster is healthy
+    * running `clearwater-etcdctl get ims_domain` to check that the data is safe
 * log on to A. For each of D, E and F follow the instructions in Removing a Node From a Data Store.
 
 ## Removing a Node From a Data Store
