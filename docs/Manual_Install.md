@@ -277,7 +277,7 @@ Ralf, like Sprout, uses Memcached as a local data store, with the same support f
 
 *   edit `/etc/clearwater/cluster_settings` file on each node to contain a single line of the form
 `servers=<Ralf IP address:11211>,<Ralf IP address:11211>,...` ensuring the order of the IP addresses is identical on each node
-*   force Ralf to reload its configuration with `sudo service sprout reload`.
+*   force Ralf to reload its configuration with `sudo service ralf reload`.
 
 Ralf also makes use of the Chronos timer service cluster.  To ensure that the Ralfs are correctly clustered.
 
