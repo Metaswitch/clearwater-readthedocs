@@ -2,6 +2,8 @@
 
 Nodes can be easily removed from a Clearwater deployment by following the instructions for [elastic scaling](Clearwater_Elastic_Scaling.md). When scaling down the remaining nodes are informed that a node is leaving and take appropriate action. However sometimes a node may fail unexpectedly. If this happens and the node cannot be recovered (for example the virtual machine has been deleted) the remaining nodes must be manually informed of the failure. This article explains how to do this.
 
+The processes described in the document do not affect call processing and can be run on a system handling call traffic.
+
 ## Removing a Failed Node
 
 If a node permanently fails scaling the deployment up and down may stop working, or if a scaling operation is in progress it may get stuck (because other nodes in the tier will wait forever for the failed node to react). To recover from this situation the failed node should be removed from the deployment using the following steps:
