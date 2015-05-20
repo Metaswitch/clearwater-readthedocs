@@ -28,7 +28,7 @@ To recover from this state:
     * running `sudo service clearwater-etcd force-new-cluster`. This will warn that this is dangerous and should only be run during this process; choose to proceed.
     * running `clearwater-etcdctl member list` to check that the cluster only has A in
     * running `clearwater-etcdctl cluster-health` to check that the cluster is healthy
-    * running `clearwater-etcdctl get ims_domain` to check that the data is safe
+    * running `clearwater-etcdctl get clearwater/<local site>/configuration/shared_config` to check that the data is safe. Replace `<local site>` with the name of the site this command is run from (which is `site1` by default).
 * get B to join that cluster by:
     * editing `etcd_cluster` in `/etc/clearwater/local_config` to just contain A's IP (e.g. `etcd_cluster=10.0.0.1`)
     * running `service clearwater-etcd force-decommission`. This will warn that this is dangerous and offer the chance to cancel; do not cancel.
@@ -40,7 +40,7 @@ To recover from this state:
 * check that the cluster is now OK by doing the following on A:
     * running `clearwater-etcdctl member list` to check that the cluster now has A, B and C in
     * running `clearwater-etcdctl cluster-health` to check that the cluster is healthy
-    * running `clearwater-etcdctl get ims_domain` to check that the data is safe
+    * running `clearwater-etcdctl get clearwater/<local site>/configuration/shared_config` to check that the data is safe. Replace `<local site>` with the name of the site this command is run from (which is `site1` by default).
 * log on to A. For each of D, E and F follow the instructions in Removing a Node From a Data Store.
 
 ## Removing a Node From a Data Store
