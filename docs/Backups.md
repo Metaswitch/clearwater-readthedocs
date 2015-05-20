@@ -210,3 +210,31 @@ This will:
 -   Run through all the lines on ellis without an owner and make sure
     there is no orphaned data in homestead and homer, i.e. deleting the
     simservs, IFC and digest for those lines.
+
+## Shared Configuration
+
+In addition to the data stored in ellis, homer, homestead and memento, a Clearwater deployment also has shared configuration that is [automatically shared between nodes](Automatic_Clustering_Config_Sharing.md). This is stored in a distributed database, and mirrored to files on the disk of each node.
+
+### Backing Up
+
+To backup the shared configuration:
+
+*  If you are in the middle of [modifying shared config](Modifying_Clearwater_Settings.md), complete the process to apply the config change to all nodes.
+*  Log onto one of the sprout nodes in the deployment.
+*  Copy the following files to somewhere else for safe keeping (e.g. another directory on the node, or another node entirely).
+
+    /etc/clearwater/shared_config
+    /etc/clearwater/bgcf.json
+    /etc/clearwater/enum.json
+    /etc/clearwater/s-cscf.json
+
+### Restoring Configuration
+
+To restore a previous backup, copy the four files listed above to `/etc/clearwater` on one of your sprout nodes. Then run the following commands on that node:
+
+    /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
+    /usr/share/clearwater/clearwater-config-manager/scripts/upload_bgcf_json
+    /usr/share/clearwater/clearwater-config-manager/scripts/upload_enum_json
+    /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json
+
+Now log onto each node in turn and run `/usr/share/clearwater/clearwater-config-manager/scripts/apply_shared_config` to make the node download and act on the restored config.
