@@ -51,7 +51,7 @@ This section describes optional configuration options, particularly for ensuring
 * `reg_max_expires` - determines the maximum expires= parameter Sprout will set on Contact headers at registrations, and therefore the amount of time before a UE has to re-register - must be less than 2^31 ms (approximately 25 days).
 * `sub_max_expires` - determines the maximum Expires header Sprout will set in subscription responses, and therefore the amount of time before a UE has to re-subscribe - must be less than 2^31 ms (approximately 25 days).
 * `upstream_hostname` - the I-CSCF which Bono should pass requests to. Defaults to the sprout_hostname.
-* `upstream_port` - the port on the I-CSCF which Bono should pass requests to. Defaults to 5052.
+* `upstream_port` - the port on the I-CSCF which Bono should pass requests to. Defaults to 5052. If set to 0, Bono will use SRV resolution of the `upstream_hostname` hostname to determine a target for traffic.
 * `sprout_rr_level` - this determines how the Sprout S-CSCF adds Record-Route headers. Possible values are:
     * `pcscf` - a Record-Route header is only added just after requests come from or go to a P-CSCF - that is, at the start of originating handling and the end of terminating handling
     * `pcscf,icscf` - a Record-Route header is added just after requests come from or go to a P-CSCF or I-CSCF - that is, at the start and end of originating handling and the start and end of terminating handling
