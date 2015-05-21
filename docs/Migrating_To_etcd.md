@@ -10,7 +10,7 @@ Clearwater now supports an [automatic clustering and configuration sharing](Auto
 
 Do the following on each node in turn:
 
-1.  Run `/usr/share/clearwater/infrastructure/migration-utils/migrate_local_config`. This examines the existing `/etc/clearwater/config` file and produces a new `/etc/clearwater/local_config` which contains the settings only relevant to this node. Check that this file looks sensible.
+1.  Run `sudo /usr/share/clearwater/infrastructure/migration-utils/migrate_local_config /etc/clearwater/config`. This examines the existing `/etc/clearwater/config` file and produces a new `/etc/clearwater/local_config` which contains the settings only relevant to this node. Check that this file looks sensible.
 
 2.  Edit `/etc/clearwater/local_config` to add a line `etcd_cluster="<NodeIPs>"` where `NodeIPs` is a comma separated list of the private IP addresses of nodes in the deployment. For example if your deployment contained nodes with IP addresses of 10.0.0.1 to 10.0.0.6, `NodeIPs` would be `10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5,10.0.0.6`
 
@@ -24,17 +24,15 @@ This step merges the config from all the nodes in your deployment into a single 
 
 1.  Log onto to one of the nodes in the deployment and create a temporary directory (e.g. `~/config-migration`). Copy the `/etc/clearwater/config` file from each node in the deployment to this directory. Give each of these a name of the form `<node>_orig_config`, e.g. `sprout-1_orig_config`.
 
-2.  Run `/usr/share/clearwater/infrastructure/migration-utils/migrate_shared_config`, passing it all the config files in the temporary directory
+2.  Run `sudo /usr/share/clearwater/infrastructure/migration-utils/migrate_shared_config`, passing it all the config files in the temporary directory
 
-    /usr/share/clearwater/infrastructure/migration-utils/migrate_local_config *_orig_config
+    sudo /usr/share/clearwater/infrastructure/migration-utils/migrate_local_config *_orig_config
 
-3.  This will produce a file in the current directory called `shared_config`. Check the contents of this file looks sensible.
+3.  This will produce the file `/etc/clearwater/shared_config`. Check the contents of this file looks sensible.
 
-4.  Copy this file to `/etc/clearwater/shared_config` on each node in the deployment.
+4.  On each node in turn:
 
-5.  On each node in turn:
-
-    * Run `/usr/share/clearwater/infrastructure/migration-utils/switch_to_migrated_config`
+    * Run `sudo /usr/share/clearwater/infrastructure/migration-utils/switch_to_migrated_config`
     * Run `sudo service clearwater-infrastructure restart` to regenerate any dependant configuration files
     * Restart the Clearwater services on the node.
 
@@ -73,14 +71,13 @@ Now you need to tell the cluster manager about the current topology of the vario
 
 Run the following commands on *one* of your Sprout nodes. This will upload the configuration that is shared across the deployment to etcd. If you add any new nodes to the deployment they will automatically learn this configuration from etcd.
 
-* `/usr/share/clearwater/bin/upload_shared_config`
-* `/usr/share/clearwater/bin/upload_s-cscf_config`
-* `/usr/share/clearwater/bin/upload_bgcf_config`
-* `/usr/share/clearwater/bin/upload_enum_config`
+* `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config`
+* `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_s-cscf_json`
+* `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_bgcf_json`
+* `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_enum_json`
 
 ## Tidy Up
 
 The final step is to re-enable the cluster manager by running the following commands:
 
     sudo rm /etc/clearwater/no_cluster_manager
-    sudo service clearwater-cluster-manager restart
