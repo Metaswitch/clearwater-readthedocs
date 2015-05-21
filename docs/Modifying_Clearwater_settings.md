@@ -32,7 +32,7 @@ To change one of these settings, if you are using Clearwater's [automatic config
 
 *   Edit `/etc/clearwater/shared_config` on *one* node and change to the new value.
 *   Run `/usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config` to upload the new config to etcd.
-*   On each node in turn run `/usr/share/clearwater/clearwater-config-manager/scripts/apply_shared_config`. This will download the new config to the node and restart the necessary services to pick up the new settings.
+*   On each node in turn run `sudo /usr/share/clearwater/clearwater-config-manager/scripts/apply_shared_config`. This will download the new config to the node and restart the necessary services to pick up the new settings.
 
 If you are not using automatic clustering, do the following on *each* node:
 
