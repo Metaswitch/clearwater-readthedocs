@@ -4,26 +4,26 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Dune](http://www.goodreads.com/book/show/234225.Dune)".
+The latest stable release of Clearwater is "[East Of Eden](http://www.goodreads.com/book/show/4406.East_of_Eden)", which is named after John Steinbeck's brilliant 1952 novel, a must read once you've finished playing around with Clearwater.
 
 ## Architecture
 
 Clearwater is architected from the ground up to be fully horizontally
 scalable, modular and to support running in virtualized environments.
-See our [Clearwater Architecture](Clearwater_Architecture) page for a
+See our [Clearwater Architecture](Clearwater_Architecture.md) page for a
 bird's eye view of a Clearwater deployment and a guided tour of the
 various functional components that comprise it.
 
 ## Getting Started
 
-* [Installation Instructions](Installation_Instructions)
-* [Making your first call](Making_your_first_call)
-* [Running the live tests](Running_the_live_tests)
-* [A tour of Clearwater](Clearwater_Tour)
+* [Installation Instructions](Installation_Instructions.md)
+* [Making your first call](Making_your_first_call.md)
+* [Running the live tests](Running_the_live_tests.md)
+* [A tour of Clearwater](Clearwater_Tour.md)
 
 ## Looking Deeper
 
-To look at the optional extra features and function of your Clearwater deployment and for discussions about Clearwater scaling and redundancy, see [Exploring Clearwater](Exploring_Clearwater).
+To look at the optional extra features and function of your Clearwater deployment and for discussions about Clearwater scaling and redundancy, see [Exploring Clearwater](Exploring_Clearwater.md).
 
 ## Getting Source Code
 
@@ -40,14 +40,14 @@ All the source code is on [GitHub](https://github.com/Metaswitch), in the follow
 
 ## Contributing
 
-You can contribute by making a GitHub pull request. See our documented [Pull request process](Pull_request_process).
+You can contribute by making a GitHub pull request. See our documented [Pull request process](Pull_request_process.md).
 
 There is more information about contributing to Project Clearwater on the [community page of our project website](http://www.projectclearwater.org/community/).
 
 ## Help
 
 If you want help, or want to help others by making Clearwater better, see the
-[Support](Support) page.
+[Support](Support.md) page.
 
 
 ## License and Acknowledgements

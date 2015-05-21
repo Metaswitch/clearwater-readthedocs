@@ -4,7 +4,7 @@ The Clearwater team have put together a suite of live tests that can be run over
 
 ## Prerequisites
 
-* You've [installed Clearwater](Installation_Instructions)
+* You've [installed Clearwater](Installation_Instructions.md)
 * You have an Ubuntu Linux machine available to drive the tests
  - If you installed through the automated install process, the chef-client is a perfectly good choice for this task
 
@@ -35,8 +35,8 @@ Make sure that you have an SSH key - if not, see the [GitHub instructions](https
 
 The tests need your signup code to create a test user.
 You set this as `signup_key` during install:
-[manually in /etc/clearwater/config](Manual_Install)
-or [automatically in knife.rb](Installing_a_Chef_client). For the rest of these instructions, the
+[manually in /etc/clearwater/config](Manual_Install.md)
+or [automatically in knife.rb](Installing_a_Chef_client.md). For the rest of these instructions, the
 signup code will be referred to as `<code>`.
 
 ## Running the tests against an All-in-One node
@@ -87,4 +87,4 @@ Which will test call services related to the PSTN and will ring your phone and p
 
 ## Where next?
 
-Now that you've confirmed that your Clearwater system is operational, you might want to [make a real call](Making_your_first_call) or [explore Clearwater](Exploring_Clearwater) to see what else Clearwater offers.
+Now that you've confirmed that your Clearwater system is operational, you might want to [make a real call](Making_your_first_call.md) or [explore Clearwater](Exploring_Clearwater.md) to see what else Clearwater offers.

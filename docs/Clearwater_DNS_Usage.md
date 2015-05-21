@@ -7,7 +7,7 @@ This document describes
 *   Clearwater's DNS strategy and requirements
 *   how to configure [AWS Route 53](http://aws.amazon.com/route53/) and [BIND](https://www.isc.org/downloads/bind/) to meet these.
 
-DNS is also used as part of the [ENUM](http://tools.ietf.org/rfc/rfc6116.txt) system for mapping E.164 numbers to SIP URIs.  This isn't discussed in this document - instead see the separate [ENUM](enum) document.
+DNS is also used as part of the [ENUM](http://tools.ietf.org/rfc/rfc6116.txt) system for mapping E.164 numbers to SIP URIs.  This isn't discussed in this document - instead see the separate [ENUM](enum.md) document.
 
 *If you are installing an All-in-One Clearwater node, you do not need any DNS records and can ignore the rest of this page.*
 
@@ -122,7 +122,7 @@ The UEs need to know the identity of the DNS server too.  In a testing environme
 
 ### AWS Route 53
 
-Clearwater's [automated install](Automated_Install) automatically configures AWS Route 53.  There is no need to follow the following instructions if you are using the automated install.
+Clearwater's [automated install](Automated_Install.md) automatically configures AWS Route 53.  There is no need to follow the following instructions if you are using the automated install.
 
 The official [AWS Route 53 documentation](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html) is a good reference, and most of the following steps are links into it.
 
