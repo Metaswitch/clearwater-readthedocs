@@ -4,29 +4,7 @@ This page discusses how to change settings on a Clearwater system. Most settings
 
 *This will have a service impact of up to five minutes.*
 
-The following settings in `/etc/clearwater/shared_config` can safely be changed without entirely recreating the system. If you want to change a setting not in this list, go to the "Starting from scratch" section instead.
-
-    mmonit_hostname
-    mmonit_username
-    mmonit_password
-    sas_server
-    enum_server
-    reg_max_expires
-    chronos_hostname
-    hs_hostname
-    hs_provisioning_hostname
-    xdms_hostname
-    additional_home_domains
-    cdf_address
-    smtp_smarthost
-    smtp_username
-    smtp_password
-    email_recovery_sender
-    signup_key
-    ellis_api_key
-    ellis_cookie_key
-    hss_hostname
-    hss_port
+Settings in `/etc/clearwater/shared_config` can be safely changed without entirely recreating the system. The one exception to this is the `home_domain`; if you want to change this go to the "Starting from scratch" section instead.
 
 To change one of these settings, if you are using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing) functionality:
 
