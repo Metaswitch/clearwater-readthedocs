@@ -26,7 +26,7 @@ This step merges the config from all the nodes in your deployment into a single 
 
 2.  Run `sudo /usr/share/clearwater/infrastructure/migration-utils/migrate_shared_config`, passing it all the config files in the temporary directory
 
-    * `sudo /usr/share/clearwater/infrastructure/migration-utils/migrate_local_config *_orig_config`
+    * `sudo /usr/share/clearwater/infrastructure/migration-utils/migrate_shared_config *_orig_config`
 
 3.  This will produce the file `/etc/clearwater/shared_config`. Check the contents of this file looks sensible.
 
