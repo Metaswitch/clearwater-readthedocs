@@ -10,7 +10,7 @@ Clearwater now supports an [automatic clustering and configuration sharing](Auto
 
 Do the following on each node in turn:
 
-1.  Run `/usr/share/clearwater/infrastructure/migration-utils/migrate_local_config`. This examines the existing `/etc/clearwater/config` file and produces a new `/etc/clearwater/local_config` which contains the settings only relevant to this node. Check that this file looks sensible.
+1.  Run `/usr/share/clearwater/infrastructure/migration-utils/migrate_local_config /etc/clearwater/config`. This examines the existing `/etc/clearwater/config` file and produces a new `/etc/clearwater/local_config` which contains the settings only relevant to this node. Check that this file looks sensible.
 
 2.  Edit `/etc/clearwater/local_config` to add a line `etcd_cluster="<NodeIPs>"` where `NodeIPs` is a comma separated list of the private IP addresses of nodes in the deployment. For example if your deployment contained nodes with IP addresses of 10.0.0.1 to 10.0.0.6, `NodeIPs` would be `10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5,10.0.0.6`
 
@@ -28,11 +28,9 @@ This step merges the config from all the nodes in your deployment into a single 
 
     /usr/share/clearwater/infrastructure/migration-utils/migrate_local_config *_orig_config
 
-3.  This will produce a file in the current directory called `shared_config`. Check the contents of this file looks sensible.
+3.  This will produce the file `/etc/clearwater/shared_config`. Check the contents of this file looks sensible.
 
-4.  Copy this file to `/etc/clearwater/shared_config` on each node in the deployment.
-
-5.  On each node in turn:
+4.  On each node in turn:
 
     * Run `/usr/share/clearwater/infrastructure/migration-utils/switch_to_migrated_config`
     * Run `sudo service clearwater-infrastructure restart` to regenerate any dependant configuration files
