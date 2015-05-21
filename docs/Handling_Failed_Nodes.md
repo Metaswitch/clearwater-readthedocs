@@ -69,5 +69,5 @@ The `mark_node_failed` script can be used to remove a failed node from a back-en
 
 ### Memento
 
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "ralf" "cassandra" <failed node IP>
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "ralf" "memcached" <failed node IP>
+    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "cassandra" <failed node IP>
+    /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "memcached" <failed node IP>
