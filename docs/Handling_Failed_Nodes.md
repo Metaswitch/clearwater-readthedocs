@@ -24,21 +24,22 @@ You should follow this process completely - the behaviour is unspecified if this
 
 To recover from this state:
 
-* stop etcd on A, B and C by running `sudo service clearwater-etcd stop`
+* stop etcd on A, B and C by running `sudo monit stop -g etcd`
 * create a new cluster, only on A, by:
     * editing `etcd_cluster` in `/etc/clearwater/local_config` to just contain A's IP (e.g. `etcd_cluster=10.0.0.1`)
     * running `sudo service clearwater-etcd force-new-cluster`. This will warn that this is dangerous and should only be run during this process; choose to proceed.
     * running `clearwater-etcdctl member list` to check that the cluster only has A in
     * running `clearwater-etcdctl cluster-health` to check that the cluster is healthy
     * running `clearwater-etcdctl get clearwater/<local site>/configuration/shared_config` to check that the data is safe. Replace `<local site>` with the name of the site this command is run from (which is `site1` by default).
+    * running `sudo monit monitor -g etcd` to put etcd back under monit control
 * get B to join that cluster by:
     * editing `etcd_cluster` in `/etc/clearwater/local_config` to just contain A's IP (e.g. `etcd_cluster=10.0.0.1`)
-    * running `service clearwater-etcd force-decommission`. This will warn that this is dangerous and offer the chance to cancel; do not cancel.
-    * running `service clearwater-etcd start`.
+    * running `sudo service clearwater-etcd force-decommission`. This will warn that this is dangerous and offer the chance to cancel; do not cancel.
+    * running `sudo monit monitor -g etcd`.
 * get C to join that cluster by following the same steps as for B:
     * editing `etcd_cluster` in `/etc/clearwater/local_config` to just contain A's IP (e.g. `etcd_cluster=10.0.0.1`)
-    * running `service clearwater-etcd force-decommission`. This will warn that this is dangerous and should only be run during this process; choose to proceed.
-    * running `service clearwater-etcd start`.
+    * running `sudo service clearwater-etcd force-decommission`. This will warn that this is dangerous and should only be run during this process; choose to proceed.
+    * running `sudo monit monitor -g etcd`.
 * check that the cluster is now OK by doing the following on A:
     * running `clearwater-etcdctl member list` to check that the cluster now has A, B and C in
     * running `clearwater-etcdctl cluster-health` to check that the cluster is healthy
