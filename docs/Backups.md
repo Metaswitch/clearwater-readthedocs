@@ -219,7 +219,7 @@ In addition to the data stored in ellis, homer, homestead and memento, a Clearwa
 
 To backup the shared configuration:
 
-*  If you are in the middle of [modifying shared config](Modifying_Clearwater_Settings.md), complete the process to apply the config change to all nodes.
+*  If you are in the middle of [modifying shared config](Modifying_Clearwater_settings.md), complete the process to apply the config change to all nodes.
 *  Log onto one of the sprout nodes in the deployment.
 *  Copy the following files to somewhere else for safe keeping (e.g. another directory on the node, or another node entirely).
 
