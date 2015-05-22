@@ -94,6 +94,7 @@ This section describes optional configuration options, particularly for ensuring
 * `sip_blacklist_duration` - the time in seconds for which SIP peers are blacklisted when they are unresponsive (defaults to 30 seconds).
 * `http_blacklist_duration` - the time in seconds for which HTTP peers are blacklisted when they are unresponsive (defaults to 30 seconds).
 * `diameter_blacklist_duration` - the time in seconds for which Diameter peers are blacklisted when they are unresponsive (defaults to 30 seconds).
+* `sip-tcp-connect-timeout` - the time in milliseconds to wait for a SIP TCP connection to be established (defaults to 1000 milliseconds).
 
 ## Experimental options
 
