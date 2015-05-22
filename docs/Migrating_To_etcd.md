@@ -6,6 +6,18 @@ Clearwater now supports an [automatic clustering and configuration sharing](Auto
 
 [Upgrade](Upgrading_a_Clearwater_deployment) to the latest stable Clearwater release.
 
+## Verify Configuration Files
+
+Do the following on each node in turn:
+
+1.  Run `/usr/share/clearwater/infrastructure/migration-utils/configlint.py`. This examines the existing `/etc/clearwater/config` file and checks that the migration scripts can handle all the settings defined in it.
+
+2.  If `configlint.py` produces a warning about a config option, this can mean one of two things:
+    * The config option is invalid (for example, because there is a typo, or this option has been retired). Check the [configuration options reference](Clearwater_Configuration_Options_Reference.md) for a list of valid options.
+    * The config option is valid, but the migration script doesn't recognise the option and won't automatically migrate it. In this case, you will need to make a note of this config option now, and add it back in after the rest of the migration has run. (A later step in this process covers that.)
+
+Once you have checked your configuration file and taken a note of any unrecognised settings, continue with the next step.
+
 ## Prepare Local Configuration Files
 
 Do the following on each node in turn:
@@ -28,7 +40,7 @@ This step merges the config from all the nodes in your deployment into a single 
 
     * `sudo /usr/share/clearwater/infrastructure/migration-utils/migrate_shared_config *_orig_config`
 
-3.  This will produce the file `/etc/clearwater/shared_config`. Check the contents of this file looks sensible.
+3.  This will produce the file `/etc/clearwater/shared_config`. Check the contents of this file looks sensible. If running `configlint.py` indicated that any configuration would not be automatically migrated, add that configuration to `/etc/clearwater/shared_config` now.
 
 4.  Copy this file to `/etc/clearwater/shared_config` on each node in the deployment.
 
