@@ -43,7 +43,7 @@ To recover from this state:
 * check that the cluster is now OK by doing the following on A:
     * running `clearwater-etcdctl member list` to check that the cluster now has A, B and C in
     * running `clearwater-etcdctl cluster-health` to check that the cluster is healthy
-    * running `clearwater-etcdctl get clearwater/<local site>/configuration/shared_config` to check that the data is safe. Replace `<local site>` with the name of the site this command is run from (which is `site1` by default).
+    * running `clearwater-etcdctl get configuration/shared_config` to check that the data is safe.
 * log on to A. For each of D, E and F follow the instructions in Removing a Node From a Data Store.
 
 ## Removing a Node From a Data Store
