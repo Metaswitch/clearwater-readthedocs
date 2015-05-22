@@ -38,7 +38,7 @@ Some of the more complex sprout-specific configuration is stored in JSON files
 To change one of these files, if you are using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing) functionality:
 
 * Edit the file on *one* of your sprout nodes.
-* Run one of `/usr/share/clearwater/bin/upload_{s-cscf|bgcf|enum}_json` depending on which file you modified.
+* Run one of `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_{scscf|bgcf|enum}_json` depending on which file you modified.
 * The change will be automatically propagated around the deployment and will start being used.
 
 If you are not using automatic clustering do the following on *each* node:
