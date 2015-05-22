@@ -13,8 +13,8 @@ Do the following on each node in turn:
 1.  Run `sudo /usr/share/clearwater/infrastructure/migration-utils/configlint.py /etc/clearwater/config`. This examines the existing `/etc/clearwater/config` file and checks that the migration scripts can handle all the settings defined in it.
 
 2.  If `configlint.py` produces a warning about a config option, this can mean one of two things:
-    * The config option is invalid (for example, because there is a typo, or this option has been retired). Check the configuration options reference for a list of valid options.
-    * The config opion is valid, but there is a bug in the migration script which means that it doesn't recognise the option. In this case, [raise an issue](https://github.com/Metaswitch/clearwater-infrastructure/issues) about the warning.
+    * The config option is invalid (for example, because there is a typo, or this option has been retired). Check the [configuration options reference](Clearwater_Configuration_Options_Reference.md) for a list of valid options.
+    * The config option is valid, but there is a bug in the migration script which means that it doesn't recognise the option. In this case, [raise an issue](https://github.com/Metaswitch/clearwater-infrastructure/issues) about the warning.
 
 Once you have linted your configuration file and confirmed that there are no unrecognised settings, continue with the next step.
 
