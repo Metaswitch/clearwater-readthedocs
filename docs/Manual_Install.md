@@ -97,12 +97,6 @@ If this machine will be a Sprout or Ralf node create the file `/etc/chronos/chro
     [exceptions]
     max_ttl = 600
 
-## Install Clearwater Management Services
-
-Run the following command on each node to install the Clearwater management services.
-
-    sudo apt-get install clearwater-cluster-manager clearwater-config-manager
-
 ## Install Node-Specific Software
 
 `ssh` onto each box in turn and follow the appropriate instructions below according to the role the node will take in the deployment:
@@ -111,44 +105,44 @@ Run the following command on each node to install the Clearwater management serv
 
 Install the Ellis package with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install ellis --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management ellis --yes
 
 ### Bono
 
 Install the Bono and Restund packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install bono restund --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management bono restund --yes
 
 ### Sprout
 
 Install the Sprout package with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install sprout --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management sprout --yes
 
 If you want the Sprout nodes to include a Memento Application server, then install the memento packages with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install memento memento-nginx --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management memento memento-nginx --yes
 
 ### Homer
 
 Install the Homer and Cassandra packages with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install homer --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management homer --yes
 
 ### Homestead
 
 Install the Homestead and Cassandra packages with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead homestead-prov --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management homestead homestead-prov --yes
 
 ### Ralf
 
 Install the Ralf package with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install ralf --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management ralf --yes
 
 ## SNMP statistics
 
