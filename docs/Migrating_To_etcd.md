@@ -40,7 +40,7 @@ This step merges the config from all the nodes in your deployment into a single 
 
 ## Install Clustering and Configuration Management Services
 
-On each node run `sudo apt-get install clearwater-cluster-manager clearwater-config-manager`.
+On each node run `sudo apt-get install clearwater-management`.
 
 ## Upload the Current Cluster Settings
 
