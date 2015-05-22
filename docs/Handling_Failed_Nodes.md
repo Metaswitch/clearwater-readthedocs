@@ -30,7 +30,7 @@ To recover from this state:
     * running `sudo service clearwater-etcd force-new-cluster`. This will warn that this is dangerous and should only be run during this process; choose to proceed.
     * running `clearwater-etcdctl member list` to check that the cluster only has A in
     * running `clearwater-etcdctl cluster-health` to check that the cluster is healthy
-    * running `clearwater-etcdctl get clearwater/<local site>/configuration/shared_config` to check that the data is safe. Replace `<local site>` with the name of the site this command is run from (which is `site1` by default).
+    * running `clearwater-etcdctl get configuration/shared_config` to check that the data is safe. 
     * running `sudo monit monitor -g etcd` to put etcd back under monit control
 * get B to join that cluster by:
     * editing `etcd_cluster` in `/etc/clearwater/local_config` to just contain A's IP (e.g. `etcd_cluster=10.0.0.1`)
