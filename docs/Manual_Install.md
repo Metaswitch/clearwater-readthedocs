@@ -210,7 +210,7 @@ If you require I-CSCF functionality, log onto your sprout node and create `/etc/
        ]
     }
 
-Then upload it to the shared configuration database by running `/usr/share/clearwater/bin/upload_s-cscf_json`. This means that any sprout nodes that you add to the cluster will automatically learn the configuration.
+Then upload it to the shared configuration database by running `/usr/share/clearwater/bin/upload_scscf_json`. This means that any sprout nodes that you add to the cluster will automatically learn the configuration.
 
 ## Provision Telephone Numbers in Ellis
 
