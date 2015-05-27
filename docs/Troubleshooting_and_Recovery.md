@@ -80,7 +80,7 @@ Clearwater comes with a system that [automate clustering and configuration shari
 
 * The management system logs to `/var/log/clearwater-etcd`, `/var/log/clearwater-cluster-manager` and `/var/log/clearwater-config-manager`.
 * `/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_health` will display information about the state of the various data-store clusters used by Clearwater.
-* `/usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync` will display whether the node has learned shared configuration.
+* `sudo /usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync` will display whether the node has learned shared configuration.
 * The following commands can be useful for inspecting the state of the underlying etcd cluster used by the management system (replace `$local_ip` with the node's actual IP address)
 
         clearwater-etcdctl cluster-health
