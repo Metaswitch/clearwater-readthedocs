@@ -4,7 +4,7 @@ You should follow [this process](Modifying_Clearwater_settings) when changing mo
 
 * Modify the configuration file
 * Run `sudo service clearwater-infrastructure restart` to regenerate any dependent configuration files
-* Restart the relevant Clearwater service using the following commands.
+* Restart the relevant Clearwater service(s) using the following commands as appropriate for the node.
     *   Sprout - `sudo service sprout quiesce`
     *   Bono - `sudo service bono quiesce`
     *   Homestead - `sudo service homestead stop`
