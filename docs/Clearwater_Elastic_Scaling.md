@@ -37,7 +37,19 @@ If you're scaling up your deployment, follow the following process:
 If you're scaling down your deployment, follow the following process:
 
 1.  Update DNS to contain the nodes that will remain after the scale-down.
-2.  On the nodes that are about to be turned down, run `monit unmonitor <process> && service <process> quiesce|stop` to start the main process quiescing.
+2.  On each node that is about to be turned down:
+
+    * Run `monit unmonitor -g <node-type>`. For example for a sprout node: `monit unmonitor -g sprout`. On a homestead node also run `monit unmonitor -g homestead-prov`.
+    * Start the main process quiescing.
+
+        *   Sprout - `sudo service sprout quiesce`
+        *   Bono - `sudo service bono quiesce`
+        *   Homestead - `sudo service homestead stop && sudo service homestead-prov stop`
+        *   Homer - `sudo service homer stop`
+        *   Ralf -`sudo service ralf stop`
+        *   Ellis - `sudo service ellis stop`
+        *   Memento - `sudo service memento stop`
+
 3.  Run `sudo service clearwater-etcd decommission`. This will cause the nodes to leave their existing clusters.
 4.  Once the above steps have completed, turn down the nodes.
 
@@ -70,5 +82,17 @@ If you're scaling down your deployment, follow the following process.
 8.  On Sprout and Ralf nodes, wait until Chronos has resynchronized, either by running `service chronos wait-sync` or by polling over [SNMP](Clearwater SNMP Statistics).
 9.  On Sprout, Memento and Ralf nodes, update /etc/clearwater/cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
 10.  On the Sprout and Ralf nodes that are staying in the cluster, update `/etc/chronos/chronos_cluster.conf` so that it only contains entries for the staying nodes in the cluster and then run `service chronos reload` to re-read this file.
-11.  On the nodes that are about to be turned down, run `monit unmonitor <process> && service <process> quiesce|stop` to start the main process quiescing.
+11. On each node that is about to be turned down:
+
+    * Run `monit unmonitor -g <node-type>`. For example for a sprout node: `monit unmonitor -g sprout`. On a homestead node also run `monit unmonitor -g homestead-prov`.
+    * Start the main process quiescing.
+
+        *   Sprout - `sudo service sprout quiesce`
+        *   Bono - `sudo service bono quiesce`
+        *   Homestead - `sudo service homestead stop`
+        *   Homer - `sudo service homer stop`
+        *   Ralf -`sudo service ralf stop`
+        *   Ellis - `sudo service ellis stop`
+        *   Memento - `sudo service memento stop`
+
 12.  Turn down each of these nodes once the process has terminated.

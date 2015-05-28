@@ -16,14 +16,15 @@ If you are not using automatic clustering, do the following on *each* node:
 
 *   Edit `/etc/clearwater/shared_config` and change the setting to the new value.
 *   Run `sudo service clearwater-infrastructure restart` to ensure that the configuration changes are applied consistently across the node.
-*   Restart the individual component by running the appropriate one of the following commands to stop the service and allow monit to restart it.
+*   Restart the individual component by running the appropriate command below. This will stop the service and allow monit to restart it.
 
     *   Sprout - `sudo service sprout quiesce`
     *   Bono - `sudo service bono quiesce`
-    *   Homestead - `sudo service homestead stop`
+    *   Homestead - `sudo service homestead stop && sudo service homestead-prov stop`
     *   Homer - `sudo service homer stop`
     *   Ralf -`sudo service ralf stop`
     *   Ellis - `sudo service ellis stop`
+    *   Memento - `sudo service memento stop`
 
 ## Modifying Sprout JSON Configuration
 
