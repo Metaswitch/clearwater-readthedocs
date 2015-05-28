@@ -100,14 +100,14 @@ If this machine will be a Sprout or Ralf node create the file `/etc/chronos/chro
 Install the Ellis package with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install ellis --yes
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-config-manager --yes
 
 ### Bono
 
 Install the Bono and Restund packages with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install bono restund --yes
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-config-manager --yes
 
 ### Sprout
 
