@@ -38,7 +38,7 @@ All the source code is on [GitHub](https://github.com/Metaswitch), in the follow
 *   [ellis](https://github.com/Metaswitch/ellis) - Clearwater provisioning server
 *   [sprout](https://github.com/Metaswitch/sprout) - Sprout and Bono, the Clearwater SIP router and edge proxy
 *   [homestead](https://github.com/Metaswitch/homestead) - Homestead, the Clearwater HSS-cache.
-*   [ralf](https://github.com/Metaswitch/homestead) - Ralf, the Clearwater CTF.
+*   [ralf](https://github.com/Metaswitch/ralf) - Ralf, the Clearwater CTF.
 
 ## Contributing
 
