@@ -34,9 +34,11 @@ All the source code is on [GitHub](https://github.com/Metaswitch), in the follow
 *   [clearwater-logging](https://github.com/Metaswitch/clearwater-logging) - Logging infrastructure for Clearwater deployments
 *   [clearwater-live-test](https://github.com/Metaswitch/clearwater-live-test) - Live test for Clearwater deployments
 *   [clearwater-readthedocs](http://clearwater.readthedocs.org/en/latest) - This documentation repository
-*   [crest](https://github.com/Metaswitch/crest) - RESTful HTTP service built on Cassandra - provides Homer and Homestead.
+*   [crest](https://github.com/Metaswitch/crest) - RESTful HTTP service built on Cassandra - provides Homer (the Clearwater XDMS) and Homestead-Provisioning (the Clearwater provisioning backend)
 *   [ellis](https://github.com/Metaswitch/ellis) - Clearwater provisioning server
-*   [sprout](https://github.com/Metaswitch/sprout) - sprout and bono, the Clearwater SIP router and edge proxy
+*   [sprout](https://github.com/Metaswitch/sprout) - Sprout and Bono, the Clearwater SIP router and edge proxy
+*   [homestead](https://github.com/Metaswitch/homestead) - Homestead, the Clearwater HSS-cache.
+*   [ralf](https://github.com/Metaswitch/homestead) - Ralf, the Clearwater CTF.
 
 ## Contributing
 
