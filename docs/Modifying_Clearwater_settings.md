@@ -20,10 +20,11 @@ If you are not using automatic clustering, do the following on *each* node:
 
     *   Sprout - `sudo service sprout quiesce`
     *   Bono - `sudo service bono quiesce`
-    *   Homestead - `sudo service homestead stop`
+    *   Homestead - `sudo service homestead stop && sudo service homestead-prov stop`
     *   Homer - `sudo service homer stop`
     *   Ralf -`sudo service ralf stop`
     *   Ellis - `sudo service ellis stop`
+    *   Memento - `sudo service memento stop`
 
 ## Modifying Sprout JSON Configuration
 
