@@ -201,7 +201,7 @@ See the [Chef instructions](Installing_a_Chef_client#add-deployment-specific-con
 Now run the following to upload the configuration to a shared database and propagate it around the cluster.
 
     /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
-    /usr/share/clearwater/clearwater-config-manager/scripts/apply_shared_config
+    sudo /usr/share/clearwater/clearwater-config-manager/scripts/apply_shared_config
 
 ### Setting up S-CSCF configuration
 
