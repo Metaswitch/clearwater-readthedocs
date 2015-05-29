@@ -198,7 +198,10 @@ If you want your Sprout nodes to include Gemini/Memento Application Servers add 
 
 See the [Chef instructions](Installing_a_Chef_client#add-deployment-specific-configuration) for more information on how to fill these in. The values marked `<secret>` **must** be set to secure values to protect your deployment from unauthorized access. To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings).
 
-Now run `/usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config`. This uploads the configuration to a shared database and propagates it around the cluster.
+Now run the following to upload the configuration to a shared database and propagate it around the cluster.
+
+    /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
+    /usr/share/clearwater/clearwater-config-manager/scripts/apply_shared_config
 
 ### Setting up S-CSCF configuration
 
