@@ -49,6 +49,11 @@ If you're scaling down your deployment, follow the following process:
         *   Ralf -`sudo service ralf stop`
         *   Ellis - `sudo service ellis stop`
         *   Memento - `sudo service memento stop`
+    * Unmonitor the clearwater management processes.
+
+        *   All nodes except Bono and Ellis - `sudo monit unmonitor clearwater-cluster-manager`
+        *   All nodes - `sudo monit unmonitor clearwater-config-manager`
+        *   All nodes - `sudo monit unmonitor -g etcd`
 
 3.  Run `sudo service clearwater-etcd decommission`. This will cause the nodes to leave their existing clusters.
 4.  Once the above steps have completed, turn down the nodes.
