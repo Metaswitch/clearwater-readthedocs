@@ -30,7 +30,7 @@ Clearwater is designed from the ground up to scale horizontally across multiple 
 
 * [Scaling Numbers](http://www.projectclearwater.org/technical/clearwater-performance/)
 * The local redundancy story is described in the [Clearwater Architecture](Clearwater_Architecture.md) page.
-* [Geographic redundancy](Geographic_Redundancy.md)
+* [Geographic redundancy](Geographic_redundancy.md)
 
 ## Operational support
 
