@@ -7,7 +7,7 @@ This document describes
 *   Clearwater's DNS strategy and requirements
 *   how to configure [AWS Route 53](http://aws.amazon.com/route53/) and [BIND](https://www.isc.org/downloads/bind/) to meet these.
 
-DNS is also used as part of the [ENUM](http://tools.ietf.org/rfc/rfc6116.txt) system for mapping E.164 numbers to SIP URIs.  This isn't discussed in this document - instead see the separate [ENUM](enum.md) document.
+DNS is also used as part of the [ENUM](http://tools.ietf.org/rfc/rfc6116.txt) system for mapping E.164 numbers to SIP URIs.  This isn't discussed in this document - instead see the separate [ENUM](ENUM.md) document.
 
 *If you are installing an All-in-One Clearwater node, you do not need any DNS records and can ignore the rest of this page.*
 
