@@ -1,10 +1,10 @@
 # Migrating to Automatic Clustering and Configuration Sharing
 
-Clearwater now supports an [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) feature. This makes Clearwater deployments much easier to manage. However deployments created before the **TODO** release do not use this feature. This article explains how to migrate a deployment to take advantage of the new feature.
+Clearwater now supports an [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) feature. This makes Clearwater deployments much easier to manage. However deployments created before the 'For Whom The Bell Tolls' release do not use this feature. This article explains how to migrate a deployment to take advantage of the new feature.
 
 ## Upgrade the Deployment
 
-[Upgrade](Upgrading_a_Clearwater_deployment) to the latest stable Clearwater release.
+[Upgrade](Upgrading_a_Clearwater_deployment) to the latest stable Clearwater release. You will also need to update your firewall settings to support the new clearwater management packages; open port 2380 and 4000 between every node (see [here](http://clearwater.readthedocs.org/en/latest/Clearwater_IP_Port_Usage/index.html) for the complete list). 
 
 ## Verify Configuration Files
 
@@ -28,7 +28,7 @@ Do the following on each node in turn:
 
 3.  If the node is a Sprout or Ralf node, run `sudo /usr/share/clearwater/bin/chronos_configuration_split.py`. This examines the existing `/etc/chronos/chronos.conf` file and extracts the clustering settings into a new file called `/etc/chronos/chronos_cluster.conf`. Check each of these files by hand to make sure they look sensible.
 
-4.  Run `sudo touch /etc/clearwater/no_cluster_manager`. This temporarily disables the cluster manager so that you can program it with the current deployment topology.
+4.  Run `sudo touch /etc/clearwater/no_cluster_manager` on all Sprout, Ralf, Homer and Homestead nodes. This temporarily disables the cluster manager (which is installed in the next step) so that you can program it with the current deployment topology.
 
 ## Prepare Shared Configuration Files
 
