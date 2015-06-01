@@ -26,7 +26,7 @@ Do the following on each node in turn:
 
 2.  Edit `/etc/clearwater/local_config` to add a line `etcd_cluster="<NodeIPs>"` where `NodeIPs` is a comma separated list of the private IP addresses of nodes in the deployment. For example if your deployment contained nodes with IP addresses of 10.0.0.1 to 10.0.0.6, `NodeIPs` would be `10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5,10.0.0.6`
 
-3.  If the node is a Sprout or Ralf node, run `/usr/share/clearwater/bin/chronos_configuration_split.py`. This examines the existing `/etc/chronos/chronos.conf` file and extracts the clustering settings into a new file called `/etc/chronos/chronos_cluster.conf`. Check each of these files by hand to make sure they look sensible.
+3.  If the node is a Sprout or Ralf node, run `sudo /usr/share/clearwater/bin/chronos_configuration_split.py`. This examines the existing `/etc/chronos/chronos.conf` file and extracts the clustering settings into a new file called `/etc/chronos/chronos_cluster.conf`. Check each of these files by hand to make sure they look sensible.
 
 4.  Run `sudo touch /etc/clearwater/no_cluster_manager`. This temporarily disables the cluster manager so that you can program it with the current deployment topology.
 
