@@ -71,8 +71,6 @@ On each machine create the file `/etc/clearwater/local_config` with the followin
     public_ip=<publicIP>
     public_hostname=<hostname>
     etcd_cluster="<comma separated list of private IPs>"
-    local_site_name=<name>
-    remote_site_name=<remote_name>
 
 
 Note that the `etcd_cluster` variable should be set to a comma separated list that contains the private IP address of the nodes you created above. For example if the nodes had addresses 10.0.0.1 to 10.0.0.6, `etcd_cluster` should be set to `"10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5,10.0.0.6"`
@@ -80,9 +78,11 @@ Note that the `etcd_cluster` variable should be set to a comma separated list th
 If you are creating a [geographically redundant deployment](Geographic_redundancy.md), then:
 
 * `etcd_cluster` should contain the IP addresses of nodes in both sites
-* `local_site_name` and `remote_site_name` should reflect the node's location (e.g. a node in site A
-  should have `local_site_name=siteA` and `remote_site_name=siteB`, whereas a node in site B should
-  have  `local_site_name=siteB` and `remote_site_name=siteA`)
+*  you should set `local_site_name` and `remote_site_name` in `/etc/clearwater/local_config`. These
+   names are arbitrary, but should reflect the node's location (e.g. a node in site A should have
+   `local_site_name=siteA` and `remote_site_name=siteB`, whereas a node in site B should have
+   `local_site_name=siteB` and `remote_site_name=siteA`):
+
 
 Also create the file `/etc/clearwater/config` with the following contents:
 

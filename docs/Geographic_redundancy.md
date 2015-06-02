@@ -142,10 +142,8 @@ The process for setting up a geographically-redundant deployment is as
 follows.
 
 1.  Create independent deployments for each of the regions,
-    with separate DNS entries. On each node, set up `/etc/clearwater/local_settings` so that
-    `etcd_cluster` contains both the local and remote nodes, and so that the `local_site_name` and
-    `remote_site_name` values reflect which GR site the node is in.
-2.  Ensure that `clearwater-cluster-manager` and `clearwater-config-manager` packages are installed.
+    with separate DNS entries. See [the manual install instructions](Manual_Install.md) for the
+    required GR settings.
 3.  Configure Route 53 to forward requests for bono according to latency.
     To do this, for each region, create one record set, as follows.
     -   Name: &lt;shared (non-geographically-redundant) DNS name\>
