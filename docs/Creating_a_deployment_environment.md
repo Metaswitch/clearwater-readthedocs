@@ -29,6 +29,7 @@ Before creating an environment, choose a name (e.g. "clearwater") which will be 
       "keypair" => "<keypair_name>",
       "keypair_dir" => "~/.chef/",
       "pstn_number_count" => 0,
+      "gr" => false
     }
 
 Note that the value of `keypair` should *not* include the trailing .pem.  Note also that for an all-in-one node the root-domain parameter is superfluous and will be ignored.
@@ -42,6 +43,11 @@ By default, your deployment will be created in the US East (North Virginia) regi
 These fields override attributes defined and documented in the [clearwater-infrastructure role](https://github.com/Metaswitch/chef/blob/master/roles/clearwater-infrastructure.rb).
 
 If you want to use a different SIP registration period from the default (which is 5 minutes) add a line like `"reg_max_expires" => <timeout_in_secs>,` to the `override_attributes "clearwater"` block.
+
+If you want to test [geographic redundancy function](Geographic_redundancy.md), use `"gr" => true` instead of `"gr" => false`.
+This will cause odd-numbered and even-numbered nodes to be treated as separate logical "sites" -
+they are not actually in different EC2 regions (cross-region security group rules make that
+difficult), but does allow you to see and test GR function.
 
 To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings).
 
