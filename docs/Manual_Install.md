@@ -78,17 +78,11 @@ Note that the `etcd_cluster` variable should be set to a comma separated list th
 If you are creating a [geographically redundant deployment](Geographic_redundancy.md), then:
 
 * `etcd_cluster` should contain the IP addresses of nodes in both sites
-*  you should set `local_site_name` and `remote_site_name` in `/etc/clearwater/local_config`. These
-   names are arbitrary, but should reflect the node's location (e.g. a node in site A should have
-   `local_site_name=siteA` and `remote_site_name=siteB`, whereas a node in site B should have
-   `local_site_name=siteB` and `remote_site_name=siteA`):
-
-
-Also create the file `/etc/clearwater/config` with the following contents:
-
-    source /etc/clearwater/shared_config
-    source /etc/clearwater/local_config
-    [ -f /etc/clearwater/user_settings ] && source /etc/clearwater/user_settings
+*  you should set `local_site_name` and `remote_site_name` in `/etc/clearwater/local_config`.
+    
+These names are arbitrary, but should reflect the node's location (e.g. a node in site A should have
+`local_site_name=siteA` and `remote_site_name=siteB`, whereas a node in site B should have
+`local_site_name=siteB` and `remote_site_name=siteA`):
 
 If this machine will be a Sprout or Ralf node create the file `/etc/chronos/chronos.conf` with the following contents:
 
@@ -107,12 +101,6 @@ If this machine will be a Sprout or Ralf node create the file `/etc/chronos/chro
     [exceptions]
     max_ttl = 600
 
-## Install Clearwater Management Services
-
-Run the following command on each node to install the Clearwater management services.
-
-    sudo apt-get install clearwater-cluster-manager clearwater-config-manager
-
 ## Install Node-Specific Software
 
 `ssh` onto each box in turn and follow the appropriate instructions below according to the role the node will take in the deployment:
@@ -122,12 +110,14 @@ Run the following command on each node to install the Clearwater management serv
 Install the Ellis package with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install ellis --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-config-manager --yes
 
 ### Bono
 
 Install the Bono and Restund packages with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install bono restund --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-config-manager --yes
 
 ### Sprout
 
@@ -139,6 +129,7 @@ If you want the Sprout nodes to include a Memento Application server, then insta
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install memento memento-nginx --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ### Homer
 
@@ -146,6 +137,7 @@ Install the Homer and Cassandra packages with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install homer --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ### Homestead
 
@@ -153,12 +145,14 @@ Install the Homestead and Cassandra packages with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead homestead-prov --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ### Ralf
 
 Install the Ralf package with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install ralf --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ## SNMP statistics
 
@@ -214,7 +208,10 @@ If you want your Sprout nodes to include Gemini/Memento Application Servers add 
 
 See the [Chef instructions](Installing_a_Chef_client#add-deployment-specific-configuration) for more information on how to fill these in. The values marked `<secret>` **must** be set to secure values to protect your deployment from unauthorized access. To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings).
 
-Now run `/usr/share/clearwater/bin/upload_shared_config`. This uploads the configuration to a shared database and propagates it around the cluster.
+Now run the following to upload the configuration to a shared database and propagate it around the cluster.
+
+    /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
+    sudo /usr/share/clearwater/clearwater-config-manager/scripts/apply_shared_config
 
 ### Setting up S-CSCF configuration
 
@@ -232,7 +229,7 @@ If you require I-CSCF functionality, log onto your sprout node and create `/etc/
        ]
     }
 
-Then upload it to the shared configuration database by running `/usr/share/clearwater/bin/upload_s-cscf_json`. This means that any sprout nodes that you add to the cluster will automatically learn the configuration.
+Then upload it to the shared configuration database by running `/usr/share/clearwater/bin/upload_scscf_json`. This means that any sprout nodes that you add to the cluster will automatically learn the configuration.
 
 ## Provision Telephone Numbers in Ellis
 

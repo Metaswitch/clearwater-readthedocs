@@ -24,6 +24,12 @@ If your deployment uses monitoring software ([cacti](http://www.cacti.net/) or [
 
         TCP/2812
 
+If your deployment uses our [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) feature, open the following ports between every node
+
+* etcd
+
+        TCP/2380
+        TCP/4000
 
 ## All-in-one
 
