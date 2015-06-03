@@ -4,7 +4,7 @@ This document describes how to troubleshoot some common problems, and associated
 
 ## General
 
-*   Clearwater components are monitored by [monit](http://mmonit.com/monit/) and should be restarted by it if the component fails or hangs.  You can check that components are running by issuing `monit status`.  If components are not running as expected, run `monit start <component>` to start a component or `monit stop <component>` to stop it. To restart a component, we recommend using `service <component> stop` to stop the component, and allowing monit to automatically start the component again.
+*  Clearwater components are monitored by [monit](http://mmonit.com/monit/) and should be restarted by it if the component fails or hangs.  You can check that components are running by issuing `monit status`.  If components are not running as expected, run `monit start <component>` to start a component or `monit stop <component>` to stop it. To restart a component, we recommend using `service <component> stop` to stop the component, and allowing monit to automatically start the component again.
 
 *  The [Clearwater diagnostics monitor](https://github.com/Metaswitch/clearwater-infrastructure/blob/master/clearwater-diags-monitor.md) detects crashes in native clearwater processes (bono, sprout and homestead) and captures a diagnostics bundle containing a core file (among other useful information).  A diagnostics bundle can also be created by running a command line script.
 
@@ -79,7 +79,7 @@ If you see Ralf dying/restarting with no apparent cause in `/var/log/ralf/ralf*.
 Clearwater comes with a system that [automate clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md). If you cannot scale your deployment up or down, or if configuration changes are not being applied, this system may not be working.
 
 * The management system logs to `/var/log/clearwater-etcd`, `/var/log/clearwater-cluster-manager` and `/var/log/clearwater-config-manager`.
-* `/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_health` will display information about the state of the various data-store clusters used by Clearwater.
+* `/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_state` will display information about the state of the various data-store clusters used by Clearwater.
 * `sudo /usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync` will display whether the node has learned shared configuration.
 * The following commands can be useful for inspecting the state of the underlying etcd cluster used by the management system:
 

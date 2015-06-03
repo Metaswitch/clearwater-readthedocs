@@ -48,7 +48,7 @@ To recover from this state:
 
 ## Removing a Node From a Data Store
 
-The `mark_node_failed` script can be used to remove a failed node from a back-end data store. You will need to know the type of the failed node (e.g. "sprout") and its IP address. To remove the failed node log onto a working node in the deployment and run the following commands depending on the failed node's type.
+The `mark_node_failed` script can be used to remove a failed node from a back-end data store. You will need to know the type of the failed node (e.g. "sprout") and its IP address. To remove the failed node log onto a working node in the deployment and run the following commands (depending on the failed node's type).
 
 ### Sprout
 

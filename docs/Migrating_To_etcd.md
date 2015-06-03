@@ -30,7 +30,7 @@ Do the following on each node in turn:
 
 4.  If the node is a Sprout or Ralf node, run `sudo /usr/share/clearwater/bin/chronos_configuration_split.py`. This examines the existing `/etc/chronos/chronos.conf` file and extracts the clustering settings into a new file called `/etc/chronos/chronos_cluster.conf`. Check each of these files by hand to make sure they look sensible.
 
-5.  Run `sudo touch /etc/clearwater/no_cluster_manager` on all Sprout, Ralf, Homer and Homestead nodes. This temporarily disables the cluster manager (which is installed in the next step) so that you can program it with the current deployment topology.
+5.  Run `sudo touch /etc/clearwater/no_cluster_manager` on all nodes. This temporarily disables the cluster manager (which is installed in the next step) so that you can program it with the current deployment topology.
 
 ## Prepare Shared Configuration Files
 
