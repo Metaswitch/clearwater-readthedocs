@@ -50,12 +50,10 @@ To recover from this state:
 
 The `mark_node_failed` script can be used to remove a failed node from a back-end data store. You will need to know the type of the failed node (e.g. "sprout") and its IP address. To remove the failed node log onto a working node in the same site and run the following commands (depending on the failed node's type).
 
-If you cannot log into a working node in the same site (e.g. because an entire
-GR site has been lost), you can use a working node in the other site, but in
-this case you must run
-`/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_remote_node_failed`
-instead of
-`/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed`.
+If you cannot log into a working node in the same site (e.g. because an entire geographically
+redundant site has been lost), you can use a working node in the other site, but in this case you
+must run `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_remote_node_failed` instead
+of `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed`.
 
 ### Sprout
 
@@ -82,9 +80,9 @@ instead of
 
 # Complete Site Failure
 
-In a GR deployment, you may encounter the situation where an entire site has
-permanently failed (e.g. because the location of that GR site has been
-physically destroyed). To recover from this situation:
+In a geographically redundant deployment, you may encounter the situation where
+an entire site has permanently failed (e.g. because the location of that
+geographic site has been physically destroyed). To recover from this situation:
 
 * If the failed site contained half or more of your nodes, you have lost
   quorum in your etcd cluster. You should follow the ["Multiple Failed
@@ -96,7 +94,7 @@ physically destroyed). To recover from this situation:
   remove each failed node from the cluster.
 
 After following the above instructions, you will have removed the nodes in the
-failed site from etcd, but not from the Sprout/Chronos/Memcached datastore
+failed site from etcd, but not from the Cassandra/Chronos/Memcached datastore
 clusters. To do this, follow the ["Removing a Node From a Data
 Store"](Handling_Failed_Nodes.md#removing-a-node-from-a-data-store)
 instructions above for each failed node, using the `mark_remote_node_failed`
