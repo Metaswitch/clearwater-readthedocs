@@ -48,7 +48,12 @@ To recover from this state:
 
 ## Removing a Node From a Data Store
 
-The `mark_node_failed` script can be used to remove a failed node from a back-end data store. You will need to know the type of the failed node (e.g. "sprout") and its IP address. To remove the failed node log onto a working node in the deployment and run the following commands (depending on the failed node's type).
+The `mark_node_failed` script can be used to remove a failed node from a back-end data store. You will need to know the type of the failed node (e.g. "sprout") and its IP address. To remove the failed node log onto a working node in the same site and run the following commands (depending on the failed node's type).
+
+If you cannot log into a working node in the same site (e.g. because an entire geographically
+redundant site has been lost), you can use a working node in the other site, but in this case you
+must run `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_remote_node_failed` instead
+of `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed`.
 
 ### Sprout
 
@@ -72,3 +77,28 @@ The `mark_node_failed` script can be used to remove a failed node from a back-en
 
     sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "cassandra" <failed node IP>
     sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "memcached" <failed node IP>
+
+# Complete Site Failure
+
+In a geographically redundant deployment, you may encounter the situation where
+an entire site has permanently failed (e.g. because the location of that
+geographic site has been physically destroyed). To recover from this situation:
+
+* If the failed site contained half or more of your nodes, you have lost
+  quorum in your etcd cluster. You should follow the ["Multiple Failed
+  Nodes"](Handling_Failed_Nodes.md#multiple-failed-nodes) instructions above to
+  rebuild the etcd cluster, containing only nodes from the surviving site.
+* If the failed site contained fewer than half of your nodes, you have not lost
+  quorum in your etcd cluster. You should follow the ["Removing a Failed
+  Node"](Handling_Failed_Nodes.md#removing-a-failed-node) instructions above to
+  remove each failed node from the cluster.
+
+After following the above instructions, you will have removed the nodes in the
+failed site from etcd, but not from the Cassandra/Chronos/Memcached datastore
+clusters. To do this, follow the ["Removing a Node From a Data
+Store"](Handling_Failed_Nodes.md#removing-a-node-from-a-data-store)
+instructions above for each failed node, using the `mark_remote_node_failed`
+script instead of the `mark_node_failed` script.
+
+You should now have a working single-site cluster, which can continue to run as
+a single site, or be safely paired with a new remote site.
