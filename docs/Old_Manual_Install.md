@@ -265,6 +265,8 @@ If the Sprout nodes include the Memento Application server, then you must reconf
 
 The clustering process might cause you to lose the memento schema.  To restore it, the simplest process is, on one sprout node, to uninstall memento (using `sudo apt-get purge memento`) and then reinstall it (using `sudo apt-get install memento`).  As part of the installation process, the schema is reinjected into Cassandra.
 
+You also need to cluster Memcached. This is done in the same way as for Sprout, except the file to edit is `/etc/clearwater/memento_cluster_settings`.
+
 ### Clustering Homestead and Homer
 
 Homestead and homer use [Cassandra](http://cassandra.apache.org/) as their datastore.
