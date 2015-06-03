@@ -29,7 +29,7 @@ If you're scaling up your deployment, follow the following process:
 
 2.  Wait until the new nodes have fully joined the existing deployment. To check if a node has joined the deployment:
 
-    * Run `/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_health`. This should report that the local node is in all of its clusters and that the cluster is healthy.
+    * Run `/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_state`. This should report that the local node is in all of its clusters and that the cluster is stable.
     * Run `sudo /usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync`. This reports when the node has learned its configuration.
 
 3.  Update DNS to contain the new nodes.
@@ -49,11 +49,11 @@ If you're scaling down your deployment, follow the following process:
         *   Ralf -`sudo service ralf stop`
         *   Ellis - `sudo service ellis stop`
         *   Memento - `sudo service memento stop`
-    * Unmonitor the clearwater management processes.
+    * Unmonitor the clearwater management processes. Run these commands on all nodes
 
-        *   All nodes except Bono and Ellis - `sudo monit unmonitor clearwater-cluster-manager`
-        *   All nodes - `sudo monit unmonitor clearwater-config-manager`
-        *   All nodes - `sudo monit unmonitor -g etcd`
+        *   `sudo monit unmonitor clearwater-cluster-manager`
+        *   `sudo monit unmonitor clearwater-config-manager`
+        *   `sudo monit unmonitor -g etcd`
 
 3.  Run `sudo service clearwater-etcd decommission`. This will cause the nodes to leave their existing clusters.
 4.  Once the above steps have completed, turn down the nodes.
