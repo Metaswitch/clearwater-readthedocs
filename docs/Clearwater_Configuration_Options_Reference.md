@@ -133,3 +133,8 @@ This section describes settings that may vary between systems in the same deploy
 * `upstream_recycle_connections` - the average number of seconds before Bono will destroy and re-create a connection to Sprout. A higher value means slightly less work, but means that DNS changes will not take effect as quickly (as new Sprout nodes added to DNS will only start to receive messages when Bono creates a new connection and does a fresh DNS lookup).
 * `authentication` - by default, Clearwater performs authentication challenges (SIP Digest or IMS AKA depending on HSS configuration). When this is set to 'Y', it simply accepts all REGISTERs - obviously this is very insecure and should not be used in production.
 * `num_http_threads` (Homestead) - determines the number of HTTP worker threads that will be used to process requests. Defaults to 50 times the number of CPU cores on the system.
+
+## Other configuration options
+
+There is further documentation for Chronos configuration [here](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md) and Homer/Homestead-prov configuration [here](https://github.com/Metaswitch/crest/blob/master/docs/development.md#local-settings). 
+
