@@ -20,7 +20,7 @@ This section discusses how to enable Rf billing to a given CDF.
 
 Before connecting your deployment to a CDF, you must
 
-*   [install Clearwater](Installation_Instructions)
+*   [install Clearwater](Installation_Instructions.md)
 *   install an external CDF - details for this will vary depending on which CDF you are using.
 *   ensure your CDF's firewall allows incoming connections from the nodes in the Ralf cluster on the DIAMETER port (default 3868).
 

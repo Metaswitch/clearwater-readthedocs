@@ -1,6 +1,6 @@
 # Installing a Chef server
 
-This is the first step in preparing to install a Clearwater deployment using the [automated install](Automated_Install) process.  These instructions will guide you through installing a Chef server on an EC2 instance.
+This is the first step in preparing to install a Clearwater deployment using the [automated install](Automated_Install.md) process.  These instructions will guide you through installing a Chef server on an EC2 instance.
 
 ## Prerequisites
 
@@ -75,4 +75,4 @@ Your chef client will need a valid validator key to be able to spin up instances
 
 ## Next steps
 
-Once your server is installed, you can continue on to [install a chef client](Installing_a_Chef_client).
+Once your server is installed, you can continue on to [install a chef client](Installing_a_Chef_client.md).

@@ -1,38 +1,32 @@
 # OpenIMS HSS Integration
 
-As discussed on the [External HSS Integration](External_HSS_Integration)
+As discussed on the [External HSS Integration](External_HSS_Integration.md)
 page, Clearwater can integrate with an external HSS.
 
-This page describes how to install and configure the [OpenIMSCore](http://www.openimscore.org/) HSS as this external HSS.  It assumes that you have already read the [External HSS Integration](External_HSS_Integration) page.
+This page describes how to install and configure the [OpenIMSCore](http://www.openimscore.org/) HSS as this external HSS.  It assumes that you have already read the [External HSS Integration](External_HSS_Integration.md) page.
 
 ## Installation with Chef
 
-If you have a deployment environment created by following the [automated install instructions](Automated_Install), then you can create a HSS by running `knife box create -E <env> openimscorehss`. This may take a long time (more than 10 minutes). You should then follow [the configuration instructions below](OpenIMSCore_HSS_Integration/#configuration).
+If you have a deployment environment created by following the [automated install instructions](Automated_Install.md), then you can create a HSS by running `knife box create -E <env> openimscorehss`. You should then follow [the configuration instructions below](OpenIMSCore_HSS_Integration.md/#configuration).
 
 ## Installing OpenIMSCore HSS manually
 
 To install OpenIMSCore HSS,
 
-1.  follow the "FHoSS"-related steps in the Quick Install section of the full
-    [OpenIMSCore Installation Guide](http://www.openimscore.org/?q=installation_guide)
-2.  edit the `/opt/OpenIMSCore/FHoSS/deploy/DiameterPeerHSS.xml` file to
-    1.  change the realm attribute to be your Clearwater deployment's home
-        domain
-    2.  find the Acceptor element and change its bind attribute to be the local
-        IP address
-3.  follow the FHoSS-related section of the "Start the components" section of
-    the
-    [OpenIMSCore Installation Guide](http://www.openimscore.org/?q=installation_guide).
+1. Follow the "Adding this PPA to your system" steps at https://launchpad.net/~rkd-u/+archive/ubuntu/fhoss
+
+2. Run `sudo apt-get update; sudo apt-get install openimscore-fhoss`
+
+3. Answer the installation questions appropriately, including providing the IMS home domain, your local IP, and the MySQL root password (which you will have to provide both when installing MySQL and when intalling the HSS).
 
 ## Configuration
 
-### Setting up a SSH tunnel
+### Logging in
 
-OpenHSS provides the administration UI over port 8080.  Rather than exposing this configuration interface to the public internet, we recommend configuring an SSH tunnel to access it securely.
+OpenIMSCore HSS provides the administration UI over port 8080. The admin username is hssAdmin.
 
-In the PuTTY SSH client this is done by by right-clicking on the titlebar, choosing "Change Settings..." then navigating to "Connection->SSH->Tunnels", filling in Source port "8080" and Destination "127.0.0.1:8080", clicking Add and then clicking Apply.
-
-If using Linux/Mac with ssh installed, you can do: ssh -L 8080:localhost:8080 &lt;hss_server&gt;.
+* If the HSS was installed using Chef, the hssAdmin password will be [the signup_key setting from knife.rb](Installing_a_Chef_client/index.html#add-deployment-specific-configuration).
+* If the HSS was installed manually, the hssAdmin password will be "hss". This can be changed by editing `/usr/share/java/fhoss-0.2/conf/tomcat-users.xml` and running `sudo service openimscore-fhoss restart`.
 
 ### Adding the MMTEL Application Server
 
@@ -40,7 +34,7 @@ To enable the MMTEL application server built into Clearwater for all
 subscribers,
 
 1.  access the OpenIMSCore HSS web UI, running on port 8080
-2.  log in as hssAdmin/hss
+2.  log in as hssAdmin
 3.  navigate to `Services`->`Application Servers`->`Search`
 4.  perform a search with no search string to find all application servers
 5.  select default_as

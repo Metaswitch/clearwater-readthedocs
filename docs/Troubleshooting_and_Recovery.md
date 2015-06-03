@@ -68,7 +68,7 @@ If you see Ralf dying/restarting with no apparent cause in `/var/log/ralf/ralf*.
 
         merb : chef-server (api) : worker (port 4000) ~ Connection failed - user: chef - (Bunny::ProtocolError)
 
-    This can be worked around by recreating the chef account, as follows, including the `<rabbitMQPass>` you supplied when you [installed the Chef server](Installing_a_Chef_server).
+    This can be worked around by recreating the chef account, as follows, including the `<rabbitMQPass>` you supplied when you [installed the Chef server](Installing_a_Chef_server.md).
 
         rabbitmqctl add_vhost /chef
         rabbitmqctl add_user chef <rabbitMQPass>

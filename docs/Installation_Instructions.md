@@ -36,18 +36,18 @@ The installation process for a full Clearwater deployment (i.e. not an all-in-on
 
 Once you've decided on your install method, follow the appropriate link below.
 
-* [All-in-one Images](All_in_one_Images)
-* [Automated Install](Automated_Install)
-* [Manual Install](Manual_Install)
+* [All-in-one Images](All_in_one_Images.md)
+* [Automated Install](Automated_Install.md)
+* [Manual Install](Manual_Install.md)
 * For source installs, see the per-component instructions ([Sprout/Bono](https://github.com/Metaswitch/sprout/blob/master/docs/Development.md), [Ellis](https://github.com/Metaswitch/ellis/blob/master/docs/development.md), [Homer/Homestead](https://github.com/Metaswitch/crest/blob/master/docs/development.md)).
 
-If you hit problems during this process, see the [Troubleshooting and Recovery](Troubleshooting_and_Recovery) steps.
+If you hit problems during this process, see the [Troubleshooting and Recovery](Troubleshooting_and_Recovery.md) steps.
 
-If you want to deploy with IPv6 addresses, see the [IPv6](IPv6) notes.
+If you want to deploy with IPv6 addresses, see the [IPv6](IPv6.md) notes.
 
 ## Next Steps
 
 Once you have installed your deployment, you'll want to test that it works.
 
-* [Making your first call](Making_your_first_call)
-* [Running the live test suite](Running_the_live_tests)
+* [Making your first call](Making_your_first_call.md)
+* [Running the live test suite](Running_the_live_tests.md)

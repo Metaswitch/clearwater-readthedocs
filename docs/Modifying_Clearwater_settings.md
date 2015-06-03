@@ -52,4 +52,4 @@ If you are not using automatic clustering do the following on *each* node:
 
 *This will have a service impact of up to half an hour.*
 
-If other settings (such as the Clearwater home domain) are being changed, we recommend that users delete their old deployment and create a new one from scratch, either [with Chef](Creating_a_deployment_with_Chef) or [manually](Manual_Install). This ensures that the new settings are consistently applied.
+If other settings (such as the Clearwater home domain) are being changed, we recommend that users delete their old deployment and create a new one from scratch, either [with Chef](Creating_a_deployment_with_Chef.md) or [manually](Manual_Install.md). This ensures that the new settings are consistently applied.

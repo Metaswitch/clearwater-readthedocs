@@ -33,7 +33,7 @@ The only difference between the default home domain and the additional home doma
 
 ### Adding DNS Records
 
-The [Clearwater DNS Usage](Clearwater_DNS_Usage) document describes how to configure DNS for a simple single-domain deployment.  This includes creating NAPTR, SRV and A records that resolve the home domain (or `<zone>`) to the bono nodes.  If you have additional home domains, you should repeat this for each additional home domain.  This ensures that SIP clients can find the bono nodes without needing to be explicitly configured with a proxy.
+The [Clearwater DNS Usage](Clearwater_DNS_Usage.md) document describes how to configure DNS for a simple single-domain deployment.  This includes creating NAPTR, SRV and A records that resolve the home domain (or `<zone>`) to the bono nodes.  If you have additional home domains, you should repeat this for each additional home domain.  This ensures that SIP clients can find the bono nodes without needing to be explicitly configured with a proxy.
 
 ### Creating subscribers.
 

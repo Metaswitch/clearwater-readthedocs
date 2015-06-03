@@ -13,7 +13,7 @@ This document describes
 *   the periodic automated local backup behavior
 *   how to restore from a backup.
 
-Note that if your Clearwater deployment is [integrated with an external HSS](External_HSS_Integration), the HSS is the master of ellis and homestead's data, and those nodes do not need to be backed up.  However, homer's data still needs to be backed up.
+Note that if your Clearwater deployment is [integrated with an external HSS](External_HSS_Integration.md), the HSS is the master of ellis and homestead's data, and those nodes do not need to be backed up.  However, homer's data still needs to be backed up.
 
 ## Listing Backups
 
@@ -146,9 +146,9 @@ On homestead/homer/memento there is no need to further move the files as the bac
 To actually restore from the backup file, run
 
 *   `sudo /usr/share/clearwater/ellis/backup/restore_backup.sh <snapshot>` on ellis
-*   `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_provisioning <snapshot> ~/backup` and `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_cache <snapshot> ~/backup` on homestead
-*   `sudo /usr/share/clearwater/bin/restore_backup.sh homer <snapshot> ~/backup` on homer
-*   `sudo /usr/share/clearwater/bin/restore_backup.sh memento <snapshot> ~/backup` on memento.
+*   `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_provisioning <snapshot> <backup directory>` and `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_cache <snapshot> <backup directory>` on homestead
+*   `sudo /usr/share/clearwater/bin/restore_backup.sh homer <snapshot> <backup directory>` on homer
+*   `sudo /usr/share/clearwater/bin/restore_backup.sh memento <snapshot> <backup directory>` on memento.
 
 Ellis will produce output of the following form.
 
