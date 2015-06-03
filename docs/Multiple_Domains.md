@@ -24,7 +24,7 @@ There are three steps to configuring multiple home domains and/or multiple realm
 
 ### Configuring the Clearwater Deployment
 
-The `/etc/clearwater/config` file can contain two properties that are relevant to this function.
+The `/etc/clearwater/shared_config` file can contain two properties that are relevant to this function.
 
 *   `home_domain` - defines the "default" home domain and must always be set
 *   `additional_home_domains` - optionally defines additional home domains
@@ -45,7 +45,7 @@ Once the deployment has multiple domain support enabled, you can create subscrib
 
 *   If you use homestead's [provisioning API](https://github.com/Metaswitch/crest/blob/dev/docs/homestead_api.md) (i.e. without an external HSS), you can specify the home domain and realm as parameters.
 
-Alternatively, you can use an external HSS, and configure the subscribers using its provisioning interface. 
+Alternatively, you can use an external HSS, and configure the subscribers using its provisioning interface.
 
 ## Restriction
 

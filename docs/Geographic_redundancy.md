@@ -15,26 +15,26 @@ The architecture of a geographically-redundant system is as follows.
 
 ![Diagram](img/Geographic_redundancy_diagram.png)
 
-Sprout has one memcached cluster per geographic region.  Although
-memcached itself does not support the concept of local and remote peers,
-sprout builds this on top - writing to both local and remote clusters and
-reading from the local but falling back to the remote. Communication
-between the nodes is encrypted and authenticated with IPsec. Each sprout
-uses homers and homesteads in the same region only.
+Sprout has one memcached cluster per geographic region.  Although memcached
+itself does not support the concept of local and remote peers, sprout builds
+this on top - writing to both local and remote clusters and reading from the
+local but falling back to the remote. Communication between the nodes should be
+secure - for example, if it is going over the public internet rather than a
+private connection between datacenters, it should be encrypted and
+authenticated with IPsec. Each sprout uses homers and homesteads in the same
+region only.
 
 Separate instances of bono in each geographic region front the sprouts
 in that region.  Clearwater uses a geo-routing DNS service such as
-Amazon's Route&nbsp;53 to achieve this.A geo-routing DNS service
+Amazon's Route&nbsp;53 to achieve this. A geo-routing DNS service
 responds to DNS queries based on latency, so if you're nearer to
 geographic region B's instances, you'll be served by them.
 
 Homestead and homer are each a single cluster split over the
 geographic regions. Since they are backed by Cassandra (which is aware
 of local and remote peers), they can be smarter about spatial
-locality. Communication between the nodes is encrypted and
-authenticated with IPsec. (Cassandra also supports TLS
-authentication/encryption but since we already have IKE/IPsec
-configured for other nodes, it is simpler to use this.)
+locality. As with Sprout nodes, communication between the nodes should be
+secure.
 
 ellis is not redundant, whether deployed in a single geographic region
 or more. It is deployed in one of the geographic regions and a failure
@@ -54,25 +54,13 @@ described above. Specifically,
 -   communication back to the repository server is via HTTP. There is a
     single repository server. The repository server is not required in
     normal operation, only for upgrades.
--   splunk, mmonit, and cacti communications are not secured, so they must be
-    deployed in each region (meaning that administrators see 2 mmonits
-    and 2 splunks).
 
 Limitations
 -----------
 
--   It's not possible to build a geographically-redundant deployment
-    automatically with chef. The servers can be installed and configured
-    automatically but the certificates used for secure communication
-    can't be.
--   We use a single per-repository certificate for authenticating our
-    secure connections. It would be more secure to use individual,
-    per-region or per-deployment certificates but this would make
-    orchestration more complicated. When orchestration is done via chef
-    (and hence automatic), this would be worth further consideration.
--   Communication with splunk and mmonit are not secured, so they must
-    be deployed in each region. We could enable IPsec for these
-    connections too and have centralized instances.
+-   The local IP addresses of all nodes in a deployment most be reachable from all other nodes -
+    there must not be a NAT between the two GR sites. (This currently precludes having the GR sites
+    in different EC2 regions.)
 
 Impact
 ------
@@ -154,20 +142,15 @@ The process for setting up a geographically-redundant deployment is as
 follows.
 
 1.  Create independent deployments for each of the regions,
-    with separate DNS entries.
-2.  Modify the sprout, homestead and homer security groups to allow
-    inbound traffic on UDP ports 500 and 4500. These are used for IKE
-    and UDP-encapsulated IPsec.
-3.  Install the clearwater-secure-connections package on all sprout,
-    homestead and homer nodes.
-4.  Set the `/etc/clearwater/cluster_settings` file on each sprout to
-    just contain the local nodes, and the
-    `/etc/clearwater/remote_cluster_settings` file to contain the remote
-    nodes.
-5.  Configure Cassandra on homestead and homer to be aware of all nodes
-    in all deployments, but use a Snitch (e.g. PropertyFileSnitch) to
-    set each node's data center according to its region.
-6.  Configure Route 53 to forward requests for bono according to latency.
+    with separate DNS entries. See [the manual install instructions](Manual_Install.md) for the
+    required GR settings.
+2.  Set up DNS (probably using SRV records) so that:
+    -   Bono nodes prefer the Sprout node local to them, but will fail over to
+        the one in the other site.
+    -   Sprout nodes only use the Homer, Homestead and Ralf nodes in their
+        local site.
+    -   The Ellis node ony uses the Homer and Homesteads in its local site.
+3.  Configure Route 53 to forward requests for Bono according to latency.
     To do this, for each region, create one record set, as follows.
     -   Name: &lt;shared (non-geographically-redundant) DNS name\>
     -   Type: "A - IPv4 address" or "AAAA - IPv6 address"
@@ -178,3 +161,7 @@ follows.
     -   Routing Policy: **Latency**
     -   Region: &lt;AWS region matching geographic region\>
     -   Set ID: &lt;make up a unique name, e.g. gr-bono-us-east-1\>
+
+You can also use Chef to try GR function, by setting `"gr" => true` in the
+environment, as described in [the automated install
+docs](Automated_Install.md).

@@ -1,27 +1,42 @@
-This document describes all the Clearwater configuration options that can be set in /etc/clearwater/config or /etc/clearwater/user_settings.
+This document describes all the Clearwater configuration options that can be set in /etc/clearwater/shared_config, /etc/clearwater/local_config or /etc/clearwater/user_settings.
 
-To change one of these settings:
+You should follow [this process](Modifying_Clearwater_settings) when changing most of these settings. However for settings in the "Local settings" or "User settings" you should:
 
 * Modify the configuration file
 * Run `sudo service clearwater-infrastructure restart` to regenerate any dependent configuration files
-* Restart the relevant Clearwater service (e.g. run `sudo service bono quiesce` and allow monit to restart Bono)
+* Restart the relevant Clearwater service(s) using the following commands as appropriate for the node.
+    *   Sprout - `sudo service sprout quiesce`
+    *   Bono - `sudo service bono quiesce`
+    *   Homestead - `sudo service homestead stop && sudo service homestead-prov stop`
+    *   Homer - `sudo service homer stop`
+    *   Ralf -`sudo service ralf stop`
+    *   Ellis - `sudo service ellis stop`
+    *   Memento - `sudo service memento stop`
+
+## Local Settings
+
+This section describes settings that are specific to a single node and are not applicable to any other nodes in the deployment. They are entered early on in the node's life and are not normally changed. These options should be set in `/etc/clearwater/local_config`. Once this file has been created it is highly recommended that you do not change it unless instructed to do so. If you find yourself needing to change these settings, you should destroy and recreate then node instead.
+
+* `local_ip` - this should be set to an IP address which is configured on an interface on this system, and can communicate on an internal network with other Clearwater nodes and IMS core components like the HSS.
+* `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
+* `public_hostname` - this should be set to a hostname which resolves to `public_ip`, and will communicate with only this node (i.e. not be round-robined to other nodes). It can be set to `public_ip` if necessary.
+* `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
+* `etcd_cluster` - this is a comma separated list of IP addresses, for example `etcd_cluster="10.0.0.1,10.0.0.2`. It should be set on one of two ways:
+  * If the node is forming a new deployment, it should contain the IP addresses of all the nodes that are forming the new deployment (including this node).
+  * If the node is joining an existing deployment, it should contain the IP addresses of all the nodes that are currently in the deployment.
 
 ## Core options
 
-This section describes options for the basic configuration of a Clearwater deployment - such as the hostnames of the six node types and external services such as email servers or the Home Subscriber Server. These options should be set in the `/etc/clearwater/config` file (in the format `name=value`, e.g. `local_ip=10.0.0.2`).
+This section describes options for the basic configuration of a Clearwater deployment - such as the hostnames of the six node types and external services such as email servers or the Home Subscriber Server. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `home_domain=example.com`).
 
 * `home_domain` - this is the main SIP domain of the deployment, and determines which SIP URIs Clearwater will treat as local. It will usually be a hostname resolving to all the P-CSCFs (e.g. the Bono nodes). Other domains can be specified through additional_home_domains, but Clearwater will treat this one as the default (for example, when handling `tel:` URIs).
 * `sprout_hostname` - a hostname that resolves by DNS round-robin to all Sprout nodes in the cluster.
 * `bono_hostname` - a hostname that resolves by DNS round-robin to all Bono nodes in the cluster.
 * `hs_hostname` - a hostname that resolves by DNS round-robin to all Homesteads in the cluster. Should include the HTTP port (usually 8888). This is also used (without the port) as the Origin-Realm of the Diameter messages Homestead sends.
 * `hs_provisioning_hostname` - a hostname that resolves by DNS round-robin to all Homesteads in the cluster. Should include the HTTP provisioning port (usually 8889). Not needed when using an external HSS.
-* `chronos_hostname`  - a hostname that resolves to a Chronos node. Because Chronos nodes pass timers balance timers amongst themselves, this typically just points to the local Chronos node. Should include the port (7253).
 * `ralf_hostname` - a hostname that resolves by DNS round-robin to all Ralf nodes in the cluster. Should include the port (usually 9888). This is also used (without the port) as the Origin-Realm of the Diameter messages Ralf sends. Optional if no Ralf nodes exist.
 * `cdf_identity` - a Diameter identity that represents the address of an online Charging Function. Subscribers provisioned through Ellis will have this set as their Primary Charging Collection Function on P-Charging-Function-Addresses headers on responses to their successful REGISTERs, and Bono will add similarly in originating requests.
 * `xdms_hostname` - a hostname that resolves by DNS round-robin to all Homer nodes in the cluster. Should include the port (usually 7888).
-* `local_ip` - this should be set to an IP address which is configured on an interface on this system, and can communicate on an internal network with other Clearwater nodes and IMS core components like the HSS.
-* `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
-* `public_hostname` - this should be set to a hostname which resolves to `public_ip`, and will communicate with only this node (i.e. not be round-robined to other nodes). It can be set to `public_ip` if necessary.
 * `hss_hostname` - the hostname of your external HSS, if you have one. The port defaults to 3868 - this cannot be set by static configuration, but can be controlled by setting `hss_realm` and having appropriate NAPTR/SRV records for Diameter.
 * `signup_key` - this sets the password which Ellis will require before allowing self-sign-up.
 * `turn_workaround` - if your STUN/TURN clients are not able to authenticate properly (for example, because they can't send the @ sign), this specifies an additional password which will authenticate clients even without a correct username.
@@ -33,24 +48,23 @@ This section describes options for the basic configuration of a Clearwater deplo
 
 ## Advanced options
 
-This section describes optional configuration options, particularly for ensuring conformance with other IMS devices such as HSSes, ENUM servers, application servers with strict requirements on Record-Route headers, and non-Clearwater I-CSCFs. These options should be set in the `/etc/clearwater/config` file (in the format `name=value`, e.g. `icscf=5052`).
+This section describes optional configuration options, particularly for ensuring conformance with other IMS devices such as HSSes, ENUM servers, application servers with strict requirements on Record-Route headers, and non-Clearwater I-CSCFs. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `icscf=5052`).
 
 * `icscf` - the port which Sprout nodes are providing I-CSCF service on. If not set, Sprout will only provide S-CSCF function.
 * `scscf` - the port which Sprout nodes are providing S-CSCF service on. If this not set but `icscf` is, Sprout will only provide I-CSCF function. If neither is set, this will default to 5054 and Sprout will only provide S-CSCF function.
 * `homestead_provisioning_port` - the HTTP port the Homestead provisioning interface listens on. Defaults to 8889. Not needed when using an external HSS.
 * `sas_server` - the IP address or hostname of your Metaswitch Service Assurance Server for call logging and troubleshooting. Optional.
-* `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
 * `reg_max_expires` - determines the maximum expires= parameter Sprout will set on Contact headers at registrations, and therefore the amount of time before a UE has to re-register - must be less than 2^31 ms (approximately 25 days).
-* `sub_max_expires` - determines the maximum Expires header Sprout will set in subscription responses, and therefore the amount of time before a UE has to re-subscribe - must be less than 2^31 ms (approximately 25 days). 
+* `sub_max_expires` - determines the maximum Expires header Sprout will set in subscription responses, and therefore the amount of time before a UE has to re-subscribe - must be less than 2^31 ms (approximately 25 days).
 * `upstream_hostname` - the I-CSCF which Bono should pass requests to. Defaults to the sprout_hostname.
-* `upstream_port` - the port on the I-CSCF which Bono should pass requests to. Defaults to 5052.
+* `upstream_port` - the port on the I-CSCF which Bono should pass requests to. Defaults to 5052. If set to 0, Bono will use SRV resolution of the `upstream_hostname` hostname to determine a target for traffic.
 * `sprout_rr_level` - this determines how the Sprout S-CSCF adds Record-Route headers. Possible values are:
-  * `pcscf` - a Record-Route header is only added just after requests come from or go to a P-CSCF - that is, at the start of originating handling and the end of terminating handling
-  * `pcscf,icscf` - a Record-Route header is added just after requests come from or go to a P-CSCF or I-CSCF - that is, at the start and end of originating handling and the start and end of terminating handling
-  * `pcscf,icscf,as` - a Record-Route header is added after requests come from or go to a P-CSCF, I-CSCF or application server - that is, at the start and end of originating handling, the start and end of terminating handling, and between each application server invoked
+    * `pcscf` - a Record-Route header is only added just after requests come from or go to a P-CSCF - that is, at the start of originating handling and the end of terminating handling
+    * `pcscf,icscf` - a Record-Route header is added just after requests come from or go to a P-CSCF or I-CSCF - that is, at the start and end of originating handling and the start and end of terminating handling
+    * `pcscf,icscf,as` - a Record-Route header is added after requests come from or go to a P-CSCF, I-CSCF or application server - that is, at the start and end of originating handling, the start and end of terminating handling, and between each application server invoked
 * `hss_mar_lowercase_unknown` - some Home Subscriber Servers (particularly old releases of OpenIMSCore HSS) expect the string 'unknown' rather than 'Unknown' in Multimedia-Auth-Requests when Clearwater cannot tell what authentication type is expected. Setting this option to 'Y' will make Homestead send requests in this format.
 * `enforce_user_phone` - by default, Clearwater will do an ENUM lookup on any SIP URI that looks like a phone number, due to client support for user-phone not being widespread. When this option is set to 'Y', Clearwater will only do ENUM lookups for URIs which have the user=phone parameter.
-* `enforce_global_only_lookups` - by default, Clearwater will do ENUM lookups for SIP and Tel URIs containing global and local numbers (as defined in RFC 3966). When this option is set to ‘Y’, Clearwater will only do ENUM lookups for SIP and Tel URIs that contain global numbers. 
+* `enforce_global_only_lookups` - by default, Clearwater will do ENUM lookups for SIP and Tel URIs containing global and local numbers (as defined in RFC 3966). When this option is set to ‘Y’, Clearwater will only do ENUM lookups for SIP and Tel URIs that contain global numbers.
 * `hs_listen_port` - the Diameter port which Homestead listens on. Defaults to 3868.
 * `ralf_listen_port`  - the Diameter port which Ralf listens on. Defaults to 3869 to avoid clashes when colocated with Homestead.
 * `alias_list` - this defines additional hostnames and IP addresses which Sprout or Bono will treat as local for the purposes of SIP routing (e.g. when removing Route headers).
@@ -66,11 +80,11 @@ This section describes optional configuration options, particularly for ensuring
 * `diameter_timeout_ms` - determines the number of milliseconds Homestead will wait for a response from the HSS before failing a request. Defaults to 200. `
 * `max_peers` - determines the maximum number of Diameter peers which Ralf or Homestead can have open connections to at the same time.
 * `num_http_threads` (Ralf/Memento) - determines the number of threads that will be used to process HTTP requests. For Memento this defaults to the number of CPU cores on the system. For Ralf it defaults to 50 times the number of CPU cores (Memento and Ralf use different threading models, hence the different defaults). Note that for Homestead, this can only be set in /etc/clearwater/user_settings.
-* `num_http_worker_threads` - determines the number of threads that will be used to process HTTP requests once they have been parsed. Only used by Memento. 
+* `num_http_worker_threads` - determines the number of threads that will be used to process HTTP requests once they have been parsed. Only used by Memento.
 * `ralf_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages Ralf sends. Defaults to public_hostname (with some formatting changes if public_hostname is an IPv6 address).
 * `hs_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages Homestead sends. Defaults to public_hostname (with some formatting changes if public_hostname is an IPv6 address).
-* `gemini_enabled` - When this field is set to 'Y', then the node (either a Sprout or a standalone application server) will include a Gemini AS. 
-* `memento_enabled` - When this field is set to 'Y', then the node (either a Sprout or a standalone application server) will include a Memento AS. 
+* `gemini_enabled` - When this field is set to 'Y', then the node (either a Sprout or a standalone application server) will include a Gemini AS.
+* `memento_enabled` - When this field is set to 'Y', then the node (either a Sprout or a standalone application server) will include a Memento AS.
 * `max_call_list_length` - determines the maximum number of complete calls a subscriber can have in the call list store. This defaults to no limit. This is only relevant if the node includes a Memento AS.
 * `call_list_store_ttl` - determines how long each call list fragment should be kept in the call list store. This defaults to 604800 seconds (1 week). This is only relevant if the node includes a Memento AS.
 * `memento_disk_limit` - determines the maximum size that the call lists database may occupy. This defaults to 20% of disk space. This is only relevant if the node includes a Memento AS. Can be specified in Bytes, Kilobytes, Megabytes, Gigabytes, or a percentage of the available disk. For example:
@@ -89,15 +103,18 @@ This section describes optional configuration options, particularly for ensuring
 * `min_token_rate` - Minimum token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 10.0
 * `override_npdi` - Whether the I-CSCF, S-CSCF and BGCF should check for number portability data on requests that already have the 'npdi' indicator. This defaults to false
 * `exception_max_ttl` - determines the maximum time before a process exits if it crashes. This defaults to 600 seconds
-* `check_destination_host` - determines whether the node checks the Destination-Host on a Diameter request when deciding whether it should process the request. This defaults to true. 
+* `check_destination_host` - determines whether the node checks the Destination-Host on a Diameter request when deciding whether it should process the request. This defaults to true.
 * `astaire_cpu_limit_percentage` - the maximum percentage of total CPU that Astaire is allowed to consume when resyncing memcached data (as part of a scale-up, scale-down, or following a memcached failure). Note that this only limits the CPU usage of the Astaire process, and does not affect memcached's CPU usage. Must be an integer. Defaults to 5.
 * `sip_blacklist_duration` - the time in seconds for which SIP peers are blacklisted when they are unresponsive (defaults to 30 seconds).
 * `http_blacklist_duration` - the time in seconds for which HTTP peers are blacklisted when they are unresponsive (defaults to 30 seconds).
 * `diameter_blacklist_duration` - the time in seconds for which Diameter peers are blacklisted when they are unresponsive (defaults to 30 seconds).
+* `snmp_ip` - the IP address to send alarms to (defaults to being unset). If this is set then Sprout, Ralf, Homestead and Chronos will send alarms - more details on the alarms are [here](http://clearwater.readthedocs.org/en/latest/SNMP_Alarms/index.html)
+* `impu_cache_ttl` - the number of seconds for which Homestead will cache the SIP Digest from a Multimedia-Auth-Request. Defaults to 0, as Sprout does enough caching to ensure that it can handle an authenticated REGISTER after a challenge, and subsequent challenges should be rare.
+* `hss_reregistration_time` - determines how many seconds should pass before Homestead sends a Server-Assignment-Request with type RE_REGISTRATION to the HSS. (On first registration, it will always send a SAR with type REGISTRATION). This determines a minimum value - after this many seconds have passed, Homestead will send the Server-Assignment-Request when the next REGISTER is received. Note that Homestead invalidates its cache of the registration and iFCs after twice this many seconds have passed, so it is not safe to set this to less than half of `reg_max_expires`.
 
 ## Experimental options
 
-This section describes optional configuration options which may be useful, but are not heavily-used or well-tested by the main Clearwater development team. These options should be set in the `/etc/clearwater/config` file (in the format `name=value`, e.g. `cassandra_hostname=db.example.com`).
+This section describes optional configuration options which may be useful, but are not heavily-used or well-tested by the main Clearwater development team. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `cassandra_hostname=db.example.com`).
 
 * `cassandra_hostname` - if using an external Cassandra cluster (which is a fairly uncommon configuration), a hostname that resolves to one or more Cassandra nodes.
 * `ralf_secure_listen_port` - this determines the port Ralf listens on for TLS-secured Diameter connections.
@@ -106,7 +123,7 @@ This section describes optional configuration options which may be useful, but a
 
 ## User settings
 
-This section describes settings that may vary between systems in the same deployment, such as log level (which may be increased on certain machines to track down specific issues) and performance settings (which may vary if some servers in your deployment are more powerful than others). These settings are set in `/etc/clearwater/user_settings`, not `/etc/clearwater/config` (in the format `name=value`, e.g. `log_level=5`).
+This section describes settings that may vary between systems in the same deployment, such as log level (which may be increased on certain machines to track down specific issues) and performance settings (which may vary if some servers in your deployment are more powerful than others). These settings are set in `/etc/clearwater/user_settings`, not `/etc/clearwater/shared_config` (in the format `name=value`, e.g. `log_level=5`).
 
 * `log_level` - determines how verbose Clearwater's logging is, from 1 (error logs only) to 5 (debug-level logs). Defaults to 2.
 * `log_directory` - determines which folder the logs are created in. This folder must exist, and be owned by the service. Defaults to /var/log/<service> (this folder is created and has the correct permissions set for it by the install scripts of the service).
@@ -116,5 +133,8 @@ This section describes settings that may vary between systems in the same deploy
 * `upstream_recycle_connections` - the average number of seconds before Bono will destroy and re-create a connection to Sprout. A higher value means slightly less work, but means that DNS changes will not take effect as quickly (as new Sprout nodes added to DNS will only start to receive messages when Bono creates a new connection and does a fresh DNS lookup).
 * `authentication` - by default, Clearwater performs authentication challenges (SIP Digest or IMS AKA depending on HSS configuration). When this is set to 'Y', it simply accepts all REGISTERs - obviously this is very insecure and should not be used in production.
 * `num_http_threads` (Homestead) - determines the number of HTTP worker threads that will be used to process requests. Defaults to 50 times the number of CPU cores on the system.
-* `impu_cache_ttl` - the number of seconds for which Homestead will cache the SIP Digest from a Multimedia-Auth-Request. Defaults to 0, as Sprout does enough caching to ensure that it can handle an authenticated REGISTER after a challenge, and subsequent challenges should be rare.
-* `hss_reregistration_time` - determines how many seconds should pass before Homestead sends a Server-Assignment-Request with type RE_REGISTRATION to the HSS. (On first registration, it will always send a SAR with type REGISTRATION). This determines a minimum value - after this many seconds have passed, Homestead will send the Server-Assignment-Request when the next REGISTER is received. Note that Homestead invalidates its cache of the registration and iFCs after twice this many seconds have passed, so it is not safe to set this to less than half of `reg_max_expires`.
+
+## Other configuration options
+
+There is further documentation for Chronos configuration [here](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md) and Homer/Homestead-prov configuration [here](https://github.com/Metaswitch/crest/blob/master/docs/development.md#local-settings). 
+

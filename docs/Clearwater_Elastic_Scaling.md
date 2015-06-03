@@ -18,30 +18,86 @@ Where the `<n>` values are how many nodes of each type you need.  Once this comm
 
 ### If you did a Manual Install
 
-If you're scaling up your manual deployment, follow the following process.
+Follow these instructions if you manually installed your deployment and are using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) functionality.
+
+If you're scaling up your deployment, follow the following process:
+
+1.  Spin up new nodes, following the [standard install process](Manual_Install), but with the following modifications:
+
+    * Set the `etcd_cluster` so that it only includes the nodes that are already in the deployment (so it does not include the nodes being added).
+    * Stop when you get to the "Provide Shared Configuration" step. The nodes will learn their configuration from the existing nodes.
+
+2.  Wait until the new nodes have fully joined the existing deployment. To check if a node has joined the deployment:
+
+    * Run `/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_state`. This should report that the local node is in all of its clusters and that the cluster is stable.
+    * Run `sudo /usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync`. This reports when the node has learned its configuration.
+
+3.  Update DNS to contain the new nodes.
+
+If you're scaling down your deployment, follow the following process:
+
+1.  Update DNS to contain the nodes that will remain after the scale-down.
+2.  On each node that is about to be turned down:
+
+    * Run `monit unmonitor -g <node-type>`. For example for a sprout node: `monit unmonitor -g sprout`. On a homestead node also run `monit unmonitor -g homestead-prov`.
+    * Start the main process quiescing.
+
+        *   Sprout - `sudo service sprout quiesce`
+        *   Bono - `sudo service bono quiesce`
+        *   Homestead - `sudo service homestead stop && sudo service homestead-prov stop`
+        *   Homer - `sudo service homer stop`
+        *   Ralf -`sudo service ralf stop`
+        *   Ellis - `sudo service ellis stop`
+        *   Memento - `sudo service memento stop`
+    * Unmonitor the clearwater management processes. Run these commands on all nodes
+
+        *   `sudo monit unmonitor clearwater-cluster-manager`
+        *   `sudo monit unmonitor clearwater-config-manager`
+        *   `sudo monit unmonitor -g etcd`
+
+3.  Run `sudo service clearwater-etcd decommission`. This will cause the nodes to leave their existing clusters.
+4.  Once the above steps have completed, turn down the nodes.
+
+### If you did a Manual Install without Automatic Clustering
+
+Follow these instructions if you manually installed your deployment but are *not* using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) functionality.
+
+If you're scaling up your deployment, follow the following process.
 
 1.  Spin up new nodes, following the [standard install process](Manual_Install.md).
-2.  On Sprout, Memento and Ralf nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (longer) list of the new nodes (`new_servers=...`) and then run `service <process> reload` to re-read this file.
+2.  On Sprout and Ralf nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (longer) list of the new nodes (`new_servers=...`) and then run `service <process> reload` to re-read this file. Do the same on Memento nodes, but use `/etc/clearwater/memento_cluster_settings` as the file. 
 3.  On new Memento, Homestead and Homer nodes, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_add_node_to_cluster_t.html) to join the new nodes to the existing cluster.
-4.  On Sprout and Ralf nodes, update `/etc/chronos/chronos.conf` to contain a list of all the nodes (see [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md) for details of how to do this) and then run `service chronos reload` to re-read this file.
+4.  On Sprout and Ralf nodes, update `/etc/chronos/chronos_cluster.conf` to contain a list of all the nodes (see [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md) for details of how to do this) and then run `service chronos reload` to re-read this file.
 5.  On Sprout, Memento and Ralf nodes, run `service astaire reload` to start resynchronization.
 6.  On Sprout and Ralf nodes, run `service chronos resync` to start resynchronization of Chronos timers.
 7.  Update DNS to contain the new nodes.
 8.  On Sprout, Memento and Ralf nodes, wait until Astaire has resynchronized, either by running `service astaire wait-sync` or by polling over [SNMP](Clearwater_SNMP_Statistics.md).
 9.  On Sprout and Ralf nodes, wait until Chronos has resynchronized, either by running `service chronos wait-sync` or by polling over [SNMP](Clearwater_SNMP_Statistics.md).
-10.  On all nodes, update /etc/clearwater/cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
+10.  On all nodes, update /etc/clearwater/cluster_settings and /etc/clearwater/memento_cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
 
-If you're scaling down your manual deployment, follow the following process.
+If you're scaling down your deployment, follow the following process.
 
 1.  Update DNS to contain the nodes that will remain after the scale-down.
-2.  On Sprout, Memento and Ralf nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (shorter) list of the new nodes (`new_servers=...`) and then run `service <process> reload` to re-read this file.
+2.  On Sprout and Ralf nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (shorter) list of the new nodes (`new_servers=...`) and then run `service <process> reload` to re-read this file. Do the same on Memento nodes, but use `/etc/clearwater/memento_clus
+ter_settings` as the file.
 3.  On leaving Memento, Homestead and Homer nodes, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_remove_node_t.html) to remove the leaving nodes from the cluster.
-4.  On Sprout and Ralf nodes, update `/etc/chronos/chronos.conf` to mark the nodes that are being scaled down as leaving (see [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md) for details of how to do this) and then run `service chronos reload` to re-read this file.
+4.  On Sprout and Ralf nodes, update `/etc/chronos/chronos_cluster.conf` to mark the nodes that are being scaled down as leaving (see [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md) for details of how to do this) and then run `service chronos reload` to re-read this file.
 5.  On Sprout, Memento and Ralf nodes, run `service astaire reload` to start resynchronization.
 6.  On the Sprout and Ralf nodes that are staying in the Chronos cluster, run `service chronos resync` to start resynchronization of Chronos timers.
 7.  On Sprout, Memento and Ralf nodes, wait until Astaire has resynchronized, either by running `service astaire wait-sync` or by polling over [SNMP](Clearwater_SNMP_Statistics.md).
 8.  On Sprout and Ralf nodes, wait until Chronos has resynchronized, either by running `service chronos wait-sync` or by polling over [SNMP](Clearwater_SNMP_Statistics.md).
-9.  On Sprout, Memento and Ralf nodes, update /etc/clearwater/cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
-10.  On the Sprout and Ralf nodes that are staying in the cluster, update `/etc/chronos/chronos.conf` so that it only contains entries for the staying nodes in the cluster and then run `service chronos reload` to re-read this file.
-11.  On the nodes that are about to be turned down, run `monit unmonitor -g <process> && service <process> quiesce|stop` to start the main process quiescing.
+9.  On Sprout, Memento and Ralf nodes, update /etc/clearwater/cluster_settings and /etc/clearwater/memento_cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
+10.  On the Sprout and Ralf nodes that are staying in the cluster, update `/etc/chronos/chronos_cluster.conf` so that it only contains entries for the staying nodes in the cluster and then run `service chronos reload` to re-read this file.
+11. On each node that is about to be turned down:
+
+    * Run `monit unmonitor -g <node-type>`. For example for a sprout node: `monit unmonitor -g sprout`. On a homestead node also run `monit unmonitor -g homestead-prov`.
+    * Start the main process quiescing.
+
+        *   Sprout - `sudo service sprout quiesce`
+        *   Bono - `sudo service bono quiesce`
+        *   Homestead - `sudo service homestead stop`
+        *   Homer - `sudo service homer stop`
+        *   Ralf -`sudo service ralf stop`
+        *   Ellis - `sudo service ellis stop`
+        *   Memento - `sudo service memento stop`
 12.  Turn down each of these nodes once the process has terminated.

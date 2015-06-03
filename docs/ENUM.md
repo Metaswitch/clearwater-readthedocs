@@ -400,7 +400,7 @@ you can instead change the suffix, e.g. to .e164.arpa.ngv.example.com, by
 
 ENUM and Sprout
 ---------------
-To enable ENUM lookups on Sprout, edit `/etc/clearwater/config` and add the following configuration to use either an ENUM server (recommended) or an ENUM file:
+To enable ENUM lookups on Sprout, edit `/etc/clearwater/shared_config` and add the following configuration to use either an ENUM server (recommended) or an ENUM file:
 
     enum_server=<IP addresses of enum servers>
     enum_file=<location of enum file>

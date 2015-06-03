@@ -1,5 +1,4 @@
 site_name: Clearwater Docs Home
-repo_url: https://github.com/Metaswitch/clearwater-readthedocs
 pages:
 # Overview:
 - ['index.md', 'Home']
@@ -28,6 +27,7 @@ pages:
 - ['Upgrading_a_Clearwater_deployment.md', 'Upgrading and Modifying', 'Upgrading a Clearwater deployment']
 - ['Modifying_Clearwater_settings.md', 'Upgrading and Modifying', 'Modifying Clearwater settings']
 - ['Clearwater_Configuration_Options_Reference.md', 'Upgrading and Modifying', 'Clearwater Configuration Options Reference']
+- ['Migrating_To_etcd.md', 'Upgrading and Modifying', 'Migrating to Automatic Clustering and Config Sharing']
 
 # Integration:
 - ['Configuring_an_Application_Server.md', 'Integration', 'Configuring an Application Server']
@@ -58,6 +58,10 @@ pages:
 - ['Geographic_redundancy.md', 'Features', 'Geographic redundancy']
 - ['IPv6.md', 'Features', 'IPv6']
 - ['SIP_Interface_Specifications.md', 'Features', 'SIP Interface Specifications']
+- ['Automatic_Clustering_Config_Sharing.md', 'Features', 'Automatic Clustering and Configuration Sharing']
+
+# Failure Recovery:
+- ['Handling_Failed_Nodes.md', 'Failure Recovery', 'Permanent Node Failures']
 
 # Development:
 - ['Clearwater_CPP_Coding_Guidelines.md', 'Development', 'Clearwater C++ Coding Guidelines']
@@ -70,8 +74,9 @@ pages:
 - ['Cacti.md', 'Testing', 'Cacti']
 - ['Running_the_live_tests.md', 'Testing', 'Running the live tests']
 
+# Deprecated:
+- ['Old_Manual_Install.md', 'Deprecated', 'Manual Install with Manual Clustering']
+
 theme: readthedocs
-theme_dir: "custom_theme"
-include_search: true
 use_directory_urls: false
 markdown_extensions: [sane_lists, admonition]
