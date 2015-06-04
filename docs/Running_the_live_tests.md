@@ -35,7 +35,7 @@ Make sure that you have an SSH key - if not, see the [GitHub instructions](https
 
 The tests need your signup code to create a test user.
 You set this as `signup_key` during install:
-[manually in /etc/clearwater/config](Manual_Install.md)
+[manually in /etc/clearwater/shared_config](Manual_Install.md)
 or [automatically in knife.rb](Installing_a_Chef_client.md). For the rest of these instructions, the
 signup code will be referred to as `<code>`.
 

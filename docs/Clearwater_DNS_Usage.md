@@ -7,7 +7,7 @@ This document describes
 *   Clearwater's DNS strategy and requirements
 *   how to configure [AWS Route 53](http://aws.amazon.com/route53/) and [BIND](https://www.isc.org/downloads/bind/) to meet these.
 
-DNS is also used as part of the [ENUM](http://tools.ietf.org/rfc/rfc6116.txt) system for mapping E.164 numbers to SIP URIs.  This isn't discussed in this document - instead see the separate [ENUM](enum.md) document.
+DNS is also used as part of the [ENUM](http://tools.ietf.org/rfc/rfc6116.txt) system for mapping E.164 numbers to SIP URIs.  This isn't discussed in this document - instead see the separate [ENUM](ENUM.md) document.
 
 *If you are installing an All-in-One Clearwater node, you do not need any DNS records and can ignore the rest of this page.*
 
@@ -29,10 +29,10 @@ running on localhost. This round-robins requests between the servers in /etc/res
 as described in [its FAQ](http://www.thekelleys.org.uk/dnsmasq/docs/FAQ):
 
 > By default, dnsmasq treats all the nameservers it knows about as
-> equal: it picks the one to use using an algorithm designed to avoid 
+> equal: it picks the one to use using an algorithm designed to avoid
 > nameservers which aren't responding.
 
-If the `signaling_dns_server` option is set in `/etc/clearwater/config` (which is mandatory when using
+If the `signaling_dns_server` option is set in `/etc/clearwater/shared_config` (which is mandatory when using
 [traffic separation](Multiple_Network_Support.md)), Clearwater will not use dnsmasq. Instead, resiliency
 is achieved by being able to specify up to three servers in a comma-separated list (e.g.
 `signaling_dns_server=1.2.3.4,10.0.0.1,192.168.1.1`), and Clearwater will fail over between them as follows:
@@ -228,14 +228,14 @@ For Clearwater, you should be able to adapt the following example zone file by c
     _sip._tcp.sprout       IN SRV   0 0 5054 sprout-2
     ;
     ; Per-node records for I-CSCF (if enabled) - not required to have both
-    ; IPv4 and IPv6 records 
+    ; IPv4 and IPv6 records
     sprout-3               IN A     3.0.0.3
     sprout-3               IN AAAA  3::3
     ;
     ; Cluster A and AAAA records - P-CSCFs that don't support RFC 3263 will simply
     ; resolve the A or AAAA records and pick randomly from this set of addresses.
     icscf.sprout           IN A     3.0.0.3
-    icscf.sprout           IN AAAA  3::3 
+    icscf.sprout           IN AAAA  3::3
     ;
     ; NAPTR and SRV records for I-CSCF (if enabled) - these indicate TCP
     ; support only and then resolve to port 5052 on the per-node records

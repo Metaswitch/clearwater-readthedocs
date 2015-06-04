@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[East Of Eden](http://www.goodreads.com/book/show/4406.East_of_Eden)", which is named after John Steinbeck's brilliant 1952 novel, a must read once you've finished playing around with Clearwater.
+The latest stable release of Clearwater is "[For Whom the Bell Tolls](http://www.goodreads.com/book/show/46170.For_Whom_the_Bell_Tolls)".
 
 ## Architecture
 
@@ -33,10 +33,12 @@ All the source code is on [GitHub](https://github.com/Metaswitch), in the follow
 *   [clearwater-infrastructure](https://github.com/Metaswitch/clearwater-infrastructure) - General infrastructure for Clearwater deployments
 *   [clearwater-logging](https://github.com/Metaswitch/clearwater-logging) - Logging infrastructure for Clearwater deployments
 *   [clearwater-live-test](https://github.com/Metaswitch/clearwater-live-test) - Live test for Clearwater deployments
-*   [clearwater-readthedocs](http://clearwater.readthedocs.org/en/latest) - This documentation repository
-*   [crest](https://github.com/Metaswitch/crest) - RESTful HTTP service built on Cassandra - provides Homer and Homestead.
+*   [clearwater-readthedocs](https://github.com/Metaswitch/clearwater-readthedocs) - This documentation repository
+*   [crest](https://github.com/Metaswitch/crest) - RESTful HTTP service built on Cassandra - provides Homer (the Clearwater XDMS) and Homestead-prov (the Clearwater provisioning backend)
 *   [ellis](https://github.com/Metaswitch/ellis) - Clearwater provisioning server
-*   [sprout](https://github.com/Metaswitch/sprout) - sprout and bono, the Clearwater SIP router and edge proxy
+*   [sprout](https://github.com/Metaswitch/sprout) - Sprout and Bono, the Clearwater SIP router and edge proxy
+*   [homestead](https://github.com/Metaswitch/homestead) - Homestead, the Clearwater HSS-cache.
+*   [ralf](https://github.com/Metaswitch/ralf) - Ralf, the Clearwater CTF.
 
 ## Contributing
 

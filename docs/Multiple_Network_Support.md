@@ -70,12 +70,12 @@ Finally, you should create `/etc/netns/signalling/resolv.conf` configuring the D
 
 ### Project Clearwater Configuration
 
-Now that the signalling namespace is configured and has networking set up, it's time to apply it to Project Clearwater.  To do this, add the following two lines to `/etc/clearwater/config`:
+Now that the signalling namespace is configured and has networking set up, it's time to apply it to Project Clearwater.  To do this, add the following two lines to `/etc/clearwater/shared_config`:
 
     signaling_namespace=<namespace name>
     signaling_dns_server=<DNS IP address>
 
-And change the `local_ip` line to the IP address on the signalling network.
+And change the `local_ip` line in `/etc/clearwater/local_config` to the IP address on the signalling network.
 
 If you've not yet installed the Project Clearwater services, do so now and the namespaces will be automatically used.
 
@@ -85,6 +85,6 @@ If you've already installed the Project Clearwater services, run `sudo service c
 
 All the built-in Clearwater diagnostics will automatically take note of network namespaces, but if you are running diagnostics yourself (e.g. following instructions from the [troubleshooting page](http://clearwater.readthedocs.org/en/latest/Troubleshooting_and_Recovery)) you may need to prefix your commands with `ip netns exec <namespace>` to run them in the signalling namespace.  The following tools will need this prefix:
 
- * `cqlsh -3` - For viewing Cassandra databases
+ * `cqlsh` - For viewing Cassandra databases
  * `nodetool` - For viewing Cassandra status
  * `telnet` - For inspecting Memcached stores
