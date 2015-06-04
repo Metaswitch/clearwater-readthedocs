@@ -111,6 +111,7 @@ This section describes optional configuration options, particularly for ensuring
 * `snmp_ip` - the IP address to send alarms to (defaults to being unset). If this is set then Sprout, Ralf, Homestead and Chronos will send alarms - more details on the alarms are [here](http://clearwater.readthedocs.org/en/latest/SNMP_Alarms/index.html)
 * `impu_cache_ttl` - the number of seconds for which Homestead will cache the SIP Digest from a Multimedia-Auth-Request. Defaults to 0, as Sprout does enough caching to ensure that it can handle an authenticated REGISTER after a challenge, and subsequent challenges should be rare.
 * `hss_reregistration_time` - determines how many seconds should pass before Homestead sends a Server-Assignment-Request with type RE_REGISTRATION to the HSS. (On first registration, it will always send a SAR with type REGISTRATION). This determines a minimum value - after this many seconds have passed, Homestead will send the Server-Assignment-Request when the next REGISTER is received. Note that Homestead invalidates its cache of the registration and iFCs after twice this many seconds have passed, so it is not safe to set this to less than half of `reg_max_expires`.
+* `sip_tcp_connect_timeout` - the time in milliseconds to wait for a SIP TCP connection to be established (defaults to 2000 milliseconds).
 
 ## Experimental options
 
