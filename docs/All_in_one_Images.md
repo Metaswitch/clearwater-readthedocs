@@ -44,14 +44,7 @@ If your virtualization platform is not EC2 and doesn't support OVF, you may stil
          d-i preseed/late_command string in-target bash -c '{ echo "#!/bin/bash" ; \
                                                      echo "set -e" ; \
                                                      echo "repo=... # filled in by make_ovf.sh" ; \
-                                                     echo "echo deb \$repo binary/ > /etc/apt/sources.list.d/clearwater.list" ; \
-                                                     echo "curl -L http://repo.cw-ngv.com/repo_key | sudo apt-key add -" ; \
-                                                     echo "apt-get update" ; \
-                                                     echo "export DEBIAN_FRONTEND=noninteractive" ; \
-                                                     echo "apt-get install -y --force-yes clearwater-cassandra clearwater-auto-config-generic" ; \
-                                                     echo "apt-get install -y --force-yes ellis bono restund sprout homer homestead homestead-prov" ; \
-                                                     echo "export PATH=/usr/share/clearwater/ellis/env/bin:$PATH" ; \
-                                                     echo "cd /usr/share/clearwater/ellis/src/metaswitch/ellis/tools/" ; \
+                                                     echo "curl -L https://raw.githubusercontent.com/Metaswitch/clearwater-infrastructure/master/scripts/clearwater-aio-install.sh | sudo bash -s clearwater-auto-config-generic $repo" ; \
                                                      echo "python create_numbers.py --start 6505550000 --count 1000" ; \
                                                      echo "rm /etc/rc2.d/S99zclearwater-aio-first-boot" ; \
                                                      echo "poweroff" ; } > /etc/rc2.d/S99zclearwater-aio-first-boot ; \
