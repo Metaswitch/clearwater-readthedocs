@@ -112,7 +112,7 @@ This section describes optional configuration options, particularly for ensuring
 * `impu_cache_ttl` - the number of seconds for which Homestead will cache the SIP Digest from a Multimedia-Auth-Request. Defaults to 0, as Sprout does enough caching to ensure that it can handle an authenticated REGISTER after a challenge, and subsequent challenges should be rare.
 * `hss_reregistration_time` - determines how many seconds should pass before Homestead sends a Server-Assignment-Request with type RE_REGISTRATION to the HSS. (On first registration, it will always send a SAR with type REGISTRATION). This determines a minimum value - after this many seconds have passed, Homestead will send the Server-Assignment-Request when the next REGISTER is received. Note that Homestead invalidates its cache of the registration and iFCs after twice this many seconds have passed, so it is not safe to set this to less than half of `reg_max_expires`.
 * `sip_tcp_connect_timeout` - the time in milliseconds to wait for a SIP TCP connection to be established (defaults to 2000 milliseconds).
-* `session_continue_timeout_ms` - if an Application Server with default handling of 'continue session' is unresponsive, this is the time that Sprout will wait (in milliseconds) before bypassing the AS and moving onto the next AS in the chain (defaults to 2000 milliseconds).
+* `session_continued_timeout_ms` - if an Application Server with default handling of 'continue session' is unresponsive, this is the time that Sprout will wait (in milliseconds) before bypassing the AS and moving onto the next AS in the chain (defaults to 2000 milliseconds).
 * `session_terminated_timeout_ms` - if an Application Server with default handling of 'terminate session' is unresponsive, this is the time that Sprout will wait (in milliseconds) before terminating the session (defaults to 4000 milliseconds).
 
 ## Experimental options
@@ -123,8 +123,7 @@ This section describes optional configuration options which may be useful, but a
 * `ralf_secure_listen_port` - this determines the port Ralf listens on for TLS-secured Diameter connections.
 * `hs_secure_listen_port` - this determines the port Homestead listens on for TLS-secured Diameter connections.
 * `ellis_cookie_key` - an arbitrary string that enables Ellis nodes to determine whether they should be in the same cluster. This function is not presently used.
-* `stateless_proxies` - a comma separated list of domain names that are treated as SIP stateless proxies. Stateless proxies are not blacklisted if a SIP transaction sent to them times out.
-    * This field should reflect how the servers are identified in SIP. For example if a cluster of nodes is identified by the name 'cluster.example.com', the option should be set to 'cluster.example.com' instead of the hostnames or IP addresses of individual servers.
+* `stateless_proxies` - a comma separated list of domain names that are treated as SIP stateless proxies. Stateless proxies are not blacklisted if a SIP transaction sent to them times out. This field should reflect how the servers are identified in SIP. For example if a cluster of nodes is identified by the name 'cluster.example.com', the option should be set to 'cluster.example.com' instead of the hostnames or IP addresses of individual servers.
 
 ## User settings
 
