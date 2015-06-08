@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[For Whom the Bell Tolls](http://www.goodreads.com/book/show/46170.For_Whom_the_Bell_Tolls)".
+The latest stable release of Clearwater is "[Great Expectations](http://www.goodreads.com/book/show/2623.Great_Expectations)".
 
 ## Architecture
 
