@@ -28,7 +28,7 @@ Do the following on each node in turn:
 
 3. If your deployment was geographically redundant, you should choose arbitrary names for each site (e.g. 'site1' and 'site2'), and set the `local_site_name` and `remote_site_name` settings in `/etc/clearwater/local_config` accordingly. For example, if the node is in 'site1', you should have  `local_site_name=site1` and `remote_site_name=site2`.
 
-4.  If the node is a Sprout or Ralf node, run `sudo /usr/share/clearwater/bin/chronos_configuration_split.py`. This examines the existing `/etc/chronos/chronos.conf` file and extracts the clustering settings into a new file called `/etc/chronos/chronos_cluster.conf`. Check each of these files by hand to make sure they look sensible.
+4.  If the node is a Sprout or Ralf node, run `sudo /usr/share/clearwater/bin/chronos_configuration_split.py`. This examines the existing `/etc/chronos/chronos.conf` file and extracts the clustering settings into a new file called `/etc/chronos/chronos_cluster.conf`. Check each of these files by hand to make sure they look sensible. If the `chronos_cluster.conf` file already exists, then the script will exit with a warning. In this case, please check the configuration files by hand, and either delete the `chronos_cluster.conf` file and re-run the script, or manually split the configuration yourself. Details of the expected configuration are [here](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md).
 
 5.  Run `sudo touch /etc/clearwater/no_cluster_manager` on all nodes. This temporarily disables the cluster manager (which is installed in the next step) so that you can program it with the current deployment topology.
 
