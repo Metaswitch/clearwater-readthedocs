@@ -186,7 +186,7 @@ They also need to following ports open to all other Ralf nodes:
 
 ## Standalone Application Servers
 
-Standalone application servers need the following ports open to all Sprout nodes:
+Standalone Project Clearwater application servers (e.g. Memento and Gemini) need the following ports open to all Sprout nodes:
 
 * SIP signalling:
 
