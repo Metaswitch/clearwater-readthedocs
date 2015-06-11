@@ -52,11 +52,8 @@ Points of Note
 Current Spec Deltas
 -------------------
 
-**The December 2013 release of Clearwater has the following limitation on the ISC interface:**
+**As of June 2015, Clearwater has the following limitations on the ISC interface:**
 
- * Dead AS handling:
-     * Handling of dead ASs (408, 5xx, or no response, not preceded by a 1xx response) should follow the spec: per the iFC, either the response is treated as final or the AS is bypassed.
-     * Clearwater does not attempt to avoid dead ASs on subsequent calls.
  * Change of request URI:
      * 3GPP TS 24.229 s5.4.3.3 step 3 allows a terminating AS to change the request URI to another URI that matches it (i.e., is canonically equal or an alias) without interrupting the interpretation of the iFCs.
      * Clearwater only supports this for URIs which are canonically equal; it does not support changing to an alias URI (i.e., a different public identity belonging to the same alias group of the same private identity, per 3GPP TS 24.229 s3.1, 3GPP TS 29.228 sB.2.1).
@@ -68,7 +65,6 @@ Future phases
 
 The following features may be implemented by Clearwater in future phases:
 
- * Registration event package 3GPP TS 24.229 s5.4.2.1.1/2. Required in order to get full registration information to the AS (because third-party registration is a tiny subset).
  * Billing: both billing headers within ISC, and AS communicating with the billing system via Rf/Ro.
  * `P-Access-Network-Info`: should be passed (from the UE) and stripped in the appropriate places, and possibly set by bono.
  * `History-Info` draft-ietf-sipcore-rfc4244bis (not RFC4244, which is inaccurate wrt real implementations).
