@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Great Expectations](http://www.goodreads.com/book/show/2623.Great_Expectations)".
+The latest stable release of Clearwater is "[Harry Potter and the Half-Blood Prince](https://www.goodreads.com/book/show/1.Harry_Potter_and_the_Half_Blood_Prince)".
 
 ## Architecture
 
