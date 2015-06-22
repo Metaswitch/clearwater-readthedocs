@@ -217,7 +217,7 @@ Now run the following to upload the configuration to a shared database and propa
 
 If I-CSCF functionality is enabled, then you will need to set up the S-CSCF configuration. S-CSCF configuration is stored in the `/etc/clearwater/s-cscf.json` file on each sprout node. The file stores the configuration of each S-CSCF, their capabilities, and their relative weighting and priorities.
 
-If you require I-CSCF functionality, log onto your sprout node and create `/etc/clearwater/s-cscf.josn` with the following contents:
+If you require I-CSCF functionality, log onto your sprout node and create `/etc/clearwater/s-cscf.json` with the following contents:
 
     {
        "s-cscfs" : [
@@ -229,7 +229,7 @@ If you require I-CSCF functionality, log onto your sprout node and create `/etc/
        ]
     }
 
-Then upload it to the shared configuration database by running `/usr/share/clearwater/bin/upload_scscf_json`. This means that any sprout nodes that you add to the cluster will automatically learn the configuration.
+Then upload it to the shared configuration database by running `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json`. This means that any sprout nodes that you add to the cluster will automatically learn the configuration.
 
 ## Provision Telephone Numbers in Ellis
 
