@@ -49,13 +49,15 @@ If you're scaling down your deployment, follow the following process:
         *   Ralf -`sudo service ralf stop`
         *   Ellis - `sudo service ellis stop`
         *   Memento - `sudo service memento stop`
-    * Unmonitor the clearwater management processes. Run these commands on all nodes
 
-        *   `sudo monit unmonitor clearwater-cluster-manager`
-        *   `sudo monit unmonitor clearwater-config-manager`
+    * Unmonitor the clearwater management processes:
+
+        *   `sudo monit unmonitor clearwater_cluster_manager`
+        *   `sudo monit unmonitor clearwater_config_manager`
         *   `sudo monit unmonitor -g etcd`
 
-3.  Run `sudo service clearwater-etcd decommission`. This will cause the nodes to leave their existing clusters.
+    * Run `sudo service clearwater-etcd decommission`. This will cause the nodes to leave their existing clusters.
+
 4.  Once the above steps have completed, turn down the nodes.
 
 ### If you did a Manual Install without Automatic Clustering
