@@ -1,81 +1,72 @@
 site_name: Clearwater Docs Home
 pages:
-# Overview:
-- ['index.md', 'Home']
-- ['Clearwater_Architecture.md', 'Clearwater Architecture']
-- ['Clearwater_Tour.md', 'Clearwater Tour']
-- ['Exploring_Clearwater.md', 'Exploring Clearwater']
-- ['Support.md', 'Support']
-- ['Troubleshooting_and_Recovery.md', 'Troubleshooting and Recovery']
-
-# Installation:
-- ['Installation_Instructions.md', 'Installation', 'Installation Instructions']
-- ['All_in_one_Images.md', 'Installation', 'All-in-one Images']
-- ['Automated_Install.md', 'Installation', 'Automated Install']
-- ['Manual_Install.md', 'Installation', 'Manual Install']
-- ['All_in_one_EC2_AMI_Installation.md', 'Installation', 'All in one EC2 AMI Installation']
-- ['All_in_one_OVF_Installation.md', 'Installation', 'All-in-one OVF Installation']
-- ['Installing_a_Chef_server.md', 'Installation', 'Installing a Chef server']
-- ['Installing_a_Chef_client.md', 'Installation', 'Installing a Chef client']
-- ['Creating_a_deployment_environment.md', 'Installation', 'Creating a deployment environment']
-- ['Creating_a_deployment_with_Chef.md', 'Installation', 'Creating a deployment with Chef']
-- ['Making_your_first_call.md', 'Installation', 'Making your first call']
-- ['Configuring_the_native_Android_SIP_client.md', 'Installation', 'Configuring the native Android SIP client']
-- ['Configuring_Zoiper_Android_iOS_Client.md', 'Installation', 'Configuring Zoiper Android/iOS Client']
-
-# Upgrading and Modifying
-- ['Upgrading_a_Clearwater_deployment.md', 'Upgrading and Modifying', 'Upgrading a Clearwater deployment']
-- ['Modifying_Clearwater_settings.md', 'Upgrading and Modifying', 'Modifying Clearwater settings']
-- ['Clearwater_Configuration_Options_Reference.md', 'Upgrading and Modifying', 'Clearwater Configuration Options Reference']
-- ['Migrating_To_etcd.md', 'Upgrading and Modifying', 'Migrating to Automatic Clustering and Config Sharing']
-
-# Integration:
-- ['Configuring_an_Application_Server.md', 'Integration', 'Configuring an Application Server']
-- ['External_HSS_Integration.md', 'Integration', 'External HSS Integration']
-- ['OpenIMSCore_HSS_Integration.md', 'Integration', 'OpenIMSCore HSS Integration']
-- ['CDF_Integration.md', 'Integration', 'CDF Integration']
-- ['Clearwater_IP_Port_Usage.md', 'Integration', 'Clearwater Firewall Configuration']
-- ['Clearwater_DNS_Usage.md', 'Integration', 'Clearwater DNS Usage']
-- ['ENUM.md', 'Integration', 'ENUM']
-- ['Plivo.md', 'Integration', 'Plivo']
-- ['Voxbone.md', 'Integration', 'Voxbone']
-- ['Clearwater_SNMP_Statistics.md', 'Integration', 'Clearwater SNMP Statistics']
-- ['SNMP_Alarms.md', 'Integration', 'SNMP Alarms']
-- ['Configuring_MMonit.md', 'Integration', 'Configuring M/Monit']
-
-# Features:
-- ['Application_Server_Guide.md', 'Features', 'Application Server Guide']
-- ['WebRTC_support_in_Clearwater.md', 'Features', 'WebRTC support in Clearwater']
-- ['IR.92_Supplementary_Services.md', 'Features', 'IR.92 Supplementary Services']
-- ['Backups.md', 'Features', 'Backups']
-- ['Clearwater_Call_Barring_Support.md', 'Features', 'Clearwater Call Barring Support']
-- ['Clearwater_Call_Diversion_Support.md', 'Features', 'Clearwater Call Diversion Support']
-- ['Clearwater_Elastic_Scaling.md', 'Features', 'Clearwater Elastic Scaling']
-- ['Clearwater_Privacy_Feature.md', 'Features', 'Clearwater Privacy Feature']
-- ['IBCF.md', 'Features', 'IBCF']
-- ['Multiple_Domains.md', 'Features', 'Multiple Domains']
-- ['Multiple_Network_Support.md', 'Features', 'Multiple Network Support']
-- ['Geographic_redundancy.md', 'Features', 'Geographic redundancy']
-- ['IPv6.md', 'Features', 'IPv6']
-- ['SIP_Interface_Specifications.md', 'Features', 'SIP Interface Specifications']
-- ['Automatic_Clustering_Config_Sharing.md', 'Features', 'Automatic Clustering and Configuration Sharing']
-
-# Failure Recovery:
-- ['Handling_Failed_Nodes.md', 'Failure Recovery', 'Permanent Node Failures']
-
-# Development:
-- ['Clearwater_CPP_Coding_Guidelines.md', 'Development', 'Clearwater C++ Coding Guidelines']
-- ['Clearwater_Ruby_Coding_Guidelines.md', 'Development', 'Clearwater Ruby Coding Guidelines']
-- ['Debugging_Bono_Sprout_and_Homestead_with_GDB_and_Valgrind.md', 'Development', 'Debugging Bono, Sprout and Homestead with GDB and Valgrind']
-- ['Pull_request_process.md', 'Development', 'Pull request process']
-
-# Testing:
-- ['Clearwater_stress_testing.md', 'Testing', 'Clearwater stress testing']
-- ['Cacti.md', 'Testing', 'Cacti']
-- ['Running_the_live_tests.md', 'Testing', 'Running the live tests']
-
-# Deprecated:
-- ['Old_Manual_Install.md', 'Deprecated', 'Manual Install with Manual Clustering']
+- Home: index.md
+- Clearwater Architecture: Clearwater_Architecture.md
+- Clearwater Tour: Clearwater_Tour.md
+- Exploring Clearwater: Exploring_Clearwater.md
+- Support: Support.md
+- Troubleshooting and Recovery: Troubleshooting_and_Recovery.md
+- Installation:
+  - Installation Instructions: Installation_Instructions.md
+  - All-in-one Images: All_in_one_Images.md
+  - Automated Install: Automated_Install.md
+  - Manual Install: Manual_Install.md
+  - All in one EC2 AMI Installation: All_in_one_EC2_AMI_Installation.md
+  - All-in-one OVF Installation: All_in_one_OVF_Installation.md
+  - Installing a Chef server: Installing_a_Chef_server.md
+  - Installing a Chef client: Installing_a_Chef_client.md
+  - Creating a deployment environment: Creating_a_deployment_environment.md
+  - Creating a deployment with Chef: Creating_a_deployment_with_Chef.md
+  - Making your first call: Making_your_first_call.md
+  - Configuring the native Android SIP client: Configuring_the_native_Android_SIP_client.md
+  - Configuring Zoiper Android/iOS Client: Configuring_Zoiper_Android_iOS_Client.md
+- Upgrading and Modifying:
+  - Upgrading a Clearwater deployment: Upgrading_a_Clearwater_deployment.md
+  - Modifying Clearwater settings: Modifying_Clearwater_settings.md
+  - Clearwater Configuration Options Reference: Clearwater_Configuration_Options_Reference.md
+  - Migrating to Automatic Clustering and Config Sharing: Migrating_To_etcd.md
+- Integration:
+  - Configuring an Application Server: Configuring_an_Application_Server.md
+  - External HSS Integration: External_HSS_Integration.md
+  - OpenIMSCore HSS Integration: OpenIMSCore_HSS_Integration.md
+  - CDF Integration: CDF_Integration.md
+  - Clearwater Firewall Configuration: Clearwater_IP_Port_Usage.md
+  - Clearwater DNS Usage: Clearwater_DNS_Usage.md
+  - ENUM: ENUM.md
+  - Plivo: Plivo.md
+  - Voxbone: Voxbone.md
+  - Clearwater SNMP Statistics: Clearwater_SNMP_Statistics.md
+  - SNMP Alarms: SNMP_Alarms.md
+  - Configuring M/Monit: Configuring_MMonit.md
+- Features:
+  - Application Server Guide: Application_Server_Guide.md
+  - WebRTC support in Clearwater: WebRTC_support_in_Clearwater.md
+  - IR.92 Supplementary Services: IR.92_Supplementary_Services.md
+  - Backups: Backups.md
+  - Clearwater Call Barring Support: Clearwater_Call_Barring_Support.md
+  - Clearwater Call Diversion Support: Clearwater_Call_Diversion_Support.md
+  - Clearwater Elastic Scaling: Clearwater_Elastic_Scaling.md
+  - Clearwater Privacy Feature: Clearwater_Privacy_Feature.md
+  - IBCF: IBCF.md
+  - Multiple Domains: Multiple_Domains.md
+  - Multiple Network Support: Multiple_Network_Support.md
+  - Geographic redundancy: Geographic_redundancy.md
+  - IPv6: IPv6.md
+  - SIP Interface Specifications: SIP_Interface_Specifications.md
+  - Automatic Clustering and Configuration Sharing: Automatic_Clustering_Config_Sharing.md
+- Failure Recovery:
+  - Permanent Node Failures: Handling_Failed_Nodes.md
+- Development:
+  - Clearwater C++ Coding Guidelines: Clearwater_CPP_Coding_Guidelines.md
+  - Clearwater Ruby Coding Guidelines: Clearwater_Ruby_Coding_Guidelines.md
+  - 'Debugging Bono, Sprout and Homestead with GDB and Valgrind': Debugging_Bono_Sprout_and_Homestead_with_GDB_and_Valgrind.md
+  - Pull request process: Pull_request_process.md
+- Testing:
+  - Clearwater stress testing: Clearwater_stress_testing.md
+  - Cacti: Cacti.md
+  - Running the live tests: Running_the_live_tests.md
+- Deprecated:
+  - Manual Install with Manual Clustering: Old_Manual_Install.md
 
 theme: readthedocs
 use_directory_urls: false
