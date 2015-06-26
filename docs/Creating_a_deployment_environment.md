@@ -4,8 +4,8 @@ These instructions make up part of the [automated install process](Automated_Ins
 
 ## Prerequisites
 
-* You must have [installed a Chef client](Installing_a_Chef_client.md).
-* You must have SSH access to the ubuntu user on the chef-client machine.
+* You must have [installed a Chef workstation](Installing_a_Chef_workstation.md).
+* You must have SSH access to the ubuntu user on the chef-workstation machine.
 
 ## Creating a keypair
 
@@ -15,7 +15,7 @@ Amazon will give you a `<keypair_name>`.pem file; copy that file to the `/home/u
 
 ## Creating the environment
 
-Before creating an environment, choose a name (e.g. "clearwater") which will be referred to as `<name>` in the following steps.  Now, on the chef-client machine, create a file in `~/chef/environments/<name>.rb` with the following contents:
+Before creating an environment, choose a name (e.g. "clearwater") which will be referred to as `<name>` in the following steps.  Now, on the chef-workstation machine, create a file in `~/chef/environments/<name>.rb` with the following contents:
 
     name "<name>"
     description "Clearwater deployment - <name>"

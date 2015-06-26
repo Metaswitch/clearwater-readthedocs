@@ -6,56 +6,29 @@ These instructions cover commissioning a Chef client node on an EC2 server as pa
 
 * An Amazon EC2 account.
 * A DNS root domain configured with Route53 (Amazon's built-in DNS service, accessible from the EC2 console. This domain will be referred to as `<zone>` in this document.
-* You must have [installed a Chef server](Installing_a_Chef_server.md) and thus know the `<webUIPass>` for your server.
+* You must have [installed a Chef server](Installing_a_Chef_server.md) and thus know the `<chef-user-name>` and `<chef-user-password>` for your server.
 * A web-browser with which you can visit the Chef server Web UI.
 
 ## Create the instance
 
-Create a `m1.small` AWS EC2 instance running `Ubuntu Server 12.04.1 LTS` using the AWS web interface.  Configure its security group to allow access on port 22 (for SSH). The SSH keypair you provide here is referred to below as `<amazon_ssh_key>`. It is easiest if you use the same SSH keypair for all of your instances.
+Create a `t2.micro` AWS EC2 instance running `Ubuntu Server 14.04.2 LTS` using the AWS web interface.  Configure its security group to allow access on port 22 (for SSH). The SSH keypair you provide here is referred to below as `<amazon_ssh_key>`. It is easiest if you use the same SSH keypair for all of your instances.
 
-Configure a DNS entry for this machine, `chef-client.<zone>`. (The precise name isn't important, but we use this consistently in the documentation that follows.) It should have a non-aliased A record pointing at the public IP address of the instance as displayed in the EC2 console.
+Configure a DNS entry for this machine, `chef-workstation.<zone>`. (The precise name isn't important, but we use this consistently in the documentation that follows.) It should have a non-aliased A record pointing at the public IP address of the instance as displayed in the EC2 console.
 
 Once the instance is up and running and you can connect to it over SSH, you may continue to the next steps.
 
 If you make a mistake, simply delete the instance permanently by selecting "Terminate" in the EC2 console, and start again. The terminated instance may take a few minutes to disappear from the console.
 
-## Prepare APT
-
-Connect to `chef-client.<zone>` as the `ubuntu` user over SSH.
-
-Install the `add-apt-key` tool.
-
-    sudo apt-get install add-apt-key -y
-
-Under sudo, create `/etc/apt/sources.list.d/opscode.list` with the following content:
-
-    deb http://apt.opscode.com/ precise-0.10 main
-
-Install the GPG key for this repository:
-
-    sudo add-apt-key 83EF826A
-
-Install the Chef keyring and update APT's indexes.
-
-    sudo apt-get update
-    sudo apt-get install opscode-keyring -y
-    sudo apt-get upgrade -y
-
-Once this is done, you can continue on to install the Chef client software.
-
-## Install the Chef client software
-
-Install the Chef client tool.
-
-    sudo apt-get install chef -y
-
-During the install you will be prompted for the Chef server URL, enter `http://chef-server.<zone>:4000`.
-
 ## Install Ruby 1.9.3
 
-The Clearwater chef plugins use features from Ruby 1.9.3.  Run the following to install it.
+The Clearwater chef plugins use features from Ruby 1.9.3.  To start run the following command.
 
     curl -L https://get.rvm.io | bash -s stable
+
+This may fail due to missing GPG signiatures. If this happens it will suggest a command to run to resolve the problem (e.g. gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`). Run the command suggested, then run the above command again, which should now succeed).
+
+Next install the required ruby version.
+
     source ~/.rvm/scripts/rvm
     rvm autolibs enable
     rvm install 1.9.3
@@ -65,60 +38,58 @@ At this point, `ruby --version` should indicate that 1.9.3 is in use.
 
 ## Installing the Clearwater Chef extensions
 
-On the chef-client machine, install git and dependent libraries.
+On the chef-workstation machine, install git and dependent libraries.
 
     sudo apt-get install git libxml2-dev libxslt1-dev
 
 Clone the Clearwater Chef repository.
 
-    git clone -b stable git://github.com/Metaswitch/chef.git ~/chef
+    git clone -b stable --recursive git://github.com/Metaswitch/chef.git ~/chef
 
 This will have created a `chef` folder in your home directory, navigate there now.
 
     cd ~/chef
 
-Fetch the submodules used by the Clearwater Chef extensions.
-
-    git submodule update --init
-
 Finally install the Ruby libraries that are needed by our scripts.
 
     bundle install
 
-## Create a Chef client for the chef-client machine
+## Creating a Chef user
 
-In a browser of your choice, navigate to `http://chef-server.<zone>:4040` to access the Web UI of the server.  Log in using `admin` and `<webUIPass>` and follow the on-screen instructions to change the WebUI password (you can 'change' it to its current value if you don't want to remember a new password).
+You will need to configure yourself as a user on the chef server in order to use chef.
 
-Go to the `Clients` tab at the top of the screen and click `Create`, use `chef-client` for the name, __tick the `Admin` box__ and click `Create Client`.  On the next screen, you'll be presented with an RSA keypair, __copy the private half before moving away from this screen__.  Once you've copied the key, you can close your browser tab.
+*  If you are the person who created the chef server you wil already have added yourself as a user, and will know your username, organization name, and you will have a private key (`<chef-user-name>`, `<org-name>`, `<chef-user-name>.pem` respectively). These will be needed later.
+*  If you did not create the chef server, you will need to add an account for yourself. Log onto the chef server and run the following commands, substituting in appropriate values for `USER_NAME`, `FIRST_NAME`, `LAST_NAME`, `PASSWORD` and `ORG_NAME`. We'll refer to the username as `<chef-user-name>` and the organization as `<org-name>`. This will create a `<chef-user-name>.pem` file in the current directory - save it for later.
 
-If you forgot to tick the admin box or forgot to copy the private key before closing the browser tab, delete the newly created client with the `delete` link and create a new one.
+    sudo chef-server-ctl user-create USER_NAME FIRST_NAME LAST_NAME EMAIL PASSWORD --filename USER_NAME.pem
+    sudo chef-server-ctl org-user-add ORG_NAME USER_NAME --admin
 
-## Configure the chef-client machine
+## Configure the chef-workstation machine
 
-Back on the chef-client machine, create a `.chef` folder in your home directory.
+Back on the chef-workstation machine, create a `.chef` folder in your home directory.
 
     mkdir ~/.chef
 
-Create `~/.chef/chef-client.pem` and paste the private key from the server into it.
+Copy the `<chef-user-name>.pem` file you saved off earlier to `~/.chef/<chef-user-name.pem>`
 
 Copy the validator key from the chef server to your client. You will need to either copy the Amazon SSH key to the client and use it, or copy the validator
 
-    scp -i <amazon_ssh_key>.pem ubuntu@chef-server.<zone>:.chef/validation.pem ~/.chef/
+    scp -i <amazon_ssh_key>.pem ubuntu@chef-server.<zone>:<org-name>-validator.pem ~/.chef/
 
 or (on an intermediate box with the SSH key available)
 
-    scp -i <amazon_ssh_key>.pem ubuntu@chef-server.<zone>:.chef/validation.pem .
-    scp -i <amazon_ssh_key>.pem validation.pem ubuntu@chef-client.<zone>:~/.chef/
+    scp -i <amazon_ssh_key>.pem ubuntu@chef-server.<zone>:<org-name>-validator.pem .
+    scp -i <amazon_ssh_key>.pem <org-name>-validator.pem ubuntu@chef-workstation.<zone>:~/.chef/
 
 Configure knife using the built in auto-configuration tool.
 
     knife configure
 
 * Use the default value for the config location.
-* The Chef server URL should be `http://chef-server.<zone>:4000`
-* The Chef client name should be `chef-client`
-* Use the default value for the validation client name.
-* The validation key location should be `~/.chef/validation.pem`.
+* The Chef server URL should be `https://chef-server.<zone>/organizations/<org-name>`
+* The Chef client name should be `<chef-user-name>`
+* The validation client name should be `<org-name>-validator`
+* The validation key location should be `~/.chef/<org-name>-validator.pem`.
 * The chef repository path should be `~/chef/`
 
 ## Obtain AWS access keys
