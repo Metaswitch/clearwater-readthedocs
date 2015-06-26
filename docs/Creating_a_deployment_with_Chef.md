@@ -13,7 +13,7 @@ You now have two options - you can create an All-in-One node, where all the Clea
 
 ## Creating an All-in-One ("AIO") node
 
-To create a single machine instance running all the Clearwater components, run the following on the chef-workstation machine.
+To create a single machine instance running all the Clearwater components, run the following on the chef workstation machine.
 
 	cd ~/chef
 	knife box create cw_aio -E <name>
@@ -26,7 +26,7 @@ The following modifier is available.
 
 ## Creating a larger deployment
 
-To kick off construction of the deployment, run the following on the chef-workstation machine.
+To kick off construction of the deployment, run the following on the chef workstation machine.
 
     cd ~/chef
     knife deployment resize -E <name> --ralf-count 1 -V

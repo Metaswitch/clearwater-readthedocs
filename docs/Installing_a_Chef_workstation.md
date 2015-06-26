@@ -13,7 +13,7 @@ These instructions cover commissioning a Chef client node on an EC2 server as pa
 
 Create a `t2.micro` AWS EC2 instance running `Ubuntu Server 14.04.2 LTS` using the AWS web interface.  Configure its security group to allow access on port 22 (for SSH). The SSH keypair you provide here is referred to below as `<amazon_ssh_key>`. It is easiest if you use the same SSH keypair for all of your instances.
 
-Configure a DNS entry for this machine, `chef-workstation.<zone>`. (The precise name isn't important, but we use this consistently in the documentation that follows.) It should have a non-aliased A record pointing at the public IP address of the instance as displayed in the EC2 console.
+Configure a DNS entry for this machine, `chef workstation.<zone>`. (The precise name isn't important, but we use this consistently in the documentation that follows.) It should have a non-aliased A record pointing at the public IP address of the instance as displayed in the EC2 console.
 
 Once the instance is up and running and you can connect to it over SSH, you may continue to the next steps.
 
@@ -38,7 +38,7 @@ At this point, `ruby --version` should indicate that 1.9.3 is in use.
 
 ## Installing the Clearwater Chef extensions
 
-On the chef-workstation machine, install git and dependent libraries.
+On the chef workstation machine, install git and dependent libraries.
 
     sudo apt-get install git libxml2-dev libxslt1-dev
 
@@ -64,9 +64,9 @@ You will need to configure yourself as a user on the chef server in order to use
     sudo chef-server-ctl user-create USER_NAME FIRST_NAME LAST_NAME EMAIL PASSWORD --filename USER_NAME.pem
     sudo chef-server-ctl org-user-add ORG_NAME USER_NAME --admin
 
-## Configure the chef-workstation machine
+## Configure the chef workstation machine
 
-Back on the chef-workstation machine, create a `.chef` folder in your home directory.
+Back on the chef workstation machine, create a `.chef` folder in your home directory.
 
     mkdir ~/.chef
 
@@ -79,7 +79,7 @@ Copy the validator key from the chef server to your client. You will need to eit
 or (on an intermediate box with the SSH key available)
 
     scp -i <amazon_ssh_key>.pem ubuntu@chef-server.<zone>:<org-name>-validator.pem .
-    scp -i <amazon_ssh_key>.pem <org-name>-validator.pem ubuntu@chef-workstation.<zone>:~/.chef/
+    scp -i <amazon_ssh_key>.pem <org-name>-validator.pem ubuntu@chef workstation.<zone>:~/.chef/
 
 Configure knife using the built in auto-configuration tool.
 

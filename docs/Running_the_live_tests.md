@@ -6,7 +6,7 @@ The Clearwater team have put together a suite of live tests that can be run over
 
 * You've [installed Clearwater](Installation_Instructions.md)
 * You have an Ubuntu Linux machine available to drive the tests
- - If you installed through the automated install process, the chef-workstation is a perfectly good choice for this task
+ - If you installed through the automated install process, the chef workstation is a perfectly good choice for this task
 
 ## Installing dependencies
 
