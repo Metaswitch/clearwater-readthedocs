@@ -46,7 +46,7 @@ If you installed an All-in-One node, your Ellis URL will be `http://<aio-identit
 
 In your browser, navigate to the Ellis URL you worked out above.
 
-Sign up as a new user, using the signup code you set as `signup_key` when [configuring your deployment](Installing_a_Chef_client.md#add-deployment-specific-configuration).
+Sign up as a new user, using the signup code you set as `signup_key` when [configuring your deployment](Installing_a_Chef_workstation.md#add-deployment-specific-configuration).
 
 Ellis will automatically allocate you a new number and display its password to you.  Remember this password as it will only be displayed once.  From now on, we will use `<username>` to refer to the SIP username (e.g. `6505551234`) and `<password>` to refer to the password.
 

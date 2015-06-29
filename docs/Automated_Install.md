@@ -17,7 +17,7 @@ The first phase:
 
 * [Installing a Chef server](Installing_a_Chef_server.md)
  - This server will track the created Clearwater nodes and allow the client access to them.
-* [Configuring a Chef client](Installing_a_Chef_client.md)
+* [Configuring a Chef workstation](Installing_a_Chef_workstation.md)
  - This machine will be the one on which deployments will be defined and managed.
 
 The second phase:

@@ -79,7 +79,7 @@ If you are creating a [geographically redundant deployment](Geographic_redundanc
 
 * `etcd_cluster` should contain the IP addresses of nodes in both sites
 *  you should set `local_site_name` and `remote_site_name` in `/etc/clearwater/local_config`.
-    
+
 These names are arbitrary, but should reflect the node's location (e.g. a node in site A should have
 `local_site_name=siteA` and `remote_site_name=siteB`, whereas a node in site B should have
 `local_site_name=siteB` and `remote_site_name=siteA`):
@@ -206,7 +206,7 @@ If you want your Sprout nodes to include Gemini/Memento Application Servers add 
     gemini_enabled='Y'
     memento_enabled='Y'
 
-See the [Chef instructions](Installing_a_Chef_client.md#add-deployment-specific-configuration) for more information on how to fill these in. The values marked `<secret>` **must** be set to secure values to protect your deployment from unauthorized access. To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings.md).
+See the [Chef instructions](Installing_a_Chef_workstation.md#add-deployment-specific-configuration) for more information on how to fill these in. The values marked `<secret>` **must** be set to secure values to protect your deployment from unauthorized access. To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings.md).
 
 Now run the following to upload the configuration to a shared database and propagate it around the cluster.
 

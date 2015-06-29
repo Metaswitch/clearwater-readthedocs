@@ -9,9 +9,9 @@ This is the first step in preparing to install a Clearwater deployment using the
 
 ## Create the instance
 
-Create a `m1.small` AWS EC2 instance running `Ubuntu Server 12.04.1 LTS` using the AWS web interface. The SSH keypair you provide here is referred to below as `<amazon_ssh_key>`. It is easiest if you use the same SSH keypair for all of your instances.
+Create a `t2.small` AWS EC2 instance running `Ubuntu Server 14.04.2 LTS` using the AWS web interface. The SSH keypair you provide here is referred to below as `<amazon_ssh_key>`. It is easiest if you use the same SSH keypair for all of your instances.
 
-Configure its security group to allow access on ports `TCP/22`, `TCP/4040` and `TCP/4000` (for SSH, Chef WebUI and Chef control respectively).
+Configure its security group to allow access SSH, HTTP, and HTTPS access.
 
 Configure a DNS entry for this machine, `chef-server.<zone>`. (The precise name isn't important, but we use this consistently in the documentation that follows.) It should have a non-aliased A record pointing at the public IP address of the instance as displayed in the EC2 console.
 
@@ -19,60 +19,23 @@ Once the instance is up and running and you can connect to it over SSH, you may 
 
 If you make a mistake, simply delete the instance permanently by selecting "Terminate" in the EC2 console, and start again. The terminated instance may take a few minutes to disappear from the console.
 
-## Prepare your package manager
+## Install and configure the Chef server
 
-Connect to `chef-server.<zone>` as the `ubuntu` user over SSH.
+The [chef documentation](http://docs.chef.io/install_server.html) explains how to install and configure the chef server. These instructions involve setting up a user and an organization.
 
-Install the `add-apt-key` tool.
+* The user represents you as a user of chef. Pick whatever user name and password you like. We refer to these as `<chef-user-name>` and `<chef-user-password>`
+* Organizations allow different groups to use the same chef server, but be isolated from one another. You can choose any organization name you like (e.g. "clearwater"). We refer to this as `<org-name>`
 
-    sudo apt-get install add-apt-key -y
+Follow steps 1-6 in the [chef docs](http://docs.chef.io/install_server.html).
 
-Under sudo, create `/etc/apt/sources.list.d/opscode.list` with the following content:
+Once you have completed these steps, copy the `<chef-user-name>.pem` file off of the chef server - you will need it when installing a chef workstation.
 
-    deb http://apt.opscode.com/ precise-0.10 main
+Next, install the chef server web UI by running the following commands.
 
-Install the GPG key for this repository:
-
-    sudo add-apt-key 83EF826A
-
-Install the Chef keyring and update APT's indexes.
-
-    sudo apt-get update
-    sudo apt-get install opscode-keyring -y
-    sudo apt-get upgrade -y
-
-Once this is done, you can continue on to install the Chef server.
-
-## Install the Chef server
-
-Do the install.
-
-    sudo apt-get install chef-server -y
-
-When prompted, enter `http://chef-server.<zone>:4000` as the Chef Server URL.  Choose (and remember!) your own passwords for the RabbitMQ server and Web UI when prompted.  **These passwords must be longer than 6 characters and not contain any quote characters**.  These passwords will be referred to in later steps as `<rabbitMQPass>` and `<webUIPass>` respectively.
-
-To check that the install was successful, run
-
-    sudo netstat -plant | grep -e 4040 -e 4000
-
-which should display something like:
-
-    tcp        0      0 0.0.0.0:4040            0.0.0.0:*               LISTEN      16662/merb : chef-s
-    tcp        0      0 0.0.0.0:4000            0.0.0.0:*               LISTEN      16556/merb : chef-s
-
-If this is not the case, you probably specified an invalid password during the install.  You can retry the install with
-
-    sudo apt-get purge chef-server
-    sudo apt-get install chef-server
-
-## Expose the validator key over SSH
-
-Your chef client will need a valid validator key to be able to spin up instances.  So we can retrieve it from the chef-client later, copy the key from the default location to a folder in the `ubuntu` user's home directory.
-
-    mkdir -p ~/.chef
-    sudo cp /etc/chef/validation.pem ~/.chef/
-    sudo chown ubuntu:ubuntu ~/.chef/validation.pem
+    sudo chef-server-ctl install opscode-manage
+    sudo chef-server-ctl reconfigure
+    sudo opscode-manage-ctl reconfigure
 
 ## Next steps
 
-Once your server is installed, you can continue on to [install a chef client](Installing_a_Chef_client.md).
+Once your server is installed, you can continue on to [install a chef workstation](Installing_a_Chef_workstation.md).

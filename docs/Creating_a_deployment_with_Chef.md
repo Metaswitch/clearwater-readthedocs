@@ -4,7 +4,7 @@ This is the final stage in creating a Clearwater deployment using the [automated
 
 ## Prerequisites
 
-* You must have [created the chef client machine](Installing_a_Chef_client.md) and have SSH access to the ubuntu user on it.
+* You must have [created the chef workstation machine](Installing_a_Chef_workstation.md) and have SSH access to the ubuntu user on it.
 * You must have [created a deployment environment](Creating_a_deployment_environment.md) and know its name, `<name>`.
 
 # Creating a Deployment
@@ -13,7 +13,7 @@ You now have two options - you can create an All-in-One node, where all the Clea
 
 ## Creating an All-in-One ("AIO") node
 
-To create a single machine instance running all the Clearwater components, run the following on the chef-client machine.
+To create a single machine instance running all the Clearwater components, run the following on the chef workstation machine.
 
 	cd ~/chef
 	knife box create cw_aio -E <name>
@@ -26,7 +26,7 @@ The following modifier is available.
 
 ## Creating a larger deployment
 
-To kick off construction of the deployment, run the following on the chef-client machine.
+To kick off construction of the deployment, run the following on the chef workstation machine.
 
     cd ~/chef
     knife deployment resize -E <name> --ralf-count 1 -V
