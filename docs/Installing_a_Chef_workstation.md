@@ -25,7 +25,7 @@ The Clearwater chef plugins use features from Ruby 1.9.3.  To start run the foll
 
     curl -L https://get.rvm.io | bash -s stable
 
-This may fail due to missing GPG signiatures. If this happens it will suggest a command to run to resolve the problem (e.g. gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`). Run the command suggested, then run the above command again, which should now succeed).
+This may fail due to missing GPG signatures. If this happens it will suggest a command to run to resolve the problem (e.g. gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3`). Run the command suggested, then run the above command again, which should now succeed).
 
 Next install the required ruby version.
 
