@@ -13,7 +13,7 @@ To launch the node
 *  From the EC2 console, make sure you're in the US East region, then select "Instances", "Launch instance" and then "Classic Wizard"
 *  Select the "Community AMIs" tab, and search for "Clearwater"
 *  Press "Select" for the Clearwater all-in-one AMI. Take the most recent version unless you have a good reason not to.
-*  Choose the Instance Type you require (the node runs fine for basic functional testing on an m1.small)
+*  Choose the Instance Type you require (the node runs fine for basic functional testing on an t2.small)
 *  From the remaining pages of parameters, the only ones that need to be set are Name (give the node whatever convenient name you wish), keypair and security group. 
 
 On the last page, press "Launch", and wait for the node to be started by EC2.
