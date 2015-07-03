@@ -8,8 +8,8 @@ These instructions will take you through installing a minimal Clearwater system 
 
 Before starting this process you will need the following:
 
-* Six machines running clean installs of [Ubuntu 12.04 - 64bit server edition](http://releases.ubuntu.com/precise/).
-    * The software has been tested on Amazon EC2 `m1.small` instances, so any machines at least as powerful as one of them will be sufficient.
+* Six machines running clean installs of [Ubuntu 14.04 - 64bit server edition](http://releases.ubuntu.com/trusty/).
+    * The software has been tested on Amazon EC2 `t2.small` instances, so any machines at least as powerful as one of them will be sufficient.
     * Each machine will take on a separate role in the final deployment.  The system requirements for each role are the same thus the allocation of roles to machines can be arbitrary.
     * The firewalls of these devices must be independently configurable.  This may require some attention when commissioning the machines.  For example, in Amazon's EC2, they should all be created in separate security groups.
     * On Amazon EC2, we've tested both within a [VPC](http://aws.amazon.com/vpc/) and without.  If using a VPC, we recommend using the "VPC with a Single Public Subnet" model (in the "VPC Wizard") as this is simplest.

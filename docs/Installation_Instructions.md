@@ -16,7 +16,7 @@ These pages will guide you through installing a Clearwater deployment from scrat
 
 3. A manual install, using Debian packages and hand configuring each machine.  This is the recommended method if chef is not supported on your virtualization platform or your DNS is not provided by Amazon's Route53.
 
-    This install can be performed on any collection of machines (at least 5 are needed) running Ubuntu 12.04 as it makes no assumptions about the environment in which the machines are running.  On the other hand, it requires manually configuring every machine, firewalls and DNS entries, meaning it is not a good choice for spinning up a large-scale deployment.
+    This install can be performed on any collection of machines (at least 5 are needed) running Ubuntu 14.04 as it makes no assumptions about the environment in which the machines are running.  On the other hand, it requires manually configuring every machine, firewalls and DNS entries, meaning it is not a good choice for spinning up a large-scale deployment.
 
 4. Installing from source.  If you are running on a non-Ubuntu-based OS, or need to test a code fix or enhancement you've made, you can also install Clearwater from source, building the code yourself.  Per-component instructions are provided that cover the route from source code to running services.  Familiarity with performing a manual install on Ubuntu will help with configuring your network correctly after the software is installed.
 
@@ -26,7 +26,7 @@ These pages will guide you through installing a Clearwater deployment from scrat
 
 The installation process for a full Clearwater deployment (i.e. not an all-in-one) can be described at a high level as follows:
 
-* Sourcing enough machines to host the deployment (minimum is 6) and installing an OS on them all.  [Ubuntu 12.04](http://releases.ubuntu.com/precise/) is the recommended and tested OS for hosting Clearwater.
+* Sourcing enough machines to host the deployment (minimum is 6) and installing an OS on them all.  [Ubuntu 14.04](http://releases.ubuntu.com/trusty/) is the recommended and tested OS for hosting Clearwater.
 * Preparing each machine to allow installation of the Clearwater software.
 * Installing the Clearwater software onto the machines.
 * Configuring firewalls to allow the various machines to talk to each other as required.

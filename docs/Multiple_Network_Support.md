@@ -52,7 +52,7 @@ You will need to determine the IP configuration for your second network, includi
 
 ### Preparing the network
 
-Due to the varied complexities of IP networking, it would be impractical to attempt to automate configuring the Linux-level view of the various networks.  Network namespaces are created and managed using the `ip netns` tool, which is a standard part of Ubuntu 12.04.
+Due to the varied complexities of IP networking, it would be impractical to attempt to automate configuring the Linux-level view of the various networks.  Network namespaces are created and managed using the `ip netns` tool, which is a standard part of Ubuntu 14.04.
 
 The following example commands (when run as root) create a network namespace, move `eth1` into it, configure a static IP address and configure routing.
 
@@ -64,7 +64,7 @@ The following example commands (when run as root) create a network namespace, mo
 
 Obviously you should make any appropriate changes to the above to correctly configure your chosen signalling network.  These changes are **not** persisted across reboots on Linux and you should ensure that these are run on boot before the `clearwater-infrastructure` service is run.  A sensible place to configure this would be in `/etc/rc.local`.
 
-Finally, you should create `/etc/netns/signalling/resolv.conf` configuring the DNS server you'd like to use on the signalling network.  The format of this file is documented at <http://manpages.ubuntu.com/manpages/precise/man5/resolv.conf.5.html> but a simple example file might just contain the following.
+Finally, you should create `/etc/netns/signalling/resolv.conf` configuring the DNS server you'd like to use on the signalling network.  The format of this file is documented at <http://manpages.ubuntu.com/manpages/trusty/man5/resolv.conf.5.html> but a simple example file might just contain the following.
 
     nameserver <DNS IP address>
 

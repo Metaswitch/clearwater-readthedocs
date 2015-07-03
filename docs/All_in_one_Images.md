@@ -8,13 +8,13 @@ This page describes the all-in-one images, their capabilities and restrictions a
 
 All-in-one images consist of
 
-*   Ubuntu 12.04, configured to use DHCP
+*   Ubuntu 14.04, configured to use DHCP
 *   bono, sprout, homestead, homer and ellis
 *   Clearwater auto-configuration scripts.
 
 On boot, the image retrieves its IP configuration over DHCP and the auto-configuration scripts then configure the bono, sprout, homestead, homer and ellis software to match.
 
-The image is designed to run on a virtual machine with a single core, 1.7GB RAM and 8GB of disk space.  On EC2, this is an m1.small.
+The image is designed to run on a virtual machine with a single core, 2GB RAM and 8GB of disk space.  On EC2, this is an t2.small.
 
 ## Capabilities and Restrictions
 
@@ -38,7 +38,7 @@ All-in-one images can be installed on EC2 or on your own virtualization platform
 
 If your virtualization platform is not EC2 and doesn't support OVF, you may still be able to manually build an all-in-one node.  To do so,
 
-1.  install [Ubuntu 12.04 - 64bit server edition](http://releases.ubuntu.com/precise/)
+1.  install [Ubuntu 14.04 - 64bit server edition](http://releases.ubuntu.com/trusty/)
 2.  find the `preseed/late_command` entry in the [all-in-one image's install script](https://github.com/Metaswitch/clearwater-vm-images/blob/master/ubuntu-ovf/ubuntu-server.seed) - as of writing this is as follows, but please check the linked file for the latest version
 
          d-i preseed/late_command string in-target bash -c '{ echo "#!/bin/bash" ; \

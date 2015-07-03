@@ -37,11 +37,9 @@ pages:
 - ['Clearwater_IP_Port_Usage.md', 'Integration', 'Clearwater Firewall Configuration']
 - ['Clearwater_DNS_Usage.md', 'Integration', 'Clearwater DNS Usage']
 - ['ENUM.md', 'Integration', 'ENUM']
-- ['Plivo.md', 'Integration', 'Plivo']
 - ['Voxbone.md', 'Integration', 'Voxbone']
 - ['Clearwater_SNMP_Statistics.md', 'Integration', 'Clearwater SNMP Statistics']
 - ['SNMP_Alarms.md', 'Integration', 'SNMP Alarms']
-- ['Configuring_MMonit.md', 'Integration', 'Configuring M/Monit']
 
 # Features:
 - ['Application_Server_Guide.md', 'Features', 'Application Server Guide']
