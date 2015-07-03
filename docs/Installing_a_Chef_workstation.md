@@ -133,11 +133,6 @@ file.
     # must be validated or email sending will fail.
     knife[:email_sender]      = "clearwater@example.com"
 
-    # MMonit server credentials, if any.
-    knife[:mmonit_server]     = ""
-    knife[:mmonit_username]   = ""
-    knife[:mmonit_password]   = ""
-
 Fill in the values appropriate to your deployment using a text editor
 as directed.
 
@@ -160,10 +155,6 @@ as directed.
 
 * The SMTP credentials are required only for password recovery.
   If you leave them unchanged, this function will not work.
-
-* The M/Monit credentials are only required if you have an
-  [M/Monit](Configuring_MMonit.md) server. Otherwise you can leave them
-  unchanged.
 
 ## Test your settings
 
