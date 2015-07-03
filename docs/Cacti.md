@@ -69,7 +69,7 @@ clearwater-sip-stress-stats`).
 To manually point Cacti at a new node,
 
 1.  go to Devices and Add a new node, giving a Description and Hostname,
-    setting a Host Template of "Bono", "Sprout" or "SIPp" 9depending on the node type), Downed Device
+    setting a Host Template of "Bono", "Sprout" or "SIPp" depending on the node type), Downed Device
     Detection to "SNMP Uptime" and SNMP Community to "clearwater"
 2.  click "Create Graphs for this Host" and select the graphs that you
     want - "ucd/net - CPU Usage" is a safe bet, but you might also want
