@@ -30,12 +30,6 @@ Follow steps 1-6 in the [chef docs](http://docs.chef.io/install_server.html).
 
 Once you have completed these steps, copy the `<chef-user-name>.pem` file off of the chef server - you will need it when installing a chef workstation.
 
-Next, install the chef server web UI by running the following commands.
-
-    sudo chef-server-ctl install opscode-manage
-    sudo chef-server-ctl reconfigure
-    sudo opscode-manage-ctl reconfigure
-
 ## Next steps
 
 Once your server is installed, you can continue on to [install a chef workstation](Installing_a_Chef_workstation.md).
