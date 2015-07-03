@@ -62,18 +62,6 @@ Ralf logs to `/var/log/ralf/ralf*.txt`.  By default, it is set to log level 2, w
 
 If you see Ralf dying/restarting with no apparent cause in `/var/log/ralf/ralf*.txt`, check `/var/log/monit.log` and `/var/log/syslog` around that time - these can sometimes give clues as to the cause.
 
-## Chef
-
-*   After stopping/restarting the Chef server, you might see logs as follows.
-
-        merb : chef-server (api) : worker (port 4000) ~ Connection failed - user: chef - (Bunny::ProtocolError)
-
-    This can be worked around by recreating the chef account, as follows, including the `<rabbitMQPass>` you supplied when you [installed the Chef server](Installing_a_Chef_server.md).
-
-        rabbitmqctl add_vhost /chef
-        rabbitmqctl add_user chef <rabbitMQPass>
-        rabbitmqctl set_permissions -p /chef chef ".*" ".*" ".*"
-
 ## Deployment Management
 
 Clearwater comes with a system that [automate clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md). If you cannot scale your deployment up or down, or if configuration changes are not being applied, this system may not be working.
