@@ -405,7 +405,7 @@ To enable ENUM lookups on Sprout, edit `/etc/clearwater/shared_config` and add t
     enum_server=<IP addresses of enum servers>
     enum_file=<location of enum file>
 
-If you use the ENUM file, enter the ENUM rules in the JSON format (shown above).  If you use `/etc/clearwater/enum.json` as your ENUM filename, you can have it automatically synchronized across your deployment by running `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_enum_json` after creating or updating the file.  In this case, other Sprout nodes will automatically download and use the uploaded ENUM rules.
+If you use the ENUM file, enter the ENUM rules in the JSON format (shown above).  If you are using the enhanced node management framework provided by `clearwater-etcd`, and you use `/etc/clearwater/enum.json` as your ENUM filename, you can automatically synchronize changes across your deployment by running `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_enum_json` after creating or updating the file.  In this case, other Sprout nodes will automatically download and use the uploaded ENUM rules.
 
 It's possible to configure Sprout with secondary and tertiary ENUM servers, by providing a comma-separated list (e.g. `enum_server=1.2.3.4,10.0.0.1,192.168.1.1`). If this is done:
 
