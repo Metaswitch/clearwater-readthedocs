@@ -74,3 +74,5 @@ There can be only one route set for any given SIP trunk IP address or host name.
 A default route set can be configured by having an entry where the domain is set to `"*"`. This will be used by the BGCF if it is trying to route based on the the domain and there's no explicit match for the domain in the configuration. 
 
 There is no default route set if the BGCF is routing based on the routing number provided. 
+
+After making a change to this file you should run `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_bgcf_json` to ensure the change is synchronized to other Sprout nodes on your system (including nodes added in the future).
