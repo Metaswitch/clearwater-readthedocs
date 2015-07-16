@@ -58,8 +58,8 @@ Sprout nodes provide the following statistics:
 * The number of attempts, successes and failures for third-party initial registrations, indexed by time period.
 * The number of attempts, successes and failures for third-party re-registrations, indexed by time period.
 * The number of attempts, successes and failures for third-party de-registrations, indexed by time period.
-* The number of attempts, successes and failures for AKA authentications, indexed by time period (AKA authentication attempts with a correct response but that fail due to the sequence number in the nonce being out of sync are counted as successes).
-* The number of attempts, successes and failures for SIP digest authentications, indexed by time period (authentication attempts with a correct response but that fail due to being stale are counted as failures).
+* The number of attempts, successes and failures for AKA authentications on register requests, indexed by time period (AKA authentication attempts with a correct response but that fail due to the sequence number in the nonce being out of sync are counted as successes).
+* The number of attempts, successes and failures for SIP digest authentications on register requests, indexed by time period (authentication attempts with a correct response but that fail due to being stale are counted as failures).
 * The number of parallel TCP connections to each Homestead node.
 * The number of parallel TCP connections to each Homer node.
 * The number of incoming SIP requests, indexed by time period.
