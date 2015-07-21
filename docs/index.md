@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[In Dubious Battle](http://www.goodreads.com/book/show/56083.In_Dubious_Battle)".
+The latest stable release of Clearwater is "Jane Eyre".
 
 ## Architecture
 
