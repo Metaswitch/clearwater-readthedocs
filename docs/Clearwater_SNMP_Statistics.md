@@ -1,4 +1,4 @@
-Clearwater provides a set of statistics about the performance of each Clearwater nodes over SNMP. Currently, this is available on Bono, Sprout, Ralf and Homestead nodes.
+Clearwater provides a set of statistics about the performance of each Clearwater nodes over SNMP. Currently, this is available on Bono, Sprout, Ralf and Homestead nodes, and the MMTel, Call Diversion, Memento and Gemini Application Server nodes.
 
 ## Configuration
 
@@ -60,6 +60,8 @@ Sprout nodes provide the following statistics:
 * The number of attempts, successes and failures for third-party de-registrations, indexed by time period.
 * The number of attempts, successes and failures for AKA authentications on register requests, indexed by time period (AKA authentication attempts with a correct response but that fail due to the sequence number in the nonce being out of sync are counted as successes).
 * The number of attempts, successes and failures for SIP digest authentications on register requests, indexed by time period (authentication attempts with a correct response but that fail due to being stale are counted as failures).
+* The number of attempts, successes and failures for authentications on non-register requests, indexed by time period.
+* The number of requests routed according to a pre-loaded route, indexed by time period.
 * The number of parallel TCP connections to each Homestead node.
 * The number of parallel TCP connections to each Homer node.
 * The number of incoming SIP requests, indexed by time period.
@@ -70,6 +72,12 @@ Sprout nodes provide the following statistics:
 * The transfer rate (in bytes/second) of data during this resynchronization, over the last 5 seconds (overall, and per bucket).
 * The number of remaining nodes to query during the current Chronos scaling operation.
 * The number of timers, and number of invalid timers, processed over the last 5 seconds.
+* The number of attempts, successes and failures for incoming SIP transactions for the ICSCF, indexed by time period and request type.
+* The number of attempts, successes and failures for outgoing SIP transactions for the ICSCF, indexed by time period and request type.
+* The number of attempts, successes and failures for incoming SIP transactions for the SCSCF, indexed by time period and request type.
+* The number of attempts, successes and failures for outgoing SIP transactions for the SCSCF, indexed by time period and request type.
+* The number of attempts, successes and failures for incoming SIP transactions for the BGCF, indexed by time period and request type.
+* The number of attempts, successes and failures for outgoing SIP transactions for the BGCF, indexed by time period and request type.
 
 ### Ralf statistics
 
@@ -94,3 +102,31 @@ Homestead nodes provide the following statistics:
 * The number of incoming requests over the past five seconds.
 * The number of requests rejected due to overload over the past five seconds.
 * The total number of Diameter requests with an invalid Destination-Realm or invalid Destination-Host over the last 5 seconds.
+
+### Call Diversion App Server Statistics
+
+Call Diversion App Server nodes provide the following statistics:
+
+* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.
+* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.
+
+### Memento App Server Statistics
+
+Memento App Server nodes provide the following statistics:
+
+* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.
+* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.
+
+### MMTel App Server Statistics
+
+MMTel App Server nodes provide the following statistics:
+
+* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.
+* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.
+
+### Gemini App Server Statistics
+
+Gemini App Server nodes provide the following statistics:
+
+* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.
+* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.
