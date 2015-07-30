@@ -61,7 +61,7 @@ Sprout nodes provide the following statistics:
 * The number of attempts, successes and failures for AKA authentications on register requests, indexed by time period (AKA authentication attempts with a correct response but that fail due to the sequence number in the nonce being out of sync are counted as successes).
 * The number of attempts, successes and failures for SIP digest authentications on register requests, indexed by time period (authentication attempts with a correct response but that fail due to being stale are counted as failures).
 * The number of attempts, successes and failures for authentications on non-register requests, indexed by time period.
-* The number of requests routed according to a pre-loaded route, indexed by time period.
+* The number of requests routed by the S-CSCF according to a route pre-loaded by an app server, indexed by time period.
 * The number of parallel TCP connections to each Homestead node.
 * The number of parallel TCP connections to each Homer node.
 * The number of incoming SIP requests, indexed by time period.
