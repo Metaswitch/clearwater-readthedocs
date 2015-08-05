@@ -124,12 +124,13 @@ Install the Bono and Restund packages with:
 Install the Sprout package with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install sprout --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
+
 
 If you want the Sprout nodes to include a Memento Application server, then install the memento packages with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install memento memento-nginx --yes
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ### Homer
 
