@@ -127,24 +127,21 @@ Install the Sprout package with:
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 
-If you want the Sprout nodes to include a Memento Application server, then install the memento packages with:
+If you want the Sprout nodes to include a Memento Application server, then install the Memento packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install memento memento-nginx --yes
 
 ### Homer
 
-Install the Homer and Cassandra packages with:
+Install the Homer packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install homer --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ### Homestead
 
-Install the Homestead and Cassandra packages with:
+Install the Homestead packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead homestead-prov --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
