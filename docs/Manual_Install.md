@@ -129,7 +129,7 @@ Install the Sprout package with:
 
 If you want the Sprout nodes to include a Memento Application server, then install the Memento packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install memento memento-nginx --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install memento-as memento-nginx --yes
 
 ### Homer
 
