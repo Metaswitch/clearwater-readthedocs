@@ -78,7 +78,7 @@ Sprout nodes provide the following statistics:
 * The number of attempts, successes and failures for outgoing SIP transactions for the SCSCF, indexed by time period and request type.
 * The number of attempts, successes and failures for incoming SIP transactions for the BGCF, indexed by time period and request type.
 * The number of attempts, successes and failures for outgoing SIP transactions for the BGCF, indexed by time period and request type.
-* The weighted average permitted request rate, variance, highest PRR, and lowest PRR as determined by the load monitor, indexed by time period.
+* The permitted request rate (PRR) is an estimate for the sustainable request rate without causing large latency. Sprout provides a weighted average permitted request rate, variance, highest PRR, and lowest PRR, indexed by time period.
 * The value of the smoothed latency at the last permitted request rate update.
 * The value of the target (maximum permissible) latency at the last permitted request rate update.
 * The number of penalties experienced at the last permitted request rate update.
