@@ -95,13 +95,13 @@ Ralf nodes provide the following statistics:
 Homestead nodes provide the following statistics:
 
 * The standard SNMP CPU and memory usage statistics (see http://net-snmp.sourceforge.net/docs/mibs/ucdavis.html for details)
-* The average latency, variance, highest call latency and lowest latency on HTTP requests over the past five seconds.
-* The average latency, variance, highest latency and lowest latency on the Cx interface over the past five seconds.
-* The average latency, variance, highest latency and lowest latency on Multimedia-Auth Requests on the Cx interface over the past five seconds.
-* The average latency, variance, highest latency and lowest latency on Server-Assignment, User-Authorization and Location-Information Requests on the Cx interface over the past five seconds.
-* The number of incoming requests over the past five seconds.
-* The number of requests rejected due to overload over the past five seconds.
-* The total number of Diameter requests with an invalid Destination-Realm or invalid Destination-Host over the last 5 seconds.
+* The average latency, variance, highest call latency and lowest latency on HTTP requests, indexed by time period.
+* The average latency, variance, highest latency and lowest latency on the Cx interface, indexed by time period.
+* The average latency, variance, highest latency and lowest latency on Multimedia-Auth Requests on the Cx interface, indexed by time period.
+* The average latency, variance, highest latency and lowest latency on Server-Assignment, User-Authorization and Location-Information Requests on the Cx interface, indexed by time period.
+* The number of incoming requests, indexed by time period.
+* The number of requests rejected due to overload, indexed by time period.
+* The total number of Diameter requests with an invalid Destination-Realm or invalid Destination-Host, indexed by time period.
 
 ### Call Diversion App Server Statistics
 
