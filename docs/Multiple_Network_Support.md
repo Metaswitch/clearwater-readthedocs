@@ -70,12 +70,11 @@ Finally, you should create `/etc/netns/signalling/resolv.conf` configuring the D
 
 ### Project Clearwater Configuration
 
-Now that the signalling namespace is configured and has networking set up, it's time to apply it to Project Clearwater.  To do this, add the following two lines to `/etc/clearwater/shared_config`:
+Now that the signalling namespace is configured and has networking set up, it's time to apply it to Project Clearwater.  To do this, change the `local_ip`, `public_ip` and `public_hostname` lines in `/etc/clearwater/local_config` to refer to the node's identities in the signaling network and add the following lines:
 
     signaling_namespace=<namespace name>
     signaling_dns_server=<DNS IP address>
-
-And change the `local_ip` line in `/etc/clearwater/local_config` to the IP address on the signalling network.
+    management_local_ip=<Node's local IP address in the management
 
 If you've not yet installed the Project Clearwater services, do so now and the namespaces will be automatically used.
 
