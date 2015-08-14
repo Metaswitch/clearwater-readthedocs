@@ -6,7 +6,7 @@ These SNMP statistics require:
 
 * the clearwater-snmp-handler-homestead package to be installed for Homestead nodes
 * the clearwater-snmp-handler-chronos and clearwater-snmp-handler-astaire packages to be installed for Sprout and Ralf nodes
-    
+
 These packages will be automatically installed when installing through the Chef automation system; for a manual install, you will need to install the packages with `sudo apt-get install`.
 
 ## Usage
@@ -78,6 +78,11 @@ Sprout nodes provide the following statistics:
 * The number of attempts, successes and failures for outgoing SIP transactions for the SCSCF, indexed by time period and request type.
 * The number of attempts, successes and failures for incoming SIP transactions for the BGCF, indexed by time period and request type.
 * The number of attempts, successes and failures for outgoing SIP transactions for the BGCF, indexed by time period and request type.
+* The permitted request rate (PRR) is an estimate for the sustainable request rate without causing large latency. Sprout provides a weighted average permitted request rate, variance, highest PRR, and lowest PRR, indexed by time period.
+* The value of the smoothed latency at the last permitted request rate update.
+* The value of the target (maximum permissible) latency at the last permitted request rate update.
+* The number of penalties experienced at the last permitted request rate update.
+* The current permitted request rate.
 
 ### Ralf statistics
 
