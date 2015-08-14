@@ -72,6 +72,10 @@ Sprout nodes provide the following statistics:
 * The transfer rate (in bytes/second) of data during this resynchronization, over the last 5 seconds (overall, and per bucket).
 * The number of remaining nodes to query during the current Chronos scaling operation.
 * The number of timers, and number of invalid timers, processed over the last 5 seconds.
+* The total number of timers being managed by a Chronos node at the current
+    time.
+* The weighted average of total timer count, variance, highest timer count,
+    lowest timer count, indexed by time period.
 * The number of attempts, successes and failures for incoming SIP transactions for the ICSCF, indexed by time period and request type.
 * The number of attempts, successes and failures for outgoing SIP transactions for the ICSCF, indexed by time period and request type.
 * The number of attempts, successes and failures for incoming SIP transactions for the SCSCF, indexed by time period and request type.
