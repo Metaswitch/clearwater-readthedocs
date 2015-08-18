@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "King Lear".
+The latest stable release of Clearwater is "[Louise de La Vallière](https://www.goodreads.com/book/show/937643.Louise_de_La_Valli_re)".
 
 ## Architecture
 
