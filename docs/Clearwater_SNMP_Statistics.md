@@ -52,9 +52,9 @@ Sprout nodes provide the following statistics:
 * The average latency, variance, highest latency and lowest latency for requests to Homestead's `/impu/<public ID>/reg-data` endpoint, indexed by time period.
 * The average latency, variance, highest latency and lowest latency for requests to Homestead's `/impu/<public ID>/location` endpoint, indexed by time period.
 * The average latency, variance, highest latency and lowest latency for requests to Homer, indexed by time period.
-* The number of attempts, successes and failures for initial registrations, indexed by time period.
-* The number of attempts, successes and failures for re-registrations, indexed by time period.
-* The number of attempts, successes and failures for de-registrations, indexed by time period.
+* The number of attempts, successes and failures for initial registrations, indexed by time period (initial registrations that fail due to failed authentication are not counted here).
+* The number of attempts, successes and failures for re-registrations, indexed by time period (re-registrations that fail due to failed authentication are not counted here).
+* The number of attempts, successes and failures for de-registrations, indexed by time period (de-registrations that fail due to failed authentication are not counted here).
 * The number of attempts, successes and failures for third-party initial registrations, indexed by time period.
 * The number of attempts, successes and failures for third-party re-registrations, indexed by time period.
 * The number of attempts, successes and failures for third-party de-registrations, indexed by time period.
