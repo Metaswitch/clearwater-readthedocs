@@ -30,8 +30,7 @@ For example, a stat queried at 12:01:33 would display the stats covering:
 All latency values are in microseconds.
 
 Many of the statistics listed below are SNMP tables (although the MIB file should be examined to determine exactly which ones). The full table can be retrieved by using the 'snmptable' command. For example, the Initial Registration Stats table for sprout can be retrieved by running:
-
-snmptable -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationsTable
+`snmptable -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationsTable`
 
 Note that running an 'snmpget' on a table OID will result in a "No Such Object available on this agent at this OID" message.
 
