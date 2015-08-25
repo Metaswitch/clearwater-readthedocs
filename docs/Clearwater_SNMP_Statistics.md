@@ -33,9 +33,9 @@ Many of the statistics listed below are stored in SNMP tables (although the MIB 
 `snmptable -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationsTable`
 
 The individual table elements can be accessed using:  
-`snmpget -v2c -c clearwater <ip> <table OID>.1.<column>.<row>`
+`snmpget -v2c -c clearwater <ip> <table OID>.1.<column>.<row>`  
 For example, the Initial Registration Stats table has an OID of `.1.2.826.0.1.1578918.9.3.9`, so the number of initial registration attempts in the current five-minute period can be retrieved by:    
-`snmpget -v2c -c clearwater <ip> .1.2.826.0.1.1578918.9.3.9.1.2.3`
+`snmpget -v2c -c clearwater <ip> .1.2.826.0.1.1578918.9.3.9.1.2.3`  
 or by:  
 `snmpget -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationAttempts.scopePrevious5MinutePeriod`
 
