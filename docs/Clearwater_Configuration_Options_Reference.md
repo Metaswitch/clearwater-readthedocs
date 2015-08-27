@@ -21,7 +21,7 @@ This section describes settings that are specific to a single node and are not a
 * `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
 * `public_hostname` - this should be set to a hostname which resolves to `public_ip`, and will communicate with only this node (i.e. not be round-robined to other nodes). It can be set to `public_ip` if necessary.
 * `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
-* `etcd_cluster` - this is a comma separated list of IP addresses, for example `etcd_cluster="10.0.0.1,10.0.0.2`. It should be set on one of two ways:
+* `etcd_cluster` - this is a comma separated list of IP addresses, for example `etcd_cluster=10.0.0.1,10.0.0.2`. It should be set on one of two ways:
   * If the node is forming a new deployment, it should contain the IP addresses of all the nodes that are forming the new deployment (including this node).
   * If the node is joining an existing deployment, it should contain the IP addresses of all the nodes that are currently in the deployment.
 
