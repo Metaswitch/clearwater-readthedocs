@@ -35,9 +35,9 @@ Homestead actually contains two databases (`homestead_provisioning` and `homeste
 
 To list the backups that have been taken on homestead, homer or memento, run
 
-*   `sudo /usr/share/clearwater/bin/list_backups.sh homestead_provisioning` and `sudo /usr/share/clearwater/bin/list_backups.sh homestead_cache` for homestead
-*   `sudo /usr/share/clearwater/bin/list_backups.sh homer` for homer
-*   `sudo /usr/share/clearwater/bin/list_backups.sh memento` for memento.
+*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/list_backups.sh homestead_provisioning` and `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/list_backups.sh homestead_cache` for homestead
+*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/list_backups.sh homer` for homer
+*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/list_backups.sh memento` for memento.
 
 This produces output of the following form, listing each of the available backups.
 
@@ -49,7 +49,7 @@ This produces output of the following form, listing each of the available backup
 
 You can also specify a directory to search in for backups, e.g. for homestead:
 
-`sudo /usr/share/clearwater/bin/list_backups.sh homestead_provisioning <backup dir>`
+`sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/list_backups.sh homestead_provisioning <backup dir>`
 
 ## Taking a Manual Backup
 
@@ -82,9 +82,9 @@ This file can, and should, be copied off the ellis node to a secure backup serve
 
 To take a manual backup on homestead, homer or memento, run
 
-*   `sudo /usr/share/clearwater/bin/do_backup.sh homestead_provisioning` and `sudo /usr/share/clearwater/bin/do_backup.sh homestead_cache` on homestead
-*   `sudo /usr/share/clearwater/bin/do_backup.sh homer` on homer
-*   `sudo /usr/share/clearwater/bin/do_backup.sh memento` on memento.
+*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning` and `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache` on homestead
+*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer` on homer
+*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh memento` on memento.
 
 This produces output of the following form, reporting the successfully-created backup.
 
@@ -108,9 +108,9 @@ Ellis, homestead, homer and memento are all automatically configured to take dai
 If you want to turn this on, edit your crontab by running `sudo crontab -e` and add the following lines if not already present:
 
 *   `0 0 * * * /usr/share/clearwater/ellis/backup/do_backup.sh` on ellis
-*   `0 0 * * * /usr/share/clearwater/bin/do_backup.sh homestead_provisioning` and `5 0 * * * /usr/share/clearwater/bin/do_backup.sh homestead_cache` on homestead
-*   `0 0 * * * /usr/share/clearwater/bin/do_backup.sh homer` on homer
-*   `0 0 * * * /usr/share/clearwater/bin/do_backup.sh memento` on memento.
+*   `0 0 * * * /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning` and `5 0 * * * /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache` on homestead
+*   `0 0 * * * /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer` on homer
+*   `0 0 * * * /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh memento` on memento.
 
 These backups are stored locally, in the same locations as they would be generated for a manual backup.
 
@@ -146,9 +146,9 @@ On homestead/homer/memento there is no need to further move the files as the bac
 To actually restore from the backup file, run
 
 *   `sudo /usr/share/clearwater/ellis/backup/restore_backup.sh <snapshot>` on ellis
-*   `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_provisioning <snapshot> <backup directory>` and `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_cache <snapshot> <backup directory>` on homestead
-*   `sudo /usr/share/clearwater/bin/restore_backup.sh homer <snapshot> <backup directory>` on homer
-*   `sudo /usr/share/clearwater/bin/restore_backup.sh memento <snapshot> <backup directory>` on memento.
+*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/restore_backup.sh homestead_provisioning <snapshot> <backup directory>` and `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/restore_backup.sh homestead_cache <snapshot> <backup directory>` on homestead
+*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/restore_backup.sh homer <snapshot> <backup directory>` on homer
+*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/restore_backup.sh memento <snapshot> <backup directory>` on memento.
 
 Ellis will produce output of the following form.
 
