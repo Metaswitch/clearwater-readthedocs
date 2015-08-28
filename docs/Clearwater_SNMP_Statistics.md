@@ -15,7 +15,7 @@ Clearwater nodes provide SNMP statistics over port 161 using SNMP v2c and commun
 
 Our SNMP statistics are provided through plugins or subagents to the standard SNMPd packaged with Ubuntu, so querying port 161 (the standard SNMP port) on a Clearwater node will provide system-level stats like CPU% as well as any available Clearwater stats.
 
-To load the MIB file, allowing you to refer to MIB objectsby name,first place it in the `~/.snmp/mibs` directory. To load the MIB file for just the current session, run `export MIBS=+PROJECT-CLEARWATER-MIB`. To load the MIB file every time, add the line `mibs +PROJECT-CLEARWATER-MIB` to a snmp.conf file in the `~/.snmp` directory.
+To load the MIB file, allowing you to refer to MIB objectsby name, first place it in the `~/.snmp/mibs` directory. To load the MIB file for just the current session, run `export MIBS=+PROJECT-CLEARWATER-MIB`. To load the MIB file every time, add the line `mibs +PROJECT-CLEARWATER-MIB` to a snmp.conf file in the `~/.snmp` directory.
 
 If a statistic is indexed by time period, then it displays the relevant statistics over:
 
