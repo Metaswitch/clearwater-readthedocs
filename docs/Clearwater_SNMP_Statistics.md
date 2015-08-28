@@ -57,10 +57,10 @@ Sprout nodes provide the following statistics:
 * The number of attempts, successes and failures for authentications on non-register requests, indexed by time period.
 * The number of attempts, successes and failures for initial registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).
 * The number of attempts, successes and failures for re-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).
-* The number of attempts, successes and failures for de-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the aunthentication stats and not here).
-* The number of attempts, successes and failures for third-party initial registrations, indexed by time period (registrations that fail due to failed authentication are counted in the aunthentication stats and not here).
-* The number of attempts, successes and failures for third-party re-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the aunthentication stats and not here).
-* The number of attempts, successes and failures for third-party de-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the aunthentication stats and not here).
+* The number of attempts, successes and failures for de-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).
+* The number of attempts, successes and failures for third-party initial registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).
+* The number of attempts, successes and failures for third-party re-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authetication stats and not here).
+* The number of attempts, successes and failures for third-party de-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).
 * The number of requests routed by the S-CSCF according to a route pre-loaded by an app server, indexed by time period.
 * The number of parallel TCP connections to each Homestead node.
 * The number of parallel TCP connections to each Homer node.
