@@ -36,7 +36,6 @@ Clearwater is designed from the ground up to scale horizontally across multiple 
 
 To help you manage your deployment, Clearwater provides:
 
-* [Command-line/scriptable provisioning tools](Provisioning_Subscribers.md)
 * [Support for separated management networks](Multiple_Network_Support.md)
 * [Deployment monitoring](Cacti.md)
 * [Backup](Backups.md)
