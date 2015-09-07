@@ -185,7 +185,7 @@ Install the Homer and Cassandra packages with:
 Install the Homestead and Cassandra packages with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-cassandra --yes
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead homestead-prov --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead homestead-prov clearwater-prov-tools --yes
 
 ### Ralf
 
