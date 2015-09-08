@@ -111,6 +111,12 @@ Homestead nodes provide the following statistics:
 * The number of incoming requests, indexed by time period.
 * The number of requests rejected due to overload, indexed by time period.
 * The total number of Diameter requests with an invalid Destination-Realm or invalid Destination-Host, indexed by time period.
+* The number of Multimedia-Authorization-Answers with a given result-code received over the Cx interface, indexed by time period.
+* The number of Server-Assignment-Answers with a given result-code received over the Cx interface, indexed by time period.
+* The number of User-Authorization-Answers with a given result-code received over the Cx interface, indexed by time period.
+* The number of Location-Information-Answers with a given result-code received over the Cx interface, indexed by time period.
+* The number of Push-Profile-Answers with a given result-code sent over the Cx interface, indexed by time period.
+* The number of Registration-Termination-Answers with a given result-code sent over the Cx interface, indexed by time period.
 
 ### Call Diversion App Server Statistics
 
