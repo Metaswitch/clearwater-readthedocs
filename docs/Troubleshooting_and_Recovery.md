@@ -8,6 +8,8 @@ This document describes how to troubleshoot some common problems, and associated
 
 *  The [Clearwater diagnostics monitor](https://github.com/Metaswitch/clearwater-infrastructure/blob/master/clearwater-diags-monitor.md) detects crashes in native clearwater processes (bono, sprout and homestead) and captures a diagnostics bundle containing a core file (among other useful information).  A diagnostics bundle can also be created by running a command line script.
 
+*  By default each component logs to `/var/log/<service>/`, at log level 2 (which only includes errors and very high level events). To see more detailed logs you can enable debug logging for the components; details for how to do this for each component are below. Note that if you want to run stress through your deployment, you should revert the log levels back to the default level.
+
 ## Ellis
 
 The most common problem from ellis is it reporting "Failed to update server".  This can happen for several reasons.
@@ -15,6 +17,8 @@ The most common problem from ellis is it reporting "Failed to update server".  T
 *   If ellis reports "Failed to update server" when allocating a new number (either after an explicit request or as part of creating a whole new account), check that ellis has free numbers to allocate.  The [create_numbers.py script](Manual_Install/#ellis) is safe to re-run, to ensure that numbers have been allocated.
 
 *   Check the `/var/log/ellis/ellis-*.log` files.  If these indicate that a timeout occurred communicating with homer or homestead, check that the DNS entries for homer and homestead exist and are configured correctly.  If these are already correct, check homer or homestead to see if they are behaving incorrectly.
+
+*  To turn on debug logging for Ellis, write `LOG_LEVEL = logging.DEBUG` to the `local_settings.py` file (at `/usr/share/clearwater/ellis/src/metaswitch/ellis/local_settings.py`). Then restart clearwater-infrastructure (`sudo service clearwater-infrastructure restart), and restart Ellis (`sudo service ellis stop` - it will be restarted by monit).
 
 To examine ellis' database, run `mysql` (as root), then type `use ellis;` to set the correct database.  You can then issue standard SQL queries on the users and numbers tables, e.g. `SELECT * FROM users WHERE email = '<email address>'`.
 
@@ -32,7 +36,7 @@ The most common problem on homer and homestead is failing to read or write to th
 
 *   Check that Cassandra is clustered correctly (if running a multi-node system).  `nodetool status` tells you which nodes are in the cluster, and how the keyspace is distributed among them.
 
-If this doesn't help, homer logs to `/var/log/homer/homer-*.log` and homestead logs to `/var/log/homestead/homestead-*.log` and `/var/log/homestead-prov/homestead-*.log`.
+If this doesn't help, homer logs to `/var/log/homer/homer-*.log` and homestead logs to `/var/log/homestead/homestead-*.log` and `/var/log/homestead-prov/homestead-*.log`. To turn on debug logging for Homer or Homestead-prov, write `LOG_LEVEL = logging.DEBUG` to the `local_settings.py` file (at `/usr/share/clearwater/<homer|homestead-prov>/src/metaswitch/crest/local_settings.py`). Then restart clearwater-infrastructure (`sudo service clearwater-infrastructure restart), and restart Homer/Homestead-prov (`sudo service <homer|homestead-prov> stop` - they will be restarted by monit). To turn on debug logging for Homestead write `log_level=5` to `etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Homestead (`sudo service homestead stop` - it will be restarted by monit).
 
 To examine homer or homestead's database, run `cqlsh` and then type `use homer;`, `use homestead_provisioning;` or `use homestead_cache` to set the correct database.  You can then issue CQL queries such as `SELECT * FROM impi WHERE private_id = '<private user ID>'`.
 
@@ -40,11 +44,13 @@ To examine homer or homestead's database, run `cqlsh` and then type `use homer;`
 
 The most common problem on sprout is lack of communication with other nodes, causing registration or calls to fail.  Check that homer and homestead are reachable and responding.
 
-If this doesn't help, sprout logs to `/var/log/sprout/sprout*.txt`.  By default, it is set to log level 2, which only includes errors and very high-level events.  To enable more detailed trace, change the log level to 5 by writing `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), and then restarting sprout.
-
 Sprout maintains registration state in a memcached cluster.  It's a little clunky to examine this data but you can get some basic information out by running `. /etc/clearwater/config ; telnet $local_ip 11211` to connect to memcached, issuing `stats items`.  This returns a list of entries of the form `STAT items:<slab ID>:...`.  You can then query the keys in each of the slabs with `stats cachedump <slab ID> 0`.
 
+To turn on debug logging for Sprout write `log_level=5` to `etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Sprout (`sudo service sprout stop` - it will be restarted by monit).
+
 Memcached logs to `/var/log/memcached.log`. It logs very little by default, but it is possible to make it more verbose by editing `/etc/memcached_11211.conf`, uncommenting the `-vv` line, and then restarting memcached.
+
+Sprout also uses [Chronos](https://github.com/Metaswitch/chronos) to track registration, subscription and authorization timeouts. Chronos logs to `/var/log/chronos/chronos*`. Details of how edit the Chronos configuration is [here](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md).
 
 If you see sprout dying/restarting with no apparent cause in `/var/log/sprout/sprout*.txt`, check `/var/log/monit.log` and `/var/log/syslog` around that time - these can sometimes give clues as to the cause.
 
@@ -52,13 +58,15 @@ If you see sprout dying/restarting with no apparent cause in `/var/log/sprout/sp
 
 The most common problem on bono is lack of communication with sprout.  Check that sprout is reachable and responding.
 
-If this doesn't help, bono logs to `/var/log/bono/bono*.txt`.  By default, it is set to log level 2, which only includes errors and very high-level events.  To enable more detailed trace, change the log level to 5 by writing `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), and then restarting bono.
+To turn on debug logging for Bono write `log_level=5` to `etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Bono (`sudo service bono stop` - it will be restarted by monit).
 
 If you see bono dying/restarting with no apparent cause in `/var/log/bono/bono*.txt`, check `/var/log/monit.log` and `/var/log/syslog` around that time - these can sometimes give clues as to the cause.
 
 ## Ralf
 
-Ralf logs to `/var/log/ralf/ralf*.txt`.  By default, it is set to log level 2, which only includes errors and very high-level events.  To enable more detailed trace, change the log level to 5 by writing `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), and then restarting ralf.
+To turn on debug logging for Ralf write `log_level=5` to `etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Ralf (`sudo service ralf stop` - it will be restarted by monit).
+
+Ralf also uses [Chronos](https://github.com/Metaswitch/chronos) to track call timeouts. Chronos logs to `/var/log/chronos/chronos*`. Details of how edit the Chronos configuration is [here](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md).
 
 If you see Ralf dying/restarting with no apparent cause in `/var/log/ralf/ralf*.txt`, check `/var/log/monit.log` and `/var/log/syslog` around that time - these can sometimes give clues as to the cause.
 
