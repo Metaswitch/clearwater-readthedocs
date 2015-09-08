@@ -15,6 +15,8 @@ Clearwater nodes provide SNMP statistics over port 161 using SNMP v2c and commun
 
 Our SNMP statistics are provided through plugins or subagents to the standard SNMPd packaged with Ubuntu, so querying port 161 (the standard SNMP port) on a Clearwater node will provide system-level stats like CPU% as well as any available Clearwater stats.
 
+To load the MIB file, allowing you to refer to MIB objects by name, first place it in the `~/.snmp/mibs` directory. To load the MIB file for just the current session, run `export MIBS=+PROJECT-CLEARWATER-MIB`. To load the MIB file every time, add the line `mibs +PROJECT-CLEARWATER-MIB` to a snmp.conf file in the `~/.snmp` directory.
+
 If a statistic is indexed by time period, then it displays the relevant statistics over:
 
 * the previous five-second period
@@ -28,6 +30,24 @@ For example, a stat queried at 12:01:33 would display the stats covering:
 * 11:55:00 - 12:00:00 (the previous five-minute period)
 
 All latency values are in microseconds.
+
+Many of the statistics listed below are stored in SNMP tables (although the MIB file should be examined to determine exactly which ones). The full table can be retrieved by using the `snmptable` command. For example, the Initial Registrations table for Sprout can be retrieved by running:  
+`snmptable -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationsTable`
+
+The individual table elements can be accessed using:  
+`snmpget -v2c -c clearwater <ip> <table OID>.1.<column>.<row>`
+
+For example, the Initial Registration Stats table has an OID of `.1.2.826.0.1.1578918.9.3.9`, so the number of initial registration attempts in the current five-minute period can be retrieved by:    
+`snmpget -v2c -c clearwater <ip> .1.2.826.0.1.1578918.9.3.9.1.2.3`  
+or by:  
+`snmpget -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationAttempts.scopePrevious5MinutePeriod`
+
+The `snmpwalk` command can be used to discover the list of queryable OIDs beneath a certain point in the MIB tree. For example, you can retrieve all of the entries in the Sprout Initial Registrations table using:  
+`snmpwalk -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationsTable`
+
+Running `snmpwalk -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::projectClearwater` will output a very long list of all available Clearwater stats.
+
+Note that running an 'snmpget' on a table OID will result in a "No Such Object available on this agent at this OID" message.
 
 ### Bono statistics
 
@@ -72,10 +92,8 @@ Sprout nodes provide the following statistics:
 * The transfer rate (in bytes/second) of data during this resynchronization, over the last 5 seconds (overall, and per bucket).
 * The number of remaining nodes to query during the current Chronos scaling operation.
 * The number of timers, and number of invalid timers, processed over the last 5 seconds.
-* The total number of timers being managed by a Chronos node at the current
-    time.
-* The weighted average of total timer count, variance, highest timer count,
-    lowest timer count, indexed by time period.
+* The total number of timers being managed by a Chronos node at the current time.
+* The weighted average of total timer count, variance, highest timer count, lowest timer count, indexed by time period.
 * The number of attempts, successes and failures for incoming SIP transactions for the ICSCF, indexed by time period and request type.
 * The number of attempts, successes and failures for outgoing SIP transactions for the ICSCF, indexed by time period and request type.
 * The number of attempts, successes and failures for incoming SIP transactions for the SCSCF, indexed by time period and request type.
