@@ -45,6 +45,7 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `smtp_password` - Ellis allows password recovery by email. This sets the password used to log in to the SMTP server.
 * `email_recovery_sender` - Ellis allows password recovery by email. This sets the email address those emails are sent from.
 * `ellis_api_key` - sets a key which can be used to authenticate automated requests to Ellis, by setting it as the value of the X-NGV-API header. This is used to expire demo users regularly.
+* `ellis_hostname` - a hostname that resolves to Ellis, if you don't want to use `ellis.home_domain`.  This should match Ellis's SSL certificate, if you are using one.
 
 ## Advanced options
 
