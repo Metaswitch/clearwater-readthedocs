@@ -36,7 +36,7 @@ The most common problem on homer and homestead is failing to read or write to th
 
 *   Check that Cassandra is clustered correctly (if running a multi-node system).  `nodetool status` tells you which nodes are in the cluster, and how the keyspace is distributed among them.
 
-*   If this doesn't help, homer logs to `/var/log/homer/homer-*.log` and homestead logs to `/var/log/homestead/homestead-*.log` and `/var/log/homestead-prov/homestead-*.log`. To turn on debug logging for Homer or Homestead-prov, write `LOG_LEVEL = logging.DEBUG` to the `local_settings.py` file (at `/usr/share/clearwater/<homer|homestead-prov>/src/metaswitch/crest/local_settings.py`). Then restart clearwater-infrastructure (`sudo service clearwater-infrastructure restart`), and restart Homer/Homestead-prov (`sudo service <homer|homestead-prov> stop` - they will be restarted by monit). To turn on debug logging for Homestead write `log_level=5` to `etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Homestead (`sudo service homestead stop` - it will be restarted by monit).
+*   If this doesn't help, homer logs to `/var/log/homer/homer-*.log` and homestead logs to `/var/log/homestead/homestead-*.log` and `/var/log/homestead-prov/homestead-*.log`. To turn on debug logging for Homer or Homestead-prov, write `LOG_LEVEL = logging.DEBUG` to the `local_settings.py` file (at `/usr/share/clearwater/<homer|homestead-prov>/src/metaswitch/crest/local_settings.py`). Then restart clearwater-infrastructure (`sudo service clearwater-infrastructure restart`), and restart Homer/Homestead-prov (`sudo service <homer|homestead-prov> stop` - they will be restarted by monit). To turn on debug logging for Homestead write `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Homestead (`sudo service homestead stop` - it will be restarted by monit).
 
 To examine homer or homestead's database, run `cqlsh` and then type `use homer;`, `use homestead_provisioning;` or `use homestead_cache` to set the correct database.  You can then issue CQL queries such as `SELECT * FROM impi WHERE private_id = '<private user ID>'`.
 
@@ -46,7 +46,7 @@ The most common problem on sprout is lack of communication with other nodes, cau
 
 Sprout maintains registration state in a memcached cluster.  It's a little clunky to examine this data but you can get some basic information out by running `. /etc/clearwater/config ; telnet $local_ip 11211` to connect to memcached, issuing `stats items`.  This returns a list of entries of the form `STAT items:<slab ID>:...`.  You can then query the keys in each of the slabs with `stats cachedump <slab ID> 0`.
 
-To turn on debug logging for Sprout write `log_level=5` to `etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Sprout (`sudo service sprout stop` - it will be restarted by monit).
+To turn on debug logging for Sprout write `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Sprout (`sudo service sprout stop` - it will be restarted by monit).
 
 Memcached logs to `/var/log/memcached.log`. It logs very little by default, but it is possible to make it more verbose by editing `/etc/memcached_11211.conf`, uncommenting the `-vv` line, and then restarting memcached.
 
@@ -58,13 +58,13 @@ If you see sprout dying/restarting with no apparent cause in `/var/log/sprout/sp
 
 The most common problem on bono is lack of communication with sprout.  Check that sprout is reachable and responding.
 
-To turn on debug logging for Bono write `log_level=5` to `etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Bono (`sudo service bono stop` - it will be restarted by monit).
+To turn on debug logging for Bono write `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Bono (`sudo service bono stop` - it will be restarted by monit).
 
 If you see bono dying/restarting with no apparent cause in `/var/log/bono/bono*.txt`, check `/var/log/monit.log` and `/var/log/syslog` around that time - these can sometimes give clues as to the cause.
 
 ## Ralf
 
-To turn on debug logging for Ralf write `log_level=5` to `etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Ralf (`sudo service ralf stop` - it will be restarted by monit).
+To turn on debug logging for Ralf write `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Ralf (`sudo service ralf stop` - it will be restarted by monit).
 
 Ralf also uses [Chronos](https://github.com/Metaswitch/chronos) to track call timeouts. Chronos logs to `/var/log/chronos/chronos*`. Details of how to edit the Chronos configuration is [here](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md).
 
