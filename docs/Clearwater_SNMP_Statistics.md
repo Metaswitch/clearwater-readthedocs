@@ -105,6 +105,8 @@ Sprout nodes provide the following statistics:
 * The value of the target (maximum permissible) latency at the last permitted request rate update.
 * The number of penalties experienced at the last permitted request rate update.
 * The current permitted request rate.
+* The number of INVITE transactions that were cancelled before a 1xx response was seen.
+* The number of INVITE transactions that were cancelled after a 1xx response was seen.
 
 ### Ralf statistics
 
