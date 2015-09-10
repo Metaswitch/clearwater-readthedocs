@@ -118,7 +118,9 @@ This section describes optional configuration options, particularly for ensuring
 * `session_continued_timeout_ms` - if an Application Server with default handling of 'continue session' is unresponsive, this is the time that Sprout will wait (in milliseconds) before bypassing the AS and moving onto the next AS in the chain (defaults to 2000 milliseconds).
 * `session_terminated_timeout_ms` - if an Application Server with default handling of 'terminate session' is unresponsive, this is the time that Sprout will wait (in milliseconds) before terminating the session (defaults to 4000 milliseconds).
 * `pbxes` - a comma separated list of IP address that Bono considers to be PBXes that are incapable of registering. Non-REGISTER requests from these addresses are passed upstream to Sprout with a `Proxy-Authorization` header. It is strongly recommended that Sprout's `non_register_authentication` option is set to `if_proxy_authorization_present` so that the request will be challenged. Bono also permits requests to these addresses from the core to pass through it.
-* `non_register_authentication` - controls when Sprout will challenge a non-REGISTER request using SIP Proxy-Authentication. Possible values are `never` (meaning Sprout will never challenge) or `if_proxy_authorization_present` (meaning Sprout will only challenge requests that have a Proxy-Authorization header). 
+* `pbx_service_route` - the SIP URI to which Bono routes originating calls from non-registering PBXes (which are identified by the `pbxes` option). This URI is used verbatim and should almost always include the `lr` and `orig`parameters. If this option is not specified, the requests are routed to the address specified by the `upstream_hostname` and `upstream_port` options.
+    * e.g. `sip:sprout.example.com:5054;transport=tcp;lr;orig;auto-reg`
+* `non_register_authentication` - controls when Sprout will challenge a non-REGISTER request using SIP Proxy-Authentication. Possible values are `never` (meaning Sprout will never challenge) or `if_proxy_authorization_present` (meaning Sprout will only challenge requests that have a Proxy-Authorization header).
 
 ## Experimental options
 
