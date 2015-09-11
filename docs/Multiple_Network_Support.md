@@ -2,15 +2,15 @@
 
 ## Introduction
 
-As of the Ultima release, Project Clearwater can be configured to provide signalling service (SIP/HTTP/Diameter) on a separate physical (or virtual) network to management services (SNMP/SSH/Provisioning).  This may be used to protect management devices (on a firewalled network) from attack from the outside world (on the signalling network).
+As of the Ultima release, Project Clearwater can be configured to provide signaling service (SIP/HTTP/Diameter) on a separate physical (or virtual) network to management services (SNMP/SSH/Provisioning).  This may be used to protect management devices (on a firewalled network) from attack from the outside world (on the signaling network).
 
 ## Technical Details
 
 ### Network Independence
 
-If traffic separation is configured, the management and signalling networks are accessed by the VM via completely separate (virtual) network interfaces.
+If traffic separation is configured, the management and signaling networks are accessed by the VM via completely separate (virtual) network interfaces.
 
-The management and signalling networks may be completely independent.
+The management and signaling networks may be completely independent.
 
  * There need not be any way to route between them.
  * The IP addresses, subnets and default gateways used on the networks may be the same, may overlap or may be completely distinct.
@@ -29,7 +29,7 @@ The following traffic is carried over the management interface:
  * Ellis provisioning API
  * M/Monit
 
-The following traffic is carried over the signalling interface:
+The following traffic is carried over the signaling interface:
 
  * DNS (for signaling traffic)
  * ENUM
@@ -56,21 +56,21 @@ Due to the varied complexities of IP networking, it would be impractical to atte
 
 The following example commands (when run as root) create a network namespace, move `eth1` into it, configure a static IP address and configure routing.
 
-    ip netns add signalling
-    ip link set eth1 netns signalling
-    ip netns exec signalling ifconfig lo up
-    ip netns exec signalling ifconfig eth1 1.2.3.4/16 up
-    ip netns exec signalling route add default gateway 1.2.0.1 dev eth1
+    ip netns add signaling
+    ip link set eth1 netns signaling
+    ip netns exec signaling ifconfig lo up
+    ip netns exec signaling ifconfig eth1 1.2.3.4/16 up
+    ip netns exec signaling route add default gateway 1.2.0.1 dev eth1
 
-Obviously you should make any appropriate changes to the above to correctly configure your chosen signalling network.  These changes are **not** persisted across reboots on Linux and you should ensure that these are run on boot before the `clearwater-infrastructure` service is run.  A sensible place to configure this would be in `/etc/rc.local`.
+Obviously you should make any appropriate changes to the above to correctly configure your chosen signaling network.  These changes are **not** persisted across reboots on Linux and you should ensure that these are run on boot before the `clearwater-infrastructure` service is run.  A sensible place to configure this would be in `/etc/rc.local`.
 
-Finally, you should create `/etc/netns/signalling/resolv.conf` configuring the DNS server you'd like to use on the signalling network.  The format of this file is documented at <http://manpages.ubuntu.com/manpages/trusty/man5/resolv.conf.5.html> but a simple example file might just contain the following.
+Finally, you should create `/etc/netns/signaling/resolv.conf` configuring the DNS server you'd like to use on the signaling network.  The format of this file is documented at <http://manpages.ubuntu.com/manpages/trusty/man5/resolv.conf.5.html> but a simple example file might just contain the following.
 
     nameserver <DNS IP address>
 
 ### Project Clearwater Configuration
 
-Now that the signalling namespace is configured and has networking set up, it's time to apply it to Project Clearwater.  To do this, change the `local_ip`, `public_ip` and `public_hostname` lines in `/etc/clearwater/local_config` to refer to the node's identities in the signaling network and add the following lines:
+Now that the signaling namespace is configured and has networking set up, it's time to apply it to Project Clearwater.  To do this, change the `local_ip`, `public_ip` and `public_hostname` lines in `/etc/clearwater/local_config` to refer to the node's identities in the signaling network and add the following lines:
 
     signaling_namespace=<namespace name>
     signaling_dns_server=<DNS IP address>
@@ -82,7 +82,7 @@ If you've already installed the Project Clearwater services, run `sudo service c
 
 ## Diagnostic Changes
 
-All the built-in Clearwater diagnostics will automatically take note of network namespaces, but if you are running diagnostics yourself (e.g. following instructions from the [troubleshooting page](http://clearwater.readthedocs.org/en/latest/Troubleshooting_and_Recovery)) you may need to prefix your commands with `ip netns exec <namespace>` to run them in the signalling namespace.  The following tools will need this prefix:
+All the built-in Clearwater diagnostics will automatically take note of network namespaces, but if you are running diagnostics yourself (e.g. following instructions from the [troubleshooting page](http://clearwater.readthedocs.org/en/latest/Troubleshooting_and_Recovery)) you may need to prefix your commands with `ip netns exec <namespace>` to run them in the signaling namespace.  The following tools will need this prefix:
 
  * `cqlsh` - For viewing Cassandra databases
  * `nodetool` - For viewing Cassandra status

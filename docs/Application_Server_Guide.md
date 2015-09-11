@@ -8,7 +8,7 @@ What is an application server?
 
 An application server (AS) is a server which is brought into or notified of a call by the network in order to provide call features or other behaviour.
 
-In IMS, an application server is a SIP entity which is invoked by the S-CSCF for each dialog, both originating and terminating, as configured by the initial filter criteria (iFCs) of the relevant subscribers. The application server may reject or accept the call itself, redirect it, pass it back to the S-CSCF as a proxy, originate new calls, or perform more complex actions (such as forking) as a B2BUA. It may choose to remain in the signalling path, or drop out.
+In IMS, an application server is a SIP entity which is invoked by the S-CSCF for each dialog, both originating and terminating, as configured by the initial filter criteria (iFCs) of the relevant subscribers. The application server may reject or accept the call itself, redirect it, pass it back to the S-CSCF as a proxy, originate new calls, or perform more complex actions (such as forking) as a B2BUA. It may choose to remain in the signaling path, or drop out.
 
 The application server communicates with the IMS core via the ISC interface. This is a SIP interface. The details are given in [3GPP TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm), especially
 s5.4 (the S-CSCF side) and s5.7 (the AS side). Further useful information can be found in [3GPP TS
