@@ -19,7 +19,7 @@ Bono in both directions.
 
  * The application server must also be able to exchange SIP messages
    (in both directions) with any other application server that may appear in
-   the signalling path of any call going through it.
+   the signaling path of any call going through it.
 
  * Since the application server is in the trusted zone, it should
    *not* be accessible to untrusted SIP entities.
@@ -35,7 +35,7 @@ No special application server configuration is required.
 
  * Your application server should be prepared to accept SIP messages
    from any of your deployment's bono or sprout nodes, and from any
-   SIP entity that may appear in the signalling path of any call going
+   SIP entity that may appear in the signaling path of any call going
    through it.
 
  * If your application server needs to spontaneously originate calls,

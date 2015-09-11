@@ -40,12 +40,12 @@ All-in-one nodes need the following ports opened to the world
         TCP/80
         TCP/443
 
-* STUN signalling:
+* STUN signaling:
 
         TCP/3478
         UDP/3478
 
-* SIP signalling:
+* SIP signaling:
 
         TCP/5060
         UDP/5060
@@ -68,12 +68,12 @@ The Ellis node needs the following ports opened to the world:
 
 The Bono nodes need the following ports opened to the world:
 
-* STUN signalling:
+* STUN signaling:
 
         TCP/3478
         UDP/3478
 
-* SIP signalling:
+* SIP signaling:
 
         TCP/5060
         UDP/5060
@@ -85,7 +85,7 @@ The Bono nodes need the following ports opened to the world:
 
 They also need the following ports open to all other Bono nodes and to all the Sprout nodes:
 
-* Internal SIP signalling:
+* Internal SIP signaling:
 
         TCP/5058
 
@@ -93,7 +93,7 @@ They also need the following ports open to all other Bono nodes and to all the S
 
 The Sprout nodes need the following ports open to all Bono nodes:
 
-* Internal SIP signalling:
+* Internal SIP signaling:
 
         TCP/5054
         TCP/5052 (if I-CSCF function is enabled)
@@ -188,7 +188,7 @@ They also need to following ports open to all other Ralf nodes:
 
 Standalone Project Clearwater application servers (e.g. Memento and Gemini) need the following ports open to all Sprout nodes:
 
-* SIP signalling:
+* SIP signaling:
 
         TCP/5054
 
