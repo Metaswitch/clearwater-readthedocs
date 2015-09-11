@@ -105,6 +105,8 @@ Sprout nodes provide the following statistics:
 * The value of the target (maximum permissible) latency at the last permitted request rate update.
 * The number of penalties experienced at the last permitted request rate update.
 * The current permitted request rate.
+* The number of incoming INVITE transactions for the S-CSCF that were cancelled before a 1xx response was seen, indexed by time period.
+* The number of incoming INVITE transactions for the S-CSCF that were cancelled after a 1xx response was seen, indexed by time period (these INVITE cancellation statistics can be used to distinguish between the case where an INVITE was cancelled because the call rang but wasn't answered and the case where it failed due to network issues and never got through in the first place).
 
 ### Ralf statistics
 
