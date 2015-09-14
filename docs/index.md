@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Midnight's Children](http://www.goodreads.com/book/show/14836.Midnight_s_Children)".
+The latest stable release of Clearwater is "[Northern Lights](https://www.goodreads.com/book/show/70947.Northern_Lights)".
 
 ## Architecture
 
