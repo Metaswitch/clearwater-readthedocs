@@ -87,7 +87,7 @@ Clearwater implements the ISC interface only. An AS may also expect to communica
 The built-in MMTEL application server
 =====================================
 
-Clearwater has a built-in application server, `mmtel.<deployment-domain>`, which implements a subset of the MMTEL services defined in [GSMA PRD IR.92](http://www.gsma.com/newsroom/wp-content/uploads/2012/03/ir9250.pdf), [ETSI TS 129.364](http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=42062) and [3GPP TS 24.623](http://www.3gpp.org/ftp/Specs/html-info/24623.htm):
+Clearwater has a built-in application server, `mmtel.<deployment-domain>`, which implements a subset of the MMTEL services defined in [GSMA PRD IR.92](http://www.gsma.com/newsroom/wp-content/uploads//IR.92-v9.0.pdf), [ETSI TS 129.364](http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=42062) and [3GPP TS 24.623](http://www.3gpp.org/ftp/Specs/html-info/24623.htm):
 
  * Originating Identification Presentation (OIP)
  * Originating Identification Restriction (OIR)
