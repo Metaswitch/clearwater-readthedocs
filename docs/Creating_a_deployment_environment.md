@@ -38,7 +38,7 @@ By default, your deployment will be created in the US East (North Virginia) regi
 
 *   set the `region` property in the `override_attributes "clearwater"` block (e.g. to `us-west-2`)
 *   set the `availability_zones` property correspondingly (e.g. `["us-west-2a", "us-west-2b"]`)
-*   open `~/chef/knife/plugins/boxes.rb`, search for `@@default_image`, and comment in the EC2 AMI entry for the region you desire.
+*   open `~/chef/plugins/knife/boxes.rb`, search for `@@default_image`, and comment in the EC2 AMI entry for the region you desire.
 
 These fields override attributes defined and documented in the [clearwater-infrastructure role](https://github.com/Metaswitch/chef/blob/master/roles/clearwater-infrastructure.rb).
 
