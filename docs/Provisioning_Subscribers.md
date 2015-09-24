@@ -106,3 +106,25 @@ optional arguments:
   -s, --short           less verbose display
   --hsprov IP:PORT      IP address and port of homestead-prov
 ```
+
+## List users
+
+All the users provisioned on the system can be listed with the `list_users` tool.
+
+Note that the `--full` parameter defaults to off because it greatly decreases the performance of the tool (by more than an order of magnitude).
+
+The `--pace` parameter's default values should ensure that this does not use more than 10% of the homestead cluster's CPU - that is 5 users per second if `--force` is set and 500 if not.  If you set the "--pace" parameter to more than the default, you'll be prompted to confirm (or specify the `--force` parameter).
+
+```
+usage: list_users.py [-h] [-k] [--hsprov IP:PORT] [--full] [--pace PACE] [-f]
+
+List users
+
+optional arguments:
+  -h, --help        show this help message and exit
+  -k, --keep-going  keep going on errors
+  --hsprov IP:PORT  IP address and port of homestead-prov
+  --full            displays full information for each user
+  --pace PACE       sets the target number of users to list per second
+  -f, --force       forces specified pace
+```
