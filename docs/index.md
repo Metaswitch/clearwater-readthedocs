@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Northern Lights](https://www.goodreads.com/book/show/70947.Northern_Lights)".
+The latest stable release of Clearwater is "[One Hundred Years of Solitude](https://www.goodreads.com/book/show/320.One_Hundred_Years_of_Solitude)".
 
 ## Architecture
 
