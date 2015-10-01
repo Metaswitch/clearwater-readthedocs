@@ -2,7 +2,7 @@
 
 Clearwater provides the Ellis web UI for easy provisioning of subscribers.  However, sometimes a more programmatic interface is desirable.
 
-Homestead provides a [provisioning API](https://github.com/Metaswitch/crest/blob/dev/docs/homestead_api.md) but, for convenience, Clearwater also provides some command-line provisioning tools.
+Homestead provides a [provisioning API](https://github.com/Metaswitch/crest/blob/dev/docs/homestead_prov_api.md) but, for convenience, Clearwater also provides some command-line provisioning tools.
 
 By default, the tools are installed on the Homestead servers only (as part of the clearwater-prov-tools package), in the `/usr/share/clearwater/bin` directory.
 
