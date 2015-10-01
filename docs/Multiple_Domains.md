@@ -43,7 +43,7 @@ Once the deployment has multiple domain support enabled, you can create subscrib
 
 *   If you [bulk-provision](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) numbers, the home domain and realm can be specified in the input CSV file.
 
-*   If you use homestead's [provisioning API](https://github.com/Metaswitch/crest/blob/dev/docs/homestead_api.md) (i.e. without an external HSS), you can specify the home domain and realm as parameters.
+*   If you use homestead's [provisioning API](https://github.com/Metaswitch/crest/blob/dev/docs/homestead_prov_api.md) (i.e. without an external HSS), you can specify the home domain and realm as parameters.
 
 Alternatively, you can use an external HSS, and configure the subscribers using its provisioning interface.
 
