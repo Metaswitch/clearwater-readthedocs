@@ -82,7 +82,7 @@ If you've already installed the Project Clearwater services, run `sudo service c
 
 ## Diagnostic Changes
 
-All the built-in Clearwater diagnostics will automatically take note of network namespaces, but if you are running diagnostics yourself (e.g. following instructions from the [troubleshooting page](http://clearwater.readthedocs.org/en/latest/Troubleshooting_and_Recovery)) you may need to prefix your commands with `ip netns exec <namespace>` to run them in the signaling namespace.  The following tools will need this prefix:
+All the built-in Clearwater diagnostics will automatically take note of network namespaces, but if you are running diagnostics yourself (e.g. following instructions from the [troubleshooting page](http://clearwater.readthedocs.org/en/stable/Troubleshooting_and_Recovery)) you may need to prefix your commands with `ip netns exec <namespace>` to run them in the signaling namespace.  The following tools will need this prefix:
 
  * `cqlsh` - For viewing Cassandra databases
  * `nodetool` - For viewing Cassandra status
