@@ -4,7 +4,7 @@ Clearwater now supports an [automatic clustering and configuration sharing](Auto
 
 ## Upgrade the Deployment
 
-[Upgrade](Upgrading_a_Clearwater_deployment) to the latest stable Clearwater release. You will also need to update your firewall settings to support the new clearwater management packages; open port 2380 and 4000 between every node (see [here](http://clearwater.readthedocs.org/en/latest/Clearwater_IP_Port_Usage/index.html) for the complete list). 
+[Upgrade](Upgrading_a_Clearwater_deployment) to the latest stable Clearwater release. You will also need to update your firewall settings to support the new clearwater management packages; open port 2380 and 4000 between every node (see [here](http://clearwater.readthedocs.org/en/stable/Clearwater_IP_Port_Usage/index.html) for the complete list).
 
 ## Verify Configuration Files
 
