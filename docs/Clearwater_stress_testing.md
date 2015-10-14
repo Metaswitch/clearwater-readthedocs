@@ -18,7 +18,7 @@ The clearwater-sip-stress package includes two important scripts.
 * `/usr/share/clearwater/infrastructure/scripts/sip-stress`, which generates a `/usr/share/clearwater/sip-stress/users.csv.1` file containing the list of all subscribers we should be targeting - these are calculated from properties in `/etc/clearwater/shared_config`.
 * `/etc/init.d/clearwater-sip-stress`, which runs `/usr/share/clearwater/bin/sip-stress`, which in turn runs SIPp specifying `/usr/share/clearwater/sip-stress/call_load2.xml` as its test script. This test script simulates a pair of subscribers registering every 5 minutes and then making a call every 30 minutes.
 
-The stress test logs to screen, and also to `/var/log/clearwater-sip-stress/sipp.<index>.out`.
+The stress test logs to `/var/log/clearwater-sip-stress/sipp.<index>.out`.
 
 ## Running Stress
 
