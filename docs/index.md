@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[One Hundred Years of Solitude](https://www.goodreads.com/book/show/320.One_Hundred_Years_of_Solitude)".
+The latest stable release of Clearwater is "[Pride And Prejudice](http://www.goodreads.com/book/show/1885.Pride_and_Prejudice)".
 
 ## Architecture
 
