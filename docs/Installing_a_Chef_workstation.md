@@ -59,10 +59,10 @@ Finally install the Ruby libraries that are needed by our scripts.
 You will need to configure yourself as a user on the chef server in order to use chef.
 
 *  If you are the person who created the chef server you wil already have added yourself as a user, and will know your username, organization name, and you will have a private key (`<chef-user-name>`, `<org-name>`, `<chef-user-name>.pem` respectively). These will be needed later.
-*  If you did not create the chef server, you will need to add an account for yourself. Log onto the chef server and run the following commands, substituting in appropriate values for `USER_NAME`, `FIRST_NAME`, `LAST_NAME`, `PASSWORD` and `ORG_NAME`. We'll refer to the username as `<chef-user-name>` and the organization as `<org-name>`. This will create a `<chef-user-name>.pem` file in the current directory - save it for later.
+*  If you did not create the chef server, you will need to add an account for yourself. Log SSH on to the chef server and run the following commands, substituting in appropriate values for `USER_NAME`, `FIRST_NAME`, `LAST_NAME`, `PASSWORD` and `ORG_NAME`. We'll refer to the username as `<chef-user-name>` and the organization as `<org-name>`. This will create a `<chef-user-name>.pem` file in the current directory - save it for later.
 
-    sudo chef-server-ctl user-create USER_NAME FIRST_NAME LAST_NAME EMAIL PASSWORD --filename USER_NAME.pem
-    sudo chef-server-ctl org-user-add ORG_NAME USER_NAME --admin
+        sudo chef-server-ctl user-create USER_NAME FIRST_NAME LAST_NAME EMAIL PASSWORD --filename USER_NAME.pem
+        sudo chef-server-ctl org-user-add ORG_NAME USER_NAME --admin
 
 ## Configure the chef workstation machine
 
