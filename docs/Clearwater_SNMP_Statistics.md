@@ -4,8 +4,7 @@ Clearwater provides a set of statistics about the performance of each Clearwater
 
 These SNMP statistics require:
 
-* the clearwater-snmp-handler-homestead package to be installed for Homestead nodes
-* the clearwater-snmp-handler-chronos and clearwater-snmp-handler-astaire packages to be installed for Sprout and Ralf nodes
+* the clearwater-snmp-handler-astaire packages to be installed for Sprout and Ralf nodes
 
 These packages will be automatically installed when installing through the Chef automation system; for a manual install, you will need to install the packages with `sudo apt-get install`.
 
