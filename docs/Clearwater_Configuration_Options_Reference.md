@@ -24,7 +24,7 @@ This section describes settings that are specific to a single node and are not a
 * `etcd_cluster` - this is a comma separated list of IP addresses, for example `etcd_cluster=10.0.0.1,10.0.0.2`. It should be set on one of two ways:
   * If the node is forming a new deployment, it should contain the IP addresses of all the nodes that are forming the new deployment (including this node).
   * If the node is joining an existing deployment, it should contain the IP addresses of all the nodes that are currently in the deployment.
-* `etcd_cluster_key` - this is the name of the etcd datastore clusters that this node should join. It defaults to the function of the node (e.g. a Homestead node defaults to using 'homestead' in its etcd cluster name). This needs to be set on nodes that colocate functions.
+* `etcd_cluster_key` - this is the name of the etcd datastore clusters that this node should join. It defaults to the function of the node (e.g. a Homestead node defaults to using 'homestead' as its etcd datastore cluster name when it joins the Cassandra cluster). This must be set explicitly on nodes that colocate function.
 
 ## Core options
 
@@ -47,7 +47,7 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `email_recovery_sender` - Ellis allows password recovery by email. This sets the email address those emails are sent from.
 * `ellis_api_key` - sets a key which can be used to authenticate automated requests to Ellis, by setting it as the value of the X-NGV-API header. This is used to expire demo users regularly.
 * `ellis_hostname` - a hostname that resolves to Ellis, if you don't want to use `ellis.home_domain`.  This should match Ellis's SSL certificate, if you are using one.
-* `memento_hostname` - a hostname that resolves by DNS round-robin to all Mementos in the cluster, if you don't want to use `memento.<home_domain>`.  This should match Memento's SSL certificate, if you are using one.
+* `memento_hostname` - a hostname that resolves by DNS round-robin to all Mementos in the cluster (the default is `memento.<home_domain>`).  This should match Memento's SSL certificate, if you are using one.
 
 ## Advanced options
 
@@ -123,7 +123,7 @@ This section describes optional configuration options, particularly for ensuring
 * `pbx_service_route` - the SIP URI to which Bono routes originating calls from non-registering PBXes (which are identified by the `pbxes` option). This is used to route requests directly to the S-CSCF rather than going via an I-CSCF (which could change the route header and prevent the S-CSCF from processing the request properly). This URI is used verbatim and should almost always include the `lr`, `orig`, and `auto-reg` parameters. If this option is not specified, the requests are routed to the address specified by the `upstream_hostname` and `upstream_port` options.
     * e.g. `sip:sprout.example.com:5054;transport=tcp;lr;orig;auto-reg`
 * `non_register_authentication` - controls when Sprout will challenge a non-REGISTER request using SIP Proxy-Authentication. Possible values are `never` (meaning Sprout will never challenge) or `if_proxy_authorization_present` (meaning Sprout will only challenge requests that have a Proxy-Authorization header).
-* `ralf_threads` - used on Sprout nodes, this determines how many worker threads should be started to do Ralf request processing (defaults to 20).
+* `ralf_threads` - used on Sprout nodes, this determines how many worker threads should be started to do Ralf request processing (defaults to 25).
 
 ## Experimental options
 
