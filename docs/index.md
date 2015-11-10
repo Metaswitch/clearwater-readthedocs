@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Quidditch Through the Ages](http://www.goodreads.com/book/show/111450.Quidditch_Through_the_Ages)".
+The latest stable release of Clearwater is "[Rob Roy](http://www.goodreads.com/book/show/543686.Rob_Roy)".
 
 ## Architecture
 
