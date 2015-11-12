@@ -6,12 +6,13 @@ Homestead provides a [provisioning API](https://github.com/Metaswitch/crest/blob
 
 By default, the tools are installed on the Homestead servers only (as part of the clearwater-prov-tools package), in the `/usr/share/clearwater/bin` directory.
 
-There are 4 tools.
+There are 5 tools.
 
 *   `create_user` - for creating users
 *   `update_user` - for updating users' passwords
 *   `delete_user` - for deleting users
 *   `display_user` - for displaying users' details
+*   `list_users` - for listing users
 
 ## Creating users
 
