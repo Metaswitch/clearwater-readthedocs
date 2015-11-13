@@ -85,7 +85,7 @@ This section describes optional configuration options, particularly for ensuring
 * `scscf_uri` - the SIP address of the Sprout S-CSCF. This defaults to `sip:$sprout_hostname:$scscf;transport=TCP` - this includes a specific port, so if you need NAPTR/SRV resolution, it must be changed to not include the port.
 * `additional_home_domains` - this option defines a set of home domains which Sprout and Bono will regard as locally hosted (i.e. allowing users to register, not routing calls via an external trunk). It is a comma-separated list.
 * `billing_realm` - this sets the Destination-Realm on Diameter messages to your external CDR. CDR connections are not based on this but on configuration at the P-CSCF (which sets the P-Charging-Function-Addresses header).
-* `diameter_timeout_ms` - determines the number of milliseconds Homestead will wait for a response from the HSS before failing a request. Defaults to 200. `
+* `diameter_timeout_ms` - determines the number of milliseconds Homestead will wait for a response from the HSS before failing a request. Defaults to 200.
 * `max_peers` - determines the maximum number of Diameter peers which Ralf or Homestead can have open connections to at the same time.
 * `num_http_threads` (Ralf/Memento) - determines the number of threads that will be used to process HTTP requests. For Memento this defaults to the number of CPU cores on the system. For Ralf it defaults to 50 times the number of CPU cores (Memento and Ralf use different threading models, hence the different defaults). Note that for Homestead, this can only be set in /etc/clearwater/user_settings.
 * `num_http_worker_threads` - determines the number of threads that will be used to process HTTP requests once they have been parsed. Only used by Memento.
