@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Slaughterhouse-Five](https://www.goodreads.com/book/show/4981.Slaughterhouse_Five)". For those Project Clearwater users interested in Slaughterhouse-Five and Kurt Vonnegut, this wonderful letter that Vonnegut wrote in response to copies of Slaughterhouse-Five being burned at a high school in North Dakota is really wonderful - http://www.lettersofnote.com/2012/03/i-am-very-real.html.
+The latest stable release of Clearwater is "[Slaughterhouse-Five](https://www.goodreads.com/book/show/4981.Slaughterhouse_Five)". For those Project Clearwater users interested in Slaughterhouse-Five and Kurt Vonnegut, this letter that Vonnegut wrote in response to copies of Slaughterhouse-Five being burned at a high school in North Dakota is really wonderful - http://www.lettersofnote.com/2012/03/i-am-very-real.html.
 
 ## Architecture
 
