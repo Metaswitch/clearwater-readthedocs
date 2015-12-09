@@ -31,7 +31,7 @@ For example, a stat queried at 12:01:33 would display the stats covering:
 All latency values are in microseconds.
 
 Many of the statistics listed below are stored in SNMP tables (although the MIB file should be examined to determine exactly which ones). The full table can be retrieved by using the `snmptable` command. For example, the Initial Registrations table for Sprout can be retrieved by running:  
-`snmptable -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationsTable`
+`snmptable -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationTable`
 
 The individual table elements can be accessed using:  
 `snmpget -v2c -c clearwater <ip> <table OID>.1.<column>.<row>`
@@ -42,7 +42,7 @@ or by:
 `snmpget -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationAttempts.scopePrevious5MinutePeriod`
 
 The `snmpwalk` command can be used to discover the list of queryable OIDs beneath a certain point in the MIB tree. For example, you can retrieve all of the entries in the Sprout Initial Registrations table using:  
-`snmpwalk -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationsTable`
+`snmpwalk -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationTable`
 
 Running `snmpwalk -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::projectClearwater` will output a very long list of all available Clearwater stats.
 
