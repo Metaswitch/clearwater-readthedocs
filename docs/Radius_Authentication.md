@@ -16,7 +16,7 @@ The following conditions are assumed by this process:
 * Your nodes have access to both Clearwater and Ubuntu repositories.
 * Your SSH configuration allows password authentication and PAM (the correct configuration will be detailed below).
 * You have access to a third-party RADIUS server (such as freeRADIUS).
-* Your firewall must allow UDP traffic to the above server, on port 1812.
+* Your firewall must allow UDP traffic to the above server on port 1812.
 
 ## Installation
 
@@ -31,9 +31,9 @@ Install the Clearwater RADIUS authentication package:
 The details of your RADIUS server will need to be entered into `/etc/pam_radius_auth.conf`. This file provides an example of how entries should be structured:
 * Multiple entries are allowed, but each must be on a new line.
 * Each line consists of three fields:
-    * server[:port] (The default is port 1812. All traffic will be UDP)
-    * secret
-    * [timeout] (Default timeout is 3 seconds)
+    * `server[:port]` (The default is port 1812. All traffic will be UDP)
+    * `secret`
+    * `[timeout]` (Default timeout is 3 seconds)
 * The secret is shared between each client and the server to allow simple encryption of passwords. The secret must match the entry for the client in the RADIUS server configuration.
 * Both the port and timeout entries are optional.
 
