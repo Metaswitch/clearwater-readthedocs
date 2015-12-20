@@ -78,11 +78,22 @@ Only the first line of this file is parsed. The user entry is the same format as
 
 ### pam.d/sshd
 
-The PAM configuration file for the sshd process is found at `/etc/pam.d/sshd`. As part of the installation, the line `auth sufficient pam_radius_auth.so` is added at the top of the file, configuring PAM to attempt RADIUS authentication before other methods. It should look like the following:
+The PAM configuration file for the sshd process is found at `/etc/pam.d/sshd`. As part of the installation, the 3 lines around `auth sufficient pam_radius_auth.so` are added at the top of the file, configuring PAM to attempt RADIUS authentication before other methods. It will look like the following:
 
+    # PAM configuration for the Secure Shell service
+    # +clearwater-radius-auth
+    auth sufficient pam_radius_auth.so
+    # -clearwater-radius-auth
+    # Standard Un*x authentication.
     
- It is strongly recommended that users do not modify this entry. Further information on this configuration can be found at [FreeRADIUS](http://freeradius.org/pam_radius_auth/).
+It is strongly recommended that users do not modify this entry. Further information on this configuration can be found at [FreeRADIUS](http://freeradius.org/pam_radius_auth/).
 
 ### nsswitch.conf
 
-The NSS configuration file is found at `/etc/nsswitch.conf`. Modifications to the NSS configuration make it check the libnss-ato component for a user mapping if no local user is found. The addition `ato` at the end of both the `passwd` and `shadow` entries provides this function. Removal of these addition will disable the user mapping, and break RADIUS authentication.
+The NSS configuration file is found at `/etc/nsswitch.conf`. After installation, the top three entries in this file will look as follows:
+
+    passwd:   compat ato
+    group:    compat
+    shadow:   compat ato
+
+ Modifications to the NSS configuration make it check the libnss-ato component for a user mapping if no local user is found. The addition of `ato` at the end of both the `passwd` and `shadow` entries provides this function. Removal of these addition will disable the user mapping, and break RADIUS authentication.
