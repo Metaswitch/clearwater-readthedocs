@@ -40,6 +40,7 @@ pages:
 - ['Voxbone.md', 'Integration', 'Voxbone']
 - ['Clearwater_SNMP_Statistics.md', 'Integration', 'Clearwater SNMP Statistics']
 - ['SNMP_Alarms.md', 'Integration', 'SNMP Alarms']
+- ['Radius_Authentication.md', 'Integration', 'Radius Login Authentication']
 
 # Features:
 - ['Application_Server_Guide.md', 'Features', 'Application Server Guide']
