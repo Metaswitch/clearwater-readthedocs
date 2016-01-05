@@ -46,7 +46,7 @@ following points/omissions.
 
 -   ENUM processing should only be applied to TEL URIs and SIP URIs that
     specify that this was dialed by the user. Since no SIP UAs that
-    we're aware of provide indicate that the SIP URI was dialed by a
+    we're aware of indicate that the SIP URI was dialed by a
     user, we assume that any all-numeric (including +) URIs should have
     ENUM processing applied.
 -   RFC 3761 section 2.4 says that the ENUM replacement string is
