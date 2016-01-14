@@ -49,6 +49,9 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `ellis_api_key` - sets a key which can be used to authenticate automated requests to Ellis, by setting it as the value of the X-NGV-API header. This is used to expire demo users regularly.
 * `ellis_hostname` - a hostname that resolves to Ellis, if you don't want to use `ellis.home_domain`.  This should match Ellis's SSL certificate, if you are using one.
 * `memento_hostname` - a hostname that resolves by DNS round-robin to all Mementos in the cluster (the default is `memento.<home_domain>`).  This should match Memento's SSL certificate, if you are using one.
+* `sprout_registation_store` - this is the locations of Sprout's registration stores. It has the format <site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
+* `ralf_session_store` - this is the locations of Ralf's session stores. It has the format <site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
+* `memento_auth_store` - this is the location of Memento's authorization vector store. It just has the format <domain>[:port].
 
 ## Advanced options
 
@@ -129,6 +132,7 @@ This section describes optional configuration options, particularly for ensuring
     * e.g. `sip:sprout.example.com:5054;transport=tcp;lr;orig;auto-reg`
 * `non_register_authentication` - controls when Sprout will challenge a non-REGISTER request using SIP Proxy-Authentication. Possible values are `never` (meaning Sprout will never challenge) or `if_proxy_authorization_present` (meaning Sprout will only challenge requests that have a Proxy-Authorization header).
 * `ralf_threads` - used on Sprout nodes, this determines how many worker threads should be started to do Ralf request processing (defaults to 25).
+* `sprout_av_store` - this is the location of Sprout's authorization vector store. It just has the format <domain>[:port]. If not provided, Sprout uses the local site's registration store.
 
 ## Experimental options
 
