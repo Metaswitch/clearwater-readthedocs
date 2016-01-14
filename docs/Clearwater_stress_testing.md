@@ -45,7 +45,7 @@ This section describes step-by-step how to run stress using Chef automation.  It
 
 4.  Upload your new environment to the chef server by typing `knife environment from file environments/ENVIRONMENT.rb`
 5. Create the deployment by typing `knife deployment resize -E ENVIRONMENT`.  If you want more nodes, supply parameters such "--bono-count 5" or "--sprout-count 3" to control this.
-6. Follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision subscribers. Create 100,000 subscribers per SIPp node.
+6. Follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision subscribers. Create 30000 subscribers per SIPp node.
 7. Create your stress test node by typing `knife box create -E ENVIRONMENT sipp --index 1`.  If you have multiple bono nodes, you'll need to create multiple stress test nodes by repeating this command with "--index 2", "--index 3", etc. - each stress test node only sends traffic to the bono with the same index.
   * To create multiple nodes, try `for x in {1..20} ; do { knife box create -E ENVIRONMENT sipp --index $x && sleep 2 ; } ; done`.
   * To modify the number of calls/hour to simulate, edit/add `count=<number>` to `/etc/clearwater/shared_config`, then run `sudo /usr/share/clearwater/infrastructure/scripts/sip-stress` and `sudo service clearwater-sip-stress restart`.
