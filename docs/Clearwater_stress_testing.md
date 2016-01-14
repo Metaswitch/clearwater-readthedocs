@@ -56,7 +56,7 @@ This section describes step-by-step how to run stress using Chef automation.  It
 
 SIP stress can also be run against a deployment that has been installed manually (as per the [Manual Install instructions](Manual_Install.md)).
 
-Firstly follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision subscribers. Work out how many stress nodes you want, and create 100,000 subscribers per SIPp node.
+Firstly follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision subscribers. Work out how many stress nodes you want, and create 30000 subscribers per SIPp node.
 
 To create a new SIPp node, create a new virtual machine and [bootstrap](Manual_Install.md#bootstrapping-the-machines) it.
 
@@ -71,7 +71,7 @@ Set the following properties in /etc/clearwater/shared_config:
 * (optional) bono_servers - a list of bono servers in this deployment
 * (optional) stress_target - the target host (defaults to the $node_idx-th entry in $bono_servers or, if there are no $bono_servers, defaults to $home_realm)
 * (optional) base - the base directory number (defaults to 2010000000)
-* (optional) count - the number of calls to run on this node (defaults to 30000) - note that the SIPp script simulates 2 subscribers per "call".
+* (optional) count - the number of subscribers to run on this node (must be even, defaults to 30000)
 
 Finally install the clearwater-sip-stress Debian package. Stress will start automatically after the package is installed.
 
