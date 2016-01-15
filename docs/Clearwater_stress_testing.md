@@ -3,6 +3,11 @@ One of Clearwater's biggest strengths is scalability and in order to demonstrate
 - how to kick off your own stress test.
 
 ## SIP Stress Nodes
+
+A Clearwater SIP stress node is similar to any other Project Clearwater node, except that instead of
+having a Debian package like `bono` or `sprout` installed, it has our `clearwater-sip-stress` Debian
+package installed.
+
 ### What they do
 
 Clearwater SIP stress nodes run a standard SIPp script against your bono cluster.  The bono nodes translate this into traffic for sprout and this generates traffic on homestead and homer.  The nodes log their success/failure to `/var/log/clearwater-sip-stress` and also restart SIPp (after a 30s cool-down) if anything goes wrong.
@@ -58,7 +63,7 @@ SIP stress can also be run against a deployment that has been installed manually
 
 Firstly follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision subscribers. Work out how many stress nodes you want, and create 30000 subscribers per SIPp node.
 
-To create a new SIPp node, create a new virtual machine and [bootstrap](Manual_Install.md#bootstrapping-the-machines) it.
+To create a new SIPp node, create a new virtual machine and bootstrap it [by configuring access to the Project Clearwater Debian repository](Manual_Install.md#configure-the-apt-software-sources).
 
 Then set the following properties in /etc/clearwater/local_config:
 
@@ -73,7 +78,7 @@ Set the following properties in /etc/clearwater/shared_config:
 * (optional) base - the base directory number (defaults to 2010000000)
 * (optional) count - the number of subscribers to run on this node (must be even, defaults to 30000)
 
-Finally install the clearwater-sip-stress Debian package. Stress will start automatically after the package is installed.
+Finally, run `sudo apt-get install clearwater-sip-stress` to install the Debian package. Stress will start automatically after the package is installed.
 
 ### Configuring UDP Stress
 
