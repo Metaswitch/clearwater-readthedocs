@@ -74,7 +74,9 @@ In order to register and make calls, you need to create subscriber records on yo
 ### Allowing one subscriber to have two private identities
 
 If you wish to use a stock Android SIP client that doesn't contain an
-**Authentication username** field to make calls through Clearwater, you will
+**Authentication username** field to make calls through Clearwater (for details
+on how to do this see
+[here](Configuring_the_native_Android_SIP_client.md#instructions-1)), you will
 have to configure your external HSS so that the subscriber you are trying to
 register with has two private identities.
 
