@@ -1,6 +1,7 @@
 These instructions detail how to enable the stock Android SIP client.
 These instruction are tested in a Samsung Galaxy Nexus running 4.2.2. For
-details on how to enable the SIP client on a Nexus 6 running 5.1.1 see below.
+details on how to enable the SIP client on a Nexus 6 running 5.1.1 [see
+below](Configuring_the_native_Android_SIP_client.md#instructions-1).
 If you get them working on another device, please add to the list below.
 Equally, if they do not work, please add your device to the unsupported
 list.
@@ -25,7 +26,10 @@ list.
     -   Set **Authentication username** to
         "sip:*&lt;username\>*@*&lt;server\>*", substituting (note: once we
         switch to storing user digest by private id, this will change)
-
+    -   Some SIP clients do not have an **Authentication username** field. To
+        make calls through Clearwater using these clients you will have to
+        configure an external HSS to [allow one subscriber to have two private
+        identities](External_HSS_Integration.md#allowing-one-subscriber-to-have-two-private-identities).
 7.  Once done, choose **Save**
 8.  Go back to the main Settings menu and under **Internet Call
     Settings**, select **Use Internet Calling**. Set this to **Ask for each call**
@@ -86,7 +90,7 @@ for a Nexus 6 running 5.1.1.
    -   Some SIP clients do not have an **Authentication username** field. To
        make calls through Clearwater using these clients you will have to
        configure an external HSS to [allow one subscriber to have two private
-       identities](External_HSS_Integration.md#Allowing-one-subsriber-to-have-two-private-identities).
+       identities](External_HSS_Integration.md#allowing-one-subscriber-to-have-two-private-identities).
 
 9.  Once done, choose **Save** at the top right of the screen.
 10. Go back to the Calling accounts menu and select **Use internet calling**.
