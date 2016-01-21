@@ -75,7 +75,7 @@ In order to register and make calls, you need to create subscriber records on yo
 
 If you wish to use a stock Android SIP client to make calls through Clearwater (for details
 on how to do this see
-[here](Configuring_the_native_Android_SIP_client.md#instructions-1))that doesn't contain an
+[here](Configuring_the_native_Android_SIP_client.md#instructions-1)) that doesn't contain an
 **Authentication username** field, the client will default to a username like **1234** 
 (rather than **`1234@example.com`** - the IMS standard form). To register a
 subscriber you will have to configure your external HSS so that the subscriber
