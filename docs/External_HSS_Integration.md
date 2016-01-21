@@ -71,6 +71,26 @@ In order to register and make calls, you need to create subscriber records on yo
 2. create an associated private user identity with its ID formed by removing the `sip:` scheme prefix from the public user ID
 3. configure the public user identity's Initial Filter Criteria to include an application server named `sip:mmtel.your.home.domain`, where `your.home.domain` is replaced with your home domain - this enables MMTEL services for this subscriber.
 
+### Allowing one subscriber to have two private identities
+
+If you try to use an [Android SIP client](Configuring_the_native_Android_SIP_client.md#instructions-1) that doesn't contain an
+**Authentication username** field, the client will default to a username like **`1234`** 
+(rather than **`1234@example.com`** - the IMS standard form). To register a
+subscriber you will have to configure your external HSS so that the subscriber
+you are trying to register has two private identities (**`1234`** and
+**`1234@example.com`**).
+
+The detailed process for this will depend on which HSS you have chosen.
+Generally, however, you will need to
+
+1. create a subscriber as usual- with public user identity "sip:*&lt;username\>*@*&lt;server\>*"
+2. create two new private identities, one having identity "*&lt;username\>*" and
+   the other with identity "*&lt;username\>*@*&lt;server\>*"
+3. associate the public user identity that was created in step 1: "sip:*&lt;username\>*@*&lt;server\>*" 
+   to both of the private identities created in step 2.
+
+This should allow the SIP client to register with that subscriber.
+
 ## Restrictions
 
 *   Since Homestead uses the Cx/Diameter interface to the HSS, and this interface is read-only, the Homestead API is read-only when external HSS integration is enabled.
