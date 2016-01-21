@@ -1,9 +1,9 @@
 These instructions detail how to enable the stock Android SIP client.
-The instructions vary depending on your handset and Andoird model, in
+The instructions vary depending on your handset and Android model, in
 particular the Nexus 6 running 5.1.1 has different menus to the other
 known [supported
-devices](Configuring_the_native_Android_SIP_client.md#known_supported_devices)
-listed below. If you get them working on another device, please add to the list.
+devices](Configuring_the_native_Android_SIP_client.md#known-supported-devices)
+listed. If you get them working on another device, please add to the list.
 Equally, if they do not work, please add your device to the unsupported
 list.
 
@@ -15,7 +15,7 @@ list.
     physical Menu button, or via an icon (consisting of three dots in a vertical line 
     in either the top right or bottom right).
 4.  From the menu, navigate to the internet calling accounts menu.
-    - On many devices this is located in **Settings** or **Call Settings** >
+    - On many devices this is located in **Settings** (or **Call Settings**) >
       **Internet Call Settings** > **Accounts**.
     - On the Nexus 6 running 5.1.1 this is located in **Settings** > **Calls** >
       **Calling accounts** > **Internet Call Settings** > **Internet calling
@@ -45,7 +45,7 @@ list.
 8.  Enable receiving internet calls (note this significantly reduces your
     battery life).
     - On many devices this is located in **Settings** > **Internet Call
-      Serrings** > **Accounts** once here select **Receive Incoming Calls**.
+      Settings** > **Accounts** once here select **Receive Incoming Calls**.
     - On the Nexus 6 running 5.1.1 this is located in **Settings** > **Calls** >
       **Calling accounts** once here select **Receive Incoming Calls**.
 
@@ -55,7 +55,7 @@ list.
     -  navigate to the **People** App. Select **+** in the top right to
     add a new contact to the phone book.
     -  Under **Add more information** select **Add another field**.
-    In this menu choose **Internet call** and type your contacts
+    In this menu choose **Internet call** and enter your contact's
     SIP address.
 - For the Nexus 6 running 5.1.1:
     - navigate to the **Contacts** App. Select **+** in the bottom right to add
@@ -68,7 +68,7 @@ list.
 -   Make a call from the standard dialler to another Clearwater line,
     e.g. 6505551234 and hit the Call button.
 -   You will be prompted whether to use internet calling. Select
-    internet calling and your call should connect
+    internet calling and your call should connect.
 
 ### Known supported devices
 
