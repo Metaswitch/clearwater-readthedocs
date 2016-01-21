@@ -34,7 +34,7 @@ list.
         configure an external HSS to [allow one subscriber to have two private
         identities](External_HSS_Integration.md#allowing-one-subscriber-to-have-two-private-identities).
         This will allow the subscriber to have one private identity of the form
-        **1234@example.com** (the IMS standard form), and one private identity
+        **`1234@example.com`** (the IMS standard form), and one private identity
         **1234** (which the phone will default to in the absence of a
         Authentication username).
 6.  Once done, choose **Save**.
