@@ -19,16 +19,24 @@ To then calculate the number of registrations actually active in the deployment,
 > (Node 1 + Node 2 + Node 3) / Replication-factor  
 > (  6    +   7    +   7   ) / 2  => 10 Active registrations
 
-## Sprout statistics
+### Sprout statistics
 
 Sprout nodes provide the following statistics:
 
 * The average count, variance, and high and low watermarks for the number of registrations, indexed by time period.
 * The average count, variance, and high and low watermarks for the number of bindings, indexed by time period.
 * The average count, variance, and high and low watermarks for the number of subscriptions, indexed by time period.
+* The number of registrations active at the time queried.
+* The number of bindings active at the time queried.
+* The number of subscriptions active at the time queried.
 
-## Ralf statistics
+### Ralf statistics
 
 Ralf nodes provide the following statistics:
 
 * The average count, variance, and high and low watermarks for the number of calls, indexed by time period.
+* The number of calls active at the time queried.
+
+## Technical details
+
+For a more technical overview of how these statistics are handled within Chronos, see [here](<insert link to chronos technical doc here>).
