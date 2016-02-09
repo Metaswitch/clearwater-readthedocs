@@ -10,13 +10,13 @@ As these statistics are representative of deployment wide state, their usage is 
 
 e.g. Consider a deployment with three Sprout nodes. If ten registrations are set up, the nodes might report the following statistics:
 
-* Node 1 - 6 Registrations
-* Node 2 - 7 Registrations
-* Node 3 - 7 Registrations
+* Node 1 :-  6 Registrations
+* Node 2 :-  7 Registrations
+* Node 3 :-  7 Registrations
 
 This does not mean that the number of registrations has doubled, nor is it representative of the number of registrations that each node actually handled. It is simply directly the number of timers held on each node tagged as registrations.  
 To then calculate the number of registrations actually active in the deployment, one takes the total and divides it by the replication factor, in this example 2.
-> (Node 1 + Node 2 + Node 3) / Replication-factor
+> (Node 1 + Node 2 + Node 3) / Replication-factor  
 > (  6    +   7    +   7   ) / 2  => 10 Active registrations
 
 ## Sprout statistics
