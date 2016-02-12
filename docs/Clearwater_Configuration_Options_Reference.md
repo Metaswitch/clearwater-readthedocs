@@ -76,8 +76,8 @@ This section describes optional configuration options, particularly for ensuring
 * `hs_listen_port` - the Diameter port which Homestead listens on. Defaults to 3868.
 * `ralf_listen_port`  - the Diameter port which Ralf listens on. Defaults to 3869 to avoid clashes when colocated with Homestead.
 * `alias_list` - this defines additional hostnames and IP addresses which Sprout or Bono will treat as local for the purposes of SIP routing (e.g. when removing Route headers).
-* `default_session_expires` - determines the Session-Expires value which Sprout will add to INVITEs, to force UEs to send keepalive messages during calls so they can be tracked for billing purposes.
-* `max_session_expires` - determines the maximum Session-Expires/Min-SE value which Sprout will accept in requests.
+* `default_session_expires` - determines the Session-Expires value which Sprout will add to INVITEs, to force UEs to send keepalive messages during calls so they can be tracked for billing purposes. This cannot be set to a value less than 90 seconds, as specified in [RFC 4028](https://tools.ietf.org/html/rfc4028).
+* `max_session_expires` - determines the maximum Session-Expires/Min-SE value which Sprout will accept in requests. This cannot be set to a value less than 90 seconds, as specified in [RFC 4028](https://tools.ietf.org/html/rfc4028).
 * `enum_server` - a comma-separated list of DNS servers which can handle ENUM queries.
 * `enum_suffix` - determines the DNS suffix used for ENUM requests (after the digits of the number). Defaults to "e164.arpa"
 * `enum_file` - if set (to a file path), and if `enum_server` is not set, Sprout will use this local JSON file for ENUM lookups rather than a DNS server. An example file is at http://clearwater.readthedocs.org/en/stable/ENUM/index.html#deciding-on-enum-rules.
