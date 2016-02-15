@@ -55,6 +55,8 @@ redundant site has been lost), you can use a working node in the other site, but
 must run `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_remote_node_failed` instead
 of `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed`.
 
+If you are using separate signaling and management networks, you must use the signaling IP address of the failed node as the failed node IP in the commands below.
+
 ### Sprout
 
     sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "sprout" "memcached" <failed node IP>
