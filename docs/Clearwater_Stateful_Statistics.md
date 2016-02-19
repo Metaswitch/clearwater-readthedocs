@@ -39,4 +39,4 @@ Ralf nodes provide the following statistics:
 
 ## Technical details
 
-For a more technical overview of how these statistics are handled within Chronos, see [here](<insert link to chronos technical doc here>).
+For a more technical overview of how these statistics are handled within Chronos, see [here.](https://github.com/Metaswitch/chronos/blob/dev/doc/statistics_structures.md)
