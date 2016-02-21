@@ -1,7 +1,8 @@
+# Using Zoiper with Clearwater
+
 These instructions detail how to configure the Zoiper Android/iOS SIP client to work against a Clearwater system.
 
-Instructions
-============
+## Instructions
 
 1. Download the application from the [Play Store](https://play.google.com/store/apps/details?id=com.zoiper.android.app) or [iTunes](https://itunes.apple.com/us/app/zoiper-softphone/id438949960?mt=8).
 2. Once installed, go to Config -> Accounts -> Add account -> SIP
@@ -18,8 +19,7 @@ Instructions
 8. Hit Save
 9. You are now ready to make calls.
 
-Known supported devices
-=======================
+## Known supported devices
 
 - Samsung Galaxy S3
 - Samsung Galaxy S2
@@ -32,7 +32,6 @@ Known supported devices
 - iPhone 4
 - iPhone 4S
 
-Known unsupported devices
-=========================
+## Known unsupported devices
 
 - Galaxy Nexus (no media)

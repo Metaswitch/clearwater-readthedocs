@@ -1,3 +1,5 @@
+# Elastic Scaling
+
 The core Clearwater nodes have the ability to elastically scale; in other words, you can grow and shrink your deployment on demand, without disrupting calls or losing data.
 
 This page explains how to use this elastic scaling function when using a deployment created through the [automated](Automated_Install.md) or [manual](Manual_Install.md) install processes.  Note that, although the instructions differ between the automated and manual processes, the underlying operations that will be performed on your deployment are the same - the automated process simply uses chef to drive this rather than issuing the commands manually.

@@ -1,4 +1,4 @@
-# Creating a deployment environment
+# Creating a Chef deployment environment
 
 These instructions make up part of the [automated install process](Automated_Install.md) for Clearwater.  They will take you through creating a deployment environment, which will be used to define the specific settings for a Clearwater deployment.
 

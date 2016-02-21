@@ -1,3 +1,5 @@
+# Clearwater Configuration Options Reference
+
 This document describes all the Clearwater configuration options that can be set in /etc/clearwater/shared_config, /etc/clearwater/local_config or /etc/clearwater/user_settings.
 
 You should follow [this process](Modifying_Clearwater_settings) when changing most of these settings. However for settings in the "Local settings" or "User settings" you should:

@@ -1,3 +1,5 @@
+# WebRTC support in Clearwater
+
 Clearwater supports WebRTC clients. This article explains how to do
 this, using a common WebRTC client as an example.
 
@@ -6,11 +8,9 @@ has not been tested on other browsers. WebRTC is under active
 development, so as a result of browser updates clients may not work.**
 
 **Be aware that the sipML5 client can't be logged in to multiple
-numbers simultaneously in the same browser.
-**
+numbers simultaneously in the same browser.**
 
-Instructions
-------------
+## Instructions
 
 In the instructions below, &lt;domain\> is your Clearwater domain.
 
@@ -62,8 +62,7 @@ Video can be disabled on the 'expert mode' tab.
 non-WebRTC clients, so such calls are not possible.  Transcoding
 will be supported in future.
 
-Known sipML5 bugs
------------------
+## Known sipML5 bugs
 
 At the time of writing, the following sipML5 bugs are known:
 
@@ -72,8 +71,7 @@ At the time of writing, the following sipML5 bugs are known:
     even if audio-only calls are being made.
 -   Hang up doesn't work - you have to hang up on both ends.
 
-Using STUN and TURN
--------------------
+## Using STUN and TURN
 
 **Note:** The above uses a default (non-Clearwater) STUN server, and no
 TURN server. Clearwater has its own STUN and TURN servers which can be
@@ -94,8 +92,7 @@ TURN. Configure this as follows:
     -   ICE Servers: [{url:"turn:&lt;phone
         number\>%40&lt;domain\>@&lt;domain\>",credential:"&lt;password>"}]
 
-Testing TURN
-------------
+## Testing TURN
 
 To test TURN when one or both of the clients are running under Windows
 7, find the IP of the remote client, and block direct communication

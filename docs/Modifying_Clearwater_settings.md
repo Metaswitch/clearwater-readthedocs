@@ -1,3 +1,5 @@
+# Modifying Clearwater Settings
+
 This page discusses how to change settings on a Clearwater system. Most settings can be changed on an existing deployment (e.g. security keys and details of external servers), but some are so integral to the system (e.g. the SIP home domain) that the best way to change it is to recreate the Clearwater deployment entirely.
 
 ## Modifying Settings in /etc/clearwater/shared_config

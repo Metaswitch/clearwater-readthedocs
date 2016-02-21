@@ -1,11 +1,9 @@
-Configuring an Application Server
-=================================
+# Configuring an Application Server
 
 This document explains how to configure an application server for use
 in a Clearwater deployment.
 
-Network configuration
-=====================
+## Network configuration
 
 Each application server must be able to communicate with Sprout and
 Bono in both directions.
@@ -28,8 +26,7 @@ If Clearwater and your application server are both in the Amazon EC2
 cloud, you can achieve all of these by placing the application server
 in the `<deployment>-sprout` security group.
 
-Application server configuration
-================================
+## Application server configuration
 
 No special application server configuration is required.
 
@@ -45,8 +42,7 @@ No special application server configuration is required.
 The headers set by Clearwater are described in the [Application Server
 Guide](Application_Server_Guide).
 
-iFC configuration
-=================
+## iFC configuration
 
 To configure a subscriber to invoke your application server, you must
 configure the appropriate iFCs for that subscriber. You can do this
@@ -54,8 +50,7 @@ via the Ellis UI, the Homestead API, or if you are using an HSS, directly in the
 HSS.
 
 
-Web UI configuration via Ellis
--------
+### Web UI configuration via Ellis
 
 Ellis allows you to specify a mapping between application server names and <InitialFilterCriteria> XML nodes. This is done by editing the `/usr/share/clearwater/ellis/web-content/js/app-servers.json` file, which is in [JSON](http://en.wikipedia.org/wiki/JSON#Data_types.2C_syntax_and_example) format. An example file would be:
 
@@ -67,8 +62,7 @@ Ellis allows you to specify a mapping between application server names and <Init
 ``` 
 Once this is saved, the list of application server names will appear in the Ellis UI (on the 'Application Servers' tab of the Configure dialog), and selecting or deselecting them will add or remove the relevant XML from Homestead. This change takes effect immediately. If an <InitialFilterCriteria> node in the iFC XML is not included in app-servers.json, Ellis will leave it untouched.
 
-Direct configuration via cURL
--------
+### Direct configuration via cURL
 
 You can also configure iFCs directly using Homestead.
 
