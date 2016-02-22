@@ -5,10 +5,6 @@ state, and clear them when they return to normal. They only report errors relati
 that node - not errors relating to the whole deployment, which is the role of an external
 monitoring service.
 
-Clearwater nodes also keep track of any errors they have reported. Every thirty
-seconds for synchronisation purposes the node will re-report all errors 
-corresponding to any abnormal states which the node still believes to be in.
-
 Error indications come in two forms:
 
 *   For clearly-defined errors not based on thresholds, the Clearwater node sets an
