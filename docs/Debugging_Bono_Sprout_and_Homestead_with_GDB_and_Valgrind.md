@@ -39,7 +39,3 @@ Valgrind will slow down the running of Bono, Sprout and Homestead by a factor of
 To install gdb, simply type `sudo apt-get install gdb`.  gdb is already installed on build machines, but not on live nodes.
 
 If you're debugging on a live node, it's also worth installing the sprout or bono debug packages.  When we build the standard (release) versions, we strip all the symbols out and these are saved off separately in the debug package.  Note that you will still be running the release code - the debug symbols will just be loaded by gdb when you start it up.  To install these packages, type `sudo apt-get install sprout-dbg` or `sudo apt-get install bono-dbg`.
-
-### Unpacking crash dumps
-
-We use apport to manage crash dumps.  The dumps exist temporarily in `/var/crash`. To unpack a crash dump, run `apport-unpack <crash dump name> <directory to unpack into>`.  The core file is called CoreDump.
