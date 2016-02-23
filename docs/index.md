@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[X Stands for Unknown](https://www.goodreads.com/book/show/3100756-x-stands-for-unknown)".
+The latest stable release of Clearwater is "[The Year of the Flood](https://www.goodreads.com/book/show/6080337-the-year-of-the-flood)".
 
 ## Architecture
 
