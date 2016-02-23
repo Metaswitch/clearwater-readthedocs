@@ -28,7 +28,7 @@ You may find that after a while sprout reports that it is unable to create new f
 - Edit the init.d file (`/etc/init.d/sprout`) and change the following:
   - Set the `EXECNAME` variable to the process name you worked out above.
   - Set the `DAEMON` variable to `/usr/bin/valgrind`.
-  - Change the `DAEMON_ARGS` so that it starts with `/usr/bin/valgrind <valgrind parameters>`
+  - Change the `DAEMON_ARGS` so that it starts with `<valgrind parameters> /usr/share/clearwater/bin/sprout`
 - Start sprout using `sudo service sprout start`.
 
 Valgrind will slow down the running of Bono, Sprout and Homestead by a factor of 5-10.  It will produce output when it detects invalid/illegal memory access - often these turn out to be benign, but they're rarely spurious.
