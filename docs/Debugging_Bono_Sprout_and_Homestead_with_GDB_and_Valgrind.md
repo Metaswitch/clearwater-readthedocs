@@ -16,20 +16,10 @@ To run Bono, Sprout or Homestead under valgrind (the example commands assume you
 -  Make sure valgrind is installed on your system and you have the appropriate debug packages installed (`sudo apt-get install valgrind` and `sudo apt-get install sprout-dbg`)
 -  Disable monitoring of sprout (`sudo monit unmonitor -g sprout`)
 -  Stop sprout (`sudo service sprout stop`)
--  Change to the sprout user (`sudo -u sprout bash`)
--  Change to a the /etc/clearwater directory
+-  Allow child processes to use more file descriptors, and become the sprout user (`sudo -i; ulimit -Hn 1000000; ulimit -Sn 1000000; (sudo -u sprout bash);`)
+-  Change to the `/etc/clearwater` directory
 -  Set up the library path (`export LD_LIBRARY_PATH=/usr/share/clearwater/sprout/lib:$LD_LIBRARY_PATH`)
 -  Run the executable under valgrind, enabling the appropriate valgrind options - for example, to use massif to monitor the Sprout heap `valgrind --tools=massif --massif-out-file=/var/log/sprout/massif.out.%p /usr/share/clearwater/bin/sprout <parameters>` (the --massif-out-file option is required to ensure the output is written to a directory where the sprout user has write permission). If any of Sprout parameters include a semi-colon, you must prefix this with a backslash otherwise the bash interpreter will interpret this as the end of the command.
-
-You may find that after a while sprout reports that it is unable to create new file descriptors. If this happens, you need to run sprout as a service instead.
-
-- When running sprout under valgrind from the command line, in another console run `pgrep -lf sprout` to show the name of the process that valgrind is running as.
-- Use Ctrl-C to end the valgrind process in your original console.
-- Edit the init.d file (`/etc/init.d/sprout`) and change the following:
-  - Set the `EXECNAME` variable to the process name you worked out above.
-  - Set the `DAEMON` variable to `/usr/bin/valgrind`.
-  - Change the `DAEMON_ARGS` so that it starts with `<valgrind parameters> /usr/share/clearwater/bin/sprout`
-- Start sprout using `sudo service sprout start`.
 
 Valgrind will slow down the running of Bono, Sprout and Homestead by a factor of 5-10.  It will produce output when it detects invalid/illegal memory access - often these turn out to be benign, but they're rarely spurious.
 
