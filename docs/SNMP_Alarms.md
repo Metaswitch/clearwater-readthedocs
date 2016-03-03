@@ -41,3 +41,13 @@ obtain the brief description, detailed description, and severity for the alarm:
 ## Alarm Models
 
 The alarm models used by Clearwater are defined in [alarmdefinition.h](https://github.com/Metaswitch/cpp-common/blob/master/include/alarmdefinition.h).
+
+## Alarm Resiliency
+
+Alarms are reported in such a way that if a component receiving alarm
+notifications were to fail, when it recovers it would regain knowledge of the 
+current alarm state of the system. This is partly because Clearwater nodes 
+keep track of the errors they have reported and re-report these every thirty 
+seconds. Clearwater also has a synchronise alarms function which can be called
+if your external monitoring service fails, this will resend the current error
+state of the system to the monitoring service.
