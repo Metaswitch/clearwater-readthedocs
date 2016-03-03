@@ -1,3 +1,5 @@
+# Ruby Coding Guidelines
+
 Strongly based on https://github.com/chneukirchen/styleguide/ with some local changes.
 
 ## Formatting:

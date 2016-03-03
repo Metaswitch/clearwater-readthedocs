@@ -1,5 +1,4 @@
-Call Diversion
-==============
+# Call Diversion
 
 Clearwater allows users to define rules for handling of incoming
 calls, by implementing a superset of the IR.92 version of call

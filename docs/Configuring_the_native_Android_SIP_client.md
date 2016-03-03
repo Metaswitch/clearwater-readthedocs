@@ -1,3 +1,5 @@
+# Using the Android SIP Client with Clearwater
+
 These instructions detail how to enable the stock Android SIP client.
 The instructions vary depending on your handset and Android model, in
 particular the Nexus 6 running 5.1.1 has different menus to the other

@@ -1,3 +1,5 @@
+# Stress Testing
+
 One of Clearwater's biggest strengths is scalability and in order to demonstrate this, we have easy-to-use settings for running large amounts of SIP stress against a deployment.  This document describes:
 - Clearwater's SIP stress nodes, what they do, and (briefly) how they work
 - how to kick off your own stress test.

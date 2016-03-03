@@ -1,10 +1,8 @@
-Application Server Guide
-========================
+# Application Server Guide
 
 You can add new call features or functionality to calls by adding an application server.  Clearwater supports application servers through the standard IMS interface ISC. This article explains the features and limitations of this support. See [Configuring an Application Server](Configuring_an_Application_Server.md) for details of how to configure Clearwater to use this function.
 
-What is an application server?
-==============================
+## What is an application server?
 
 An application server (AS) is a server which is brought into or notified of a call by the network in order to provide call features or other behaviour.
 
@@ -16,8 +14,7 @@ s5.4 (the S-CSCF side) and s5.7 (the AS side). Further useful information can be
 
 For a more detailed look at the ISC interface, and how it is implemented in Clearwater, see the [ISC interface guide](https://github.com/Metaswitch/sprout/blob/dev/docs/IscInterface.md) in the Sprout developer documentation.
 
-Clearwater interfaces
-=====================
+## Clearwater interfaces
 
 In Clearwater most S-CSCF function, including the ISC interface, is implemented in Sprout. Sprout invokes application servers over the ISC interface, as specified in the iFCs.
 
@@ -32,8 +29,7 @@ In Clearwater most S-CSCF function, including the ISC interface, is implemented 
     * Message body handling for third-party registration, per 3GPP TS 24.229 s5.4.1.7A: including optionally service info, a copy of the registration, and a copy of the response.
     * Network-initiated deregister. If the third-party registration fails and the iFC requests it, we must deregister the UE.
 
-Supported SIP headers
----------------------
+### Supported SIP headers
 
 The following SIP headers are supported on the ISC interface:
 
@@ -41,16 +37,14 @@ The following SIP headers are supported on the ISC interface:
  * `P-Asserted-Identity` - bare minimal support only: we set it to the same value as `From:` on the outbound ISC interface, and never strip it. Full support will be added in future phases. This header is needed by originating ASs, particularly in cases where privacy is requested (see RFC3325). Full support would involve setting it in P-CSCF (bono), and ensuring it is set/stripped in the right places. The proposed minimal support has the limitation that ASs which don't understand `P-Served-User` won't work correctly when privacy is invoked. See 3GPP TS 24.229 s5.7.1.3A.
  * `P-Served-User`. This is needed for proper support of AS chains, to avoid service-interaction tangles. It is set by Sprout and set/stripped in the appropriate places.
 
-Points of Note
---------------
+### Points of Note
 
  * Trust:
      * Some ISC signaling is trust-dependent. For Clearwater, all ASs are trusted - we think support for untrusted ASs is unlikely to be required.
  * IP Connectivity
      * We assume that there is no NAT (static or otherwise) between the AS and the Clearwater core.
 
-Current Spec Deltas
--------------------
+### Current Spec Deltas
 
 **As of June 2015, Clearwater has the following limitations on the ISC interface:**
 
@@ -60,8 +54,7 @@ Current Spec Deltas
  * `Request-Disposition: no-fork` (3GPP TS 24.229 s5.4.3.3 step 10, s5.7.3, RFC 3841)
      * Clearwater ignores this directive - it always INVITEs all registered endpoints.
 
-Future phases
--------------
+### Future phases
 
 The following features may be implemented by Clearwater in future phases:
 
@@ -75,8 +68,7 @@ The following features may be implemented by Clearwater in future phases:
  * Support for terminating ASs changing to an alias URI.
  * Support for `Request-Disposition: no-fork`, which should pick a single endpoint to INVITE.
 
-Exclusions
-----------
+### Exclusions
 
 Clearwater implements the ISC interface only. An AS may also expect to communicate over several other interfaces:
 
@@ -84,8 +76,7 @@ Clearwater implements the ISC interface only. An AS may also expect to communica
  * AS interrogates SRF over Dh. Typical Clearwater deployments do not include an SRF.
  * UE retrieves and edits AS configuration via Ut. An AS is free to provide this or any other configuration interface it chooses. Homer does not provide a generic Ut interface for ASs to store configuration information.
 
-The built-in MMTEL application server
-=====================================
+## The built-in MMTEL application server
 
 Clearwater has a built-in application server, `mmtel.<deployment-domain>`, which implements a subset of the MMTEL services defined in [GSMA PRD IR.92](http://www.gsma.com/newsroom/wp-content/uploads//IR.92-v9.0.pdf), [ETSI TS 129.364](http://webapp.etsi.org/workprogram/Report_WorkItem.asp?WKI_ID=42062) and [3GPP TS 24.623](http://www.3gpp.org/ftp/Specs/html-info/24623.htm):
 

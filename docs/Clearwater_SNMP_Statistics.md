@@ -1,3 +1,5 @@
+# SNMP Statistics
+
 Clearwater provides a set of statistics about the performance of each Clearwater nodes over SNMP. Currently, this is available on Bono, Sprout, Ralf and Homestead nodes, and the MMTel, Call Diversion, Memento and Gemini Application Server nodes.
 
 ## Configuration

@@ -1,11 +1,9 @@
-Clearwater Tour
-===============
+# Clearwater Tour
 
 This document is a quick tour of the key features of Clearwater, from
 a subscriber's point of view.
 
-Self-service account and line creation
---------------------------------------
+## Self-service account and line creation
 
 In a browser, go to the Account Signup tab at
 `http://ellis.<domain>/signup.html` and supply details as requested:
@@ -31,8 +29,7 @@ end up with just a PSTN number assigned to the account.
 Address book: for this system there is a single address book which all
 numbers are by default added to - see the checkbox by the line.
 
-Connecting an X-Lite client
----------------------------
+## Connecting an X-Lite client
 
 Now register for the new PSTN line on your newly created account with
 your as yet unregistered X-Lite phone.
@@ -62,13 +59,11 @@ your as yet unregistered X-Lite phone.
 
 We have now registered for the new line.
 
-Connecting an Android phone
----------------------------
+## Connecting an Android phone
 
 See [here](Configuring_the_native_Android_SIP_client.md) for instructions.
 
-Making calls
-------------
+## Making calls
 
 - Make a call using your new line to a PSTN number (eg your regular
 mobile phone number). Clearwater performs an ENUM lookup to decide how
@@ -106,14 +101,12 @@ A brief note on supported dialing formats:
     doesn't connect, then it almost certainly wouldn't connect if you
     were dialling the same number via the configured SIP trunk directly.
 
-WebRTC support
---------------
+## WebRTC support
 
 See [WebRTC support in Clearwater](WebRTC_support_in_Clearwater.md) for
 how to use a browser instead of a SIP phone as a client.
 
-VoLTE call services
--------------------
+## VoLTE call services
 
 ### Call barring
 

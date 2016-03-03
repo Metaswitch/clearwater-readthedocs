@@ -1,8 +1,10 @@
+# Voxbone
+
 [Voxbone](http://www.voxbone.com/) provides local, geographical, mobile and toll free phone numbers and converts incoming calls and SMSs to SIP INVITE and MESSAGE flows.
 
 Clearwater supports these flows, and this document describes how to configure Voxbone and Clearwater to work together, and then how to test and troubleshoot.
 
-# Configuration
+## Configuration
 
 There are 3 configuration steps.
 
@@ -10,7 +12,7 @@ There are 3 configuration steps.
 2.  Create a subscriber on Clearwater.
 3.  Associate the subscriber with a number on Voxbone.
 
-## Configuring IBCF
+### Configuring IBCF
 
 An IBCF (Interconnection Border Control Function) interfaces between the core network and one or must trusted SIP trunks.  We will configure Voxbone to send all its traffic to the IBCF, but we first need to configure the IBCF to accept traffic from Voxbone.
 
@@ -33,11 +35,11 @@ The process for configuring trusted peers is described as part of [the IBCF docu
 
 If you don't want to configure all your bono nodes as IBCF nodes, you can do so, but will need to take extra steps when configuring Voxbone to ensure that calls are routed to the correct node.
 
-## Creating a subscriber
+### Creating a subscriber
 
 Creating a subscriber for Voxbone use is done exactly [as you would normally do so](Making_your_first_call.md#create-a-number-for-your-client).
 
-## Associating the subscriber on Voxbone
+### Associating the subscriber on Voxbone
 
 For each telephone number you own, Voxbone allows you to configure a SIP URI to which incoming calls will be sent.
 
@@ -47,13 +49,13 @@ For each telephone number you own, Voxbone allows you to configure a SIP URI to 
 
 If you are also using the VoxSMS service for receiving SMSes, you additionally need to configure a VoxSMS SIP URI using the same SIP URI as above.
 
-# Testing
+## Testing
 
 The Voxbone web UI allows you to make a test call.  Alternatively, you can make a normal call through the PSTN to your Voxbone number.
 
 The only way to test SMS function is to actually send an SMS to your Voxbone number.
 
-# Troubleshooting
+## Troubleshooting
 
 If your call or SMS doesn't get through, there are three things to check.
 

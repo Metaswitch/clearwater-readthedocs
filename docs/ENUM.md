@@ -1,5 +1,4 @@
-ENUM Guide
-==========
+# ENUM Guide
 
 [ENUM](http://tools.ietf.org/rfc/rfc6116.txt) is a system for mapping
 PSTN numbers to SIP URIs using DNS
@@ -10,8 +9,7 @@ sprout supports. This article describes
 -   what we support
 -   how to configure a server to respond to ENUM queries.
 
-ENUM overview
--------------
+## ENUM overview
 
 The [NAPTR article on
 Wikipedia](http://en.wikipedia.org/wiki/NAPTR_record#Example) gives a
@@ -38,8 +36,7 @@ Discovery System (DDDS), on which ENUM is built) and [RFC
 relevant is [RFC 4769](http://www.ietf.org/rfc/rfc4769) (which specifies
 ENUM service types).
 
-Clearwater ENUM Support
------------------------
+## Clearwater ENUM Support
 
 Clearwater supports ENUM as set out in RFC 3761 and RFC 4769, with the
 following points/omissions.
@@ -66,8 +63,7 @@ following points/omissions.
     user-dialed number into an E.164 number, so we assume that the
     number provided by the user is E.164.
 
-Deciding on ENUM rules
-----------------------
+## Deciding on ENUM rules
 
 ENUM rules will vary with your deployment, but the (JSON-ized) rules
 from an example deployment might form a reasonable basis:
@@ -113,8 +109,7 @@ from an example deployment might form a reasonable basis:
         ]
     }
 
-Configuring ENUM rules
-----------------------
+## Configuring ENUM rules
 
 Normally, the ENUM server would be an existing part of the customer's
 network (not part of Clearwater itself) but, for testing and
@@ -380,8 +375,7 @@ translate to the following entries in /etc/dnsmasq.d/enum.
     # NANP => SIP trunk
     naptr-record=e164.arpa,1,1,U,E2U+SIP,!(^.*$)!sip:\\1@10.147.226.2!
 
-ENUM Domain Suffix
-------------------
+## ENUM Domain Suffix
 
 [RFC 3761](http://www.ietf.org/rfc/rfc3761.txt) mandates that domain
 names used during ENUM processing are suffixed with .e164.arpa.
@@ -398,8 +392,8 @@ you can instead change the suffix, e.g. to .e164.arpa.ngv.example.com, by
     Server) record with name "e164.arpa.ngv.example.com" and value set to the
     name/IP address of your DNS server.
 
-ENUM and Sprout
----------------
+## ENUM and Sprout
+
 To enable ENUM lookups on Sprout, edit `/etc/clearwater/shared_config` and add the following configuration to use either an ENUM server (recommended) or an ENUM file:
 
     enum_server=<IP addresses of enum servers>

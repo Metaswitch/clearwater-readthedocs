@@ -80,7 +80,7 @@ If you are using separate signaling and management networks, you must use the si
     sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "cassandra" <failed node IP>
     sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "memcached" <failed node IP>
 
-# Complete Site Failure
+## Complete Site Failure
 
 In a geographically redundant deployment, you may encounter the situation where
 an entire site has permanently failed (e.g. because the location of that

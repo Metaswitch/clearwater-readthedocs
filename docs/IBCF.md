@@ -1,4 +1,4 @@
-# IBCF
+# Off-net Calling with BGCF and IBCF
 
 The Clearwater IBCF (Interconnection Border Control Function) provides an interface point between a Clearwater deployment and one or more trusted SIP trunks.
 

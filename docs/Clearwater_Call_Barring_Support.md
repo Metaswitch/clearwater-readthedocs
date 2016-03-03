@@ -1,5 +1,4 @@
-Call Barring
-============
+# Call Barring
 
 Clearwater allows users to configure rules for blocking of incoming or
 outgoing calls, by implementing the IR.92 version of call barring
@@ -29,8 +28,7 @@ And one of:
 -   No incoming calls
 -   All incoming calls
 
-International Call detection
-----------------------------
+## International Call detection
 
 The 3GPP specification states that to
 detect an international number, a SIP router should discount SIP/SIPS
@@ -41,8 +39,7 @@ parameter. Because of this behavior, the Clearwater
 implementation considers all SIP URIs for international call
 categorization.
 
-National dialing prefix
------------------------
+## National dialing prefix
 
 Another limitation is that the international call detection algorithm
 only checks against a global 'national' dialing prefix (which is fine

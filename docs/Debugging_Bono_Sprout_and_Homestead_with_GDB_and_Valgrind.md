@@ -1,3 +1,5 @@
+# Debugging Clearwater with GDB and Valgrind
+
 ## Valgrind
 
 [Valgrind](http://valgrind.org/) is a very powerful profiling and debugging tool.
