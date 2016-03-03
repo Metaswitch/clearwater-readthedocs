@@ -18,7 +18,7 @@
 # post at Metaswitch Networks Ltd, 100 Church St, Enfield EN2 6BQ, UK
 #
 # Special Exception
-# Metaswitch Networks Ltd  grants you permission to copy, modify,
+# Metaswitch Networks Ltd grants you permission to copy, modify,
 # propagate, and distribute a work formed by combining OpenSSL with The
 # Software, or a work derivative of such a combination, even if such
 # copying, modification, propagation, or distribution would otherwise
@@ -74,7 +74,12 @@ def printit(data, caption):
     for item in data:
         for title, filename in item.iteritems():
             if type(filename) == str:
-                # Special-case the index page, to avoid infinite recursion
+                # Special-case the index page, to avoid infinite recursion -
+                # Sphinx looks in each of the files you list for a table of
+                # contents, so it can list the subheadings, so listing this file
+                # causes infinite recursion.
+                # http://stackoverflow.com/questions/16123951/how-do-i-include-the-homepage-in-the-sphinx-toc.
+
                 if filename == "index.md":
                     filename = "self"
                 print "   {} <{}>".format(title, filename.replace(".md", ".rst"))
@@ -82,6 +87,8 @@ def printit(data, caption):
                 # This is a subsection heading rather than a particular file, so
                 # recurse into it
                 printit(filename, title)
+
+    # Separate sections with a blank line
     print ""
 
 

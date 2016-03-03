@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if git diff --stat --staged | grep "\.rst"
-then
-  echo "Don't modify the .rst files - modify the .md files!"
-  exit 1
-fi

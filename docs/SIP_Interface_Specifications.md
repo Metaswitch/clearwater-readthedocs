@@ -482,7 +482,7 @@ The following is a brief explanation of each RFC, and its relevance to IMS.
 *   Media capabilities negotiation in SDP (referenced as [draft-ietf-mmusic-sdp-media-capabilities-08](http://datatracker.ietf.org/doc/draft-ietf-mmusic-sdp-media-capabilities/)) - defines SDP extensions for signaling media capabilities such as encodings and formats.  Mandatory for ICS capable UEs and SCC-AS, otherwise optional.
 *   Miscellaneous capabilities negotiation in SDP (referenced as [draft-ietf-mmusic-sdp-miscellaneous-caps-00](http://datatracker.ietf.org/doc/draft-ietf-mmusic-sdp-miscellaneous-caps/)) - defines SDP extensions for signaling some miscellaneous capabilities.  Mandatory for ICS capable UEs and SCC-AS, otherwise optional.
 
-    ## Not Relevant to Clearwater
+## Not Relevant to Clearwater
 
 ### Locating P-CSCF using DHCP ([RFC 3319](http://www.ietf.org/rfc/rfc3319.txt) and [RFC 3361](http://www.ietf.org/rfc/rfc3361.txt))
 
