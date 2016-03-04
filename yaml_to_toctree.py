@@ -37,9 +37,15 @@ This script converts a mkdocs.yml table of contents into a reStructuredText tabl
 
 import yaml
 
-section = 1
+class BadSectionError(Exception):
+    """Raised when a section doesn't contain either a filename or a list of
+    headings/files for a subsection"""
+    pass
 
-def printit(data, caption):
+
+section_num = 1
+
+def print_toc_section(section, caption):
     """ data is a list of single-item dictionaries, each of which represent a
         page title and a file. Sections are represented by having the dictionary value
         be another list, rather than a filename.
@@ -57,7 +63,7 @@ def printit(data, caption):
                                  {'Migrating to etcd': 'Migrating_To_etcd.md'}]}]
 
     """
-    global section
+    global section_num
 
     # Output the rST section heading
     print """
@@ -66,14 +72,14 @@ def printit(data, caption):
 .. toctree::
    :caption: {}
    :maxdepth: 0
-""".format(section, caption)
+""".format(section_num, caption)
 
     # Increment the section number ready for the next section
-    section += 1
+    section_num += 1
 
-    for item in data:
+    for item in section:
         for title, filename in item.iteritems():
-            if type(filename) == str:
+            if isinstance(filename, basestring):
                 # Special-case the index page, to avoid infinite recursion -
                 # Sphinx looks in each of the files you list for a table of
                 # contents, so it can list the subheadings, so listing this file
@@ -83,10 +89,12 @@ def printit(data, caption):
                 if filename == "index.md":
                     filename = "self"
                 print "   {} <{}>".format(title, filename.replace(".md", ".rst"))
-            elif type(filename) == list:
+            elif isinstance(filename, list):
                 # This is a subsection heading rather than a particular file, so
                 # recurse into it
-                printit(filename, title)
+                print_toc_section(filename, title)
+            else:
+                raise BadSectionError("Section contains badly-typed information ({}, not str or list)".format(type(filename)))
 
     # Separate sections with a blank line
     print ""
@@ -94,4 +102,4 @@ def printit(data, caption):
 
 with open('mkdocs.yml', 'r') as f:
     data = yaml.load(f)
-    printit(data['pages'], "Overview")
+    print_toc_section(data['pages'], "Overview")
