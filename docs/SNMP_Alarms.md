@@ -44,10 +44,16 @@ The alarm models used by Clearwater are defined in [alarmdefinition.h](https://g
 
 ## Alarm Resiliency
 
-Alarms are reported in such a way that if a component receiving alarm
-notifications were to fail, when it recovers it would regain knowledge of the 
-current alarm state of the system. This is partly because Clearwater nodes 
-keep track of the errors they have reported and re-report these every thirty 
-seconds. Clearwater also has a synchronise alarms function which can be called
-if your external monitoring service fails, this will resend the current error
-state of the system to the monitoring service.
+Clearwater is designed so that if an EMS receiving alarm notifications fails and
+recovers, it will learn about any alarms raised by Clearwater while it was down,
+rather than those alarms just being lost. This is due to the following two
+features:
+
+*   The process responsible for sending SNMP notifications, the Alarm Agent,
+    keeps track of all the currently active error states in a table called the
+    Alarm Active Table. Upon restart, if supported, an EMS can read this table and
+    gain knowledge of any SNMP INFORMs it may have missed in its downtime.
+*   If an EMS does not support reading the Active Alarm Table we can still
+    recover the SNMP INFORMs by manually calling the synchronise alarms script.
+    This will cause SNMP notifications to be resent to the EMS. To call this
+    script use the command: `/usr/share/clearwater/bin/sync_alarm.py`
