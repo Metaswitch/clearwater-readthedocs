@@ -51,7 +51,9 @@ Sprout maintains registration state in a memcached cluster. It's a little clunky
 
 Memcached logs to `/var/log/memcached.log`. It logs very little by default, but it is possible to make it more verbose by editing `/etc/memcached_11211.conf`, uncommenting the `-vv` line, and then restarting memcached.
 
-To turn on debug logging for Sprout write `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Sprout (`sudo service sprout stop` - it will be restarted by monit).
+To turn on debug logging temporarily for a running Sprout process, run `sudo bash -c 'echo 5 > /var/run/clearwater/logging/sprout'`. The log level will be reset when the process next restarts.
+
+To turn on debug logging permanently for Sprout, write `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Sprout (`sudo service sprout stop` - it will be restarted by monit).
 
 Sprout also uses [Chronos](https://github.com/Metaswitch/chronos) to track registration, subscription and authorization timeouts. Chronos logs to `/var/log/chronos/chronos*`. Details of how to edit the Chronos configuration are [here](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md).
 
