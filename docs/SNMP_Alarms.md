@@ -51,9 +51,8 @@ features:
 
 *   The process responsible for sending SNMP notifications, the Alarm Agent,
     keeps track of all the currently active error states in a table called the
-    Alarm Active Table. Upon restart, if supported, an EMS can read this table and
-    gain knowledge of any SNMP INFORMs it may have missed in its downtime.
+    Alarm Active Table. Upon restart, an EMS can read this table and
+    learn about any SNMP INFORMs it may have missed in its downtime.
 *   If an EMS does not support reading the Active Alarm Table we can still
-    recover the SNMP INFORMs by manually calling the synchronise alarms script.
-    This will cause SNMP notifications to be resent to the EMS. To call this
-    script use the command: `/usr/share/clearwater/bin/sync_alarm.py`
+    recover the SNMP INFORMs by running `/usr/share/clearwater/bin/sync_alarm.py`.
+    This will cause SNMP notifications to be resent to the EMS.
