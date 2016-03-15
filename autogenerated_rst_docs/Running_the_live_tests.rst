@@ -9,7 +9,7 @@ suite and running the tests.
 Prerequisites
 -------------
 
--  You've `installed Clearwater <Installation_Instructions.md>`__
+-  You've `installed Clearwater <Installation_Instructions.html>`__
 -  You have an Ubuntu Linux machine available to drive the tests
 -  If you installed through the automated install process, the chef
    workstation is a perfectly good choice for this task
@@ -50,8 +50,8 @@ Work out your signup code
 
 The tests need your signup code to create a test user. You set this as
 ``signup_key`` during install: `manually in
-/etc/clearwater/shared\_config <Manual_Install.md>`__ or `automatically
-in knife.rb <Installing_a_Chef_workstation.md>`__. For the rest of these
+/etc/clearwater/shared\_config <Manual_Install.html>`__ or `automatically
+in knife.rb <Installing_a_Chef_workstation.html>`__. For the rest of these
 instructions, the signup code will be referred to as ``<code>``.
 
 Running the tests against an All-in-One node
@@ -140,6 +140,6 @@ Where next?
 -----------
 
 Now that you've confirmed that your Clearwater system is operational,
-you might want to `make a real call <Making_your_first_call.md>`__ or
-`explore Clearwater <Exploring_Clearwater.md>`__ to see what else
+you might want to `make a real call <Making_your_first_call.html>`__ or
+`explore Clearwater <Exploring_Clearwater.html>`__ to see what else
 Clearwater offers.

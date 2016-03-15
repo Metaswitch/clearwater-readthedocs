@@ -499,6 +499,6 @@ Other configuration options
 ---------------------------
 
 There is further documentation for Chronos configuration
-`here <https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md>`__
+`here <https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.html>`__
 and Homer/Homestead-prov configuration
-`here <https://github.com/Metaswitch/crest/blob/master/docs/development.md#local-settings>`__.
+`here <https://github.com/Metaswitch/crest/blob/master/docs/development.html#local-settings>`__.

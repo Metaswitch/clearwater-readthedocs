@@ -5,7 +5,7 @@ These instructions will take you through installing a minimal Clearwater
 system using the latest binary packages provided by the Clearwater
 project. For a high level look at the install process, and a discussion
 of alternative install methods, see `Installation
-Instructions <Installation_Instructions.md>`__.
+Instructions <Installation_Instructions.html>`__.
 
 Prerequisites
 -------------
@@ -118,7 +118,7 @@ Firewall configuration
 We need to make sure the Clearwater nodes can all talk to each other. To
 do this, you will need to open up some ports in the firewalls in your
 network. The ports used by Clearwater are listed in `Clearwater IP Port
-Usage <Clearwater_IP_Port_Usage.md>`__. Configure all of these ports to
+Usage <Clearwater_IP_Port_Usage.html>`__. Configure all of these ports to
 be open to the appropriate hosts before continuing to the next step. If
 you are running on a platform that has multiple physical or virtual
 interfaces and the option to apply different firewall rules on each,
@@ -144,7 +144,7 @@ created above. For example if the nodes had addresses 10.0.0.1 to
 ``"10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5,10.0.0.6"``
 
 If you are creating a `geographically redundant
-deployment <Geographic_redundancy.md>`__, then:
+deployment <Geographic_redundancy.html>`__, then:
 
 -  ``etcd_cluster`` should contain the IP addresses of nodes in both
    sites
@@ -255,7 +255,7 @@ SNMP statistics
 Sprout, Bono and Homestead nodes expose statistics over SNMP. This
 function is not installed by default. If you want to enable it follow
 the instruction in `our SNMP
-documentation <Clearwater_SNMP_Statistics.md>`__.
+documentation <Clearwater_SNMP_Statistics.html>`__.
 
 Provide Shared Configuration
 ----------------------------
@@ -323,12 +323,12 @@ Servers add the following:
     memento_enabled='Y'
 
 See the `Chef
-instructions <Installing_a_Chef_workstation.md#add-deployment-specific-configuration>`__
+instructions <Installing_a_Chef_workstation.html#add-deployment-specific-configuration>`__
 for more information on how to fill these in. The values marked
 ``<secret>`` **must** be set to secure values to protect your deployment
 from unauthorized access. To modify these settings after the deployment
 is created, follow `these
-instructions <Modifying_Clearwater_settings.md>`__.
+instructions <Modifying_Clearwater_settings.html>`__.
 
 Now run the following to upload the configuration to a shared database
 and propagate it around the cluster.
@@ -374,7 +374,7 @@ command given here will generate 1000 numbers starting at
 ``sip:6505550000@<zone>``, meaning none of the generated numbers will be
 routable outside of the Clearwater deployment. For more details on
 creating numbers, see the `create\_numbers.py
-documentation <https://github.com/Metaswitch/ellis/blob/dev/docs/create-numbers.md>`__.
+documentation <https://github.com/Metaswitch/ellis/blob/dev/docs/create-numbers.html>`__.
 
 ::
 
@@ -402,7 +402,7 @@ DNS Records
 Clearwater uses DNS records to allow each node to find the others it
 needs to talk to to carry calls. At this point, you should create the
 DNS entries for your deployment before continuing to the next step.
-`Clearwater DNS Usage <Clearwater_DNS_Usage.md>`__ describes the entries
+`Clearwater DNS Usage <Clearwater_DNS_Usage.html>`__ describes the entries
 that are required before Clearwater will be able to carry service.
 
 Although not required, we also suggest that you configure individual DNS
@@ -421,18 +421,18 @@ Once you've reached this point, your Clearwater deployment is ready to
 handle calls. See the following pages for instructions on making your
 first call and running the supplied regression test suite.
 
--  `Making your first call <Making_your_first_call.md>`__
--  `Running the live test suite <Running_the_live_tests.md>`__
+-  `Making your first call <Making_your_first_call.html>`__
+-  `Running the live test suite <Running_the_live_tests.html>`__
 
 Larger-Scale Deployments
 ------------------------
 
 If you're intending to spin up a larger-scale deployment containing more
 than one node of each types, it's recommended that you use the
-`automated install process <Automated_Install.md>`__, as this makes
+`automated install process <Automated_Install.html>`__, as this makes
 scaling up and down very straight-forward. If for some reason you can't,
 you can add nodes to the deployment using the `Elastic Scaling
-Instructions <Clearwater_Elastic_Scaling.md>`__
+Instructions <Clearwater_Elastic_Scaling.html>`__
 
 Standalone Application Servers
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

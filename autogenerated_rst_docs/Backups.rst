@@ -18,7 +18,7 @@ This document describes
 -  how to restore from a backup.
 
 Note that if your Clearwater deployment is `integrated with an external
-HSS <External_HSS_Integration.md>`__, the HSS is the master of ellis and
+HSS <External_HSS_Integration.html>`__, the HSS is the master of ellis and
 homestead's data, and those nodes do not need to be backed up. However,
 homer's data still needs to be backed up.
 
@@ -314,7 +314,7 @@ Shared Configuration
 In addition to the data stored in ellis, homer, homestead and memento, a
 Clearwater deployment also has shared configuration that is
 `automatically shared between
-nodes <Automatic_Clustering_Config_Sharing.md>`__. This is stored in a
+nodes <Automatic_Clustering_Config_Sharing.html>`__. This is stored in a
 distributed database, and mirrored to files on the disk of each node.
 
 Backing Up
@@ -323,7 +323,7 @@ Backing Up
 To backup the shared configuration:
 
 -  If you are in the middle of `modifying shared
-   config <Modifying_Clearwater_settings.md>`__, complete the process to
+   config <Modifying_Clearwater_settings.html>`__, complete the process to
    apply the config change to all nodes.
 -  Log onto one of the sprout nodes in the deployment.
 -  Copy the following files to somewhere else for safe keeping (e.g.

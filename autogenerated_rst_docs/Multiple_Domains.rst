@@ -58,7 +58,7 @@ additional home domains as equivalent.
 Adding DNS Records
 ~~~~~~~~~~~~~~~~~~
 
-The `Clearwater DNS Usage <Clearwater_DNS_Usage.md>`__ document
+The `Clearwater DNS Usage <Clearwater_DNS_Usage.html>`__ document
 describes how to configure DNS for a simple single-domain deployment.
 This includes creating NAPTR, SRV and A records that resolve the home
 domain (or ``<zone>``) to the bono nodes. If you have additional home
@@ -73,18 +73,18 @@ Once the deployment has multiple domain support enabled, you can create
 subscribers in any of the domains, and with any realm.
 
 -  If you use ellis, the
-   ```create-numbers.py`` <https://github.com/Metaswitch/ellis/blob/dev/docs/create-numbers.md>`__
+   ```create-numbers.py`` <https://github.com/Metaswitch/ellis/blob/dev/docs/create-numbers.html>`__
    script accepts a ``--realm`` parameter to specify the realm in which
    the directory numbers are created. When a number is allocated in the
    ellis UI, ellis picks any valid number/realm combination.
 
 -  If you
-   `bulk-provision <https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md>`__
+   `bulk-provision <https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.html>`__
    numbers, the home domain and realm can be specified in the input CSV
    file.
 
 -  If you use homestead's `provisioning
-   API <https://github.com/Metaswitch/crest/blob/dev/docs/homestead_prov_api.md>`__
+   API <https://github.com/Metaswitch/crest/blob/dev/docs/homestead_prov_api.html>`__
    (i.e. without an external HSS), you can specify the home domain and
    realm as parameters.
 

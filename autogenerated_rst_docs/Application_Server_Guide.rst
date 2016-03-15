@@ -5,7 +5,7 @@ You can add new call features or functionality to calls by adding an
 application server. Clearwater supports application servers through the
 standard IMS interface ISC. This article explains the features and
 limitations of this support. See `Configuring an Application
-Server <Configuring_an_Application_Server.md>`__ for details of how to
+Server <Configuring_an_Application_Server.html>`__ for details of how to
 configure Clearwater to use this function.
 
 What is an application server?
@@ -33,7 +33,7 @@ references below are to 3GPP TS 24.229 unless otherwise specified.
 
 For a more detailed look at the ISC interface, and how it is implemented
 in Clearwater, see the `ISC interface
-guide <https://github.com/Metaswitch/sprout/blob/dev/docs/IscInterface.md>`__
+guide <https://github.com/Metaswitch/sprout/blob/dev/docs/IscInterface.html>`__
 in the Sprout developer documentation.
 
 Clearwater interfaces

@@ -43,7 +43,7 @@ Before you begin
 
 Before connecting your deployment to a CDF, you must
 
--  `install Clearwater <Installation_Instructions.md>`__
+-  `install Clearwater <Installation_Instructions.html>`__
 -  install an external CDF - details for this will vary depending on
    which CDF you are using.
 -  ensure your CDF's firewall allows incoming connections from the nodes

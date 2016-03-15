@@ -50,7 +50,7 @@ The IP addresses you need to specify as trusted peers are
    -  81.201.82.12.
 
 The process for configuring trusted peers is described as part of `the
-IBCF documentation <IBCF.md#install-and-configure-an-ibcf>`__.
+IBCF documentation <IBCF.html#install-and-configure-an-ibcf>`__.
 
 If you don't want to configure all your bono nodes as IBCF nodes, you
 can do so, but will need to take extra steps when configuring Voxbone to
@@ -61,7 +61,7 @@ Creating a subscriber
 
 Creating a subscriber for Voxbone use is done exactly `as you would
 normally do
-so <Making_your_first_call.md#create-a-number-for-your-client>`__.
+so <Making_your_first_call.html#create-a-number-for-your-client>`__.
 
 Associating the subscriber on Voxbone
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -114,6 +114,6 @@ check.
 -  Would the call go through if it were sent on-net? Try making a call
    to the subscriber from another subscriber on Clearwater and check
    that it goes through (or follow the `standard troubleshooting
-   process <Troubleshooting_and_Recovery.md>`__).
+   process <Troubleshooting_and_Recovery.html>`__).
 
 
