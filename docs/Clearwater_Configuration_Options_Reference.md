@@ -130,6 +130,8 @@ This section describes optional configuration options, particularly for ensuring
     * e.g. `sip:sprout.example.com:5054;transport=tcp;lr;orig;auto-reg`
 * `non_register_authentication` - controls when Sprout will challenge a non-REGISTER request using SIP Proxy-Authentication. Possible values are `never` (meaning Sprout will never challenge) or `if_proxy_authorization_present` (meaning Sprout will only challenge requests that have a Proxy-Authorization header).
 * `ralf_threads` - used on Sprout nodes, this determines how many worker threads should be started to do Ralf request processing (defaults to 25).
+* `impi_store_mode` - used to control how Sprout stores authentication challenges. The default is `impi` which means that challenges are written to a single memcached database table indexed by IMPI. There is another option, `av-impi`, where challenges are also stored in an old table indexed by (IMPI, nonce). This setting can be used to upgrade Clearwater to use the new database table without losing registration state.
+* `nonce_count_supported` - when set to 'Y' Clearwater permits authentication challenges with a nonce-count greater than 1. By default this option is not enabled. This option should **only** be enabled if your deployment uses an HSS (i.e. does not use Homestead-Prov) and an I-CSCF. If this is not the case enabling the option can expose certain security holes.
 
 ## Experimental options
 
