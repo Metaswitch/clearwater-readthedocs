@@ -10,9 +10,8 @@ website <http://www.projectclearwater.org/>`__.
 Latest Release
 --------------
 
-The latest stable release of Clearwater is "`Zen and the Art of
-Motorcycle
-Maintenance <https://www.goodreads.com/book/show/629.Zen_and_the_Art_of_Motorcycle_Maintenance>`__\ ".
+The latest stable release of Clearwater is
+"`Articuno <http://pokemon.wikia.com/wiki/Articuno>`__\ ".
 
 Architecture
 ------------
