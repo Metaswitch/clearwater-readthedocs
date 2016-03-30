@@ -53,18 +53,55 @@ The alarm models used by Clearwater are defined in
 Alarm Resiliency
 ----------------
 
-Clearwater is designed so that if an EMS receiving alarm notifications
-fails and recovers, it will learn about any alarms raised by Clearwater
-while it was down, rather than those alarms just being lost. This is due
-to the following two features:
+Since prompt, accurate notifications of alarms are important for running
+a reliable telecoms network, Clearwater is designed so that if an EMS or
+an internal Clearwater component responsible for alarm notifications
+fails and recovers, the EMS will learn about any alarms raised by
+Clearwater during the outage, rather than those alarms just being lost.
+The exact behaviour is as follows:
 
--  The process responsible for sending SNMP notifications, the Alarm
-   Agent, keeps track of all the currently active error states in a
-   table called the Alarm Active Table. Upon restart, an EMS can read
-   this table and learn about any SNMP INFORMs it may have missed in its
-   downtime.
--  If an EMS does not support reading the Active Alarm Table we can
-   still recover the SNMP INFORMs by running
-   ``/usr/share/clearwater/bin/sync_alarm.py``. This will cause SNMP
-   notifications to be resent to the EMS.
+-  On startup (including after reboots), Clearwater nodes will detect
+   whether each of their alarms should be raised or not (and at what
+   severity), and send corresponding SNMP INFORMs to the EMS. This will
+   happen within a minute.
 
+   -  If there is no call traffic, the correct state of some alarms
+      cannot be determined – in this case, the node will neither raise
+      nor clear an alarm until there is call traffic and it can
+      determine the correct state.
+
+-  If the EMS suffers an outage, but remembers previous alarm state when
+   it recovers, no operator intervention is required. Clearwater nodes
+   send SNMP INFORMs, which require acknowledgement by the EMS, and
+   these will be retransmitted until they are acknowledged.
+
+   -  Note that if the alarm changes state multiple times during an
+      outage (e.g. if it is raised but then cleared, or raised once at
+      major severity and then again at critical severity), only the
+      latest state will be transmitted to the EMS on connection
+      recovery.
+
+-  If the EMS suffers an outage and loses previous alarm state, there
+   are two ways to recover:
+
+   -  The process responsible for sending SNMP notifications, the Alarm
+      Agent, keeps track of all the currently active error states in a
+      table called the Alarm Active Table (defined in `RFC
+      3877 <https://tools.ietf.org/html/rfc3877>`__). Upon restart, an
+      EMS can read this table and learn about any SNMP INFORMs it may
+      have missed in its downtime.
+   -  If an EMS does not support reading the Active Alarm Table, the
+      operator can still recover the SNMP INFORMs by running
+      ``/usr/share/clearwater/bin/sync_alarm.py`` on each node. This
+      will cause SNMP notifications to be resent to the EMS.
+
+Clearwater nodes also regularly re-detect and re-transmit alarm state
+internally. This is so that if the alarm agent is failed when an
+alarmable condition is detected, the alarm will still reach the EMS less
+than a minute after the component recovers. If the alarm agent fails, it
+will be automatically restarted, but it will lose its alarm state.
+However, each internal component which detects alarms will retransmit
+them on a 30-second timer – so within a minute, they will have
+retransmitted their alarm state to the alarm agent, it will have sent
+corresponding SNMP INFORMs to the EMS, and both the alarm agent and the
+EMS will have a complete picture of the current alarm state.
