@@ -198,7 +198,7 @@ If you want to host multiple domains from the same Clearwater deployment, add th
     # Additional domains
     additional_home_domains=<domain 1>,<domain 2>,<domain 3>...
 
-If you want to change how your Sproutlets are configured, your Sprout nodes to include Gemini/Memento Application Servers add the following:
+If you want your Sprout nodes to include Gemini/Memento Application Servers add the following:
 
     # Application Servers
     gemini=<gemini port>
