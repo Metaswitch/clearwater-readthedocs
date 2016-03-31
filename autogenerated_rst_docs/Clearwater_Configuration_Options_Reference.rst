@@ -136,6 +136,48 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    ``memento.<home_domain>``). This should match Memento's SSL
    certificate, if you are using one.
 
+Sproutlet options
+-----------------
+
+This section describes optional configuration options for the Clearwater
+Sproutlets. Sproutlets are built on top of
+`Sprout <https://github.com/Metaswitch/sprout>`__, and encapsulate the
+business logic of the I-CSCF/S-CSCF/BGCF, or Project Clearwater's built
+in Application servers
+
+There are currently eight different Sproutlets:
+
+-  S-CSCF: Provides S-CSCF functionality
+-  I-CSCF: Provides I-CSCF functionality
+-  BGCF: Provides BGCF functionality
+-  Gemini: An application server responsible for twinning VoIP clients
+   with a mobile phone hosted on a native circuit-switched network. You
+   can find out more `here <https://github.com/Metaswitch/gemini>`__
+-  Memento: An application server responsible for providing
+   network-based call lists. You can find out more
+   `here <https://github.com/Metaswitch/memento>`__
+-  CDiv: Provides call diversion functionality
+-  MMtel: Acts as a basic MMTel AS
+-  Mangelwurzel: Acts as a basic B2BUA
+
+Each Sproutlet has three configuration options. The options have the
+same format for each Sproutlet, as listed here, with ``<sproutlet>``
+replaced by the appropriate Sproutlet name: \* ``<sproutlet>``: The port
+that the Sproutlet listens on. The default value is 5054 for some
+Sproutlets (those enabled by default) and 0 for others (those disabled
+by default) \* ``<sproutlet>_prefix``: The identifier prefix for this
+Sproutlet, used to build the uri, as described below. The default value
+is simply the Sproutlet name: ``<sproutlet>`` \* ``<sproutlet>_uri``:
+The full identifier for this Sproutlet, used for routing and receiving
+requests between nodes. The default value is created using the prefix
+and the hostname of the parent Sprout node, i.e.
+``sip:<sproutlet_prefix>.<sprout_hostname>;transport=tcp``. We recommend
+that you don’t set this yourself anymore, and use the defaults provided.
+
+As a concrete example, below are the S-CSCF options and the default
+values. \* ``scscf=5054`` \* ``scscf_prefix=scscf`` \*
+``scscf_uri=sip:scscf.<sprout_hostname>;transport=tcp``
+
 Advanced options
 ----------------
 
@@ -146,12 +188,6 @@ and non-Clearwater I-CSCFs. These options should be set in the
 ``/etc/clearwater/shared_config`` file (in the format ``name=value``,
 e.g. ``icscf=5052``).
 
--  ``icscf`` - the port which Sprout nodes are providing I-CSCF service
-   on. If not set, Sprout will only provide S-CSCF function.
--  ``scscf`` - the port which Sprout nodes are providing S-CSCF service
-   on. If this not set but ``icscf`` is, Sprout will only provide I-CSCF
-   function. If neither is set, this will default to 5054 and Sprout
-   will only provide S-CSCF function.
 -  ``homestead_provisioning_port`` - the HTTP port the Homestead
    provisioning interface listens on. Defaults to 8889. Not needed when
    using an external HSS.
@@ -249,12 +285,8 @@ e.g. ``icscf=5052``).
    not set, Sprout will use this local JSON file for ENUM lookups rather
    than a DNS server. An example file is at
    http://clearwater.readthedocs.org/en/stable/ENUM/index.html#deciding-on-enum-rules.
--  ``icscf_uri`` - the SIP address of the external I-CSCF integrated
-   with your Sprout node (if you have one).
--  ``scscf_uri`` - the SIP address of the Sprout S-CSCF. This defaults
-   to ``sip:$sprout_hostname:$scscf;transport=TCP`` - this includes a
-   specific port, so if you need NAPTR/SRV resolution, it must be
-   changed to not include the port.
+-  ``external_icscf_uri`` - the SIP address of the external I-CSCF
+   integrated with your Sprout node (if you have one).
 -  ``additional_home_domains`` - this option defines a set of home
    domains which Sprout and Bono will regard as locally hosted (i.e.
    allowing users to register, not routing calls via an external trunk).
@@ -286,12 +318,6 @@ e.g. ``icscf=5052``).
    on the Diameter messages Homestead sends. Defaults to
    public\_hostname (with some formatting changes if public\_hostname is
    an IPv6 address).
--  ``gemini_enabled`` - When this field is set to 'Y', then the node
-   (either a Sprout or a standalone application server) will include a
-   Gemini AS.
--  ``memento_enabled`` - When this field is set to 'Y', then the node
-   (either a Sprout or a standalone application server) will include a
-   Memento AS.
 -  ``max_call_list_length`` - determines the maximum number of complete
    calls a subscriber can have in the call list store. This defaults to
    no limit. This is only relevant if the node includes a Memento AS.

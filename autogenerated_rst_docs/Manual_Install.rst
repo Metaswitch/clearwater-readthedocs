@@ -292,7 +292,7 @@ following:
 
     # I-CSCF/S-CSCF configuration
     icscf=5052
-    upstream_hostname=<sprout_hostname>
+    upstream_hostname=icscf.<sprout_hostname>
     upstream_port=5052
 
 If you wish to enable the optional external HSS lookups, add the
@@ -319,8 +319,8 @@ Servers add the following:
 ::
 
     # Application Servers
-    gemini_enabled='Y'
-    memento_enabled='Y'
+    gemini=<gemini port>
+    memento=<memento port>
 
 See the `Chef
 instructions <Installing_a_Chef_workstation.html#add-deployment-specific-configuration>`__
@@ -353,7 +353,7 @@ create ``/etc/clearwater/s-cscf.json`` with the following contents:
 
     {
        "s-cscfs" : [
-           {   "server" : "sip:<sprout_domain>:5054;transport=TCP",
+           {   "server" : "sip:scscf.<sprout_domain>:5054;transport=TCP",
                "priority" : 0,
                "weight" : 100,
                "capabilities" : [<comma separated capabilities>]
