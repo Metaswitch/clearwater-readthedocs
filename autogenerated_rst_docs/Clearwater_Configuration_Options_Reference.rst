@@ -516,9 +516,6 @@ e.g. ``log_level=5``).
    Clearwater process's log\_directory in bytes. Defaults to 1GB. If you
    are co-locating multiple Clearwater processes, you'll need to reduce
    this value proportionally.
--  ``num_pjsip_threads`` - determines how many PJSIP transport-layer
-   threads should run at once. Defaults to 1, and it may be dangerous to
-   change this as it is not necessarily thread-safe.
 -  ``num_worker_threads`` - for Sprout and Bono nodes, determines how
    many worker threads should be started to do SIP/IMS processing.
    Defaults to 50 times the number of CPU cores on the system.
