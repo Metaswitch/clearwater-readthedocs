@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Articuno](http://pokemon.wikia.com/wiki/Articuno)".
+The latest stable release of Clearwater is "[Bulbasaur](http://pokemon.wikia.com/wiki/Bulbasaur)".
 
 ## Architecture
 
