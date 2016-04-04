@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Articuno <http://pokemon.wikia.com/wiki/Articuno>`__\ ".
+"`Bulbasaur <http://pokemon.wikia.com/wiki/Bulbasaur>`__\ ".
 
 Architecture
 ------------
