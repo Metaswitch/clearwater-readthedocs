@@ -84,7 +84,7 @@ deployment.
    instructions <https://github.com/Metaswitch/crest/blob/master/src/metaswitch/crest/tools/sstable_provisioning/README.html>`__
 
 More detailed documentation on the available Chef commands is available
-`here <https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.htmlhttps://github.com/Metaswitch/chef/blob/master/docs/knife_commands.html>`__.
+`here <https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.html>`__.
 
 Next steps
 ----------
