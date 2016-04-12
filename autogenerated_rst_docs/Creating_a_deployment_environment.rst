@@ -71,8 +71,8 @@ must
    you desire.
 
 These fields override attributes defined and documented in the
-`clearwater-infrastructure
-role <https://github.com/Metaswitch/chef/blob/master/roles/clearwater-infrastructure.rb>`__.
+`chef-base
+role <https://github.com/Metaswitch/chef/blob/master/roles/chef-base.rb>`__.
 
 If you want to use a different SIP registration period from the default
 (which is 5 minutes) add a line like
