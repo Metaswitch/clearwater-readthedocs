@@ -54,7 +54,7 @@ The following modifiers are available to set the scale of your deployment.
   - Due to a known limitation of the install process, Ellis will allocate 1000 numbers regardless of this value.
   - To bulk provision subscribers (without using Ellis), follow [these instructions](https://github.com/Metaswitch/crest/blob/master/src/metaswitch/crest/tools/sstable_provisioning/README.md)
 
-More detailed documentation on the available Chef commands is available [here](https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.mdhttps://github.com/Metaswitch/chef/blob/master/docs/knife_commands.md).
+More detailed documentation on the available Chef commands is available [here](https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.md).
 
 ## Next steps
 
