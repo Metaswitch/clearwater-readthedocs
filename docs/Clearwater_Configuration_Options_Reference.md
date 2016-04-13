@@ -58,21 +58,23 @@ This section describes optional configuration options for the Clearwater Sproutl
 
 There are currently eight different Sproutlets:
 
-* S-CSCF: Provides S-CSCF functionality
-* I-CSCF: Provides I-CSCF functionality
-* BGCF: Provides BGCF functionality
-* Gemini: An application server responsible for twinning VoIP clients with a mobile phone hosted on a native circuit-switched network. You can find out more [here](https://github.com/Metaswitch/gemini)
-* Memento: An application server responsible for providing network-based call lists. You can find out more [here](https://github.com/Metaswitch/memento)
-* CDiv: Provides call diversion functionality
-* MMtel: Acts as a basic MMTel AS
-* Mangelwurzel: Acts as a basic B2BUA
+* S-CSCF - Provides S-CSCF functionality
+* I-CSCF - Provides I-CSCF functionality
+* BGCF - Provides BGCF functionality
+* Gemini - An application server responsible for twinning VoIP clients with a mobile phone hosted on a native circuit-switched network. You can find out more [here](https://github.com/Metaswitch/gemini)
+* Memento - An application server responsible for providing network-based call lists. You can find out more [here](https://github.com/Metaswitch/memento)
+* CDiv - Provides call diversion functionality
+* MMtel - Acts as a basic MMTel AS
+* Mangelwurzel - Acts as a basic B2BUA
 
 Each Sproutlet has three configuration options. The options have the same format for each Sproutlet, as listed here, with `<sproutlet>` replaced by the appropriate Sproutlet name:
-* `<sproutlet>`: The port that the Sproutlet listens on. The default value is 5054 for some Sproutlets (those enabled by default) and 0 for others (those disabled by default)
-* `<sproutlet>_prefix`: The identifier prefix for this Sproutlet, used to build the uri, as described below. The default value is simply the Sproutlet name: `<sproutlet>`
-* `<sproutlet>_uri`: The full identifier for this Sproutlet, used for routing and receiving requests between nodes. The default value is created using the prefix and the hostname of the parent Sprout node, i.e. `sip:<sproutlet_prefix>.<sprout_hostname>;transport=tcp`. We recommend that you don’t set this yourself anymore, and use the defaults provided.
+
+* `<sproutlet>` - The port that the Sproutlet listens on. The default value is 5054 for some Sproutlets (those enabled by default) and 0 for others (those disabled by default)
+* `<sproutlet>_prefix` - The identifier prefix for this Sproutlet, used to build the uri, as described below. The default value is simply the Sproutlet name: `<sproutlet>`
+* `<sproutlet>_uri` - The full identifier for this Sproutlet, used for routing and receiving requests between nodes. The default value is created using the prefix and the hostname of the parent Sprout node, i.e. `sip:<sproutlet_prefix>.<sprout_hostname>;transport=tcp`. We recommend that you don’t set this yourself anymore, and use the defaults provided.
 
 As a concrete example, below are the S-CSCF options and the default values.
+
 * `scscf=5054`
 * `scscf_prefix=scscf`
 * `scscf_uri=sip:scscf.<sprout_hostname>;transport=tcp`
