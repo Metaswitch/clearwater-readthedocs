@@ -82,11 +82,16 @@ BGCF Configuration
 ------------------
 
 BGCF (Border Gateway Control Function) configuration is stored in the
-``bgcf.json`` file in ``/etc/clearwater`` on each sprout node (both I-
-and S-CSCF). The file stores two types of mappings. This first maps from
-SIP trunk IP addresses and/or host names to IBCF host names, and the
-second maps from a routing number (using prefix matching) to IBCF host
-names. These mappings control which IBCF nodes are used to route to a
+``bgcf.json`` file in ``/etc/clearwater`` on each Sprout node (both I-
+and S-CSCF). The ``bgcf.json`` file stores two types of mappings.
+
+-  The first maps from SIP trunk IP addresses and/or domain names to
+   IBCF SIP URIs
+-  The second maps from a routing number (contained in the ``rn``
+   parameter of a Tel URI, or in an ``rn`` parameter in a SIP URI) to an
+   IBCF SIP URI using prefix matching on the routing number.
+
+These mappings control which IBCF nodes are used to route to a
 particular destination. Each entry can only apply to one type of
 mapping.
 
@@ -95,18 +100,18 @@ are added to the message such that it is sent to the first node and the
 first node sends it to the second node and so on; the message is not
 tried at the second node if it fails at the first node.
 
-The file is in JSON format, for example.
+The ``bgcf.json`` file is in JSON format, for example.
 
 ::
 
     {
         "routes" : [
             {   "name" : "<route 1 descriptive name>",
-                "domain" : "<SIP trunk IP address or host name>",
+                "domain" : "<SIP trunk IP address or domain name>",
                 "route" : ["<IBCF SIP URI>"]
             },
             {   "name" : "<route 2 descriptive name>",
-                "domain" : "<SIP trunk IP address or host name>",
+                "domain" : "<SIP trunk IP address or domain name>",
                 "route" : ["<IBCF SIP URI>", "<IBCF SIP URI>"]
             },
             {   "name" : "<route 3 descriptive name>",
@@ -117,8 +122,8 @@ The file is in JSON format, for example.
     }
 
 There can be only one route set for any given SIP trunk IP address or
-host name. If there are multiple routes with the same destination IP
-address or host name, only the first will be used. Likewise, there can
+domain name. If there are multiple routes with the same destination IP
+address or domain name, only the first will be used. Likewise, there can
 only be one route set for any given routing number; if there are
 multiple routes with the same routing number only the first will be
 used.
