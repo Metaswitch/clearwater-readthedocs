@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Bulbasaur <http://pokemon.wikia.com/wiki/Bulbasaur>`__\ ".
+"`Charizard <http://pokemon.wikia.com/wiki/Charizard>`__\ ".
 
 Architecture
 ------------
