@@ -18,7 +18,7 @@ To resize your automated deployment, run:
 
 Where the `<n>` values are how many nodes of each type you need.  Once this command has completed, the resize operation has completed and any nodes that are no longer needed will have been terminated.
 
-More detailed documentation on the available Chef commands is available [here](https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.mdhttps://github.com/Metaswitch/chef/blob/master/docs/knife_commands.md).
+More detailed documentation on the available Chef commands is available [here](https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.md).
 
 ### If you did a Manual Install
 

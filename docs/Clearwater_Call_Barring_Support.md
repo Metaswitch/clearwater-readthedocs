@@ -11,7 +11,7 @@ The relevant specifications are:
     v11.2.0](http://www.3gpp.org/ftp/Specs/html-info/24611.htm)
     - The full specification
 -   [GSMA PRD IR.92, Section
-    2.3.9](http://www.gsma.com/newsroom/wp-content/uploads/2012/06/IR9230.pdf)
+    2.3.9](http://www.gsma.com/newsroom/wp-content/uploads/IR.92-v9.0.pdf)
     - The required IR.92 subset
 
 Some of the entries in the IR.92 list are not currently applicable for

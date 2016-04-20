@@ -59,7 +59,7 @@ instead reads
 
 Both hss_hostname and hss_realm are optional. If a realm is configured, homestead will try NAPTR/SRV resolution on the realm to find and connect to (2 by default) diameter peers in the realm. If a hostname is also configured, this will be used in the Destination-Host field on the diameter messages, so that the messages will be routed to that host. If just a hostname is configured, homestead will just attempt to create and maintain a single connection to that host.
 
-[This process](Modifying_Clearwater_settings) explains how to modify these settings and ensure that all nodes pick up the changes.
+[This process](Modifying_Clearwater_settings.md) explains how to modify these settings and ensure that all nodes pick up the changes.
 
 ### Configuring your external HSS
 

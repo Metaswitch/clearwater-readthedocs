@@ -22,7 +22,7 @@ Clearwater has a number of call features provided by its [built-in TAS](Applicat
 * [Call diversion](Clearwater_Call_Diversion_Support.md)
 * [Privacy](Clearwater_Privacy_Feature.md)
 
-Clearwater's support for all IR.92 Supplementary Services is discussed in [this document](IR.92_Supplementary_Services).
+Clearwater's support for all IR.92 Supplementary Services is discussed in [this document](IR.92_Supplementary_Services.md).
 
 ## Scaling and Redundancy
 
