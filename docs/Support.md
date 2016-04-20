@@ -12,7 +12,7 @@ There are 3 support mechanisms for Clearwater.
 ## Mailing List
 
 The mailing list is managed at
-[lists.projectclearwater.org](http://lists.projectclearwater.org/listinfo/clearwater).
+[lists.projectclearwater.org](http://lists.projectclearwater.org/mailman/listinfo/clearwater_lists.projectclearwater.org).
 When posting, please try to
 
 *   provide a clear subject line
