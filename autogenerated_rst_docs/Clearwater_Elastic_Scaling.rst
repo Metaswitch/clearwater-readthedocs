@@ -49,12 +49,12 @@ If you did a Manual Install
 
 Follow these instructions if you manually installed your deployment and
 are using Clearwater's `automatic clustering and configuration
-sharing <Automatic_Clustering_Config_Sharing>`__ functionality.
+sharing <Automatic_Clustering_Config_Sharing.html>`__ functionality.
 
 If you're scaling up your deployment, follow the following process:
 
 1. Spin up new nodes, following the `standard install
-   process <Manual_Install>`__, but with the following modifications:
+   process <Manual_Install.html>`__, but with the following modifications:
 
    -  Set the ``etcd_cluster`` so that it only includes the nodes that
       are already in the deployment (so it does not include the nodes

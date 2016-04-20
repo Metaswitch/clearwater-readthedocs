@@ -221,4 +221,4 @@ Getting Help
 ------------
 
 If none of the above helped, please try the `mailing
-list <http://lists.projectclearwater.org/listinfo/clearwater>`__.
+list <http://lists.projectclearwater.org/mailman/listinfo/clearwater_lists.projectclearwater.org>`__.

@@ -37,7 +37,7 @@ including:
 -  `Privacy <Clearwater_Privacy_Feature.html>`__
 
 Clearwater's support for all IR.92 Supplementary Services is discussed
-in `this document <IR.92_Supplementary_Services.md>`__.
+in `this document <IR.92_Supplementary_Services.html>`__.
 
 Scaling and Redundancy
 ----------------------

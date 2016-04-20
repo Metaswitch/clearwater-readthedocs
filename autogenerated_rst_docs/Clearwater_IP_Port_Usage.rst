@@ -32,7 +32,7 @@ have to open appropriate ports for this service.
        UDP/161-162
 
 If your deployment uses our `automatic clustering and configuration
-sharing <Automatic_Clustering_Config_Sharing>`__ feature, open the
+sharing <Automatic_Clustering_Config_Sharing.html>`__ feature, open the
 following ports between every node
 
 -  etcd
