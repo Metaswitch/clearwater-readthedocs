@@ -7,7 +7,7 @@ This page describes how to install and configure the [OpenIMSCore](http://www.op
 
 ## Installation with Chef
 
-If you have a deployment environment created by following the [automated install instructions](Automated_Install.md), then you can create a HSS by running `knife box create -E <env> openimscorehss`. You should then follow [the configuration instructions below](OpenIMSCore_HSS_Integration.md/#configuration).
+If you have a deployment environment created by following the [automated install instructions](Automated_Install.md), then you can create a HSS by running `knife box create -E <env> openimscorehss`. You should then follow [the configuration instructions below](OpenIMSCore_HSS_Integration.md#configuration).
 
 ## Installing OpenIMSCore HSS manually
 
@@ -25,7 +25,7 @@ To install OpenIMSCore HSS,
 
 OpenIMSCore HSS provides the administration UI over port 8080. The admin username is hssAdmin.
 
-* If the HSS was installed using Chef, the hssAdmin password will be [the signup_key setting from knife.rb](Installing_a_Chef_client/index.html#add-deployment-specific-configuration).
+* If the HSS was installed using Chef, the hssAdmin password will be [the signup_key setting from knife.rb](Installing_a_Chef_client.md#add-deployment-specific-configuration).
 * If the HSS was installed manually, the hssAdmin password will be "hss". This can be changed by editing `/usr/share/java/fhoss-0.2/conf/tomcat-users.xml` and running `sudo service openimscore-fhoss restart`.
 
 ### Adding the MMTEL Application Server

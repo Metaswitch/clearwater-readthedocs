@@ -41,7 +41,7 @@ To point Ralf at the billing DIAMETER realm, add the following line to `/etc/cle
 
 _Note:_ Bono only has support for selecting CDF identities based of static configuration of a single identity.  Other P-CSCFs may have support for load-balancing or enabling backup CDF identities.
 
-If you have a CDF set up to receive Rf billing messages from your deployment, you will need to modify the `/etc/clearwater/shared_config` file and follow [this process](Modifying_Clearwater_settings) to apply the change:
+If you have a CDF set up to receive Rf billing messages from your deployment, you will need to modify the `/etc/clearwater/shared_config` file and follow [this process](Modifying_Clearwater_settings.md) to apply the change:
 
     cdf_identity=<CDF DIAMETER Identity>
 
