@@ -60,7 +60,7 @@ Reviewer process:
 
 -  Receive notice of review by GitHub email, GitHub notification, or by
    checking `all your Metaswitch GitHub
-   issues <https://github.com/organizations/Metaswitch/dashboard/issues/assigned?direction=desc&state=open>`__.
+   issues <https://github.com/issues/assigned>`__.
 -  Make comments on the pull request (either line comments or top-level
    comments).
 -  Make a top-level comment saying something along the lines of "Fine;

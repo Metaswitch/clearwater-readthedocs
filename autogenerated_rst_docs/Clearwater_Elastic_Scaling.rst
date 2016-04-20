@@ -42,7 +42,7 @@ this command has completed, the resize operation has completed and any
 nodes that are no longer needed will have been terminated.
 
 More detailed documentation on the available Chef commands is available
-`here <https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.mdhttps://github.com/Metaswitch/chef/blob/master/docs/knife_commands.md>`__.
+`here <https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.md>`__.
 
 If you did a Manual Install
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -19,7 +19,7 @@ scratch" section instead.
 
 To change one of these settings, if you are using Clearwater's
 `automatic configuration
-sharing <Automatic_Clustering_Config_Sharing>`__ functionality:
+sharing <Automatic_Clustering_Config_Sharing.html>`__ functionality:
 
 -  Edit ``/etc/clearwater/shared_config`` on *one* node and change to
    the new value.

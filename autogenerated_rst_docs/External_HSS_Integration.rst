@@ -93,8 +93,8 @@ the diameter messages, so that the messages will be routed to that host.
 If just a hostname is configured, homestead will just attempt to create
 and maintain a single connection to that host.
 
-`This process <Modifying_Clearwater_settings>`__ explains how to modify
-these settings and ensure that all nodes pick up the changes.
+`This process <Modifying_Clearwater_settings.html>`__ explains how to
+modify these settings and ensure that all nodes pick up the changes.
 
 Configuring your external HSS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

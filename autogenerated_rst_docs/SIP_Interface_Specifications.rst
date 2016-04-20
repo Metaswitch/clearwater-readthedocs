@@ -503,8 +503,8 @@ User agent capabilities and caller preferences (`RFC 3840 <http://www.ietf.org/r
 Relevant to Clearwater and partially supported
 ----------------------------------------------
 
-GRUUs (`RFC 5627 <http://www.ietf.org/rfc/rfc5627.txt>`__, plus `RFC 4122 <http://www.ietf.org/rfc/rfc4122.txt>`__, `draft-montemurro-gsma-imei-urn-11 <http://datatracker.ietf.org/doc/draft-montemurro-gsma-imei-urn/>`__ and `draft-atarius-device-id-meid-urn-01 <http://datatracker.ietf.org/doc/draft-atarius-device-id-meid-urn/>`__)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+GRUUs (`RFC 5627 <http://www.ietf.org/rfc/rfc5627.txt>`__, plus `RFC 4122 <http://www.ietf.org/rfc/rfc4122.txt>`__, `draft-montemurro-gsma-imei-urn-11 <http://datatracker.ietf.org/doc/draft-montemurro-gsma-imei-urn/>`__ and `draft-atarius-device-id-meid-urn-01 <https://www.ietf.org/archive/id/draft-atarius-dispatch-meid-urn-10.txt>`__)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  `RFC 5627 <http://www.ietf.org/rfc/rfc5627.txt>`__ defines mechanisms
    to assign and propagate a Globally-Routable User Agent URI for each

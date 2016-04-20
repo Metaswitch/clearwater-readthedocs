@@ -15,7 +15,7 @@ Prerequisites
    may use any standard SIP client, we've tested with the following:
 
    -  `X-Lite <http://www.counterpath.com/x-lite.html>`__
-   -  `Bria <http://www.counterpath.com/bria.html‎>`__
+   -  `Bria <http://www.counterpath.com/bria/>`__
    -  `Jitsi <https://jitsi.org/>`__
    -  `Blink <http://icanblink.com/>`__
    -  `Stock Android SIP

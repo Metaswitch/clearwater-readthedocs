@@ -13,7 +13,7 @@ The relevant specifications are:
    -  The full specification
 
 -  `GSMA PRD IR.92, Section
-   2.3.9 <http://www.gsma.com/newsroom/wp-content/uploads/2012/06/IR9230.pdf>`__
+   2.3.9 <http://www.gsma.com/newsroom/wp-content/uploads/IR.92-v9.0.pdf>`__
 
    -  The required IR.92 subset
 
