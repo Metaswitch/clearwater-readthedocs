@@ -18,24 +18,24 @@ Architecture
 
 Clearwater is architected from the ground up to be fully horizontally
 scalable, modular and to support running in virtualized environments.
-See our `Clearwater Architecture <Clearwater_Architecture.html>`__ page
+See our `Clearwater Architecture <Clearwater_Architecture.md>`__ page
 for a bird's eye view of a Clearwater deployment and a guided tour of
 the various functional components that comprise it.
 
 Getting Started
 ---------------
 
--  `Installation Instructions <Installation_Instructions.html>`__
--  `Making your first call <Making_your_first_call.html>`__
--  `Running the live tests <Running_the_live_tests.html>`__
--  `A tour of Clearwater <Clearwater_Tour.html>`__
+-  `Installation Instructions <Installation_Instructions.md>`__
+-  `Making your first call <Making_your_first_call.md>`__
+-  `Running the live tests <Running_the_live_tests.md>`__
+-  `A tour of Clearwater <Clearwater_Tour.md>`__
 
 Looking Deeper
 --------------
 
 To look at the optional extra features and function of your Clearwater
 deployment and for discussions about Clearwater scaling and redundancy,
-see `Exploring Clearwater <Exploring_Clearwater.html>`__.
+see `Exploring Clearwater <Exploring_Clearwater.md>`__.
 
 Getting Source Code
 -------------------
@@ -70,7 +70,7 @@ Contributing
 ------------
 
 You can contribute by making a GitHub pull request. See our documented
-`Pull request process <Pull_request_process.html>`__.
+`Pull request process <Pull_request_process.md>`__.
 
 There is more information about contributing to Project Clearwater on
 the `community page of our project
@@ -80,7 +80,7 @@ Help
 ----
 
 If you want help, or want to help others by making Clearwater better,
-see the `Support <Support.html>`__ page.
+see the `Support <Support.md>`__ page.
 
 License and Acknowledgements
 ----------------------------

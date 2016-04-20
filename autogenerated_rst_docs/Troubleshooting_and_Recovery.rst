@@ -17,7 +17,7 @@ General
    monit to automatically start the component again.
 
 -  The `Clearwater diagnostics
-   monitor <https://github.com/Metaswitch/clearwater-infrastructure/blob/master/clearwater-diags-monitor.html>`__
+   monitor <https://github.com/Metaswitch/clearwater-infrastructure/blob/master/clearwater-diags-monitor.md>`__
    detects crashes in native clearwater processes (Bono, Sprout and
    Homestead) and captures a diagnostics bundle containing a core file
    (among other useful information). A diagnostics bundle can also be
@@ -41,7 +41,7 @@ server". This can happen for several reasons.
    number (either after an explicit request or as part of creating a
    whole new account), check that ellis has free numbers to allocate.
    The `create\_numbers.py
-   script <https://github.com/Metaswitch/ellis/blob/dev/docs/create-numbers.html>`__
+   script <https://github.com/Metaswitch/ellis/blob/dev/docs/create-numbers.md>`__
    is safe to re-run, to ensure that numbers have been allocated.
 
 -  Check the ``/var/log/ellis/ellis-*.log`` files. If these indicate
@@ -144,7 +144,7 @@ Sprout also uses `Chronos <https://github.com/Metaswitch/chronos>`__ to
 track registration, subscription and authorization timeouts. Chronos
 logs to ``/var/log/chronos/chronos*``. Details of how to edit the
 Chronos configuration are
-`here <https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.html>`__.
+`here <https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md>`__.
 
 If you see Sprout dying/restarting with no apparent cause in
 ``/var/log/sprout/sprout*.txt``, check ``/var/log/monit.log`` and
@@ -182,7 +182,7 @@ restarted by monit).
 Ralf also uses `Chronos <https://github.com/Metaswitch/chronos>`__ to
 track call timeouts. Chronos logs to ``/var/log/chronos/chronos*``.
 Details of how to edit the Chronos configuration are
-`here <https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.html>`__.
+`here <https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md>`__.
 
 If you see Ralf dying/restarting with no apparent cause in
 ``/var/log/ralf/ralf*.txt``, check ``/var/log/monit.log`` and
@@ -193,7 +193,7 @@ Deployment Management
 ---------------------
 
 Clearwater comes with a system that `automate clustering and
-configuration sharing <Automatic_Clustering_Config_Sharing.html>`__. If
+configuration sharing <Automatic_Clustering_Config_Sharing.md>`__. If
 you cannot scale your deployment up or down, or if configuration changes
 are not being applied, this system may not be working.
 

@@ -7,7 +7,7 @@ a Clearwater deployment.
 Prerequisites
 -------------
 
--  You've `installed Clearwater <Installation_Instructions.html>`__
+-  You've `installed Clearwater <Installation_Instructions.md>`__
 -  You have access to two SIP clients.
 -  If you have installed Clearwater on VirtualBox using the All-In-One
    image you must use `Zoiper <http://www.zoiper.com/en>`__ as one of
@@ -19,9 +19,9 @@ Prerequisites
    -  `Jitsi <https://jitsi.org/>`__
    -  `Blink <http://icanblink.com/>`__
    -  `Stock Android SIP
-      client <Configuring_the_native_Android_SIP_client.html>`__
+      client <Configuring_the_native_Android_SIP_client.md>`__
    -  `Zoiper Android/iOS SIP
-      client <Configuring_Zoiper_Android_iOS_Client.html>`__
+      client <Configuring_Zoiper_Android_iOS_Client.md>`__
    -  Media5-fone iOS SIP client (on iPhone 4 and 4S)
 
 -  You have access to a web-browser. We've tested with:
@@ -76,7 +76,7 @@ In your browser, navigate to the Ellis URL you worked out above.
 
 Sign up as a new user, using the signup code you set as ``signup_key``
 when `configuring your
-deployment <Installing_a_Chef_workstation.html#add-deployment-specific-configuration>`__.
+deployment <Installing_a_Chef_workstation.md#add-deployment-specific-configuration>`__.
 
 Ellis will automatically allocate you a new number and display its
 password to you. Remember this password as it will only be displayed
@@ -136,6 +136,6 @@ Next steps
 
 Now that you've got a basic call working, check that all the features of
 your deployment are working by running the `live
-tests <Running_the_live_tests.html>`__ or `explore
-Clearwater <Exploring_Clearwater.html>`__ to see what else Clearwater
+tests <Running_the_live_tests.md>`__ or `explore
+Clearwater <Exploring_Clearwater.md>`__ to see what else Clearwater
 offers.

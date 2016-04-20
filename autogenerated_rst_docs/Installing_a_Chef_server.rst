@@ -2,7 +2,7 @@ Installing a Chef server
 ========================
 
 This is the first step in preparing to install a Clearwater deployment
-using the `automated install <Automated_Install.html>`__ process. These
+using the `automated install <Automated_Install.md>`__ process. These
 instructions will guide you through installing a Chef server on an EC2
 instance.
 
@@ -64,4 +64,4 @@ Next steps
 ----------
 
 Once your server is installed, you can continue on to `install a chef
-workstation <Installing_a_Chef_workstation.html>`__.
+workstation <Installing_a_Chef_workstation.md>`__.

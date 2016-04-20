@@ -34,7 +34,7 @@ Do the following on each node in turn:
    -  The config option is invalid (for example, because there is a
       typo, or this option has been retired). Check the `configuration
       options
-      reference <Clearwater_Configuration_Options_Reference.html>`__ for a
+      reference <Clearwater_Configuration_Options_Reference.md>`__ for a
       list of valid options.
    -  The config option is valid, but the migration script doesn't
       recognise the option and won't automatically migrate it. In this
@@ -84,7 +84,7 @@ Do the following on each node in turn:
    delete the ``chronos_cluster.conf`` file and re-run the script, or
    manually split the configuration yourself. Details of the expected
    configuration are
-   `here <https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.html>`__.
+   `here <https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md>`__.
 
 5. Run ``sudo touch /etc/clearwater/no_cluster_manager`` on all nodes.
    This temporarily disables the cluster manager (which is installed in

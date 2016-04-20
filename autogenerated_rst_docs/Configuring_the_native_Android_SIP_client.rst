@@ -5,7 +5,7 @@ These instructions detail how to enable the stock Android SIP client.
 The instructions vary depending on your handset and Android model, in
 particular the Nexus 6 running 5.1.1 has different menus to the other
 known `supported
-devices <Configuring_the_native_Android_SIP_client.html#known-supported-devices>`__
+devices <Configuring_the_native_Android_SIP_client.md#known-supported-devices>`__
 listed. If you get them working on another device, please add to the
 list. Equally, if they do not work, please add your device to the
 unsupported list.
@@ -40,7 +40,7 @@ Instructions
       To make calls through Clearwater using these clients you will have
       to configure an external HSS to `allow one subscriber to have two
       private
-      identities <External_HSS_Integration.html#allowing-one-subscriber-to-have-two-private-identities>`__.
+      identities <External_HSS_Integration.md#allowing-one-subscriber-to-have-two-private-identities>`__.
       This will allow the subscriber to have one private identity of the
       form **``1234@example.com``** (the IMS standard form), and one
       private identity **``1234``** (which the phone will default to in

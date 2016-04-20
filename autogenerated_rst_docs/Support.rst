@@ -48,8 +48,8 @@ requests. If you're interested in contributing,
 -  before creating a pull request, please make sure you've successfully
 
    -  ensured the code matches our
-      `Ruby <Clearwater_Ruby_Coding_Guidelines.html>`__ or
-      `C++ <Clearwater_CPP_Coding_Guidelines.html>`__ coding guidelines
+      `Ruby <Clearwater_Ruby_Coding_Guidelines.md>`__ or
+      `C++ <Clearwater_CPP_Coding_Guidelines.md>`__ coding guidelines
    -  compiled the code
    -  run the unit tests for the component
    -  run the live tests against your changes.

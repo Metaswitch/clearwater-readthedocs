@@ -4,7 +4,7 @@ Automated Install Instructions
 These instructions will take you through preparing for an automated
 install of Clearwater using Chef. For a high level look at the install
 process, and a discussion of the various install methods, see
-`Installation Instructions <Installation_Instructions.html>`__. The
+`Installation Instructions <Installation_Instructions.md>`__. The
 automated install is the suggested method for installing a large-scale
 deployment of Clearwater. It can also be used to install an all-in-one
 node.
@@ -12,7 +12,7 @@ node.
 The automated install is only supported for deployments running in
 Amazon's EC2 cloud, where DNS is being provided by Amazon's Route53
 service. If your proposed deployment doesn't meet these requirements,
-you should use the `Manual Install <Manual_Install.html>`__ instructions
+you should use the `Manual Install <Manual_Install.md>`__ instructions
 instead.
 
 The Install Process
@@ -31,21 +31,21 @@ times.
 
 The first phase:
 
--  `Installing a Chef server <Installing_a_Chef_server.html>`__
+-  `Installing a Chef server <Installing_a_Chef_server.md>`__
 -  This server will track the created Clearwater nodes and allow the
    client access to them.
--  `Configuring a Chef workstation <Installing_a_Chef_workstation.html>`__
+-  `Configuring a Chef workstation <Installing_a_Chef_workstation.md>`__
 -  This machine will be the one on which deployments will be defined and
    managed.
 
 The second phase:
 
 -  `Creating a deployment
-   environment <Creating_a_deployment_environment.html>`__
+   environment <Creating_a_deployment_environment.md>`__
 -  The automated install supports the existence and management of
    multiple deployments simultaneously, each deployment lives in an
    environment to keep them separate.
--  `Creating the deployment <Creating_a_deployment_with_Chef.html>`__
+-  `Creating the deployment <Creating_a_deployment_with_Chef.md>`__
 -  Actually provisioning the servers, installing the Clearwater software
    and configuring DNS.
 
@@ -61,6 +61,6 @@ propagation usually takes no more than 5 minutes.
 To test the deployment, you can try making some real calls, or run the
 provided live test framework.
 
--  `Making your first call <Making_your_first_call.html>`__
--  `Running the live test framework <Running_the_live_tests.html>`__
+-  `Making your first call <Making_your_first_call.md>`__
+-  `Running the live test framework <Running_the_live_tests.md>`__
 

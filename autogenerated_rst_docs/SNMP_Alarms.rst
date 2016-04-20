@@ -15,7 +15,7 @@ Error indications come in two forms:
 
 -  For errors based on a threshold set on a statistic (such as latency
    targets or number of failed connections), the Clearwater node
-   `exposes that statistic over SNMP <Clearwater_SNMP_Statistics.html>`__.
+   `exposes that statistic over SNMP <Clearwater_SNMP_Statistics.md>`__.
    A downstream statistics aggregator from the Management and
    Orchestration (MANO) layer monitors these statistics, compares them
    to its configured thresholds, and raises alarms on that basis.

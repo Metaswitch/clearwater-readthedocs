@@ -2,7 +2,7 @@ All-in-one OVF Installation
 ===========================
 
 This pages describes how to install an `all-in-one
-image <All_in_one_Images.html>`__ on your own virtualization platform
+image <All_in_one_Images.md>`__ on your own virtualization platform
 using `OVF (Open Virtualization
 Format) <http://dmtf.org/standards/ovf>`__.
 
@@ -67,7 +67,7 @@ The OVF provides 3 network services.
 -  HTTP to ellis for subscriber management - sign-up code is ``secret``.
    You will probably want to change this to a more secure value - see
    `"Modifying Clearwater
-   settings" <Modifying_Clearwater_settings.html>`__ for how to do this.
+   settings" <Modifying_Clearwater_settings.md>`__ for how to do this.
 -  SIP to bono for call signaling - credentials are provisioned through
    ellis.
 
@@ -93,5 +93,5 @@ capabilities of the platform.
    configure an outbound proxy for this IP address.
 
 Once you've successfully connected to ellis, try `making your first
-call <Making_your_first_call.html>`__ - just remember to configure the SIP
+call <Making_your_first_call.md>`__ - just remember to configure the SIP
 outbound proxy as discussed above.

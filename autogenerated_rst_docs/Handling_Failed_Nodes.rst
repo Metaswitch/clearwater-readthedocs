@@ -3,7 +3,7 @@ Dealing with Failed Nodes
 
 Nodes can be easily removed from a Clearwater deployment by following
 the instructions for `elastic
-scaling <Clearwater_Elastic_Scaling.html>`__. When scaling down the
+scaling <Clearwater_Elastic_Scaling.md>`__. When scaling down the
 remaining nodes are informed that a node is leaving and take appropriate
 action. However sometimes a node may fail unexpectedly. If this happens
 and the node cannot be recovered (for example the virtual machine has
@@ -182,20 +182,20 @@ recover from this situation:
 
 -  If the failed site contained half or more of your nodes, you have
    lost quorum in your etcd cluster. You should follow the `"Multiple
-   Failed Nodes" <Handling_Failed_Nodes.html#multiple-failed-nodes>`__
+   Failed Nodes" <Handling_Failed_Nodes.md#multiple-failed-nodes>`__
    instructions above to rebuild the etcd cluster, containing only nodes
    from the surviving site.
 -  If the failed site contained fewer than half of your nodes, you have
    not lost quorum in your etcd cluster. You should follow the
    `"Removing a Failed
-   Node" <Handling_Failed_Nodes.html#removing-a-failed-node>`__
+   Node" <Handling_Failed_Nodes.md#removing-a-failed-node>`__
    instructions above to remove each failed node from the cluster.
 
 After following the above instructions, you will have removed the nodes
 in the failed site from etcd, but not from the
 Cassandra/Chronos/Memcached datastore clusters. To do this, follow the
 `"Removing a Node From a Data
-Store" <Handling_Failed_Nodes.html#removing-a-node-from-a-data-store>`__
+Store" <Handling_Failed_Nodes.md#removing-a-node-from-a-data-store>`__
 instructions above for each failed node, using the
 ``mark_remote_node_failed`` script instead of the ``mark_node_failed``
 script.

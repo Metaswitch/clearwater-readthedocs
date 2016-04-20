@@ -3,7 +3,7 @@ Installing a Chef Client
 
 These instructions cover commissioning a Chef client node on an EC2
 server as part of the `automated install
-process <Automated_Install.html>`__ for Clearwater.
+process <Automated_Install.md>`__ for Clearwater.
 
 Prerequisites
 -------------
@@ -13,7 +13,7 @@ Prerequisites
    service, accessible from the EC2 console. This domain will be
    referred to as ``<zone>`` in this document.
 -  You must have `installed a Chef
-   server <Installing_a_Chef_server.html>`__ and thus know the
+   server <Installing_a_Chef_server.md>`__ and thus know the
    ``<chef-user-name>`` and ``<chef-user-password>`` for your server.
 -  A web-browser with which you can visit the Chef server Web UI.
 
@@ -276,4 +276,4 @@ Next steps
 At this point, the Chef server is up and running and ready to manage
 installs and the chef client is ready to create deployments. The next
 step is to `create a deployment
-environment <Creating_a_deployment_environment.html>`__.
+environment <Creating_a_deployment_environment.md>`__.

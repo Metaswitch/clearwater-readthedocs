@@ -6,7 +6,7 @@ subscribers. However, sometimes a more programmatic interface is
 desirable.
 
 Homestead provides a `provisioning
-API <https://github.com/Metaswitch/crest/blob/dev/docs/homestead_prov_api.html>`__
+API <https://github.com/Metaswitch/crest/blob/dev/docs/homestead_prov_api.md>`__
 but, for convenience, Clearwater also provides some command-line
 provisioning tools.
 
@@ -29,7 +29,7 @@ New users can be created with the ``create_user`` tool. As well as
 creating single users, it's also possible to create multiple users with
 a single command. Note that this is not recommended for provisioning
 large numbers of users - for that, `bulk
-provisioning <https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.html>`__
+provisioning <https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md>`__
 is much quicker.
 
 ::

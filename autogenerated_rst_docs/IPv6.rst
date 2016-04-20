@@ -22,7 +22,7 @@ Configuration
 -------------
 
 As discussed in the Clearwater `installation
-instructions <Installation_Instructions.html>`__, there are several ways
+instructions <Installation_Instructions.md>`__, there are several ways
 to install Clearwater, and which way you choose affects how you must
 configure IPv6.
 
@@ -37,19 +37,19 @@ following the `manual install instructions <Manual_Install>`__.
 Note also that you must configure your DNS server to return IPv6
 addresses (AAAA records) rather than (or as well as) IPv4 addresses (A
 records). For more information on this, see the `Clearwater DNS usage
-documentation <Clearwater_DNS_Usage.html>`__.
+documentation <Clearwater_DNS_Usage.md>`__.
 
 Automated Install
 ~~~~~~~~~~~~~~~~~
 
 Configuring Clearwater for IPv6 via the `automated install
-process <Automated_Install.html>`__ is not yet supported (and Amazon EC2
+process <Automated_Install.md>`__ is not yet supported (and Amazon EC2
 does not yet support IPv6).
 
 All-in-one Images
 ~~~~~~~~~~~~~~~~~
 
-Clearwater `all-in-one images <All_in_one_Images.html>`__ support IPv6.
+Clearwater `all-in-one images <All_in_one_Images.md>`__ support IPv6.
 
 Since all-in-one images get their IP configuration via DHCP, the DHCP
 server must be capable of returning IPv6 addresses. Not all

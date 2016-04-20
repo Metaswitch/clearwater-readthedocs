@@ -20,8 +20,8 @@ Install and Configure an IBCF
 Install and configure an IBCF node with the following steps.
 
 -  Install the node as if installing a Bono node, either
-   `manually <Manual_Install.html>`__ or `using
-   Chef <Automated_Install.html>`__. If using Chef, use the ``ibcf`` role,
+   `manually <Manual_Install.md>`__ or `using
+   Chef <Automated_Install.md>`__. If using Chef, use the ``ibcf`` role,
    for example
 
    ::
@@ -75,7 +75,7 @@ example
     *.3.2.1.2.4.2 IN NAPTR 1 1 "u" "E2U+pstn:tel" "!(^.*$)!sip:\\1;npdi;rn=+242123@<local domain>!" .
     *.3.2.1.2.4.2.1 IN NAPTR 1 1 "u" "E2U+pstn:tel" "!(^.*$)!sip:\\1;npdi@<local domain>!" .
 
-Refer to the `ENUM guide <ENUM.html>`__ for more about how to configure
+Refer to the `ENUM guide <ENUM.md>`__ for more about how to configure
 ENUM.
 
 BGCF Configuration

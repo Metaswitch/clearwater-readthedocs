@@ -2,7 +2,7 @@ Creating a deployment with Chef
 ===============================
 
 This is the final stage in creating a Clearwater deployment using the
-`automated install process <Automated_Install.html>`__. Here we will
+`automated install process <Automated_Install.md>`__. Here we will
 actually create the deployment - commissioning servers and configuring
 DNS records.
 
@@ -10,10 +10,10 @@ Prerequisites
 -------------
 
 -  You must have `created the chef workstation
-   machine <Installing_a_Chef_workstation.html>`__ and have SSH access to
+   machine <Installing_a_Chef_workstation.md>`__ and have SSH access to
    the ubuntu user on it.
 -  You must have `created a deployment
-   environment <Creating_a_deployment_environment.html>`__ and know its
+   environment <Creating_a_deployment_environment.md>`__ and know its
    name, ``<name>``.
 
 Creating a Deployment
@@ -81,10 +81,10 @@ deployment.
 -  Due to a known limitation of the install process, Ellis will allocate
    1000 numbers regardless of this value.
 -  To bulk provision subscribers (without using Ellis), follow `these
-   instructions <https://github.com/Metaswitch/crest/blob/master/src/metaswitch/crest/tools/sstable_provisioning/README.html>`__
+   instructions <https://github.com/Metaswitch/crest/blob/master/src/metaswitch/crest/tools/sstable_provisioning/README.md>`__
 
 More detailed documentation on the available Chef commands is available
-`here <https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.html>`__.
+`here <https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.md>`__.
 
 Next steps
 ----------
@@ -92,6 +92,6 @@ Next steps
 Now your deployment is installed and ready to use, you'll want to test
 it.
 
--  `Making your first call <Making_your_first_call.html>`__
--  `Running the live tests <Running_the_live_tests.html>`__
+-  `Making your first call <Making_your_first_call.md>`__
+-  `Running the live tests <Running_the_live_tests.md>`__
 

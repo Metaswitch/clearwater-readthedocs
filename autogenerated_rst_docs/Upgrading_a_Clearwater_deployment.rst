@@ -24,7 +24,7 @@ Manual Install
 ~~~~~~~~~~~~~~
 
 If you installed your system using the `Manual Install
-Instructions <Manual_Install.html>`__, run
+Instructions <Manual_Install.md>`__, run
 ``sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/clearwater.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0" && sudo apt-get install clearwater-infrastructure && sudo clearwater-upgrade``
 on each node.
 
@@ -32,7 +32,7 @@ Chef Install
 ~~~~~~~~~~~~
 
 If you installed your deployment with
-`chef <Creating_a_deployment_with_Chef.html>`__:
+`chef <Creating_a_deployment_with_Chef.md>`__:
 
 -  Follow the instructions to `update the Chef
    server <https://github.com/Metaswitch/chef#updating-the-chef-server>`__
@@ -70,7 +70,7 @@ Manual Install
 ~~~~~~~~~~~~~~
 
 If you installed your system using the `Manual Install
-Instructions <Manual_Install.html>`__ run
+Instructions <Manual_Install.md>`__ run
 ``sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/clearwater.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0" && sudo apt-get install clearwater-infrastructure && sudo clearwater-upgrade``
 on each node in the order described above.
 
@@ -78,7 +78,7 @@ Chef Install
 ~~~~~~~~~~~~
 
 If you installed your deployment with
-`chef <Creating_a_deployment_with_Chef.html>`__:
+`chef <Creating_a_deployment_with_Chef.md>`__:
 
 -  Follow the instructions to `update the Chef
    server <https://github.com/Metaswitch/chef#updating-the-chef-server>`__
