@@ -22,11 +22,11 @@ More detailed documentation on the available Chef commands is available [here](h
 
 ### If you did a Manual Install
 
-Follow these instructions if you manually installed your deployment and are using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) functionality.
+Follow these instructions if you manually installed your deployment and are using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality.
 
 If you're scaling up your deployment, follow the following process:
 
-1.  Spin up new nodes, following the [standard install process](Manual_Install), but with the following modifications:
+1.  Spin up new nodes, following the [standard install process](Manual_Install.md), but with the following modifications:
 
     * Set the `etcd_cluster` so that it only includes the nodes that are already in the deployment (so it does not include the nodes being added).
     * Stop when you get to the "Provide Shared Configuration" step. The nodes will learn their configuration from the existing nodes.
