@@ -2,7 +2,7 @@ Creating a deployment with Chef
 ===============================
 
 This is the final stage in creating a Clearwater deployment using the
-`automated install process <Automated_Install.md>`__. Here we will
+`automated install process <Automated_Install.html>`__. Here we will
 actually create the deployment - commissioning servers and configuring
 DNS records.
 
@@ -10,10 +10,10 @@ Prerequisites
 -------------
 
 -  You must have `created the chef workstation
-   machine <Installing_a_Chef_workstation.md>`__ and have SSH access to
+   machine <Installing_a_Chef_workstation.html>`__ and have SSH access to
    the ubuntu user on it.
 -  You must have `created a deployment
-   environment <Creating_a_deployment_environment.md>`__ and know its
+   environment <Creating_a_deployment_environment.html>`__ and know its
    name, ``<name>``.
 
 Creating a Deployment
@@ -92,6 +92,6 @@ Next steps
 Now your deployment is installed and ready to use, you'll want to test
 it.
 
--  `Making your first call <Making_your_first_call.md>`__
--  `Running the live tests <Running_the_live_tests.md>`__
+-  `Making your first call <Making_your_first_call.html>`__
+-  `Running the live tests <Running_the_live_tests.html>`__
 

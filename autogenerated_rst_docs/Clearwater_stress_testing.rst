@@ -64,7 +64,7 @@ some things so it's easier just to tear down your existing deployment
 and start again.
 
 1. If you haven't done so already, set up chef/knife (as described in
-   `the install guide <Automated_Install.md>`__).
+   `the install guide <Automated_Install.html>`__).
 2. cd to your chef directory.
 3. Edit your environment (e.g. ``environments/ENVIRONMENT.rb``) to
    override attributes as follows.
@@ -109,7 +109,7 @@ and start again.
    ``sudo service clearwater-sip-stress restart``.
 
 8. Create a Cacti server for monitoring the deployment, as described in
-   `this document <Cacti.md>`__.
+   `this document <Cacti.html>`__.
 9. When you've finished, destroy your deployment with
    ``knife deployment delete -E ENVIRONMENT``.
 
@@ -118,7 +118,7 @@ Manual (i.e. non-Chef) stress runs
 
 SIP stress can also be run against a deployment that has been installed
 manually (as per the `Manual Install
-instructions <Manual_Install.md>`__).
+instructions <Manual_Install.html>`__).
 
 Firstly follow `this
 process <https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md>`__
@@ -127,7 +127,7 @@ and create 30000 subscribers per SIPp node.
 
 To create a new SIPp node, create a new virtual machine and bootstrap it
 `by configuring access to the Project Clearwater Debian
-repository <Manual_Install.md#configure-the-apt-software-sources>`__.
+repository <Manual_Install.html#configure-the-apt-software-sources>`__.
 
 Then set the following properties in /etc/clearwater/local\_config:
 

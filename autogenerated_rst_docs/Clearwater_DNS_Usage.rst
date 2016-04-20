@@ -14,7 +14,7 @@ This document describes
 DNS is also used as part of the
 `ENUM <http://tools.ietf.org/rfc/rfc6116.txt>`__ system for mapping
 E.164 numbers to SIP URIs. This isn't discussed in this document -
-instead see the separate `ENUM <ENUM.md>`__ document.
+instead see the separate `ENUM <ENUM.html>`__ document.
 
 *If you are installing an All-in-One Clearwater node, you do not need
 any DNS records and can ignore the rest of this page.*
@@ -52,7 +52,7 @@ FAQ <http://www.thekelleys.org.uk/dnsmasq/docs/FAQ>`__:
 
 If the ``signaling_dns_server`` option is set in
 ``/etc/clearwater/shared_config`` (which is mandatory when using
-`traffic separation <Multiple_Network_Support.md>`__), Clearwater will
+`traffic separation <Multiple_Network_Support.html>`__), Clearwater will
 not use dnsmasq. Instead, resiliency is achieved by being able to
 specify up to three servers in a comma-separated list (e.g.
 ``signaling_dns_server=1.2.3.4,10.0.0.1,192.168.1.1``), and Clearwater
@@ -225,7 +225,7 @@ DNS server.
 AWS Route 53
 ~~~~~~~~~~~~
 
-Clearwater's `automated install <Automated_Install.md>`__ automatically
+Clearwater's `automated install <Automated_Install.html>`__ automatically
 configures AWS Route 53. There is no need to follow the following
 instructions if you are using the automated install.
 

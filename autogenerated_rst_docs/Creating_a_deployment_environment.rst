@@ -2,7 +2,7 @@ Creating a Chef deployment environment
 ======================================
 
 These instructions make up part of the `automated install
-process <Automated_Install.md>`__ for Clearwater. They will take you
+process <Automated_Install.html>`__ for Clearwater. They will take you
 through creating a deployment environment, which will be used to define
 the specific settings for a Clearwater deployment.
 
@@ -10,7 +10,7 @@ Prerequisites
 -------------
 
 -  You must have `installed a Chef
-   workstation <Installing_a_Chef_workstation.md>`__.
+   workstation <Installing_a_Chef_workstation.html>`__.
 -  You must have SSH access to the ubuntu user on the chef workstation
    machine.
 
@@ -80,14 +80,14 @@ If you want to use a different SIP registration period from the default
 ``override_attributes "clearwater"`` block.
 
 If you want to test `geographic redundancy
-function <Geographic_redundancy.md>`__, use ``"gr" => true`` instead of
+function <Geographic_redundancy.html>`__, use ``"gr" => true`` instead of
 ``"gr" => false``. This will cause odd-numbered and even-numbered nodes
 to be treated as separate logical "sites" - they are not actually in
 different EC2 regions (cross-region security group rules make that
 difficult), but does allow you to see and test GR function.
 
 To modify these settings after the deployment is created, follow `these
-instructions <Modifying_Clearwater_settings.md>`__.
+instructions <Modifying_Clearwater_settings.html>`__.
 
 Uploading the environment
 -------------------------
@@ -104,4 +104,4 @@ Next steps
 ----------
 
 At this point, your deployment environment is created and can be used to
-`create a new deployment <Creating_a_deployment_with_Chef.md>`__.
+`create a new deployment <Creating_a_deployment_with_Chef.html>`__.

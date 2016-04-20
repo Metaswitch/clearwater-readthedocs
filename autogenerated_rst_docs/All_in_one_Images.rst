@@ -6,7 +6,7 @@ is also possible to install all Clearwater components on a single node.
 This makes installation much simpler, and is useful for familiarizing
 yourself with Clearwater before moving up to a larger-scale deployment
 using one of the `other installation
-methods <Installation_Instructions.md>`__.
+methods <Installation_Instructions.html>`__.
 
 This page describes the all-in-one images, their capabilities and
 restrictions and the installation options available.
@@ -62,7 +62,7 @@ Format) <http://dmtf.org/standards/ovf>`__.
    instructions <All_in_one_EC2_AMI_Installation.md>`__.
 -  To install on your own virtualization platform, follow the
    `all-in-one OVF installation
-   instructions <All_in_one_OVF_Installation.md>`__.
+   instructions <All_in_one_OVF_Installation.html>`__.
 
 Manual Build
 ------------

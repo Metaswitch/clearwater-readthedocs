@@ -83,16 +83,16 @@ Detailed Instructions
 Once you've decided on your install method, follow the appropriate link
 below.
 
--  `All-in-one Images <All_in_one_Images.md>`__
--  `Automated Install <Automated_Install.md>`__
--  `Manual Install <Manual_Install.md>`__
+-  `All-in-one Images <All_in_one_Images.html>`__
+-  `Automated Install <Automated_Install.html>`__
+-  `Manual Install <Manual_Install.html>`__
 -  For source installs, see the per-component instructions
    (`Sprout/Bono <https://github.com/Metaswitch/sprout/blob/master/docs/Development.md>`__,
    `Ellis <https://github.com/Metaswitch/ellis/blob/master/docs/development.md>`__,
    `Homer/Homestead <https://github.com/Metaswitch/crest/blob/master/docs/development.md>`__).
 
 If you hit problems during this process, see the `Troubleshooting and
-Recovery <Troubleshooting_and_Recovery.md>`__ steps.
+Recovery <Troubleshooting_and_Recovery.html>`__ steps.
 
 If you want to deploy with IPv6 addresses, see the `IPv6 <IPv6.md>`__
 notes.
@@ -103,6 +103,6 @@ Next Steps
 Once you have installed your deployment, you'll want to test that it
 works.
 
--  `Making your first call <Making_your_first_call.md>`__
--  `Running the live test suite <Running_the_live_tests.md>`__
+-  `Making your first call <Making_your_first_call.html>`__
+-  `Running the live test suite <Running_the_live_tests.html>`__
 

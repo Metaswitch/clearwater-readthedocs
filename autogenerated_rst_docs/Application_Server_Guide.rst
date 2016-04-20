@@ -5,7 +5,7 @@ You can add new call features or functionality to calls by adding an
 application server. Clearwater supports application servers through the
 standard IMS interface ISC. This article explains the features and
 limitations of this support. See `Configuring an Application
-Server <Configuring_an_Application_Server.md>`__ for details of how to
+Server <Configuring_an_Application_Server.html>`__ for details of how to
 configure Clearwater to use this function.
 
 What is an application server?

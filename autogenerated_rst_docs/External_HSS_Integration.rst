@@ -50,10 +50,10 @@ Before you start
 
 Before enabling support for an external HSS, you must
 
--  `install Clearwater <Installation_Instructions.md>`__
+-  `install Clearwater <Installation_Instructions.html>`__
 -  install an external HSS - details for this will vary depending on
    which HSS you choose, but there are instructions for `OpenIMSCore
-   HSS <OpenIMSCore_HSS_Integration.md>`__.
+   HSS <OpenIMSCore_HSS_Integration.html>`__.
 
 Do not configure any Clearwater subscribers via Ellis!
 
@@ -120,7 +120,7 @@ Allowing one subscriber to have two private identities
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you try to use an `Android SIP
-client <Configuring_the_native_Android_SIP_client.md#instructions-1>`__
+client <Configuring_the_native_Android_SIP_client.html#instructions-1>`__
 that doesn't contain an **Authentication username** field, the client
 will default to a username like **``1234``** (rather than
 **``1234@example.com``** - the IMS standard form). To register a

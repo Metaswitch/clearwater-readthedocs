@@ -88,6 +88,6 @@ Starting from scratch
 If other settings (such as the Clearwater home domain) are being
 changed, we recommend that users delete their old deployment and create
 a new one from scratch, either `with
-Chef <Creating_a_deployment_with_Chef.md>`__ or
-`manually <Manual_Install.md>`__. This ensures that the new settings are
+Chef <Creating_a_deployment_with_Chef.html>`__ or
+`manually <Manual_Install.html>`__. This ensures that the new settings are
 consistently applied.

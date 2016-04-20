@@ -58,7 +58,7 @@ additional home domains as equivalent.
 Adding DNS Records
 ~~~~~~~~~~~~~~~~~~
 
-The `Clearwater DNS Usage <Clearwater_DNS_Usage.md>`__ document
+The `Clearwater DNS Usage <Clearwater_DNS_Usage.html>`__ document
 describes how to configure DNS for a simple single-domain deployment.
 This includes creating NAPTR, SRV and A records that resolve the home
 domain (or ``<zone>``) to the bono nodes. If you have additional home

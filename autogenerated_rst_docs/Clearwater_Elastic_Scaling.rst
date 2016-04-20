@@ -6,8 +6,8 @@ other words, you can grow and shrink your deployment on demand, without
 disrupting calls or losing data.
 
 This page explains how to use this elastic scaling function when using a
-deployment created through the `automated <Automated_Install.md>`__ or
-`manual <Manual_Install.md>`__ install processes. Note that, although
+deployment created through the `automated <Automated_Install.html>`__ or
+`manual <Manual_Install.html>`__ install processes. Note that, although
 the instructions differ between the automated and manual processes, the
 underlying operations that will be performed on your deployment are the
 same - the automated process simply uses chef to drive this rather than
@@ -116,7 +116,7 @@ sharing <Automatic_Clustering_Config_Sharing>`__ functionality.
 If you're scaling up your deployment, follow the following process.
 
 1.  Spin up new nodes, following the `standard install
-    process <Manual_Install.md>`__.
+    process <Manual_Install.html>`__.
 2.  On Sprout and Ralf nodes, update
     ``/etc/clearwater/cluster_settings`` to contain both a list of the
     old nodes (``servers=...``) and a (longer) list of the new nodes
@@ -140,10 +140,10 @@ If you're scaling up your deployment, follow the following process.
 7.  Update DNS to contain the new nodes.
 8.  On Sprout, Memento and Ralf nodes, wait until Astaire has
     resynchronized, either by running ``service astaire wait-sync`` or
-    by polling over `SNMP <Clearwater_SNMP_Statistics.md>`__.
+    by polling over `SNMP <Clearwater_SNMP_Statistics.html>`__.
 9.  On Sprout and Ralf nodes, wait until Chronos has resynchronized,
     either by running ``service chronos wait-sync`` or by polling over
-    `SNMP <Clearwater_SNMP_Statistics.md>`__.
+    `SNMP <Clearwater_SNMP_Statistics.html>`__.
 10. On all nodes, update /etc/clearwater/cluster\_settings and
     /etc/clearwater/memento\_cluster\_settings to just contain the new
     list of nodes (``servers=...``) and then run
@@ -176,10 +176,10 @@ If you're scaling down your deployment, follow the following process.
     of Chronos timers.
 7.  On Sprout, Memento and Ralf nodes, wait until Astaire has
     resynchronized, either by running ``service astaire wait-sync`` or
-    by polling over `SNMP <Clearwater_SNMP_Statistics.md>`__.
+    by polling over `SNMP <Clearwater_SNMP_Statistics.html>`__.
 8.  On Sprout and Ralf nodes, wait until Chronos has resynchronized,
     either by running ``service chronos wait-sync`` or by polling over
-    `SNMP <Clearwater_SNMP_Statistics.md>`__.
+    `SNMP <Clearwater_SNMP_Statistics.html>`__.
 9.  On Sprout, Memento and Ralf nodes, update
     /etc/clearwater/cluster\_settings and
     /etc/clearwater/memento\_cluster\_settings to just contain the new

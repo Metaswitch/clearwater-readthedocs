@@ -9,7 +9,7 @@ describes Clearwater's support for each.
 The services fall into one of four categories.
 
 -  Supported by Clearwater's `built-in MMTel application
-   server <Application_Server_Guide.md#the-built-in-mmtel-application-server>`__
+   server <Application_Server_Guide.html#the-built-in-mmtel-application-server>`__
 -  Supported by Clearwater inherently (i.e. whether or not the MMTel
    application server is enabled) - these services rely on messages or
    headers that Clearwater simply passes through
@@ -21,35 +21,35 @@ Supported by Clearwater's Built-In MMTel Application Server
 
 The following Supplementary Services are supported by Clearwater's
 `built-in MMTel Application
-Server <Application_Server_Guide.md#the-built-in-mmtel-application-server>`__.
+Server <Application_Server_Guide.html#the-built-in-mmtel-application-server>`__.
 
 -  Originating Identification Presentation - See the `Privacy Feature
-   document <Clearwater_Privacy_Feature.md>`__ for more information.
+   document <Clearwater_Privacy_Feature.html>`__ for more information.
 -  Originating Identification Restriction - See the `Privacy Feature
-   document <Clearwater_Privacy_Feature.md>`__ for more information.
+   document <Clearwater_Privacy_Feature.html>`__ for more information.
 -  Call Forwarding Unconditional - See the `Call Diversion Support
-   document <Clearwater_Call_Diversion_Support.md>`__ for more
+   document <Clearwater_Call_Diversion_Support.html>`__ for more
    information.
 -  Call Forwarding on not Logged in - See the `Call Diversion Support
-   document <Clearwater_Call_Diversion_Support.md>`__ for more
+   document <Clearwater_Call_Diversion_Support.html>`__ for more
    information.
 -  Call Forwarding on Busy - See the `Call Diversion Support
-   document <Clearwater_Call_Diversion_Support.md>`__ for more
+   document <Clearwater_Call_Diversion_Support.html>`__ for more
    information.
 -  Call Forwarding on not Reachable - See the `Call Diversion Support
-   document <Clearwater_Call_Diversion_Support.md>`__ for more
+   document <Clearwater_Call_Diversion_Support.html>`__ for more
    information.
 -  Call Forwarding on No Reply - See the `Call Diversion Support
-   document <Clearwater_Call_Diversion_Support.md>`__ for more
+   document <Clearwater_Call_Diversion_Support.html>`__ for more
    information.
 -  Barring of All Incoming Calls - See the `Call Barring Support
-   document <Clearwater_Call_Barring_Support.md>`__ for more
+   document <Clearwater_Call_Barring_Support.html>`__ for more
    information.
 -  Barring of All Outgoing Calls - See the `Call Barring Support
-   document <Clearwater_Call_Barring_Support.md>`__ for more
+   document <Clearwater_Call_Barring_Support.html>`__ for more
    information.
 -  Barring of Outgoing International Calls - See the `Call Barring
-   Support document <Clearwater_Call_Barring_Support.md>`__ for more
+   Support document <Clearwater_Call_Barring_Support.html>`__ for more
    information.
 
 Supported by Clearwater Inherently

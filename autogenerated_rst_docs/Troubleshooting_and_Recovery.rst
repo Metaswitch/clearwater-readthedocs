@@ -193,7 +193,7 @@ Deployment Management
 ---------------------
 
 Clearwater comes with a system that `automate clustering and
-configuration sharing <Automatic_Clustering_Config_Sharing.md>`__. If
+configuration sharing <Automatic_Clustering_Config_Sharing.html>`__. If
 you cannot scale your deployment up or down, or if configuration changes
 are not being applied, this system may not be working.
 

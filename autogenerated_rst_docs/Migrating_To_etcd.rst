@@ -34,7 +34,7 @@ Do the following on each node in turn:
    -  The config option is invalid (for example, because there is a
       typo, or this option has been retired). Check the `configuration
       options
-      reference <Clearwater_Configuration_Options_Reference.md>`__ for a
+      reference <Clearwater_Configuration_Options_Reference.html>`__ for a
       list of valid options.
    -  The config option is valid, but the migration script doesn't
       recognise the option and won't automatically migrate it. In this
