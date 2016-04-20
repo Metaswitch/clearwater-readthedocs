@@ -12,7 +12,7 @@ This process should work on any virtualization platform that supports OVFs using
 
 The image uses DHCP to gets its IP configuration, so the virtualization platform must either serve DHCP natively or be connected to a network with a DHCP server.
 
-If you install/run the OVF on another platform, please let us know how you get on on the [mailing list](http://lists.projectclearwater.org/listinfo/clearwater) so we can update this page.
+If you install/run the OVF on another platform, please let us know how you get on on the [mailing list](http://lists.projectclearwater.org/mailman/listinfo/clearwater_lists.projectclearwater.org) so we can update this page.
 
 ## Installation Process
 
