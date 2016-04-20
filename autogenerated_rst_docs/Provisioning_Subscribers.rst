@@ -34,7 +34,7 @@ is much quicker.
 
 ::
 
-    usage: create_user.py [-h] [-k] [-q] [--hsprov IP:PORT] [--plaintext]
+    usage: create_user.py [-h] [-k] [--hsprov IP:PORT] [--plaintext]
                           [--ifc iFC-FILE] [--prefix TWIN_PREFIX]
                           <directory-number>[..<directory-number>] <domain>
                           <password>
@@ -49,7 +49,6 @@ is much quicker.
     optional arguments:
       -h, --help            show this help message and exit
       -k, --keep-going      keep going on errors
-      -q, --quiet           don't display the user
       --hsprov IP:PORT      IP address and port of homestead-prov
       --plaintext           store password in plaintext
       --ifc iFC-FILE        XML file containing the iFC
