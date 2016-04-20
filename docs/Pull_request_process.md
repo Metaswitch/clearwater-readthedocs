@@ -34,7 +34,7 @@ Features or any changes to the codebase should be done as follows:
 
 ## Reviewer process:
 
-* Receive notice of review by GitHub email, GitHub notification, or by checking [all your Metaswitch GitHub issues](https://github.com/organizations/Metaswitch/dashboard/issues/assigned?direction=desc&amp;state=open).
+* Receive notice of review by GitHub email, GitHub notification, or by checking [all your Metaswitch GitHub issues](https://github.com/issues/assigned).
 * Make comments on the pull request (either line comments or top-level comments).
 * Make a top-level comment saying something along the lines of "Fine; some minor comments" or "Some issues to address before merging".
 * If there are no issues, merge the pull request and close the branch. Otherwise, assign the pull request to the developer and leave this to them.

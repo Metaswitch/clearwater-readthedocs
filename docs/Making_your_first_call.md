@@ -8,7 +8,7 @@ These instructions will take you through the process of making a call on a Clear
 * You have access to two SIP clients.
   - If you have installed Clearwater on VirtualBox using the All-In-One image you must use [Zoiper](http://www.zoiper.com/en) as one of your clients.  For the other client (or for other install modes) you may use any standard SIP client, we've tested with the following:
     - [X-Lite](http://www.counterpath.com/x-lite.html)
-    - [Bria](http://www.counterpath.com/bria.html‎)
+    - [Bria](http://www.counterpath.com/bria/)
     - [Jitsi](https://jitsi.org/)
     - [Blink](http://icanblink.com/)
     - [Stock Android SIP client](Configuring_the_native_Android_SIP_client.md)
