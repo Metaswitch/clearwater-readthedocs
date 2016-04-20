@@ -17,7 +17,7 @@ If you have a deployment environment created by following the `automated
 install instructions <Automated_Install.html>`__, then you can create a
 HSS by running ``knife box create -E <env> openimscorehss``. You should
 then follow `the configuration instructions
-below <OpenIMSCore_HSS_Integration.html/#configuration>`__.
+below <OpenIMSCore_HSS_Integration.html#configuration>`__.
 
 Installing OpenIMSCore HSS manually
 -----------------------------------
@@ -45,7 +45,7 @@ username is hssAdmin.
 
 -  If the HSS was installed using Chef, the hssAdmin password will be
    `the signup\_key setting from
-   knife.rb <Installing_a_Chef_client/index.html#add-deployment-specific-configuration>`__.
+   knife.rb <Installing_a_Chef_client.html#add-deployment-specific-configuration>`__.
 -  If the HSS was installed manually, the hssAdmin password will be
    "hss". This can be changed by editing
    ``/usr/share/java/fhoss-0.2/conf/tomcat-users.xml`` and running

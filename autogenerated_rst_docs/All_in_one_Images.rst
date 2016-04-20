@@ -59,7 +59,7 @@ platform, as long as it supports `OVF (Open Virtualization
 Format) <http://dmtf.org/standards/ovf>`__.
 
 -  To install on EC2, follow the `all-in-one EC2 AMI installation
-   instructions <All_in_one_EC2_AMI_Installation.md>`__.
+   instructions <All_in_one_EC2_AMI_Installation.html>`__.
 -  To install on your own virtualization platform, follow the
    `all-in-one OVF installation
    instructions <All_in_one_OVF_Installation.html>`__.

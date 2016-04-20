@@ -14,7 +14,7 @@ Mailing List
 ------------
 
 The mailing list is managed at
-`lists.projectclearwater.org <http://lists.projectclearwater.org/listinfo/clearwater>`__.
+`lists.projectclearwater.org <http://lists.projectclearwater.org/mailman/listinfo/clearwater_lists.projectclearwater.org>`__.
 When posting, please try to
 
 -  provide a clear subject line

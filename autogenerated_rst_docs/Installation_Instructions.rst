@@ -94,7 +94,7 @@ below.
 If you hit problems during this process, see the `Troubleshooting and
 Recovery <Troubleshooting_and_Recovery.html>`__ steps.
 
-If you want to deploy with IPv6 addresses, see the `IPv6 <IPv6.md>`__
+If you want to deploy with IPv6 addresses, see the `IPv6 <IPv6.html>`__
 notes.
 
 Next Steps

@@ -32,7 +32,7 @@ Manual Install
 The process to configure Clearwater for IPv6 is very similar to IPv4.
 The key difference is to use IPv6 addresses in the
 ``/etc/clearwater/local_config`` file rather than IPv4 addresses when
-following the `manual install instructions <Manual_Install>`__.
+following the `manual install instructions <Manual_Install.html>`__.
 
 Note also that you must configure your DNS server to return IPv6
 addresses (AAAA records) rather than (or as well as) IPv4 addresses (A

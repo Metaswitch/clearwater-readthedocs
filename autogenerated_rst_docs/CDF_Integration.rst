@@ -84,7 +84,7 @@ support for load-balancing or enabling backup CDF identities.
 If you have a CDF set up to receive Rf billing messages from your
 deployment, you will need to modify the
 ``/etc/clearwater/shared_config`` file and follow `this
-process <Modifying_Clearwater_settings>`__ to apply the change:
+process <Modifying_Clearwater_settings.html>`__ to apply the change:
 
 ::
 

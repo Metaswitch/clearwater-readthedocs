@@ -2,7 +2,7 @@ Migrating to Automatic Clustering and Configuration Sharing
 ===========================================================
 
 Clearwater now supports an `automatic clustering and configuration
-sharing <Automatic_Clustering_Config_Sharing>`__ feature. This makes
+sharing <Automatic_Clustering_Config_Sharing.html>`__ feature. This makes
 Clearwater deployments much easier to manage. However deployments
 created before the 'For Whom The Bell Tolls' release do not use this
 feature. This article explains how to migrate a deployment to take
@@ -11,12 +11,11 @@ advantage of the new feature.
 Upgrade the Deployment
 ----------------------
 
-`Upgrade <Upgrading_a_Clearwater_deployment>`__ to the latest stable
+`Upgrade <Upgrading_a_Clearwater_deployment.html>`__ to the latest stable
 Clearwater release. You will also need to update your firewall settings
 to support the new clearwater management packages; open port 2380 and
-4000 between every node (see
-`here <http://clearwater.readthedocs.org/en/stable/Clearwater_IP_Port_Usage/index.html>`__
-for the complete list).
+4000 between every node (see `here <Clearwater_IP_Port_Usage.html>`__ for
+the complete list).
 
 Verify Configuration Files
 --------------------------
