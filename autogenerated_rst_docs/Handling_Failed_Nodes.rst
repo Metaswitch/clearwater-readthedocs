@@ -102,10 +102,10 @@ To recover from this state:
    -  running
       ``clearwater-etcdctl get clearwater/<site_name>/configuration/shared_config``
       to check that the data is safe. The ``site_name`` is set in
-      ```local_config`` <http://clearwater.readthedocs.org/en/stable/Manual_Install/index.html#create-the-per-node-configuration>`__
+      ```local_config`` <Manual_Install.html#create-the-per-node-configuration>`__
       if the deployment is `geographically
-      redundant <http://clearwater.readthedocs.org/en/stable/Geographic_redundancy/index.html>`__,
-      and defaults to ``site1`` if unset.
+      redundant <Geographic_redundancy.html>`__, and defaults to ``site1``
+      if unset.
 
 -  log on to A. For each of D, E and F follow the instructions in
    Removing a Node From a Data Store.

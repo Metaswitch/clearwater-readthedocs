@@ -68,7 +68,7 @@ Configuring the billing realm
 
 To point Ralf at the billing DIAMETER realm, add the following line to
 ``/etc/clearwater/shared_config`` and follow `this
-process <Modifying_Clearwater_settings>`__ to apply the change
+process <Modifying_Clearwater_settings.html>`__ to apply the change
 
 ::
 

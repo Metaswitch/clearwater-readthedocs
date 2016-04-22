@@ -23,8 +23,8 @@ with a DHCP server.
 
 If you install/run the OVF on another platform, please let us know how
 you get on on the `mailing
-list <http://lists.projectclearwater.org/listinfo/clearwater>`__ so we
-can update this page.
+list <http://lists.projectclearwater.org/mailman/listinfo/clearwater_lists.projectclearwater.org>`__
+so we can update this page.
 
 Installation Process
 --------------------

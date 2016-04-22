@@ -290,8 +290,8 @@ e.g. ``icscf=5052``).
    (after the digits of the number). Defaults to "e164.arpa"
 -  ``enum_file`` - if set (to a file path), and if ``enum_server`` is
    not set, Sprout will use this local JSON file for ENUM lookups rather
-   than a DNS server. An example file is at
-   http://clearwater.readthedocs.org/en/stable/ENUM/index.html#deciding-on-enum-rules.
+   than a DNS server. An example file is `on our ENUM
+   page <ENUM.html#deciding-on-enum-rules>`__.
 -  ``external_icscf_uri`` - the SIP address of the external I-CSCF
    integrated with your Sprout node (if you have one).
 -  ``additional_home_domains`` - this option defines a set of home
@@ -393,9 +393,8 @@ e.g. ``icscf=5052``).
 -  ``snmp_ip`` - the IP address to send alarms to (defaults to being
    unset). If this is set then Sprout, Ralf, Homestead and Chronos will
    send alarms - more details on the alarms are
-   `here <http://clearwater.readthedocs.org/en/stable/SNMP_Alarms/index.html>`__.
-   This can be a single IP address, or a comma-separated list of IP
-   addresses.
+   `here <SNMP_Alarms.html>`__. This can be a single IP address, or a
+   comma-separated list of IP addresses.
 -  ``impu_cache_ttl`` - the number of seconds for which Homestead will
    cache the SIP Digest from a Multimedia-Auth-Request. Defaults to 0,
    as Sprout does enough caching to ensure that it can handle an
