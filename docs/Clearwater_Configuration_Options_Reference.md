@@ -107,7 +107,7 @@ This section describes optional configuration options, particularly for ensuring
 * `max_session_expires` - determines the maximum Session-Expires/Min-SE value which Sprout will accept in requests. This cannot be set to a value less than 90 seconds, as specified in [RFC 4028, sections 4 and 5](https://tools.ietf.org/html/rfc4028#section-4).
 * `enum_server` - a comma-separated list of DNS servers which can handle ENUM queries.
 * `enum_suffix` - determines the DNS suffix used for ENUM requests (after the digits of the number). Defaults to "e164.arpa"
-* `enum_file` - if set (to a file path), and if `enum_server` is not set, Sprout will use this local JSON file for ENUM lookups rather than a DNS server. An example file is at http://clearwater.readthedocs.org/en/stable/ENUM/index.html#deciding-on-enum-rules.
+* `enum_file` - if set (to a file path), and if `enum_server` is not set, Sprout will use this local JSON file for ENUM lookups rather than a DNS server. An example file is [on our ENUM page](ENUM.md#deciding-on-enum-rules).
 * `external_icscf_uri` - the SIP address of the external I-CSCF integrated with your Sprout node (if you have one).
 * `additional_home_domains` - this option defines a set of home domains which Sprout and Bono will regard as locally hosted (i.e. allowing users to register, not routing calls via an external trunk). It is a comma-separated list.
 * `billing_realm` - this sets the Destination-Realm on Diameter messages to your external CDR. CDR connections are not based on this but on configuration at the P-CSCF (which sets the P-Charging-Function-Addresses header).
@@ -141,7 +141,7 @@ This section describes optional configuration options, particularly for ensuring
 * `sip_blacklist_duration` - the time in seconds for which SIP peers are blacklisted when they are unresponsive (defaults to 30 seconds).
 * `http_blacklist_duration` - the time in seconds for which HTTP peers are blacklisted when they are unresponsive (defaults to 30 seconds).
 * `diameter_blacklist_duration` - the time in seconds for which Diameter peers are blacklisted when they are unresponsive (defaults to 30 seconds).
-* `snmp_ip` - the IP address to send alarms to (defaults to being unset). If this is set then Sprout, Ralf, Homestead and Chronos will send alarms - more details on the alarms are [here](http://clearwater.readthedocs.org/en/stable/SNMP_Alarms/index.html). This can be a single IP address, or a comma-separated list of IP addresses.
+* `snmp_ip` - the IP address to send alarms to (defaults to being unset). If this is set then Sprout, Ralf, Homestead and Chronos will send alarms - more details on the alarms are [here](SNMP_Alarms.md). This can be a single IP address, or a comma-separated list of IP addresses.
 * `impu_cache_ttl` - the number of seconds for which Homestead will cache the SIP Digest from a Multimedia-Auth-Request. Defaults to 0, as Sprout does enough caching to ensure that it can handle an authenticated REGISTER after a challenge, and subsequent challenges should be rare.
 * `sip_tcp_connect_timeout` - the time in milliseconds to wait for a SIP TCP connection to be established (defaults to 2000 milliseconds).
 * `sip_tcp_send_timeout` - the time in milliseconds to wait for sent data to be acknowledgered at the TCP level on a SIP TCP connection (defaults to 2000 milliseconds).

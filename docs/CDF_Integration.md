@@ -33,7 +33,7 @@ Ralf implements the behavior specified in [RFC3588](http://www.ietf.org/rfc/rfc3
 
 ### Configuring the billing realm
 
-To point Ralf at the billing DIAMETER realm, add the following line to `/etc/clearwater/shared_config` and follow [this process](Modifying_Clearwater_settings) to apply the change
+To point Ralf at the billing DIAMETER realm, add the following line to `/etc/clearwater/shared_config` and follow [this process](Modifying_Clearwater_settings.md) to apply the change
 
     billing_realm=<DIAMETER billing realm>
 

@@ -66,7 +66,7 @@ If you're scaling down your deployment, follow the following process:
 
 ### If you did a Manual Install without Automatic Clustering
 
-Follow these instructions if you manually installed your deployment but are *not* using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) functionality.
+Follow these instructions if you manually installed your deployment but are *not* using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality.
 
 If you're scaling up your deployment, follow the following process.
 
