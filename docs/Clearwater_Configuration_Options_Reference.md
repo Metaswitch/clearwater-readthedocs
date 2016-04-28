@@ -131,7 +131,7 @@ This section describes optional configuration options, particularly for ensuring
 * `memento_notify_url` - If set to an HTTP URL, memento will make a POST request to this URL whenever a subscriber's call list changes.  The body of the POST request will be a JSON document with the subscriber's IMPU in a field named `impu`.  This is only relevant if the node includes a Memento AS.  If empty, no notifications will be sent.  Defaults to empty.
 * `signaling_dns_server` - a comma-separated list of DNS servers for non-ENUM queries. Defaults to 127.0.0.1 (i.e. uses `dnsmasq`)
 * `target_latency_us` - Target latency (in microsecs) for requests above which [throttling](http://www.projectclearwater.org/clearwater-performance-and-our-load-monitor/) applies. This defaults to 100000 microsecs
-* `max_tokens` - Maximum number of tokens allowed in the token bucket (used by the throttling code). This defaults to 100 tokens
+* `max_tokens` - Maximum number of tokens allowed in the token bucket (used by the throttling code). This defaults to 1000 tokens
 * `init_token_rate` - Initial token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 250 tokens per second per core
 * `min_token_rate` - Minimum token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 10.0
 * `override_npdi` - Whether the I-CSCF, S-CSCF and BGCF should check for number portability data on requests that already have the 'npdi' indicator. This defaults to false
