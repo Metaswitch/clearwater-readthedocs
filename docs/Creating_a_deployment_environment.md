@@ -1,4 +1,4 @@
-# Creating a deployment environment
+# Creating a Chef deployment environment
 
 These instructions make up part of the [automated install process](Automated_Install.md) for Clearwater.  They will take you through creating a deployment environment, which will be used to define the specific settings for a Clearwater deployment.
 
@@ -40,7 +40,7 @@ By default, your deployment will be created in the US East (North Virginia) regi
 *   set the `availability_zones` property correspondingly (e.g. `["us-west-2a", "us-west-2b"]`)
 *   open `~/chef/plugins/knife/boxes.rb`, search for `@@default_image`, and comment in the EC2 AMI entry for the region you desire.
 
-These fields override attributes defined and documented in the [clearwater-infrastructure role](https://github.com/Metaswitch/chef/blob/master/roles/clearwater-infrastructure.rb).
+These fields override attributes defined and documented in the [chef-base role](https://github.com/Metaswitch/chef/blob/master/roles/chef-base.rb).
 
 If you want to use a different SIP registration period from the default (which is 5 minutes) add a line like `"reg_max_expires" => <timeout_in_secs>,` to the `override_attributes "clearwater"` block.
 

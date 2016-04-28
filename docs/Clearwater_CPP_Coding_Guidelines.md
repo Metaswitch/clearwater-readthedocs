@@ -1,3 +1,5 @@
+# C++ Coding Guidelines
+
 ## Naming
 
 *   Class names are CamelCase, beginning with a capital letter.

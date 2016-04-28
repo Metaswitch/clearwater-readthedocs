@@ -1,3 +1,5 @@
+# Elastic Scaling
+
 The core Clearwater nodes have the ability to elastically scale; in other words, you can grow and shrink your deployment on demand, without disrupting calls or losing data.
 
 This page explains how to use this elastic scaling function when using a deployment created through the [automated](Automated_Install.md) or [manual](Manual_Install.md) install processes.  Note that, although the instructions differ between the automated and manual processes, the underlying operations that will be performed on your deployment are the same - the automated process simply uses chef to drive this rather than issuing the commands manually.
@@ -16,15 +18,15 @@ To resize your automated deployment, run:
 
 Where the `<n>` values are how many nodes of each type you need.  Once this command has completed, the resize operation has completed and any nodes that are no longer needed will have been terminated.
 
-More detailed documentation on the available Chef commands is available [here](https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.mdhttps://github.com/Metaswitch/chef/blob/master/docs/knife_commands.md).
+More detailed documentation on the available Chef commands is available [here](https://github.com/Metaswitch/chef/blob/master/docs/knife_commands.md).
 
 ### If you did a Manual Install
 
-Follow these instructions if you manually installed your deployment and are using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) functionality.
+Follow these instructions if you manually installed your deployment and are using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality.
 
 If you're scaling up your deployment, follow the following process:
 
-1.  Spin up new nodes, following the [standard install process](Manual_Install), but with the following modifications:
+1.  Spin up new nodes, following the [standard install process](Manual_Install.md), but with the following modifications:
 
     * Set the `etcd_cluster` so that it only includes the nodes that are already in the deployment (so it does not include the nodes being added).
     * Stop when you get to the "Provide Shared Configuration" step. The nodes will learn their configuration from the existing nodes.
@@ -64,7 +66,7 @@ If you're scaling down your deployment, follow the following process:
 
 ### If you did a Manual Install without Automatic Clustering
 
-Follow these instructions if you manually installed your deployment but are *not* using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) functionality.
+Follow these instructions if you manually installed your deployment but are *not* using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality.
 
 If you're scaling up your deployment, follow the following process.
 

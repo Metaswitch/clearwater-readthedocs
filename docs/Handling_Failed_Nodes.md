@@ -43,7 +43,7 @@ To recover from this state:
 * check that the cluster is now OK by doing the following on A:
     * running `clearwater-etcdctl member list` to check that the cluster now has A, B and C in
     * running `clearwater-etcdctl cluster-health` to check that the cluster is healthy
-    * running `clearwater-etcdctl get clearwater/<site_name>/configuration/shared_config` to check that the data is safe. The `site_name` is set in [`local_config`](http://clearwater.readthedocs.org/en/stable/Manual_Install/index.html#create-the-per-node-configuration) if the deployment is [geographically redundant](http://clearwater.readthedocs.org/en/stable/Geographic_redundancy/index.html), and defaults to `site1` if unset.
+    * running `clearwater-etcdctl get clearwater/<site_name>/configuration/shared_config` to check that the data is safe. The `site_name` is set in [`local_config`](Manual_Install.md#create-the-per-node-configuration) if the deployment is [geographically redundant](Geographic_redundancy.md), and defaults to `site1` if unset.
 * log on to A. For each of D, E and F follow the instructions in Removing a Node From a Data Store.
 
 ## Removing a Node From a Data Store
@@ -54,6 +54,8 @@ If you cannot log into a working node in the same site (e.g. because an entire g
 redundant site has been lost), you can use a working node in the other site, but in this case you
 must run `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_remote_node_failed` instead
 of `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed`.
+
+If you are using separate signaling and management networks, you must use the signaling IP address of the failed node as the failed node IP in the commands below.
 
 ### Sprout
 
@@ -78,7 +80,7 @@ of `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed`.
     sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "cassandra" <failed node IP>
     sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "memcached" <failed node IP>
 
-# Complete Site Failure
+## Complete Site Failure
 
 In a geographically redundant deployment, you may encounter the situation where
 an entire site has permanently failed (e.g. because the location of that

@@ -1,3 +1,5 @@
+# Modifying Clearwater Settings
+
 This page discusses how to change settings on a Clearwater system. Most settings can be changed on an existing deployment (e.g. security keys and details of external servers), but some are so integral to the system (e.g. the SIP home domain) that the best way to change it is to recreate the Clearwater deployment entirely.
 
 ## Modifying Settings in /etc/clearwater/shared_config
@@ -6,11 +8,10 @@ This page discusses how to change settings on a Clearwater system. Most settings
 
 Settings in `/etc/clearwater/shared_config` can be safely changed without entirely recreating the system. The one exception to this is the `home_domain`; if you want to change this go to the "Starting from scratch" section instead.
 
-To change one of these settings, if you are using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing) functionality:
+To change one of these settings, if you are using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality:
 
 *   Edit `/etc/clearwater/shared_config` on *one* node and change to the new value.
 *   Run `/usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config` to upload the new config to etcd.
-*   On each node in turn run `sudo /usr/share/clearwater/clearwater-config-manager/scripts/apply_shared_config`. This will download the new config to the node and restart the necessary services to pick up the new settings.
 
 If you are not using automatic clustering, do the following on *each* node:
 

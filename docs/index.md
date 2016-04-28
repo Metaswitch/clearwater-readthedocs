@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Vicomte de Bragelonne](https://www.goodreads.com/book/show/369042.Vicomte_de_Bragelonne)".
+The latest stable release of Clearwater is "[Charizard](http://pokemon.wikia.com/wiki/Charizard)".
 
 ## Architecture
 

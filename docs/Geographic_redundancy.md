@@ -1,5 +1,4 @@
-Geographic redundancy
-=====================
+# Geographic redundancy
 
 This article describes
 
@@ -8,8 +7,7 @@ This article describes
 -   the probable impact on a subscriber of a failure
 -   how to set it up.
 
-Architecture
-------------
+## Architecture
 
 The architecture of a geographically-redundant system is as follows.
 
@@ -60,15 +58,13 @@ described above. Specifically,
     single repository server. The repository server is not required in
     normal operation, only for upgrades.
 
-Limitations
------------
+## Limitations
 
 -   The local IP addresses of all nodes in a deployment most be reachable from all other nodes -
     there must not be a NAT between the two GR sites. (This currently precludes having the GR sites
     in different EC2 regions.)
 
-Impact
-------
+## Impact
 
 This section considers the probable impact on a subscriber of a total
 outage of a region in a 2-region geographically-redundant deployment. It
@@ -140,8 +136,7 @@ Ellis is not geographically redundant. If Ellis was deployed in region
 A, all service would fail until region A was recovered. If Ellis was
 deployed in region B, there would be no outage.
 
-Setup
------
+## Setup
 
 The process for setting up a geographically-redundant deployment is as
 follows.

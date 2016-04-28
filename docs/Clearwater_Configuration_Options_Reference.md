@@ -1,6 +1,8 @@
+# Clearwater Configuration Options Reference
+
 This document describes all the Clearwater configuration options that can be set in /etc/clearwater/shared_config, /etc/clearwater/local_config or /etc/clearwater/user_settings.
 
-You should follow [this process](Modifying_Clearwater_settings) when changing most of these settings. However for settings in the "Local settings" or "User settings" you should:
+You should follow [this process](Modifying_Clearwater_settings.md) when changing most of these settings. However for settings in the "Local settings" or "User settings" you should:
 
 * Modify the configuration file
 * Run `sudo service clearwater-infrastructure restart` to regenerate any dependent configuration files
@@ -53,15 +55,40 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `ralf_session_store` - this is the locations of Ralf's session stores. It has the format <site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
 * `memento_auth_store` - this is the location of Memento's authorization vector store. It just has the format <domain>[:port].
 
+## Sproutlet options
+
+This section describes optional configuration options for the Clearwater Sproutlets. Sproutlets are built on top of [Sprout](https://github.com/Metaswitch/sprout), and encapsulate the business logic of the I-CSCF/S-CSCF/BGCF, or Project Clearwater's built in Application servers
+
+There are currently eight different Sproutlets:
+
+* S-CSCF - Provides S-CSCF functionality
+* I-CSCF - Provides I-CSCF functionality
+* BGCF - Provides BGCF functionality
+* Gemini - An application server responsible for twinning VoIP clients with a mobile phone hosted on a native circuit-switched network. You can find out more [here](https://github.com/Metaswitch/gemini)
+* Memento - An application server responsible for providing network-based call lists. You can find out more [here](https://github.com/Metaswitch/memento)
+* CDiv - Provides call diversion functionality
+* MMtel - Acts as a basic MMTel AS
+* Mangelwurzel - Acts as a basic B2BUA
+
+Each Sproutlet has three configuration options. The options have the same format for each Sproutlet, as listed here, with `<sproutlet>` replaced by the appropriate Sproutlet name:
+
+* `<sproutlet>` - The port that the Sproutlet listens on. The default value is 5054 for some Sproutlets (those enabled by default) and 0 for others (those disabled by default)
+* `<sproutlet>_prefix` - The identifier prefix for this Sproutlet, used to build the uri, as described below. The default value is simply the Sproutlet name: `<sproutlet>`
+* `<sproutlet>_uri` - The full identifier for this Sproutlet, used for routing and receiving requests between nodes. The default value is created using the prefix and the hostname of the parent Sprout node, i.e. `sip:<sproutlet_prefix>.<sprout_hostname>;transport=tcp`. We recommend that you don’t set this yourself anymore, and use the defaults provided.
+
+As a concrete example, below are the S-CSCF options and the default values.
+
+* `scscf=5054`
+* `scscf_prefix=scscf`
+* `scscf_uri=sip:scscf.<sprout_hostname>;transport=tcp`
+
 ## Advanced options
 
 This section describes optional configuration options, particularly for ensuring conformance with other IMS devices such as HSSes, ENUM servers, application servers with strict requirements on Record-Route headers, and non-Clearwater I-CSCFs. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `icscf=5052`).
 
-* `icscf` - the port which Sprout nodes are providing I-CSCF service on. If not set, Sprout will only provide S-CSCF function.
-* `scscf` - the port which Sprout nodes are providing S-CSCF service on. If this not set but `icscf` is, Sprout will only provide I-CSCF function. If neither is set, this will default to 5054 and Sprout will only provide S-CSCF function.
 * `homestead_provisioning_port` - the HTTP port the Homestead provisioning interface listens on. Defaults to 8889. Not needed when using an external HSS.
 * `sas_server` - the IP address or hostname of your Metaswitch Service Assurance Server for call logging and troubleshooting. Optional.
-* `reg_max_expires` - determines the maximum expires= parameter Sprout will set on Contact headers at registrations, and therefore the amount of time before a UE has to re-register - must be less than 2^31 ms (approximately 25 days).
+* `reg_max_expires` - determines the maximum expires= parameter Sprout will set on Contact headers at registrations, and therefore the amount of time before a UE has to re-register - must be less than 2^31 ms (approximately 25 days). Default is 300 (seconds).
 * `sub_max_expires` - determines the maximum Expires header Sprout will set in subscription responses, and therefore the amount of time before a UE has to re-subscribe - must be less than 2^31 ms (approximately 25 days).
 * `upstream_hostname` - the I-CSCF which Bono should pass requests to. Defaults to the sprout_hostname.
 * `upstream_port` - the port on the I-CSCF which Bono should pass requests to. Defaults to 5052. If set to 0, Bono will use SRV resolution of the `upstream_hostname` hostname to determine a target for traffic.
@@ -79,13 +106,12 @@ This section describes optional configuration options, particularly for ensuring
 * `hs_listen_port` - the Diameter port which Homestead listens on. Defaults to 3868.
 * `ralf_listen_port`  - the Diameter port which Ralf listens on. Defaults to 3869 to avoid clashes when colocated with Homestead.
 * `alias_list` - this defines additional hostnames and IP addresses which Sprout or Bono will treat as local for the purposes of SIP routing (e.g. when removing Route headers).
-* `default_session_expires` - determines the Session-Expires value which Sprout will add to INVITEs, to force UEs to send keepalive messages during calls so they can be tracked for billing purposes.
-* `max_session_expires` - determines the maximum Session-Expires/Min-SE value which Sprout will accept in requests.
+* `default_session_expires` - determines the Session-Expires value which Sprout will add to INVITEs, to force UEs to send keepalive messages during calls so they can be tracked for billing purposes. This cannot be set to a value less than 90 seconds, as specified in [RFC 4028, section 4](https://tools.ietf.org/html/rfc4028#section-4).
+* `max_session_expires` - determines the maximum Session-Expires/Min-SE value which Sprout will accept in requests. This cannot be set to a value less than 90 seconds, as specified in [RFC 4028, sections 4 and 5](https://tools.ietf.org/html/rfc4028#section-4).
 * `enum_server` - a comma-separated list of DNS servers which can handle ENUM queries.
 * `enum_suffix` - determines the DNS suffix used for ENUM requests (after the digits of the number). Defaults to "e164.arpa"
-* `enum_file` - if set (to a file path), and if `enum_server` is not set, Sprout will use this local JSON file for ENUM lookups rather than a DNS server. An example file is at http://clearwater.readthedocs.org/en/stable/ENUM/index.html#deciding-on-enum-rules.
-* `icscf_uri` - the SIP address of the external I-CSCF integrated with your Sprout node (if you have one).
-* `scscf_uri` - the SIP address of the Sprout S-CSCF. This defaults to `sip:$sprout_hostname:$scscf;transport=TCP` - this includes a specific port, so if you need NAPTR/SRV resolution, it must be changed to not include the port.
+* `enum_file` - if set (to a file path), and if `enum_server` is not set, Sprout will use this local JSON file for ENUM lookups rather than a DNS server. An example file is [on our ENUM page](ENUM.md#deciding-on-enum-rules).
+* `external_icscf_uri` - the SIP address of the external I-CSCF integrated with your Sprout node (if you have one).
 * `additional_home_domains` - this option defines a set of home domains which Sprout and Bono will regard as locally hosted (i.e. allowing users to register, not routing calls via an external trunk). It is a comma-separated list.
 * `billing_realm` - this sets the Destination-Realm on Diameter messages to your external CDR. CDR connections are not based on this but on configuration at the P-CSCF (which sets the P-Charging-Function-Addresses header).
 * `diameter_timeout_ms` - determines the number of milliseconds Homestead will wait for a response from the HSS before failing a request. Defaults to 200.
@@ -94,8 +120,6 @@ This section describes optional configuration options, particularly for ensuring
 * `num_http_worker_threads` - determines the number of threads that will be used to process HTTP requests once they have been parsed. Only used by Memento.
 * `ralf_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages Ralf sends. Defaults to public_hostname (with some formatting changes if public_hostname is an IPv6 address).
 * `hs_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages Homestead sends. Defaults to public_hostname (with some formatting changes if public_hostname is an IPv6 address).
-* `gemini_enabled` - When this field is set to 'Y', then the node (either a Sprout or a standalone application server) will include a Gemini AS.
-* `memento_enabled` - When this field is set to 'Y', then the node (either a Sprout or a standalone application server) will include a Memento AS.
 * `max_call_list_length` - determines the maximum number of complete calls a subscriber can have in the call list store. This defaults to no limit. This is only relevant if the node includes a Memento AS.
 * `call_list_store_ttl` - determines how long each call list fragment should be kept in the call list store. This defaults to 604800 seconds (1 week). This is only relevant if the node includes a Memento AS.
 * `memento_disk_limit` - determines the maximum size that the call lists database may occupy. This defaults to 20% of disk space. This is only relevant if the node includes a Memento AS. Can be specified in Bytes, Kilobytes, Megabytes, Gigabytes, or a percentage of the available disk. For example:
@@ -110,7 +134,7 @@ This section describes optional configuration options, particularly for ensuring
 * `memento_notify_url` - If set to an HTTP URL, memento will make a POST request to this URL whenever a subscriber's call list changes.  The body of the POST request will be a JSON document with the subscriber's IMPU in a field named `impu`.  This is only relevant if the node includes a Memento AS.  If empty, no notifications will be sent.  Defaults to empty.
 * `signaling_dns_server` - a comma-separated list of DNS servers for non-ENUM queries. Defaults to 127.0.0.1 (i.e. uses `dnsmasq`)
 * `target_latency_us` - Target latency (in microsecs) for requests above which [throttling](http://www.projectclearwater.org/clearwater-performance-and-our-load-monitor/) applies. This defaults to 100000 microsecs
-* `max_tokens` - Maximum number of tokens allowed in the token bucket (used by the throttling code). This defaults to 20 tokens
+* `max_tokens` - Maximum number of tokens allowed in the token bucket (used by the throttling code). This defaults to 100 tokens
 * `init_token_rate` - Initial token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 250 tokens per second per core
 * `min_token_rate` - Minimum token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 10.0
 * `override_npdi` - Whether the I-CSCF, S-CSCF and BGCF should check for number portability data on requests that already have the 'npdi' indicator. This defaults to false
@@ -120,9 +144,8 @@ This section describes optional configuration options, particularly for ensuring
 * `sip_blacklist_duration` - the time in seconds for which SIP peers are blacklisted when they are unresponsive (defaults to 30 seconds).
 * `http_blacklist_duration` - the time in seconds for which HTTP peers are blacklisted when they are unresponsive (defaults to 30 seconds).
 * `diameter_blacklist_duration` - the time in seconds for which Diameter peers are blacklisted when they are unresponsive (defaults to 30 seconds).
-* `snmp_ip` - the IP address to send alarms to (defaults to being unset). If this is set then Sprout, Ralf, Homestead and Chronos will send alarms - more details on the alarms are [here](http://clearwater.readthedocs.org/en/stable/SNMP_Alarms/index.html)
+* `snmp_ip` - the IP address to send alarms to (defaults to being unset). If this is set then Sprout, Ralf, Homestead and Chronos will send alarms - more details on the alarms are [here](SNMP_Alarms.md). This can be a single IP address, or a comma-separated list of IP addresses.
 * `impu_cache_ttl` - the number of seconds for which Homestead will cache the SIP Digest from a Multimedia-Auth-Request. Defaults to 0, as Sprout does enough caching to ensure that it can handle an authenticated REGISTER after a challenge, and subsequent challenges should be rare.
-* `hss_reregistration_time` - determines how many seconds should pass before Homestead sends a Server-Assignment-Request with type RE_REGISTRATION to the HSS. (On first registration, it will always send a SAR with type REGISTRATION). This determines a minimum value - after this many seconds have passed, Homestead will send the Server-Assignment-Request when the next REGISTER is received. Note that Homestead invalidates its cache of the registration and iFCs after twice this many seconds have passed, so it is not safe to set this to less than half of `reg_max_expires`.
 * `sip_tcp_connect_timeout` - the time in milliseconds to wait for a SIP TCP connection to be established (defaults to 2000 milliseconds).
 * `sip_tcp_send_timeout` - the time in milliseconds to wait for sent data to be acknowledgered at the TCP level on a SIP TCP connection (defaults to 2000 milliseconds).
 * `session_continued_timeout_ms` - if an Application Server with default handling of 'continue session' is unresponsive, this is the time that Sprout will wait (in milliseconds) before bypassing the AS and moving onto the next AS in the chain (defaults to 2000 milliseconds).
@@ -132,7 +155,11 @@ This section describes optional configuration options, particularly for ensuring
     * e.g. `sip:sprout.example.com:5054;transport=tcp;lr;orig;auto-reg`
 * `non_register_authentication` - controls when Sprout will challenge a non-REGISTER request using SIP Proxy-Authentication. Possible values are `never` (meaning Sprout will never challenge) or `if_proxy_authorization_present` (meaning Sprout will only challenge requests that have a Proxy-Authorization header).
 * `ralf_threads` - used on Sprout nodes, this determines how many worker threads should be started to do Ralf request processing (defaults to 25).
-* `sprout_av_store` - this is the location of Sprout's authorization vector store. It just has the format <domain>[:port]. If not provided, Sprout uses the local site's registration store.
+* `impi_store_mode` - used to control how Sprout stores authentication challenges. The default is `impi` which means that challenges are written to a single memcached database table indexed by IMPI. There is another option, `av-impi`, where challenges are also stored in an old table indexed by (IMPI, nonce). This setting can be used to upgrade Clearwater to use the new database table without losing registration state.
+* `nonce_count_supported` - when set to 'Y' Clearwater permits authentication responses with a nonce-count greater than 1. By default this option is not enabled. Enabling this option can expose certain security holes if your deployment does not use an HSS (and uses Homestead-Prov instead) and an I-CSCF. Specifically if the option is set and a malicious UE manages to register:
+  * Without an HSS there is no way to force it to become registered to become deregistered.
+  * Without an I-CSCF there is no way to prevent it from registering as different user accounts.
+* `sprout_impi_store` - this is the location of Sprout's authorization vector store. It just has the format <domain>[:port]. If not provided, Sprout uses the local site's registration store.
 
 ## Experimental options
 
@@ -143,6 +170,9 @@ This section describes optional configuration options which may be useful, but a
 * `hs_secure_listen_port` - this determines the port Homestead listens on for TLS-secured Diameter connections.
 * `ellis_cookie_key` - an arbitrary string that enables Ellis nodes to determine whether they should be in the same cluster. This function is not presently used.
 * `stateless_proxies` - a comma separated list of domain names that are treated as SIP stateless proxies. Stateless proxies are not blacklisted if a SIP transaction sent to them times out. This field should reflect how the servers are identified in SIP. For example if a cluster of nodes is identified by the name 'cluster.example.com', the option should be set to 'cluster.example.com' instead of the hostnames or IP addresses of individual servers.
+* `hss_reregistration_time` - determines how many seconds should pass before Homestead sends a Server-Assignment-Request with type RE_REGISTRATION to the HSS. (On first registration, it will always send a SAR with type REGISTRATION). This determines a minimum value - after this many seconds have passed, Homestead will send the Server-Assignment-Request when the next REGISTER is received. Note that Homestead invalidates its cache of the registration and iFCs after twice this many seconds have passed, so it is not safe to set this to less than half of `reg_max_expires`.  The default value of this option is whichever is the greater of the following.
+    * 1800.
+    * Half of the value of reg_max_expires.
 
 ## User settings
 
@@ -151,7 +181,6 @@ This section describes settings that may vary between systems in the same deploy
 * `log_level` - determines how verbose Clearwater's logging is, from 1 (error logs only) to 5 (debug-level logs). Defaults to 2.
 * `log_directory` - determines which folder the logs are created in. This folder must exist, and be owned by the service. Defaults to /var/log/<service> (this folder is created and has the correct permissions set for it by the install scripts of the service).
 * `max_log_directory_size` - determines the maximum size of each Clearwater process's log_directory in bytes. Defaults to 1GB. If you are co-locating multiple Clearwater processes, you'll need to reduce this value proportionally.
-* `num_pjsip_threads` - determines how many PJSIP transport-layer threads should run at once. Defaults to 1, and it may be dangerous to change this as it is not necessarily thread-safe.
 * `num_worker_threads` - for Sprout and Bono nodes, determines how many worker threads should be started to do SIP/IMS processing. Defaults to 50 times the number of CPU cores on the system.
 * `upstream_connections` - determines the maximum number of TCP connections which Bono will open to the I-CSCF(s). Defaults to 50.
 * `upstream_recycle_connections` - the average number of seconds before Bono will destroy and re-create a connection to Sprout. A higher value means slightly less work, but means that DNS changes will not take effect as quickly (as new Sprout nodes added to DNS will only start to receive messages when Bono creates a new connection and does a fresh DNS lookup).

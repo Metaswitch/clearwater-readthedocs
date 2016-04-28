@@ -1,0 +1,164 @@
+<cacti>	
+	<hash_00002347889810119b3b5732f3e45172e8a16c>
+		<name>Client Count</name>
+		<graph>
+			<t_title></t_title>
+			<title>|host_description| - Client Count</title>
+			<t_image_format_id></t_image_format_id>
+			<image_format_id>1</image_format_id>
+			<t_height></t_height>
+			<height>120</height>
+			<t_width></t_width>
+			<width>500</width>
+			<t_slope_mode></t_slope_mode>
+			<slope_mode>on</slope_mode>
+			<t_auto_scale></t_auto_scale>
+			<auto_scale></auto_scale>
+			<t_auto_scale_opts></t_auto_scale_opts>
+			<auto_scale_opts>2</auto_scale_opts>
+			<t_auto_scale_log></t_auto_scale_log>
+			<auto_scale_log></auto_scale_log>
+			<t_scale_log_units></t_scale_log_units>
+			<scale_log_units></scale_log_units>
+			<t_auto_scale_rigid></t_auto_scale_rigid>
+			<auto_scale_rigid></auto_scale_rigid>
+			<t_auto_padding></t_auto_padding>
+			<auto_padding>on</auto_padding>
+			<t_export></t_export>
+			<export>on</export>
+			<t_upper_limit></t_upper_limit>
+			<upper_limit>50000</upper_limit>
+			<t_lower_limit></t_lower_limit>
+			<lower_limit>0</lower_limit>
+			<t_base_value></t_base_value>
+			<base_value>1000</base_value>
+			<t_unit_value></t_unit_value>
+			<unit_value></unit_value>
+			<t_unit_exponent_value></t_unit_exponent_value>
+			<unit_exponent_value></unit_exponent_value>
+			<t_vertical_label></t_vertical_label>
+			<vertical_label></vertical_label>
+		</graph>
+		<items>
+			<hash_100023bd565ac6b50f66909e1ea0f59c37a0e3>
+				<task_item_id>hash_080023756f01dc1ea617c803937bf3acd3352b</task_item_id>
+				<color_id>FF0000</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>4</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060023e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Client Count</text_format>
+				<hard_return></hard_return>
+				<sequence>1</sequence>
+			</hash_100023bd565ac6b50f66909e1ea0f59c37a0e3>
+		</items>
+		<inputs>
+			<hash_090023f1b3828155fc76d56603a70d0356fcfd>
+				<name>Data Source [client_count]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_000023bd565ac6b50f66909e1ea0f59c37a0e3</items>
+			</hash_090023f1b3828155fc76d56603a70d0356fcfd>
+		</inputs>
+	</hash_00002347889810119b3b5732f3e45172e8a16c>
+	<hash_010023c768558225e9d4788a91908682556f3c>
+		<name>Client Count</name>
+		<ds>
+			<t_name></t_name>
+			<name>|host_description| - Client Count</name>
+			<data_input_id>hash_030023b1363b247a1f6a629ec69a72c03d987e</data_input_id>
+			<t_rra_id></t_rra_id>
+			<t_rrd_step></t_rrd_step>
+			<rrd_step>60</rrd_step>
+			<t_active></t_active>
+			<active>on</active>
+			<rra_items>hash_150023c21df5178e5c955013591239eb0afd46|hash_1500230d9c0af8b8acdc7807943937b3208e29|hash_1500236fc2d038fb42950138b0ce3e9874cc60|hash_150023e36f3adb9f152adfa5dc50fd2b23337e</rra_items>
+		</ds>
+		<items>
+			<hash_080023756f01dc1ea617c803937bf3acd3352b>
+				<t_data_source_name></t_data_source_name>
+				<data_source_name>client_count</data_source_name>
+				<t_rrd_minimum></t_rrd_minimum>
+				<rrd_minimum>0</rrd_minimum>
+				<t_rrd_maximum></t_rrd_maximum>
+				<rrd_maximum>0</rrd_maximum>
+				<t_data_source_type_id></t_data_source_type_id>
+				<data_source_type_id>1</data_source_type_id>
+				<t_rrd_heartbeat></t_rrd_heartbeat>
+				<rrd_heartbeat>120</rrd_heartbeat>
+				<t_data_input_field_id></t_data_input_field_id>
+				<data_input_field_id>hash_070023389c585b7d7cb899f5a8051ac3620536</data_input_field_id>
+			</hash_080023756f01dc1ea617c803937bf3acd3352b>
+		</items>
+		<data>
+			<item_000>
+				<data_input_field_id>hash_0700234f033672fb7efc6e4d5417266970e7a5</data_input_field_id>
+				<t_value></t_value>
+				<value></value>
+			</item_000>
+		</data>
+	</hash_010023c768558225e9d4788a91908682556f3c>
+	<hash_030023b1363b247a1f6a629ec69a72c03d987e>
+		<name>Client Count</name>
+		<type_id>1</type_id>
+		<input_string>/bin/bash -c &#039;/home/ubuntu/cpp-common/scripts/stats/bin/cw_stat &lt;ip&gt; 6669 client_count | grep -v client_count:&#039;</input_string>
+		<fields>
+			<hash_070023389c585b7d7cb899f5a8051ac3620536>
+				<name>|host_description| - Client Count</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>client_count</data_name>
+			</hash_070023389c585b7d7cb899f5a8051ac3620536>
+			<hash_0700234f033672fb7efc6e4d5417266970e7a5>
+				<name>Management IP</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code>hostname</type_code>
+				<input_output>in</input_output>
+				<data_name>ip</data_name>
+			</hash_0700234f033672fb7efc6e4d5417266970e7a5>
+		</fields>
+	</hash_030023b1363b247a1f6a629ec69a72c03d987e>
+	<hash_150023c21df5178e5c955013591239eb0afd46>
+		<name>Daily (5 Minute Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>1</steps>
+		<rows>600</rows>
+		<timespan>86400</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_150023c21df5178e5c955013591239eb0afd46>
+	<hash_1500230d9c0af8b8acdc7807943937b3208e29>
+		<name>Weekly (30 Minute Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>6</steps>
+		<rows>700</rows>
+		<timespan>604800</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_1500230d9c0af8b8acdc7807943937b3208e29>
+	<hash_1500236fc2d038fb42950138b0ce3e9874cc60>
+		<name>Monthly (2 Hour Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>24</steps>
+		<rows>775</rows>
+		<timespan>2678400</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_1500236fc2d038fb42950138b0ce3e9874cc60>
+	<hash_150023e36f3adb9f152adfa5dc50fd2b23337e>
+		<name>Yearly (1 Day Average)</name>
+		<x_files_factor>0.5</x_files_factor>
+		<steps>288</steps>
+		<rows>797</rows>
+		<timespan>33053184</timespan>
+		<cf_items>1|3</cf_items>
+	</hash_150023e36f3adb9f152adfa5dc50fd2b23337e>
+	<hash_060023e9c43831e54eca8069317a2ce8c6f751>
+		<name>Normal</name>
+		<gprint_text>%8.2lf %s</gprint_text>
+	</hash_060023e9c43831e54eca8069317a2ce8c6f751>
+</cacti>

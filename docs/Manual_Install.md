@@ -184,7 +184,7 @@ If you wish to enable the optional I-CSCF function, also add the following:
 
     # I-CSCF/S-CSCF configuration
     icscf=5052
-    upstream_hostname=<sprout_hostname>
+    upstream_hostname=icscf.<sprout_hostname>
     upstream_port=5052
 
 If you wish to enable the optional external HSS lookups, add the following:
@@ -201,15 +201,14 @@ If you want to host multiple domains from the same Clearwater deployment, add th
 If you want your Sprout nodes to include Gemini/Memento Application Servers add the following:
 
     # Application Servers
-    gemini_enabled='Y'
-    memento_enabled='Y'
+    gemini=<gemini port>
+    memento=<memento port>
 
 See the [Chef instructions](Installing_a_Chef_workstation.md#add-deployment-specific-configuration) for more information on how to fill these in. The values marked `<secret>` **must** be set to secure values to protect your deployment from unauthorized access. To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings.md).
 
 Now run the following to upload the configuration to a shared database and propagate it around the cluster.
 
     /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
-    sudo /usr/share/clearwater/clearwater-config-manager/scripts/apply_shared_config
 
 ### Setting up S-CSCF configuration
 
@@ -219,7 +218,7 @@ If you require I-CSCF functionality, log onto your sprout node and create `/etc/
 
     {
        "s-cscfs" : [
-           {   "server" : "sip:<sprout_domain>:5054;transport=TCP",
+           {   "server" : "sip:scscf.<sprout_domain>:5054;transport=TCP",
                "priority" : 0,
                "weight" : 100,
                "capabilities" : [<comma separated capabilities>]

@@ -14,17 +14,13 @@ They also need the following ports open to the world (`0.0.0.0/0`):
 
     TCP/22 for SSH access
 
-If your deployment uses monitoring software ([cacti](http://www.cacti.net/) or [m/monit](http://mmonit.com/) for example), each node will also have to open appropriate ports for those services.
+If your deployment uses SNMP monitoring software ([cacti](http://www.cacti.net/) for example), each node will also have to open appropriate ports for this service.
 
-* SNMP (e.g. for cacti)
+* SNMP
 
         UDP/161-162
 
-* M/Monit
-
-        TCP/2812
-
-If your deployment uses our [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing) feature, open the following ports between every node
+If your deployment uses our [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md) feature, open the following ports between every node
 
 * etcd
 

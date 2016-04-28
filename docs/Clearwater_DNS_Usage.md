@@ -74,9 +74,9 @@ Clearwater requires the following DNS records to be configured.
     *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV) - cluster SRV records for bono, resolving to port 5060 on each of the per-node records
 *   sprout
     *   `sprout-1.<zone>`, `sprout-2.<zone>`... (A and/or AAAA) - per-node records for sprout
-    *   `sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
-    *   `sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.sprout.<zone>`
-    *   `_sip._tcp.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5054 on each of the per-node records
+    *   `scscf.sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
+    *   `scscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.sprout.<zone>`
+    *   `_sip._tcp.scscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5054 on each of the per-node records
     *   `icscf.sprout.<zone>` (NAPTR, only required if using sprout as an I-CSCF) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.icscf.sprout.<zone>`
     *   `_sip._tcp.icscf.sprout.<zone>` (SRV, only required if using sprout as an I-CSCF) - cluster SRV record for sprout, resolving to port 5052 on each of the per-node records
 *   homestead

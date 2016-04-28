@@ -19,7 +19,7 @@ There are 5 tools.
 New users can be created with the `create_user` tool.  As well as creating single users, it's also possible to create multiple users with a single command.  Note that this is not recommended for provisioning large numbers of users - for that, [bulk provisioning](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) is much quicker.
 
 ```
-usage: create_user.py [-h] [-k] [-q] [--hsprov IP:PORT] [--plaintext]
+usage: create_user.py [-h] [-k] [--hsprov IP:PORT] [--plaintext]
                       [--ifc iFC-FILE] [--prefix TWIN_PREFIX]
                       <directory-number>[..<directory-number>] <domain>
                       <password>
@@ -34,7 +34,6 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   -k, --keep-going      keep going on errors
-  -q, --quiet           don't display the user
   --hsprov IP:PORT      IP address and port of homestead-prov
   --plaintext           store password in plaintext
   --ifc iFC-FILE        XML file containing the iFC

@@ -1,5 +1,4 @@
-Formal Documentation
-====================
+# Privacy
 
 The Clearwater privacy feature splits into two sections, configuration
 and application. For configuration, we've been working from a
@@ -23,8 +22,7 @@ determine whether MMTel services should be applied for a call. This uses
 a proprietary (JSON) interface based on the inbound filter criteria
 definitions.
 
-Configuration
-=============
+## Configuration
 
 User-specified configuration is held and validated by the XDM. When a
 subscriber is provisioned, Ellis injects a default document into the XDM
@@ -41,8 +39,7 @@ from working out who the caller is. With the current implementation,
 there are some headers that are left in the message that could be used
 to determine some information about the caller, see below.
 
-Application
------------
+## Application
 
 #### Originating UE
 
@@ -144,8 +141,7 @@ if privacy has been applied by OIR or by the originating endpoint
 look at the P-Asserted-Identity header to determine the true identity of
 the caller (rather than some local ID).
 
-Dialog-Wide Issues
-==================
+## Dialog-Wide Issues
 
 There are a few issues with our stateless model and privacy that are
 worth drawing out here, pending a fuller discussion.

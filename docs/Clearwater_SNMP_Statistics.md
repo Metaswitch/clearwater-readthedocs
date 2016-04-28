@@ -1,10 +1,13 @@
+# SNMP Statistics
+
 Clearwater provides a set of statistics about the performance of each Clearwater nodes over SNMP. Currently, this is available on Bono, Sprout, Ralf and Homestead nodes, and the MMTel, Call Diversion, Memento and Gemini Application Server nodes.
 
 ## Configuration
 
 These SNMP statistics require:
 
-* the clearwater-snmp-handler-astaire packages to be installed for Sprout and Ralf nodes
+* the clearwater-snmpd package to be installed for all node types
+* the clearwater-snmp-handler-astaire package to be installed for Sprout and Ralf nodes
 
 These packages will be automatically installed when installing through the Chef automation system; for a manual install, you will need to install the packages with `sudo apt-get install`.
 
@@ -33,13 +36,13 @@ All latency values are in microseconds.
 Many of the statistics listed below are stored in SNMP tables (although the MIB file should be examined to determine exactly which ones). The full table can be retrieved by using the `snmptable` command. For example, the Initial Registrations table for Sprout can be retrieved by running:  
 `snmptable -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationTable`
 
-The individual table elements can be accessed using:  
+The individual table elements can be accessed using:
 `snmpget -v2c -c clearwater <ip> <table OID>.1.<column>.<row>`
 
 For example, the Initial Registration Stats table has an OID of `.1.2.826.0.1.1578918.9.3.9`, so the number of initial registration attempts in the current five-minute period can be retrieved by:    
-`snmpget -v2c -c clearwater <ip> .1.2.826.0.1.1578918.9.3.9.1.2.3`  
+`snmpget -v2c -c clearwater <ip> .1.2.826.0.1.1578918.9.3.9.1.2.2`
 or by:  
-`snmpget -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationAttempts.scopePrevious5MinutePeriod`
+`snmpget -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationAttempts.scopeCurrent5MinutePeriod`
 
 The `snmpwalk` command can be used to discover the list of queryable OIDs beneath a certain point in the MIB tree. For example, you can retrieve all of the entries in the Sprout Initial Registrations table using:  
 `snmpwalk -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationTable`

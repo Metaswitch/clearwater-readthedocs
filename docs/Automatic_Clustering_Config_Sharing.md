@@ -14,4 +14,4 @@ To tell if your deployment is using this feature, log onto one of the nodes in y
 
 ### Migrating to Automatic Clustering and Configuration Sharing
 
-Deployments that are not using the feature may be migrated so they start using it. To perform this migration, follow these [instructions](Migrating_To_etcd).
+Deployments that are not using the feature may be migrated so they start using it. To perform this migration, follow these [instructions](Migrating_To_etcd.md).

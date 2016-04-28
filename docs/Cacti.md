@@ -1,5 +1,4 @@
-Using Cacti with Clearwater
-===========================
+# Using Cacti with Clearwater
 
 [Cacti](http://www.cacti.net/) is an open-source statistics and graphing
 solution. It supports gathering statistics via native SNMP and also via
