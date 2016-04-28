@@ -362,7 +362,7 @@ e.g. ``icscf=5052``).
    `throttling <http://www.projectclearwater.org/clearwater-performance-and-our-load-monitor/>`__
    applies. This defaults to 100000 microsecs
 -  ``max_tokens`` - Maximum number of tokens allowed in the token bucket
-   (used by the throttling code). This defaults to 100 tokens
+   (used by the throttling code). This defaults to 1000 tokens
 -  ``init_token_rate`` - Initial token refill rate of tokens in the
    token bucket (used by the throttling code). This defaults to 250
    tokens per second per core
