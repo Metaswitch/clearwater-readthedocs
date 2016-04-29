@@ -92,7 +92,7 @@ The exact behaviour is as follows:
       have missed in its downtime.
    -  If an EMS does not support reading the Active Alarm Table, the
       operator can still recover the SNMP INFORMs by running
-      ``/usr/share/clearwater/bin/sync_alarm.py`` on each node. This
+      ``/usr/share/clearwater/bin/sync_alarms.py`` on each node. This
       will cause SNMP notifications to be resent to the EMS.
 
 Clearwater nodes also regularly re-detect and re-transmit alarm state
