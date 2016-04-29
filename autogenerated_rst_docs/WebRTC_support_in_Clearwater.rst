@@ -4,9 +4,8 @@ WebRTC support in Clearwater
 Clearwater supports WebRTC clients. This article explains how to do
 this, using a common WebRTC client as an example.
 
-**This has been tested using Chrome 26 and some previous versions. It
-has not been tested on other browsers. WebRTC is under active
-development, so as a result of browser updates clients may not work.**
+**This has been tested using Firefox 46 and some previous versions. It
+does not work in Google Chrome.**
 
 **Be aware that the sipML5 client can't be logged in to multiple numbers
 simultaneously in the same browser.**
@@ -20,9 +19,8 @@ In the instructions below, <domain> is your Clearwater domain.
 -  Check the camera is not in use: check the camera light is off. If it
    is on, close the app that is using it (e.g., Skype, or a phone
    client).
--  Visit http://sipml5.org/ and click on the button to start the live
-   demo. If the website is down, you can also use
-   http://doubango.org/sipml5/.
+-  Go to
+   `http://www.doubango.org/sipml5/call.htm <sipML5%20live%20demo>`__.
 -  By default sipML5 uses a SIP<->WebRTC gateway run by sipml5.org.
    Clearwater supports WebRTC directly. To tell sipML5 to speak WebRTC
    directly to Clearwater:
@@ -83,21 +81,13 @@ Using STUN and TURN
 
 **Note:** The above uses a default (non-Clearwater) STUN server, and no
 TURN server. Clearwater has its own STUN and TURN servers which can be
-used to support clients behind NATs and firewalls, but at the time of
-writing (April 2013) there are some difficulties with the WebRTC spec
-that make the Clearwater TURN server inaccessible to compliant browsers.
-These are being tracked.
+used to support clients behind NATs and firewalls.
 
 If one or both clients are behind a symmetric firewall, you must use
 TURN. Configure this as follows:
 
 -  On the 'expert mode' tab, fill in the following field with your SIP
-   username and the TURN workaround password set by your administrator
-   (``turn_workaround`` in `Installing a Chef
-   workstation <Installing_a_Chef_workstation.html>`__). This is a
-   workaround for Chrome WebRTC `issue
-   1508 <https://code.google.com/p/webrtc/issues/detail?id=1508>`__
-   which will be fixed in Chrome 28 (not yet released).
+   username and password.
 
    -  ICE Servers: [{url:"turn:<phone
       number>%40<domain>@<domain>",credential:"<password>"}]
