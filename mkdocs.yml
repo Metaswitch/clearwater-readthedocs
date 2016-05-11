@@ -35,6 +35,7 @@ pages:
   - ENUM: ENUM.md
   - Voxbone: Voxbone.md
   - Clearwater SNMP Statistics: Clearwater_SNMP_Statistics.md
+  - Clearwater Stateful Statistics: Clearwater_Stateful_Statistics.md
   - SNMP Alarms: SNMP_Alarms.md
   - Radius Login Authentication: Radius_Authentication.md
 - Features:
