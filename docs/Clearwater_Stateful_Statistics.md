@@ -2,7 +2,7 @@ Clearwater is designed to be as stateless as possible, simplifying redundancy, a
 
 ## Configuration
 
-These statistics are accessible in the same manner as our standard SNMP statistics. Detail on how to configure nodes and access the statistics can be found [here](https://clearwater.readthedocs.org/en/stable/Clearwater_SNMP_Statistics/index.html).
+These statistics are accessible in the same manner as our standard SNMP statistics. Detail on how to configure nodes and access the statistics can be found [here](https://clearwater.readthedocs.io/en/stable/Clearwater_SNMP_Statistics/index.html).
 
 ## Usage
 

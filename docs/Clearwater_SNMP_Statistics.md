@@ -1,6 +1,6 @@
 # SNMP Statistics
 
-Clearwater provides a set of statistics about the performance of each Clearwater nodes over SNMP. Currently, this is available on Bono, Sprout, Ralf and Homestead nodes, and the MMTel, Call Diversion, Memento and Gemini Application Server nodes.
+Clearwater provides a set of statistics about the performance of each Clearwater nodes over SNMP. Currently, this is available on Bono, Sprout, Ralf and Homestead nodes, and the MMTel, Call Diversion, Memento and Gemini Application Server nodes. A number of the statistics we offer detail the current state of the system in use, and as such are termed 'Stateful' statistics. These statistics will be marked with a '(*)' below, and more information on them can be found [here](https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html)
 
 ## Configuration
 
@@ -109,6 +109,10 @@ Sprout nodes provide the following statistics:
 * The current permitted request rate.
 * The number of incoming INVITE transactions for the S-CSCF that were cancelled before a 1xx response was seen, indexed by time period.
 * The number of incoming INVITE transactions for the S-CSCF that were cancelled after a 1xx response was seen, indexed by time period (these INVITE cancellation statistics can be used to distinguish between the case where an INVITE was cancelled because the call rang but wasn't answered and the case where it failed due to network issues and never got through in the first place).
+* The average, variance, high water mark and low water mark for the number of Registered subscribers, indexed by time period. (*)
+* The instantaneous count for the number of Registered subscribers. (*)
+* The average, variance, high water mark and low water mark for the number of SIP SUBSCRIBEs, indexed by time period. (*)
+* The instantaneous count for the number of active SIP SUBSCRIBEs. (*)
 
 ### Ralf statistics
 
@@ -120,6 +124,8 @@ Ralf nodes provide the following statistics:
 * The transfer rate (in bytes/second) of data during this resynchronization, over the last 5 seconds (overall, and per bucket).
 * The number of remaining nodes to query during the current Chronos scaling operation.
 * The number of timers, and number of invalid timers, processed over the last 5 seconds.
+* The average, variance, high water mark and low water mark for the number of active calls, indexed by time period. (*)
+* The instantaneous count for the number of active calls. (*)
 
 ### Homestead Statistics
 
