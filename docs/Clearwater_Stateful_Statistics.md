@@ -1,8 +1,8 @@
-Despite being designed as an inherently stateless system, Clearwater is able to provide a number of deployment wide stateful statistics. This is done through utilisation of our distributed timer store, Chronos. As components use timers to maintain stateful functionality without actually remaining independently aware of state, we can use those same timers to convey statistics. Currently, only Sprout and Ralf expose any stateful statistics.
+Clearwater is designed to be as stateless as possible, simplifying redundancy, and making it ideal for virtualised and cloud-based deployment. However, through use of our distributed timer store, Chronos, Clearwater is able to maintain a number of stateful statistics. As components use timers to maintain stateful functionality without actually remaining independently aware of state, we can form statistics based on these, rather than needing each main process to maintain and report state. Currently Sprout and Ralf nodes expose stateful statistics.
 
 ## Configuration
 
-These statistics behave in the same manner as our standard SNMP statistics. Detail on how to configure nodes and access the statistics can be found [here](https://clearwater.readthedocs.org/en/stable/Clearwater_SNMP_Statistics/index.html).
+These statistics are accessible in the same manner as our standard SNMP statistics. Detail on how to configure nodes and access the statistics can be found [here](https://clearwater.readthedocs.org/en/stable/Clearwater_SNMP_Statistics/index.html).
 
 ## Usage
 
@@ -16,8 +16,10 @@ e.g. Consider a deployment with three Sprout nodes. If ten registrations are set
 
 This does not mean that the number of registrations has doubled, nor is it representative of the number of registrations that each node actually handled. It is simply directly the number of timers held on each node tagged as registrations.  
 To then calculate the number of registrations actually active in the deployment, one takes the total and divides it by the replication factor, in this example 2.
-> (Node 1 + Node 2 + Node 3) / Replication-factor  
+> (Node 1 + Node 2 + Node 3) / Replication-factor
 > (  6    +   7    +   7   ) / 2  => 10 Active registrations
+
+Note: These statistics may be inaccurate in systems with a failing node. As such they should be considered unreliable while any alarms are raised, particularly those relating to Chronos.
 
 ### Sprout statistics
 
