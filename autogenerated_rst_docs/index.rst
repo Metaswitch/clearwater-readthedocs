@@ -152,6 +152,7 @@ It uses other open-source components as acknowledged in
    ENUM <ENUM.rst>
    Voxbone <Voxbone.rst>
    Clearwater SNMP Statistics <Clearwater_SNMP_Statistics.rst>
+   Clearwater Stateful Statistics <Clearwater_Stateful_Statistics.rst>
    SNMP Alarms <SNMP_Alarms.rst>
    Radius Login Authentication <Radius_Authentication.rst>
 
