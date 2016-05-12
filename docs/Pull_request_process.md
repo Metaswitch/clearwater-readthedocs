@@ -13,7 +13,7 @@ Features or any changes to the codebase should be done as follows:
     * If the codebase doesn't have a dev branch, branch off `master`.
 
 2. Implement your feature (including any necessary UTs etc). Commits are cheap in git, try to split up your code into many, it makes reviewing easier as well as for saner merging.
-    * If your commit fixes an existing issue #123, include the text "fixes #123" in at least one of your commit messages. This ensures the pull request is [attached to the existing issue](http://stackoverflow.com/questions/4528869/how-do-you-attach-a-new-pull-request-to-an-existing-issue-on-github</a>).
+    * If your commit fixes an existing issue #123, include the text "fixes #123" in at least one of your commit messages. This ensures the pull request is [attached to the existing issue](http://stackoverflow.com/questions/4528869/how-do-you-attach-a-new-pull-request-to-an-existing-issue-on-github).
 
 3. Once complete, ensure the following check pass (where relevant):
     * All UTs (including coverage and valgrind) pass.
