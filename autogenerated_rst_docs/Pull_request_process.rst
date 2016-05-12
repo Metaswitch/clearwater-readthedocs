@@ -28,7 +28,7 @@ Features or any changes to the codebase should be done as follows:
    -  If your commit fixes an existing issue #123, include the text
       "fixes #123" in at least one of your commit messages. This ensures
       the pull request is `attached to the existing
-      issue <http://stackoverflow.com/questions/4528869/how-do-you-attach-a-new-pull-request-to-an-existing-issue-on-github</a>>`__.
+      issue <http://stackoverflow.com/questions/4528869/how-do-you-attach-a-new-pull-request-to-an-existing-issue-on-github>`__.
 
 3. Once complete, ensure the following check pass (where relevant):
 
