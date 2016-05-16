@@ -19,8 +19,7 @@ In the instructions below, <domain> is your Clearwater domain.
 -  Check the camera is not in use: check the camera light is off. If it
    is on, close the app that is using it (e.g., Skype, or a phone
    client).
--  Go to
-   `http://www.doubango.org/sipml5/call.htm <sipML5%20live%20demo>`__.
+-  Go to `sipML5 live demo <http://www.doubango.org/sipml5/call.htm>`__.
 -  By default sipML5 uses a SIP<->WebRTC gateway run by sipml5.org.
    Clearwater supports WebRTC directly. To tell sipML5 to speak WebRTC
    directly to Clearwater:
