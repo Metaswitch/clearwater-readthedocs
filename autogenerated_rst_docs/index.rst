@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Diglett <http://pokemon.wikia.com/wiki/Diglett>`__\ ".
+"`Eevee <http://pokemon.wikia.com/wiki/Eevee>`__\ ".
 
 Architecture
 ------------
