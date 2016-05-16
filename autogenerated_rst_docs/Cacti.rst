@@ -22,9 +22,9 @@ install <Automated_Install.html>`__, here are the steps to create and
 configure a Cacti node:
 
 1. use knife box create to create a Cacti node -
-   ``knife box create -E     <name> cacti``
+   ``knife box create -E <name> cacti``
 2. set up a DNS entry for it -
-   ``knife dns record create -E <name>     cacti -z <root> -T A --public cacti -p <name>``
+   ``knife dns record create -E <name> cacti -z <root> -T A --public cacti -p <name>``
 3. create graphs for all existing nodes by running
    ``knife cacti update -E <name>``
 4. point your web browser at ``cacti.<name>.<root>/cacti/`` (you may
