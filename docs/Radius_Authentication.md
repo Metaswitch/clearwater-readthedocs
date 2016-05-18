@@ -31,10 +31,11 @@ Install the Clearwater RADIUS authentication package:
 The details of your RADIUS server will need to be entered into `/etc/pam_radius_auth.conf`. This file provides an example of how entries should be structured:
 * Multiple entries are allowed, but each must be on a new line.
 * Each line consists of three fields:
-
+```
     server[:port] (The default is port 1812. All traffic will be UDP)
     secret
     [timeout] (Default timeout is 3 seconds)
+```
 
 * The secret is shared between each client and the server to allow simple encryption of passwords. The secret must match the entry for the client in the RADIUS server configuration.
 * Both the port and timeout entries are optional.
