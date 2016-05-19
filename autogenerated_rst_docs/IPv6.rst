@@ -59,9 +59,9 @@ on OpenStack.
 Once the all-in-one image determines it has an IPv6 address, it
 automatically configures itself to use it. Note that since Clearwater
 does not support dual-stack, all-in-one images default to using their
-IPv4 address in preference to their IPv6 address if they have both. To
-force IPv6, create an empty ``/etc/clearwater/force_ipv6`` file and
-reboot.
+IPv4 address in preference to their IPv6 address if they have both. You
+should make sure your DHCP server only offers IPv6 addresses to the
+all-in-one image if you want to use DHCP.
 
 Missing Function
 ----------------
