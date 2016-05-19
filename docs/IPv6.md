@@ -32,7 +32,7 @@ Clearwater [all-in-one images](All_in_one_Images.md) support IPv6.
 
 Since all-in-one images get their IP configuration via DHCP, the DHCP server must be capable of returning IPv6 addresses.  Not all virtualization platforms support this, but we have successfully tested on OpenStack.
 
-Once the all-in-one image determines it has an IPv6 address, it automatically configures itself to use it.  Note that since Clearwater does not support dual-stack, all-in-one images default to using their IPv4 address in preference to their IPv6 address if they have both.  To force IPv6, create an empty `/etc/clearwater/force_ipv6` file and reboot.
+Once the all-in-one image determines it has an IPv6 address, it automatically configures itself to use it.  Note that since Clearwater does not support dual-stack, all-in-one images default to using their IPv4 address in preference to their IPv6 address if they have both. You should make sure your DHCP server only offers IPv6 addresses to the all-in-one image if you want to use DHCP.
 
 ## Missing Function
 
