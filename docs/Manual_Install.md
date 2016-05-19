@@ -180,13 +180,6 @@ Log onto any node in the deployment and create the file `/etc/clearwater/shared_
     ellis_api_key=<secret>
     ellis_cookie_key=<secret>
 
-If you wish to enable the optional I-CSCF function, also add the following:
-
-    # I-CSCF/S-CSCF configuration
-    icscf=5052
-    upstream_hostname=icscf.<sprout_hostname>
-    upstream_port=5052
-
 If you wish to enable the optional external HSS lookups, add the following:
 
     # HSS configuration
@@ -209,22 +202,6 @@ See the [Chef instructions](Installing_a_Chef_workstation.md#add-deployment-spec
 Now run the following to upload the configuration to a shared database and propagate it around the cluster.
 
     /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
-
-### Setting up S-CSCF configuration
-
-If I-CSCF functionality is enabled, then you will need to set up the S-CSCF configuration. S-CSCF configuration is stored in the `/etc/clearwater/s-cscf.json` file on each sprout node. The file stores the configuration of each S-CSCF, their capabilities, and their relative weighting and priorities.
-
-If you require I-CSCF functionality, log onto your sprout node and create `/etc/clearwater/s-cscf.json` with the following contents:
-
-    {
-       "s-cscfs" : [
-           {   "server" : "sip:scscf.<sprout_domain>:5054;transport=TCP",
-               "priority" : 0,
-               "weight" : 100,
-               "capabilities" : [<comma separated capabilities>]
-           }
-       ]
-    }
 
 Then upload it to the shared configuration database by running `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json`. This means that any sprout nodes that you add to the cluster will automatically learn the configuration.
 
@@ -270,3 +247,21 @@ Gemini and Memento can run integrated into the Sprout nodes, or they can be run 
 To install Gemini or Memento as a standalone server, follow the same process as installing a Sprout node, but don't add them to the existing Sprout DNS cluster.
 
 The `sprout_hostname` setting in `/etc/clearwater/shared_config` on standalone application servers should be set to the cluster of the standalone application servers, for example, `memento.cw-ngv.com`.
+
+### I-CSCF configuration
+
+The I-CSCF is responsible for sending requests to the correct S-CSCF. It queries the HSS, but if the HSS doesn't have a configured S-CSCF for the subscriber then it needs to select an S-CSCF itself. You can configure what S-CSCFs are available to the I-CSCF by editing the `/etc/clearwater/s-cscf.json` file.
+
+This file stores the configuration of each S-CSCF, their capabilities, and their relative weighting and priorities. The format of the file is as follows:
+
+    {
+       "s-cscfs" : [
+           {   "server" : "<S-CSCF URI>",
+               "priority" : <priority>,
+               "weight" : <weight>,
+               "capabilities" : [<comma separated capabilities>]
+           }
+       ]
+    }
+
+To change the I-CSCF configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json`.
