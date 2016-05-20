@@ -165,8 +165,17 @@ same format for each Sproutlet, as listed here, with ``<sproutlet>``
 replaced by the appropriate Sproutlet name:
 
 -  ``<sproutlet>`` - The port that the Sproutlet listens on. The default
-   value is 5054 for some Sproutlets (those enabled by default) and 0
-   for others (those disabled by default)
+   value depends on the Sproutlet. Some Sproutlets default to 0 (meaning
+   that they are disabled by default). For other Sproutlets, the
+   defaults are:
+
+   ::
+
+           I-CSCF - 5052
+           BGCF - 5053
+           S-CSCF - 5054
+           MMTel - 5055
+
 -  ``<sproutlet>_prefix`` - The identifier prefix for this Sproutlet,
    used to build the uri, as described below. The default value is
    simply the Sproutlet name: ``<sproutlet>``
@@ -210,7 +219,7 @@ e.g. ``icscf=5052``).
    before a UE has to re-subscribe - must be less than 2^31 ms
    (approximately 25 days).
 -  ``upstream_hostname`` - the I-CSCF which Bono should pass requests
-   to. Defaults to the sprout\_hostname.
+   to. Defaults to ``icscf.<sprout_hostname>``.
 -  ``upstream_port`` - the port on the I-CSCF which Bono should pass
    requests to. Defaults to 5052. If set to 0, Bono will use SRV
    resolution of the ``upstream_hostname`` hostname to determine a

@@ -285,16 +285,6 @@ Log onto any node in the deployment and create the file
     ellis_api_key=<secret>
     ellis_cookie_key=<secret>
 
-If you wish to enable the optional I-CSCF function, also add the
-following:
-
-::
-
-    # I-CSCF/S-CSCF configuration
-    icscf=5052
-    upstream_hostname=icscf.<sprout_hostname>
-    upstream_port=5052
-
 If you wish to enable the optional external HSS lookups, add the
 following:
 
@@ -336,30 +326,6 @@ and propagate it around the cluster.
 ::
 
     /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
-
-Setting up S-CSCF configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If I-CSCF functionality is enabled, then you will need to set up the
-S-CSCF configuration. S-CSCF configuration is stored in the
-``/etc/clearwater/s-cscf.json`` file on each sprout node. The file
-stores the configuration of each S-CSCF, their capabilities, and their
-relative weighting and priorities.
-
-If you require I-CSCF functionality, log onto your sprout node and
-create ``/etc/clearwater/s-cscf.json`` with the following contents:
-
-::
-
-    {
-       "s-cscfs" : [
-           {   "server" : "sip:scscf.<sprout_domain>:5054;transport=TCP",
-               "priority" : 0,
-               "weight" : 100,
-               "capabilities" : [<comma separated capabilities>]
-           }
-       ]
-    }
 
 Then upload it to the shared configuration database by running
 ``sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json``.
@@ -447,3 +413,67 @@ Sprout DNS cluster.
 The ``sprout_hostname`` setting in ``/etc/clearwater/shared_config`` on
 standalone application servers should be set to the cluster of the
 standalone application servers, for example, ``memento.cw-ngv.com``.
+
+I-CSCF configuration
+~~~~~~~~~~~~~~~~~~~~
+
+The I-CSCF is responsible for sending requests to the correct S-CSCF. It
+queries the HSS, but if the HSS doesn't have a configured S-CSCF for the
+subscriber then it needs to select an S-CSCF itself. The I-CSCF defaults
+to selecting the Clearwater S-CSCF (as configured in ``scscf_uri`` in
+``/etc/clearwater/shared/config``).
+
+You can configure what S-CSCFs are available to the I-CSCF by editing
+the ``/etc/clearwater/s-cscf.json`` file.
+
+This file stores the configuration of each S-CSCF, their capabilities,
+and their relative weighting and priorities. The format of the file is
+as follows:
+
+::
+
+    {
+       "s-cscfs" : [
+           {   "server" : "<S-CSCF URI>",
+               "priority" : <priority>,
+               "weight" : <weight>,
+               "capabilities" : [<comma separated capabilities>]
+           }
+       ]
+    }
+
+The S-CSCF capabilities are integers, and their meaning is defined by
+the operator. Capabilities will have different meanings between
+networks.
+
+As an example, say you have one S-CSCF that supports billing, and one
+that doesn't. You can then say that capability 1 is the ability to
+provide billing, and your s-cscf.json file would look like:
+
+::
+
+    {
+       "s-cscfs" : [
+           {   "server" : "sip:scscf1",
+               "priority" : 0,
+               "weight" : 100,
+               "capabilities" : [1]
+           },
+           {   "server" : "sip:scscf2",
+               "priority" : 0,
+               "weight" : 100,
+               "capabilities" : []
+           }
+       ]
+    }
+
+Then when you configure a subscriber in the HSS, you can set up what
+capabilities they require in an S-CSCF. These will also be integers, and
+you should make sure this matches with how you've set up the s-cscf.json
+file. In this example, if you wanted your subscriber to be billed, you
+would configure the user data in the HSS to make it mandatory for your
+subscriber to have an S-CSCF that supports capability 1.
+
+To change the I-CSCF configuration, edit this file on any Sprout node,
+then upload it to the shared configuration database by running
+``sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json``.
