@@ -69,7 +69,13 @@ There are currently eight different Sproutlets:
 
 Each Sproutlet has three configuration options. The options have the same format for each Sproutlet, as listed here, with `<sproutlet>` replaced by the appropriate Sproutlet name:
 
-* `<sproutlet>` - The port that the Sproutlet listens on. The default value depends on the Sproutlet. The I-CSCF sproutlet's default value is 5052, the BGCF sproutlet's default value is 5053, the S-CSCF sproutlet's default value is 5054, and the MMTel sproutlet's default value is 5055. All other Sproutlet's default to 0 (meaning that they are disabled by default)
+* `<sproutlet>` - The port that the Sproutlet listens on. The default value depends on the Sproutlet. Some Sproutlets default to 0 (meaning that they are disabled by default). For other Sproutlets, the defaults are:
+```
+    I-CSCF - 5052
+    BGCF - 5053
+    S-CSCF - 5054
+    MMTel - 5055
+```
 * `<sproutlet>_prefix` - The identifier prefix for this Sproutlet, used to build the uri, as described below. The default value is simply the Sproutlet name: `<sproutlet>`
 * `<sproutlet>_uri` - The full identifier for this Sproutlet, used for routing and receiving requests between nodes. The default value is created using the prefix and the hostname of the parent Sprout node, i.e. `sip:<sproutlet_prefix>.<sprout_hostname>;transport=tcp`. We recommend that you don’t set this yourself anymore, and use the defaults provided.
 
