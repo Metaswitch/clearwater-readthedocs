@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Eevee](http://pokemon.wikia.com/wiki/Eevee)".
+The latest stable release of Clearwater is "[Farfetch'd](http://pokemon.wikia.com/wiki/Farfetch'd)".
 
 ## Architecture
 
