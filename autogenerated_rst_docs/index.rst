@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Eevee <http://pokemon.wikia.com/wiki/Eevee>`__\ ".
+"[Farfetch'd](http://pokemon.wikia.com/wiki/Farfetch'd)".
 
 Architecture
 ------------
