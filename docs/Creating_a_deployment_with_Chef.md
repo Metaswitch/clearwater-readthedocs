@@ -18,6 +18,8 @@ To create a single machine instance running all the Clearwater components, run t
 	cd ~/chef
 	knife box create cw_aio -E <name>
 
+Our all-in-one nodes are created with the signup key 'secret', not the value configured in `knife.rb` (which is used for non-all-in-one nodes).
+
 #### Optional arguments
 
 The following modifier is available.
