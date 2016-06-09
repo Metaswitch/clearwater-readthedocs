@@ -35,6 +35,10 @@ components, run the following on the chef workstation machine.
     cd ~/chef
     knife box create cw_aio -E <name>
 
+Our all-in-one nodes are created with the signup key 'secret', not the
+value configured in ``knife.rb`` (which is used for non-all-in-one
+nodes).
+
 Optional arguments
 ^^^^^^^^^^^^^^^^^^
 
