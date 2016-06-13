@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Farfetch'd](http://pokemon.wikia.com/wiki/Farfetch'd)".
+The latest stable release of Clearwater is "[Glameow](http://pokemon.wikia.com/wiki/Glameow)".
 
 ## Architecture
 
