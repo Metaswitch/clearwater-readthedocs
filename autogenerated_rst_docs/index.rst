@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"[Farfetch'd](http://pokemon.wikia.com/wiki/Farfetch'd)".
+"`Glameow <http://pokemon.wikia.com/wiki/Glameow>`__\ ".
 
 Architecture
 ------------
