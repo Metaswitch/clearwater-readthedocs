@@ -3,9 +3,11 @@
 This document describes all the Clearwater configuration options that can be set in `/etc/clearwater/shared_config`, `/etc/clearwater/local_config` or `/etc/clearwater/user_settings`.
 
 At a high level, these files contain the following types of configuration options:
-* `shared_config` - This file holds settings that are common across the entire deployment.
+* `shared_config` - This file holds settings that are common across the entire deployment. This file should be identical on all nodes (and any changes can be easily synchronised across the deployment as described in [this process](Modifying_Clearwater_settings.md)).
 * `local_config` - This file holds settings that are specific to a single node and are not applicable to any other nodes in the deployment. They are entered early on in the node’s life and are not typically changed.
 * `user_settings` - This file holds settings that may vary between systems in the same deployment, such as log level (which may be increased on certain nodes to track down specific issues) and performance settings (which may vary if some nodes in your deployment are more powerful than others)
+
+## Modifying Configuration
 
 You should follow [this process](Modifying_Clearwater_settings.md) when changing settings in "Shared Config". For settings in the "Local config" or "User settings" you should:
 
