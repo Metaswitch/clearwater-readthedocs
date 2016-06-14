@@ -1,8 +1,15 @@
 # Clearwater Configuration Options Reference
 
-This document describes all the Clearwater configuration options that can be set in /etc/clearwater/shared_config, /etc/clearwater/local_config or /etc/clearwater/user_settings.
+This document describes all the Clearwater configuration options that can be set in `/etc/clearwater/shared_config`, `/etc/clearwater/local_config` or `/etc/clearwater/user_settings`.
 
-You should follow [this process](Modifying_Clearwater_settings.md) when changing most of these settings. However for settings in the "Local settings" or "User settings" you should:
+At a high level, these files contain the following types of configuration options:
+* `shared_config` - This file holds settings that are common across the entire deployment. This file should be identical on all nodes (and any changes can be easily synchronised across the deployment as described in [this process](Modifying_Clearwater_settings.md)).
+* `local_config` - This file holds settings that are specific to a single node and are not applicable to any other nodes in the deployment. They are entered early on in the node’s life and are not typically changed.
+* `user_settings` - This file holds settings that may vary between systems in the same deployment, such as log level (which may be increased on certain nodes to track down specific issues) and performance settings (which may vary if some nodes in your deployment are more powerful than others)
+
+## Modifying Configuration
+
+You should follow [this process](Modifying_Clearwater_settings.md) when changing settings in "Shared Config". For settings in the "Local config" or "User settings" you should:
 
 * Modify the configuration file
 * Run `sudo service clearwater-infrastructure restart` to regenerate any dependent configuration files
@@ -15,7 +22,7 @@ You should follow [this process](Modifying_Clearwater_settings.md) when changing
     *   Ellis - `sudo service ellis stop`
     *   Memento - `sudo service memento stop`
 
-## Local Settings
+## Local Config
 
 This section describes settings that are specific to a single node and are not applicable to any other nodes in the deployment. They are entered early on in the node's life and are not normally changed. These options should be set in `/etc/clearwater/local_config`. Once this file has been created it is highly recommended that you do not change it unless instructed to do so. If you find yourself needing to change these settings, you should destroy and recreate then node instead.
 
@@ -28,7 +35,11 @@ This section describes settings that are specific to a single node and are not a
   * If the node is joining an existing deployment, it should contain the IP addresses of all the nodes that are currently in the deployment.
 * `etcd_cluster_key` - this is the name of the etcd datastore clusters that this node should join. It defaults to the function of the node (e.g. a Homestead node defaults to using 'homestead' as its etcd datastore cluster name when it joins the Cassandra cluster). This must be set explicitly on nodes that colocate function.
 
-## Core options
+## Shared Config
+
+This section describes settings that are common across the entire deployment.
+
+### Core options
 
 This section describes options for the basic configuration of a Clearwater deployment - such as the hostnames of the six node types and external services such as email servers or the Home Subscriber Server. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `home_domain=example.com`).
 
@@ -52,7 +63,7 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `ellis_hostname` - a hostname that resolves to Ellis, if you don't want to use `ellis.home_domain`.  This should match Ellis's SSL certificate, if you are using one.
 * `memento_hostname` - a hostname that resolves by DNS round-robin to all Mementos in the cluster (the default is `memento.<home_domain>`).  This should match Memento's SSL certificate, if you are using one.
 
-## Sproutlet options
+### Sproutlet options
 
 This section describes optional configuration options for the Clearwater Sproutlets. Sproutlets are built on top of [Sprout](https://github.com/Metaswitch/sprout), and encapsulate the business logic of the I-CSCF/S-CSCF/BGCF, or Project Clearwater's built in Application servers
 
@@ -85,7 +96,7 @@ As a concrete example, below are the S-CSCF options and the default values.
 * `scscf_prefix=scscf`
 * `scscf_uri=sip:scscf.<sprout_hostname>;transport=tcp`
 
-## Advanced options
+### Advanced options
 
 This section describes optional configuration options, particularly for ensuring conformance with other IMS devices such as HSSes, ENUM servers, application servers with strict requirements on Record-Route headers, and non-Clearwater I-CSCFs. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `icscf=5052`).
 
@@ -163,7 +174,7 @@ This section describes optional configuration options, particularly for ensuring
   * Without an HSS there is no way to force it to become registered to become deregistered.
   * Without an I-CSCF there is no way to prevent it from registering as different user accounts.
 
-## Experimental options
+### Experimental options
 
 This section describes optional configuration options which may be useful, but are not heavily-used or well-tested by the main Clearwater development team. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `cassandra_hostname=db.example.com`).
 
@@ -173,12 +184,13 @@ This section describes optional configuration options which may be useful, but a
 * `ellis_cookie_key` - an arbitrary string that enables Ellis nodes to determine whether they should be in the same cluster. This function is not presently used.
 * `stateless_proxies` - a comma separated list of domain names that are treated as SIP stateless proxies. Stateless proxies are not blacklisted if a SIP transaction sent to them times out. This field should reflect how the servers are identified in SIP. For example if a cluster of nodes is identified by the name 'cluster.example.com', the option should be set to 'cluster.example.com' instead of the hostnames or IP addresses of individual servers.
 * `hss_reregistration_time` - determines how many seconds should pass before Homestead sends a Server-Assignment-Request with type RE_REGISTRATION to the HSS. (On first registration, it will always send a SAR with type REGISTRATION). This determines a minimum value - after this many seconds have passed, Homestead will send the Server-Assignment-Request when the next REGISTER is received. Note that Homestead invalidates its cache of the registration and iFCs after twice this many seconds have passed, so it is not safe to set this to less than half of `reg_max_expires`.  The default value of this option is whichever is the greater of the following.
+
     * 1800.
     * Half of the value of reg_max_expires.
 
 ## User settings
 
-This section describes settings that may vary between systems in the same deployment, such as log level (which may be increased on certain machines to track down specific issues) and performance settings (which may vary if some servers in your deployment are more powerful than others). These settings are set in `/etc/clearwater/user_settings`, not `/etc/clearwater/shared_config` (in the format `name=value`, e.g. `log_level=5`).
+This section describes settings that may vary between systems in the same deployment, such as log level (which may be increased on certain machines to track down specific issues) and performance settings (which may vary if some servers in your deployment are more powerful than others). These settings are set in `/etc/clearwater/user_settings` (in the format `name=value`, e.g. `log_level=5`).
 
 * `log_level` - determines how verbose Clearwater's logging is, from 1 (error logs only) to 5 (debug-level logs). Defaults to 2.
 * `log_directory` - determines which folder the logs are created in. This folder must exist, and be owned by the service. Defaults to /var/log/<service> (this folder is created and has the correct permissions set for it by the install scripts of the service).
@@ -192,4 +204,3 @@ This section describes settings that may vary between systems in the same deploy
 ## Other configuration options
 
 There is further documentation for Chronos configuration [here](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md) and Homer/Homestead-prov configuration [here](https://github.com/Metaswitch/crest/blob/master/docs/development.md#local-settings).
-
