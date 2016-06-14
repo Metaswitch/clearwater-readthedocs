@@ -2,12 +2,30 @@ Clearwater Configuration Options Reference
 ==========================================
 
 This document describes all the Clearwater configuration options that
-can be set in /etc/clearwater/shared\_config,
-/etc/clearwater/local\_config or /etc/clearwater/user\_settings.
+can be set in ``/etc/clearwater/shared_config``,
+``/etc/clearwater/local_config`` or ``/etc/clearwater/user_settings``.
+
+At a high level, these files contain the following types of
+configuration options: \* ``shared_config`` - This file holds settings
+that are common across the entire deployment. This file should be
+identical on all nodes (and any changes can be easily synchronised
+across the deployment as described in `this
+process <Modifying_Clearwater_settings.html>`__). \* ``local_config`` -
+This file holds settings that are specific to a single node and are not
+applicable to any other nodes in the deployment. They are entered early
+on in the node’s life and are not typically changed. \*
+``user_settings`` - This file holds settings that may vary between
+systems in the same deployment, such as log level (which may be
+increased on certain nodes to track down specific issues) and
+performance settings (which may vary if some nodes in your deployment
+are more powerful than others)
+
+Modifying Configuration
+-----------------------
 
 You should follow `this process <Modifying_Clearwater_settings.html>`__
-when changing most of these settings. However for settings in the "Local
-settings" or "User settings" you should:
+when changing settings in "Shared Config". For settings in the "Local
+config" or "User settings" you should:
 
 -  Modify the configuration file
 -  Run ``sudo service clearwater-infrastructure restart`` to regenerate
@@ -24,8 +42,8 @@ settings" or "User settings" you should:
    -  Ellis - ``sudo service ellis stop``
    -  Memento - ``sudo service memento stop``
 
-Local Settings
---------------
+Local Config
+------------
 
 This section describes settings that are specific to a single node and
 are not applicable to any other nodes in the deployment. They are
@@ -64,8 +82,14 @@ settings, you should destroy and recreate then node instead.
    etcd datastore cluster name when it joins the Cassandra cluster).
    This must be set explicitly on nodes that colocate function.
 
+Shared Config
+-------------
+
+This section describes settings that are common across the entire
+deployment.
+
 Core options
-------------
+~~~~~~~~~~~~
 
 This section describes options for the basic configuration of a
 Clearwater deployment - such as the hostnames of the six node types and
@@ -137,7 +161,7 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    certificate, if you are using one.
 
 Sproutlet options
------------------
+~~~~~~~~~~~~~~~~~
 
 This section describes optional configuration options for the Clearwater
 Sproutlets. Sproutlets are built on top of
@@ -195,7 +219,7 @@ values.
 -  ``scscf_uri=sip:scscf.<sprout_hostname>;transport=tcp``
 
 Advanced options
-----------------
+~~~~~~~~~~~~~~~~
 
 This section describes optional configuration options, particularly for
 ensuring conformance with other IMS devices such as HSSes, ENUM servers,
@@ -471,7 +495,7 @@ e.g. ``icscf=5052``).
    different user accounts.
 
 Experimental options
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 This section describes optional configuration options which may be
 useful, but are not heavily-used or well-tested by the main Clearwater
@@ -517,9 +541,8 @@ This section describes settings that may vary between systems in the
 same deployment, such as log level (which may be increased on certain
 machines to track down specific issues) and performance settings (which
 may vary if some servers in your deployment are more powerful than
-others). These settings are set in ``/etc/clearwater/user_settings``,
-not ``/etc/clearwater/shared_config`` (in the format ``name=value``,
-e.g. ``log_level=5``).
+others). These settings are set in ``/etc/clearwater/user_settings`` (in
+the format ``name=value``, e.g. ``log_level=5``).
 
 -  ``log_level`` - determines how verbose Clearwater's logging is, from
    1 (error logs only) to 5 (debug-level logs). Defaults to 2.
