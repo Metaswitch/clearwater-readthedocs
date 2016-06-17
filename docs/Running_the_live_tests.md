@@ -77,7 +77,7 @@ The suite of tests will be run and the results will be printed on-screen. If you
 
     rake test[<domain>] SIGNUP_CODE=<code> PROXY=<Bono domain> ELLIS=<Ellis domain>
 
-You can find the full list of parameters for the live test [here](https://github.com/Metaswitch/clearwater-live-test/blob/master/README.md#running-the-tests-manually).
+You can find the full list of parameters for the tests [here](https://github.com/Metaswitch/clearwater-live-test/blob/master/README.md#running-the-tests-manually).
 
 ## PSTN testing
 
