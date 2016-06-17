@@ -121,6 +121,9 @@ and ``ELLIS`` parameters, e.g.
 
     rake test[<domain>] SIGNUP_CODE=<code> PROXY=<Bono domain> ELLIS=<Ellis domain>
 
+You can find the full list of parameters for the tests
+`here <https://github.com/Metaswitch/clearwater-live-test/blob/master/README.md#running-the-tests-manually>`__.
+
 PSTN testing
 ------------
 
