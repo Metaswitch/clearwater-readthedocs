@@ -45,7 +45,7 @@ chef workstation machine, create a file in
     override_attributes "clearwater" => {
       "root_domain" => "<zone>",
       "availability_zones" => ["us-east-1a", "us-east-1b"],
-      "repo_server" => "http://repo.cw-ngv.com/stable",
+      "repo_servers" => ["http://repo.cw-ngv.com/stable"],
       "number_start" => "6505550000",
       "number_count" => 1000,
       "keypair" => "<keypair_name>",
