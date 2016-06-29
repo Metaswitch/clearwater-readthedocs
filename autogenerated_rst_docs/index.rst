@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Glameow <http://pokemon.wikia.com/wiki/Glameow>`__\ ".
+"`Horsea <http://pokemon.wikia.com/wiki/Horsea>`__\ ".
 
 Architecture
 ------------
