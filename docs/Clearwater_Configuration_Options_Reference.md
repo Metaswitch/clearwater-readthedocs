@@ -34,6 +34,7 @@ This section describes settings that are specific to a single node and are not a
   * If the node is forming a new deployment, it should contain the IP addresses of all the nodes that are forming the new deployment (including this node).
   * If the node is joining an existing deployment, it should contain the IP addresses of all the nodes that are currently in the deployment.
 * `etcd_cluster_key` - this is the name of the etcd datastore clusters that this node should join. It defaults to the function of the node (e.g. a Homestead node defaults to using 'homestead' as its etcd datastore cluster name when it joins the Cassandra cluster). This must be set explicitly on nodes that colocate function.
+* `scscf_node_uri` - this can be optionally set, and applies to nodes running S-CSCF. This will be the address to which that node will be addressed when outbound requests are sent to other nodes in the core - e.g. requests made to an AS. If not set, or blank, it wil default to `sip:<local_ip>:<scscf_port>`.
 
 ## Shared Config
 
