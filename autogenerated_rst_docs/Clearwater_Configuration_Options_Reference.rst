@@ -81,6 +81,11 @@ settings, you should destroy and recreate then node instead.
    the node (e.g. a Homestead node defaults to using 'homestead' as its
    etcd datastore cluster name when it joins the Cassandra cluster).
    This must be set explicitly on nodes that colocate function.
+-  ``scscf_node_uri`` - this can be optionally set, and applies to nodes
+   running S-CSCF. This will be the address to which that node will be
+   addressed when outbound requests are sent to other nodes in the core
+   - e.g. requests made to an AS. If not set, or blank, it wil default
+   to ``sip:<local_ip>:<scscf_port>``.
 
 Shared Config
 -------------
