@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Horsea <http://pokemon.wikia.com/wiki/Horsea>`__\ ".
+"`Ivysaur <http://pokemon.wikia.com/wiki/Ivysaur>`__\ ".
 
 Architecture
 ------------
