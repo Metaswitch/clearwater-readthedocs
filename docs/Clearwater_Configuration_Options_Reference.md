@@ -172,8 +172,8 @@ This section describes optional configuration options, particularly for ensuring
 * `ralf_threads` - used on Sprout nodes, this determines how many worker threads should be started to do Ralf request processing (defaults to 25).
 * `impi_store_mode` - used to control how Sprout stores authentication challenges. The default is `impi` which means that challenges are written to a single memcached database table indexed by IMPI. There is another option, `av-impi`, where challenges are also stored in an old table indexed by (IMPI, nonce). This setting can be used to upgrade Clearwater to use the new database table without losing registration state.
 * `nonce_count_supported` - when set to 'Y' Clearwater permits authentication responses with a nonce-count greater than 1. By default this option is not enabled. Enabling this option can expose certain security holes if your deployment does not use an HSS (and uses Homestead-Prov instead) and an I-CSCF. Specifically if the option is set and a malicious UE manages to register:
-  * Without an HSS there is no way to force it to become registered to become deregistered.
-  * Without an I-CSCF there is no way to prevent it from registering as different user accounts.
+    * Without an HSS there is no way to force it to become deregistered.
+    * Without an I-CSCF there is no way to prevent it from registering as different user accounts.
 
 ### Experimental options
 
