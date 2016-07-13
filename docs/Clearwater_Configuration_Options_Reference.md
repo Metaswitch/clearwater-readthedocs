@@ -26,15 +26,23 @@ You should follow [this process](Modifying_Clearwater_settings.md) when changing
 
 This section describes settings that are specific to a single node and are not applicable to any other nodes in the deployment. They are entered early on in the node's life and are not normally changed. These options should be set in `/etc/clearwater/local_config`. Once this file has been created it is highly recommended that you do not change it unless instructed to do so. If you find yourself needing to change these settings, you should destroy and recreate then node instead.
 
-* `local_ip` - this should be set to an IP address which is configured on an interface on this system, and can communicate on an internal network with other Clearwater nodes and IMS core components like the HSS.
-* `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
-* `public_hostname` - this should be set to a hostname which resolves to `public_ip`, and will communicate with only this node (i.e. not be round-robined to other nodes). It can be set to `public_ip` if necessary.
-* `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
-* `etcd_cluster` - this is a comma separated list of IP addresses, for example `etcd_cluster=10.0.0.1,10.0.0.2`. It should be set on one of two ways:
+*   `local_ip` - this should be set to an IP address which is configured on an interface on this system, and can communicate on an internal network with other Clearwater nodes and IMS core components like the HSS.
+*   `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
+*   `public_hostname` - this should be set to a hostname which resolves to `public_ip`, and will communicate with only this node (i.e. not be round-robined to other nodes). It can be set to `public_ip` if necessary.
+*   `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
+*   `etcd_cluster` - this is a comma separated list of IP addresses, for example `etcd_cluster=10.0.0.1,10.0.0.2`. It should be set on one of two ways:
   * If the node is forming a new deployment, it should contain the IP addresses of all the nodes that are forming the new deployment (including this node).
   * If the node is joining an existing deployment, it should contain the IP addresses of all the nodes that are currently in the deployment.
-* `etcd_cluster_key` - this is the name of the etcd datastore clusters that this node should join. It defaults to the function of the node (e.g. a Homestead node defaults to using 'homestead' as its etcd datastore cluster name when it joins the Cassandra cluster). This must be set explicitly on nodes that colocate function.
-* `scscf_node_uri` - this can be optionally set, and applies to nodes running S-CSCF. This will be the address to which that node will be addressed when outbound requests are sent to other nodes in the core - e.g. requests made to an AS. If not set, or blank, it wil default to `sip:<local_ip>:<scscf_port>`.
+*   `etcd_cluster_key` - this is the name of the etcd datastore clusters that this node should join. It defaults to the function of the node (e.g. a Homestead node defaults to using 'homestead' as its etcd datastore cluster name when it joins the Cassandra cluster). This must be set explicitly on nodes that colocate function.
+*   `scscf_node_uri` - this can be optionally set, and only applies to nodes running an S-CSCF. If it is configured, it almost certainly needs configuring on each S-CSCF node in the deployment.
+
+    If set, this is used by the node to advertise the URI to which requests to this node should be routed. It should be formatted as a SIP URI.
+
+    This will need to be set if the local IP address of the node is not routable by all the application servers that the S-CSCF may invoke. In this case, it should be configured to contain an IP address or host which is routable by all of the application servers – e.g. by using a domain and port on which the sprout can be addressed - `scscf_node_uri=sip:sprout-4.example.net:5054`.
+
+    The result will be included in the Route header on SIP messages sent to application servers invoked during a call.
+
+    If it is not set, the URI that this S-CSCF node will advertise itself as will be `sip:<local_ip>:<scscf_port>` where `<local_ip>` is documented above, and `<scscf_port>` is the port on which the S-CSCF is running, which is 5054 by default.
 
 ## Shared Config
 
