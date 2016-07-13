@@ -494,10 +494,10 @@ e.g. ``icscf=5052``).
    certain security holes if your deployment does not use an HSS (and
    uses Homestead-Prov instead) and an I-CSCF. Specifically if the
    option is set and a malicious UE manages to register:
--  Without an HSS there is no way to force it to become registered to
-   become deregistered.
--  Without an I-CSCF there is no way to prevent it from registering as
-   different user accounts.
+
+   -  Without an HSS there is no way to force it to become deregistered.
+   -  Without an I-CSCF there is no way to prevent it from registering
+      as different user accounts.
 
 Experimental options
 ~~~~~~~~~~~~~~~~~~~~
