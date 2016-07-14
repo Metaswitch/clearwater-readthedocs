@@ -81,11 +81,28 @@ settings, you should destroy and recreate then node instead.
    the node (e.g. a Homestead node defaults to using 'homestead' as its
    etcd datastore cluster name when it joins the Cassandra cluster).
    This must be set explicitly on nodes that colocate function.
--  ``scscf_node_uri`` - this can be optionally set, and applies to nodes
-   running S-CSCF. This will be the address to which that node will be
-   addressed when outbound requests are sent to other nodes in the core
-   - e.g. requests made to an AS. If not set, or blank, it wil default
-   to ``sip:<local_ip>:<scscf_port>``.
+-  ``scscf_node_uri`` - this can be optionally set, and only applies to
+   nodes running an S-CSCF. If it is configured, it almost certainly
+   needs configuring on each S-CSCF node in the deployment.
+
+   If set, this is used by the node to advertise the URI to which
+   requests to this node should be routed. It should be formatted as a
+   SIP URI.
+
+   This will need to be set if the local IP address of the node is not
+   routable by all the application servers that the S-CSCF may invoke.
+   In this case, it should be configured to contain an IP address or
+   host which is routable by all of the application servers – e.g. by
+   using a domain and port on which the sprout can be addressed -
+   ``scscf_node_uri=sip:sprout-4.example.net:5054``.
+
+   The result will be included in the Route header on SIP messages sent
+   to application servers invoked during a call.
+
+   If it is not set, the URI that this S-CSCF node will advertise itself
+   as will be ``sip:<local_ip>:<scscf_port>`` where ``<local_ip>`` is
+   documented above, and ``<scscf_port>`` is the port on which the
+   S-CSCF is running, which is 5054 by default.
 
 Shared Config
 -------------
