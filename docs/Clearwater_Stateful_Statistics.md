@@ -1,4 +1,7 @@
-Clearwater is designed to be as stateless as possible, simplifying redundancy, and making it ideal for virtualised and cloud-based deployment. However, through use of our distributed timer store, Chronos, Clearwater is able to maintain a number of stateful statistics. As components use timers to maintain stateful functionality without actually remaining independently aware of state, we can form statistics based on these, rather than needing each main process to maintain and report state. Currently Sprout and Ralf nodes expose stateful statistics.
+# Stateful Statistics
+
+Clearwater is designed to be as stateless as possible, simplifying redundancy, and making it ideal for virtualised and cloud-based deployment. However, through use of our distributed timer store, Chronos, Clearwater is able to maintain a number of stateful statistics. As components use timers to maintain stateful functionality without actually remaining independently aware of state, we can form statistics based on these, rather than needing each main process to maintain and report state. Currently Sprout and Ralf nodes expose stateful statistics. To see the full list of statistics available, check [here](https://clearwater.readthedocs.io/en/stable/Clearwater_SNMP_Statistics/index.html); stateful statistics are marked with a '(*)' to distinguish them.
+
 
 ## Configuration
 
@@ -20,24 +23,6 @@ To then calculate the number of registrations actually active in the deployment,
 > (  6    +   7    +   7   ) / 2  => 10 Active registrations
 
 Note: These statistics may be inaccurate in systems with a failing node. As such they should be considered unreliable while any alarms are raised, particularly those relating to Chronos.
-
-### Sprout statistics
-
-Sprout nodes provide the following statistics:
-
-* The average count, variance, and high and low watermarks for the number of registrations, indexed by time period.
-* The average count, variance, and high and low watermarks for the number of bindings, indexed by time period.
-* The average count, variance, and high and low watermarks for the number of subscriptions, indexed by time period.
-* The number of registrations active at the time queried.
-* The number of bindings active at the time queried.
-* The number of subscriptions active at the time queried.
-
-### Ralf statistics
-
-Ralf nodes provide the following statistics:
-
-* The average count, variance, and high and low watermarks for the number of calls, indexed by time period.
-* The number of calls active at the time queried.
 
 ## Technical details
 

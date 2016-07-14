@@ -109,10 +109,12 @@ Sprout nodes provide the following statistics:
 * The current permitted request rate.
 * The number of incoming INVITE transactions for the S-CSCF that were cancelled before a 1xx response was seen, indexed by time period.
 * The number of incoming INVITE transactions for the S-CSCF that were cancelled after a 1xx response was seen, indexed by time period (these INVITE cancellation statistics can be used to distinguish between the case where an INVITE was cancelled because the call rang but wasn't answered and the case where it failed due to network issues and never got through in the first place).
-* The average, variance, high water mark and low water mark for the number of Registered subscribers, indexed by time period. (*)
-* The instantaneous count for the number of Registered subscribers. (*)
-* The average, variance, high water mark and low water mark for the number of SIP SUBSCRIBEs, indexed by time period. (*)
-* The instantaneous count for the number of active SIP SUBSCRIBEs. (*)
+* The average count, variance, and high and low watermarks for the number of registrations, indexed by time period. (*)
+* The average count, variance, and high and low watermarks for the number of bindings, indexed by time period. (*)
+* The average count, variance, and high and low watermarks for the number of subscriptions, indexed by time period. (*)
+* The number of registrations active at the time queried. (*)
+* The number of bindings active at the time queried. (*)
+* The number of subscriptions active at the time queried. (*)
 
 ### Ralf statistics
 
@@ -124,8 +126,8 @@ Ralf nodes provide the following statistics:
 * The transfer rate (in bytes/second) of data during this resynchronization, over the last 5 seconds (overall, and per bucket).
 * The number of remaining nodes to query during the current Chronos scaling operation.
 * The number of timers, and number of invalid timers, processed over the last 5 seconds.
-* The average, variance, high water mark and low water mark for the number of active calls, indexed by time period. (*)
-* The instantaneous count for the number of active calls. (*)
+* The average count, variance, and high and low watermarks for the number of calls, indexed by time period. (*)
+* The number of calls active at the time queried. (*)
 
 ### Homestead Statistics
 
