@@ -469,6 +469,9 @@ e.g. ``icscf=5052``).
    default handling of 'terminate session' is unresponsive, this is the
    time that Sprout will wait (in milliseconds) before terminating the
    session (defaults to 4000 milliseconds).
+-  ``sas_use_signaling_interface`` - When this field is set to 'Y', SAS
+   traffic is routed via the signaling network, rather than the
+   management network.
 -  ``pbxes`` - a comma separated list of IP address that Bono considers
    to be PBXes that are incapable of registering. Non-REGISTER requests
    from these addresses are passed upstream to Sprout with a
