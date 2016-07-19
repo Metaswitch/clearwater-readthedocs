@@ -358,39 +358,39 @@ translate to the following entries in /etc/dnsmasq.d/enum.
 ::
 
     # Demo system number 2125550270
-    naptr-record=0.7.2.0.5.5.5.2.1.2.e164.arpa,1,1,U,E2U+SIP,!(^.*$)!sip:\\1@10.147.226.2!
+    naptr-record=0.7.2.0.5.5.5.2.1.2.e164.arpa,1,1,U,E2U+SIP,!(^.*$)!sip:\1@10.147.226.2!
 
     # Clearwater external numbers 2125550271-9
-    naptr-record=7.2.0.5.5.5.2.1.2.e164.arpa,1,1,U,E2U+SIP,!(^.*$)!sip:+1\\1@ngv.example.com!
+    naptr-record=7.2.0.5.5.5.2.1.2.e164.arpa,1,1,U,E2U+SIP,!(^.*$)!sip:+1\1@ngv.example.com!
 
     # Clearwater external numbers +12125550271-9
     # Note that we can't define a domain name containing + so we must define a # domain without it and then match a telephone number starting with a + (if
     # present) or (if not) use the default route via the SIP trunk.
-    naptr-record=7.2.0.5.5.5.2.1.2.1.e164.arpa,1,1,U,E2U+SIP,!(\+^.*$)!sip:\\1@ngv.example.com!
-    naptr-record=7.2.0.5.5.5.2.1.2.1.e164.arpa,2,1,U,E2U+SIP,!(^.*$)!sip:\\1@10.147.226.2!
+    naptr-record=7.2.0.5.5.5.2.1.2.1.e164.arpa,1,1,U,E2U+SIP,!(\+^.*$)!sip:\1@ngv.example.com!
+    naptr-record=7.2.0.5.5.5.2.1.2.1.e164.arpa,2,1,U,E2U+SIP,!(^.*$)!sip:\1@10.147.226.2!
 
     # Clearwater external number 2125550280
-    naptr-record=0.8.2.0.5.5.5.2.1.2.e164.arpa,1,1,U,E2U+SIP,!(^.*$)!sip:+1\\1@ngv.example.com!
+    naptr-record=0.8.2.0.5.5.5.2.1.2.e164.arpa,1,1,U,E2U+SIP,!(^.*$)!sip:+1\1@ngv.example.com!
 
     # Clearwater external number +12125550280
     # Note that we can't define a domain name containing + so we must define a
     # domain without it and then match a telephone number starting with a + (if
     # present) or (if not) use the default route via the SIP trunk.
-    naptr-record=0.8.2.0.5.5.5.2.1.2.1.e164.arpa,1,1,U,E2U+SIP,!(\+^.*$)!sip:\\1@ngv.example.com!
-    naptr-record=0.8.2.0.5.5.5.2.1.2.1.e164.arpa,2,1,U,E2U+SIP,!(^.*$)!sip:\\1@10.147.226.2!
+    naptr-record=0.8.2.0.5.5.5.2.1.2.1.e164.arpa,1,1,U,E2U+SIP,!(\+^.*$)!sip:\1@ngv.example.com!
+    naptr-record=0.8.2.0.5.5.5.2.1.2.1.e164.arpa,2,1,U,E2U+SIP,!(^.*$)!sip:\1@10.147.226.2!
 
     # Clearwater internal numbers
-    naptr-record=5.5.5.0.5.6.e164.arpa,1,1,U,E2U+SIP,!(^.*$)!sip:\\1@ngv.example.com!
+    naptr-record=5.5.5.0.5.6.e164.arpa,1,1,U,E2U+SIP,!(^.*$)!sip:\1@ngv.example.com!
 
     # Clearwater internal numbers dialled with +1 prefix
     # Note that we can't define a domain name containing + so we must define a
     # domain without it and then match a telephone number starting with a + (if
     # present) or (if not) use the default route via the SIP trunk.
-    naptr-record=5.5.5.0.5.6.1.e164.arpa,1,1,U,E2U+SIP,!\+1(^.*$)!sip:\\1@ngv.example.com!
-    naptr-record=5.5.5.0.5.6.1.e164.arpa,2,1,U,E2U+SIP,!(^.*$)!sip:\\1@10.147.226.2!
+    naptr-record=5.5.5.0.5.6.1.e164.arpa,1,1,U,E2U+SIP,!\+1(^.*$)!sip:\1@ngv.example.com!
+    naptr-record=5.5.5.0.5.6.1.e164.arpa,2,1,U,E2U+SIP,!(^.*$)!sip:\1@10.147.226.2!
 
     # NANP => SIP trunk
-    naptr-record=e164.arpa,1,1,U,E2U+SIP,!(^.*$)!sip:\\1@10.147.226.2!
+    naptr-record=e164.arpa,1,1,U,E2U+SIP,!(^.*$)!sip:\1@10.147.226.2!
 
 ENUM Domain Suffix
 ------------------
