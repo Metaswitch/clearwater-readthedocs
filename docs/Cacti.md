@@ -33,7 +33,7 @@ you want to use to monitor Clearwater, then:
 
 1.  install Cacti on a node by running `sudo apt-get install cacti cacti-spine`
 2.  accept all the configuration defaults
-3.  login (admin/admin) and set a new password
+3.  login to the web UI at `http://<IP address>/cacti` (using the credentials admin/admin) and set a new password
 4.  modify configuration by
     1.  going to Devices and deleting "localhost"
     2.  going to Settings-\>Poller and set "Poller Type" to "spine" and
