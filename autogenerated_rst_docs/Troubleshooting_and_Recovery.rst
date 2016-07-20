@@ -200,7 +200,7 @@ are not being applied, this system may not be working.
 -  The management system logs to ``/var/log/clearwater-etcd``,
    ``/var/log/clearwater-cluster-manager`` and
    ``/var/log/clearwater-config-manager``. To turn on debug logging
-   write ``log_level=5`` to ``/etc/clearwater/user_settings`` (creating
+   write ``log_level=5`` to ``etc/clearwater/user_settings`` (creating
    it if it doesn't exist already), then restart the etcd processes
    (``sudo service <clearwater-config-manager|clearwater-cluster-manager> stop``
    - they will be restarted by monit)
