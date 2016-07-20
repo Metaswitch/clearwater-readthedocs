@@ -202,8 +202,7 @@ are not being applied, this system may not be working.
    ``/var/log/clearwater-config-manager``. To turn on debug logging
    write ``log_level=5`` to ``/etc/clearwater/user_settings`` (creating
    it if it doesn't exist already), then restart the etcd processes
-   (``sudo service clearwater-config-manager stop, sudo service
-   clearwater-cluster-manager stop``
+   (``sudo service <clearwater-config-manager|clearwater-cluster-manager> stop``
    - they will be restarted by monit)
 -  ``/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_state``
    will display information about the state of the various data-store
