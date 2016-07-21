@@ -67,7 +67,7 @@ format. An example file would be:
 ::
 
     {
-    "MMTEL" : "<InitialFilterCriteria><Priority>0</Priority><TriggerPoint><ConditionTypeCNF></ConditionTypeCNF><SPT><ConditionNegated>0</ConditionNegated><Group>0</Group><Method>INVITE</Method><Extension></Extension></SPT></TriggerPoint><ApplicationServer><ServerName>sip:mmtel.example.com</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria>", 
+    "MMTEL" : "<InitialFilterCriteria><Priority>0</Priority><TriggerPoint><ConditionTypeCNF></ConditionTypeCNF><SPT><ConditionNegated>0</ConditionNegated><Group>0</Group><Method>INVITE</Method><Extension></Extension></SPT></TriggerPoint><ApplicationServer><ServerName>sip:mmtel.example.com</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria>",
     "Voicemail" : "<InitialFilterCriteria><Priority>1</Priority><TriggerPoint><ConditionTypeCNF></ConditionTypeCNF><SPT><ConditionNegated>0</ConditionNegated><Group>0</Group><Method>INVITE</Method><Extension></Extension></SPT></TriggerPoint><ApplicationServer><ServerName>sip:vm.example.com</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria>"
     }
 
@@ -163,3 +163,47 @@ builds the new XML document and the second pushes it to the server.
 
 The subscriber will now have the desired configuration. You can confirm
 this by running the retrieval command again.
+
+SIP-over-UDP configuration
+--------------------------
+
+While our default configuration for Clearwater deployments is to send
+SIP over TCP, it is possible to create a SIP-over-UDP deployment, with
+certain restrictions.
+
+Restrictions
+~~~~~~~~~~~~
+
+If you want to create a SIP-over-UDP deployment, it will be necessary
+for all of Sprout's SIP peers to send SIP over UDP to it. It is not
+possible to set up some peers to use TCP and some to use UDP. This is
+because Sprout won't do UDP/TCP interworking.
+
+Configuration
+~~~~~~~~~~~~~
+
+To enable SIP-over-UDP, you will need to set the following configuration
+options.
+
+In ``/etc/clearwater/shared_config`` set or update the field:
+
+::
+
+    scscf_uri="sip:scscf.<sprout_hostname>;transport=udp"
+
+In ``/etc/clearwater/local_config`` set or update the field on each of
+your Sprout nodes:
+
+::
+
+    scscf_node_uri="sip:<local_ip>:5054;transport=udp"
+
+You may also need to: \* Set up your P-CSCF and any application servers
+to send SIP over UDP.
+
+-  Add new SRV entries to your DNS server for your Application Server.
+
+-  Add ``transport=udp`` to your Application Server's SIP URI on your
+   HSS.
+
+You should now be able to make calls where SIP is sent over UDP.
