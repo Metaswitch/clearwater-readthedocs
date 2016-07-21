@@ -79,7 +79,7 @@ If you see Ralf dying/restarting with no apparent cause in `/var/log/ralf/ralf*.
 
 Clearwater comes with a system that [automate clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md). If you cannot scale your deployment up or down, or if configuration changes are not being applied, this system may not be working.
 
-* The management system logs to `/var/log/clearwater-etcd`, `/var/log/clearwater-cluster-manager` and `/var/log/clearwater-config-manager`. To turn on debug logging write `log_level=5` to `etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart the etcd processes (`sudo service <clearwater-config-manager|clearwater-cluster-manager> stop` - they will be restarted by monit)
+* The management system logs to `/var/log/clearwater-etcd`, `/var/log/clearwater-cluster-manager` and `/var/log/clearwater-config-manager`. To turn on debug logging write `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart the etcd processes (`sudo service <clearwater-config-manager|clearwater-cluster-manager> stop` - they will be restarted by monit)
 * `/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_state` will display information about the state of the various data-store clusters used by Clearwater.
 * `sudo /usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync` will display whether the node has learned shared configuration.
 * The following commands can be useful for inspecting the state of the underlying etcd cluster used by the management system:
