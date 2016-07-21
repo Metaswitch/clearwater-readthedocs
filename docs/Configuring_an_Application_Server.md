@@ -125,11 +125,11 @@ The subscriber will now have the desired configuration. You can confirm this by 
 
 ## SIP-over-UDP configuration
 
-While it is recommended that you configure your deployment to send SIP over TCP, it is possible to create a SIP-over-UDP deployment, with certain restrictions.
+While our default configuration for Clearwater deployments is to send SIP over TCP, it is possible to create a SIP-over-UDP deployment, with certain restrictions.
 
 ### Restrictions
 
-If you want to create a SIP-over-UDP deployment, it will be necessary for all of your IMS Core's SIP peers to send SIP over UDP to the IMS Core. It is not possible to set up some peers to use TCP and some to use UDP.
+If you want to create a SIP-over-UDP deployment, it will be necessary for all of Sprout's SIP peers to send SIP over UDP to it. It is not possible to set up some peers to use TCP and some to use UDP. This is because Sprout won't do UDP/TCP interworking.
 
 ### Configuration
 
@@ -137,17 +137,17 @@ To enable SIP-over-UDP, you will need to set the following configuration options
 
 In `/etc/clearwater/shared_config` set or update the field:
 
-    scscf_uri=sip:scscf.<sprout_hostname>;transport=udp
+    scscf_uri="sip:scscf.<sprout_hostname>;transport=udp"
 
 In `/etc/clearwater/local_config` set or update the field on each of your Sprout nodes:
 
-    scscf_node_uri=sip:<scscf_ip_address>:5054;transport=udp
+    scscf_node_uri="sip:<local_ip>:5054;transport=udp"
 
 You may also need to:
  * Set up your P-CSCF and any application servers to send SIP over UDP.
 
- * Add new SRV entries to your DNS server for you Application Server.
+ * Add new SRV entries to your DNS server for your Application Server.
 
- * Add `transport=udp` to your Application Server's name on your HSS.
+ * Add `transport=udp` to your Application Server's SIP URI on your HSS.
 
 You should now be able to make calls where SIP is sent over UDP.
