@@ -198,8 +198,9 @@ your Sprout nodes:
 
     scscf_node_uri="sip:<local_ip>:5054;transport=udp"
 
-You may also need to: \* Set up your P-CSCF and any application servers
-to send SIP over UDP.
+You may also need to:
+
+-  Set up your P-CSCF and any application servers to send SIP over UDP.
 
 -  Add new SRV entries to your DNS server for your Application Server.
 
