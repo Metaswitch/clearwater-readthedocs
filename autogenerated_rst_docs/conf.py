@@ -38,6 +38,7 @@ class NoGithubDict(dict):
         global html_context
         html_context = other_dict
         html_context['display_github'] = False
+        html_context['show_source'] = False
 
 html_context = NoGithubDict()
 
