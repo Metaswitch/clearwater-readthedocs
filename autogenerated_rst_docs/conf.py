@@ -35,8 +35,9 @@ htmlhelp_basename = 'ProjectClearwaterdoc'
 # False after being updated.
 class NoGithubDict(dict):
     def update(self, other_dict):
-        dict.update(self, other_dict)
-        self['display_github'] = False
+        global html_context
+        html_context = other_dict
+        html_context['display_github'] = False
 
 html_context = NoGithubDict()
 
