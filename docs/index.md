@@ -44,6 +44,8 @@ All the source code is on [GitHub](https://github.com/Metaswitch), in the follow
 
 You can contribute by making a GitHub pull request. See our documented [Pull request process](Pull_request_process.md).
 
+If you want to contribute specifically to this documentation (e.g. to fix a typo or document a missing option), the Markdown files for it are at <https://github.com/Metaswitch/clearwater-readthedocs>.
+
 There is more information about contributing to Project Clearwater on the [community page of our project website](http://www.projectclearwater.org/community/).
 
 ## Help
