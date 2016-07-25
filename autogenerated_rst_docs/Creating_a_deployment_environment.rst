@@ -51,12 +51,64 @@ chef workstation machine, create a file in
       "keypair" => "<keypair_name>",
       "keypair_dir" => "~/.chef/",
       "pstn_number_count" => 0,
-      "gr" => false
+      "gr" => false,
+
+      # Signup key. Anyone with this key can create accounts
+      # on the deployment. Set to a secure value.
+      "signup_key" => "secret",
+
+      # TURN workaround password, used by faulty WebRTC clients.
+      # Anyone with this password can use the deployment to send
+      # arbitrary amounts of data. Set to a secure value.
+      "turn_workaround" => "password",
+
+      # Ellis API key. Used by internal scripts to
+      # provision, update and delete user accounts without a password.
+      # Set to a secure value.
+      "ellis_api_key" => "secret",
+
+      # Ellis cookie key. Used to prevent spoofing of Ellis cookies. Set
+      # to a secure value.
+      "ellis_cookie_key" => "secret",
+
+      # SMTP credentials as supplied by your email provider.
+      "smtp_server" => "localhost",
+      "smtp_username" => "",
+      "smtp_password" => "",
+
+      # Sender to use for password recovery emails. For some
+      # SMTP servers (e.g., Amazon SES) this email address
+      # must be validated or email sending will fail.
+      "email_sender" => "clearwater@example.com"
     }
 
-Note that the value of ``keypair`` should *not* include the trailing
-.pem. Note also that for an all-in-one node the root-domain parameter is
-superfluous and will be ignored.
+Fill in the values appropriate to your deployment using a text editor as
+directed.
+
+-  The value of ``keypair`` should *not* include the trailing .pem.
+
+-  The keys and passwords marked "Set to a secure value" above should be
+   set to secure random values, to protect your deployment from
+   unauthorised access. An easy way to generate a secure random key on a
+   Linux system is as follows:
+
+   ::
+
+       head -c6 /dev/random | base64
+
+The ``signup_key`` must be supplied by new users when they create an
+account on the system.
+
+The ``turn_workaround`` must be supplied by certain WebRTC clients when
+using TURN. It controls access to media relay function.
+
+The ``ellis_api_key`` and ``ellis_cookie_key`` are used internally.
+
+-  The SMTP credentials are required only for password recovery. If you
+   leave them unchanged, this function will not work.
+
+-  For an all-in-one node the root-domain parameter is superfluous and
+   will be ignored.
 
 By default, your deployment will be created in the US East (North
 Virginia) region. However, if you want to deploy in another region, you

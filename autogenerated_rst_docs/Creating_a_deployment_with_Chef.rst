@@ -16,6 +16,28 @@ Prerequisites
    environment <Creating_a_deployment_environment.html>`__ and know its
    name, ``<name>``.
 
+Upload Clearwater definitions to Chef server
+--------------------------------------------
+
+The Chef server needs to be told the definitions for the various
+Clearwater node types. To do this, run
+
+::
+
+    cd ~/chef
+    knife cookbook upload apt
+    knife cookbook upload chef-solo-search
+    knife cookbook upload clearwater
+    find roles/*.rb -exec knife role from file {} \;
+
+You will need to do this step if the Clearwater definitions have never
+been uploaded to this Chef server before, or if the cookbooks or roles
+have changed since the last upload.
+
+Note that cookbooks are versioned, but roles aren't, so uploading a
+changed role will affect other people deploying Clearwater from the same
+Chef server.
+
 Creating a Deployment
 ---------------------
 
