@@ -28,3 +28,17 @@ exclude_patterns = ['_build']
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'ProjectClearwaterdoc'
+
+# The readthedocs code updates the html_context variable, setting
+# display_github to True. As we don't want to display the "Edit on Github"
+# link, we create a subclass of dict that always sets display_github back to
+# False after being updated.
+class NoGithubDict(dict):
+    def update(self, other_dict):
+        global html_context
+        html_context = other_dict
+        html_context['display_github'] = False
+        html_context['show_source'] = False
+
+html_context = NoGithubDict()
+
