@@ -99,7 +99,7 @@ To allow the Clearwater extensions to create AWS instances or configure Route53 
 ## Add deployment-specific configuration
 
 Now add the following lines to the bottom of your `~/.chef/knife.rb`
-file, using the AWS deployment keys are the ones you obtained above.
+file, using the AWS deployment keys you obtained above.
 
     # AWS deployment keys.
     knife[:aws_access_key_id]     = "<accessKey>"
