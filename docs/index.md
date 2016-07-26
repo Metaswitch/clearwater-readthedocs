@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Ivysaur](http://pokemon.wikia.com/wiki/Ivysaur)".
+The latest stable release of Clearwater is "[Jigglypuff](http://pokemon.wikia.com/wiki/Jigglypuff)".
 
 ## Architecture
 
