@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Ivysaur <http://pokemon.wikia.com/wiki/Ivysaur>`__\ ".
+"`Jigglypuff <http://pokemon.wikia.com/wiki/Jigglypuff>`__\ ".
 
 Architecture
 ------------
