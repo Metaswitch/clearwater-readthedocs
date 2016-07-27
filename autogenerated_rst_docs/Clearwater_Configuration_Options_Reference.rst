@@ -127,8 +127,6 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    default (for example, when handling ``tel:`` URIs).
 -  ``sprout_hostname`` - a hostname that resolves by DNS round-robin to
    all Sprout nodes in the cluster.
--  ``bono_hostname`` - a hostname that resolves by DNS round-robin to
-   all Bono nodes in the cluster.
 -  ``hs_hostname`` - a hostname that resolves by DNS round-robin to all
    Homesteads in the cluster. Should include the HTTP port (usually
    8888). This is also used (without the port) as the Origin-Realm of
