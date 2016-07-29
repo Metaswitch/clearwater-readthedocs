@@ -517,6 +517,11 @@ e.g. ``icscf=5052``).
    -  Without an I-CSCF there is no way to prevent it from registering
       as different user accounts.
 
+-  ``disable_tcp_switch`` - when set to 'Y', Clearwater disables
+   UDP-to-TCP uplift on SIP messages. This is useful when creating a
+   deployment where all SIP is sent over UDP. This option only affects
+   Sprout nodes.
+
 Experimental options
 ~~~~~~~~~~~~~~~~~~~~
 

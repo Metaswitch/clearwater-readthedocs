@@ -185,11 +185,12 @@ Configuration
 To enable SIP-over-UDP, you will need to set the following configuration
 options.
 
-In ``/etc/clearwater/shared_config`` set or update the field:
+In ``/etc/clearwater/shared_config`` set or update the fields:
 
 ::
 
     scscf_uri="sip:scscf.<sprout_hostname>;transport=udp"
+    disable_tcp_switch=Y
 
 In ``/etc/clearwater/local_config`` set or update the field on each of
 your Sprout nodes:
