@@ -182,6 +182,7 @@ This section describes optional configuration options, particularly for ensuring
 * `nonce_count_supported` - when set to 'Y' Clearwater permits authentication responses with a nonce-count greater than 1. By default this option is not enabled. Enabling this option can expose certain security holes if your deployment does not use an HSS (and uses Homestead-Prov instead) and an I-CSCF. Specifically if the option is set and a malicious UE manages to register:
     * Without an HSS there is no way to force it to become deregistered.
     * Without an I-CSCF there is no way to prevent it from registering as different user accounts.
+* `disable_tcp_switch` - when set to 'Y', Clearwater disables UDP-to-TCP uplift on SIP messages.  This is useful when creating a deployment where all SIP is sent over UDP.  This option only affects Sprout nodes.
 
 ### Experimental options
 
