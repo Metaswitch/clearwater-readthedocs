@@ -251,7 +251,7 @@ To install a standalone IMS component/application server, you need to:
 * To join a data store cluster, add `etcd_cluster_key=<node type>` to `/etc/clearwater/local_config` on each joining node.
 * For sproutlets that don't take part in the clustered data stores set `etcd_cluster_key=DO_NOT_CLUSTER` in `/etc/clearwater/local_config`.
 * If you have a node that's a member of the wrong data store (e.g. an I-CSCF node has joined the S-CSCF data cluster), then you can remove it using the [`mark_node_failed`](http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-node-from-a-data-store) script, e.g. `sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed <incorrect cluster key> <data store type> <node IP>`.
-* Once the node is fully installed and a member of the corect data stores, add it to the relevant DNS records.
+* Once the node is fully installed and a member of the correct data stores, add it to the relevant DNS records.
 
 ### I-CSCF configuration
 
