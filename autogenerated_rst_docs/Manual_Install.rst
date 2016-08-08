@@ -400,19 +400,36 @@ scaling up and down very straight-forward. If for some reason you can't,
 you can add nodes to the deployment using the `Elastic Scaling
 Instructions <Clearwater_Elastic_Scaling.html>`__
 
-Standalone Application Servers
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Standalone IMS components and Application Servers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Gemini and Memento can run integrated into the Sprout nodes, or they can
-be run as standalone application servers.
+Our IMS components (I-CSCF, S-CSCF, ...) and application servers
+(Gemini, Memento, ...) can run on the same Sprout node, or they can be
+run as separate compoments/standalone application servers.
 
-To install Gemini or Memento as a standalone server, follow the same
-process as installing a Sprout node, but don't add them to the existing
-Sprout DNS cluster.
-
-The ``sprout_hostname`` setting in ``/etc/clearwater/shared_config`` on
-standalone application servers should be set to the cluster of the
-standalone application servers, for example, ``memento.cw-ngv.com``.
+To install a standalone IMS component/application server, you need to:
+\* Install a Sprout node (following the same process as installing a
+Sprout node above), but don't add the new node to the Sprout DNS
+cluster. \* Enable/disable the sproutlets you want to run on this node -
+see
+`here <http://clearwater.readthedocs.io/en/latest/Clearwater_Configuration_Options_Reference.html#sproutlet-options>`__
+for more details on this. In particular, you should set the ports and
+the URIs of the sproutlets. \* Choose whether the Sprout node should
+join the clustered data stores. Some sproutlets (e.g. the S-CSCF,
+memento) do need to do so (e.g. they need access to the common Chronos,
+Memcached and Cassandra clusters). Others (e.g. the I-CSCF, gemini), do
+not. \* To join a data store cluster, add
+``etcd_cluster_key=<node type>`` to ``/etc/clearwater/local_config`` on
+each joining node. \* For sproutlets that don't take part in the
+clustered data stores set ``etcd_cluster_key=DO_NOT_CLUSTER`` in
+``/etc/clearwater/local_config``. \* If you have a node that's a member
+of the wrong data store (e.g. an I-CSCF node has joined the S-CSCF data
+cluster), then you can remove it using the
+```mark_node_failed`` <http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-node-from-a-data-store>`__
+script, e.g.
+``sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed <incorrect cluster key> <data store type> <node IP>``.
+\* Once the node is fully installed and a member of the correct data
+stores, add it to the relevant DNS records.
 
 I-CSCF configuration
 ~~~~~~~~~~~~~~~~~~~~
