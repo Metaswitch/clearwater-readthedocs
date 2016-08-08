@@ -204,6 +204,7 @@ It uses other open-source components as acknowledged in
    Clearwater Ruby Coding Guidelines <Clearwater_Ruby_Coding_Guidelines.rst>
    Debugging Bono, Sprout and Homestead with GDB and Valgrind <Debugging_Bono_Sprout_and_Homestead_with_GDB_and_Valgrind.rst>
    Pull request process <Pull_request_process.rst>
+   Unit testing <Running_unit_tests.rst>
 
 
 .. _8:
