@@ -36,7 +36,7 @@ The unit tests use the [Google Test](https://code.google.com/p/googletest/) fram
 There are various other options for the unit tests as well:
 
 * Passing `JUSTTEST=testname` just runs the specified test case.
-* Passing `NOISY=T` enables verbose logging during the tests; you can add a logging level (e.g., `NOISY=T:99`) to control which logs you see.
+* Passing `NOISY=T` prints the logs made during the test run to the screen. You can set what severity of logs are printed by adding a logging level (e.g., `NOISY=T:2` prints all logs up to status severity and `NOISY=T:5` prints all logs up to debug severity).
 * `make coverage_check` runs code coverage checks (using [gcov](http://gcc.gnu.org/onlinedocs/gcc/Gcov.html)), and reports if the coverage is less than expected.
 * `make coverage_raw` outputs coverage information for each source file.
 * `make valgrind` runs memory leak checks (using [Valgrind](http://valgrind.org/)).
