@@ -62,6 +62,7 @@ pages:
   - Clearwater Ruby Coding Guidelines: Clearwater_Ruby_Coding_Guidelines.md
   - Debugging Bono, Sprout and Homestead with GDB and Valgrind: Debugging_Bono_Sprout_and_Homestead_with_GDB_and_Valgrind.md
   - Pull request process: Pull_request_process.md
+  - Unit testing: Running_unit_tests.md
 - Testing:
   - Clearwater stress testing: Clearwater_stress_testing.md
   - Cacti: Cacti.md
