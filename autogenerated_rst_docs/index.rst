@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Jigglypuff <http://pokemon.wikia.com/wiki/Jigglypuff>`__\ ".
+"`Kangaskhan <http://pokemon.wikia.com/wiki/Kangaskhan>`__\ ".
 
 Architecture
 ------------
