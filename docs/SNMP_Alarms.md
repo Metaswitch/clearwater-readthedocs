@@ -18,7 +18,7 @@ Error indications come in two forms:
     Orchestration (MANO) layer monitors these statistics, compares them to its
     configured thresholds, and raises alarms on that basis.
 
-This document focuses on the SNMp notifications we generate - threshold alarms are the responsibility of something external.
+This document focuses on the SNMP notifications we generate - threshold alarms are the responsibility of something external.
 
 ## Alarm Configuration
 
