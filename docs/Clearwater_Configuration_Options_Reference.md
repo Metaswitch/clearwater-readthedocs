@@ -110,6 +110,8 @@ This section describes optional configuration options, particularly for ensuring
 
 * `homestead_provisioning_port` - the HTTP port the Homestead provisioning interface listens on. Defaults to 8889. Not needed when using an external HSS.
 * `sas_server` - the IP address or hostname of your Metaswitch Service Assurance Server for call logging and troubleshooting. Optional.
+* `snmp_ip` - this determines where SNMP alarms get sent, and is a comma-separated list of IP addresses (e.g. `snmp_ip=0.0.0.0,0.0.0.1`).
+* `snmp_notification_types` - this determines what format SNMP alarms are sent in - possible values are `snmp_notification_types=rfc3877` (the default), `snmp_notification_types=enterprise`, or `snmp_notification_types=rfc3877,enterprise` to send both formats. See the [SNMP alarms documentation](SNMP_Alarms.md) for information about the difference.
 * `reg_max_expires` - determines the maximum expires= parameter Sprout will set on Contact headers at registrations, and therefore the amount of time before a UE has to re-register - must be less than 2^31 ms (approximately 25 days). Default is 300 (seconds).
 * `sub_max_expires` - determines the maximum Expires header Sprout will set in subscription responses, and therefore the amount of time before a UE has to re-subscribe - must be less than 2^31 ms (approximately 25 days).
 * `upstream_hostname` - the I-CSCF which Bono should pass requests to. Defaults to `icscf.<sprout_hostname>`.
