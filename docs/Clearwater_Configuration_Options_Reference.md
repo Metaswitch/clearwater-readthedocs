@@ -110,8 +110,6 @@ This section describes optional configuration options, particularly for ensuring
 
 * `homestead_provisioning_port` - the HTTP port the Homestead provisioning interface listens on. Defaults to 8889. Not needed when using an external HSS.
 * `sas_server` - the IP address or hostname of your Metaswitch Service Assurance Server for call logging and troubleshooting. Optional.
-* `snmp_ip` - this determines where SNMP alarms get sent, and is a comma-separated list of IP addresses (e.g. `snmp_ip=0.0.0.0,0.0.0.1`).
-* `snmp_notification_types` - this determines what format SNMP alarms are sent in - possible values are `snmp_notification_types=rfc3877` (the default), `snmp_notification_types=enterprise`, or `snmp_notification_types=rfc3877,enterprise` to send both formats. See the [SNMP alarms documentation](SNMP_Alarms.md) for information about the difference.
 * `reg_max_expires` - determines the maximum expires= parameter Sprout will set on Contact headers at registrations, and therefore the amount of time before a UE has to re-register - must be less than 2^31 ms (approximately 25 days). Default is 300 (seconds).
 * `sub_max_expires` - determines the maximum Expires header Sprout will set in subscription responses, and therefore the amount of time before a UE has to re-subscribe - must be less than 2^31 ms (approximately 25 days).
 * `upstream_hostname` - the I-CSCF which Bono should pass requests to. Defaults to `icscf.<sprout_hostname>`.
@@ -169,6 +167,7 @@ This section describes optional configuration options, particularly for ensuring
 * `http_blacklist_duration` - the time in seconds for which HTTP peers are blacklisted when they are unresponsive (defaults to 30 seconds).
 * `diameter_blacklist_duration` - the time in seconds for which Diameter peers are blacklisted when they are unresponsive (defaults to 30 seconds).
 * `snmp_ip` - the IP address to send alarms to (defaults to being unset). If this is set then Sprout, Ralf, Homestead and Chronos will send alarms - more details on the alarms are [here](SNMP_Alarms.md). This can be a single IP address, or a comma-separated list of IP addresses.
+* `snmp_notification_types` - this determines what format SNMP alarms are sent in, and is a comma-separated list of SNMP alarm formats. Valid alarm formats are `rfc3877` and `enterprise` - if both are set, every alarm generates two SNMP INFORMs, one in each format . See the [SNMP alarms documentation](SNMP_Alarms.md) for information about the difference between the formats.
 * `impu_cache_ttl` - the number of seconds for which Homestead will cache the SIP Digest from a Multimedia-Auth-Request. Defaults to 0, as Sprout does enough caching to ensure that it can handle an authenticated REGISTER after a challenge, and subsequent challenges should be rare.
 * `sip_tcp_connect_timeout` - the time in milliseconds to wait for a SIP TCP connection to be established (defaults to 2000 milliseconds).
 * `sip_tcp_send_timeout` - the time in milliseconds to wait for sent data to be acknowledgered at the TCP level on a SIP TCP connection (defaults to 2000 milliseconds).

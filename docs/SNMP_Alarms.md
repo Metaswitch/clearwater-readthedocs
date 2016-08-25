@@ -8,24 +8,15 @@ monitoring service.
 Error indications come in two forms:
 
 *   For clearly-defined errors not based on thresholds, the Clearwater node sends an SNMP
-    notification to a configured external SNMP manager. (This notification can
+    notification to a configured external SNMP manager. This notification can
     be in one of two fomats, enterprise-specific or RFC 3877 - see below for
-    details.)
+    details.
 
 *   For errors based on a threshold set on a statistic (such as latency targets or
     number of failed connections), the Clearwater node [exposes that statistic over
     SNMP](Clearwater_SNMP_Statistics.md). A downstream statistics aggregator from the Management and
     Orchestration (MANO) layer monitors these statistics, compares them to its
     configured thresholds, and raises alarms on that basis.
-
-This document focuses on the SNMP notifications we generate - threshold alarms are the responsibility of something external.
-
-## Alarm Configuration
-
-There are two configuration options for alarms:
-
-- `snmp_ip` - this determines where alarms get sent, and is a comma-separated list of IP addresses (e.g. `snmp_ip=0.0.0.0,0.0.0.1`).
-- `snmp_notification_types` - this determines what format alarms are sent in - possible values are `snmp_notification_types=rfc3877` (the default), `snmp_notification_types=enterprise`, or `snmp_notification_types=rfc3877,enterprise` to send both formats.
 
 ## Alarm Formats
 
