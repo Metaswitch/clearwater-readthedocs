@@ -49,3 +49,63 @@ Our components written in Python don't share a common makefile infrastructure. H
 * `make test` to run all of the test cases.
 * `make coverage` to view the current unit test coverage.
 * `make verify` to run [flake8](http://flake8.pycqa.org/en/latest/) over the code to detect errors.
+
+
+We do not use tools like pylint by default, as they can be too aggressive and provide a large number of benign errors, often in third party modules. However, it can be difficult to track down import errors using the standard test infrastructure we have in place, and it can be useful under these circumstances to be able to run pylint to draw out any bad imports that might be causing the modules or unit tests to fail.
+
+For example, if we deliberately break an import in the cluster_manager plugin_base.py file (changing `from abc import ...` to `from NOTabc import ...`), running `make test` gives the following output:
+
+```
+Traceback (most recent call last):
+  File "cluster_mgr_setup.py", line 52, in <module>
+    tests_require=["pbr==1.6", "Mock"],
+  File "/usr/lib/python2.7/distutils/core.py", line 151, in setup
+    dist.run_commands()
+  File "/usr/lib/python2.7/distutils/dist.py", line 953, in run_commands
+    self.run_command(cmd)
+  File "/usr/lib/python2.7/distutils/dist.py", line 972, in run_command
+    cmd_obj.run()
+  File "build/bdist.linux-x86_64/egg/setuptools/command/test.py", line 170, in run
+  File "build/bdist.linux-x86_64/egg/setuptools/command/test.py", line 191, in run_tests
+  File "/usr/lib/python2.7/unittest/main.py", line 94, in __init__
+    self.parseArgs(argv)
+  File "/usr/lib/python2.7/unittest/main.py", line 149, in parseArgs
+    self.createTests()
+  File "/usr/lib/python2.7/unittest/main.py", line 158, in createTests
+    self.module)
+  File "/usr/lib/python2.7/unittest/loader.py", line 130, in loadTestsFromNames
+    suites = [self.loadTestsFromName(name, module) for name in names]
+  File "/usr/lib/python2.7/unittest/loader.py", line 103, in loadTestsFromName
+    return self.loadTestsFromModule(obj)
+  File "build/bdist.linux-x86_64/egg/setuptools/command/test.py", line 39, in loadTestsFromModule
+  File "/usr/lib/python2.7/unittest/loader.py", line 100, in loadTestsFromName
+    parent, obj = obj, getattr(obj, part)
+AttributeError: 'module' object has no attribute 'contention_detecting_plugin'
+```
+
+The error, `AttributeError: 'module' object has no attribute 'xxx'`, is not very helpful in identifying the source of the error. Running pylint (as below) however, will give an error output in the following form:
+
+```
+[
+    {
+        "message": "Unable to import 'NOTabc'",
+        "obj": "",
+        "column": 0,
+        "path": "src/metaswitch/clearwater/cluster_manager/plugin_base.py",
+        "line": 33,
+        "type": "error",
+        "symbol": "import-error",
+        "module": "metaswitch.clearwater.cluster_manager.plugin_base"
+    }
+]
+```
+
+The following commands will install and run pylint in your local virtual environment:
+
+```
+make clean && make env
+_env/bin/easy_install pylint
+PYTHONPATH=src:common _env/bin/python -m pylint --disable=all --enable=F,E --output-format json <path_to_modules>
+```
+
+Where the `path_to_modules` is the module or package directory of the code you want to check. For our projects, this will usually be under `src/metaswitch/`, e.g. in the clearwater-etcd repo, to test all of clearwater-etcd, use `src/metaswitch/clearwater/` as the path, but to have pylint inspect just the cluster-manager plugin_base file, use `src/metaswitch/clearwater/cluster_manager/plugin_base.py`.
