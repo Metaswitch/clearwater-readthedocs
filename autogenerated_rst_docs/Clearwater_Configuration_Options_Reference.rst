@@ -448,6 +448,12 @@ e.g. ``icscf=5052``).
    send alarms - more details on the alarms are
    `here <SNMP_Alarms.html>`__. This can be a single IP address, or a
    comma-separated list of IP addresses.
+-  ``snmp_notification_types`` - this determines what format SNMP alarms
+   are sent in, and is a comma-separated list of SNMP alarm formats.
+   Valid alarm formats are ``rfc3877`` and ``enterprise`` - if both are
+   set, every alarm generates two SNMP INFORMs, one in each format . See
+   the `SNMP alarms documentation <SNMP_Alarms.html>`__ for information
+   about the difference between the formats.
 -  ``impu_cache_ttl`` - the number of seconds for which Homestead will
    cache the SIP Digest from a Multimedia-Auth-Request. Defaults to 0,
    as Sprout does enough caching to ensure that it can handle an
