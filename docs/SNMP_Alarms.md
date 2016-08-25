@@ -7,9 +7,10 @@ monitoring service.
 
 Error indications come in two forms:
 
-*   For clearly-defined errors not based on thresholds, the Clearwater node sets an
-    ITU Alarm MIB from [RFC 3877](http://tools.ietf.org/html/3877) and sends an SNMP
-    notification to a configured external SNMP manager.
+*   For clearly-defined errors not based on thresholds, the Clearwater node sends an SNMP
+    notification to a configured external SNMP manager. This notification can
+    be in one of two fomats, enterprise-specific or RFC 3877 - see below for
+    details.
 
 *   For errors based on a threshold set on a statistic (such as latency targets or
     number of failed connections), the Clearwater node [exposes that statistic over
@@ -17,10 +18,32 @@ Error indications come in two forms:
     Orchestration (MANO) layer monitors these statistics, compares them to its
     configured thresholds, and raises alarms on that basis.
 
-## EMS
+## Alarm Formats
 
-To integrate with an EMS, the EMS must support the following capabilities of RFC 3877 to
-obtain the brief description, detailed description, and severity for the alarm:
+### Clearwater Alarm MIB
+
+The simplest way to consume Clearwater alarms is to use [our enterprise alarm MIB](https://raw.githubusercontent.com/Metaswitch/clearwater-snmp-handlers/master/CLEARWATER-ENTERPRISE-MIB). When this is used, Clearwater nodes will send traps with the following fields:
+
+- **CLEARWATER-ENTERPRISE-MIB::clearwaterInfoVersion** - the version of the MIB (e.g. '201608081100')
+- **CLEARWATER-ENTERPRISE-MIB::alarmTrapDisplayName** - the summary name of the alarm (e.g. Queue manager process fail). This is the same for all severities (e.g. CLEARED and CRITICAL severities have the same name)
+- **CLEARWATER-ENTERPRISE-MIB::alarmTrapAlarmOID** - the OID of the alarm, for correlation purposes (e.g. ALARM-MIB::alarmModelNotificationId.0.9000.2)
+- **CLEARWATER-ENTERPRISE-MIB::alarmTrapSeverity** - the severity of this alarm (e.g. CLEARED)
+- **CLEARWATER-ENTERPRISE-MIB::alarmTrapDescription** - a short description of the alarm (e.g. 'Queue manager: Process failure cleared')
+- **CLEARWATER-ENTERPRISE-MIB::alarmTrapDetails** - a longer description of the alarm (e.g. 'The queue manager process has been restored to normal operation.')
+- **CLEARWATER-ENTERPRISE-MIB::alarmTrapCause** - the likely cause of this notification (e.g. 'The queue manager process has been restored to normal operation. The previously issued alarm has been cleared.')
+- **CLEARWATER-ENTERPRISE-MIB::alarmTrapEffect** - the effect on the system (e.g. 'Changes to shared config will be synchronized across the cluster.')
+- **CLEARWATER-ENTERPRISE-MIB::alarmTrapAction** - the suggested next action for the operator (e.g. 'No action')
+
+
+### RFC 3877
+
+If your EMS already supports alarms in RFC 3877 format, it may make sense to
+use these instead of our enterprise alarms. The RFC 3877 model is that the SNMP
+INFORM messages are minimal, just containing the OID of a row in an SNMP table
+- the EMS can then learn the details of the alarm by querying that SNMP table.
+
+The EMS must support the following capabilities of RFC 3877 to obtain the brief
+description, detailed description, and severity for the alarm:
 
 *   The EMS must be configured to catch the SNMP INFORM messages used to
     report alarms from Clearwater. It is also recommended that the EMS must
@@ -37,6 +60,14 @@ obtain the brief description, detailed description, and severity for the alarm:
     *   The EMS must the retrieve the ituAlarmEntry MIB table data associated
         with the current alarm from Clearwater. This MIB provides the alarm
         severity and the additional detailed alarm description.
+
+RFC 3877 alarms have a couple of limitations compared to our enterprise alarms:
+
+* RFC 3877 doesn't define fields for cause, effect or action, so these are not
+accessible - only the details and description are present.
+* RFC 3877 defines a 255-character limit for details and description, so these
+fields may be briefer than in the enterprise MIB (which allows 4,096
+characters).
 
 ## Alarm Models
 
