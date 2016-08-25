@@ -49,3 +49,16 @@ Our components written in Python don't share a common makefile infrastructure. H
 * `make test` to run all of the test cases.
 * `make coverage` to view the current unit test coverage.
 * `make verify` to run [flake8](http://flake8.pycqa.org/en/latest/) over the code to detect errors.
+
+
+We do not use tools like pylint by default, as they can be too aggressive and provide a large number of benign errors, often in third party modules. However, it can be difficult to track down import errors using the standard test infrastructure we have in place, and it can be useful under these circumstances to be able to run pylint to draw out any bad imports that might be causing the modules or unit tests to fail.
+
+The following commands should install and run pylint in your local virtual environment:
+
+```
+make clean && make env
+_env/bin/easy_install pylint
+PYTHONPATH=src:common _env/bin/python -m --disable=all --enable=F,E --output-format json <path_to_modules>
+```
+
+Where the path_to_modules is the module or package directory of the code you want to check. For our projects, this will usually be under `src/metaswitch/`.
