@@ -20,6 +20,10 @@ Error indications come in two forms:
    Orchestration (MANO) layer monitors these statistics, compares them
    to its configured thresholds, and raises alarms on that basis.
 
+To configure this feature, set ``snmp_ip`` and
+``snmp_notification_types`` as described in `the configuration
+guide <Clearwater_Configuration_Options_Reference.html>`__.
+
 Alarm Formats
 -------------
 
