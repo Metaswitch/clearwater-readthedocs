@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Kangaskhan <http://pokemon.wikia.com/wiki/Kangaskhan>`__\ ".
+"`Lapras <http://pokemon.wikia.com/wiki/Lapras>`__\ ".
 
 Architecture
 ------------
