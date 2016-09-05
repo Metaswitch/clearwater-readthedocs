@@ -98,16 +98,11 @@ write to the Cassandra database.
 -  If this doesn't help, Homer logs to ``/var/log/homer/homer-*.log``
    and Homestead logs to ``/var/log/homestead/homestead-*.log`` and
    ``/var/log/homestead-prov/homestead-*.log``. To turn on debug logging
-   for Homer or Homestead-prov, write ``LOG_LEVEL = logging.DEBUG`` to
-   the ``local_settings.py`` file (at
-   ``/usr/share/clearwater/<homer|homestead>/local_settings.py``). Then
-   restart clearwater-infrastructure
-   (``sudo service clearwater-infrastructure restart``), and restart
-   Homer/Homestead-prov (``sudo service <homer|homestead-prov> stop`` -
-   they will be restarted by monit). To turn on debug logging for
-   Homestead write ``log_level=5`` to ``/etc/clearwater/user_settings``
-   (creating it if it doesn't exist already), then restart Homestead
-   (``sudo service homestead stop`` - it will be restarted by monit).
+   for Homer, Homestead or Homestead-prov write ``log_level=5`` to
+   ``/etc/clearwater/user_settings`` (creating it if it doesn't exist
+   already), then restart Homer/Homestead/Homestead-prov
+   (``sudo service <homer|homestead|homestead-prov> stop`` - it will be
+   restarted by monit).
 
 To examine Homer or Homestead's database, run ``cqlsh`` and then type
 ``use homer;``, ``use homestead_provisioning;`` or
