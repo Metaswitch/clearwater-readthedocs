@@ -50,12 +50,10 @@ server". This can happen for several reasons.
    configured correctly. If these are already correct, check Homer or
    Homestead-prov to see if they are behaving incorrectly.
 
--  To turn on debug logging for Ellis, write
-   ``LOG_LEVEL = logging.DEBUG`` to the ``local_settings.py`` file (at
-   ``/usr/share/clearwater/ellis/local_settings.py``). Then restart
-   clearwater-infrastructure
-   (``sudo service clearwater-infrastructure restart``), and restart
-   Ellis (``sudo service ellis stop`` - it will be restarted by monit).
+-  To turn on debug logging for Ellis write ``log_level=5`` to
+   ``/etc/clearwater/user_settings`` (creating it if it doesn't exist
+   already), then restart Ellis (``sudo service ellis stop`` - it will
+   be restarted by monit).
 
 To examine Ellis' database, run ``mysql`` (as root), then type
 ``use ellis;`` to set the correct database. You can then issue standard
