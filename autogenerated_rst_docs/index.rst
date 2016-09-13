@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Lapras <http://pokemon.wikia.com/wiki/Lapras>`__\ ".
+"`Missingno <http://pokemon.wikia.com/wiki/Missingno>`__\ ".
 
 Architecture
 ------------
