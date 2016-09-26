@@ -142,7 +142,7 @@ Install the Homer packages with:
 
 Install the Homestead packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead-node homestead-prov clearwater-prov-tools --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead-node clearwater-prov-tools --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ### Ralf
