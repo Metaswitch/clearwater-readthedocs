@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Missingno <http://pokemon.wikia.com/wiki/Missingno>`__\ ".
+"`Nidoking <http://pokemon.wikia.com/wiki/Nidoking>`__\ ".
 
 Architecture
 ------------
