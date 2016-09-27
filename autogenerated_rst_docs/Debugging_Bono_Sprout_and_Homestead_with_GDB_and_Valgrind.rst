@@ -39,7 +39,7 @@ assume you are running sprout), the easiest way is to:
 -  Make sure valgrind is installed on your system and you have the
    appropriate debug packages installed
    (``sudo apt-get install valgrind`` and
-   ``sudo apt-get install sprout-dbg``)
+   ``sudo apt-get install sprout-node-dbg``)
 -  Disable monitoring of sprout (``sudo monit unmonitor -g sprout``)
 -  Stop sprout (``sudo service sprout stop``)
 -  Allow child processes to use more file descriptors, and become the
@@ -77,5 +77,5 @@ versions, we strip all the symbols out and these are saved off
 separately in the debug package. Note that you will still be running the
 release code - the debug symbols will just be loaded by gdb when you
 start it up. To install these packages, type
-``sudo apt-get install sprout-dbg`` or
-``sudo apt-get install bono-dbg``.
+``sudo apt-get install sprout-node-dbg`` or
+``sudo apt-get install bono-node-dbg``.
