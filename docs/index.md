@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Missingno](http://pokemon.wikia.com/wiki/Missingno)".
+The latest stable release of Clearwater is "[Nidoking](http://pokemon.wikia.com/wiki/Nidoking)".
 
 ## Architecture
 
