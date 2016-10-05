@@ -21,7 +21,7 @@ To run Bono, Sprout or Homestead under valgrind (the example commands assume you
 -  Allow child processes to use more file descriptors, and become the sprout user (`sudo -i; ulimit -Hn 1000000; ulimit -Sn 1000000; (sudo -u sprout bash);`)
 -  Change to the `/etc/clearwater` directory
 -  Set up the library path (`export LD_LIBRARY_PATH=/usr/share/clearwater/sprout/lib:$LD_LIBRARY_PATH`)
--  Run the executable under valgrind, enabling the appropriate valgrind options - for example, to use massif to monitor the Sprout heap `valgrind --tools=massif --massif-out-file=/var/log/sprout/massif.out.%p /usr/share/clearwater/bin/sprout <parameters>` (the --massif-out-file option is required to ensure the output is written to a directory where the sprout user has write permission). If any of Sprout parameters include a semi-colon, you must prefix this with a backslash otherwise the bash interpreter will interpret this as the end of the command.
+-  Run the executable under valgrind, enabling the appropriate valgrind options - for example, to use massif to monitor the Sprout heap `valgrind --tool=massif --massif-out-file=/var/log/sprout/massif.out.%p /usr/share/clearwater/bin/sprout <parameters>` (the --massif-out-file option is required to ensure the output is written to a directory where the sprout user has write permission). If any of Sprout parameters include a semi-colon, you must prefix this with a backslash otherwise the bash interpreter will interpret this as the end of the command.
 
 Valgrind will slow down the running of Bono, Sprout and Homestead by a factor of 5-10.  It will produce output when it detects invalid/illegal memory access - often these turn out to be benign, but they're rarely spurious.
 
