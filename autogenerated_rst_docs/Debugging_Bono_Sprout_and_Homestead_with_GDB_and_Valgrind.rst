@@ -50,7 +50,7 @@ assume you are running sprout), the easiest way is to:
    (``export LD_LIBRARY_PATH=/usr/share/clearwater/sprout/lib:$LD_LIBRARY_PATH``)
 -  Run the executable under valgrind, enabling the appropriate valgrind
    options - for example, to use massif to monitor the Sprout heap
-   ``valgrind --tools=massif --massif-out-file=/var/log/sprout/massif.out.%p /usr/share/clearwater/bin/sprout <parameters>``
+   ``valgrind --tool=massif --massif-out-file=/var/log/sprout/massif.out.%p /usr/share/clearwater/bin/sprout <parameters>``
    (the --massif-out-file option is required to ensure the output is
    written to a directory where the sprout user has write permission).
    If any of Sprout parameters include a semi-colon, you must prefix
