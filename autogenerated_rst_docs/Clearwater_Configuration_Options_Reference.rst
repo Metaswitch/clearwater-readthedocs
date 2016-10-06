@@ -326,6 +326,9 @@ e.g. ``icscf=5052``).
 -  ``alias_list`` - this defines additional hostnames and IP addresses
    which Sprout or Bono will treat as local for the purposes of SIP
    routing (e.g. when removing Route headers).
+-  ``bono_alias_list`` - this defines additional hostnames and IP
+   addresses specifically for Bono which will be treated as local for
+   the purposes of SIP routing.
 -  ``default_session_expires`` - determines the Session-Expires value
    which Sprout will add to INVITEs, to force UEs to send keepalive
    messages during calls so they can be tracked for billing purposes.
@@ -593,6 +596,11 @@ the format ``name=value``, e.g. ``log_level=5``).
    Defaults to 50 times the number of CPU cores on the system.
 -  ``upstream_connections`` - determines the maximum number of TCP
    connections which Bono will open to the I-CSCF(s). Defaults to 50.
+-  ``trusted_peers`` - For Bono IBCF nodes, determines the peers which
+   Bono will accept connections to and from.
+-  ``ibcf_domain`` - For Bono IBCF nodes, allows for a domain alias to
+   be specified for the IBCF to allow for including IBCFs in routes as
+   domains instead of IPs.
 -  ``upstream_recycle_connections`` - the average number of seconds
    before Bono will destroy and re-create a connection to Sprout. A
    higher value means slightly less work, but means that DNS changes
