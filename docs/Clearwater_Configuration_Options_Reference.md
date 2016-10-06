@@ -128,6 +128,7 @@ This section describes optional configuration options, particularly for ensuring
 * `hs_listen_port` - the Diameter port which Homestead listens on. Defaults to 3868.
 * `ralf_listen_port`  - the Diameter port which Ralf listens on. Defaults to 3869 to avoid clashes when colocated with Homestead.
 * `alias_list` - this defines additional hostnames and IP addresses which Sprout or Bono will treat as local for the purposes of SIP routing (e.g. when removing Route headers).
+* `bono_alias_list` - this defines additional hostnames and IP addresses specifically for Bono which will be treated as local for the purposes of SIP routing.
 * `default_session_expires` - determines the Session-Expires value which Sprout will add to INVITEs, to force UEs to send keepalive messages during calls so they can be tracked for billing purposes. This cannot be set to a value less than 90 seconds, as specified in [RFC 4028, section 4](https://tools.ietf.org/html/rfc4028#section-4).
 * `max_session_expires` - determines the maximum Session-Expires/Min-SE value which Sprout will accept in requests. This cannot be set to a value less than 90 seconds, as specified in [RFC 4028, sections 4 and 5](https://tools.ietf.org/html/rfc4028#section-4).
 * `enum_server` - a comma-separated list of DNS servers which can handle ENUM queries.
@@ -208,6 +209,8 @@ This section describes settings that may vary between systems in the same deploy
 * `max_log_directory_size` - determines the maximum size of each Clearwater process's log_directory in bytes. Defaults to 1GB. If you are co-locating multiple Clearwater processes, you'll need to reduce this value proportionally.
 * `num_worker_threads` - for Sprout and Bono nodes, determines how many worker threads should be started to do SIP/IMS processing. Defaults to 50 times the number of CPU cores on the system.
 * `upstream_connections` - determines the maximum number of TCP connections which Bono will open to the I-CSCF(s). Defaults to 50.
+* `trusted_peers` - For Bono IBCF nodes, determines the peers which Bono will accept connections to and from.
+* `ibcf_domain` - For Bono IBCF nodes, allows for a domain alias to be specified for the IBCF to allow for including IBCFs in routes as domains instead of IPs.
 * `upstream_recycle_connections` - the average number of seconds before Bono will destroy and re-create a connection to Sprout. A higher value means slightly less work, but means that DNS changes will not take effect as quickly (as new Sprout nodes added to DNS will only start to receive messages when Bono creates a new connection and does a fresh DNS lookup).
 * `authentication` - by default, Clearwater performs authentication challenges (SIP Digest or IMS AKA depending on HSS configuration). When this is set to 'Y', it simply accepts all REGISTERs - obviously this is very insecure and should not be used in production.
 * `num_http_threads` (Homestead) - determines the number of HTTP worker threads that will be used to process requests. Defaults to 50 times the number of CPU cores on the system.
