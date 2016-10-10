@@ -266,6 +266,12 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   Used for routing of requests to targets with the appropriate features/capabilities in IMS. Mandatory for proxy components.
 *   Clearwater's Sprout registrar has full support for storing, matching, filtering and prioritizing bindings based on advertised capabilities and requirements as per these specifications.
 
+### AKAv2 ([RFC 4169](http://www.ietf.org/rfc/rfc4169.txt))
+
+*   An updated version of Authentication and Key Agreement, which incorporates the integrity key and cryptographic key into the response calculation.
+*   Whuile Bono doesn't support AKA, the IMS Core part of Clearwater (Sprout, Homestead and ralf) has support for both AKAv1 and AKAv2.
+
+
 ## Relevant to Clearwater and partially supported
 
 ### GRUUs ([RFC 5627](http://www.ietf.org/rfc/rfc5627.txt), plus [RFC 4122](http://www.ietf.org/rfc/rfc4122.txt), [draft-montemurro-gsma-imei-urn-11](http://datatracker.ietf.org/doc/draft-montemurro-gsma-imei-urn/) and [draft-atarius-dispatch-id-meid-urn-10](https://www.ietf.org/archive/id/draft-atarius-dispatch-meid-urn-10.txt))
