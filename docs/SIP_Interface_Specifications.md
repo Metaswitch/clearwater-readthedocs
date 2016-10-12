@@ -269,7 +269,7 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 ### AKAv2 ([RFC 4169](http://www.ietf.org/rfc/rfc4169.txt))
 
 *   An updated version of Authentication and Key Agreement, which incorporates the integrity key and cryptographic key into the response calculation.
-*   Whuile Bono doesn't support AKA, the IMS Core part of Clearwater (Sprout, Homestead and ralf) has support for both AKAv1 and AKAv2.
+*   Whuile Bono doesn't support AKA, the IMS Core part of Clearwater (Sprout, Homestead and Ralf) has support for both AKAv1 and AKAv2.
 
 
 ## Relevant to Clearwater and partially supported
