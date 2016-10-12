@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Nidoking <http://pokemon.wikia.com/wiki/Nidoking>`__\ ".
+"`Onix <http://pokemon.wikia.com/wiki/Onix>`__\ ".
 
 Architecture
 ------------
