@@ -500,6 +500,15 @@ User agent capabilities and caller preferences (`RFC 3840 <http://www.ietf.org/r
    filtering and prioritizing bindings based on advertised capabilities
    and requirements as per these specifications.
 
+AKAv2 (`RFC 4169 <http://www.ietf.org/rfc/rfc4169.txt>`__)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  An updated version of Authentication and Key Agreement, which
+   incorporates the integrity key and cryptographic key into the
+   response calculation.
+-  Whuile Bono doesn't support AKA, the IMS Core part of Clearwater
+   (Sprout, Homestead and Ralf) has support for both AKAv1 and AKAv2.
+
 Relevant to Clearwater and partially supported
 ----------------------------------------------
 

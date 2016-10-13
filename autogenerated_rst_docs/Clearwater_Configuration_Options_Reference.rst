@@ -290,19 +290,29 @@ e.g. ``icscf=5052``).
    Destination-Host and Destination-Realm Diameter AVPs. This is useful
    when your HSS's Diameter configuration does not match the DNS
    records.
--  ``hss_mar_lowercase_unknown`` - some Home Subscriber Servers
-   (particularly old releases of OpenIMSCore HSS) expect the string
-   'unknown' rather than 'Unknown' in Multimedia-Auth-Requests when
-   Clearwater cannot tell what authentication type is expected. Setting
-   this option to 'Y' will make Homestead send requests in this format.
--  ``hss_mar_force_digest`` - if Clearwater cannot tell what
-   authentication type a subscriber is trying to use, this forces it to
-   assume 'SIP Digest' and report that in the Multimedia-Auth-Request,
-   rather than 'Unknown'.
--  ``hss_mar_force_aka`` - if Clearwater cannot tell what authentication
-   type a subscriber is trying to use, this forces it to assume
-   'Digest-AKA-v1' and report that in the Multimedia-Auth-Request,
-   rather than 'Unknown'.
+-  ``hss_mar_scheme_unknown`` - if Clearwater cannot tell what
+   authentication type a subscriber is trying to use, this field
+   determines what authentication scheme it requests in the
+   Multimedia-Auth-Request. Default value is 'Unknown'.
+-  ``hss_mar_scheme_digest`` - if Clearwater determines a subscriber is
+   trying to use password-based digest authentication, this field
+   determines what authentication scheme it requests in the
+   Multimedia-Auth-Request. Default value is 'SIP Digest'.
+-  ``hss_mar_scheme_akav1`` - if Clearwater determines a subscriber is
+   trying to use AKAv1 authentication, this field determines what
+   authentication scheme it requests in the Multimedia-Auth-Request.
+   Default value is 'Digest-AKAv1-MD5'.
+-  ``hss_mar_scheme_akav2`` - if Clearwater determines a subscriber is
+   trying to use AKAv2 authentication, this field determines what
+   authentication scheme it requests in the Multimedia-Auth-Request.
+   Default value is 'Digest-AKAv2-SHA-256'.
+-  ``allow_fallback_ifcs`` - when Clearwater cannot find an Identity
+   element in the user profile XML from the HSS that matches the served
+   user, it will by default not invoke any services. When this is set to
+   Y, it will instead use the first set of Initial Filter Criteria in
+   the profile (giving the ability to work around HSSes that return
+   something unexpected, or the ability to get basic support for
+   wildcard public service identities).
 -  ``force_third_party_reg_body`` - if the HSS does not allow the
    IncludeRegisterRequest/IncludeRegisterResponse fields (which were
    added in 3GPP Rel 9) to be configured, setting
