@@ -31,9 +31,12 @@ Install the Clearwater RADIUS authentication package:
 The details of your RADIUS server will need to be entered into `/etc/pam_radius_auth.conf`. This file provides an example of how entries should be structured:
 * Multiple entries are allowed, but each must be on a new line.
 * Each line consists of three fields:
-    * `server[:port]` (The default is port 1812. All traffic will be UDP)
-    * `secret`
-    * `[timeout]` (Default timeout is 3 seconds)
+```
+    server[:port] (The default is port 1812. All traffic will be UDP)
+    secret
+    [timeout] (Default timeout is 3 seconds)
+```
+
 * The secret is shared between each client and the server to allow simple encryption of passwords. The secret must match the entry for the client in the RADIUS server configuration.
 * Both the port and timeout entries are optional.
 
@@ -76,9 +79,9 @@ It holds the information of the default user to which unknown users are mapped. 
 
 Only the first line of this file is parsed. The user entry is the same format as is found in `/etc/passwd`. Replacing this file with a different user entry will map unknown users to the entry provided.
 
-### pam.d/sshd
+### pam.d/sshd and pam.d/login
 
-The PAM configuration file for the sshd process is found at `/etc/pam.d/sshd`. As part of the installation, the 3 lines around `auth sufficient pam_radius_auth.so` are added at the top of the file, configuring PAM to attempt RADIUS authentication before other methods. It will look like the following:
+The PAM configuration file for the sshd and login processes are found at `/etc/pam.d/sshd` and `/etc/pam.d/login` respectively. As part of the installation, the 3 lines around `auth sufficient pam_radius_auth.so` are added at the top of these files, configuring PAM to attempt RADIUS authentication before other methods. It will look like the following:
 
     # PAM configuration for the Secure Shell service
     # +clearwater-radius-auth
@@ -86,7 +89,7 @@ The PAM configuration file for the sshd process is found at `/etc/pam.d/sshd`. A
     # -clearwater-radius-auth
     # Standard Un*x authentication.
     
-It is strongly recommended that users do not modify this entry. Further information on this configuration can be found at [FreeRADIUS](http://freeradius.org/pam_radius_auth/).
+It is strongly recommended that users do not modify these entries. Further information on this configuration can be found at [FreeRADIUS](http://freeradius.org/pam_radius_auth/).
 
 ### nsswitch.conf
 

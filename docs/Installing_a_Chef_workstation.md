@@ -99,62 +99,11 @@ To allow the Clearwater extensions to create AWS instances or configure Route53 
 ## Add deployment-specific configuration
 
 Now add the following lines to the bottom of your `~/.chef/knife.rb`
-file.
+file, using the AWS deployment keys you obtained above.
 
     # AWS deployment keys.
     knife[:aws_access_key_id]     = "<accessKey>"
     knife[:aws_secret_access_key] = "<secretKey>"
-
-    # Signup key. Anyone with this key can create accounts
-    # on the deployment. Set to a secure value.
-    knife[:signup_key]        = "secret"
-
-    # TURN workaround password, used by faulty WebRTC clients.
-    # Anyone with this password can use the deployment to send
-    # arbitrary amounts of data. Set to a secure value.
-    knife[:turn_workaround]   = "password"
-
-    # Ellis API key. Used by internal scripts to
-    # provision, update and delete user accounts without a password.
-    # Set to a secure value.
-    knife[:ellis_api_key]     = "secret"
-
-    # Ellis cookie key. Used to prevent spoofing of Ellis cookies. Set
-    # to a secure value.
-    knife[:ellis_cookie_key]  = "secret"
-
-    # SMTP credentials as supplied by your email provider.
-    knife[:smtp_server]       = "localhost"
-    knife[:smtp_username]     = ""
-    knife[:smtp_password]     = ""
-
-    # Sender to use for password recovery emails. For some
-    # SMTP servers (e.g., Amazon SES) this email address
-    # must be validated or email sending will fail.
-    knife[:email_sender]      = "clearwater@example.com"
-
-Fill in the values appropriate to your deployment using a text editor
-as directed.
-
-* The AWS deployment keys are the ones you obtained above.
-
-* The keys and passwords marked "Set to a secure value" above should
-  be set to secure random values, to protect your deployment from
-  unauthorised access. An easy way to generate a secure random key on
-  a Linux system is as follows:
-
-        head -c6 /dev/random | base64
-
-  The `signup_key` must be supplied by new users when they create an
-  account on the system.
-
-  The `turn_workaround` must be supplied by certain WebRTC clients
-  when using TURN. It controls access to media relay function.
-
-  The `ellis_api_key` and `ellis_cookie_key` are used internally.
-
-* The SMTP credentials are required only for password recovery.
-  If you leave them unchanged, this function will not work.
 
 ## Test your settings
 
@@ -163,18 +112,6 @@ Test that knife is configured correctly
     knife client list
 
 This should return a list of clients and not raise any errors.
-
-## Upload Clearwater definitions to Chef server
-
-The Chef server needs to be told the definitions for the various Clearwater node types.  To do this, run
-
-    cd ~/chef
-    knife cookbook upload apt
-    knife cookbook upload chef-solo-search
-    knife cookbook upload clearwater
-    find roles/*.rb -exec knife role from file {} \;
-
-You will need to re-do this step if make any changes to your `knife.rb` settings.
 
 ## Next steps
 

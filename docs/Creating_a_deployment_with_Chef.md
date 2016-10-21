@@ -7,6 +7,20 @@ This is the final stage in creating a Clearwater deployment using the [automated
 * You must have [created the chef workstation machine](Installing_a_Chef_workstation.md) and have SSH access to the ubuntu user on it.
 * You must have [created a deployment environment](Creating_a_deployment_environment.md) and know its name, `<name>`.
 
+## Upload Clearwater definitions to Chef server
+
+The Chef server needs to be told the definitions for the various Clearwater node types.  To do this, run
+
+    cd ~/chef
+    knife cookbook upload apt
+    knife cookbook upload chef-solo-search
+    knife cookbook upload clearwater
+    find roles/*.rb -exec knife role from file {} \;
+
+You will need to do this step if the Clearwater definitions have never been uploaded to this Chef server before, or if the cookbooks or roles have changed since the last upload.
+
+Note that cookbooks are versioned, but roles aren't, so uploading a changed role will affect other people deploying Clearwater from the same Chef server.
+
 ## Creating a Deployment
 
 You now have two options - you can create an All-in-One node, where all the Clearwater components are run on a single machine instance, or a larger deployment which can potentially have numerous instances of each component.
@@ -17,6 +31,8 @@ To create a single machine instance running all the Clearwater components, run t
 
 	cd ~/chef
 	knife box create cw_aio -E <name>
+
+Our all-in-one nodes are created with the signup key 'secret', not the value configured in `knife.rb` (which is used for non-all-in-one nodes).
 
 #### Optional arguments
 

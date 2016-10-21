@@ -74,11 +74,12 @@ Clearwater requires the following DNS records to be configured.
     *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV) - cluster SRV records for bono, resolving to port 5060 on each of the per-node records
 *   sprout
     *   `sprout-1.<zone>`, `sprout-2.<zone>`... (A and/or AAAA) - per-node records for sprout
-    *   `scscf.sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
+    *   `scscf.sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
     *   `scscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.sprout.<zone>`
     *   `_sip._tcp.scscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5054 on each of the per-node records
-    *   `icscf.sprout.<zone>` (NAPTR, only required if using sprout as an I-CSCF) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.icscf.sprout.<zone>`
-    *   `_sip._tcp.icscf.sprout.<zone>` (SRV, only required if using sprout as an I-CSCF) - cluster SRV record for sprout, resolving to port 5052 on each of the per-node records
+    *   `icscf.sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes that provide I-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
+    *   `icscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.icscf.sprout.<zone>`
+    *   `_sip._tcp.icscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5052 on each of the per-node records
 *   homestead
     *   `homestead-1.<zone>`, `homestead-2.<zone>`... (A and/or AAAA) - per-node records for homestead
     *   `hs.<zone>` (A and/or AAAA) - cluster record for homestead, resolving to all homestead nodes
@@ -221,27 +222,37 @@ For Clearwater, you should be able to adapt the following example zone file by c
     sprout                 IN AAAA  3::1
     sprout                 IN AAAA  3::2
     ;
+    ; Cluster A and AAAA records - P-CSCFs that don't support RFC 3263 will simply
+    ; resolve the A or AAAA records and pick randomly from this set of addresses.
+    scscf.sprout           IN A     3.0.0.1
+    scscf.sprout           IN A     3.0.0.2
+    scscf.sprout           IN AAAA  3::1
+    scscf.sprout           IN AAAA  3::2
+    ;
     ; NAPTR and SRV records - these indicate TCP support only and then resolve
     ; to port 5054 on the per-node records defined above.
     sprout                 IN NAPTR 1 1 "S" "SIP+D2T" "" _sip._tcp.sprout
     _sip._tcp.sprout       IN SRV   0 0 5054 sprout-1
     _sip._tcp.sprout       IN SRV   0 0 5054 sprout-2
     ;
-    ; Per-node records for I-CSCF (if enabled) - not required to have both
-    ; IPv4 and IPv6 records
-    sprout-3               IN A     3.0.0.3
-    sprout-3               IN AAAA  3::3
+    ; NAPTR and SRV records for S-CSCF - these indicate TCP support only and
+    ; then resolve to port 5054 on the per-node records defined above.
+    scscf.sprout           IN NAPTR 1 1 "S" "SIP+D2T" "" _sip._tcp.scscf.sprout
+    _sip._tcp.scscf.sprout IN SRV   0 0 5054 sprout-1
+    _sip._tcp.scscf.sprout IN SRV   0 0 5054 sprout-2
     ;
     ; Cluster A and AAAA records - P-CSCFs that don't support RFC 3263 will simply
     ; resolve the A or AAAA records and pick randomly from this set of addresses.
-    icscf.sprout           IN A     3.0.0.3
-    icscf.sprout           IN AAAA  3::3
+    icscf.sprout           IN A     3.0.0.1
+    icscf.sprout           IN A     3.0.0.2
+    icscf.sprout           IN AAAA  3::1
+    icscf.sprout           IN AAAA  3::2
     ;
-    ; NAPTR and SRV records for I-CSCF (if enabled) - these indicate TCP
-    ; support only and then resolve to port 5052 on the per-node records
-    ; defined above.
+    ; NAPTR and SRV records for I-CSCF - these indicate TCP support only and
+    ; then resolve to port 5052 on the per-node records defined above.
     icscf.sprout           IN NAPTR 1 1 "S" "SIP+D2T" "" _sip._tcp.icscf.sprout
-    _sip._tcp.icscf.sprout IN SRV   0 0 5052 sprout-3
+    _sip._tcp.icscf.sprout IN SRV   0 0 5052 sprout-1
+    _sip._tcp.icscf.sprout IN SRV   0 0 5052 sprout-2
 
     ; homestead
     ; =========

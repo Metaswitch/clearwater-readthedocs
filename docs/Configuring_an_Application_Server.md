@@ -56,10 +56,10 @@ Ellis allows you to specify a mapping between application server names and <Init
 
 ```
 {
-"MMTEL" : "<InitialFilterCriteria><Priority>0</Priority><TriggerPoint><ConditionTypeCNF></ConditionTypeCNF><SPT><ConditionNegated>0</ConditionNegated><Group>0</Group><Method>INVITE</Method><Extension></Extension></SPT></TriggerPoint><ApplicationServer><ServerName>sip:mmtel.example.com</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria>", 
+"MMTEL" : "<InitialFilterCriteria><Priority>0</Priority><TriggerPoint><ConditionTypeCNF></ConditionTypeCNF><SPT><ConditionNegated>0</ConditionNegated><Group>0</Group><Method>INVITE</Method><Extension></Extension></SPT></TriggerPoint><ApplicationServer><ServerName>sip:mmtel.example.com</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria>",
 "Voicemail" : "<InitialFilterCriteria><Priority>1</Priority><TriggerPoint><ConditionTypeCNF></ConditionTypeCNF><SPT><ConditionNegated>0</ConditionNegated><Group>0</Group><Method>INVITE</Method><Extension></Extension></SPT></TriggerPoint><ApplicationServer><ServerName>sip:vm.example.com</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria>"
 }
-``` 
+```
 Once this is saved, the list of application server names will appear in the Ellis UI (on the 'Application Servers' tab of the Configure dialog), and selecting or deselecting them will add or remove the relevant XML from Homestead. This change takes effect immediately. If an <InitialFilterCriteria> node in the iFC XML is not included in app-servers.json, Ellis will leave it untouched.
 
 ### Direct configuration via cURL
@@ -82,7 +82,7 @@ To retrieve the current configuration, invoke `curl` as follows. You must be abl
 
     curl http://$hs_hostname:8889/public/$user/service_profile
 
-This will return a 303 if the user exists, with the service profile URL in the Location header, e.g. 
+This will return a 303 if the user exists, with the service profile URL in the Location header, e.g.
 
     Location: /irs/<irs-uuid>/service_profiles/<service-profile-uuid>
 
@@ -122,3 +122,34 @@ To update the configuration, invoke `curl` as follows.  The first stage builds t
     } | curl -X PUT http://$hs_hostname:8889/irs/<irs-uuid>/service_profiles/<service-profile-uuid>/filter_criteria --data-binary @-
 
 The subscriber will now have the desired configuration. You can confirm this by running the retrieval command again.
+
+## SIP-over-UDP configuration
+
+While our default configuration for Clearwater deployments is to send SIP over TCP, it is possible to create a SIP-over-UDP deployment, with certain restrictions.
+
+### Restrictions
+
+If you want to create a SIP-over-UDP deployment, it will be necessary for all of Sprout's SIP peers to send SIP over UDP to it. It is not possible to set up some peers to use TCP and some to use UDP. This is because Sprout won't do UDP/TCP interworking.
+
+### Configuration
+
+To enable SIP-over-UDP, you will need to set the following configuration options.
+
+In `/etc/clearwater/shared_config` set or update the fields:
+
+    scscf_uri="sip:scscf.<sprout_hostname>;transport=udp"
+    disable_tcp_switch=Y
+
+In `/etc/clearwater/local_config` set or update the field on each of your Sprout nodes:
+
+    scscf_node_uri="sip:<local_ip>:5054;transport=udp"
+
+You may also need to:
+
+ * Set up your P-CSCF and any application servers to send SIP over UDP.
+
+ * Add new SRV entries to your DNS server for your Application Server.
+
+ * Add `transport=udp` to your Application Server's SIP URI on your HSS.
+
+You should now be able to make calls where SIP is sent over UDP.

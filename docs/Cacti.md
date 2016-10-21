@@ -18,10 +18,8 @@ This document describes how to
 Assuming you've followed the [Automated Chef install](Automated_Install.md),
 here are the steps to create and configure a Cacti node:
 
-1.  use knife box create to create a Cacti node - `knife box create -E
-    <name> cacti`
-2.  set up a DNS entry for it - `knife dns record create -E <name>
-    cacti -z <root> -T A --public cacti -p <name>`
+1.  use knife box create to create a Cacti node - `knife box create -E <name> cacti`
+2.  set up a DNS entry for it - `knife dns record create -E <name> cacti -z <root> -T A --public cacti -p <name>`
 3.  create graphs for all existing nodes by running `knife cacti update -E <name>`
 4.  point your web browser at `cacti.<name>.<root>/cacti/`  (you may need to wait for the DNS entry to propagate before this step works)
 
@@ -35,7 +33,7 @@ you want to use to monitor Clearwater, then:
 
 1.  install Cacti on a node by running `sudo apt-get install cacti cacti-spine`
 2.  accept all the configuration defaults
-3.  login (admin/admin) and set a new password
+3.  login to the web UI at `http://<IP address>/cacti` (using the credentials admin/admin) and set a new password
 4.  modify configuration by
     1.  going to Devices and deleting "localhost"
     2.  going to Settings-\>Poller and set "Poller Type" to "spine" and
