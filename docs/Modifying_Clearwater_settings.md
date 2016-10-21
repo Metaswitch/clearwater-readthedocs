@@ -48,6 +48,22 @@ If you are not using automatic clustering do the following on *each* node:
 * Make the necessary changes to the file.
 * Run `sudo service sprout reload` to make sprout pick up the changes.
 
+## Modifying DNS Config
+
+*This configuration can be freely modified without impacting service*
+
+It's possible to add static overrides to DNS to a clearwater node. This is done by adding entries to the `/etc/clearwater/dns_config`. Currently, only CNAME records are supported and this is only used by Chronos.
+
+To change this file, if you are using Clearwater's [automatic configuration_sharing](Automatic_Clustering_Config_Sharing) functionality:
+
+* Edit the file on one of your nodes in each site.
+* Run `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_dns_config`.
+* The change will be automatically propagated around the site and will start being used.
+
+If you are not using automatic clustering do the following on each Vellum node:
+
+* Make the necessary changes to the file.
+* Run `sudo service chronos reload-dns` to make Chronos pick up the changes.
 
 ## Starting from scratch
 
