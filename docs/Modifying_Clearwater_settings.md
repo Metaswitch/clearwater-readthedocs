@@ -52,9 +52,9 @@ If you are not using automatic clustering do the following on *each* node:
 
 *This configuration can be freely modified without impacting service*
 
-It's possible to add static overrides to DNS to a clearwater node. This is done by adding entries to the `/etc/clearwater/dns_config`. Currently, only CNAME records are supported and this is only used by Chronos.
+It's possible to add static overrides to DNS to a clearwater node. This is done by adding entries to `/etc/clearwater/dns_config`. Currently, only CNAME records are supported and this is only used by Chronos.
 
-To change this file, if you are using Clearwater's [automatic configuration_sharing](Automatic_Clustering_Config_Sharing) functionality:
+To change this file, if you are using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing) functionality:
 
 * Edit the file on one of your nodes in each site.
 * Run `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_dns_config`.
