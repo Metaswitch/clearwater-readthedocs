@@ -73,8 +73,8 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `sprout_registation_store` - this is the locations of Sprout's registration stores. It has the format <site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
 * `ralf_session_store` - this is the locations of Ralf's session stores. It has the format <site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
 * `memento_auth_store` - this is the location of Memento's authorization vector store. It just has the format <domain>[:port].
-* `sprout-chronos-callback-uri` - the callback hostname used on Sprout's Chronos timers. If not present, defaults to the host specified in `sprout-hostname`. In a GR deployment, should be set to a deployment-wide Sprout hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
-* `ralf-chronos-callback-uri` - the callback hostname used on Ralf's Chronos timers. If not present, defaults to the host specified in `ralf-hostname`. In a GR deployment, should be set to a deployment-wide Ralf hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
+* `sprout_chronos_callback_uri` - the callback hostname used on Sprout's Chronos timers. If not present, defaults to the host specified in `sprout-hostname`. In a GR deployment, should be set to a deployment-wide Sprout hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
+* `ralf_chronos_callback_uri` - the callback hostname used on Ralf's Chronos timers. If not present, defaults to the host specified in `ralf-hostname`. In a GR deployment, should be set to a deployment-wide Ralf hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
 
 ### Sproutlet options
 
@@ -225,7 +225,7 @@ This section describes settings that may vary between systems in the same deploy
 
 ## DNS Config
 
-This section describes the static DNS config which can be used by Chronos. This is set in `/etc/clearwater/dns_config`. Currently, the only supported record type is CNAME. The file has the format:
+This section describes the static DNS config which can be used to override DNS results. This is set in `/etc/clearwater/dns_config`. Currently, the only supported record type is CNAME and the only component which uses this is Chronos. The file has the format:
 
     {
       "hostnames": [
