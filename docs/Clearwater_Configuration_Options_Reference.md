@@ -73,6 +73,8 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `sprout_registation_store` - this is the locations of Sprout's registration stores. It has the format <site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
 * `ralf_session_store` - this is the locations of Ralf's session stores. It has the format <site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
 * `memento_auth_store` - this is the location of Memento's authorization vector store. It just has the format <domain>[:port].
+* `sprout_chronos_callback_uri` - the callback hostname used on Sprout's Chronos timers. If not present, defaults to the host specified in `sprout-hostname`. In a GR deployment, should be set to a deployment-wide Sprout hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
+* `ralf_chronos_callback_uri` - the callback hostname used on Ralf's Chronos timers. If not present, defaults to the host specified in `ralf-hostname`. In a GR deployment, should be set to a deployment-wide Ralf hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
 
 ### Sproutlet options
 
@@ -220,6 +222,23 @@ This section describes settings that may vary between systems in the same deploy
 * `upstream_recycle_connections` - the average number of seconds before Bono will destroy and re-create a connection to Sprout. A higher value means slightly less work, but means that DNS changes will not take effect as quickly (as new Sprout nodes added to DNS will only start to receive messages when Bono creates a new connection and does a fresh DNS lookup).
 * `authentication` - by default, Clearwater performs authentication challenges (SIP Digest or IMS AKA depending on HSS configuration). When this is set to 'Y', it simply accepts all REGISTERs - obviously this is very insecure and should not be used in production.
 * `num_http_threads` (Homestead) - determines the number of HTTP worker threads that will be used to process requests. Defaults to 50 times the number of CPU cores on the system.
+
+## DNS Config
+
+This section describes the static DNS config which can be used to override DNS results. This is set in `/etc/clearwater/dns_config`. Currently, the only supported record type is CNAME and the only component which uses this is Chronos. The file has the format:
+
+    {
+      "hostnames": [
+        {
+          "name": "<hostname 1>",
+          "records": [{"rrtype": "CNAME", "target": "<target for hostname 1>"}]
+        },
+        {
+          "name": "<hostname 2>",
+          "records": [{"rrtype": "CNAME", "target": "<target for hostname 2>"}]
+        }
+      ]
+    }
 
 ## Other configuration options
 
