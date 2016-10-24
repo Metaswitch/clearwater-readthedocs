@@ -327,11 +327,6 @@ and propagate it around the cluster.
 
     /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
 
-Then upload it to the shared configuration database by running
-``sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json``.
-This means that any sprout nodes that you add to the cluster will
-automatically learn the configuration.
-
 Provision Telephone Numbers in Ellis
 ------------------------------------
 
