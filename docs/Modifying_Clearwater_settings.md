@@ -10,8 +10,8 @@ Settings in `/etc/clearwater/shared_config` can be safely changed without entire
 
 To change one of these settings, if you are using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality:
 
-*   Edit `/etc/clearwater/shared_config` on *one* node and change to the new value. Changes will be logged to `/var/log/syslog` and to the console.
-*   Run `/usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config` to upload the new config to etcd.
+*   Edit `/etc/clearwater/shared_config` on *one* node and change to the new value.
+*   Run `/usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config` to upload the new config to etcd. Changes will be logged to `/var/log/syslog` and to the console.
 
 If you are not using automatic clustering, do the following on *each* node:
 
