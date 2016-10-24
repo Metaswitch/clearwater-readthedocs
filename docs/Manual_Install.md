@@ -203,8 +203,6 @@ Now run the following to upload the configuration to a shared database and propa
 
     /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
 
-Then upload it to the shared configuration database by running `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json`. This means that any sprout nodes that you add to the cluster will automatically learn the configuration.
-
 ## Provision Telephone Numbers in Ellis
 
 Log onto you Ellis node and provision a pool of numbers in Ellis.  The command given here will generate 1000 numbers starting at `sip:6505550000@<zone>`, meaning none of the generated numbers will be routable outside of the Clearwater deployment.  For more details on creating numbers, see the [create_numbers.py documentation](https://github.com/Metaswitch/ellis/blob/dev/docs/create-numbers.md).
