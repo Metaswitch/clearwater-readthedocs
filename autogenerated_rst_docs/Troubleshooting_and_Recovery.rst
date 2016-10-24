@@ -31,6 +31,12 @@ General
    stress through your deployment, you should revert the log levels back
    to the default level.
 
+-  Changes to ``shared_config`` are detected each time
+   ``upload_shared_config`` is run (see `Modifying Clearwater
+   settings <Modifying_Clearwater_settings.html>`__), and logged to
+   ``/var/log/syslog`` on the node from which the configuration was
+   changed.
+
 Ellis
 -----
 

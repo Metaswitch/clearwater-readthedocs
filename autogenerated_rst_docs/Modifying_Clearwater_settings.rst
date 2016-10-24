@@ -25,7 +25,8 @@ sharing <Automatic_Clustering_Config_Sharing.html>`__ functionality:
    the new value.
 -  Run
    ``/usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config``
-   to upload the new config to etcd.
+   to upload the new config to etcd. Changes will be logged to
+   ``/var/log/syslog`` and to the console.
 
 If you are not using automatic clustering, do the following on *each*
 node:
