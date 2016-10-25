@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Onix <http://pokemon.wikia.com/wiki/Onix>`__\ ".
+"`Quilava <http://pokemon.wikia.com/wiki/Quilava>`__\ ".
 
 Architecture
 ------------
