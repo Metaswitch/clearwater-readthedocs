@@ -101,6 +101,8 @@ Clearwater.
 -  Server: ``<domain>`` (or ``<aio-identity>`` on an All-in-One node)
 -  Username: ``<username>@<domain>``
 -  Password: ``<password>``
+-  Use rport: ``true`` (this is required if your SIP client is behind a
+   NAT wen contacting your deployment).
 
 *Extra configuration to use an All-in-One node*
 
