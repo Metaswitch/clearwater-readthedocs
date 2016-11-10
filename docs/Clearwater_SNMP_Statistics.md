@@ -74,15 +74,15 @@ Sprout nodes provide the following statistics:
 * The average latency, variance, highest latency and lowest latency for requests to Homestead's `/impu/<public ID>/reg-data` endpoint, indexed by time period.
 * The average latency, variance, highest latency and lowest latency for requests to Homestead's `/impu/<public ID>/location` endpoint, indexed by time period.
 * The average latency, variance, highest latency and lowest latency for requests to Homer, indexed by time period.
-* The number of attempts, successes and failures for AKA authentications on register requests, indexed by time period (AKA authentication attempts with a correct response but that fail due to the sequence number in the nonce being out of sync are counted as successes).
-* The number of attempts, successes and failures for SIP digest authentications on register requests, indexed by time period (authentication attempts with a correct response but that fail due to being stale are counted as failures).
-* The number of attempts, successes and failures for authentications on non-register requests, indexed by time period.
-* The number of attempts, successes and failures for initial registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).
-* The number of attempts, successes and failures for re-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).
-* The number of attempts, successes and failures for de-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).
-* The number of attempts, successes and failures for third-party initial registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).
-* The number of attempts, successes and failures for third-party re-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authetication stats and not here).
-* The number of attempts, successes and failures for third-party de-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).
+* The number of attempts, successes and failures for AKA authentications on register requests, indexed by time period (AKA authentication attempts with a correct response but that fail due to the sequence number in the nonce being out of sync are counted as successes).   Also (for convenience) the percentage of such authentications that were successful.
+* The number of attempts, successes and failures for SIP digest authentications on register requests, indexed by time period (authentication attempts with a correct response but that fail due to being stale are counted as failures).   Also (for convenience) the percentage of such authentications that were successful.
+* The number of attempts, successes and failures for authentications on non-register requests, indexed by time period.  Also (for convenience) the percentage of such authentications that were successful.
+* The number of attempts, successes and failures for initial registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).  Also (for convenience) the percentage of such registrations that were successful.
+* The number of attempts, successes and failures for re-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).  Also (for convenience) the percentage of such re-registrations that were successful.
+* The number of attempts, successes and failures for de-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).  Also (for convenience) the percentage of such de-registrations that were successful.
+* The number of attempts, successes and failures for third-party initial registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).  Also (for convenience) the percentage of such registrations that were successful.
+* The number of attempts, successes and failures for third-party re-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authetication stats and not here).  Also (for convenience) the percentage of such re-registrations that were successful.
+* The number of attempts, successes and failures for third-party de-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).  Also (for convenience) the percentage of such de-registrations that were successful.
 * The number of requests routed by the S-CSCF according to a route pre-loaded by an app server, indexed by time period.
 * The number of parallel TCP connections to each Homestead node.
 * The number of parallel TCP connections to each Homer node.
@@ -96,12 +96,14 @@ Sprout nodes provide the following statistics:
 * The number of timers, and number of invalid timers, processed over the last 5 seconds.
 * The total number of timers being managed by a Chronos node at the current time.
 * The weighted average of total timer count, variance, highest timer count, lowest timer count, indexed by time period.
-* The number of attempts, successes and failures for incoming SIP transactions for the ICSCF, indexed by time period and request type.
-* The number of attempts, successes and failures for outgoing SIP transactions for the ICSCF, indexed by time period and request type.
-* The number of attempts, successes and failures for incoming SIP transactions for the SCSCF, indexed by time period and request type.
-* The number of attempts, successes and failures for outgoing SIP transactions for the SCSCF, indexed by time period and request type.
-* The number of attempts, successes and failures for incoming SIP transactions for the BGCF, indexed by time period and request type.
-* The number of attempts, successes and failures for outgoing SIP transactions for the BGCF, indexed by time period and request type.
+* The number of attempts, successes and failures for incoming SIP transactions for the ICSCF, indexed by time period and request type.   Also (for convenience) the percentage of such transactions that were successful.
+* The number of attempts, successes and failures for outgoing SIP transactions for the ICSCF, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
+* The number of attempts, successes and failures to establish terminating sessions at the I-CSCF, indexed by time period.  Also (for convenience) the percentage of such attempts that were successful.   Each INVITE received by the I-CSCF (from the originating S-CSCF) is counted as a terminating session attempt.  Such an attempt is considered successful if the I-CSCF responds with a 180 RINGING or 200 OK.
+* The number of attempts, successes and failures to establish terminating sessions at the I-CSCF with success measured from the perspective of the network, indexed by time period.  Also (for convenience) the percentage of such attempts that were successful.  This is the same as the previous set of statistics, but now sessions are considered to be established successfully if either: the I-CSCF responds with a 180 RINGING or 200 OK; the session is canceled by the originating party before being established; the session is rejected with 486 BUSY HERE, 600 BUSY EVERYWHERE, 404 NOT FOUND or 484 ADDRESS INCOMPLETE.
+* The number of attempts, successes and failures for incoming SIP transactions for the SCSCF, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
+* The number of attempts, successes and failures for outgoing SIP transactions for the SCSCF, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
+* The number of attempts, successes and failures for incoming SIP transactions for the BGCF, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
+* The number of attempts, successes and failures for outgoing SIP transactions for the BGCF, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
 * The permitted request rate (PRR) is an estimate for the sustainable request rate without causing large latency. Sprout provides a weighted average permitted request rate, variance, highest PRR, and lowest PRR, indexed by time period.
 * The value of the smoothed latency at the last permitted request rate update.
 * The value of the target (maximum permissible) latency at the last permitted request rate update.
@@ -115,6 +117,8 @@ Sprout nodes provide the following statistics:
 * The number of registrations active at the time queried. ([stateful](https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html))
 * The number of bindings active at the time queried. ([stateful](https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html))
 * The number of subscriptions active at the time queried. ([stateful](https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html))
+* The count, average, variance, and high and low watermarks for originating audio session setup time at the S-CSCF, indexed by time period.   For the purposes of these stats a call is considered to be an audio call if video is not specified in the SDP on the initial INVITE.  The session setup time is measured as the time between receiving the originating INVITE and sending the first successful response (e.g. 180 RINGING or 200 OK).  
+* The count, average, variance, and high and low watermarks for originating video session setup time at the S-CSCF, indexed by time period.   For the purposes of these stats a call is considered to be a video call if video is specified in the SDP on the initial INVITE.  The session setup time is measured as the time between receiving the originating INVITE and sending the first successful response (e.g. 180 RINGING or 200 OK).  
 
 ### Ralf statistics
 
@@ -152,26 +156,26 @@ Homestead nodes provide the following statistics:
 
 Call Diversion App Server nodes provide the following statistics:
 
-* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.
-* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.
+* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
+* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
 
 ### Memento App Server Statistics
 
 Memento App Server nodes provide the following statistics:
 
-* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.
-* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.
+* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
+* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
 
 ### MMTel App Server Statistics
 
 MMTel App Server nodes provide the following statistics:
 
-* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.
-* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.
+* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
+* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
 
 ### Gemini App Server Statistics
 
 Gemini App Server nodes provide the following statistics:
 
-* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.
-* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.
+* The number of attempts, successes and failures for incoming SIP transactions, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
+* The number of attempts, successes and failures for outgoing SIP transactions, indexed by time period and request type.  Also (for convenience) the percentage of such transactions that were successful.
