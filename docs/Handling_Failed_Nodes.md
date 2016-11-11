@@ -30,7 +30,7 @@ To recover from this state:
     * running `sudo service clearwater-etcd force-new-cluster`. This will warn that this is dangerous and should only be run during this process; choose to proceed.
     * running `clearwater-etcdctl member list` to check that the cluster only has A in
     * running `clearwater-etcdctl cluster-health` to check that the cluster is healthy
-    * running `clearwater-etcdctl get configuration/shared_config` to check that the data is safe. 
+    * running `clearwater-etcdctl get configuration/shared_config` to check that the data is safe.
     * running `sudo monit monitor -g etcd` to put etcd back under monit control
 * get B to join that cluster by:
     * editing `etcd_cluster` in `/etc/clearwater/local_config` to just contain A's IP (e.g. `etcd_cluster=10.0.0.1`)
@@ -48,37 +48,37 @@ To recover from this state:
 
 ## Removing a Node From a Data Store
 
-The `mark_node_failed` script can be used to remove a failed node from a back-end data store. You will need to know the type of the failed node (e.g. "sprout") and its IP address. To remove the failed node log onto a working node in the same site and run the following commands (depending on the failed node's type). If you are removing multiple nodes simultaneously, ensure that you run the `mark_node_failed` scripts for each store type simultaneously (e.g. for multiple sprout removal, mark all failed nodes for memcached simultaneously first, and then mark all failed nodes for chronos).
+The `cw-mark_node_failed` script can be used to remove a failed node from a back-end data store. You will need to know the type of the failed node (e.g. "sprout") and its IP address. To remove the failed node log onto a working node in the same site and run the following commands (depending on the failed node's type). If you are removing multiple nodes simultaneously, ensure that you run the `cw-mark_node_failed` scripts for each store type simultaneously (e.g. for multiple sprout removal, mark all failed nodes for memcached simultaneously first, and then mark all failed nodes for chronos).
 
 If you cannot log into a working node in the same site (e.g. because an entire geographically
 redundant site has been lost), you can use a working node in the other site, but in this case you
 must run `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_remote_node_failed` instead
-of `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed`.
+of `cw-mark_node_failed`.
 
 If you are using separate signaling and management networks, you must use the signaling IP address of the failed node as the failed node IP in the commands below.
 
 ### Sprout
 
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "sprout" "memcached" <failed node IP>
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "sprout" "chronos" <failed node IP>
+    sudo cw-mark_node_failed "sprout" "memcached" <failed node IP>
+    sudo cw-mark_node_failed "sprout" "chronos" <failed node IP>
 
 ### Homestead
 
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "homestead" "cassandra" <failed node IP>
+    sudo cw-mark_node_failed "homestead" "cassandra" <failed node IP>
 
 ### Homer
 
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "homer" "cassandra" <failed node IP>
+    sudo cw-mark_node_failed "homer" "cassandra" <failed node IP>
 
 ### Ralf
 
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "ralf" "chronos" <failed node IP>
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "ralf" "memcached" <failed node IP>
+    sudo cw-mark_node_failed "ralf" "chronos" <failed node IP>
+    sudo cw-mark_node_failed "ralf" "memcached" <failed node IP>
 
 ### Memento
 
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "cassandra" <failed node IP>
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "memcached" <failed node IP>
+    sudo cw-mark_node_failed "memento" "cassandra" <failed node IP>
+    sudo cw-mark_node_failed "memento" "memcached" <failed node IP>
 
 ## Complete Site Failure
 
@@ -100,7 +100,7 @@ failed site from etcd, but not from the Cassandra/Chronos/Memcached datastore
 clusters. To do this, follow the ["Removing a Node From a Data
 Store"](Handling_Failed_Nodes.md#removing-a-node-from-a-data-store)
 instructions above for each failed node, using the `mark_remote_node_failed`
-script instead of the `mark_node_failed` script.
+script instead of the `cw-mark_node_failed` script.
 
 You should now have a working single-site cluster, which can continue to run as
 a single site, or be safely paired with a new remote site.

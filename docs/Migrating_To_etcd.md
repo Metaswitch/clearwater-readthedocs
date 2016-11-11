@@ -87,10 +87,10 @@ Now you need to tell the cluster manager about the current topology of the vario
 
 Run the following commands on *one* of your Sprout nodes. This will upload the configuration that is shared across the deployment to etcd. If you add any new nodes to the deployment they will automatically learn this configuration from etcd.
 
-* `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config`
-* `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json`
-* `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_bgcf_json`
-* `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_enum_json`
+* `sudo cw-upload_shared_config`
+* `sudo cw-upload_scscf_json`
+* `sudo cw-upload_bgcf_json`
+* `sudo cw-upload_enum_json`
 
 ## Tidy Up
 

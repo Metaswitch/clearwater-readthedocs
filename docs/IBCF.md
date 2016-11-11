@@ -46,12 +46,12 @@ Refer to the [ENUM guide](ENUM.md) for more about how to configure ENUM.
 
 ## BGCF Configuration
 
-BGCF (Border Gateway Control Function) configuration is stored in the `bgcf.json` file in `/etc/clearwater` on each Sprout node (both I- and S-CSCF).  The `bgcf.json` file stores two types of mappings. 
+BGCF (Border Gateway Control Function) configuration is stored in the `bgcf.json` file in `/etc/clearwater` on each Sprout node (both I- and S-CSCF).  The `bgcf.json` file stores two types of mappings.
 
 - The first maps from SIP trunk IP addresses and/or domain  names to IBCF SIP URIs
-- The second maps from a routing number (contained in the `rn` parameter of a Tel URI, or in an `rn` parameter in a SIP URI) to an IBCF SIP URI using prefix matching on the routing number. 
+- The second maps from a routing number (contained in the `rn` parameter of a Tel URI, or in an `rn` parameter in a SIP URI) to an IBCF SIP URI using prefix matching on the routing number.
 
-These mappings control which IBCF nodes are used to route to a particular destination. Each entry can only apply to one type of mapping. 
+These mappings control which IBCF nodes are used to route to a particular destination. Each entry can only apply to one type of mapping.
 
 Multiple nodes to route to can be specified. In this case, Route headers are added to the message such that it is sent to the first node and the first node sends it to the second node and so on; the message is not tried at the second node if it fails at the first node.
 
@@ -74,10 +74,10 @@ The `bgcf.json` file is in JSON format, for example.
         ]
     }
 
-There can be only one route set for any given SIP trunk IP address or domain name.  If there are multiple routes with the same destination IP address or domain name, only the first will be used. Likewise, there can only be one route set for any given routing number; if there are multiple routes with the same routing number only the first will be used. 
+There can be only one route set for any given SIP trunk IP address or domain name.  If there are multiple routes with the same destination IP address or domain name, only the first will be used. Likewise, there can only be one route set for any given routing number; if there are multiple routes with the same routing number only the first will be used.
 
-A default route set can be configured by having an entry where the domain is set to `"*"`. This will be used by the BGCF if it is trying to route based on the the domain and there's no explicit match for the domain in the configuration. 
+A default route set can be configured by having an entry where the domain is set to `"*"`. This will be used by the BGCF if it is trying to route based on the the domain and there's no explicit match for the domain in the configuration.
 
-There is no default route set if the BGCF is routing based on the routing number provided. 
+There is no default route set if the BGCF is routing based on the routing number provided.
 
-After making a change to this file you should run `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_bgcf_json` to ensure the change is synchronized to other Sprout nodes on your system (including nodes added in the future).
+After making a change to this file you should run `sudo cw-upload_bgcf_json` to ensure the change is synchronized to other Sprout nodes on your system (including nodes added in the future).
