@@ -12,82 +12,78 @@ package installed.
 
 ### What they do
 
-Clearwater SIP stress nodes run a standard SIPp script against your bono cluster.  The bono nodes translate this into traffic for sprout and this generates traffic on homestead and homer.  The nodes log their success/failure to `/var/log/clearwater-sip-stress` and also restart SIPp (after a 30s cool-down) if anything goes wrong.
+Clearwater SIP stress nodes provide a set of SIPp scripts to run against your Sprout cluster. From Sprout's point of view, they look like a P-CSCF.  The nodes log their success/failure to `/var/log/clearwater-sip-stress` and also print a human-readable summary of the stress (with informatin about percentage of failed calls, average latency, and so on).
 
-The SIPp stress starts as soon as the node comes up - this is by design, to avoid you having to manually start 50+ nodes generating traffic.  If you want to stop them from generating traffic, turn the whole node down.
+They follow a fixed load profile, assuming 1.3 calls/hour for each subscriber (split equally between incoming and outgoing calls) and 2 re-registrations per hour.
 
-Each SIP stress node picks a single bono to generate traffic against.  This bono is chosen by matching the bono node's index against the SIP stress node's index.  As a result, it's important to always give SIP stress nodes an index.
+## Deploying a stress node
 
-### How they work
+Follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision the number of subscribers you want. As a general guideline, we'd expect a small deployment (with one Sprout, Homestead and optionally a Ralf node, each with one full CPU core) to handle at least 50,000 subscribers.
 
-The clearwater-sip-stress package includes two important scripts.
+You should also ensure that the `reg_max_expires` setting is set to 1800 rather than the default of 300 - see our [configuration guide](Clearwater_Configuration_Options_Reference.md) for instructions. This matches the assumptions in our load profile of 2 re-registers per hour.
 
-* `/usr/share/clearwater/infrastructure/scripts/sip-stress`, which generates a `/usr/share/clearwater/sip-stress/users.csv.1` file containing the list of all subscribers we should be targeting - these are calculated from properties in `/etc/clearwater/shared_config`.
-* `/etc/init.d/clearwater-sip-stress`, which runs `/usr/share/clearwater/bin/sip-stress`, which in turn runs SIPp specifying `/usr/share/clearwater/sip-stress/sip-stress.xml` as its test script. This test script simulates a pair of subscribers registering every 5 minutes and then making a call every 30 minutes.
+If you're using chef, create your stress test node by typing `knife box create -E ENVIRONMENT sipp --index 1`.
 
-The stress test logs to `/var/log/clearwater-sip-stress/sipp.<index>.out`.
+Otherwise, follow these steps to deploy a stress node manually:
 
-## Running Stress
+* create a new virtual machine and bootstrap it [by configuring access to the Project Clearwater Debian repository](Manual_Install.md#configure-the-apt-software-sources).
+* set the following properties in /etc/clearwater/local_config:
+    * (required) local_ip - the local IP address of this node
+    * (optional) node_idx - the node index (defaults to 1)
+* run `sudo apt-get install clearwater-sip-stress` to install the Debian package.
 
-### Using Chef
+The stress node needs to be able to open connections to Sprout on TCP ports 5052 and 5054, and Sprout needs to be able to open connections to the stress node on port 5082.
 
-This section describes step-by-step how to run stress using Chef automation.  It includes setting up a new deployment.  It is possible to run stress against an existing deployment but you'll need to reconfigure some things so it's easier just to tear down your existing deployment and start again.
+## Running stress
 
-1.  If you haven't done so already, set up chef/knife (as described in [the install guide](Automated_Install.md)).
-2.  cd to your chef directory.
-3.  Edit your environment (e.g. `environments/ENVIRONMENT.rb`) to override attributes as follows.
+To kick off a stress run, simply run: `/usr/share/clearwater/bin/run_stress <home_domain> <number of subscribers> <number of minutes>`. 
 
-    For example (replacing ENVIRONMENT with your environment name and DOMAIN with your Route 53-hosted root domain):
+The output will be in this format:
 
-        name "ENVIRONMENT"
-        description "Stress testing environment"
-        cookbook_versions "clearwater" => "= 0.1.0"
-        override_attributes "clearwater" => {
-            "root_domain" => "DOMAIN",
-            "availability_zones" => ["us-east-1a"],
-            "repo_server" => "http://repo.cw-ngv.com/latest",
-            "number_start" => "2010000000",
-            "number_count" => 1000,
-            "pstn_number_count" => 0}
+```
+Starting initial registration, will take 6 seconds
+Initial registration succeeded
+Starting test
+Test complete
 
-4.  Upload your new environment to the chef server by typing `knife environment from file environments/ENVIRONMENT.rb`
-5. Create the deployment by typing `knife deployment resize -E ENVIRONMENT`.  If you want more nodes, supply parameters such "--bono-count 5" or "--sprout-count 3" to control this.
-6. Follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision subscribers. Create 30000 subscribers per SIPp node.
-7. Create your stress test node by typing `knife box create -E ENVIRONMENT sipp --index 1`.  If you have multiple bono nodes, you'll need to create multiple stress test nodes by repeating this command with "--index 2", "--index 3", etc. - each stress test node only sends traffic to the bono with the same index.
-  * To create multiple nodes, try `for x in {1..20} ; do { knife box create -E ENVIRONMENT sipp --index $x && sleep 2 ; } ; done`.
-  * To modify the number of calls/hour to simulate, edit/add `count=<number>` to `/etc/clearwater/shared_config`, then run `sudo /usr/share/clearwater/infrastructure/scripts/sip-stress` and `sudo service clearwater-sip-stress restart`.
-8. Create a Cacti server for monitoring the deployment, as described in [this document](Cacti.md).
-9. When you've finished, destroy your deployment with `knife deployment delete -E ENVIRONMENT`.
+Elapsed time: 00:15:07
+Start: 2016-11-16 15:03:29.062755
+End: 2016-11-16 15:18:36.414653
 
-### Manual (i.e. non-Chef) stress runs
+Total calls: 1625
+Successful calls: 1612 (99.2%)
+Failed calls: 13 (0.8%)
 
-SIP stress can also be run against a deployment that has been installed manually (as per the [Manual Install instructions](Manual_Install.md)).
+Retransmissions: 0
 
-Firstly follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision subscribers. Work out how many stress nodes you want, and create 30000 subscribers per SIPp node.
+Average time from INVITE to 180 Ringing: 74.0 ms
+# of calls with 0-2ms from INVITE to 180 Ringing: 0 (0.0%)
+# of calls with 2-20ms from INVITE to 180 Ringing: 0 (0.0%)
+# of calls with 20-200ms from INVITE to 180 Ringing: 1572 (96.7384615385%)
+# of calls with 200-2000ms from INVITE to 180 Ringing: 45 (2.76923076923%)
+# of calls with 2000+ms from INVITE to 180 Ringing: 0 (0.0%)
 
-To create a new SIPp node, create a new virtual machine and bootstrap it [by configuring access to the Project Clearwater Debian repository](Manual_Install.md#configure-the-apt-software-sources).
+Total re-REGISTERs: 1800
+Successful re-REGISTERs: 1792 (99.5555555556%)
+Failed re-REGISTERS: 8 (0.444444444444%)
 
-Then set the following properties in /etc/clearwater/local_config:
+REGISTER retransmissions: 0
 
-* (required) local_ip - the local IP address of this node
-* (optional) node_idx - the node index (defaults to 1)
+Average time from REGISTER to 200 OK: 15.0 ms
 
-Set the following properties in /etc/clearwater/shared_config:
+Log files in /var/log/clearwater-sip-stress
+```
 
-* (required) home_domain - the home domain of the deployment under test
-* (optional) bono_servers - a list of bono servers in this deployment
-* (optional) stress_target - the target host (defaults to the $node_idx-th entry in $bono_servers or, if there are no $bono_servers, defaults to $home_realm)
-* (optional) base - the base directory number (defaults to 2010000000)
-* (optional) count - the number of subscribers to run on this node (must be even, defaults to 30000)
+### Extra run_stress options
 
-Finally, run `sudo apt-get install clearwater-sip-stress` to install the Debian package. Stress will start automatically after the package is installed.
+The run-stress script has some command-line options:
 
-### Configuring UDP Stress
+* `--initial-reg-rate` - this controls how many REGISTERs/second the script sends in during the initial registration phase (defaulting to 80). On systems that can cope with the load, raising this value will let the test run start faster.
+* `--sipp-output` - By default, the script hides the SIPp outputand just presents the end-of-run stats. With this option, it will show the SIPp output screen, which may be useful for users familiar with SIPp.
+* `--target TARGET` - Domain/IP and port to target stress at. Default is sprout.{domain}, with I-CSCF traffic going to port 5052 and S-CSCF traffic to port 5054.
 
-SIPp supports UDP stress, and this works with Clearwater.  To make a stress test node run UDP stress (rather than the default of TCP)
+## Restrictions
 
-* open /usr/share/clearwater/bin/sip-stress
-* find the line that begins "nice -n-20 /usr/share/clearwater/bin/sipp"
-* replace "-t tn" with "-t un"
-* save and exit
-* restart stress by typing "sudo service clearwater-sip-stress restart".
+* The clearwater-sip-stress package currently only targets load at one Sprout node - we're planning to add support for load-balancing in the future.
+* The clearwater-sip-stress package acts as a P-CSCF, which means it drives load through Sprout (and therefore through things upstream of Sprout, like Homestead). We don't have tools for stress-testing Bono, because we don't recommend it for production traffic, and it hasn't gone through the same level of testing and hardening that the core Sprout, Homestead and Ralf components have.
+* The summary statistics at the end just come from SIPp, not the Clearwater deployment. If you want to monitor Sprout CPU during the stress run, you'll need to be running a separate monitoring tool suchas Cacti (and we provide the start and end time of the stress run, to let you match up with these external graphs).
