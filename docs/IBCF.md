@@ -12,7 +12,7 @@ Install and configure an IBCF node with the following steps.
 
 - Install the node as if installing a Bono node, either [manually](Manual_Install.md) or [using Chef](Automated_Install.md).  If using Chef, use the `ibcf` role, for example
 
-        knife box create -E <name> ibcf
+        knife box create -E <env> ibcf
 
 - Edit the /etc/clearwater/user_settings file (creating it if it does not already exist) and add or update the line defining the IP addresses of SIP trunk peer nodes.
 
