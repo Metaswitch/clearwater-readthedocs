@@ -26,7 +26,7 @@ Install and configure an IBCF node with the following steps.
 
    ::
 
-       knife box create -E <name> ibcf
+       knife box create -E <env> ibcf
 
 -  Edit the /etc/clearwater/user\_settings file (creating it if it does
    not already exist) and add or update the line defining the IP
