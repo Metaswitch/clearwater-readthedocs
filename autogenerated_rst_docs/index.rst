@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Quilava <http://pokemon.wikia.com/wiki/Quilava>`__\ ".
+"`Rapidash <http://pokemon.wikia.com/wiki/Rapidash>`__\ ".
 
 Architecture
 ------------
