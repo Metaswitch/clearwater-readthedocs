@@ -156,7 +156,8 @@ follows.
 
 1. Create independent deployments for each of the regions, with separate
    DNS entries. See `the manual install
-   instructions <Manual_Install.html>`__ for the required GR settings.
+   instructions <http://clearwater.readthedocs.io/en/latest/Manual_Install.html#create-the-per-node-configuration>`__
+   for the required GR settings.
 2. Set up DNS (probably using SRV records) so that:
 
    -  Bono nodes prefer the Sprout node local to them, but will fail
