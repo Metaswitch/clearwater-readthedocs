@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Rapidash <http://pokemon.wikia.com/wiki/Rapidash>`__\ ".
+"`Sandslash <http://pokemon.wikia.com/wiki/Sandslash>`__\ ".
 
 Architecture
 ------------
