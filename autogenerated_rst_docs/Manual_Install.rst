@@ -321,7 +321,9 @@ is created, follow `these
 instructions <Modifying_Clearwater_settings.html>`__.
 
 Now run the following to upload the configuration to a shared database
-and propagate it around the cluster.
+and propagate it around the cluster (see `Modifying Clearwater
+settings <Modifying_Clearwater_settings.html>`__ for more details on
+this).
 
 ::
 
