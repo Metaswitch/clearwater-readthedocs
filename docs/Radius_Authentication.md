@@ -46,7 +46,7 @@ You must ensure that your firewall/security groups allow UDP traffic to the RADI
 
 ## Usage
 
-Once the above is installed and configured, any user provisioned in the RADIUS server can attempt SSH or SFTP access to the configured node, and on providing their password they will be authenticated against the details held on the RADIUS server, and logged in, acting as the default Ubuntu user. Commands such as `who` or `last` will output the username supplied at login, and this will also be recorded in the auth log `/var/log/auth.log`.
+Once the above is installed and configured, you will need to enable the RADIUS authentication process. To do this, simply run `sudo /usr/share/clearwater-radius-auth/bin/enable-radius-authentication`. Once enabled, any user provisioned in the RADIUS server can attempt SSH or SFTP access to the configured node, and on providing their password they will be authenticated against the details held on the RADIUS server, and logged in, acting as the node default user. Commands such as `who` or `last` will output the username supplied at login, and this will also be recorded in the auth log `/var/log/auth.log`.
 
 Any users provisioned locally on the node will see no change to their authentication experience. By default, RADIUS authentication is set to be a sufficient, but not required condition. As such, failing to authenticate against the server credentials will cause the authentication attempt to fall back to checking locally provisioned details. See below for further details on configuration options.
 
@@ -56,6 +56,8 @@ Any users provisioned locally on the node will see no change to their authentica
 * If your RADIUS server is rejecting authentication requests, ensure that the server is configured correctly. 
 
 ## Removal
+
+If you simply want to disable RADIUS authentication on a node, run `sudo /usr/share/clearwater-radius-auth/bin/disable-radius-authentication`.
 
 To properly remove clearwater-radius-auth, and the components it brings with it, run the following:
 
