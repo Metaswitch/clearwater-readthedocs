@@ -410,7 +410,8 @@ It's possible to configure Sprout with secondary and tertiary ENUM servers, by p
 
 Each component of Sprout (I-CSCF, S-CSCF and BGCF) will perform ENUM lookups independently and at different points in call processing:
 
-* The I-CSCF will perform an ENUM lookup during terminating processing if the Request URI represents a phone number. If the result of this ENUM lookup is also a URI that represents a phone number, does not contain number portability information and is not in the HSS, another ENUM lookup is performed on the new URI.
+* The I-CSCF will perform an ENUM lookup during terminating processing if the Request URI represents a phone number.
+    * If the result of this ENUM lookup is also a URI that represents a phone number, does not contain number portability information and is not in the HSS, another ENUM lookup is performed on the new URI.
 * The S-CSCF will perform an ENUM lookup at the end of terminating processing if the Request URI represents a phone number, regardless of whether there is number portability information in the URI.
 * The BGCF will perform an ENUM lookup on receiving a request if the Request URI represents a phone number, regardless of whether there is number portability information in the URI.
 
