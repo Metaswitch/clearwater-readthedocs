@@ -407,3 +407,11 @@ It's possible to configure Sprout with secondary and tertiary ENUM servers, by p
 * If this returns SERVFAIL or times out (which happens after a randomised 500ms-1000ms period), Sprout will resend the query to the second server
 * If this returns SERVFAIL or times out, Sprout will resend the query to the third server
 * If all servers return SERVFAIL or time out, the ENUM query will fail
+
+Each component of Sprout (I-CSCF, S-CSCF and BGCF) will perform ENUM lookups independently and at different points in call processing:
+
+* The I-CSCF will perform an ENUM lookup during terminating processing if the Request URI represents a phone number. If the result of this ENUM lookup is also a URI that represents a phone number, does not contain number portability information and is not in the HSS, another ENUM lookup is performed on the new URI.
+* The S-CSCF will perform an ENUM lookup at the end of terminating processing if the Request URI represents a phone number, regardless of whether there is number portability information in the URI.
+* The BGCF will perform an ENUM lookup on receiving a request if the Request URI represents a phone number, regardless of whether there is number portability information in the URI.
+
+The presence of number portability data and the `npdi` parameter do not affect whether an ENUM lookup is performed, but if number portability data is present then it is used for routing.
