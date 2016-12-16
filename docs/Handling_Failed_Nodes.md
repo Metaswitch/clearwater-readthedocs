@@ -50,7 +50,7 @@ To recover from this state:
 
 The `mark_node_failed` script can be used to remove a failed node from a back-end data store. If there are multiple failed nodes, ensure that you run the `mark_node_failed` scripts for each store type simultaneously (e.g. for multiple sprout removal, mark all failed nodes for memcached simultaneously first, and then mark all failed nodes for chronos). The `mark_node_failed` script will only terminate once all of the failed nodes for that datastore have been marked as such, so you can do this by running `mark_node_failed` for each of that datastore's failed nodes in a separate shell session.
 
-You will need to know the type of the failed node (e.g. "sprout") and its IP address. If you are using separate signaling and management networks, you must use the signaling IP address of the failed node as the failed node. To remove the failed node log onto a working node in the same site and run the following commands (depending on the failed node's type):
+You will need to know the type of the failed node (e.g. "sprout") and its IP address. If you are using separate signaling and management networks, you must use the signaling IP address of the failed node. To remove the failed node log onto a working node in the same site and run the following commands (depending on the failed node's type):
 
 ### Sprout
 
