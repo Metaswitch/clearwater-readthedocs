@@ -7,9 +7,7 @@ One of Clearwater's biggest strengths is scalability and in order to demonstrate
 
 ## SIP Stress Nodes
 
-A Clearwater SIP stress node is similar to any other Project Clearwater node, except that instead of
-having a Debian package like `bono` or `sprout` installed, it has our `clearwater-sip-stress` Debian
-package installed.
+A Clearwater SIP stress node is similar to any other Project Clearwater node, except that instead of having a Debian package like `bono` or `sprout` installed, it has our `clearwater-sip-stress-coreonly` or `clearwater-sip-stress` Debian package installed.
 
 ### What they do
 
@@ -20,6 +18,8 @@ Clearwater SIP stress nodes provide a set of SIPp scripts to run against your Sp
 
 ## Deploying a stress node
 
+These instructions assume you'[ve already [installed a Clearwater deployment](Installation_Instructions.md), either manually or through Chef.
+
 Follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision the number of subscribers you want. As a general guideline, we'd expect a small deployment (with one Sprout, Homestead and optionally a Ralf node, each with one full CPU core) to handle at least 30,000 subscribers.
 
 You should also ensure that the `reg_max_expires` setting is set to 1800 rather than the default of 300 - see our [configuration guide](Clearwater_Configuration_Options_Reference.md) for instructions. This matches the assumptions in our load profile of 2 re-registers per hour.
@@ -28,7 +28,7 @@ You should also ensure that the `reg_max_expires` setting is set to 1800 rather 
 
 If you're using Chef to automate your Clearwater install, create your stress test node by typing `knife box create -V -E ENVIRONMENT sipp --index 1`.
 
-## Manual install
+### Manual install
 
 Otherwise, follow these steps to deploy a stress node manually:
 
@@ -46,7 +46,7 @@ To kick off a stress run, simply run: `/usr/share/clearwater/bin/run_stress <hom
 
 The script will then:
 
-* set up the stress test by sending an initial register all the subscribers
+* set up the stress test by sending an initial register for all the subscribers
 * report that that initial registration has completed and that the stress test is starting
 * send traffic, using a fixed load profile of 1.3 calls/hour for each subscriber (split equally between incoming and outgoing calls) and 2 re-registrations per hour
 * after the given duration, wait for all calls to finish and then exit
@@ -88,7 +88,7 @@ Average time from REGISTER to 200 OK: 15.0 ms
 Log files in /var/log/clearwater-sip-stress
 ```
 
-The summary statistics at the end just come from SIPp, not the Clearwater deployment. If you want to monitor Sprout CPU during the stress run, you'll need to be running a separate monitoring tool such as Cacti (and we provide the start and end time of the stress run, to let you match up with these external graphs).
+The summary statistics at the end just come from SIPp, not the Clearwater deployment. If you want to see [our more detailed statistics](Clearwater_SNMP_Statistics.md), you'll need to be running a separate monitoring tool such as [Cacti](Cacti.md) (and we provide the start and end time of the stress run, to let you match up with these external graphs).
 
 ### Extra run_stress options
 
