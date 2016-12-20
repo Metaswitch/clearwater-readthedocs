@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Sandslash <http://pokemon.wikia.com/wiki/Sandslash>`__\ ".
+"`Tauros <http://pokemon.wikia.com/wiki/Tauros>`__\ ".
 
 Architecture
 ------------
