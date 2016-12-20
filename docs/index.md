@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Sandslash](http://pokemon.wikia.com/wiki/Sandslash)".
+The latest stable release of Clearwater is "[Tauros](http://pokemon.wikia.com/wiki/Tauros)".
 
 ## Architecture
 
