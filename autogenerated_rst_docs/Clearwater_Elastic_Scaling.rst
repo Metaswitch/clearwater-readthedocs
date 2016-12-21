@@ -97,8 +97,9 @@ If you're scaling down your deployment, follow the following process:
 
    -  Unmonitor the clearwater management processes:
 
-      -  ``sudo monit unmonitor clearwater_cluster_manager``
-      -  ``sudo monit unmonitor clearwater_config_manager``
+      -  ``sudo monit unmonitor -g clearwater_cluster_manager``
+      -  ``sudo monit unmonitor -g clearwater_config_manager``
+      -  ``sudo monit unmonitor -g clearwater_queue_manager``
       -  ``sudo monit unmonitor -g etcd``
 
    -  Run ``sudo service clearwater-etcd decommission``. This will cause
