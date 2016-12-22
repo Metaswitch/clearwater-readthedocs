@@ -111,6 +111,7 @@ Sprout nodes provide the following statistics:
 * The current permitted request rate.
 * The number of incoming INVITE transactions for the S-CSCF that were cancelled before a 1xx response was seen, indexed by time period.
 * The number of incoming INVITE transactions for the S-CSCF that were cancelled after a 1xx response was seen, indexed by time period (these INVITE cancellation statistics can be used to distinguish between the case where an INVITE was cancelled because the call rang but wasn't answered and the case where it failed due to network issues and never got through in the first place).
+* The number of additional INVITEs sent due to public identities having multiple registered bindings.
 * The average count, variance, and high and low watermarks for the number of registrations, indexed by time period. ([stateful](https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html))
 * The average count, variance, and high and low watermarks for the number of bindings, indexed by time period. ([stateful](https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html))
 * The average count, variance, and high and low watermarks for the number of subscriptions, indexed by time period. ([stateful](https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html))
