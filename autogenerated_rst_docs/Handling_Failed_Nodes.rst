@@ -33,82 +33,9 @@ removed from the deployment using the following steps:
       with the ID learned above.
 
 -  Remove the failed node from any back-end data store clusters it was a
-   part of (see Removing a Node From a Data Store).
-
-Multiple Failed Nodes
----------------------
-
-If your deployment loses half or more of its nodes permanently, it loses
-"quorum" which means that the underlying etcd cluster becomes read-only.
-This means that scaling up and down is not possible and changes to
-shared config cannot be made. It also means that the steps for removing
-a single failed node won't work. This section describes how to recover
-from this state.
-
-In this example, your initial cluster consists of servers A, B, C, D, E
-and F. D, E and F die permanently, and A, B and C enter a read-only
-state (because they lack quorum). Recent changes may have been
-permanently lost at this point (if they were not replicated to the
-surviving nodes).
-
-You should follow this process completely - the behaviour is unspecified
-if this process is started but not completed. It is always safe to
-restart this process from the beginning (for example, if you encounter
-an error partway through).
-
-To recover from this state:
-
--  stop etcd on A, B and C by running ``sudo monit stop -g etcd``
--  create a new cluster, only on A, by:
-
-   -  editing ``etcd_cluster`` in ``/etc/clearwater/local_config`` to
-      just contain A's IP (e.g. ``etcd_cluster=10.0.0.1``)
-   -  running ``sudo service clearwater-etcd force-new-cluster``. This
-      will warn that this is dangerous and should only be run during
-      this process; choose to proceed.
-   -  running ``clearwater-etcdctl member list`` to check that the
-      cluster only has A in
-   -  running ``clearwater-etcdctl cluster-health`` to check that the
-      cluster is healthy
-   -  running ``clearwater-etcdctl get configuration/shared_config`` to
-      check that the data is safe.
-   -  running ``sudo monit monitor -g etcd`` to put etcd back under
-      monit control
-
--  get B to join that cluster by:
-
-   -  editing ``etcd_cluster`` in ``/etc/clearwater/local_config`` to
-      just contain A's IP (e.g. ``etcd_cluster=10.0.0.1``)
-   -  running ``sudo service clearwater-etcd force-decommission``. This
-      will warn that this is dangerous and offer the chance to cancel;
-      do not cancel.
-   -  running ``sudo monit monitor -g etcd``.
-
--  get C to join that cluster by following the same steps as for B:
-
-   -  editing ``etcd_cluster`` in ``/etc/clearwater/local_config`` to
-      just contain A's IP (e.g. ``etcd_cluster=10.0.0.1``)
-   -  running ``sudo service clearwater-etcd force-decommission``. This
-      will warn that this is dangerous and should only be run during
-      this process; choose to proceed.
-   -  running ``sudo monit monitor -g etcd``.
-
--  check that the cluster is now OK by doing the following on A:
-
-   -  running ``clearwater-etcdctl member list`` to check that the
-      cluster now has A, B and C in
-   -  running ``clearwater-etcdctl cluster-health`` to check that the
-      cluster is healthy
-   -  running
-      ``clearwater-etcdctl get clearwater/<site_name>/configuration/shared_config``
-      to check that the data is safe. The ``site_name`` is set in
-      ```local_config`` <Manual_Install.html#create-the-per-node-configuration>`__
-      if the deployment is `geographically
-      redundant <Geographic_redundancy.html>`__, and defaults to ``site1``
-      if unset.
-
--  log on to A. For each of D, E and F follow the instructions in
-   Removing a Node From a Data Store.
+   part of (see `Removing a Node From a Data
+   Store <http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-node-from-a-data-store>`__
+   below).
 
 Removing a Node From a Data Store
 ---------------------------------
@@ -174,33 +101,17 @@ working node in the other site, but in this case you must run
 instead of
 ``/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed``.
 
-Complete Site Failure
+Multiple Failed Nodes
 ---------------------
 
-In a geographically redundant deployment, you may encounter the
-situation where an entire site has permanently failed (e.g. because the
-location of that geographic site has been physically destroyed). To
-recover from this situation:
+If your deployment loses half or more of its nodes permanently, it loses
+"quorum" which means that the underlying etcd cluster becomes read-only.
+Please follow the process described
+`here <http://clearwater.readthedocs.io/en/latest/Handling_Multiple_Failed_Nodes.html>`__
+for details of how to recover.
 
--  If the failed site contained half or more of your nodes, you have
-   lost quorum in your etcd cluster. You should follow the `"Multiple
-   Failed Nodes" <Handling_Failed_Nodes.html#multiple-failed-nodes>`__
-   instructions above to rebuild the etcd cluster, containing only nodes
-   from the surviving site.
--  If the failed site contained fewer than half of your nodes, you have
-   not lost quorum in your etcd cluster. You should follow the
-   `"Removing a Failed
-   Node" <Handling_Failed_Nodes.html#removing-a-failed-node>`__
-   instructions above to remove each failed node from the cluster.
-
-After following the above instructions, you will have removed the nodes
-in the failed site from etcd, but not from the
-Cassandra/Chronos/Memcached datastore clusters. To do this, follow the
-`"Removing a Node From a Data
-Store" <Handling_Failed_Nodes.html#removing-a-node-from-a-data-store>`__
-instructions above for each failed node, using the
-``mark_remote_node_failed`` script instead of the ``mark_node_failed``
-script.
-
-You should now have a working single-site cluster, which can continue to
-run as a single site, or be safely paired with a new remote site.
+If you haven't lost half (or more) of your nodes, then you can use the
+same process described
+`above <http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-failed-node>`__
+for each of your failed nodes (remembering that you may need to run the
+``mark_node_failed`` script for each failed node simultaneously).

@@ -191,7 +191,9 @@ It uses other open-source components as acknowledged in
    :caption: Failure Recovery
    :maxdepth: 0
 
-   Permanent Node Failures <Handling_Failed_Nodes.rst>
+   Permanent failure of a node <Handling_Failed_Nodes.rst>
+   Permanent failure of multiple nodes <Handling_Multiple_Failed_Nodes.rst>
+   Permanent failure of a site <Handling_Site_Failure.rst>
 
 
 .. _7:
