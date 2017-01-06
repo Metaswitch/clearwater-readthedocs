@@ -56,7 +56,9 @@ pages:
   - Automatic Clustering and Configuration Sharing: Automatic_Clustering_Config_Sharing.md
   - Provisioning Subscribers: Provisioning_Subscribers.md
 - Failure Recovery:
-  - Permanent Node Failures: Handling_Failed_Nodes.md
+  - Permanent failure of a node: Handling_Failed_Nodes.md
+  - Permanent failure of multiple nodes: Handling_Multiple_Failed_Nodes.md
+  - Permanent failure of a site: Handling_Site_Failure.md
 - Development:
   - Clearwater C++ Coding Guidelines: Clearwater_CPP_Coding_Guidelines.md
   - Clearwater Ruby Coding Guidelines: Clearwater_Ruby_Coding_Guidelines.md
