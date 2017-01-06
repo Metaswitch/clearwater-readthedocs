@@ -1,6 +1,6 @@
 ## Dealing with Multiple Failed Nodes
 
-If your deployment loses half or more of its nodes permanently, it loses "quorum" which means that the underlying etcd cluster becomes read-only. Please follow the process described [here](Handling_Multiple_Failed_Nodes.md) for details of how to recover.
+If your deployment loses half or more of its nodes permanently, it loses "quorum" which means that the underlying etcd cluster becomes read-only. While the etcd cluster is in this state, you can’t perform any scaling operations, or change configuration and have it synced across the deployment. 
 
 If you haven't lost half (or more) of your nodes, then you can use the process described [here](http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-failed-node) for each of your failed nodes.
 

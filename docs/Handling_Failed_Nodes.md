@@ -47,6 +47,6 @@ If you cannot log into a working node in the same site (e.g. because an entire g
 
 ## Multiple Failed Nodes
 
-If your deployment loses half or more of its nodes permanently, it loses "quorum" which means that the underlying etcd cluster becomes read-only. Please follow the process described [here](Handling_Multiple_Failed_Nodes.md) for details of how to recover.
+If your deployment loses half or more of its nodes permanently, it loses "quorum" which means that the underlying etcd cluster becomes read-only. Please follow the process described [here](http://clearwater.readthedocs.io/en/latest/Handling_Multiple_Failed_Nodes.html) for details of how to recover.
 
 If you haven't lost half (or more) of your nodes, then you can use the same process described [above](http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-failed-node) for each of your failed nodes (remembering that you may need to run the `mark_node_failed` script for each failed node simultaneously).
