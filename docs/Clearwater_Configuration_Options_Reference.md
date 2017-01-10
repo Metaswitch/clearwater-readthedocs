@@ -54,7 +54,9 @@ This section describes options for the basic configuration of a Clearwater deplo
 
 * `home_domain` - this is the main SIP domain of the deployment, and determines which SIP URIs Clearwater will treat as local. It will usually be a hostname resolving to all the P-CSCFs (e.g. the Bono nodes). Other domains can be specified through additional_home_domains, but Clearwater will treat this one as the default (for example, when handling `tel:` URIs).
 * `sprout_hostname` - a hostname that resolves by DNS round-robin to all Sprout nodes in the cluster.
-* `hs_hostname` - a hostname that resolves by DNS round-robin to all Homesteads in the cluster. Should include the HTTP port (usually 8888). This is also used (without the port) as the Origin-Realm of the Diameter messages Homestead sends.
+* `sprout_hostname_mgmt` - a hostname that resolves by DNS round-robin to the management interface of all Sprout nodes.  Should include the HTTP port (always 9886).
+* `hs_hostname` - a hostname that resolves by DNS round-robin to all Homesteads in the cluster. Should include the HTTP port (always 8888). This is also used (without the port) as the Origin-Realm of the Diameter messages Homestead sends.
+* `hs_hostname_mgmt` - a hostname that resolves by DNS round-robin to the management interface of all Homestead nodes.  Should include the HTTP port (always 8886).
 * `hs_provisioning_hostname` - a hostname that resolves by DNS round-robin to all Homesteads in the cluster. Should include the HTTP provisioning port (usually 8889). Not needed when using an external HSS.
 * `ralf_hostname` - a hostname that resolves by DNS round-robin to all Ralf nodes in the cluster. Should include the port (usually 9888). This is also used (without the port) as the Origin-Realm of the Diameter messages Ralf sends. Optional if no Ralf nodes exist.
 * `cdf_identity` - a Diameter identity that represents the address of an online Charging Function. Subscribers provisioned through Ellis will have this set as their Primary Charging Collection Function on P-Charging-Function-Addresses headers on responses to their successful REGISTERs, and Bono will add similarly in originating requests.
