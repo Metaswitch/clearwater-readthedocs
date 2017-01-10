@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Tauros <http://pokemon.wikia.com/wiki/Tauros>`__\ ".
+"`Umbreon <http://pokemon.wikia.com/wiki/Umbreon>`__\ ".
 
 Architecture
 ------------
