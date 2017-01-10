@@ -53,9 +53,9 @@ This section describes settings that are common across the entire deployment.
 This section describes options for the basic configuration of a Clearwater deployment - such as the hostnames of the six node types and external services such as email servers or the Home Subscriber Server. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `home_domain=example.com`).
 
 * `home_domain` - this is the main SIP domain of the deployment, and determines which SIP URIs Clearwater will treat as local. It will usually be a hostname resolving to all the P-CSCFs (e.g. the Bono nodes). Other domains can be specified through additional_home_domains, but Clearwater will treat this one as the default (for example, when handling `tel:` URIs).
-* `sprout_hostname` - a hostname that resolves by DNS round-robin to all Sprout nodes in the cluster.
+* `sprout_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Sprout nodes in the cluster.
 * `sprout_hostname_mgmt` - a hostname that resolves by DNS round-robin to the management interface of all Sprout nodes.  Should include the HTTP port (always 9886).
-* `hs_hostname` - a hostname that resolves by DNS round-robin to all Homesteads in the cluster. Should include the HTTP port (always 8888). This is also used (without the port) as the Origin-Realm of the Diameter messages Homestead sends.
+* `hs_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Homesteads in the cluster. Should include the HTTP port (always 8888). This is also used (without the port) as the Origin-Realm of the Diameter messages Homestead sends.
 * `hs_hostname_mgmt` - a hostname that resolves by DNS round-robin to the management interface of all Homestead nodes.  Should include the HTTP port (always 8886).
 * `hs_provisioning_hostname` - a hostname that resolves by DNS round-robin to all Homesteads in the cluster. Should include the HTTP provisioning port (usually 8889). Not needed when using an external HSS.
 * `ralf_hostname` - a hostname that resolves by DNS round-robin to all Ralf nodes in the cluster. Should include the port (usually 9888). This is also used (without the port) as the Origin-Realm of the Diameter messages Ralf sends. Optional if no Ralf nodes exist.
