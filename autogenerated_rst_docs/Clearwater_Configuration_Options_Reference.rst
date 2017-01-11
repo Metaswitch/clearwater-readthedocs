@@ -129,14 +129,18 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    the signaling interface of all Sprout nodes in the cluster.
 -  ``sprout_hostname_mgmt`` - a hostname that resolves by DNS
    round-robin to the management interface of all Sprout nodes in the
-   cluster. Should include the HTTP port (always 9886).
+   cluster. Should include the HTTP port (always 9886). For details on
+   the HTTP API exposed on this interface, see
+   https://github.com/Metaswitch/sprout/blob/dev/docs/ManagementHttpAPI.md.
 -  ``hs_hostname`` - a hostname that resolves by DNS round-robin to the
    signaling interface of all Homesteads in the cluster. Should include
    the HTTP port (always 8888). This is also used (without the port) as
    the Origin-Realm of the Diameter messages Homestead sends.
 -  ``hs_hostname_mgmt`` - a hostname that resolves by DNS round-robin to
    the management interface of all Homestead nodes in the cluster.
-   Should include the HTTP port (always 8886).
+   Should include the HTTP port (always 8886). For details on the HTTP
+   API exposed on this interface, see
+   https://github.com/Metaswitch/homestead/blob/dev/docs/ManagementHttpAPI.md.
 -  ``hs_provisioning_hostname`` - a hostname that resolves by DNS
    round-robin to all Homesteads in the cluster. Should include the HTTP
    provisioning port (usually 8889). Not needed when using an external
