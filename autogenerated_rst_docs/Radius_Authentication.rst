@@ -68,7 +68,13 @@ must be on a new line. \* Each line consists of three fields:
 -  The secret is shared between each client and the server to allow
    simple encryption of passwords. The secret must match the entry for
    the client in the RADIUS server configuration.
--  Both the port and timeout entries are optional.
+-  Both the port and timeout entries are optional. We recommend a
+   relatively small timeout value (e.g. 3 seconds), as in the case that
+   your RADIUS server becomes uncontactable users will have to wait the
+   full duration of all configured timeouts before falling back to local
+   password based authentication. Authentication by SSH-key does not
+   enter this authentication path, and so timeout values will not impact
+   SSH-key based access.
 
 Your sshd configuration must allow password authentication, and use of
 PAM. If you are unsure, check that the ``PasswordAuthentication`` and
