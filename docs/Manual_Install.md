@@ -199,7 +199,7 @@ If you want your Sprout nodes to include Gemini/Memento Application Servers add 
 
 See the [Chef instructions](Installing_a_Chef_workstation.md#add-deployment-specific-configuration) for more information on how to fill these in. The values marked `<secret>` **must** be set to secure values to protect your deployment from unauthorized access. To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings.md).
 
-Now run the following to upload the configuration to a shared database and propagate it around the cluster.
+Now run the following to upload the configuration to a shared database and propagate it around the cluster (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this).
 
     cw-upload_shared_config
 

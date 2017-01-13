@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Quilava](http://pokemon.wikia.com/wiki/Quilava)".
+The latest stable release of Clearwater is "[Umbreon](http://pokemon.wikia.com/wiki/Umbreon)".
 
 ## Architecture
 

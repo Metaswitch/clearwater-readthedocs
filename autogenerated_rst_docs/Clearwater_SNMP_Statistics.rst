@@ -259,6 +259,8 @@ Sprout nodes provide the following statistics:
    between the case where an INVITE was cancelled because the call rang
    but wasn't answered and the case where it failed due to network
    issues and never got through in the first place).
+-  The number of additional INVITEs sent due to public identities having
+   multiple registered bindings.
 -  The average count, variance, and high and low watermarks for the
    number of registrations, indexed by time period.
    (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)

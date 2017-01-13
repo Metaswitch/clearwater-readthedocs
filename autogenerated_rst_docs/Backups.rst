@@ -346,3 +346,5 @@ commands on that node:
     /usr/share/clearwater/clearwater-config-manager/scripts/upload_enum_json
     /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json
 
+See `Modifying Clearwater settings <Modifying_Clearwater_settings.html>`__
+for more details on this.

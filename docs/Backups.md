@@ -236,3 +236,5 @@ To restore a previous backup, copy the four files listed above to `/etc/clearwat
     cw-upload_bgcf_json
     cw-upload_enum_json
     cw-upload_scscf_json
+
+See [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this.

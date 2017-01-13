@@ -26,7 +26,7 @@ Install and configure an IBCF node with the following steps.
 
    ::
 
-       knife box create -E <name> ibcf
+       knife box create -E <env> ibcf
 
 -  Edit the /etc/clearwater/user\_settings file (creating it if it does
    not already exist) and add or update the line defining the IP
@@ -87,9 +87,10 @@ and S-CSCF). The ``bgcf.json`` file stores two types of mappings.
 
 -  The first maps from SIP trunk IP addresses and/or domain names to
    IBCF SIP URIs
--  The second maps from a routing number (contained in the ``rn``
-   parameter of a Tel URI, or in an ``rn`` parameter in a SIP URI) to an
-   IBCF SIP URI using prefix matching on the routing number.
+-  The second maps from a telephone number (contained in the ``rn``
+   parameter of a Tel URI, the ``rn`` parameter in a SIP URI, a TEL URI
+   or the user part of a SIP URI with a user=phone parameter) to an IBCF
+   SIP URI using prefix matching on the number.
 
 These mappings control which IBCF nodes are used to route to a
 particular destination. Each entry can only apply to one type of
@@ -115,7 +116,7 @@ The ``bgcf.json`` file is in JSON format, for example.
                 "route" : ["<IBCF SIP URI>", "<IBCF SIP URI>"]
             },
             {   "name" : "<route 3 descriptive name>",
-                "number" : "<Routing number>",
+                "number" : "<Telephone number>",
                 "route" : ["<IBCF SIP URI>", "<IBCF SIP URI>"]
             }
         ]
@@ -124,17 +125,19 @@ The ``bgcf.json`` file is in JSON format, for example.
 There can be only one route set for any given SIP trunk IP address or
 domain name. If there are multiple routes with the same destination IP
 address or domain name, only the first will be used. Likewise, there can
-only be one route set for any given routing number; if there are
-multiple routes with the same routing number only the first will be
+only be one route set for any given telephone number; if there are
+multiple routes with the same telephone number only the first will be
 used.
 
 A default route set can be configured by having an entry where the
 domain is set to ``"*"``. This will be used by the BGCF if it is trying
 to route based on the the domain and there's no explicit match for the
-domain in the configuration.
+domain in the configuration, or if it is trying to route based on a
+telephone number not from the ``rn`` parameter of a URI and there's not
+explicit match for the number in the configuration.
 
 There is no default route set if the BGCF is routing based on the
-routing number provided.
+telephone number from the ``rn`` parameter of a URI provided.
 
 After making a change to this file you should run
 ``sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_bgcf_json``
