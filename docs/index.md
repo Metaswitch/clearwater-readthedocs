@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Umbreon](http://pokemon.wikia.com/wiki/Umbreon)".
+The latest stable release of Clearwater is "[Vulpix](http://pokemon.wikia.com/wiki/Vulpix)".
 
 ## Architecture
 
