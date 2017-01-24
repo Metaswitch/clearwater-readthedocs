@@ -84,7 +84,7 @@ To take a manual backup on Homestead, Homer or Memento, run
 
 *   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning` and `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache` on Homestead
 *   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer` on Homer
-*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh memento` on Memento.
+*   `sudo /usr/share/clearwater/bin/do_backup.sh memento` on Memento.
 
 This produces output of the following form, reporting the successfully-created backup.
 
