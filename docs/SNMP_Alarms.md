@@ -27,7 +27,7 @@ To configure this feature, set `snmp_ip` and `snmp_notification_types` as descri
 The simplest way to consume Clearwater alarms is to use [our enterprise alarm MIB](https://raw.githubusercontent.com/Metaswitch/clearwater-snmp-handlers/master/CLEARWATER-ENTERPRISE-MIB). When this is used, Clearwater nodes will send traps with the following fields:
 
 - **CLEARWATER-ENTERPRISE-MIB::clearwaterInfoVersion** - the version of the MIB (e.g. '201608081100')
-- **CLEARWATER-ENTERPRISE-MIB::alarmTrapDisplayName** - the summary name of the alarm (e.g. Queue manager process fail). This is the same for all severities (e.g. CLEARED and CRITICAL severities have the same name)
+- **CLEARWATER-ENTERPRISE-MIB::alarmTrapDisplayName** - the summary name of the alarm (e.g. QUEUE_MANAGER_PROCESS_FAIL). This is the same for all severities (e.g. CLEARED and CRITICAL severities have the same name)
 - **CLEARWATER-ENTERPRISE-MIB::alarmTrapAlarmOID** - the OID of the alarm, for correlation purposes (e.g. ALARM-MIB::alarmModelNotificationId.0.9000.2)
 - **CLEARWATER-ENTERPRISE-MIB::alarmTrapSeverity** - the severity of this alarm (e.g. CLEARED)
 - **CLEARWATER-ENTERPRISE-MIB::alarmTrapDescription** - a short description of the alarm (e.g. 'Queue manager: Process failure cleared')
@@ -35,6 +35,7 @@ The simplest way to consume Clearwater alarms is to use [our enterprise alarm MI
 - **CLEARWATER-ENTERPRISE-MIB::alarmTrapCause** - the likely cause of this notification (e.g. 'The queue manager process has been restored to normal operation. The previously issued alarm has been cleared.')
 - **CLEARWATER-ENTERPRISE-MIB::alarmTrapEffect** - the effect on the system (e.g. 'Changes to shared config will be synchronized across the cluster.')
 - **CLEARWATER-ENTERPRISE-MIB::alarmTrapAction** - the suggested next action for the operator (e.g. 'No action')
+- **CLEARWATER-ENTERPRISE-MIB::alarmTrapHostname** - the hostname of the alarmed node (e.g. 'sprout-1.example.com')
 
 
 ### RFC 3877
