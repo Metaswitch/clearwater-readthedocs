@@ -82,8 +82,8 @@ This file can, and should, be copied off the Ellis node to a secure backup serve
 
 To take a manual backup on Homestead, Homer or Memento, run
 
-*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning` and `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache` on Homestead
-*   `sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer` on Homer
+*   `sudo cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning` and `sudo cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache` on Homestead
+*   `sudo cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer` on Homer
 *   `sudo /usr/share/clearwater/bin/do_backup.sh memento` on Memento.
 
 This produces output of the following form, reporting the successfully-created backup.
@@ -108,8 +108,8 @@ Ellis, Homestead, Homer and Memento are all automatically configured to take dai
 If you want to turn this on, edit your crontab by running `sudo crontab -e` and add the following lines if not already present:
 
 *   `0 0 * * * /usr/share/clearwater/ellis/backup/do_backup.sh` on Elis
-*   `0 0 * * * /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning` and `5 0 * * * /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache` on Homestead
-*   `0 0 * * * /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer` on Homer
+*   `0 0 * * * /usr/bin/cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning` and `5 0 * * * cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache` on Homestead
+*   `0 0 * * * /usr/bin/cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer` on Homer
 *   `0 0 * * * /usr/share/clearwater/bin/do_backup.sh memento` on Memento.
 
 These backups are stored locally, in the same locations as they would be generated for a manual backup.
@@ -232,9 +232,9 @@ To backup the shared configuration:
 
 To restore a previous backup, copy the four files listed above to `/etc/clearwater` on one of your sprout nodes. Then run the following commands on that node:
 
-    /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
-    /usr/share/clearwater/clearwater-config-manager/scripts/upload_bgcf_json
-    /usr/share/clearwater/clearwater-config-manager/scripts/upload_enum_json
-    /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json
+    cw-upload_shared_config
+    cw-upload_bgcf_json
+    cw-upload_enum_json
+    cw-upload_scscf_json
 
 See [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this.

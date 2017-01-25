@@ -6,11 +6,11 @@ This document describes how to troubleshoot some common problems, and associated
 
 *  Clearwater components are monitored by [monit](http://mmonit.com/monit/) and should be restarted by it if the component fails or hangs.  You can check that components are running by issuing `monit status`.  If components are not being monitored as expected, run `monit monitor <component>` to monitor it. To restart a component, we recommend using `service <component> stop` to stop the component, and allowing monit to automatically start the component again.
 
-*  The [Clearwater diagnostics monitor](https://github.com/Metaswitch/clearwater-infrastructure/blob/master/clearwater-diags-monitor.md) detects crashes in native clearwater processes (Bono, Sprout and Homestead) and captures a diagnostics bundle containing a core file (among other useful information).  A diagnostics bundle can also be created by running a command line script (`sudo /usr/share/clearwater/bin/gather_diags`).
+*  The [Clearwater diagnostics monitor](https://github.com/Metaswitch/clearwater-infrastructure/blob/master/clearwater-diags-monitor.md) detects crashes in native clearwater processes (Bono, Sprout and Homestead) and captures a diagnostics bundle containing a core file (among other useful information).  A diagnostics bundle can also be created by running a command line script (`sudo cw-gather_diags`).
 
 *  By default each component logs to `/var/log/<service>/`, at log level 2 (which only includes errors and very high level events). To see more detailed logs you can enable debug logging; details for how to do this for each component are below. Note that if you want to run stress through your deployment, you should revert the log levels back to the default level.
 
-* Changes to `shared_config` are detected each time `upload_shared_config` is run (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md)), and logged to `/var/log/syslog` on the node from which the configuration was changed.
+* Changes to `shared_config` are detected each time `cw-upload_shared_config` is run (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md)), and logged to `/var/log/syslog` on the node from which the configuration was changed.
 
 ## Ellis
 
@@ -83,9 +83,9 @@ If you see Ralf dying/restarting with no apparent cause in `/var/log/ralf/ralf*.
 Clearwater comes with a system that [automate clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md). If you cannot scale your deployment up or down, or if configuration changes are not being applied, this system may not be working.
 
 * The management system logs to `/var/log/clearwater-etcd`, `/var/log/clearwater-cluster-manager`, `/var/log/clearwater-config-manager` and `/var/log/clearwater-queue-manager`. To turn on debug logging write `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart the etcd processes (`sudo service <clearwater-config-manager|clearwater-cluster-manager|clearwater-queue-manager> stop` - they will be restarted by monit)
-* `/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_state` will display information about the state of the various data-store clusters used by Clearwater.
-* `sudo /usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync` will display whether the node has learned shared configuration.
-* `sudo /usr/share/clearwater/clearwater-queue-manager/scripts/check_restart_queue_state` will display whether there is new shared configuration that is being synched across the deployment, and which nodes are using the new shared configuration.
+* `cw-check_cluster_state` will display information about the state of the various data-store clusters used by Clearwater.
+* `sudo cw-check_config_sync` will display whether the node has learned shared configuration.
+* `sudo cw-check_restart_queue_state` will display whether there is new shared configuration that is being synched across the deployment, and which nodes are using the new shared configuration.
 * The following commands can be useful for inspecting the state of the underlying etcd cluster used by the management system:
 
         clearwater-etcdctl cluster-health

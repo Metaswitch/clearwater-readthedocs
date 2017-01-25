@@ -201,7 +201,7 @@ See the [Chef instructions](Installing_a_Chef_workstation.md#add-deployment-spec
 
 Now run the following to upload the configuration to a shared database and propagate it around the cluster (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this).
 
-    /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
+    cw-upload_shared_config
 
 ## Provision Telephone Numbers in Ellis
 
@@ -248,7 +248,7 @@ To install a standalone IMS component/application server, you need to:
 * Choose whether the Sprout node should join the clustered data stores. Some sproutlets (e.g. the S-CSCF, memento) do need to do so (e.g. they need access to the common Chronos, Memcached and Cassandra clusters). Others (e.g. the I-CSCF, gemini), do not.
 * To join a data store cluster, add `etcd_cluster_key=<node type>` to `/etc/clearwater/local_config` on each joining node.
 * For sproutlets that don't take part in the clustered data stores set `etcd_cluster_key=DO_NOT_CLUSTER` in `/etc/clearwater/local_config`.
-* If you have a node that's a member of the wrong data store (e.g. an I-CSCF node has joined the S-CSCF data cluster), then you can remove it using the [`mark_node_failed`](http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-node-from-a-data-store) script, e.g. `sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed <incorrect cluster key> <data store type> <node IP>`.
+* If you have a node that's a member of the wrong data store (e.g. an I-CSCF node has joined the S-CSCF data cluster), then you can remove it using the [`cw-mark_node_failed`](http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-node-from-a-data-store) script, e.g. `sudo cw-mark_node_failed <incorrect cluster key> <data store type> <node IP>`.
 * Once the node is fully installed and a member of the correct data stores, add it to the relevant DNS records.
 
 ### I-CSCF configuration
@@ -290,4 +290,4 @@ As an example, say you have one S-CSCF that supports billing, and one that doesn
 
 Then when you configure a subscriber in the HSS, you can set up what capabilities they require in an S-CSCF. These will also be integers, and you should make sure this matches with how you've set up the s-cscf.json file. In this example, if you wanted your subscriber to be billed, you would configure the user data in the HSS to make it mandatory for your subscriber to have an S-CSCF that supports capability 1.
 
-To change the I-CSCF configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json`.
+To change the I-CSCF configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_scscf_json`.

@@ -8,15 +8,15 @@ By default, the tools are installed on the Homestead servers only (as part of th
 
 There are 5 tools.
 
-*   `create_user` - for creating users
-*   `update_user` - for updating users' passwords
-*   `delete_user` - for deleting users
-*   `display_user` - for displaying users' details
-*   `list_users` - for listing users
+*   `cw-create_user` - for creating users
+*   `cw-update_user` - for updating users' passwords
+*   `cw-delete_user` - for deleting users
+*   `cw-display_user` - for displaying users' details
+*   `cw-list_users` - for listing users
 
 ## Creating users
 
-New users can be created with the `create_user` tool.  As well as creating single users, it's also possible to create multiple users with a single command.  Note that this is not recommended for provisioning large numbers of users - for that, [bulk provisioning](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) is much quicker.
+New users can be created with the `cw-create_user` tool.  As well as creating single users, it's also possible to create multiple users with a single command.  Note that this is not recommended for provisioning large numbers of users - for that, [bulk provisioning](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) is much quicker.
 
 ```
 usage: create_user.py [-h] [-k] [--hsprov IP:PORT] [--plaintext]
@@ -42,7 +42,7 @@ optional arguments:
 
 ## Update users
 
-Existing users' passwords can be updated with the `update_user` tool.
+Existing users' passwords can be updated with the `cw-update_user` tool.
 
 ```
 usage: update_user.py [-h] [-k] [-q] [--hsprov IP:PORT] [--plaintext]
@@ -66,7 +66,7 @@ optional arguments:
 
 ## Delete users
 
-Users can be deleted with the `delete_user` tool.
+Users can be deleted with the `cw-delete_user` tool.
 
 ```
 usage: delete_user.py [-h] [-f] [-q] [--hsprov IP:PORT]
@@ -87,7 +87,7 @@ optional arguments:
 
 ## Display users
 
-Users' details can be displayed with the `display_user` tool.
+Users' details can be displayed with the `cw-display_user` tool.
 
 ```
 usage: display_user.py [-h] [-k] [-q] [-s] [--hsprov IP:PORT]
@@ -109,7 +109,7 @@ optional arguments:
 
 ## List users
 
-All the users provisioned on the system can be listed with the `list_users` tool.
+All the users provisioned on the system can be listed with the `cw-list_users` tool.
 
 Note that the `--full` parameter defaults to off because it greatly decreases the performance of the tool (by more than an order of magnitude).
 

@@ -33,8 +33,8 @@ If you're scaling up your deployment, follow the following process:
 
 2.  Wait until the new nodes have fully joined the existing deployment. To check if a node has joined the deployment:
 
-    * Run `/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_state`. This should report that the local node is in all of its clusters and that the cluster is stable.
-    * Run `sudo /usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync`. This reports when the node has learned its configuration.
+    * Run `cw-check_cluster_state`. This should report that the local node is in all of its clusters and that the cluster is stable.
+    * Run `sudo cw-check_config_sync`. This reports when the node has learned its configuration.
 
 3.  Update DNS to contain the new nodes.
 
@@ -72,7 +72,7 @@ Follow these instructions if you manually installed your deployment but are *not
 If you're scaling up your deployment, follow the following process.
 
 1.  Spin up new nodes, following the [standard install process](Manual_Install.md).
-2.  On Sprout and Ralf nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (longer) list of the new nodes (`new_servers=...`) and then run `service <process> reload` to re-read this file. Do the same on Memento nodes, but use `/etc/clearwater/memento_cluster_settings` as the file. 
+2.  On Sprout and Ralf nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (longer) list of the new nodes (`new_servers=...`) and then run `service <process> reload` to re-read this file. Do the same on Memento nodes, but use `/etc/clearwater/memento_cluster_settings` as the file.
 3.  On new Memento, Homestead and Homer nodes, follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_add_node_to_cluster_t.html) to join the new nodes to the existing cluster.
 4.  On Sprout and Ralf nodes, update `/etc/chronos/chronos_cluster.conf` to contain a list of all the nodes (see [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md) for details of how to do this) and then run `service chronos reload` to re-read this file.
 5.  On Sprout, Memento and Ralf nodes, run `service astaire reload` to start resynchronization.
