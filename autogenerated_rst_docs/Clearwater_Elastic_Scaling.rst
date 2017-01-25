@@ -65,13 +65,10 @@ If you're scaling up your deployment, follow the following process:
 2. Wait until the new nodes have fully joined the existing deployment.
    To check if a node has joined the deployment:
 
-   -  Run
-      ``/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_state``.
-      This should report that the local node is in all of its clusters
-      and that the cluster is stable.
-   -  Run
-      ``sudo /usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync``.
-      This reports when the node has learned its configuration.
+   -  Run ``cw-check_cluster_state``. This should report that the local
+      node is in all of its clusters and that the cluster is stable.
+   -  Run ``sudo cw-check_config_sync``. This reports when the node has
+      learned its configuration.
 
 3. Update DNS to contain the new nodes.
 

@@ -127,11 +127,11 @@ Homestead, Homer and Memento
 
 To take a manual backup on Homestead, Homer or Memento, run
 
--  ``sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning``
+-  ``sudo cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning``
    and
-   ``sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache``
+   ``sudo cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache``
    on Homestead
--  ``sudo /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer``
+-  ``sudo cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer``
    on Homer
 -  ``sudo /usr/share/clearwater/bin/do_backup.sh memento`` on Memento.
 
@@ -168,11 +168,11 @@ If you want to turn this on, edit your crontab by running
 ``sudo crontab -e`` and add the following lines if not already present:
 
 -  ``0 0 * * * /usr/share/clearwater/ellis/backup/do_backup.sh`` on Elis
--  ``0 0 * * * /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning``
+-  ``0 0 * * * /usr/bin/cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning``
    and
-   ``5 0 * * * /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache``
+   ``5 0 * * * cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache``
    on Homestead
--  ``0 0 * * * /usr/share/clearwater/bin/run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer``
+-  ``0 0 * * * /usr/bin/cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer``
    on Homer
 -  ``0 0 * * * /usr/share/clearwater/bin/do_backup.sh memento`` on
    Memento.
@@ -338,10 +338,10 @@ commands on that node:
 
 ::
 
-    /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
-    /usr/share/clearwater/clearwater-config-manager/scripts/upload_bgcf_json
-    /usr/share/clearwater/clearwater-config-manager/scripts/upload_enum_json
-    /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json
+    cw-upload_shared_config
+    cw-upload_bgcf_json
+    cw-upload_enum_json
+    cw-upload_scscf_json
 
 See `Modifying Clearwater settings <Modifying_Clearwater_settings.html>`__
 for more details on this.

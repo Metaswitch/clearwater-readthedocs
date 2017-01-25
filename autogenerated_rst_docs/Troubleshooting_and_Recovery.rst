@@ -21,8 +21,7 @@ General
    detects crashes in native clearwater processes (Bono, Sprout and
    Homestead) and captures a diagnostics bundle containing a core file
    (among other useful information). A diagnostics bundle can also be
-   created by running a command line script
-   (``sudo /usr/share/clearwater/bin/gather_diags``).
+   created by running a command line script (``sudo cw-gather_diags``).
 
 -  By default each component logs to ``/var/log/<service>/``, at log
    level 2 (which only includes errors and very high level events). To
@@ -32,7 +31,7 @@ General
    to the default level.
 
 -  Changes to ``shared_config`` are detected each time
-   ``upload_shared_config`` is run (see `Modifying Clearwater
+   ``cw-upload_shared_config`` is run (see `Modifying Clearwater
    settings <Modifying_Clearwater_settings.html>`__), and logged to
    ``/var/log/syslog`` on the node from which the configuration was
    changed.
@@ -204,15 +203,13 @@ are not being applied, this system may not be working.
    it doesn't exist already), then restart the etcd processes
    (``sudo service <clearwater-config-manager|clearwater-cluster-manager|clearwater-queue-manager> stop``
    - they will be restarted by monit)
--  ``/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_state``
-   will display information about the state of the various data-store
-   clusters used by Clearwater.
--  ``sudo /usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync``
-   will display whether the node has learned shared configuration.
--  ``sudo /usr/share/clearwater/clearwater-queue-manager/scripts/check_restart_queue_state``
-   will display whether there is new shared configuration that is being
-   synched across the deployment, and which nodes are using the new
-   shared configuration.
+-  ``cw-check_cluster_state`` will display information about the state
+   of the various data-store clusters used by Clearwater.
+-  ``sudo cw-check_config_sync`` will display whether the node has
+   learned shared configuration.
+-  ``sudo cw-check_restart_queue_state`` will display whether there is
+   new shared configuration that is being synched across the deployment,
+   and which nodes are using the new shared configuration.
 -  The following commands can be useful for inspecting the state of the
    underlying etcd cluster used by the management system:
 

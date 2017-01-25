@@ -426,10 +426,9 @@ If you use the ENUM file, enter the ENUM rules in the JSON format (shown
 above). If you are using the enhanced node management framework provided
 by ``clearwater-etcd``, and you use ``/etc/clearwater/enum.json`` as
 your ENUM filename, you can automatically synchronize changes across
-your deployment by running
-``sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_enum_json``
-after creating or updating the file. In this case, other Sprout nodes
-will automatically download and use the uploaded ENUM rules.
+your deployment by running ``sudo cw-upload_enum_json`` after creating
+or updating the file. In this case, other Sprout nodes will
+automatically download and use the uploaded ENUM rules.
 
 It's possible to configure Sprout with secondary and tertiary ENUM
 servers, by providing a comma-separated list (e.g.

@@ -23,19 +23,15 @@ sharing <Automatic_Clustering_Config_Sharing.html>`__ functionality:
 
 -  Edit ``/etc/clearwater/shared_config`` on *one* node and change to
    the new value.
--  Run
-   ``/usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config``
-   to upload the new config to etcd. The changes to the shared
-   configuration are logged to ``/var/log/syslog`` and to the console.
-   Each node in your deployment picks up the changed shared
-   configuration and safely restarts itself to use it.
+-  Run ``cw-upload_shared_config`` to upload the new config to etcd. The
+   changes to the shared configuration are logged to ``/var/log/syslog``
+   and to the console. Each node in your deployment picks up the changed
+   shared configuration and safely restarts itself to use it.
 -  You can check which nodes are using the new shared config by running
-   ``/usr/share/clearwater/clearwater-queue-manager/scripts/check_restart_queue_state``.
-   If this command shows that there's been an error (i.e. a node wasn't
-   able to restart after picking up the new config), simply fix the
-   ``/etc/clearwater/shared_config`` and run the
-   ``/usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config``
-   script again.
+   ``cw-check_restart_queue_state``. If this command shows that there's
+   been an error (i.e. a node wasn't able to restart after picking up
+   the new config), simply fix the ``/etc/clearwater/shared_config`` and
+   run the ``cw-upload_shared_config`` script again.
 
 If you are not using automatic clustering, do the following on *each*
 node:
@@ -77,9 +73,8 @@ configuration sharing <Automatic_Clustering_Config_Sharing>`__
 functionality:
 
 -  Edit the file on *one* of your sprout nodes.
--  Run one of
-   ``sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_{scscf|bgcf|enum}_json``
-   depending on which file you modified.
+-  Run one of ``sudo cw-upload_{scscf|bgcf|enum}_json`` depending on
+   which file you modified.
 -  The change will be automatically propagated around the deployment and
    will start being used.
 

@@ -327,7 +327,7 @@ this).
 
 ::
 
-    /usr/share/clearwater/clearwater-config-manager/scripts/upload_shared_config
+    cw-upload_shared_config
 
 Provision Telephone Numbers in Ellis
 ------------------------------------
@@ -422,9 +422,9 @@ clustered data stores set ``etcd_cluster_key=DO_NOT_CLUSTER`` in
 ``/etc/clearwater/local_config``. \* If you have a node that's a member
 of the wrong data store (e.g. an I-CSCF node has joined the S-CSCF data
 cluster), then you can remove it using the
-```mark_node_failed`` <http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-node-from-a-data-store>`__
+```cw-mark_node_failed`` <http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-node-from-a-data-store>`__
 script, e.g.
-``sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed <incorrect cluster key> <data store type> <node IP>``.
+``sudo cw-mark_node_failed <incorrect cluster key> <data store type> <node IP>``.
 \* Once the node is fully installed and a member of the correct data
 stores, add it to the relevant DNS records.
 
@@ -490,4 +490,4 @@ subscriber to have an S-CSCF that supports capability 1.
 
 To change the I-CSCF configuration, edit this file on any Sprout node,
 then upload it to the shared configuration database by running
-``sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_scscf_json``.
+``sudo cw-upload_scscf_json``.

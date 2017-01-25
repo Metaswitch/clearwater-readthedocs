@@ -140,6 +140,5 @@ There is no default route set if the BGCF is routing based on the
 telephone number from the ``rn`` parameter of a URI provided.
 
 After making a change to this file you should run
-``sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_bgcf_json``
-to ensure the change is synchronized to other Sprout nodes on your
-system (including nodes added in the future).
+``sudo cw-upload_bgcf_json`` to ensure the change is synchronized to
+other Sprout nodes on your system (including nodes added in the future).

@@ -40,15 +40,15 @@ removed from the deployment using the following steps:
 Removing a Node From a Data Store
 ---------------------------------
 
-The ``mark_node_failed`` script can be used to remove a failed node from
-a back-end data store. If there are multiple failed nodes, ensure that
-you run the ``mark_node_failed`` scripts for each store type
+The ``cw-mark_node_failed`` script can be used to remove a failed node
+from a back-end data store. If there are multiple failed nodes, ensure
+that you run the ``cw-mark_node_failed`` scripts for each store type
 simultaneously (e.g. for multiple sprout removal, mark all failed nodes
 for memcached simultaneously first, and then mark all failed nodes for
-chronos). The ``mark_node_failed`` script will only terminate once all
-of the failed nodes for that datastore have been marked as such, so you
-can do this by running ``mark_node_failed`` for each of that datastore's
-failed nodes in a separate shell session.
+chronos). The ``cw-mark_node_failed`` script will only terminate once
+all of the failed nodes for that datastore have been marked as such, so
+you can do this by running ``cw-mark_node_failed`` for each of that
+datastore's failed nodes in a separate shell session.
 
 You will need to know the type of the failed node (e.g. "sprout") and
 its IP address. If you are using separate signaling and management
@@ -61,45 +61,44 @@ Sprout
 
 ::
 
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "sprout" "memcached" <failed node IP>
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "sprout" "chronos" <failed node IP>
+    sudo cw-mark_node_failed "sprout" "memcached" <failed node IP>
+    sudo cw-mark_node_failed "sprout" "chronos" <failed node IP>
 
 Homestead
 ~~~~~~~~~
 
 ::
 
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "homestead" "cassandra" <failed node IP>
+    sudo cw-mark_node_failed "homestead" "cassandra" <failed node IP>
 
 Homer
 ~~~~~
 
 ::
 
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "homer" "cassandra" <failed node IP>
+    sudo cw-mark_node_failed "homer" "cassandra" <failed node IP>
 
 Ralf
 ~~~~
 
 ::
 
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "ralf" "chronos" <failed node IP>
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "ralf" "memcached" <failed node IP>
+    sudo cw-mark_node_failed "ralf" "chronos" <failed node IP>
+    sudo cw-mark_node_failed "ralf" "memcached" <failed node IP>
 
 Memento
 ~~~~~~~
 
 ::
 
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "cassandra" <failed node IP>
-    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed "memento" "memcached" <failed node IP>
+    sudo cw-mark_node_failed "memento" "cassandra" <failed node IP>
+    sudo cw-mark_node_failed "memento" "memcached" <failed node IP>
 
 If you cannot log into a working node in the same site (e.g. because an
 entire geographically redundant site has been lost), you can use a
 working node in the other site, but in this case you must run
 ``/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_remote_node_failed``
-instead of
-``/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_node_failed``.
+instead of ``cw-mark_node_failed``.
 
 Multiple Failed Nodes
 ---------------------
@@ -114,4 +113,4 @@ If you haven't lost half (or more) of your nodes, then you can use the
 same process described
 `above <http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-failed-node>`__
 for each of your failed nodes (remembering that you may need to run the
-``mark_node_failed`` script for each failed node simultaneously).
+``cw-mark_node_failed`` script for each failed node simultaneously).

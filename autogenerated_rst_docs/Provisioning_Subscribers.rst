@@ -16,16 +16,16 @@ part of the clearwater-prov-tools package), in the
 
 There are 5 tools.
 
--  ``create_user`` - for creating users
--  ``update_user`` - for updating users' passwords
--  ``delete_user`` - for deleting users
--  ``display_user`` - for displaying users' details
--  ``list_users`` - for listing users
+-  ``cw-create_user`` - for creating users
+-  ``cw-update_user`` - for updating users' passwords
+-  ``cw-delete_user`` - for deleting users
+-  ``cw-display_user`` - for displaying users' details
+-  ``cw-list_users`` - for listing users
 
 Creating users
 --------------
 
-New users can be created with the ``create_user`` tool. As well as
+New users can be created with the ``cw-create_user`` tool. As well as
 creating single users, it's also possible to create multiple users with
 a single command. Note that this is not recommended for provisioning
 large numbers of users - for that, `bulk
@@ -57,7 +57,8 @@ is much quicker.
 Update users
 ------------
 
-Existing users' passwords can be updated with the ``update_user`` tool.
+Existing users' passwords can be updated with the ``cw-update_user``
+tool.
 
 ::
 
@@ -82,7 +83,7 @@ Existing users' passwords can be updated with the ``update_user`` tool.
 Delete users
 ------------
 
-Users can be deleted with the ``delete_user`` tool.
+Users can be deleted with the ``cw-delete_user`` tool.
 
 ::
 
@@ -104,7 +105,7 @@ Users can be deleted with the ``delete_user`` tool.
 Display users
 -------------
 
-Users' details can be displayed with the ``display_user`` tool.
+Users' details can be displayed with the ``cw-display_user`` tool.
 
 ::
 
@@ -128,7 +129,7 @@ List users
 ----------
 
 All the users provisioned on the system can be listed with the
-``list_users`` tool.
+``cw-list_users`` tool.
 
 Note that the ``--full`` parameter defaults to off because it greatly
 decreases the performance of the tool (by more than an order of
