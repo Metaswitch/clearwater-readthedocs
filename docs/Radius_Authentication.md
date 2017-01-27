@@ -4,9 +4,9 @@ It is possible to authenticate users for SSH/SFTP access by using the RADIUS aut
 
 ## The authentication process
 
-On attempting to access a node via SSH or SFTP, a user is either expected to use a key, or to provide a password to verify their identity, and thus pass through authentication successfully. This process requires a locally provisioned set of authentication details for each user that the sshd process can compare to the provided credentials for verification. In the case of password authentication, by enabling RADIUS all user accounts can be configured centrally on a RADIUS server, or in a database said server can access, and each node can pass user credentials provided at log in across to this server to complete the authentication process.
+On attempting to access a node via SSH or SFTP, a user is either expected to use a key, or provide a password to verify their identity. This process requires a locally provisioned set of authentication details for each user that the sshd process compares to the provided credentials for verification. For password based authentication, enabling RADIUS means that all user accounts can be configured centrally on a RADIUS server (or in a database the RADIUS server can access). Each node can then pass on the user credentials provided to this server to complete the authentication process.
 
-As the user attempting access may not exist locally on the node, which sshd requires, any unknown user is mapped to the a single configurable user (usually the system default user) to allow authentication to proceed correctly. As such, all RADIUS authenticated users will be acting as this user; for auditing purposes however, the username provided at login that is recorded.
+Sshd requires that the user attempting to access a node must exist locally. To allow the authentication process to complete correctly, any locally unknown user is mapped to a single configurable user (usually the system default user). As such, all RADIUS authenticated users will be acting as this user on the local node. For auditing purposes however, the username provided at login is recorded (e.g. in `/var/log/auth.log`, and the output of commands like `who`).
 
 ## Prerequisites
 
@@ -28,7 +28,11 @@ Install the Clearwater RADIUS authentication package:
 
 ### Configuration
 
-You need to create configuration for the all-to-one module, [libnss-ato](https://github.com/Metaswitch/libnss-ato), which is used to map your RADIUS authenticated users onto a locally provisioned user. A template of this configuration is provided in `/etc/libnss-ato.conf.TEMPLATE`. You will need to create the file `/etc/libnss-ato.conf` in the same format, either copying the TEMPLATE across directly, or adding an entry matching that in `/etc/passwd` for the user you wish to map to.
+#### libnss-ato configuration
+
+You need to create configuration for the all-to-one module, [libnss-ato](https://github.com/Metaswitch/libnss-ato), which is used to map your RADIUS authenticated users onto a locally provisioned user. A template of this configuration is provided in `/etc/libnss-ato.conf.TEMPLATE`. You will need to create the file `/etc/libnss-ato.conf`, and provide an entry in the same format as in the template file. For most users, the template can be copied directly, simply running `sudo cp /etc/libnss-ato.conf.TEMPLATE /etc/libnss-ato.conf`; this will map locally unknown users to the default linux user (UID 1000). If you wish to configure the module to use a different user, the entry should match how the user appears in `/etc/passwd`. Only a single user mapping is configurable, and so only the first line of the configuration file is parsed.
+
+#### RADIUS server configuration
 
 The details of your RADIUS server will need to be entered into `/etc/pam_radius_auth.conf`. This file provides an example of how entries should be structured:
 * Multiple entries are allowed, but each must be on a new line.
@@ -41,6 +45,8 @@ The details of your RADIUS server will need to be entered into `/etc/pam_radius_
 
 * The secret is shared between each client and the server to allow simple encryption of passwords. The secret must match the entry for the client in the RADIUS server configuration.
 * Both the port and timeout entries are optional. We recommend a relatively small timeout value (e.g. 3 seconds), as in the case that your RADIUS server becomes uncontactable users will have to wait the full duration of all configured timeouts before falling back to local password based authentication. Authentication by SSH-key does not enter this authentication path, and so timeout values will not impact SSH-key based access.
+
+#### Sshd configuration
 
 Your sshd configuration must allow password authentication, and use of PAM. If you are unsure, check that the `PasswordAuthentication` and `UsePAM` entries in `/etc/ssh/sshd_config` are set to `yes`. Any changes to ssh configuration will require the ssh process to be restarted before coming into effect.
 
@@ -66,7 +72,7 @@ To properly remove clearwater-radius-auth, and the components it brings with it,
     sudo apt-get purge clearwater-radius-auth
     sudo apt-get purge libpam-radius-auth
     sudo apt-get purge libnss-ato
-    sudo rm /etc/libnss-ato.conf
+    sudo rm -f /etc/libnss-ato.conf
 
 This will remove all configuration put in place by the installation. Should your configuration become corrupt, purging and re-installing the associated module will re-instate the correct configuration.
 
@@ -76,11 +82,11 @@ This section details the configuration put in place by the installation. It is h
 
 ### libnss-ato.conf
 
-The libnss-ato configuration file should be created based on the format present in the provided template `/etc/libnss-ato.conf.TEMPLATE`. It will look like the following:
+The libnss-ato configuration file is found at `/etc/libnss-ato.conf`. Users will need to manually create the file on their first installation. The file contains an entry specifying the user identity to which unknown users are mapped. A template of the configuration is provided at `/etc/libnss-ato.conf.TEMPLATE`. It will look like the following:
 
     radius_authenticated_user:x:1000:1000:radius_authenticated_user:/tmp:/bin/bash
 
-It holds the information of the default user to which unknown users are mapped. By default this maps to the Ubuntu user.
+For most installations, copying the template across to create the configuration file will be sufficient. This will map unknown users to the default user, UID 1000.
 
 Only the first line of this file is parsed. The user entry is the same format as is found in `/etc/passwd`. Replacing this file with a different user entry will map unknown users to the entry provided.
 
