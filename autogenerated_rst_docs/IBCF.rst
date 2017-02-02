@@ -133,11 +133,8 @@ A default route set can be configured by having an entry where the
 domain is set to ``"*"``. This will be used by the BGCF if it is trying
 to route based on the the domain and there's no explicit match for the
 domain in the configuration, or if it is trying to route based on a
-telephone number not from the ``rn`` parameter of a URI and there's not
-explicit match for the number in the configuration.
-
-There is no default route set if the BGCF is routing based on the
-telephone number from the ``rn`` parameter of a URI provided.
+telephone number and there's no explicit match for the number in the
+configuration.
 
 After making a change to this file you should run
 ``sudo cw-upload_bgcf_json`` to ensure the change is synchronized to
