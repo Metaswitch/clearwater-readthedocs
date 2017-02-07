@@ -2,7 +2,7 @@
 
 ## Dev and master branches
 
-Each component/repository (with a few exceptions) has 2 main branches, `dev` and `master`. Whenever a commit is pushed to the `dev` branch, Jenkins will automatically run the unit tests for the repository and if they pass, merge into master`.
+Each component/repository (with a few exceptions) has 2 main branches, `dev` and `master`. Whenever a commit is pushed to the `dev` branch, Jenkins will automatically run the unit tests for the repository and if they pass, merge into `master`.
 
 ## Development process
 
@@ -32,9 +32,9 @@ Features or any changes to the codebase should be done as follows:
     * If no further review is necessary and you have the necessary privileges, merge the pull request and close the branch.  Otherwise, make a top-level comment and assign back to the reviewer as above.
 
 
-## Reviewer process:
+## Reviewer process
 
-* Receive notice of review by GitHub email, GitHub notification, or by checking [all your Metaswitch GitHub issues](https://github.com/issues/assigned).
+* Receive notice of review by GitHub email, GitHub notification, or by checking [all your assigned GitHub issues](https://github.com/issues/assigned).
 * Make comments on the pull request (either line comments or top-level comments).
 * Make a top-level comment saying something along the lines of "Fine; some minor comments" or "Some issues to address before merging".
 * If there are no issues, merge the pull request and close the branch. Otherwise, assign the pull request to the developer and leave this to them.
