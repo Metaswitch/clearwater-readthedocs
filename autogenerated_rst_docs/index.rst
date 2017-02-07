@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Vulpix <http://pokemon.wikia.com/wiki/Vulpix>`__\ ".
+"`Wartortle <http://pokemon.wikia.com/wiki/Wartortle>`__\ ".
 
 Architecture
 ------------
