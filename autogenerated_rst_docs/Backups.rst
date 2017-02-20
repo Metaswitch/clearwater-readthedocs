@@ -127,11 +127,11 @@ Homestead, Homer and Memento
 
 To take a manual backup on Homestead, Homer or Memento, run
 
--  ``sudo cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning``
+-  ``sudo cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning``
    and
-   ``sudo cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache``
+   ``sudo cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache``
    on Homestead
--  ``sudo cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer``
+-  ``sudo cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homer``
    on Homer
 -  ``sudo /usr/share/clearwater/bin/do_backup.sh memento`` on Memento.
 
@@ -168,11 +168,11 @@ If you want to turn this on, edit your crontab by running
 ``sudo crontab -e`` and add the following lines if not already present:
 
 -  ``0 0 * * * /usr/share/clearwater/ellis/backup/do_backup.sh`` on Elis
--  ``0 0 * * * /usr/bin/cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning``
+-  ``0 0 * * * /usr/bin/cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning``
    and
-   ``5 0 * * * cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache``
+   ``5 0 * * * cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache``
    on Homestead
--  ``0 0 * * * /usr/bin/cw-run-in-signaling-namespace /usr/share/clearwater/bin/do_backup.sh homer``
+-  ``0 0 * * * /usr/bin/cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homer``
    on Homer
 -  ``0 0 * * * /usr/share/clearwater/bin/do_backup.sh memento`` on
    Memento.
