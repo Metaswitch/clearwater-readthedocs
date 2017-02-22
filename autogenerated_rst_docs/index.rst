@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Wartortle <http://pokemon.wikia.com/wiki/Wartortle>`__\ ".
+"`Xerneas <http://pokemon.wikia.com/wiki/Xerneas>`__\ ".
 
 Architecture
 ------------
