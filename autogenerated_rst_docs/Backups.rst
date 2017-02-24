@@ -275,6 +275,12 @@ Homestead, Homer or Memento will produce output of the following form.
     sip_digests: Deleting old .db files...
     sip_digests: Restoring from backup: 1372336442947
 
+For Homestead, Homer or Memento, after restoring a backup you must also
+do the following: - wait until the Cassandra process has restarted by
+running ``sudo monit summary`` and verifying that the
+``cassandra_process`` is marked as ``Running`` - run
+``sudo cw-run_in_signaling_namespace nodetool repair``
+
 At this point, this node has been restored.
 
 Synchronization
