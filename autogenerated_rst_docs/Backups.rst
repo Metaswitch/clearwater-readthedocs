@@ -222,6 +222,15 @@ On Ellis, run the following commands.
 On Homestead/Homer/Memento there is no need to further move the files as
 the backup script takes a optional backup directory parameter.
 
+If you are restoring a Homestead/Homer/Memento backup onto a completely
+clean deployment, you must ensure that the new deployment has at least
+as many Homestead/Homer/Memento nodes as the one from which the backup
+was taken. Each backup should be restored onto only one node, and each
+node should have only one backup restored onto it. If your new
+deployment does not have enough Homestead/Homer/Memento nodes, you
+should add more nodes and then, once restoring backups is complete,
+scale down your deployment to the desired size.
+
 Running the Restore Backup Script
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
