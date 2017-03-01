@@ -78,11 +78,11 @@ Note that the `etcd_cluster` variable should be set to a comma separated list th
 If you are creating a [geographically redundant deployment](Geographic_redundancy.md), then:
 
 * `etcd_cluster` should contain the IP addresses of nodes in both sites
-*  you should set `local_site_name` and `remote_site_name` in `/etc/clearwater/local_config`.
+*  you should set `local_site_name` and `remote_site_names` in `/etc/clearwater/local_config`.
 
 These names are arbitrary, but should reflect the node's location (e.g. a node in site A should have
-`local_site_name=siteA` and `remote_site_name=siteB`, whereas a node in site B should have
-`local_site_name=siteB` and `remote_site_name=siteA`):
+`local_site_name=siteA` and `remote_site_names=siteB`, whereas a node in site B should have
+`local_site_name=siteB` and `remote_site_names=siteA`):
 
 If this machine will be a Sprout or Ralf node create the file `/etc/chronos/chronos.conf` with the following contents:
 
