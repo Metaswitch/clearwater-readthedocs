@@ -198,7 +198,6 @@ If you want your Sprout nodes to include Gemini/Memento Application Servers add 
     # Application Servers
     gemini=<gemini port>
     memento=<memento port>
-    memento_auth_store=memento.<zone>
 
 See the [Chef instructions](Installing_a_Chef_workstation.md#add-deployment-specific-configuration) for more information on how to fill these in. The values marked `<secret>` **must** be set to secure values to protect your deployment from unauthorized access. To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings.md).
 
