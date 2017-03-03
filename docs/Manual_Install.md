@@ -200,6 +200,11 @@ If you want your Sprout nodes to include Gemini/Memento Application Servers add 
 
 See the [Chef instructions](Installing_a_Chef_workstation.md#add-deployment-specific-configuration) for more information on how to fill these in. The values marked `<secret>` **must** be set to secure values to protect your deployment from unauthorized access. To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings.md).
 
+If you are creating a [geographically redundant deployment](Geographic_redundancy.md), some of the options require information about all sites to be specified. You should replace the `sprout_registration_store` and `ralf_session_store` with the values as described in [Clearwater Configuration Options Referece](Clearwater_Configuration_Options_Reference.md), e.g. for sites named `siteA` and `siteB`:
+
+    sprout_registration_store="siteA=sprout-siteA.<zone>,siteB=sprout-siteB.<zone>"
+    ralf_session_store="siteA=ralf-siteA.<zone>,siteB=ralf-siteB.<zone>"
+
 Now run the following to upload the configuration to a shared database and propagate it around the cluster (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this).
 
     cw-upload_shared_config
