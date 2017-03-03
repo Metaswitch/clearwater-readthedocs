@@ -4,8 +4,8 @@ Ruby Coding Guidelines
 Strongly based on https://github.com/chneukirchen/styleguide/ with some
 local changes.
 
-Formatting:
------------
+Formatting
+----------
 
 -  Use UTF-8 encoding in your source files.
 -  Use 2 space indent, no tabs.
@@ -23,8 +23,8 @@ Formatting:
 -  Keep lines shorter than 80 characters.
 -  Avoid trailing whitespace.
 
-Syntax:
--------
+Syntax
+------
 
 -  Use def with parentheses when there are arguments.
 -  Conversely, avoid parentheses when there are none.
@@ -50,8 +50,8 @@ Syntax:
    needed.
 -  Prefer symbols (:name) to strings where applicable.
 
-Naming:
--------
+Naming
+------
 
 -  Use snake\_case for methods.
 -  Use CamelCase for classes and modules. (Keep acronyms like HTTP, RFC
@@ -77,8 +77,8 @@ Naming:
 -  When defining binary operators, name the argument other.
 -  Use def self.method to define singleton methods.
 
-Comments:
----------
+Comments
+--------
 
 -  Comments longer than a word are capitalized and use punctuation. Use
    two spaces after periods.
@@ -127,8 +127,8 @@ Code design
 -  Prefer using the %w{} family of array generators to typing out arrays
    of strings manually.
 
-General:
---------
+General
+-------
 
 -  Write ruby -w safe code.
 -  Avoid alias, use alias\_method if you absolutely must alias something

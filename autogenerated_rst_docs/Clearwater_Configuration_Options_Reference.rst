@@ -189,6 +189,29 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    all Mementos in the cluster (the default is
    ``memento.<home_domain>``). This should match Memento's SSL
    certificate, if you are using one.
+-  ``sprout_registation_store`` - this is the locations of Sprout's
+   registration stores. It has the format =[:][,=[:],...]. In a non-GR
+   deployment, only one domain is provided (and the site name is
+   optional). For a GR deployment, each domain is identified by the site
+   name, and one of the domains must relate to the local site.
+-  ``ralf_session_store`` - this is the locations of Ralf's session
+   stores. It has the format =[:][,=[:],...]. In a non-GR deployment,
+   only one domain is provided (and the site name is optional). For a GR
+   deployment, each domain is identified by the site name, and one of
+   the domains must relate to the local site.
+-  ``memento_auth_store`` - this is the location of Memento's
+   authorization vector store. It just has the format [:port]. If not
+   present, defaults to the loopback IP.
+-  ``sprout_chronos_callback_uri`` - the callback hostname used on
+   Sprout's Chronos timers. If not present, defaults to the host
+   specified in ``sprout-hostname``. In a GR deployment, should be set
+   to a deployment-wide Sprout hostname (that will be resolved by using
+   static DNS records in ``/etc/clearwater/dns_config``).
+-  ``ralf_chronos_callback_uri`` - the callback hostname used on Ralf's
+   Chronos timers. If not present, defaults to the host specified in
+   ``ralf-hostname``. In a GR deployment, should be set to a
+   deployment-wide Ralf hostname (that will be resolved by using static
+   DNS records in ``/etc/clearwater/dns_config``).
 
 Sproutlet options
 ~~~~~~~~~~~~~~~~~
@@ -550,6 +573,9 @@ e.g. ``icscf=5052``).
    UDP-to-TCP uplift on SIP messages. This is useful when creating a
    deployment where all SIP is sent over UDP. This option only affects
    Sprout nodes.
+-  ``sprout_impi_store`` - this is the location of Sprout's
+   authorization vector store. It just has the format [:port]. If not
+   provided, Sprout uses the local site's registration store.
 
 Experimental options
 ~~~~~~~~~~~~~~~~~~~~
@@ -634,6 +660,29 @@ the format ``name=value``, e.g. ``log_level=5``).
 -  ``num_http_threads`` (Homestead) - determines the number of HTTP
    worker threads that will be used to process requests. Defaults to 50
    times the number of CPU cores on the system.
+
+DNS Config
+----------
+
+This section describes the static DNS config which can be used to
+override DNS results. This is set in ``/etc/clearwater/dns_config``.
+Currently, the only supported record type is CNAME and the only
+component which uses this is Chronos. The file has the format:
+
+::
+
+    {
+      "hostnames": [
+        {
+          "name": "<hostname 1>",
+          "records": [{"rrtype": "CNAME", "target": "<target for hostname 1>"}]
+        },
+        {
+          "name": "<hostname 2>",
+          "records": [{"rrtype": "CNAME", "target": "<target for hostname 2>"}]
+        }
+      ]
+    }
 
 Other configuration options
 ---------------------------
