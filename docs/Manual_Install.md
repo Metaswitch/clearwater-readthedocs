@@ -77,12 +77,11 @@ Note that the `etcd_cluster` variable should be set to a comma separated list th
 
 If you are creating a [geographically redundant deployment](Geographic_redundancy.md), then:
 
-* `etcd_cluster` should contain the IP addresses of nodes in both sites
-*  you should set `local_site_name` and `remote_site_names` in `/etc/clearwater/local_config`.
-
-These names are arbitrary, but should reflect the node's location (e.g. a node in site A should have
-`local_site_name=siteA` and `remote_site_names=siteB`, whereas a node in site B should have
-`local_site_name=siteB` and `remote_site_names=siteA`):
+* `etcd_cluster` should contain the IP addresses of nodes only in the local site
+*  you should set `local_site_name` and `remote_site_names` in `/etc/clearwater/local_config`
+     *   These names are arbitrary, but should reflect the node's location (e.g. a node in site A should have `local_site_name=siteA` and `remote_site_names=siteB`, whereas a node in site B should have `local_site_name=siteB` and `remote_site_names=siteA`):
+*  on each Homestead, Homer and Memento node, you should set `remote_cassandra_seeds` to a comma-separated list of IP addresses of nodes of that type in the remote site
+    *  e.g. on a Homestead node in site `siteA`, set `remote_cassandra_seeds` to the IP addresses of Hometead nodes in site `siteB`
 
 If this machine will be a Sprout or Ralf node create the file `/etc/chronos/chronos.conf` with the following contents:
 
