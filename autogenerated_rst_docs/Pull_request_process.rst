@@ -7,7 +7,7 @@ Dev and master branches
 Each component/repository (with a few exceptions) has 2 main branches,
 ``dev`` and ``master``. Whenever a commit is pushed to the ``dev``
 branch, Jenkins will automatically run the unit tests for the repository
-and if they pass, merge into master\`.
+and if they pass, merge into ``master``.
 
 Development process
 -------------------
@@ -55,11 +55,11 @@ Features or any changes to the codebase should be done as follows:
       Otherwise, make a top-level comment and assign back to the
       reviewer as above.
 
-Reviewer process:
------------------
+Reviewer process
+----------------
 
 -  Receive notice of review by GitHub email, GitHub notification, or by
-   checking `all your Metaswitch GitHub
+   checking `all your assigned GitHub
    issues <https://github.com/issues/assigned>`__.
 -  Make comments on the pull request (either line comments or top-level
    comments).

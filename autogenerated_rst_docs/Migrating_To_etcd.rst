@@ -67,10 +67,10 @@ Do the following on each node in turn:
 
 3. If your deployment was geographically redundant, you should choose
    arbitrary names for each site (e.g. 'site1' and 'site2'), and set the
-   ``local_site_name`` and ``remote_site_name`` settings in
+   ``local_site_name`` and ``remote_site_names`` settings in
    ``/etc/clearwater/local_config`` accordingly. For example, if the
    node is in 'site1', you should have ``local_site_name=site1`` and
-   ``remote_site_name=site2``.
+   ``remote_site_names=site2``.
 
 4. If the node is a Sprout or Ralf node, run
    ``sudo /usr/share/clearwater/bin/chronos_configuration_split.py``.

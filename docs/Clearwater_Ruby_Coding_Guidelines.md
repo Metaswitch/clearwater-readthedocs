@@ -2,7 +2,7 @@
 
 Strongly based on https://github.com/chneukirchen/styleguide/ with some local changes.
 
-## Formatting:
+## Formatting
 
 *     Use UTF-8 encoding in your source files.
 *     Use 2 space indent, no tabs.
@@ -17,13 +17,13 @@ Strongly based on https://github.com/chneukirchen/styleguide/ with some local ch
 *     Keep lines shorter than 80 characters.
 *     Avoid trailing whitespace.
 
-## Syntax:
+## Syntax
 
-*     Use def with parentheses when there are arguments. 
+*     Use def with parentheses when there are arguments.
 *         Conversely, avoid parentheses when there are none.
 *     Never use for, unless you exactly know why.  Prefer each or loop.
 *     Never use then, a newline is sufficient.
-*     Prefer words to symbols. 
+*     Prefer words to symbols.
   *         and and or in place of && and ||
   *         not in place of !
 *     Avoid ?:, use if (remember: if returns a value, use it).
@@ -40,7 +40,7 @@ Strongly based on https://github.com/chneukirchen/styleguide/ with some local ch
 *     When using regexps, freely use =~, -9, $~, $\ and $` when needed.
 *     Prefer symbols (:name) to strings where applicable.
 
-## Naming:
+## Naming
 
 *     Use snake_case for methods.
 *     Use CamelCase for classes and modules.  (Keep acronyms like HTTP, RFC and XML uppercase.)
@@ -63,7 +63,7 @@ Strongly based on https://github.com/chneukirchen/styleguide/ with some local ch
 *     When defining binary operators, name the argument other.
 *     Use def self.method to define singleton methods.
 
-## Comments:
+## Comments
 
 *     Comments longer than a word are capitalized and use punctuation.  Use two spaces after periods.
 *     Avoid superfluous comments.  It should be easy to write self-documenting code.
@@ -73,7 +73,7 @@ Strongly based on https://github.com/chneukirchen/styleguide/ with some local ch
 *     Avoid needless meta-programming.
 *     Avoid long methods.  Much prefer to go too far the wrong way and have multiple one-line methods.
 *     Avoid long parameter lists, consider using a hash with documented defaults instead.
-*     Prefer functional methods over procedural ones (common methods below): 
+*     Prefer functional methods over procedural ones (common methods below):
   *         each - Apply block to each element
   *         map - Apply block to each element and remember the returned values.
   *         select - Find all matching elements
@@ -81,11 +81,11 @@ Strongly based on https://github.com/chneukirchen/styleguide/ with some local ch
   *         inject - Equivalent to foldl from Haskell
 *     Use the mutating version of functional methods (e.g. map!) where applicable, rather than using temporary variables.
 *     Avoid non-obvious function overloading (e.g. don't use ["0"] * 8 to initialize an array).
-*     Prefer objects to vanilla arrays/hashes, this allows you to document the structure and interface. 
+*     Prefer objects to vanilla arrays/hashes, this allows you to document the structure and interface.
   *         Protect the internal data stores from external access.  Write API functions explicitly.
   *         Use attr_accessor to create getters/setters for simple access.
 *         Prefer to add a to_s function to an object for ease of debugging.
-*     Internally, use standard libraries where applicable (See the docs for the various APIs).: 
+*     Internally, use standard libraries where applicable (See the docs for the various APIs).:
   *         Hash, Array and Set
   *         String
   *         Fixnum and Integer
@@ -99,7 +99,7 @@ Strongly based on https://github.com/chneukirchen/styleguide/ with some local ch
 *     Prefer string interpolation "blah#{expr}" rather than appending to strings.
 *     Prefer using the %w{} family of array generators to typing out arrays of strings manually.
 
-## General:
+## General
 
 *     Write ruby -w safe code.
 *     Avoid alias, use alias_method if you absolutely must alias something (for Monkey Patching).

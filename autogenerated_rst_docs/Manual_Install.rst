@@ -146,15 +146,23 @@ created above. For example if the nodes had addresses 10.0.0.1 to
 If you are creating a `geographically redundant
 deployment <Geographic_redundancy.html>`__, then:
 
--  ``etcd_cluster`` should contain the IP addresses of nodes in both
-   sites
--  you should set ``local_site_name`` and ``remote_site_name`` in
-   ``/etc/clearwater/local_config``.
+-  ``etcd_cluster`` should contain the IP addresses of nodes only in the
+   local site
+-  you should set ``local_site_name`` and ``remote_site_names`` in
+   ``/etc/clearwater/local_config``
 
-These names are arbitrary, but should reflect the node's location (e.g.
-a node in site A should have ``local_site_name=siteA`` and
-``remote_site_name=siteB``, whereas a node in site B should have
-``local_site_name=siteB`` and ``remote_site_name=siteA``):
+   -  These names are arbitrary, but should reflect the node's location
+      (e.g. a node in site A should have ``local_site_name=siteA`` and
+      ``remote_site_names=siteB``, whereas a node in site B should have
+      ``local_site_name=siteB`` and ``remote_site_names=siteA``):
+
+-  on each Homestead, Homer and Memento node, you should set
+   ``remote_cassandra_seeds`` to a comma-separated list of IP addresses
+   of nodes of that type in the remote site
+
+   -  e.g. on a Homestead node in site ``siteA``, set
+      ``remote_cassandra_seeds`` to the IP addresses of Hometead nodes
+      in site ``siteB``
 
 If this machine will be a Sprout or Ralf node create the file
 ``/etc/chronos/chronos.conf`` with the following contents:
@@ -268,9 +276,11 @@ Log onto any node in the deployment and create the file
     # Deployment definitions
     home_domain=<zone>
     sprout_hostname=sprout.<zone>
+    sprout_registration_store=sprout.<zone>
     hs_hostname=hs.<zone>:8888
     hs_provisioning_hostname=hs.<zone>:8889
     ralf_hostname=ralf.<zone>:10888
+    ralf_session_store=ralf.<zone>
     xdms_hostname=homer.<zone>:7888
 
     # Email server configuration
@@ -319,6 +329,19 @@ for more information on how to fill these in. The values marked
 from unauthorized access. To modify these settings after the deployment
 is created, follow `these
 instructions <Modifying_Clearwater_settings.html>`__.
+
+If you are creating a `geographically redundant
+deployment <Geographic_redundancy.html>`__, some of the options require
+information about all sites to be specified. You should replace the
+``sprout_registration_store`` and ``ralf_session_store`` with the values
+as described in `Clearwater Configuration Options
+Referece <Clearwater_Configuration_Options_Reference.html>`__, e.g. for
+sites named ``siteA`` and ``siteB``:
+
+::
+
+    sprout_registration_store="siteA=sprout-siteA.<zone>,siteB=sprout-siteB.<zone>"
+    ralf_session_store="siteA=ralf-siteA.<zone>,siteB=ralf-siteB.<zone>"
 
 Now run the following to upload the configuration to a shared database
 and propagate it around the cluster (see `Modifying Clearwater
