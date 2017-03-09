@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Xerneas <http://pokemon.wikia.com/wiki/Xerneas>`__\ ".
+"`Aragorn <http://lotr.wikia.com/wiki/Aragorn_II_Elessar>`__\ ".
 
 Architecture
 ------------
