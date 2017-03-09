@@ -156,13 +156,13 @@ deployment <Geographic_redundancy.html>`__, then:
       ``remote_site_names=siteB``, whereas a node in site B should have
       ``local_site_name=siteB`` and ``remote_site_names=siteA``):
 
--  on each Homestead, Homer and Memento node, you should set
-   ``remote_cassandra_seeds`` to a comma-separated list of IP addresses
-   of nodes of that type in the remote site
+-  on the first Homestead, Homer and Memento node in the second site,
+   you should set ``remote_cassandra_seeds`` to the IP address of a node
+   of that type in the first site
 
-   -  e.g. on a Homestead node in site ``siteA``, set
-      ``remote_cassandra_seeds`` to the IP addresses of Hometead nodes
-      in site ``siteB``
+   -  e.g. on the first Homestead node in site ``siteB``, set
+      ``remote_cassandra_seeds`` to the IP address of a Hometead node in
+      site ``siteA``
 
 If this machine will be a Sprout or Ralf node create the file
 ``/etc/chronos/chronos.conf`` with the following contents:
