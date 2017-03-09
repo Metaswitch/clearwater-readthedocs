@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Xerneas](http://pokemon.wikia.com/wiki/Xerneas)".
+The latest stable release of Clearwater is "[Aragorn](http://lotr.wikia.com/wiki/Aragorn_II_Elessar)".
 
 ## Architecture
 
