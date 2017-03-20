@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Aragorn <http://lotr.wikia.com/wiki/Aragorn_II_Elessar>`__\ ".
+"`Boromir <http://lotr.wikia.com/wiki/Boromir>`__\ ".
 
 Architecture
 ------------
