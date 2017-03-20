@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Aragorn](http://lotr.wikia.com/wiki/Aragorn_II_Elessar)".
+The latest stable release of Clearwater is "[Boromir](http://lotr.wikia.com/wiki/Boromir)".
 
 ## Architecture
 
