@@ -145,6 +145,7 @@ They also need the following ports opened to all other Sprout nodes:
    ::
 
        TCP/11211
+       TCP/11311
 
 -  Chronos:
 
@@ -252,6 +253,7 @@ They also need to following ports open to all other Ralf nodes:
    ::
 
        TCP/11211
+       TCP/11311
 
 Standalone Application Servers
 ------------------------------
