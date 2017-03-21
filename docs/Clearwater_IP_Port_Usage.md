@@ -101,6 +101,7 @@ They also need the following ports opened to all other Sprout nodes:
      For releases using a memcached store - that is all releases up to release 28 (Lock, Stock and Two Smoking Barrels) and from release 32 (Pulp Fiction) onwards
 
         TCP/11211
+        TCP/11311
 
 * Chronos:
 
@@ -179,6 +180,7 @@ They also need to following ports open to all other Ralf nodes:
 * Memcached:
 
         TCP/11211
+        TCP/11311
 
 ## Standalone Application Servers
 
