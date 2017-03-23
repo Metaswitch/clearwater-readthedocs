@@ -5,7 +5,7 @@ Clearwater was designed from the ground up to be optimized for deployment in vir
 In particular ...
 
 - All components are horizontally scalable using simple, stateless load-balancing.
-- Minimal long-lived state is stored on cluster nodes, avoiding the need for complex data replication schemes.  Most long-lived state is stored in back-end service nodes using cloud-optimized storage technologies such as Cassandra.
+- All long lived state is stored on dedicated Vellum nodes which make use of cloud-optimized storage technologies such as Cassandra.   No long lived state is stored on other production nodes, making it quick and easy to dynamically scale the clusters and minimizing the impact if a node is lost.    
 - Interfaces between the front-end SIP components and the back-end services use RESTful web services interfaces.
 - Interfaces between the various components use connection pooling with statistical recycling of connections to ensure load is spread evenly as nodes are added and removed from each layer.
 
@@ -19,19 +19,21 @@ The Bono nodes form a horizontally scalable SIP edge proxy providing both a SIP 
 
 ### Sprout (SIP Router)
 
-The Sprout nodes act as a horizontally scalable, combined SIP registrar and authoritative routing proxy, and handle client authentication and the ISC interface to application servers.  The Sprout nodes also contain the in-built MMTEL application server.  The Sprout cluster includes a memcached cluster storing client registration data.  SIP transactions are load balanced across the Sprout cluster, so there is no long-lived association between a client and a particular Sprout node.  Sprout uses web services interfaces provided by Homestead and Homer to retrieve HSS configuration such as authentication data/user profiles and MMTEL service settings.
+The Sprout nodes act as a horizontally scalable, combined SIP registrar and authoritative routing proxy, and handle client authentication and the ISC interface to application servers.  The Sprout nodes also contain the in-built MMTEL application server.  SIP transactions are load balanced across the Sprout cluster, so there is no long-lived association between a client and a particular Sprout node.  Sprout uses
+- web services interfaces to Homestead and Homer to retrieve HSS configuration such as authentication data/user profiles and MMTEL service settings
+- APIs to Vellum for storing longer lived subscriber registration data and for running timers.
 
 ### Homestead (HSS Cache)
 
-Homestead provides a web services interface to Sprout for retrieving authentication credentials and user profile information.  It can either master the data (in which case it exposes a web services provisioning interface) or can pull the data from an IMS compliant HSS over the Cx interface.  The Homestead nodes run as a cluster using Cassandra as the store for mastered/cached data.
+Homestead provides a web services interface to Sprout for retrieving authentication credentials and user profile information.  It can either master the data (in which case it exposes a web services provisioning interface) or can pull the data from an IMS compliant HSS over the Cx interface.  The Homestead nodes themselves only maintain data about pending requests - the mastered / cached subscriber data is all stored on Vellum (via Cassandra's Thrift interface).
 
 ### Homer (XDMS)
 
-Homer is a standard XDMS used to store MMTEL service settings documents for each user of the system.  Documents are be created, read, updated and deleted using a standard XCAP interface.  As with Homestead, the Homer nodes runs as a cluster using Cassandra as the data store.
+Homer is a standard XDMS used to store MMTEL service settings documents for each user of the system.  Documents are be created, read, updated and deleted using a standard XCAP interface.  As with Homestead, the Homer nodes use Vellum as the data store for all long lived data.
 
 ### Ralf (CTF)
 
-Ralf provides an HTTP API that both Bono and Sprout can use to report billable events that should be passed to the CDF (Charging Data Function) over the Rf billing interface.  Ralf uses a cluster of Memcached instances and a cluster of Chronos instances to store and manage session state, allowing it to conform to the Rf protocol.
+Ralf provides an HTTP API that both Bono and Sprout can use to report billable events that should be passed to the CDF (Charging Data Function) over the Rf billing interface.  Ralf is entirely stateless, using APIs to Vellum to store and manage session state, allowing it to conform to the Rf protocol.
 
 ### Ellis
 
@@ -49,18 +51,14 @@ A similar technique is used for the HTTP connections between Sprout and Homer/Ho
 
 Traditional telco products achieve reliability using low-level data replication, often in a one-to-one design.  This is both complex and costly - and does not adapt well to a virtualized/cloud environment.
 
-The Clearwater approach to reliability is to follow common design patterns for scalable web services - keeping most components largely stateless and storing long-lived state in specially design reliable, scalable clustered data stores.
+The Clearwater approach to reliability is to follow common design patterns for scalable web services - keeping most components stateless and storing long-lived state in specially design reliable, scalable clustered data stores.
 
-Both Bono and Sprout operate as transaction-stateful rather than dialog-stateful proxies - transaction state is typically short-lived compared to dialog state. As the anchor point for client connections for NAT traversal, the Bono node used remains on the signaling path for the duration of a SIP dialog. Any individual Sprout node is only in the signaling path for the initial transaction, and subsequent requests are routed through the entire Sprout cluster, so failure of a Sprout node does not cause established SIP dialogs to fail. Long-lived SIP state such as registration data and event subscription state is stored in a clustered, redundant shared data store (memcached) so is not tied to any individual Sprout node.
+Both Bono and Sprout operate as transaction-stateful rather than dialog-stateful proxies - transaction state is typically short-lived compared to dialog state. As the anchor point for client connections for NAT traversal, the Bono node used remains on the signaling path for the duration of a SIP dialog. Any individual Sprout node is only in the signaling path for the initial transaction, and subsequent requests are routed through the entire Sprout cluster, so failure of a Sprout node does not cause established SIP dialogs to fail. Long-lived SIP state such as registration data and event subscription state is stored in a clustered, redundant shared data store (memcached running as part of Vellum nodes) so is not tied to any individual Sprout node.
 
-Homer and Homestead similar only retain local state for pending requests - all long lived state is stored redundantly in the associated Cassandra cluster.
+Homer and Homestead similar only retain local state for pending requests - all long lived state is stored redundantly in the Cassandra cluster running as part of Vellum.
 
 ### Cloud Security
 
 SIP communications are divided into a trusted zone (for flows between Sprout nodes, Bono nodes and trusted application servers) and an untrusted zone (for message flows between Bono nodes and external clients or other systems).  These zones use different ports allowing the trusted zone to be isolated using security groups and/or firewall rules, while standard SIP authentication mechanisms are used to protect the untrusted ports.
 
 Other interfaces such as the XCAP and Homestead interfaces use a combination of locked down ports, standard authentication schemes and shared secret API keys for security.
-
-
-
-
