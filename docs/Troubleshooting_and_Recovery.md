@@ -28,27 +28,27 @@ To examine Ellis' database, run `mysql` (as root), then type `use ellis;` to set
 
 Problems on Vellum may include:
 
-*    Failing to read or write to the Cassandra database:
+* Failing to read or write to the Cassandra database:
 
-    *    Check that Cassandra is running (`sudo monit status`).  If not, check its `/var/log/cassandra/*.log` files.
+    * Check that Cassandra is running (`sudo monit status`).  If not, check its `/var/log/cassandra/*.log` files.
 
-    *    Check that Cassandra is configured correctly.  First access the command-line CQL interface by running `cqlsh`.
+    * Check that Cassandra is configured correctly.  First access the command-line CQL interface by running `cqlsh`.
 
 
-        *    There are 3 databases:
-        *    Type `use homestead_provisioning;` to set the provisioning database and then `describe tables;` - this should report `service_profiles`, `public`, `implicit_registration_sets` and `private`.
-        *    Type `use homestead_cache;` to set the cache database and then `describe tables;` as before - this should report `impi`, `impi_mapping` and `impu`.
-        *    Type `use homer;` to set the homer database and then `describe tables;` - this should report `simservs`.
-        *    If any of these are missing, recreate them by running
-            *    `/usr/share/clearwater/cassandra-schemas/homestead_cache.sh`
-            *    `/usr/share/clearwater/cassandra-schemas/homestead_provisioning.sh`
-            *    `/usr/share/clearwater/cassandra-schemas/homer.sh`
+        * There are 3 databases:
+        * Type `use homestead_provisioning;` to set the provisioning database and then `describe tables;` - this should report `service_profiles`, `public`, `implicit_registration_sets` and `private`.
+        * Type `use homestead_cache;` to set the cache database and then `describe tables;` as before - this should report `impi`, `impi_mapping` and `impu`.
+        * Type `use homer;` to set the homer database and then `describe tables;` - this should report `simservs`.
+        * If any of these are missing, recreate them by running
+            * `/usr/share/clearwater/cassandra-schemas/homestead_cache.sh`
+            * `/usr/share/clearwater/cassandra-schemas/homestead_provisioning.sh`
+            * `/usr/share/clearwater/cassandra-schemas/homer.sh`
 
-    *   Check that Cassandra is clustered correctly (if running a multi-node system). `nodetool status` tells you which nodes are in the cluster, and how the keyspace is distributed among them.
+    * Check that Cassandra is clustered correctly (if running a multi-node system). `nodetool status` tells you which nodes are in the cluster, and how the keyspace is distributed among them.
 
-    *   If this doesn't help, Homer logs to `/var/log/homer/homer-*.log` and Homestead logs to `/var/log/homestead/homestead-*.log` and `/var/log/homestead-prov/homestead-*.log`. To turn on debug logging for Homer, Homestead or Homestead-prov write `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Homer/Homestead/Homestead-prov (`sudo service <homer|homestead|homestead-prov> stop` - it will be restarted by monit).
+    * If this doesn't help, Homer logs to `/var/log/homer/homer-*.log` and Homestead logs to `/var/log/homestead/homestead-*.log` and `/var/log/homestead-prov/homestead-*.log`. To turn on debug logging for Homer, Homestead or Homestead-prov write `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Homer/Homestead/Homestead-prov (`sudo service <homer|homestead|homestead-prov> stop` - it will be restarted by monit).
 
-    To examine Vellum's database, run `cqlsh` and then type `use homer;`, `use homestead_provisioning;` or `use homestead_cache` to set the correct database.  You can then issue CQL queries such as `SELECT * FROM impi WHERE private_id = '<private user ID>'`.
+    * To examine Vellum's database, run `cqlsh` and then type `use homer;`, `use homestead_provisioning;` or `use homestead_cache` to set the correct database.  You can then issue CQL queries such as `SELECT * FROM impi WHERE private_id = '<private user ID>'`.
 
 
 ## Sprout
