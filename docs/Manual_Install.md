@@ -144,6 +144,10 @@ Install the Vellum packages with:
     sudo DEBIAN_FRONTEND=noninteractive apt-get install vellum-node --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
+If you included the Memento Application server on your Sprout nodes, then also install the required packages on Vellum with:
+
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install memento-cassandra --yes
+
 ### Dime
 
 Install the Dime package with:
@@ -253,11 +257,7 @@ Our IMS components (I-CSCF, S-CSCF, ...) and application servers (Gemini, Mement
 To install a standalone IMS component/application server, you need to:
 * Install a Sprout node (following the same process as installing a Sprout node above), but don't add the new node to the Sprout DNS cluster.
 * Enable/disable the sproutlets you want to run on this node - see [here](http://clearwater.readthedocs.io/en/latest/Clearwater_Configuration_Options_Reference.html#sproutlet-options) for more details on this. In particular, you should set the ports and the URIs of the sproutlets.
-* Choose whether the Sprout node should join the clustered data stores. Some sproutlets (e.g. the S-CSCF, memento) do need to do so (e.g. they need access to the common Chronos, Memcached and Cassandra clusters). Others (e.g. the I-CSCF, gemini), do not.
-* To join a data store cluster, add `etcd_cluster_key=<node type>` to `/etc/clearwater/local_config` on each joining node.
-* For sproutlets that don't take part in the clustered data stores set `etcd_cluster_key=DO_NOT_CLUSTER` in `/etc/clearwater/local_config`.
-* If you have a node that's a member of the wrong data store (e.g. an I-CSCF node has joined the S-CSCF data cluster), then you can remove it using the [`cw-mark_node_failed`](http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-node-from-a-data-store) script, e.g. `sudo cw-mark_node_failed <incorrect cluster key> <data store type> <node IP>`.
-* Once the node is fully installed and a member of the correct data stores, add it to the relevant DNS records.
+* Once the node is fully installed, add it to the relevant DNS records.
 
 ### I-CSCF configuration
 
