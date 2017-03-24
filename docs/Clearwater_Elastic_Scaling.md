@@ -51,7 +51,7 @@ If you're scaling down your deployment, follow the following process:
         *   Vellum - n/a
         *   Homer - `monit unmonitor -g homer`
         *   Memento - `monit unmonitor -g sprout`        
-        *   Ellis - n/a
+        *   Ellis - `monit unmonitor -g ellis`        
         
     * Start the main processes quiescing.
 
@@ -70,7 +70,7 @@ If you're scaling down your deployment, follow the following process:
         *   `sudo monit unmonitor -g clearwater_queue_manager`
         *   `sudo monit unmonitor -g etcd`
 
-    * If the node you are turning down is a Vellum node, run `sudo service clearwater-etcd decommission`. This will cause the nodes to leave their existing clusters.
+    * If the node you are turning down is a Vellum node, run `sudo service clearwater-etcd decommission`. This will cause the node to leave its existing clusters.
 
 4.  Once the above steps have completed, turn down the nodes.
 
@@ -105,6 +105,7 @@ If you're scaling down your deployment, follow the following process.
    * On all Vellum nodes, wait until Chronos has resynchronized, either by running `service chronos wait-sync` or by polling over [SNMP](Clearwater_SNMP_Statistics.md).
    * On all Vellum nodes, update /etc/clearwater/cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
    * On all Vellum nodes that will remain, update `/etc/chronos/chronos_cluster.conf` so that it only contains entries for the staying nodes in the cluster and then run `service chronos reload` to re-read this file.
+
 3. On each node that is about to be turned down:
 
    * Run the appropriate command from the following (based on the node type) to stop processes from automatically restarting.
@@ -127,4 +128,4 @@ If you're scaling down your deployment, follow the following process.
         *   Memento - `sudo service sprout quiesce`
         *   Ellis - `sudo service ellis stop`
 
-12.  Turn down each of these nodes once the process has terminated.
+4.  Turn down each of these nodes once the process has terminated.
