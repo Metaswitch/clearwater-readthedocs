@@ -7,11 +7,3 @@ Clearwater has a feature that allows nodes in a deployment to automatically form
 * It makes it much easier to modify configuration that is shared across all nodes in the deployment.
 
 This features uses [etcd](https://github.com/coreos/etcd) as a decentralized data store, a `clearwater-cluster-manager` service to handle automatic clustering, and a `clearwater-config-manager` to handle configuration sharing.
-
-### Is my Deployment Using Automatic Clustering and Configuration Sharing?
-
-To tell if your deployment is using this feature, log onto one of the nodes in your deployment and run `dpkg --list | grep clearwater-etcd`. If this does not give any output the feature is not in use.
-
-### Migrating to Automatic Clustering and Configuration Sharing
-
-Deployments that are not using the feature may be migrated so they start using it. To perform this migration, follow these [instructions](Migrating_To_etcd.md).
