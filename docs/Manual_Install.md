@@ -137,6 +137,13 @@ Install the Homer packages with:
     sudo DEBIAN_FRONTEND=noninteractive apt-get install homer-node --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
+### Dime
+
+Install the Dime package with:
+
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install dime-node clearwater-prov-tools --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
+
 ### Vellum
 
 Install the Vellum packages with:
@@ -147,13 +154,6 @@ Install the Vellum packages with:
 If you included the Memento Application server on your Sprout nodes, then also install the required packages on Vellum with:
 
     sudo DEBIAN_FRONTEND=noninteractive apt-get install memento-cassandra --yes
-
-### Dime
-
-Install the Dime package with:
-
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install dime-node clearwater-prov-tools --yes
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ## SNMP statistics
 
