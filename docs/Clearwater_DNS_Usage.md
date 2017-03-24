@@ -80,15 +80,16 @@ Clearwater requires the following DNS records to be configured.
     *   `icscf.sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes that provide I-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
     *   `icscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.icscf.sprout.<zone>`
     *   `_sip._tcp.icscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5052 on each of the per-node records
-*   homestead
-    *   `homestead-1.<zone>`, `homestead-2.<zone>`... (A and/or AAAA) - per-node records for homestead
-    *   `hs.<zone>` (A and/or AAAA) - cluster record for homestead, resolving to all homestead nodes
+*   dime
+    *   `dime-1.<zone>`, `dime-2.<zone>`... (A and/or AAAA) - per-node records for dime
+    *   `hs.<zone>` (A and/or AAAA) - cluster record for homestead, resolving to all dime nodes
+    *   `ralf.<zone>` (A and/or AAAA) - cluster record for ralf, resolving to all dime nodes
 *   homer
     *   `homer-1.<zone>`, `homer-2.<zone>`... (A and/or AAAA) - per-node records for homer
     *   `homer.<zone>` (A and/or AAAA) - cluster record for homer, resolving to all homer nodes
-*   ralf
-	*   `ralf-1.<zone>`, `ralf-2.<zone>`... (A and/or AAAA) - per-node records for ralf
-	*   `ralf.<zone>` (A and/or AAAA) - cluster record for ralf, resolving to all ralf nodes
+*   vellum
+    *   `vellum-1.<zone>`, `vellum-2.<zone>`... (A and/or AAAA) - per-node records for vellum
+    *   `vellum.<zone>` (A and/or AAAA) - cluster record for vellum, resolving to all vellum nodes
 *   ellis
     *   `ellis-1.<zone>` (A and/or AAAA) - per-node record for ellis
     *   `ellis.<zone>` (A and/or AAAA) - "cluster"/access record for ellis
@@ -254,22 +255,26 @@ For Clearwater, you should be able to adapt the following example zone file by c
     _sip._tcp.icscf.sprout IN SRV   0 0 5052 sprout-1
     _sip._tcp.icscf.sprout IN SRV   0 0 5052 sprout-2
 
-    ; homestead
+    ; dime
     ; =========
     ;
     ; Per-node records - not required to have both IPv4 and IPv6 records
-    homestead-1            IN A     4.0.0.1
-    homestead-2            IN A     4.0.0.2
-    homestead-1            IN AAAA  4::1
-    homestead-2            IN AAAA  4::2
+    dime-1                 IN A     4.0.0.1
+    dime-2                 IN A     4.0.0.2
+    dime-1                 IN AAAA  4::1
+    dime-2                 IN AAAA  4::2
     ;
     ; Cluster A and AAAA records - sprout picks randomly from these.
     hs                     IN A     4.0.0.1
     hs                     IN A     4.0.0.2
     hs                     IN AAAA  4::1
     hs                     IN AAAA  4::2
+    ralf                   IN A     4.0.0.1
+    ralf                   IN A     4.0.0.2
+    ralf                   IN AAAA  4::1
+    ralf                   IN AAAA  4::2
     ;
-    ; (No need for NAPTR or SRV records as homestead doesn't handle SIP traffic.)
+    ; (No need for NAPTR or SRV records as dime doesn't handle SIP traffic.)
 
     ; homer
     ; =====
@@ -288,22 +293,22 @@ For Clearwater, you should be able to adapt the following example zone file by c
     ;
     ; (No need for NAPTR or SRV records as homer doesn't handle SIP traffic.)
 
-    ; ralf
+    ; vellum
     ; =====
     ;
     ; Per-node records - not required to have both IPv4 and IPv6 records
-    ralf-1                IN A     6.0.0.1
-    ralf-2                IN A     6.0.0.2
-    ralf-1                IN AAAA  6::1
-    ralf-2                IN AAAA  6::2
+    vellum-1               IN A     6.0.0.1
+    vellum-2               IN A     6.0.0.2
+    vellum-1               IN AAAA  6::1
+    vellum-2               IN AAAA  6::2
     ;
     ; Cluster A and AAAA records - sprout and bono pick randomly from these.
-    ralf                  IN A     6.0.0.1
-    ralf                  IN A     6.0.0.2
-    ralf                  IN AAAA  6::1
-    ralf                  IN AAAA  6::2
+    vellum                 IN A     6.0.0.1
+    vellum                 IN A     6.0.0.2
+    vellum                 IN AAAA  6::1
+    vellum                 IN AAAA  6::2
     ;
-    ; (No need for NAPTR or SRV records as ralf doesn't handle SIP traffic.)
+    ; (No need for NAPTR or SRV records as vellum doesn't handle SIP traffic.)
 
     ; ellis
     ; =====
