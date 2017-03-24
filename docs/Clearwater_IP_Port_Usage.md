@@ -100,7 +100,7 @@ They also need the following ports opened to all Vellum nodes:
 
         TCP/9888
 
-They also need the following ports opened to all dime nodes:
+They also need the following ports opened to all Dime nodes:
 
 * Registration Termination Requests (if using an HSS):
 
@@ -156,7 +156,6 @@ The Vellum nodes need the following ports open to all other Vellum nodes:
 * Cassandra:
 
         TCP/7000
-        TCP/9160
 
 They also need the following ports open to all Sprout and Dime nodes:
 
