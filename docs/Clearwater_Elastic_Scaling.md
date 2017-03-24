@@ -22,8 +22,6 @@ More detailed documentation on the available Chef commands is available [here](h
 
 ### If you did a Manual Install
 
-Follow these instructions if you manually installed your deployment and are using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality.
-
 If you're scaling up your deployment, follow the following process:
 
 1.  Spin up new nodes, following the [standard install process](Manual_Install.md), but with the following modifications:
@@ -73,59 +71,3 @@ If you're scaling down your deployment, follow the following process:
     * If the node you are turning down is a Vellum node, run `sudo service clearwater-etcd decommission`. This will cause the node to leave its existing clusters.
 
 4.  Once the above steps have completed, turn down the nodes.
-
-### If you did a Manual Install without Automatic Clustering
-
-Follow these instructions if you manually installed your deployment but are *not* using Clearwater's [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality.
-
-If you're scaling up your deployment, follow the following process.
-
-1.  Spin up new nodes, following the [standard install process](Manual_Install.md).
-2.  If you are spinning up new Vellum nodes complete the following steps to add the new nodes to the storage clusters.
-    * On all Vellum nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (longer) list of the new nodes (`new_servers=...`) and then run `service astaire reload` to re-read this file. 
-    * On the new Vellum nodes follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_add_node_to_cluster_t.html) to join the new nodes to the existing cluster.
-    * On all Vellum nodes, update `/etc/chronos/chronos_cluster.conf` to contain a list of all the nodes (see [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md) for details of how to do this) and then run `service chronos reload` to re-read this file.
-    * On all Vellum nodes, run `service astaire reload` to start resynchronization.
-    * On all Vellum nodes, run `service chronos resync` to start resynchronization of Chronos timers.
-    * Update DNS to contain the new nodes.
-    * On all Vellum nodes, wait until Astaire has resynchronized, either by running `service astaire wait-sync` or by polling over [SNMP](Clearwater_SNMP_Statistics.md).
-    * On all Vellum nodes, wait until Chronos has resynchronized, either by running `service chronos wait-sync` or by polling over [SNMP](Clearwater_SNMP_Statistics.md).
-    * On all Vellum nodes, update /etc/clearwater/cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
-
-If you're scaling down your deployment, follow the following process.
-
-1.  Update DNS to contain the nodes that will remain after the scale-down.
-2.  If you are removing Vellum nodes, complete the following steps to remove the nodes from the storage clusters.
-    * On all Vellum nodes, update `/etc/clearwater/cluster_settings` to contain both a list of the old nodes (`servers=...`) and a (shorter) list of the new nodes (`new_servers=...`) and then run `service astaire reload` to re-read this file. 
-    * On Vellum nodes that you are going to remove follow the [instructions on the Cassandra website](http://www.datastax.com/documentation/cassandra/1.2/cassandra/operations/ops_remove_node_t.html) to remove the leaving nodes from the cluster.
-   * On all Vellum nodes, update `/etc/chronos/chronos_cluster.conf` to mark the nodes that are being scaled down as leaving (see [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md) for details of how to do this) and then run `service chronos reload` to re-read this file.
-   * On all Vellum nodes, run `service astaire reload` to start resynchronization.
-   * On all Vellum nodes that will remain, run `service chronos resync` to start resynchronization of Chronos timers.
-   * On all Vellum nodes, wait until Astaire has resynchronized, either by running `service astaire wait-sync` or by polling over [SNMP](Clearwater_SNMP_Statistics.md).
-   * On all Vellum nodes, wait until Chronos has resynchronized, either by running `service chronos wait-sync` or by polling over [SNMP](Clearwater_SNMP_Statistics.md).
-   * On all Vellum nodes, update /etc/clearwater/cluster_settings to just contain the new list of nodes (`servers=...`) and then run `service <process> reload` to re-read this file.
-   * On all Vellum nodes that will remain, update `/etc/chronos/chronos_cluster.conf` so that it only contains entries for the staying nodes in the cluster and then run `service chronos reload` to re-read this file.
-
-3. On each node that is about to be turned down:
-
-   * Run the appropriate command from the following (based on the node type) to stop processes from automatically restarting.
-    
-        *   Bono - `monit unmonitor -g bono`
-        *   Sprout - `monit unmonitor -g sprout`
-        *   Dime - `monit unmonitor -g homestead && monit unmonitor -g homestead-prov && monit unmonitor -g ralf`
-        *   Vellum - n/a
-        *   Homer - `monit unmonitor -g homer`
-        *   Memento - `monit unmonitor -g sprout`        
-        *   Ellis - n/a
-        
-    * Start the main processes quiescing.
-
-        *   Bono - `sudo service bono quiesce`
-        *   Sprout - `sudo service sprout quiesce`
-        *   Dime - `sudo service homestead stop && sudo service homestead-prov stop && sudo service ralf stop`
-        *   Vellum - n/a
-        *   Homer - `sudo service homer stop`
-        *   Memento - `sudo service sprout quiesce`
-        *   Ellis - `sudo service ellis stop`
-
-4.  Turn down each of these nodes once the process has terminated.
