@@ -56,8 +56,8 @@ The six roles are:
 * bono - This role also hosts a restund STUN server
 * sprout
 * homer
-* homestead
-* ralf
+* dime
+* vellum
 
 ## Firewall configuration
 
@@ -80,10 +80,10 @@ If you are creating a [geographically redundant deployment](Geographic_redundanc
 * `etcd_cluster` should contain the IP addresses of nodes only in the local site
 *  you should set `local_site_name` and `remote_site_names` in `/etc/clearwater/local_config`
      *   These names are arbitrary, but should reflect the node's location (e.g. a node in site A should have `local_site_name=siteA` and `remote_site_names=siteB`, whereas a node in site B should have `local_site_name=siteB` and `remote_site_names=siteA`):
-*  on the first Homestead, Homer and Memento node in the second site, you should set `remote_cassandra_seeds` to the IP address of a node of that type in the first site
-    *  e.g. on the first Homestead node in site `siteB`, set `remote_cassandra_seeds` to the IP address of a Hometead node in site `siteA`
+*  on the first Vellum, Homer and Memento node in the second site, you should set `remote_cassandra_seeds` to the IP address of a node of that type in the first site
+    *  e.g. on the first Vellum node in site `siteB`, set `remote_cassandra_seeds` to the IP address of a Vellum node in site `siteA`
 
-If this machine will be a Sprout or Ralf node create the file `/etc/chronos/chronos.conf` with the following contents:
+If this machine will be a Vellum node create the file `/etc/chronos/chronos.conf` with the following contents:
 
     [http]
     bind-address = <privateIP>
@@ -137,23 +137,23 @@ Install the Homer packages with:
     sudo DEBIAN_FRONTEND=noninteractive apt-get install homer-node --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
-### Homestead
+### Vellum
 
-Install the Homestead packages with:
+Install the Vellum packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead-node clearwater-prov-tools --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install vellum-node --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
-### Ralf
+### Dime
 
-Install the Ralf package with:
+Install the Dime package with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install ralf-node --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install dime-node clearwater-prov-tools --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ## SNMP statistics
 
-Sprout, Bono and Homestead nodes expose statistics over SNMP. This function is not installed by default. If you want to enable it follow the instruction in [our SNMP documentation](Clearwater_SNMP_Statistics.md).
+Sprout, Bono and Dime nodes expose statistics over SNMP. This function is not installed by default. If you want to enable it follow the instruction in [our SNMP documentation](Clearwater_SNMP_Statistics.md).
 
 ## Provide Shared Configuration
 
@@ -162,12 +162,14 @@ Log onto any node in the deployment and create the file `/etc/clearwater/shared_
     # Deployment definitions
     home_domain=<zone>
     sprout_hostname=sprout.<zone>
-    sprout_registration_store=sprout.<zone>
+    sprout_registration_store=vellum.<zone>
     hs_hostname=hs.<zone>:8888
     hs_provisioning_hostname=hs.<zone>:8889
     ralf_hostname=ralf.<zone>:10888
-    ralf_session_store=ralf.<zone>
+    ralf_session_store=vellum.<zone>
     xdms_hostname=homer.<zone>:7888
+    chronos_hostname=vellum.<zone>
+    cassandra_hostname=vellum.<zone>
 
     # Email server configuration
     smtp_smarthost=<smtp server>
