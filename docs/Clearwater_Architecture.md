@@ -5,7 +5,7 @@ Clearwater was designed from the ground up to be optimized for deployment in vir
 In particular ...
 
 - All components are horizontally scalable using simple, stateless load-balancing.
-- All long lived state is stored on dedicated Vellum nodes which make use of cloud-optimized storage technologies such as Cassandra.   No long lived state is stored on other production nodes, making it quick and easy to dynamically scale the clusters and minimizing the impact if a node is lost.    
+- All long lived state is stored on dedicated Vellum nodes which make use of cloud-optimized storage technologies such as Cassandra.  No long lived state is stored on other production nodes, making it quick and easy to dynamically scale the clusters and minimizing the impact if a node is lost.
 - Interfaces between the front-end SIP components and the back-end services use RESTful web services interfaces.
 - Interfaces between the various components use connection pooling with statistical recycling of connections to ensure load is spread evenly as nodes are added and removed from each layer.
 
@@ -23,17 +23,29 @@ The Sprout nodes act as a horizontally scalable, combined SIP registrar and auth
 - web services interfaces to Homestead and Homer to retrieve HSS configuration such as authentication data/user profiles and MMTEL service settings
 - APIs to Vellum for storing longer lived subscriber registration data and for running timers.
 
-### Homestead (HSS Cache)
+### Dime (Diameter gateway)
+
+Dime nodes run Clearwater's Homestead and Ralf components.
+
+#### Homestead (HSS Cache)
 
 Homestead provides a web services interface to Sprout for retrieving authentication credentials and user profile information.  It can either master the data (in which case it exposes a web services provisioning interface) or can pull the data from an IMS compliant HSS over the Cx interface.  The Homestead nodes themselves only maintain data about pending requests - the mastered / cached subscriber data is all stored on Vellum (via Cassandra's Thrift interface).
+
+#### Ralf (CTF)
+
+Ralf provides an HTTP API that both Bono and Sprout can use to report billable events that should be passed to the CDF (Charging Data Function) over the Rf billing interface.  Ralf uses Vellum to maintain the long lived session state and run the timers necessary to enable it to conform to the Rf protocol. 
+
+### Vellum (State store)
+
+As described above, Vellum is used to maintain all long-lived state in the dedployment.  It does this by running a number of cloud optimized, distributed storage clusters.
+- Cassandra.  Cassandra is used by Homestead to store authentication credentials and profile information, and is used by Homer to store MMTEL service settings.  Vellum exposes Cassandra's Thrift API.
+- Etcd.  Etcd is used by Vellum itself to share clustering information between Vellum nodes and by other nodes in the deployment for shared configuration.
+- [Chronos](https://github.com/Metaswitch/chronos).  Chronos is a distributed, redundant, reliable timer service developed by Clearwater.  It is used by Sprout and Ralf nodes to enable timers to be run (e.g. for SIP Registration expiry)  without pinning operations to a specific node (one node can set the timer and another act on it when it pops).  Chronos is accessed via an HTTP API.
+- Memcached / [Astaire](https://github.com/Metaswitch/astaire).  Vellum also runs a Memcached cluster fronted by Astaire.  Astaire is a service developed by Clearwater that enabled more rapid scale up and scale down of memcached clusters.  This cluster is used by Sprout and Ralf for storing registration and session state.
 
 ### Homer (XDMS)
 
 Homer is a standard XDMS used to store MMTEL service settings documents for each user of the system.  Documents are be created, read, updated and deleted using a standard XCAP interface.  As with Homestead, the Homer nodes use Vellum as the data store for all long lived data.
-
-### Ralf (CTF)
-
-Ralf provides an HTTP API that both Bono and Sprout can use to report billable events that should be passed to the CDF (Charging Data Function) over the Rf billing interface.  Ralf is entirely stateless, using APIs to Vellum to store and manage session state, allowing it to conform to the Rf protocol.
 
 ### Ellis
 
