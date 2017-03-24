@@ -264,7 +264,7 @@ For Clearwater, you should be able to adapt the following example zone file by c
     dime-1                 IN AAAA  4::1
     dime-2                 IN AAAA  4::2
     ;
-    ; Cluster A and AAAA records - sprout picks randomly from these.
+    ; Cluster A and AAAA records - sprout, bono and ellis pick randomly from these.
     hs                     IN A     4.0.0.1
     hs                     IN A     4.0.0.2
     hs                     IN AAAA  4::1
@@ -302,7 +302,7 @@ For Clearwater, you should be able to adapt the following example zone file by c
     vellum-1               IN AAAA  6::1
     vellum-2               IN AAAA  6::2
     ;
-    ; Cluster A and AAAA records - sprout and bono pick randomly from these.
+    ; Cluster A and AAAA records - sprout, homer and dime pick randomly from these.
     vellum                 IN A     6.0.0.1
     vellum                 IN A     6.0.0.2
     vellum                 IN AAAA  6::1
