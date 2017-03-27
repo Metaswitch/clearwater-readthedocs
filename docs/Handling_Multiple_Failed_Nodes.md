@@ -34,11 +34,11 @@ To follow this process you need to choose some nodes to be the new masters of th
 
 The next step is to ensure that the configuration files on each node are correct.
 
-#### Any of the master nodes' Shared configuration
+#### Any of the master nodes - Shared configuration
 
 The shared configuration is at `/etc/clearwater/shared_config`. Verify that this is correct, then copy this file onto every other master node. Please see the [configuration options reference](http://clearwater.readthedocs.io/en/latest/Clearwater_Configuration_Options_Reference.html) for more details on how to set the configuration values.
 
-#### Vellum's Chronos configuration
+#### Vellum - Chronos configuration
 
 * The configuration file is at `/etc/chronos/chronos_cluster.conf`.
 * Verify that this is present and syntactically correct on all Vellum nodes in the affected site.
@@ -47,7 +47,7 @@ The shared configuration is at `/etc/clearwater/shared_config`. Verify that this
     * Otherwise, don't change the states of any nodes in the file (even if you know the node has failed).
 * If there is more than one failed node then there will be timer failures until this process has been completed. This could prevent subscribers from receiving notifications when their registrations/subscriptions expire.
 
-#### Vellum's Memcached configuration
+#### Vellum - Memcached configuration
 
 * The configuration file is at `/etc/clearwater/cluster_settings`.
 * Verify that this is present and syntactically correct on all Vellum nodes in the affected site.
@@ -56,7 +56,7 @@ The shared configuration is at `/etc/clearwater/shared_config`. Verify that this
     * Otherwise, don't change the states of any nodes in the file (even if you know the node has failed).
 * If there is more than one failed node (and there is no remote site, or more than one failed node in the remote site) then there will be registration and call failures, and calls will be incorrectly billed (if using Ralf) until this process has been completed.
 
-#### Vellum's Cassandra configuration
+#### Vellum - Cassandra configuration
 
 Check that the Cassandra cluster is healthy by running the following on a Vellum node:
 
@@ -64,7 +64,7 @@ Check that the Cassandra cluster is healthy by running the following on a Vellum
 
 If the Cassandra cluster isn't healthy, you must fix this up before continuing, and remove any failed nodes.
 
-#### Sprout's JSON configuration
+#### Sprout - JSON configuration
 
 Check the JSON configuration files on all Sprout nodes in the affected site:
 
