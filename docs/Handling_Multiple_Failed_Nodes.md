@@ -77,7 +77,6 @@ Check the JSON configuration files on all Sprout nodes in the affected site:
 * On your selected master nodes, set `etcd_cluster` in `/etc/clearwater/local_config` to a comma separated list of the management IP addresses of your master nodes.
 * Start etcd on the master nodes
     * Run `sudo monit monitor -g etcd`
-    * Run `sudo monit monitor -g clearwater_cluster_manager`
     * Run `sudo monit monitor -g clearwater_config_manager`
     * Run `sudo monit monitor -g clearwater_queue_manager`
 * This creates the etcd cluster, and synchronises the shared configuration. It doesn't recreate the data store cluster information in etcd yet.
@@ -94,7 +93,6 @@ Run this process on every node which is not one of the master nodes in the affec
 * Set `etcd_proxy` in `/etc/clearwater/local_config` to a comma separated list of the management IP addresses of your master nodes.
 * Start etcd on the node
     * Run `sudo monit monitor -g etcd`
-    * Run `sudo monit monitor -g clearwater_cluster_manager`
     * Run `sudo monit monitor -g clearwater_config_manager`
     * Run `sudo monit monitor -g clearwater_queue_manager`
 * Verify that the node has contacted the etcd cluster successfully:
@@ -115,7 +113,7 @@ Verify the cluster state is correct in etcd by running sudo `/usr/share/clearwat
 Run this process on every node (including the master nodes) in the affected site in turn.
 
 * Run `sudo rm /etc/clearwater/no_cluster_manager`
-* Run `sudo service clearwater-cluster-manager stop`
+* Run `sudo monit monitor -g clearwater_cluster_manager`
 * Verify that the cluster-manager comes back up by running `sudo monit summary`.
 
 ### Next steps
