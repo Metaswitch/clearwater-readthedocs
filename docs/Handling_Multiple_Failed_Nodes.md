@@ -1,6 +1,6 @@
 ## Dealing with Multiple Failed Nodes
 
-If any site in your deployment loses half or more of etcd master nodes permanently, it loses "quorum" which means that the underlying etcd cluster becomes read-only. While the etcd cluster is in this state, you can't perform any scaling operations or change configuration and have it synced across the deployment. You should use this process to recover the etcd cluster in the failed site.
+If any site in your deployment loses half or more of its etcd master nodes permanently, it loses "quorum". This means that the underlying etcd cluster becomes read-only. While the etcd cluster is in this state, you can't perform any scaling operations or change configuration and have it synced across the deployment. You should use this process to recover the etcd cluster in the failed site.
 
 If you haven't lost half (or more) of your etcd master nodes in a site, then you can use the process described [here](http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-failed-node) for each of your failed nodes.
 
@@ -10,7 +10,7 @@ The procedure creates a new etcd cluster to replace the existing cluster. The ne
 
 This procedure won't impact service. You should follow this process completely - the behaviour is unspecified if this process is started but not completed. It is always safe to restart this process from the beginning (for example, if you encounter an error partway through).
 
-* If your deployment doesn't use GR, then you can safely ignore any steps relating to the remote site.
+If there are no live Vellum nodes in the site, you should continue with this process, missing out the steps that require running commands on Vellum. Once the etcd cluster is recovered, you should add the new replacement nodes.
 
 ### Stop the etcd processes
 
@@ -30,22 +30,22 @@ To follow this process you need to choose some nodes to be the new masters of th
 * If you have 3 or more working Vellum nodes in the site, you should use those
 * If not, you should use all the nodes in the site
 
-Note that if there are no live Dime, Sprout or Vellum nodes in the site, you should continue with this process, missing out the steps for nodes which no longer exist, and then add the new replacement nodes once the etcd cluster is recovered.
-
 ### Check the configuration on your master nodes
 
 The next step is to ensure that the configuration files on each node are correct.
 
 #### Any of the master nodes' Shared configuration
 
-The shared configuration is at `/etc/clearwater/shared_config`. Verify that this is correct, then copy this file onto every other master node.
-Please see the [configuration options reference](http://clearwater.readthedocs.io/en/latest/Clearwater_Configuration_Options_Reference.html) for more details.
+The shared configuration is at `/etc/clearwater/shared_config`. Verify that this is correct, then copy this file onto every other master node. Please see the [configuration options reference](http://clearwater.readthedocs.io/en/latest/Clearwater_Configuration_Options_Reference.html) for more details on how to set the configuration values.
 
 #### Vellum's Chronos configuration
 
-The configuration file is at `/etc/chronos/chronos_cluster.conf`. Verify that this is present and syntactically correct on all Vellum nodes in the affected site, following the format [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md#clustering-chronos).
-
-If the file isn't present, or is it invalid, then make the configuration file contain all Vellum nodes in the site as nodes. Otherwise, don't change the states of any nodes in the file (even if you know the node has failed). Note, if there is more than one failed node then there will be timer failures until this process has been completed. This could prevent subscribers from receiving notifications when their registrations/subscriptions expire.
+* The configuration file is at `/etc/chronos/chronos_cluster.conf`.
+* Verify that this is present and syntactically correct on all Vellum nodes in the affected site.
+    * This should follow the format [here](https://github.com/Metaswitch/chronos/blob/dev/doc/clustering.md#clustering-chronos).
+    * If the file isn't present, or is invalid, then make the configuration file contain all Vellum nodes in the site as nodes.
+    * Otherwise, don't change the states of any nodes in the file (even if you know the node has failed).
+* If there is more than one failed node then there will be timer failures until this process has been completed. This could prevent subscribers from receiving notifications when their registrations/subscriptions expire.
 
 #### Vellum's Memcached configuration
 
@@ -78,11 +78,11 @@ Check the JSON configuration files on all Sprout nodes in the affected site:
 * Start etcd on the master nodes
     * Run `sudo monit monitor -g etcd`
     * Run `sudo monit monitor -g clearwater_cluster_manager`
-    * Run `sudo monit monitor -g clearwater-config-manager`
-    * Run `sudo monit monitor -g clearwater-queue-manager`
+    * Run `sudo monit monitor -g clearwater_config_manager`
+    * Run `sudo monit monitor -g clearwater_queue_manager`
 * This creates the etcd cluster, and synchronises the shared configuration. It doesn't recreate the data store cluster information in etcd yet.
 * Verify that the master nodes have formed a new etcd cluster successfully:
-    * Running `sudo monit summary` on each master node should show that the etcd processes are running successfully
+    * Running `sudo monit summary` on each master node should show that the etcd processes are running successfully, except the `clearwater_cluster_manager_process`
     * Running `sudo clearwater-etcdctl cluster-health` (on a single master node) should show that the etcd cluster is healthy
     * Running `sudo clearwater-etcdctl member list` should show that all the master nodes are members of the etcd cluster.
 * Verify that the configuration has successfully synchronized by running `sudo /usr/share/clearwater/clearwater-config-manager/scripts/check_config_sync`
@@ -94,13 +94,11 @@ Run this process on every node which is not one of the master nodes in the affec
 * Set `etcd_proxy` in `/etc/clearwater/local_config` to a comma separated list of the management IP addresses of your master nodes.
 * Start etcd on the node
     * Run `sudo monit monitor -g etcd`
-    * Run `sudo monit monitor -g clearwater-cluster-manager`
-    * Run `sudo monit monitor -g clearwater-config-manager`
-    * Run `sudo monit monitor -g clearwater-queue-manager`
-* Verify that the node has joined the etcd cluster successfully:
-    * Running `sudo monit summary` should show that the etcd processes are running successfully
-    * Running `sudo clearwater-etcdctl cluster-health` should show that the etcd cluster is healthy
-    * Running `sudo clearwater-etcdctl member list` should show that the new node is a member of the etcd cluster.
+    * Run `sudo monit monitor -g clearwater_cluster_manager`
+    * Run `sudo monit monitor -g clearwater_config_manager`
+    * Run `sudo monit monitor -g clearwater_queue_manager`
+* Verify that the node has contacted the etcd cluster successfully:
+    * Running `sudo monit summary` should show that the etcd processes are running successfully, except the `clearwater_cluster_manager_process`
 
 ### Recreate the data store cluster values in etcd
 
