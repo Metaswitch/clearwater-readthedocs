@@ -1,52 +1,31 @@
 # Dealing with Failed Nodes
 
-Nodes can be easily removed from a Clearwater deployment by following the instructions for [elastic scaling](Clearwater_Elastic_Scaling.md). When scaling down the remaining nodes are informed that a node is leaving and take appropriate action. However sometimes a node may fail unexpectedly. If this happens and the node cannot be recovered (for example the virtual machine has been deleted) the remaining nodes must be manually informed of the failure. This article explains how to do this.
+Nodes can be easily removed from a Clearwater deployment by following the instructions for [elastic scaling](Clearwater_Elastic_Scaling.md).  However sometimes a node or nodes may fail unexpectedly.   If the nodes cannot be recovered, then you should do the following (in the order specified).
+* If one or more nodes have failed that were acting as etcd masters (see [configuration](Clearwater_Configuration_Options_Reference.md)) and as a result you have lost 50% (or more) of your etcd master nodes in any one site then the etcd cluster for that site will have lost "quorum" and have become read-only.  To recover the etcd cluster you will need to follow the process [here](Handling_Multiple_Failed_Nodes.md).
+* If one or more nodes have failed that were acting as etcd masters but *more* than half of your etcd cluster remains operational then you must first follow the steps below: “removing a failed node from an etcd cluster”
+* If a Vellum node has failed then you should follow the instructions below: “removing a failed Vellum node from the data store clusters”
+* You can now spin up a new node to replace the lost capacity.   If you are replacing a node that had been acting as an etcd master then you should typically configure the new node to also be an etcd master in order to retain your original etcd cluster size.
 
-The processes described in the document do not affect call processing and can be run on a system handling call traffic.
+The processes described below do not affect call processing and can be run on a system handling call traffic.
 
-## Removing a Failed Node
+## Removing a failed node from an etcd cluster
 
-If a node permanently fails scaling the deployment up and down may stop working, or if a scaling operation is in progress it may get stuck (because other nodes in the tier will wait forever for the failed node to react). To recover from this situation the failed node should be removed from the deployment using the following steps:
+If a node fails that was acting as an etcd master then it must be manually removed from the site’s etcd cluster.   Failure to do so may leave the site in a state where future scaling operations do not work, or where in progress scaling operations fail to complete.
 
-* Remove the node from the underlying etcd cluster. To do this:
-    * Run `clearwater-etcdctl cluster-health` and make a note of the ID of the failed node.
-    * Run `clearwater-etcdctl member list` to check that the failed node reported is the one you were expecting (by looking at its IP address).
-    * Run `clearwater-etcdctl member remove <ID>`, replacing `<ID>` with the ID learned above.
-* Remove the failed node from any back-end data store clusters it was a part of (see [Removing a Node From a Data Store](http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-node-from-a-data-store) below).
+This process assumes that more than half of the site’s etcd cluster is still healthy and so the etcd cluster still has quorum.   If 50% or more of the etcd masters in a given site have failed then you will need to first follow the process [here](Handling_Multiple_Failed_Nodes.md). You will need to know the IP address of the failed Vellum nodes. If you are using separate signaling and management networks, you must use the signaling IP address of the failed node. To remove the failed node log onto a working node in the same site and run the following commands (depending on the failed node's type):
 
-## Removing a Node From a Data Store
+Run the following steps on a remaining node that is a member of the etcd cluster.   If multiple nodes have failed then you will need to repeat this process for each failed node.
+* Run `clearwater-etcdctl cluster-health` and make a note of the ID of the failed node.
+* Run `clearwater-etcdctl member list` to check that the failed node reported is the one you were expecting (by looking at its IP address).
+* Run `clearwater-etcdctl member remove <ID>`, replacing `<ID>` with the ID learned above.
 
-The `cw-mark_node_failed` script can be used to remove a failed node from a back-end data store. If there are multiple failed nodes, ensure that you run the `cw-mark_node_failed` scripts for each store type simultaneously (e.g. for multiple sprout removal, mark all failed nodes for memcached simultaneously first, and then mark all failed nodes for chronos). The `cw-mark_node_failed` script will only terminate once all of the failed nodes for that datastore have been marked as such, so you can do this by running `cw-mark_node_failed` for each of that datastore's failed nodes in a separate shell session.
+## Removing a failed Vellum node from the data store clusters
 
-You will need to know the type of the failed node (e.g. "sprout") and its IP address. If you are using separate signaling and management networks, you must use the signaling IP address of the failed node. To remove the failed node log onto a working node in the same site and run the following commands (depending on the failed node's type):
+If one or more Vellum nodes fail then they will need to be removed from all of the data store clusters that they were part of.   You will need to know the IP addresses of the failed nodes and if you are using separate signaling and management networks, you must use the signaling IP addresses.
 
-### Sprout
+For each site that contains one or more failed Vellum nodes, log onto a healthy Vellum node in the site and run the following commands.   If the site contains multiple failed nodes then you will need to run each command for all failed nodes before moving on to the next command.   Note that the command will block until you have run it for all of the failed nodes so you will need to open a separate shell session for each node that has failed.
 
-    sudo cw-mark_node_failed "sprout" "memcached" <failed node IP>
-    sudo cw-mark_node_failed "sprout" "chronos" <failed node IP>
+* sudo cw-mark_node_failed "vellum" "memcached" <failed node IP>
+* sudo cw-mark_node_failed "vellum" "chronos" <failed node IP>
+* sudo cw-mark_node_failed "vellum" "cassandra" <failed node IP>
 
-### Homestead
-
-    sudo cw-mark_node_failed "homestead" "cassandra" <failed node IP>
-
-### Homer
-
-    sudo cw-mark_node_failed "homer" "cassandra" <failed node IP>
-
-### Ralf
-
-    sudo cw-mark_node_failed "ralf" "chronos" <failed node IP>
-    sudo cw-mark_node_failed "ralf" "memcached" <failed node IP>
-
-### Memento
-
-    sudo cw-mark_node_failed "memento" "cassandra" <failed node IP>
-    sudo cw-mark_node_failed "memento" "memcached" <failed node IP>
-
-If you cannot log into a working node in the same site (e.g. because an entire geographically redundant site has been lost), you can use a working node in the other site, but in this case you must run `/usr/share/clearwater/clearwater-cluster-manager/scripts/mark_remote_node_failed` instead of `cw-mark_node_failed`.
-
-## Multiple Failed Nodes
-
-If your deployment loses half or more of its nodes permanently, it loses "quorum" which means that the underlying etcd cluster becomes read-only. Please follow the process described [here](http://clearwater.readthedocs.io/en/latest/Handling_Multiple_Failed_Nodes.html) for details of how to recover.
-
-If you haven't lost half (or more) of your nodes, then you can use the same process described [above](http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-failed-node) for each of your failed nodes (remembering that you may need to run the `cw-mark_node_failed` script for each failed node simultaneously).
