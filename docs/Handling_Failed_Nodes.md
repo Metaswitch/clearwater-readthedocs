@@ -10,11 +10,11 @@ The processes described below do not affect call processing and can be run on a 
 
 ## Removing a failed node from an etcd cluster
 
-If a node fails that was acting as an etcd master then it must be manually removed from the site’s etcd cluster.   Failure to do so may leave the site in a state where future scaling operations do not work, or where in progress scaling operations fail to complete.
+If a node fails that was acting as an etcd master then it must be manually removed from the site’s etcd cluster.   Failure to do so may leave the site in a state where future scaling operations do not work, or where in-progress scaling operations fail to complete.
 
-This process assumes that more than half of the site’s etcd cluster is still healthy and so the etcd cluster still has quorum.   If 50% or more of the etcd masters in a given site have failed then you will need to first follow the process [here](Handling_Multiple_Failed_Nodes.md). You will need to know the IP address of the failed Vellum nodes. If you are using separate signaling and management networks, you must use the signaling IP address of the failed node. To remove the failed node log onto a working node in the same site and run the following commands (depending on the failed node's type):
+This process assumes that more than half of the site’s etcd cluster is still healthy and so the etcd cluster still has quorum.   If 50% or more of the etcd masters in a given site have failed then you will need to first follow the process [here](Handling_Multiple_Failed_Nodes.md). 
 
-Run the following steps on a remaining node that is a member of the etcd cluster.   If multiple nodes have failed then you will need to repeat this process for each failed node.
+For each failed node, log into a healthy etcd master in the same site as the failed node and run the following steps.
 * Run `clearwater-etcdctl cluster-health` and make a note of the ID of the failed node.
 * Run `clearwater-etcdctl member list` to check that the failed node reported is the one you were expecting (by looking at its IP address).
 * Run `clearwater-etcdctl member remove <ID>`, replacing `<ID>` with the ID learned above.
@@ -23,9 +23,11 @@ Run the following steps on a remaining node that is a member of the etcd cluster
 
 If one or more Vellum nodes fail then they will need to be removed from all of the data store clusters that they were part of.   You will need to know the IP addresses of the failed nodes and if you are using separate signaling and management networks, you must use the signaling IP addresses.
 
-For each site that contains one or more failed Vellum nodes, log onto a healthy Vellum node in the site and run the following commands.   If the site contains multiple failed nodes then you will need to run each command for all failed nodes before moving on to the next command.   Note that the command will block until you have run it for all of the failed nodes so you will need to open a separate shell session for each node that has failed.
+For each site that contains one or more failed Vellum nodes, log onto a healthy Vellum node in the site and run the following commands.  If the site contains multiple failed nodes then 
+* you will need to run each command for all failed nodes in the site before moving on to the next command
+* each command will block until you have run it for all of the failed nodes in a site, so you will need to open a separate shell session for each node that has failed.
 
-* sudo cw-mark_node_failed "vellum" "memcached" <failed node IP>
-* sudo cw-mark_node_failed "vellum" "chronos" <failed node IP>
-* sudo cw-mark_node_failed "vellum" "cassandra" <failed node IP>
+* `sudo cw-mark_node_failed "vellum" "memcached" <failed node IP>`
+* `sudo cw-mark_node_failed "vellum" "chronos" <failed node IP>`
+* `sudo cw-mark_node_failed "vellum" "cassandra" <failed node IP>`
 
