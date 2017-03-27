@@ -68,6 +68,6 @@ If you're scaling down your deployment, follow the following process:
         *   `sudo monit unmonitor -g clearwater_queue_manager`
         *   `sudo monit unmonitor -g etcd`
 
-    * If the node you are turning down is a Vellum node, run `sudo service clearwater-etcd decommission`. This will cause the node to leave its existing clusters.
+    * If the node you are turning down is a Vellum node (or another node configured to act as an etcd master), run `sudo service clearwater-etcd decommission`. This will cause the node to leave its existing clusters.
 
 4.  Once the above steps have completed, turn down the nodes.
