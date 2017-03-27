@@ -509,6 +509,17 @@ AKAv2 (`RFC 4169 <http://www.ietf.org/rfc/rfc4169.txt>`__)
 -  Whuile Bono doesn't support AKA, the IMS Core part of Clearwater
    (Sprout, Homestead and Ralf) has support for both AKAv1 and AKAv2.
 
+P-Profile-Key header (`RFC 5002 <http://www.ietf.org/rfc/rfc5002.txt>`__)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Used solely between I-CSCF and S-CSCF to signal the public service
+   identity key to be used when a requested public service identity
+   matches a wildcard entry in the HSS. Purely an optimization to avoid
+   having to do wildcard matching twice for a single request.
+-  Optional according to `TS
+   24.229 <http://www.3gpp.org/ftp/Specs/html-info/24229.htm>`__
+-  Supported in Clearwater.
+
 Relevant to Clearwater and partially supported
 ----------------------------------------------
 
@@ -717,17 +728,6 @@ Resource Priority (`RFC 4412 <http://www.ietf.org/rfc/rfc4412.txt>`__)
 -  Not currently supported by Clearwater.
 -  Optional according to `TS
    24.229 <http://www.3gpp.org/ftp/Specs/html-info/24229.htm>`__.
-
-P-Profile-Key header (`RFC 5002 <http://www.ietf.org/rfc/rfc5002.txt>`__)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
--  Used solely between I-CSCF and S-CSCF to signal the public service
-   identity key to be used when a requested public service identity
-   matches a wildcard entry in the HSS. Purely an optimization to avoid
-   having to do wildcard matching twice for a single request.
--  Optional according to `TS
-   24.229 <http://www.3gpp.org/ftp/Specs/html-info/24229.htm>`__
--  Not currently supported by Clearwater.
 
 Service URNs (`RFC 5031 <http://www.ietf.org/rfc/rfc5031.txt>`__)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -339,13 +339,6 @@ e.g. ``icscf=5052``).
    trying to use AKAv2 authentication, this field determines what
    authentication scheme it requests in the Multimedia-Auth-Request.
    Default value is 'Digest-AKAv2-SHA-256'.
--  ``allow_fallback_ifcs`` - when Clearwater cannot find an Identity
-   element in the user profile XML from the HSS that matches the served
-   user, it will by default not invoke any services. When this is set to
-   Y, it will instead use the first set of Initial Filter Criteria in
-   the profile (giving the ability to work around HSSes that return
-   something unexpected, or the ability to get basic support for
-   wildcard public service identities).
 -  ``force_third_party_reg_body`` - if the HSS does not allow the
    IncludeRegisterRequest/IncludeRegisterResponse fields (which were
    added in 3GPP Rel 9) to be configured, setting
