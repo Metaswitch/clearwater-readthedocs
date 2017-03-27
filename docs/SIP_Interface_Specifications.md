@@ -271,6 +271,11 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 *   An updated version of Authentication and Key Agreement, which incorporates the integrity key and cryptographic key into the response calculation.
 *   Whuile Bono doesn't support AKA, the IMS Core part of Clearwater (Sprout, Homestead and Ralf) has support for both AKAv1 and AKAv2.
 
+### P-Profile-Key header ([RFC 5002](http://www.ietf.org/rfc/rfc5002.txt))
+
+*   Used solely between I-CSCF and S-CSCF to signal the public service identity key to be used when a requested public service identity matches a wildcard entry in the HSS. Purely an optimization to avoid having to do wildcard matching twice for a single request.
+*   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm)
+*   Supported in Clearwater.
 
 ## Relevant to Clearwater and partially supported
 
@@ -367,12 +372,6 @@ These are the RFCs which are relevant to Clearwater and not yet supported.
 *   Covers Resource-Priority and Accept-Resource-Priority headers.  Intended to allow UEs to signal high priority calls that get preferential treatment by the network (for example, emergency service use).
 *   Not currently supported by Clearwater.
 *   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm).
-
-### P-Profile-Key header ([RFC 5002](http://www.ietf.org/rfc/rfc5002.txt))
-
-*   Used solely between I-CSCF and S-CSCF to signal the public service identity key to be used when a requested public service identity matches a wildcard entry in the HSS. Purely an optimization to avoid having to do wildcard matching twice for a single request.
-*   Optional according to [TS 24.229](http://www.3gpp.org/ftp/Specs/html-info/24229.htm)
-*   Not currently supported by Clearwater.
 
 ### Service URNs ([RFC 5031](http://www.ietf.org/rfc/rfc5031.txt))
 
