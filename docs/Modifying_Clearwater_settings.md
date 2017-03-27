@@ -36,7 +36,7 @@ To change one of these files:
 
 It's possible to add static overrides to DNS to a clearwater node. This is done by adding entries to `/etc/clearwater/dns_config`. Currently, only CNAME records are supported and this is only used by Chronos.
 
-To change this file, if you are using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing) functionality:
+To change this file:
 
 * Edit the file on one of your nodes in each site.
 * Run `sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_dns_config`.
