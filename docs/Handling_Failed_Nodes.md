@@ -23,9 +23,7 @@ For each failed node, log into a healthy etcd master in the same site as the fai
 
 If one or more Vellum nodes fail then they will need to be removed from all of the data store clusters that they were part of.   You will need to know the IP addresses of the failed nodes and if you are using separate signaling and management networks, you must use the signaling IP addresses.
 
-For each site that contains one or more failed Vellum nodes, log onto a healthy Vellum node in the site and run the following commands.  If the site contains multiple failed nodes then 
-* you will need to run each command for all failed nodes in the site before moving on to the next command
-* each command will block until you have run it for all of the failed nodes in a site, so you will need to open a separate shell session for each node that has failed.
+For each site that contains one or more failed Vellum nodes, log onto a healthy Vellum node in the site and run the following commands.  If the site contains multiple failed nodes then you will need to run each command for all failed nodes in the site before moving on to the next command, and each command will block until you have run it for all of the failed nodes in a site so you will need to open a separate shell session for each node that has failed.
 
 * `sudo cw-mark_node_failed "vellum" "memcached" <failed node IP>`
 * `sudo cw-mark_node_failed "vellum" "chronos" <failed node IP>`
