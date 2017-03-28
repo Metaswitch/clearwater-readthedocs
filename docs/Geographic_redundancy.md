@@ -13,43 +13,28 @@ The architecture of a geographically-redundant system is as follows.
 
 ![Diagram](img/Geographic_redundancy_diagram.png)
 
-Sprout has one memcached cluster per geographic region. Although memcached
-itself does not support the concept of local and remote peers, Sprout builds
-this on top - writing to both local and remote clusters and reading from the
-local but falling back to the remote. Communication between the nodes should be
-secure - for example, if it is going over the public internet rather than a
-private connection between datacenters, it should be encrypted and
-authenticated with IPsec. Each Sprout uses Homers and Homesteads in the same
-region only. Sprout also has one Chronos cluster per geographic region; these
-clusters do not communicate.
+Vellum has 3 databases, which support Geographic Redundancy differently:
+* The Homestead, Homer and Memento databases are backed by Cassandra, which is aware of local and remote peers, so these are a single cluster split across the two geographic regions.
+* There os one Chronos cluster per geographic region; these clusters do not communicate.
+* There is one memcached cluster per geographic region. Although memcached itself does not support the concept of local and remote peers, Vellum runs Astaire as a memcached proxy which allows Sprout and Dime nodes to build geographic redundancy on top - writing to both local and remote clusters, and reading form the local but falling back to the remote.
 
-Separate instances of Bono in each geographic region front the Sprouts
-in that region.  Clearwater uses a geo-routing DNS service such as
-Amazon's Route&nbsp;53 to achieve this. A geo-routing DNS service
-responds to DNS queries based on latency, so if you're nearer to
-geographic region B's instances, you'll be served by them.
+Sprout nodes use the local Vellum cluster for Chronos and both local and remote Vellum clusters for memcached (via Astaire).
 
-Homestead and Homer are each a single cluster split over the
-geographic regions. Since they are backed by Cassandra (which is aware
-of local and remote peers), they can be smarter about spatial
-locality. As with Sprout nodes, communication between the nodes should be
-secure.
+Separate instances of Bono in each geographic region front the Sprouts in that region.  Clearwater uses a geo-routing DNS service such as Amazon's Route&nbsp;53 to achieve this. A geo-routing DNS service responds to DNS queries based on latency, so if you're nearer to geographic region B's instances, you'll be served by them.
 
-Ellis is not redundant, whether deployed in a single geographic region
-or more. It is deployed in one of the geographic regions and a failure
-of that region would deny all provisioning function.
+Dime nodes use the local Vellum cluster for Chronos and Cassandra, and both local and remote Vellum clusters for memcached (via Astaire).
 
-Ralf does not support geographic redundancy. Each geographic region has its
-own Ralf cluster; Sprout and Bono should only communicate with their local
-Ralfs.
+Communications between nodes in different sites should be secure - for example, if it is going over the public internet rather than a private connection between datacenters, it should be encrypted and authenticated with IPsec.
+
+Ellis is not redundant, whether deployed in a single geographic region or more. It is deployed in one of the geographic regions and a failure of that region would deny all provisioning function
+
 
 While it appears as a single node in our system, Route 53 DNS is actually a
 geographically-redundant service provided by Amazon. Route 53's DNS
 interface has had 100% uptime since it was first turned up in 2010.
 (Its configuration interface has not, but that is less important.)
 
-The architecture above is for 2 geographic regions - we do not currently
-support more regions.
+The architecture above is for 2 geographic regions - Project Clearwater does not currently support more regions.
 
 Note that there are other servers involved in a deployment that are not
 described above. Specifically,
@@ -147,9 +132,9 @@ follows.
 2.  Set up DNS (probably using SRV records) so that:
     -   Bono nodes prefer the Sprout node local to them, but will fail over to
         the one in the other site.
-    -   Sprout nodes only use the Homer, Homestead and Ralf nodes in their
+    -   Sprout nodes only use the Homer, Dime and Vellum nodes in their
         local site.
-    -   The Ellis node ony uses the Homer and Homesteads in its local site.
+    -   The Ellis node ony uses the Homer and Vellum nodes in its local site.
 3.  Configure Route 53 to forward requests for Bono according to latency.
     To do this, for each region, create one record set, as follows.
     -   Name: &lt;shared (non-geographically-redundant) DNS name\>
