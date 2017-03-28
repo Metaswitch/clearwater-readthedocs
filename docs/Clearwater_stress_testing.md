@@ -20,7 +20,7 @@ Clearwater SIP stress nodes provide a set of SIPp scripts to run against your Sp
 
 These instructions assume you'[ve already [installed a Clearwater deployment](Installation_Instructions.md), either manually or through Chef.
 
-Follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision the number of subscribers you want. As a general guideline, we'd expect a small deployment (with one Sprout, Homestead and optionally a Ralf node, each with one full CPU core) to handle at least 30,000 subscribers.
+Follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision the number of subscribers you want. As a general guideline, we'd expect a small deployment (with one Sprout, Vellum and Dime, each with one full CPU core) to handle at least 30,000 subscribers.
 
 You should also ensure that the `reg_max_expires` setting is set to 1800 rather than the default of 300 - see our [configuration guide](Clearwater_Configuration_Options_Reference.md) for instructions. This matches the assumptions in our load profile of 2 re-registers per hour.
 
@@ -97,7 +97,7 @@ The run-stress script has some command-line options:
 * `--initial-reg-rate` - this controls how many REGISTERs/second the script sends in during the initial registration phase (defaulting to 80). On systems that can cope with the load, raising this value will let the test run start faster.
 * `--sipp-output` - By default, the script hides the SIPp output and just presents the end-of-run stats. With this option, it will show the SIPp output screen, which may be useful for users familiar with SIPp.
 * `--icscf-target TARGET` - Domain/IP and port to target registration stress at. Default is `sprout.{domain}:5052`.
-* `--scscf-target TARGET` - Domain/IP and port to target call stress at. Default is `sprout.{domain}:5054`. 
+* `--scscf-target TARGET` - Domain/IP and port to target call stress at. Default is `sprout.{domain}:5054`.
 
 ## Running stress (IMS core and P-CSCF)
 
