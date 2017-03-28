@@ -91,7 +91,7 @@ To take a manual backup on Vellum, run
 *   `sudo cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning`
 *   `sudo cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache`
 *   `sudo cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homer`
-*   `sudo /usr/share/clearwater/bin/do_backup.sh memento`
+*   `sudo cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh memento`
 
 These each produces output of the following form, reporting the successfully-created backup.
 
@@ -117,9 +117,9 @@ If you want to turn this on, edit your crontab by running `sudo crontab -e` and 
 
 * On Vellum:
     *   `0 0 * * * /usr/bin/cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homestead_provisioning`
-    *   `5 0 * * * cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache`
+    *   `5 0 * * * /usr/bin/cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homestead_cache`
     *   `10 0 * * * /usr/bin/cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homer`
-    *   `15 0 * * * /usr/share/clearwater/bin/do_backup.sh memento`
+    *   `15 0 * * * /usr/bin/cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh memento`
 
 These backups are stored locally, in the same locations as they would be generated for a manual backup.
 
