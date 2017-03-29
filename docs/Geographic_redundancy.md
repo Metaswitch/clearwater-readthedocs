@@ -15,12 +15,12 @@ The architecture of a geographically-redundant system is as follows.
 
 Vellum has 3 databases, which support Geographic Redundancy differently:
 * The Homestead, Homer and Memento databases are backed by Cassandra, which is aware of local and remote peers, so these are a single cluster split across the two geographic regions.
-* There os one Chronos cluster per geographic region; these clusters do not communicate.
+* Chronos is aware of local peers and the remote cluster, and handles replicating timers across the two sites itself.
 * There is one memcached cluster per geographic region. Although memcached itself does not support the concept of local and remote peers, Vellum runs Astaire as a memcached proxy which allows Sprout and Dime nodes to build geographic redundancy on top - writing to both local and remote clusters, and reading form the local but falling back to the remote.
 
 Sprout nodes use the local Vellum cluster for Chronos and both local and remote Vellum clusters for memcached (via Astaire).
 
-Separate instances of Bono in each geographic region front the Sprouts in that region.  Clearwater uses a geo-routing DNS service such as Amazon's Route&nbsp;53 to achieve this. A geo-routing DNS service responds to DNS queries based on latency, so if you're nearer to geographic region B's instances, you'll be served by them.
+Separate instances of Bono in each geographic region front the Sprouts in that region.  Clearwater uses a geo-routing DNS service such as Amazon's Route 53 to achieve this. A geo-routing DNS service responds to DNS queries based on latency, so if you're nearer to geographic region B's instances, you'll be served by them.
 
 Dime nodes use the local Vellum cluster for Chronos and Cassandra, and both local and remote Vellum clusters for memcached (via Astaire).
 
@@ -129,13 +129,13 @@ follows.
 1.  Create independent deployments for each of the regions,
     with separate DNS entries. See [the manual install instructions](http://clearwater.readthedocs.io/en/latest/Manual_Install.html#create-the-per-node-configuration) for the
     required GR settings.
-2.  Set up DNS (probably using SRV records) so that:
+2.  Configure Sprout and Dime to use the Astaire processes on both local and
+    remote Vellum nodes. See [the manual install instructions](http://clearwater.readthedocs.io/en/latest/Manual_Install.html#provide-shared-configuration) for the required settings.
+3.  Set up DNS (probably using SRV records) so that:
     -   Bono nodes prefer the Sprout node local to them, but will fail over to
         the one in the other site.
-    -   Sprout nodes only use the Homer, Dime and Vellum nodes in their
-        local site.
     -   The Ellis node ony uses the Homer and Vellum nodes in its local site.
-3.  Configure Route 53 to forward requests for Bono according to latency.
+4.  Configure Route 53 to forward requests for Bono according to latency.
     To do this, for each region, create one record set, as follows.
     -   Name: &lt;shared (non-geographically-redundant) DNS name\>
     -   Type: "A - IPv4 address" or "AAAA - IPv6 address"
