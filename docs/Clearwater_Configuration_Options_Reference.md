@@ -16,9 +16,8 @@ You should follow [this process](Modifying_Clearwater_settings.md) when changing
 * Restart the relevant Clearwater service(s) using the following commands as appropriate for the node.
     *   Sprout - `sudo service sprout quiesce`
     *   Bono - `sudo service bono quiesce`
-    *   Homestead - `sudo service homestead stop && sudo service homestead-prov stop`
+    *   Dime - `sudo service homestead stop && sudo service homestead-prov stop && sudo service ralf stop`
     *   Homer - `sudo service homer stop`
-    *   Ralf -`sudo service ralf stop`
     *   Ellis - `sudo service ellis stop`
     *   Memento - `sudo service memento stop`
 
@@ -26,15 +25,20 @@ You should follow [this process](Modifying_Clearwater_settings.md) when changing
 
 This section describes settings that are specific to a single node and are not applicable to any other nodes in the deployment. They are entered early on in the node's life and are not normally changed. These options should be set in `/etc/clearwater/local_config`. Once this file has been created it is highly recommended that you do not change it unless instructed to do so. If you find yourself needing to change these settings, you should destroy and recreate then node instead.
 
-*   `local_ip` - this should be set to an IP address which is configured on an interface on this system, and can communicate on an internal network with other Clearwater nodes and IMS core components like the HSS.
-*   `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
-*   `public_hostname` - this should be set to a hostname which resolves to `public_ip`, and will communicate with only this node (i.e. not be round-robined to other nodes). It can be set to `public_ip` if necessary.
-*   `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
-*   `etcd_cluster` - this is a comma separated list of IP addresses, for example `etcd_cluster=10.0.0.1,10.0.0.2`. It should be set on one of two ways:
-  * If the node is forming a new deployment, it should contain the IP addresses of all the nodes that are forming the new deployment (including this node).
-  * If the node is joining an existing deployment, it should contain the IP addresses of all the nodes that are currently in the deployment.
-*   `etcd_cluster_key` - this is the name of the etcd datastore clusters that this node should join. It defaults to the function of the node (e.g. a Homestead node defaults to using 'homestead' as its etcd datastore cluster name when it joins the Cassandra cluster). This must be set explicitly on nodes that colocate function.
-*   `scscf_node_uri` - this can be optionally set, and only applies to nodes running an S-CSCF. If it is configured, it almost certainly needs configuring on each S-CSCF node in the deployment.
+* `local_ip` - this should be set to an IP address which is configured on an interface on this system, and can communicate on an internal network with other Clearwater nodes and IMS core components like the HSS.
+* `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
+* `public_hostname` - this should be set to a hostname which resolves to `public_ip`, and will communicate with only this node (i.e. not be round-robined to other nodes). It can be set to `public_ip` if necessary.
+* `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
+* `etcd_cluster` - this is a either blank or a comma separated list of IP addresses, for example `etcd_cluster=10.0.0.1,10.0.0.2`. The setting depends on the node's role:
+    * If this node is an etcd master, then it should be set in one of two ways:
+        * If the node is forming a new etcd cluster, it should contain the IP addresses of all the nodes that are forming the new cluster (including this node).
+        * If the node is joining an existing etcd cluster, it should contain the IP addresses of all the nodes that are currently etcd masters in the cluster.
+    * If this node is an etcd proxy, it should be left blank
+* `etcd_proxy` - this is a either blank or a comma separated list of IP addresses, for example `etcd_proxy=10.0.0.1,10.0.0.2`. The setting depends on the node's role:
+    * If this node is an etcd master, this should be left blank
+    * If this node is an etcd proxy, it should contain the IP addresses of all the nodes that are currently etcd masters in the cluster.
+* `etcd_cluster_key` - this is the name of the etcd datastore clusters that this node should join. It defaults to the function of the node (e.g. a Vellum node defaults to using 'vellum' as its etcd datastore cluster name when it joins the Cassandra cluster). This must be set explicitly on nodes that colocate function.
+* `scscf_node_uri` - this can be optionally set, and only applies to nodes running an S-CSCF. If it is configured, it almost certainly needs configuring on each S-CSCF node in the deployment.
 
     If set, this is used by the node to advertise the URI to which requests to this node should be routed. It should be formatted as a SIP URI.
 
@@ -55,14 +59,14 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `home_domain` - this is the main SIP domain of the deployment, and determines which SIP URIs Clearwater will treat as local. It will usually be a hostname resolving to all the P-CSCFs (e.g. the Bono nodes). Other domains can be specified through additional_home_domains, but Clearwater will treat this one as the default (for example, when handling `tel:` URIs).
 * `sprout_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Sprout nodes in the cluster.
 * `sprout_hostname_mgmt` - a hostname that resolves by DNS round-robin to the management interface of all Sprout nodes in the cluster.  Should include the HTTP port (always 9886). For details on the HTTP API exposed on this interface, see https://github.com/Metaswitch/sprout/blob/dev/docs/ManagementHttpAPI.md.
-* `hs_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Homesteads in the cluster. Should include the HTTP port (always 8888). This is also used (without the port) as the Origin-Realm of the Diameter messages Homestead sends.
-* `hs_hostname_mgmt` - a hostname that resolves by DNS round-robin to the management interface of all Homestead nodes in the cluster.  Should include the HTTP port (always 8886). For details on the HTTP API exposed on this interface, see https://github.com/Metaswitch/homestead/blob/dev/docs/ManagementHttpAPI.md.
-* `hs_provisioning_hostname` - a hostname that resolves by DNS round-robin to all Homesteads in the cluster. Should include the HTTP provisioning port (usually 8889). Not needed when using an external HSS.
-* `ralf_hostname` - a hostname that resolves by DNS round-robin to all Ralf nodes in the cluster. Should include the port (usually 9888). This is also used (without the port) as the Origin-Realm of the Diameter messages Ralf sends. Optional if no Ralf nodes exist.
+* `hs_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Dime nodes in the cluster. Should include the HTTP port (always 8888). This is also used (without the port) as the Origin-Realm of the Diameter messages Dime sends.
+* `hs_hostname_mgmt` - a hostname that resolves by DNS round-robin to the management interface of all Dime nodes in the cluster.  Should include the HTTP port (always 8886). For details on the HTTP API exposed on this interface, see https://github.com/Metaswitch/homestead/blob/dev/docs/ManagementHttpAPI.md.
+* `hs_provisioning_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Dime nodes in the cluster. Should include the HTTP provisioning port (usually 8889). Not needed when using an external HSS.
+* `ralf_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Dime nodes in the cluster. Should include the port (usually 9888). This is also used (without the port) as the Origin-Realm of the Diameter messages the ralf process on Dime sends. Optional if ralf is not being used.
 * `cdf_identity` - a Diameter identity that represents the address of an online Charging Function. Subscribers provisioned through Ellis will have this set as their Primary Charging Collection Function on P-Charging-Function-Addresses headers on responses to their successful REGISTERs, and Bono will add similarly in originating requests.
 * `xdms_hostname` - a hostname that resolves by DNS round-robin to all Homer nodes in the cluster. Should include the port (usually 7888).
-* `hss_realm` - this sets the Destination-Realm of your external HSS. When this field is set, Homestead will then attempt to set up multiple Diameter connections using an SRV lookup on this realm.
-* `hss_hostname` - this sets the Destination-Host of your external HSS, if you have one. Homestead will also try and establish a Diameter connection to this host (on port 3868) if no SRV-discovered peers exist.
+* `hss_realm` - this sets the Destination-Realm of your external HSS. When this field is set, the homestead process on Dime will then attempt to set up multiple Diameter connections using an SRV lookup on this realm.
+* `hss_hostname` - this sets the Destination-Host of your external HSS, if you have one. The homestead process on Dime will also try and establish a Diameter connection to this host (on port 3868) if no SRV-discovered peers exist.
 * `signup_key` - this sets the password which Ellis will require before allowing self-sign-up.
 * `turn_workaround` - if your STUN/TURN clients are not able to authenticate properly (for example, because they can't send the @ sign), this specifies an additional password which will authenticate clients even without a correct username.
 * `smtp_smarthost` - Ellis allows password recovery by email. This sets the SMTP server used to send those emails.
@@ -72,11 +76,13 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `ellis_api_key` - sets a key which can be used to authenticate automated requests to Ellis, by setting it as the value of the X-NGV-API header. This is used to expire demo users regularly.
 * `ellis_hostname` - a hostname that resolves to Ellis, if you don't want to use `ellis.home_domain`.  This should match Ellis's SSL certificate, if you are using one.
 * `memento_hostname` - a hostname that resolves by DNS round-robin to all Mementos in the cluster (the default is `memento.<home_domain>`).  This should match Memento's SSL certificate, if you are using one.
-* `sprout_registation_store` - this is the locations of Sprout's registration stores. It has the format <site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
+* `sprout_registation_store` - this is the locations of Sprout's registration stores. It has the format \<site_name\>=\<domain\>\[:\<port\>\]\[,\<site_name\>=\<domain\>\[:\<port\>\],...\]. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
 * `ralf_session_store` - this is the locations of Ralf's session stores. It has the format <site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
 * `memento_auth_store` - this is the location of Memento's authorization vector store. It just has the format <domain>[:port]. If not present, defaults to the loopback IP.
 * `sprout_chronos_callback_uri` - the callback hostname used on Sprout's Chronos timers. If not present, defaults to the host specified in `sprout-hostname`. In a GR deployment, should be set to a deployment-wide Sprout hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
 * `ralf_chronos_callback_uri` - the callback hostname used on Ralf's Chronos timers. If not present, defaults to the host specified in `ralf-hostname`. In a GR deployment, should be set to a deployment-wide Ralf hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
+* `cassandra_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Vellum nodes in the local site.
+* `chronos_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Vellum nodes in the local site.
 
 ### Sproutlet options
 
@@ -198,9 +204,8 @@ This section describes optional configuration options, particularly for ensuring
 
 ### Experimental options
 
-This section describes optional configuration options which may be useful, but are not heavily-used or well-tested by the main Clearwater development team. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `cassandra_hostname=db.example.com`).
+This section describes optional configuration options which may be useful, but are not heavily-used or well-tested by the main Clearwater development team. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `ralf_secure_listen_port=12345`).
 
-* `cassandra_hostname` - if using an external Cassandra cluster (which is a fairly uncommon configuration), a hostname that resolves to one or more Cassandra nodes.
 * `ralf_secure_listen_port` - this determines the port Ralf listens on for TLS-secured Diameter connections.
 * `hs_secure_listen_port` - this determines the port Homestead listens on for TLS-secured Diameter connections.
 * `ellis_cookie_key` - an arbitrary string that enables Ellis nodes to determine whether they should be in the same cluster. This function is not presently used.
