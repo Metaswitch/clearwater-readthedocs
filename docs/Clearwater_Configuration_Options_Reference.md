@@ -29,12 +29,12 @@ This section describes settings that are specific to a single node and are not a
 * `public_ip` - this should be set to an IP address accessible to external clients (SIP UEs for Bono, web browsers for Ellis). It does not need to be configured on a local interface on the system - for example, in a cloud environment which puts instances behind a NAT.
 * `public_hostname` - this should be set to a hostname which resolves to `public_ip`, and will communicate with only this node (i.e. not be round-robined to other nodes). It can be set to `public_ip` if necessary.
 * `node_idx` - an index number used to distinguish this node from others of the same type in the cluster (for example, sprout-1 and sprout-2). Optional.
-* `etcd_cluster` - this is a either blank or a comma separated list of IP addresses, for example `etcd_cluster=10.0.0.1,10.0.0.2`. The setting depends on the node's role:
+* `etcd_cluster` - this is either blank or a comma separated list of IP addresses, for example `etcd_cluster=10.0.0.1,10.0.0.2`. The setting depends on the node's role:
     * If this node is an etcd master, then it should be set in one of two ways:
-        * If the node is forming a new etcd cluster, it should contain the IP addresses of all the nodes that are forming the new cluster (including this node).
+        * If the node is forming a new etcd cluster, it should contain the IP addresses of all the nodes that are forming the new cluster as etcd masters (including this node).
         * If the node is joining an existing etcd cluster, it should contain the IP addresses of all the nodes that are currently etcd masters in the cluster.
     * If this node is an etcd proxy, it should be left blank
-* `etcd_proxy` - this is a either blank or a comma separated list of IP addresses, for example `etcd_proxy=10.0.0.1,10.0.0.2`. The setting depends on the node's role:
+* `etcd_proxy` - this is either blank or a comma separated list of IP addresses, for example `etcd_proxy=10.0.0.1,10.0.0.2`. The setting depends on the node's role:
     * If this node is an etcd master, this should be left blank
     * If this node is an etcd proxy, it should contain the IP addresses of all the nodes that are currently etcd masters in the cluster.
 * `etcd_cluster_key` - this is the name of the etcd datastore clusters that this node should join. It defaults to the function of the node (e.g. a Vellum node defaults to using 'vellum' as its etcd datastore cluster name when it joins the Cassandra cluster). This must be set explicitly on nodes that colocate function.
@@ -78,7 +78,7 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `memento_hostname` - a hostname that resolves by DNS round-robin to all Mementos in the cluster (the default is `memento.<home_domain>`).  This should match Memento's SSL certificate, if you are using one.
 * `sprout_registation_store` - this is the locations of Sprout's registration stores. It has the format `<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]`. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
 * `ralf_session_store` - this is the locations of ralf's session stores. It has the format `<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]`. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
-* `memento_auth_store` - this is the location of Memento's authorization vector store. It just has the format \<domain\>\[:port\]. If not present, defaults to the loopback IP.
+* `memento_auth_store` - this is the location of Memento's authorization vector store. It just has the format `<domain>[:port]`. If not present, defaults to the loopback IP.
 * `sprout_chronos_callback_uri` - the callback hostname used on Sprout's Chronos timers. If not present, defaults to the host specified in `sprout-hostname`. In a GR deployment, should be set to a deployment-wide Sprout hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
 * `ralf_chronos_callback_uri` - the callback hostname used on ralf's Chronos timers. If not present, defaults to the host specified in `ralf-hostname`. In a GR deployment, should be set to a deployment-wide Dime hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
 * `cassandra_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Vellum nodes in the local site.
