@@ -11,7 +11,7 @@ This article describes
 
 The architecture of a geographically-redundant system is as follows.
 
-![Diagram](img/Geographic_redundancy_diagram.png)
+![Simplified diagram of the GR architecture, showing how data is replicated between the two sites](img/Geographic_redundancy_diagram.png)
 
 Vellum has 3 databases, which support Geographic Redundancy differently:
 * The Homestead, Homer and Memento databases are backed by Cassandra, which is aware of local and remote peers, so these are a single cluster split across the two geographic regions.
