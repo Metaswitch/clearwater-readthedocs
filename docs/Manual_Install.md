@@ -80,8 +80,7 @@ If you are creating a [geographically redundant deployment](Geographic_redundanc
 * `etcd_cluster` should contain the IP addresses of nodes only in the local site
 *  you should set `local_site_name` and `remote_site_names` in `/etc/clearwater/local_config`
      *   These names are arbitrary, but should reflect the node's location (e.g. a node in site A should have `local_site_name=siteA` and `remote_site_names=siteB`, whereas a node in site B should have `local_site_name=siteB` and `remote_site_names=siteA`):
-*  on the first Vellum, Homer and Memento node in the second site, you should set `remote_cassandra_seeds` to the IP address of a node of that type in the first site
-    *  e.g. on the first Vellum node in site `siteB`, set `remote_cassandra_seeds` to the IP address of a Vellum node in site `siteA`
+*  on the first Vellum node in the second site, you should set `remote_cassandra_seeds` to the IP address of a Vellum node in the first site
 
 If this machine will be a Vellum node create the file `/etc/chronos/chronos.conf` with the following contents:
 
@@ -203,6 +202,7 @@ If you want your Sprout nodes to include Gemini/Memento Application Servers add 
     # Application Servers
     gemini=<gemini port>
     memento=<memento port>
+    memento_auth_store=vellum.<zone>
 
 See the [Chef instructions](Installing_a_Chef_workstation.md#add-deployment-specific-configuration) for more information on how to fill these in. The values marked `<secret>` **must** be set to secure values to protect your deployment from unauthorized access. To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings.md).
 
