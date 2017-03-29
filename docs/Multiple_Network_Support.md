@@ -34,8 +34,8 @@ The following traffic is carried over the signaling interface:
  * DNS (for signaling traffic)
  * ENUM
  * SIP between the UE, Bono and Sprout
- * Cx between Homestead and the HSS
- * Rf between Ralf and the CDF
+ * Cx between Dime and the HSS
+ * Rf between Dime and the CDF
  * Ut between Homer and the UE
  * inter-tier HTTP
  * intra-tier memcached, Cassandra and Chronos flows
