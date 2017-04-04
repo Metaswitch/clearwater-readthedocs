@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Boromir <http://lotr.wikia.com/wiki/Boromir>`__\ ".
+"`Celebrimbor <http://lotr.wikia.com/wiki/Celebrimbor>`__\ ".
 
 Architecture
 ------------
