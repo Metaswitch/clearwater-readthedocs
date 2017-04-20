@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Celebrimbor <http://lotr.wikia.com/wiki/Celebrimbor>`__\ ".
+"`Durin <http://lotr.wikia.com/wiki/Durin>`__\ ".
 
 Architecture
 ------------
