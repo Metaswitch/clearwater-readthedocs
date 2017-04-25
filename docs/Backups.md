@@ -24,7 +24,7 @@ Depending on your deployment scenario, you may not need to back up all of the da
 
 ## Listing Backups
 
-The process for listing backups varies between Ellis and Vellum.
+The process for listing backups differs between Ellis and Vellum.
 
 ### Ellis
 
@@ -59,7 +59,7 @@ You can also specify a directory to search in for backups, e.g. for `homestead_p
 
 ## Taking a Manual Backup
 
-The process for taking a manual backup varies between Ellis and Vellum.  Note that in both cases,
+The process for taking a manual backup differs between Ellis and Vellum.  Note that in both cases,
 
 *   the backup is stored locally and should be copied to a secure backup server to ensure resilience
 *   this process only backs up a single local node, so the same process must be run on all nodes in a cluster to ensure a complete set of backups
@@ -93,7 +93,7 @@ To take a manual backup on Vellum, run
 *   `sudo cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homer`
 *   `sudo cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh memento`
 
-These each produces output of the following form, reporting the successfully-created backup.
+These each produce output of the following form, reporting the successfully-created backup.
 
     ...
     Deleting old backup: /usr/share/clearwater/homestead/backup/backups/1372812963174
@@ -101,6 +101,8 @@ These each produces output of the following form, reporting the successfully-cre
     Requested snapshot for: homestead_provisioning
     Snapshot directory: 1372850637124
     Backups can be found at: /usr/share/clearwater/homestead/backup/backups/provisioning/
+
+Note that Each of the Vellum databases will produce a different snapshot in a different directory.
 
 The backups are only stored locally - the resulting backup for each command is stored in the listed directory. Make a note of the snapshot directory for each database - these will be referred to as `<snapshot>` below.
 
@@ -160,10 +162,12 @@ To actually restore from the backup file, run:
     *   `sudo /usr/share/clearwater/ellis/backup/restore_backup.sh <snapshot>`
 
 * On Vellum:
-    *   `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_provisioning <snapshot> <backup directory>`
-    *   `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_cache <snapshot> <backup directory>`
-    *   `sudo /usr/share/clearwater/bin/restore_backup.sh homer <snapshot> <backup directory>`
-    *   `sudo /usr/share/clearwater/bin/restore_backup.sh memento <snapshot> <backup directory>`
+    *   `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_provisioning <hs-prov-snapshot> <backup directory>`
+    *   `sudo /usr/share/clearwater/bin/restore_backup.sh homestead_cache <hs-cache-snapshot> <backup directory>`
+    *   `sudo /usr/share/clearwater/bin/restore_backup.sh homer <homer-snapshot> <backup directory>`
+    *   `sudo /usr/share/clearwater/bin/restore_backup.sh memento <memento-snapshot> <backup directory>`
+
+Note that, because the 4 Vellum databases are saved to different backups, the name of the snapshot used to restore each of the databases will be different.
 
 Ellis will produce output of the following form.
 
@@ -198,7 +202,7 @@ Vellum will produce output of the following form.
     sip_digests: Deleting old .db files...
     sip_digests: Restoring from backup: 1372336442947
 
-For Vellum, after restoring a backup you must also do the following:
+For Vellum, after restoring the backups you must also do the following:
 - wait until the Cassandra process has restarted by running `sudo monit summary` and verifying that the `cassandra_process` is marked as `Running`
 - run `sudo cw-run_in_signaling_namespace nodetool repair`
 
@@ -242,10 +246,12 @@ To backup the shared configuration:
 *  Log onto one of the sprout nodes in the deployment.
 *  Copy the following files to somewhere else for safe keeping (e.g. another directory on the node, or another node entirely).
 
+    ```
     /etc/clearwater/shared_config
     /etc/clearwater/bgcf.json
     /etc/clearwater/enum.json
     /etc/clearwater/s-cscf.json
+    ```
 
 ### Restoring Configuration
 
