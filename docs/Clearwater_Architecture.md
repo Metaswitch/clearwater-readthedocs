@@ -31,17 +31,17 @@ Sprout is where the bulk of the I-CSCF and S-CSCF function resides, with the rem
 
 ### Dime (Diameter gateway)
 
-Dime nodes run Clearwater's Homestead and Ralf components.   
+Dime nodes run Clearwater's Homestead and Ralf components.
 
 #### Homestead (HSS Cache)
 
 Homestead provides a web services interface to Sprout for retrieving authentication credentials and user profile information.  It can either master the data (in which case it exposes a web services provisioning interface) or can pull the data from an IMS compliant HSS over the Cx interface.  The Homestead nodes themselves are stateless - the mastered / cached subscriber data is all stored on Vellum (via Cassandra's Thrift interface).
 
-In the IMS architecture, the HSS mirror function is considered to be part of the I-CSCF and S-CSCF components, so in Clearwater I-CSCF and S-CSCF function is implemented with a combination of Sprout and Dime clusters. 
+In the IMS architecture, the HSS mirror function is considered to be part of the I-CSCF and S-CSCF components, so in Clearwater I-CSCF and S-CSCF function is implemented with a combination of Sprout and Dime clusters.
 
 #### Ralf (CTF)
 
-Ralf provides an HTTP API that both Bono and Sprout can use to report billable events that should be passed to the CDF (Charging Data Function) over the Rf billing interface.  Ralf is stateless, using Vellum to maintain the long lived session state and run the timers necessary to enable it to conform to the Rf protocol. 
+Ralf provides an HTTP API that both Bono and Sprout can use to report billable events that should be passed to the CDF (Charging Data Function) over the Rf billing interface.  Ralf is stateless, using Vellum to maintain the long lived session state and run the timers necessary to enable it to conform to the Rf protocol.
 
 ### Vellum (State store)
 
@@ -75,7 +75,7 @@ The Clearwater approach to reliability is to follow common design patterns for s
 
 Both Bono and Sprout operate as transaction-stateful rather than dialog-stateful proxies - transaction state is typically short-lived compared to dialog state. As the anchor point for client connections for NAT traversal, the Bono node used remains on the signaling path for the duration of a SIP dialog. Any individual Sprout node is only in the signaling path for the initial transaction, and subsequent requests are routed through the entire Sprout cluster, so failure of a Sprout node does not cause established SIP dialogs to fail. Long-lived SIP state such as registration data and event subscription state is stored in a clustered, redundant shared data store (memcached running as part of Vellum nodes) so is not tied to any individual Sprout node.
 
-Dime, Homer and Ralf similar only retain local state for pending requests - all long lived state is stored redundantly in the data store clusters provided by Vellum.
+Dime and Homer similarly only retain local state for pending requests - all long lived state is stored redundantly in the data store clusters provided by Vellum.
 
 ### Cloud Security
 
