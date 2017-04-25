@@ -20,6 +20,7 @@ You should follow [this process](Modifying_Clearwater_settings.md) when changing
     *   Homer - `sudo service homer stop`
     *   Ellis - `sudo service ellis stop`
     *   Memento - `sudo service memento stop`
+    *   Vellum - `sudo service astaire stop`
 
 ## Local Config
 
@@ -59,7 +60,7 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `home_domain` - this is the main SIP domain of the deployment, and determines which SIP URIs Clearwater will treat as local. It will usually be a hostname resolving to all the P-CSCFs (e.g. the Bono nodes). Other domains can be specified through additional_home_domains, but Clearwater will treat this one as the default (for example, when handling `tel:` URIs).
 * `sprout_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Sprout nodes in the cluster.
 * `sprout_hostname_mgmt` - a hostname that resolves by DNS round-robin to the management interface of all Sprout nodes in the cluster.  Should include the HTTP port (always 9886). For details on the HTTP API exposed on this interface, see https://github.com/Metaswitch/sprout/blob/dev/docs/ManagementHttpAPI.md.
-* `hs_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Dime nodes in the cluster. Should include the HTTP port (always 8888). This is also used (without the port) as the Origin-Realm of the Diameter messages Dime sends.
+* `hs_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Dime nodes in the cluster. Should include the HTTP port (always 8888). This is also used (without the port) as the Origin-Realm of the Diameter messages the homestead process on Dime sends.
 * `hs_hostname_mgmt` - a hostname that resolves by DNS round-robin to the management interface of all Dime nodes in the cluster.  Should include the HTTP port (always 8886). For details on the HTTP API exposed on this interface, see https://github.com/Metaswitch/homestead/blob/dev/docs/ManagementHttpAPI.md.
 * `hs_provisioning_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Dime nodes in the cluster. Should include the HTTP provisioning port (usually 8889). Not needed when using an external HSS.
 * `ralf_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Dime nodes in the cluster. Should include the port (usually 9888). This is also used (without the port) as the Origin-Realm of the Diameter messages the ralf process on Dime sends. Optional if ralf is not being used.
@@ -76,8 +77,8 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `ellis_api_key` - sets a key which can be used to authenticate automated requests to Ellis, by setting it as the value of the X-NGV-API header. This is used to expire demo users regularly.
 * `ellis_hostname` - a hostname that resolves to Ellis, if you don't want to use `ellis.home_domain`.  This should match Ellis's SSL certificate, if you are using one.
 * `memento_hostname` - a hostname that resolves by DNS round-robin to all Mementos in the cluster (the default is `memento.<home_domain>`).  This should match Memento's SSL certificate, if you are using one.
-* `sprout_registation_store` - this is the locations of Sprout's registration stores. It has the format `<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]`. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
-* `ralf_session_store` - this is the locations of ralf's session stores. It has the format `<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>],...]`. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
+* `sprout_registation_store` - this is the locations of Sprout's registration stores. It has the format `<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>]]`. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
+* `ralf_session_store` - this is the locations of ralf's session stores. It has the format `<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>]]`. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
 * `memento_auth_store` - this is the location of Memento's authorization vector store. It just has the format `<domain>[:port]`. If not present, defaults to the loopback IP.
 * `sprout_chronos_callback_uri` - the callback hostname used on Sprout's Chronos timers. If not present, defaults to the host specified in `sprout-hostname`. In a GR deployment, should be set to a deployment-wide Sprout hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
 * `ralf_chronos_callback_uri` - the callback hostname used on ralf's Chronos timers. If not present, defaults to the host specified in `ralf-hostname`. In a GR deployment, should be set to a deployment-wide Dime hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns_config`).
