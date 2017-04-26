@@ -18,7 +18,7 @@ Each site has its own, separate, etcd cluster. This means that Clearwater's [aut
 Vellum has 3 databases, which support Geographic Redundancy differently:
 * The Homestead, Homer and Memento databases are backed by Cassandra, which is aware of local and remote peers, so these are a single cluster split across the two geographic regions.
 * Chronos is aware of local peers and the remote cluster, and handles replicating timers across the two sites itself.
-* There is one memcached cluster per geographic region. Although memcached itself does not support the concept of local and remote peers, Vellum runs Astaire as a memcached proxy which allows Sprout and Dime nodes to build geographic redundancy on top - writing to both local and remote clusters, and reading form the local but falling back to the remote.
+* There is one memcached cluster per geographic region. Although memcached itself does not support the concept of local and remote peers, Vellum runs Astaire as a memcached proxy which allows Sprout and Dime nodes to build geographic redundancy on top - writing to both local and remote clusters, and reading from the local but falling back to the remote.
 
 Sprout nodes use the local Vellum cluster for Chronos and both local and remote Vellum clusters for memcached (via Astaire).
 
