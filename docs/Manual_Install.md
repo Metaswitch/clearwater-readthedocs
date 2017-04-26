@@ -156,7 +156,7 @@ If you included the Memento Application server on your Sprout nodes, then also i
 
 ## SNMP statistics
 
-Sprout, Bono and Dime nodes expose statistics over SNMP. This function is not installed by default. If you want to enable it follow the instruction in [our SNMP documentation](Clearwater_SNMP_Statistics.md).
+Sprout, Bono, Vellum and Dime nodes expose statistics over SNMP. This function is not installed by default. If you want to enable it follow the instruction in [our SNMP documentation](Clearwater_SNMP_Statistics.md).
 
 ## Provide Shared Configuration
 
