@@ -2,9 +2,9 @@
 
 Clearwater provides the Ellis web UI for easy provisioning of subscribers.  However, sometimes a more programmatic interface is desirable.
 
-Dime provides a [provisioning API](https://github.com/Metaswitch/crest/blob/dev/docs/homestead_prov_api.md) but, for convenience, Clearwater also provides some command-line provisioning tools.
+Homestead-Prov provides a [provisioning API](https://github.com/Metaswitch/crest/blob/dev/docs/homestead_prov_api.md) but, for convenience, Clearwater also provides some command-line provisioning tools.
 
-By default, the tools are installed on the Dime servers only (as part of the clearwater-prov-tools package), in the `/usr/share/clearwater/bin` directory.
+By default, the tools are installed on the Dime nodes only (as part of the clearwater-prov-tools package), in the `/usr/share/clearwater/bin` directory.
 
 There are 5 tools.
 
