@@ -69,6 +69,6 @@ If you're scaling down your deployment, follow the following process:
         *   `sudo monit unmonitor -g etcd`
         *   `sudo service clearwater-etcd decommission`
 
-    This will cause the node to leave its existing clusters.
+        This will cause the node to leave its existing clusters.
 
 3.  Once the above steps have completed, turn down the nodes.
