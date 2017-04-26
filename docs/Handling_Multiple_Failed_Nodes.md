@@ -30,7 +30,7 @@ To follow this process you need to choose some nodes to be the new masters of th
 * If you have 3 or more working Vellum nodes in the site, you should use those
 * If not, you should use all the nodes in the site
 
-### Check the configuration on your master nodes
+### Check the configuration on your nodes
 
 The next step is to ensure that the configuration files on each node are correct.
 
