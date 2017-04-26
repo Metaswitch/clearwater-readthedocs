@@ -1,8 +1,8 @@
 # External HSS Integration
 
-All Clearwater deployments include a [Homestead](https://github.com/Metaswitch/crest) cluster.  Homestead presents an HTTP RESTful [interface](https://github.com/Metaswitch/homestead/blob/dev/docs/homestead_api.md) to HSS data.  This HSS data can be stored in either
+All Clearwater deployments include a cluster of Dime nodes that run the [Homestead](https://github.com/Metaswitch/homestead) service.  Homestead presents an HTTP RESTful [interface](https://github.com/Metaswitch/homestead/blob/dev/docs/homestead_api.md) to HSS data.  This HSS data can be stored in either
 
-*   a Cassandra database located on the Homestead cluster
+*   a Cassandra database located on the Vellum cluster
 *   an external HSS, accessible over a standard IMS [Cx/Diameter](http://www.3gpp.org/ftp/Specs/html-info/29228.htm) interface.
 
 This page describes
@@ -13,7 +13,7 @@ This page describes
 
 ## How It Works
 
-When Clearwater is deployed without an external HSS, all HSS data is mastered in Homestead's own Cassandra database.
+When Clearwater is deployed without an external HSS, all HSS data is mastered in Vellum's Cassandra database.
 
 When Clearwater is deployed with an external HSS, HSS data is queried from the external HSS via its Cx/Diameter interface and is then cached in the Cassandra database.
 
@@ -74,7 +74,7 @@ In order to register and make calls, you need to create subscriber records on yo
 ### Allowing one subscriber to have two private identities
 
 If you try to use an [Android SIP client](Configuring_the_native_Android_SIP_client.md#instructions-1) that doesn't contain an
-**Authentication username** field, the client will default to a username like **`1234`** 
+**Authentication username** field, the client will default to a username like **`1234`**
 (rather than **`1234@example.com`** - the IMS standard form). To register a
 subscriber you will have to configure your external HSS so that the subscriber
 you are trying to register has two private identities (**`1234`** and
@@ -86,7 +86,7 @@ Generally, however, you will need to
 1. create a subscriber as usual- with public user identity "sip:*&lt;username\>*@*&lt;server\>*"
 2. create two new private identities, one having identity "*&lt;username\>*" and
    the other with identity "*&lt;username\>*@*&lt;server\>*"
-3. associate the public user identity that was created in step 1: "sip:*&lt;username\>*@*&lt;server\>*" 
+3. associate the public user identity that was created in step 1: "sip:*&lt;username\>*@*&lt;server\>*"
    to both of the private identities created in step 2.
 
 This should allow the SIP client to register with that subscriber.
