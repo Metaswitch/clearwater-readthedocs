@@ -18,7 +18,7 @@ Clearwater SIP stress nodes provide a set of SIPp scripts to run against your Sp
 
 ## Deploying a stress node
 
-These instructions assume you'[ve already [installed a Clearwater deployment](Installation_Instructions.md), either manually or through Chef.
+These instructions assume you've already [installed a Clearwater deployment](Installation_Instructions.md), either manually or through Chef.
 
 Follow [this process](https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md) to bulk provision the number of subscribers you want. As a general guideline, we'd expect a small deployment (with one Sprout, Vellum and Dime, each with one full CPU core) to handle at least 30,000 subscribers.
 
