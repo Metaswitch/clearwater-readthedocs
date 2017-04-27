@@ -32,7 +32,7 @@ Problems on Vellum may include:
     * Check that Cassandra is running (`sudo monit status`). If not, check its `/var/log/cassandra/*.log` files.
     * Check that Cassandra is configured correctly. First access the command-line CQL interface by running `cqlsh`. There are 3 databases:
         * Type `use homestead_provisioning;` to set the provisioning database and then `describe tables;` - this should report `service_profiles`, `public`, `implicit_registration_sets` and `private`.
-        * Type `use homestead_cache;` to set the cache database and then `describe tables;` as before - this should report `impi`, `impi_mapping` and `impu`.
+        * Type `use homestead_cache;` to set the cache database and then `describe tables;` - this should report `impi`, `impi_mapping` and `impu`.
         * Type `use homer;` to set the homer database and then `describe tables;` - this should report `simservs`.
         * If any of these are missing, recreate them by running
             * `/usr/share/clearwater/cassandra-schemas/homestead_cache.sh`

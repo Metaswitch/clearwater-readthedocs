@@ -88,47 +88,47 @@ If you are creating a [geographically redundant deployment](Geographic_redundanc
 
 Install the Ellis package with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install ellis-node --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install ellis --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ### Bono
 
 Install the Bono and Restund packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install bono-node restund --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install bono restund --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ### Sprout
 
 Install the Sprout package with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install sprout-node --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install sprout --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 
 If you want the Sprout nodes to include a Memento Application server, then install the Memento packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install memento-node --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install memento-as memento-nginx --yes
 
 ### Homer
 
 Install the Homer packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install homer-node --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install homer --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ### Dime
 
 Install the Dime package with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install dime-node clearwater-prov-tools --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install dime clearwater-prov-tools --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 ### Vellum
 
 Install the Vellum packages with:
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install vellum-node --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install vellum --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 If you included the Memento Application server on your Sprout nodes, then also install the required packages on Vellum with:
@@ -137,7 +137,7 @@ If you included the Memento Application server on your Sprout nodes, then also i
 
 ## SNMP statistics
 
-Sprout, Bono and Dime nodes expose statistics over SNMP. This function is not installed by default. If you want to enable it follow the instruction in [our SNMP documentation](Clearwater_SNMP_Statistics.md).
+Sprout, Bono, Vellum and Dime nodes expose statistics over SNMP. This function is not installed by default. If you want to enable it follow the instruction in [our SNMP documentation](Clearwater_SNMP_Statistics.md).
 
 ## Provide Shared Configuration
 

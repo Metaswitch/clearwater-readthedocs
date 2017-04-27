@@ -84,7 +84,7 @@ Sprout nodes provide the following statistics:
 * The number of attempts, successes and failures for third-party re-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authetication stats and not here).  Also (for convenience) the percentage of such re-registrations that were successful.
 * The number of attempts, successes and failures for third-party de-registrations, indexed by time period (registrations that fail due to failed authentication are counted in the authentication stats and not here).  Also (for convenience) the percentage of such de-registrations that were successful.
 * The number of requests routed by the S-CSCF according to a route pre-loaded by an app server, indexed by time period.
-* The number of parallel TCP connections to each Dime node.
+* The number of parallel TCP connections to each Homestead service.
 * The number of parallel TCP connections to each Homer node.
 * The number of incoming SIP requests, indexed by time period.
 * The number of requests rejected due to overload, indexed by time period.

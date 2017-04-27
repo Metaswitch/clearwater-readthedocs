@@ -20,8 +20,8 @@ e.g. Consider a deployment with three Vellum nodes. If ten registrations are set
 
 This does not mean that the number of registrations has doubled, nor is it representative of the number of registrations that each node actually handled. It is simply directly the number of timers held on each node tagged as registrations.
 To then calculate the number of registrations actually active in the deployment, one takes the total and divides it by the replication factor, in this example 2.
-> (Node 1 + Node 2 + Node 3) / Replication-factor
-> (  6    +   7    +   7   ) / 2  => 10 Active registrations
+
+> (Node 1 + Node 2 + Node 3) / Replication-factor = (6 + 7 + 7) / 2  = 10 Active registrations
 
 Note: These statistics may be inaccurate in systems with a failing node. As such they should be considered unreliable while any alarms are raised, particularly those relating to Chronos.
 
