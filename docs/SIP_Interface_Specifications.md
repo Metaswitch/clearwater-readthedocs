@@ -234,7 +234,7 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 
 *   This RFC defines how AKA authentication parameters map into the authentication and authorization headers used for digest authentication.
 *   IMS allows AKA authentication as an alternative to SIP digest, although it is not mandatory.
-*   Supported in Clearwater since sprint 39 “WALL-E”.
+*   While Bono doesn't support AKA, the IMS Core part of Clearwater (Sprout, Homestead and Ralf) has support for both AKAv1 and AKAv2.
 
 ### SIP Instant Messaging ([RFC 3428](http://www.ietf.org/rfc/rfc3428.txt))
 
@@ -269,7 +269,7 @@ The following RFCs are already supported by Clearwater.  Note that a number of t
 ### AKAv2 ([RFC 4169](http://www.ietf.org/rfc/rfc4169.txt))
 
 *   An updated version of Authentication and Key Agreement, which incorporates the integrity key and cryptographic key into the response calculation.
-*   Whuile Bono doesn't support AKA, the IMS Core part of Clearwater (Sprout, Homestead and Ralf) has support for both AKAv1 and AKAv2.
+*   While Bono doesn't support AKA, the IMS Core part of Clearwater (Sprout, Homestead and Ralf) has support for both AKAv1 and AKAv2.
 
 ### P-Profile-Key header ([RFC 5002](http://www.ietf.org/rfc/rfc5002.txt))
 
