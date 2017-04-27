@@ -67,7 +67,7 @@ Clearwater requires the following DNS records to be configured.
 *   Sprout
     *   `sprout-1.<zone>`, `sprout-2.<zone>`... (A and/or AAAA) - per-node records for sprout
     *   `scscf.sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
-    *   `scscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.sprout.<zone>`
+    *   `scscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.<zone>`
     *   `_sip._tcp.scscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5054 on each of the per-node records
     *   `icscf.sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes that provide I-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
     *   `icscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.icscf.sprout.<zone>`
@@ -107,8 +107,8 @@ If your deployment is geographically redundant, then you need a DNS record per s
     *   `dime-1.<zone>`, `dime-2.<zone>`... (A and/or AAAA) - per-node records for Dime (one record for each node in each site)
     *   `hs.siteA.<zone>` (A and/or AAAA) - cluster record for Homestead, resolving to all Dime nodes in siteA.
     *   `hs.siteB.<zone>` (A and/or AAAA) - cluster record for Homestead, resolving to all Dime nodes in siteB.
-    *   `ralf.siteA<zone>` (A and/or AAAA) - cluster record for Ralf, resolving to all Dime nodes in siteA.
-    *   `ralf.siteB<zone>` (A and/or AAAA) - cluster record for Ralf, resolving to all Dime nodes in siteB.
+    *   `ralf.siteA.<zone>` (A and/or AAAA) - cluster record for Ralf, resolving to all Dime nodes in siteA.
+    *   `ralf.siteB.<zone>` (A and/or AAAA) - cluster record for Ralf, resolving to all Dime nodes in siteB.
 
 The exceptions to the above are Bono and Ellis.
 
@@ -122,8 +122,15 @@ Bono needs to be able to contact the Sprout nodes in each site, so it needs to h
     *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV) - cluster SRV records for Bono, resolving to port 5060 on each of the per-node records
     *   `sprout-1.<zone>`, `sprout-2.<zone>`... (A and/or AAAA) - per-node records for Sprout (one record for each node in each site)
     *   `scscf.sprout.<zone>` (A and/or AAAA) - cluster record for Sprout, resolving to all Sprout nodes in all sites that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
-    *   `scscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing Sprout - service `SIP+D2T` maps to `_sip._tcp.sprout.<zone>`
+    *   `scscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing Sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.<zone>`
     *   `_sip._tcp.scscf.sprout.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 on each of the per-node records
+    *   `scscf.sprout.siteA.<zone>` (A and/or AAAA) - cluster record for Sprout, resolving to all Sprout nodes in siteA that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
+    *   `scscf.sprout.siteA.<zone>` (NAPTR, optional) - specifies transport requirements for accessing Sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.siteA.<zone>`
+    *   `_sip._tcp.scscf.sprout.siteA.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 on each of the per-node records in siteA
+    *   `scscf.sprout.siteB.<zone>` (A and/or AAAA) - cluster record for Sprout, resolving to all Sprout nodes in siteB that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
+    *   `scscf.sprout.siteB.<zone>` (NAPTR, optional) - specifies transport requirements for accessing Sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.siteB.<zone>`
+    *   `_sip._tcp.scscf.sprout.siteB.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 on each of the per-node records in siteB
+
  
 ## Configuration
 

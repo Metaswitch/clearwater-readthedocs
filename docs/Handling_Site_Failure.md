@@ -9,10 +9,10 @@ More information about Clearwater's geographic redundancy support is available [
 
 ### Recovery
 
-To recover from this situation, all you need to do is remove the Vellum nodes from failed siter.
+To recover from this situation, all you need to do is remove the failed Vellum nodes from Cassandra cluster.
 
     * Determine the site ID of the failed site (this would be ). You can also find this by running `cw-run-in-signaling-namespace nodetool status`, and 
-    * Then from any Vellum node in the remaining site, run `cw-remove_failed_site <site ID>`
+    * Then from any Vellum node in the remaining site, run `cw-remove_site_from_cassandra <site ID>`
 
 You should now have a working single-site cluster, which can continue to run as a single site, or be safely paired with a new remote site (details on how to set up a new remote site are [here](http://clearwater.readthedocs.io/en/latest/Configuring_GR_deployments.html#removing-a-site-from-a-gr-deployment)).
 

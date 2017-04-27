@@ -24,7 +24,7 @@ Communications between nodes in different sites should be secure - for example, 
 
 Ellis is not redundant, whether deployed in a single geographic region or more. It is deployed in one of the geographic regions and a failure of that region would deny all provisioning function
 
-Separate instances of Bono in each geographic region front the Sprouts in that region. The Bonos should be able to contact the Sprouts in either region, one way to achieve this is to use a geo-routing DNS service such as Amazon's Route 53. A geo-routing DNS service responds to DNS queries based on latency, so if you're nearer to geographic region B's instances, you'll be served by them. While it appears as a single node in our system, Route 53 DNS is actually a geographically-redundant service provided by Amazon. Route 53's DNS interface has had 100% uptime since it was first turned up in 2010. (Its configuration interface has not, but that is less important.)
+Separate instances of Bono in each geographic region front the Sprouts in that region. The Bonos should be able to contact the Sprouts in either region.
 
 The architecture above is for 2 geographic regions - Project Clearwater does not currently support more regions.
 

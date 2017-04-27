@@ -228,7 +228,26 @@ If you are creating a [geographically redundant deployment](Geographic_redundanc
 * Chronos: When a client sets a timer on Chronos, it provides a URI that Chronos can use to inform the client that the timer has popped. This URI should resolve to the clients in the same site as where the timer popped, but the timer could pop in any site.
 * I-CSCF: The HSS stores the S-CSCF name. When the I-CSCF learns the S-CSCF name it wants to contact the S-CSCF in the local site, but the HSS will return the same S-CSCF name to the I-CSCFs in different sites.
 
-Details for how to set up this DNS override are detailed [here](), and an example of the JSON file required for a GR deployment with two sites (siteA and siteB) is below. 
+Details for how to set up this DNS override are detailed [here](Modifying_Clearwater_settings.md), and an example of the JSON file (for siteA) required for a GR deployment with two sites (siteA and siteB) is below:
+
+```
+{
+  "hostnames": [
+    {
+      "name": "sprout.<zone>",
+      "records": [{"rrtype": "CNAME", "target": "sprout.siteA.<zone>"}]
+    },
+    {
+      "name": "scscf.sprout.<zone>",
+      "records": [{"rrtype": "CNAME", "target": "scscf.sprout.siteA.<zone>"}]
+    },
+    {
+      "name": "ralf.<zone>",
+      "records": [{"rrtype": "CNAME", "target": "ralf.siteA.<zone>"}]
+    }
+  ]
+}
+```
 
 ## Chronos configuration
 
