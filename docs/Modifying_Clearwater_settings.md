@@ -34,7 +34,7 @@ To change one of these files:
 
 *This configuration can be freely modified without impacting service*
 
-It's possible to add static overrides to DNS to a clearwater node. This is done by adding entries to `/etc/clearwater/dns_config`. Currently, only CNAME records are supported and this is only used by Chronos.
+It's possible to add static overrides to DNS to a clearwater node. This is done by adding entries to `/etc/clearwater/dns_config`. Currently, only CNAME records are supported and this is only used by Chronos and the I-CSCF.
 
 To change this file:
 

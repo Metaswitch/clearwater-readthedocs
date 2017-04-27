@@ -93,7 +93,7 @@ To take a manual backup on Vellum, run
 *   `sudo cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh homer`
 *   `sudo cw-run_in_signaling_namespace /usr/share/clearwater/bin/do_backup.sh memento`
 
-These each produces output of the following form, reporting the successfully-created backup.
+These each produce output of the following form, reporting the successfully-created backup.
 
     ...
     Deleting old backup: /usr/share/clearwater/homestead/backup/backups/1372812963174

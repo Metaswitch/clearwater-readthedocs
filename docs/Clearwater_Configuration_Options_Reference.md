@@ -232,7 +232,7 @@ This section describes settings that may vary between systems in the same deploy
 
 ## DNS Config
 
-This section describes the static DNS config which can be used to override DNS results. This is set in `/etc/clearwater/dns_config`. Currently, the only supported record type is CNAME and the only component which uses this is Chronos. The file has the format:
+This section describes the static DNS config which can be used to override DNS results. This is set in `/etc/clearwater/dns_config`. Currently, the only supported record type is CNAME and the only component which uses this is Chronos and the I-CSCF. The file has the format:
 
     {
       "hostnames": [
