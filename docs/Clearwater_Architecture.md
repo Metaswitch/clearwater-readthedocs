@@ -46,14 +46,14 @@ Ralf provides an HTTP API that both Bono and Sprout can use to report billable e
 ### Vellum (State store)
 
 As described above, Vellum is used to maintain all long-lived state in the dedployment.  It does this by running a number of cloud optimized, distributed storage clusters.
-- Cassandra.  Cassandra is used by Homestead to store authentication credentials and profile information, and is used by Homer to store MMTEL service settings.  Vellum exposes Cassandra's Thrift API.
-- Etcd.  Etcd is used by Vellum itself to share clustering information between Vellum nodes and by other nodes in the deployment for shared configuration.
+- [Cassandra](http://cassandra.apache.org/).  Cassandra is used by Homestead to store authentication credentials and profile information, and is used by Homer to store MMTEL service settings.  Vellum exposes Cassandra's Thrift API.
+- [etcd](https://github.com/coreos/etcd).  etcd is used by Vellum itself to share clustering information between Vellum nodes and by other nodes in the deployment for shared configuration.
 - [Chronos](https://github.com/Metaswitch/chronos).  Chronos is a distributed, redundant, reliable timer service developed by Clearwater.  It is used by Sprout and Ralf nodes to enable timers to be run (e.g. for SIP Registration expiry)  without pinning operations to a specific node (one node can set the timer and another act on it when it pops).  Chronos is accessed via an HTTP API.
-- Memcached / [Astaire](https://github.com/Metaswitch/astaire).  Vellum also runs a Memcached cluster fronted by Astaire.  Astaire is a service developed by Clearwater that enabled more rapid scale up and scale down of memcached clusters.  This cluster is used by Sprout and Ralf for storing registration and session state.
+- [Memcached](https://memcached.org/) / [Astaire](https://github.com/Metaswitch/astaire).  Vellum also runs a Memcached cluster fronted by Astaire.  Astaire is a service developed by Clearwater that enabled more rapid scale up and scale down of memcached clusters.  This cluster is used by Sprout and Ralf for storing registration and session state.
 
 ### Homer (XDMS)
 
-Homer is a standard XDMS used to store MMTEL service settings documents for each user of the system.  Documents are be created, read, updated and deleted using a standard XCAP interface.  As with Homestead, the Homer nodes use Vellum as the data store for all long lived data.
+Homer is a standard XDMS used to store MMTEL service settings documents for each user of the system.  Documents are created, read, updated and deleted using a standard XCAP interface.  As with Homestead, the Homer nodes use Vellum as the data store for all long lived data.
 
 ### Ellis
 
@@ -71,7 +71,7 @@ A similar technique is used for the HTTP connections between Sprout and Homer/Di
 
 Traditional telco products achieve reliability using low-level data replication, often in a one-to-one design.  This is both complex and costly - and does not adapt well to a virtualized/cloud environment.
 
-The Clearwater approach to reliability is to follow common design patterns for scalable web services - keeping most components stateless and storing long-lived state in specially design reliable, scalable clustered data stores.
+The Clearwater approach to reliability is to follow common design patterns for scalable web services - keeping most components stateless and storing long-lived state in specially designed reliable and scalable clustered data stores.
 
 Both Bono and Sprout operate as transaction-stateful rather than dialog-stateful proxies - transaction state is typically short-lived compared to dialog state. As the anchor point for client connections for NAT traversal, the Bono node used remains on the signaling path for the duration of a SIP dialog. Any individual Sprout node is only in the signaling path for the initial transaction, and subsequent requests are routed through the entire Sprout cluster, so failure of a Sprout node does not cause established SIP dialogs to fail. Long-lived SIP state such as registration data and event subscription state is stored in a clustered, redundant shared data store (memcached running as part of Vellum nodes) so is not tied to any individual Sprout node.
 
