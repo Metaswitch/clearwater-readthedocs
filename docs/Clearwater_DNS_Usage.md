@@ -18,33 +18,25 @@ Clearwater makes heavy use of DNS to refer to its nodes.  It uses it for
 *   identifying individual nodes, e.g. sprout-1.example.com might resolve the IP address of the first sprout node
 *   identifying the nodes within a cluster, e.g. sprout.example.com resolves to all the IP addresses in the cluster
 *   fault-tolerance
-*   selecting the nearest site in a multi-site deployments, using latency-based routing.
 
 Clearwater also supports using DNS for identifying non-Clearwater nodes.  In particular, it supports DNS for identifying SIP peers using NAPTR and SRV records, as described in [RFC 3263](http://tools.ietf.org/rfc/rfc3263.txt).
 
 ## Resiliency
 
-By default, Clearwater routes all DNS requests through an instance of [dnsmasq](http://www.thekelleys.org.uk/dnsmasq)
-running on localhost. This round-robins requests between the servers in /etc/resolv.conf,
-as described in [its FAQ](http://www.thekelleys.org.uk/dnsmasq/docs/FAQ):
+By default, Clearwater routes all DNS requests through an instance of [dnsmasq](http://www.thekelleys.org.uk/dnsmasq) running on localhost. This round-robins requests between the servers in /etc/resolv.conf, as described in [its FAQ](http://www.thekelleys.org.uk/dnsmasq/docs/FAQ):
 
 > By default, dnsmasq treats all the nameservers it knows about as
 > equal: it picks the one to use using an algorithm designed to avoid
 > nameservers which aren't responding.
 
-If the `signaling_dns_server` option is set in `/etc/clearwater/shared_config` (which is mandatory when using
-[traffic separation](Multiple_Network_Support.md)), Clearwater will not use dnsmasq. Instead, resiliency
-is achieved by being able to specify up to three servers in a comma-separated list (e.g.
-`signaling_dns_server=1.2.3.4,10.0.0.1,192.168.1.1`), and Clearwater will fail over between them as follows:
+If the `signaling_dns_server` option is set in `/etc/clearwater/shared_config` (which is mandatory when using [traffic separation](Multiple_Network_Support.md)), Clearwater will not use dnsmasq. Instead, resiliency is achieved by being able to specify up to three servers in a comma-separated list (e.g. `signaling_dns_server=1.2.3.4,10.0.0.1,192.168.1.1`), and Clearwater will fail over between them as follows:
 
 * It will always query the first server in the list first
 * If this returns SERVFAIL or times out (which happens after a randomised 500ms-1000ms period), it will resend the query to the second server
 * If this returns SERVFAIL or times out, it will resend the query to the third server
 * If all servers return SERVFAIL or time out, the DNS query will fail
 
-Clearwater caches DNS responses for several minutes (to reduce the load on DNS servers, and the latency introduced by querying them). If a cache entry is stale,
-but the DNS servers return SERVFAIL or time out when Clearwater attempts to refresh it, Clearwater will continue to use the cached value until the DNS servers
-become responsive again. This minimises the impact of a DNS server failure on calls.
+Clearwater caches DNS responses for several minutes (to reduce the load on DNS servers, and the latency introduced by querying them). If a cache entry is stale, but the DNS servers return SERVFAIL or time out when Clearwater attempts to refresh it, Clearwater will continue to use the cached value until the DNS servers become responsive again. This minimises the impact of a DNS server failure on calls.
 
 ## Requirements
 
@@ -59,7 +51,7 @@ Clearwater requires the DNS server to support
 
 Support for latency-based routing and health-checking are required for multi-site deployments.
 
-Support for [RFC 2915](http://tools.ietf.org/rfc/rfc2915.txt) (NAPTR records) is also suggested, but not required.  NAPTR records specify the transport (UDP, TCP, etc.) to use for a particular service - without it, UEs will default (probably to UDP).
+Support for [RFC 2915](http://tools.ietf.org/rfc/rfc2915.txt) (NAPTR records) is also suggested, but not required. NAPTR records specify the transport (UDP, TCP, etc.) to use for a particular service - without it, UEs will default (probably to UDP).
 
 AWS Route 53 supports all these features except NAPTR.  BIND supports all these features except latency-based routing (although there is a [patch](http://www.caraytech.com/geodns/) for this) and health-checking.
 
@@ -67,49 +59,79 @@ AWS Route 53 supports all these features except NAPTR.  BIND supports all these 
 
 Clearwater requires the following DNS records to be configured.
 
-*   bono
+*   Bono
     *   `bono-1.<zone>`, `bono-2.<zone>`... (A and/or AAAA) - per-node records for bono
     *   `<zone>` (A and/or AAAA) - cluster record for bono, resolving to all bono nodes - used by UEs that don't support RFC 3263 (NAPTR/SRV)
     *   `<zone>` (NAPTR, optional) - specifies transport requirements for accessing bono - service `SIP+D2T` maps to `_sip._tcp.<zone>` and `SIP+D2U` maps to `_sip._udp.<zone>`
-    *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV) - cluster SRV records for bono, resolving to port 5060 on each of the per-node records
-*   sprout
+    *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV) - cluster SRV records for bono, resolving to port 5060 for all of the per-node records
+*   Sprout
     *   `sprout-1.<zone>`, `sprout-2.<zone>`... (A and/or AAAA) - per-node records for sprout
     *   `scscf.sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
-    *   `scscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.sprout.<zone>`
-    *   `_sip._tcp.scscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5054 on each of the per-node records
+    *   `scscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.<zone>`
+    *   `_sip._tcp.scscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5054 for all of the per-node records
     *   `icscf.sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes that provide I-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
     *   `icscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.icscf.sprout.<zone>`
-    *   `_sip._tcp.icscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5052 on each of the per-node records
-*   homestead
-    *   `homestead-1.<zone>`, `homestead-2.<zone>`... (A and/or AAAA) - per-node records for homestead
-    *   `hs.<zone>` (A and/or AAAA) - cluster record for homestead, resolving to all homestead nodes
-*   homer
+    *   `_sip._tcp.icscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5052 for all of the per-node records
+*   Dime
+    *   `dime-1.<zone>`, `dime-2.<zone>`... (A and/or AAAA) - per-node records for dime
+    *   `hs.<zone>` (A and/or AAAA) - cluster record for homestead, resolving to all dime nodes
+    *   `ralf.<zone>` (A and/or AAAA) - cluster record for ralf, resolving to all dime nodes
+*   Homer
     *   `homer-1.<zone>`, `homer-2.<zone>`... (A and/or AAAA) - per-node records for homer
     *   `homer.<zone>` (A and/or AAAA) - cluster record for homer, resolving to all homer nodes
-*   ralf
-	*   `ralf-1.<zone>`, `ralf-2.<zone>`... (A and/or AAAA) - per-node records for ralf
-	*   `ralf.<zone>` (A and/or AAAA) - cluster record for ralf, resolving to all ralf nodes
-*   ellis
+*   Vellum
+    *   `vellum-1.<zone>`, `vellum-2.<zone>`... (A and/or AAAA) - per-node records for vellum
+    *   `vellum.<zone>` (A and/or AAAA) - cluster record for vellum, resolving to all vellum nodes
+*   Ellis
     *   `ellis-1.<zone>` (A and/or AAAA) - per-node record for ellis
     *   `ellis.<zone>` (A and/or AAAA) - "cluster"/access record for ellis
-*   standalone application server (e.g. gemini/memento)
+*   Standalone application server (e.g. gemini/memento)
     *   `<standalone name>-1.<zone>` (A and/or AAAA) - per-node record for each standalone application server
     *   `<standalone name>.<zone>` (A and/or AAAA) - "cluster"/access record for the standalone application servers
 
 Of these, the following must be resolvable by UEs - the others need only be resolvable within the core of the network.  If you have a NAT-ed network, the following must resolve to public IP addresses, while the others should resolve to private IP addresses.
 
-*   bono
+*   Bono
     *   `<zone>` (A and/or AAAA)
     *   `<zone>` (NAPTR, optional)
     *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV)
-*   ellis
+*   Ellis
     *   `ellis.<zone>` (A and/or AAAA)
-*   memento
+*   Memento
     *   `memento.<zone>` (A and/or AAAA)
-
 
 If you are not deploying with some of these components, you do not need the DNS records to be configured for them.  For example, if you are using a different P-CSCF (and so don't need bono), you don't need the bono DNS records.  Likewise, if you are deploying with an external HSS (and so don't need ellis), you don't need the ellis DNS records.
 
+If your deployment is geographically redundant, then you need a DNS record per site for every cluster record mentioned above. For example, in a GR deployment with two sites, siteA and siteB, the requirements for Dime are:
+
+    *   `dime-1.<zone>`, `dime-2.<zone>`... (A and/or AAAA) - per-node records for Dime (one record for each node in each site)
+    *   `hs.siteA.<zone>` (A and/or AAAA) - cluster record for Homestead, resolving to all Dime nodes in siteA.
+    *   `hs.siteB.<zone>` (A and/or AAAA) - cluster record for Homestead, resolving to all Dime nodes in siteB.
+    *   `ralf.siteA.<zone>` (A and/or AAAA) - cluster record for Ralf, resolving to all Dime nodes in siteA.
+    *   `ralf.siteB.<zone>` (A and/or AAAA) - cluster record for Ralf, resolving to all Dime nodes in siteB.
+
+The exceptions to the above are Bono and Ellis.
+
+Ellis doesn't support geographic redundancy (or even there being more than one Ellis), so there's no need to have multiple DNS records.
+
+Bono needs to be able to contact the Sprout nodes in each site, so it needs to have a DNS record that can resolve to all Sprouts; the expected Sprout/Bono DNS records for a GR deployment with two sites, siteA and siteB, are described below (this only includes the S-CSCF records for simplicity).
+
+    *   `bono-1.<zone>`, `bono-2.<zone>`... (A and/or AAAA) - per-node records for Bono (one record for each node in each site)
+    *   `<zone>` (A and/or AAAA) - cluster record for Bono, resolving to all bono nodes in all sites - used by UEs that don't support RFC 3263 (NAPTR/SRV)
+    *   `<zone>` (NAPTR, optional) - specifies transport requirements for accessing Bono - service `SIP+D2T` maps to `_sip._tcp.<zone>` and `SIP+D2U` maps to `_sip._udp.<zone>`
+    *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV) - cluster SRV records for Bono, resolving to port 5060 for all of the per-node records
+    *   `sprout-1.<zone>`, `sprout-2.<zone>`... (A and/or AAAA) - per-node records for Sprout (one record for each node in each site)
+    *   `scscf.sprout.<zone>` (A and/or AAAA) - cluster record for Sprout, resolving to all Sprout nodes in all sites that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
+    *   `scscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing Sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.<zone>`
+    *   `_sip._tcp.scscf.sprout.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 for all of the per-node records
+    *   `scscf.sprout.siteA.<zone>` (A and/or AAAA) - cluster record for Sprout, resolving to all Sprout nodes in siteA that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
+    *   `scscf.sprout.siteA.<zone>` (NAPTR, optional) - specifies transport requirements for accessing Sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.siteA.<zone>`
+    *   `_sip._tcp.scscf.sprout.siteA.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 for all of the per-node records in siteA
+    *   `scscf.sprout.siteB.<zone>` (A and/or AAAA) - cluster record for Sprout, resolving to all Sprout nodes in siteB that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
+    *   `scscf.sprout.siteB.<zone>` (NAPTR, optional) - specifies transport requirements for accessing Sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.siteB.<zone>`
+    *   `_sip._tcp.scscf.sprout.siteB.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 for all of the per-node records in siteB
+
+ 
 ## Configuration
 
 Clearwater can work with any DNS server that meets the [requirements above](#dns-server).  However, most of our testing has been performed with
@@ -130,13 +152,7 @@ The official [AWS Route 53 documentation](http://docs.aws.amazon.com/Route53/lat
 To use AWS Route 53 for Clearwater, you need to
 
 *   [create a domain](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewDNS.html)
-*   [create record sets](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/RRSchanges_console.html) for each of the non-geographically-redundant [records Clearwater requires](#dns-records).
-
-For the geographically-redundant records, you need to
-
-*   [create a health-check](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/health-checks-creating-deleting.html) for each of your sites
-*   [create latency-based-routing records](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/HowToLatencyRRS.html) for each of your sites
-*   associate each site's records with its health-check.
+*   [create record sets](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/RRSchanges_console.html)
 
 Note that AWS Route 53 does not support NAPTR records.
 
@@ -254,22 +270,26 @@ For Clearwater, you should be able to adapt the following example zone file by c
     _sip._tcp.icscf.sprout IN SRV   0 0 5052 sprout-1
     _sip._tcp.icscf.sprout IN SRV   0 0 5052 sprout-2
 
-    ; homestead
+    ; dime
     ; =========
     ;
     ; Per-node records - not required to have both IPv4 and IPv6 records
-    homestead-1            IN A     4.0.0.1
-    homestead-2            IN A     4.0.0.2
-    homestead-1            IN AAAA  4::1
-    homestead-2            IN AAAA  4::2
+    dime-1                 IN A     4.0.0.1
+    dime-2                 IN A     4.0.0.2
+    dime-1                 IN AAAA  4::1
+    dime-2                 IN AAAA  4::2
     ;
-    ; Cluster A and AAAA records - sprout picks randomly from these.
+    ; Cluster A and AAAA records - sprout, bono and ellis pick randomly from these.
     hs                     IN A     4.0.0.1
     hs                     IN A     4.0.0.2
     hs                     IN AAAA  4::1
     hs                     IN AAAA  4::2
+    ralf                   IN A     4.0.0.1
+    ralf                   IN A     4.0.0.2
+    ralf                   IN AAAA  4::1
+    ralf                   IN AAAA  4::2
     ;
-    ; (No need for NAPTR or SRV records as homestead doesn't handle SIP traffic.)
+    ; (No need for NAPTR or SRV records as dime doesn't handle SIP traffic.)
 
     ; homer
     ; =====
@@ -288,22 +308,22 @@ For Clearwater, you should be able to adapt the following example zone file by c
     ;
     ; (No need for NAPTR or SRV records as homer doesn't handle SIP traffic.)
 
-    ; ralf
+    ; vellum
     ; =====
     ;
     ; Per-node records - not required to have both IPv4 and IPv6 records
-    ralf-1                IN A     6.0.0.1
-    ralf-2                IN A     6.0.0.2
-    ralf-1                IN AAAA  6::1
-    ralf-2                IN AAAA  6::2
+    vellum-1               IN A     6.0.0.1
+    vellum-2               IN A     6.0.0.2
+    vellum-1               IN AAAA  6::1
+    vellum-2               IN AAAA  6::2
     ;
-    ; Cluster A and AAAA records - sprout and bono pick randomly from these.
-    ralf                  IN A     6.0.0.1
-    ralf                  IN A     6.0.0.2
-    ralf                  IN AAAA  6::1
-    ralf                  IN AAAA  6::2
+    ; Cluster A and AAAA records - sprout, homer and dime pick randomly from these.
+    vellum                 IN A     6.0.0.1
+    vellum                 IN A     6.0.0.2
+    vellum                 IN AAAA  6::1
+    vellum                 IN AAAA  6::2
     ;
-    ; (No need for NAPTR or SRV records as ralf doesn't handle SIP traffic.)
+    ; (No need for NAPTR or SRV records as vellum doesn't handle SIP traffic.)
 
     ; ellis
     ; =====

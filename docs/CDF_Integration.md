@@ -1,12 +1,12 @@
 # CDF Integration
 
-Project Clearwater deployments include a cluster of [Ralf](https://github.com/Metaswitch/ralf) nodes.  The nodes provide an HTTP interface to Sprout and Bono on which they can report billable events.  Ralf then acts as a CTF (Charging Triggering Function) and may pass these events on to a configured CDF (Charging Data Function) over the [Rf interface](http://www.3gpp.org/DynaReport/32299.htm).
+Project Clearwater deployments include a cluster of Dime nodes running [Ralf](https://github.com/Metaswitch/ralf).  The nodes provide an HTTP interface to Sprout and Bono on which they can report billable events.  Ralf then acts as a CTF (Charging Triggering Function) and may pass these events on to a configured CDF (Charging Data Function) over the [Rf interface](http://www.3gpp.org/DynaReport/32299.htm).
 
 By default, having spun up a Clearwater deployment, either manually or through the automated Chef install process, your deployment is not configured with a CDF and thus will not generate billing records.  This document describes how the CDF is chosen and used and how to integrate your Project Clearwater deployment with a CDF and thus enable Rf billing.
 
 ## How it works
 
-When Sprout or Bono have handled an item of work for a given subscriber, they generate a record of that work and transmit it to the Ralf cluster for billing to the CDF.  This record will be used by Ralf to generate an Rf billing ACR (Accounting-Request) message.
+When Sprout or Bono have handled an item of work for a given subscriber, they generate a record of that work and transmit it to the Dime cluster for billing to the CDF.  This record will be used by Ralf to generate an Rf billing ACR (Accounting-Request) message.
 
 To determine which CDF to send the ACR to, the node acting as the P-CSCF/IBCF is responsible for adding a `P-Charging-Function-Addresses` header to all SIP messages it proxies into the core.  This header contains a prioritised list of CDFs to send ACRs to.
 
@@ -22,7 +22,7 @@ Before connecting your deployment to a CDF, you must
 
 *   [install Clearwater](Installation_Instructions.md)
 *   install an external CDF - details for this will vary depending on which CDF you are using.
-*   ensure your CDF's firewall allows incoming connections from the nodes in the Ralf cluster on the DIAMETER port (default 3868).
+*   ensure your CDF's firewall allows incoming connections from the nodes in the Dime cluster on the DIAMETER port (default 3868).
 
 ### Setting up DNS
 

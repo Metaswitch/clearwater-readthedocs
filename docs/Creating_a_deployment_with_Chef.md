@@ -45,7 +45,7 @@ The following modifier is available.
 To kick off construction of the deployment, run the following on the chef workstation machine.
 
     cd ~/chef
-    knife deployment resize -E <name> --ralf-count 1 -V
+    knife deployment resize -E <name> -V
 
 Follow the on-screen prompts.
 
@@ -64,8 +64,8 @@ The following modifiers are available to set the scale of your deployment.
 * `--bono-count NUM` - Create `NUM` Bono nodes (default is 1)
 * `--sprout-count NUM` - Create `NUM` Sprout nodes (default is 1)
 * `--homer-count NUM` - Create `NUM` Homer nodes (default is 1)
-* `--homestead-count NUM` - Create `NUM` Homestead nodes (default is 1)
-* `--ralf-count NUM` - Create `NUM` Ralf nodes (default is 0)
+* `--dime-count NUM` - Create `NUM` Dime nodes (default is 1)
+* `--vellum-count NUM` - Create `NUM` Vellum nodes (default is 1)
 * `--subscribers NUM` - Auto-scale the deployment to handle `NUM` subscribers.
   - Due to a known limitation of the install process, Ellis will allocate 1000 numbers regardless of this value.
   - To bulk provision subscribers (without using Ellis), follow [these instructions](https://github.com/Metaswitch/crest/blob/master/src/metaswitch/crest/tools/sstable_provisioning/README.md)

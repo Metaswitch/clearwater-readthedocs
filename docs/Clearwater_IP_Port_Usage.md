@@ -20,7 +20,7 @@ If your deployment uses SNMP monitoring software ([cacti](http://www.cacti.net/)
 
         UDP/161-162
 
-If your deployment uses our [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md) feature, open the following ports between every node
+All nodes also need the following ports open to all other nodes for [automatic clustering and configuration sharing](Automatic_Clustering_Config_Sharing.md):
 
 * etcd
 
@@ -94,25 +94,13 @@ The Sprout nodes need the following ports open to all Bono nodes:
         TCP/5054
         TCP/5052
 
-They also need the following ports opened to all other Sprout nodes:
-
-* Shared registration store:
-
-     For releases using a memcached store - that is all releases up to release 28 (Lock, Stock and Two Smoking Barrels) and from release 32 (Pulp Fiction) onwards
-
-        TCP/11211
-        TCP/11311
+They also need the following ports opened to all Vellum nodes:
 
 * Chronos:
 
-        TCP/7253
+        TCP/9888
 
-* Cassandra (if including a Memento AS):
-
-        TCP/7000
-        TCP/9160
-
-They also need the following ports opened to all homestead nodes:
+They also need the following ports opened to all Dime nodes:
 
 * Registration Termination Requests (if using an HSS):
 
@@ -125,9 +113,9 @@ They also need the following ports opened to the world:
         TCP/443
 
 
-## Homestead
+## Dime
 
-The Homestead nodes need the following ports open to all the Sprout nodes and the Ellis node:
+The Dime nodes need the following ports open to all the Sprout nodes and the Ellis node:
 
 * RESTful interface:
 
@@ -139,13 +127,11 @@ They also need the following ports open to just the Ellis node:
 
         TCP/8889
 
-They also need the following ports opened to all other Homestead nodes:
+They also need the following ports open to all the Sprout, Bono and Vellum nodes:
 
-* Cassandra:
+* RESTful interface:
 
-        TCP/7000
-
-They also need the following ports opened to the world:
+        TCP/10888
 
 ## Homer
 
@@ -155,23 +141,9 @@ The Homer nodes need the following ports open to all the Sprout nodes and the El
 
         TCP/7888
 
-They also need the following ports opened to all other Homer nodes:
+## Vellum
 
-* Cassandra:
-
-        TCP/7000
-
-They also need the following ports opened to the world:
-
-## Ralf
-
-The Ralf nodes need the following ports open to all the Sprout and Bono nodes:
-
-* RESTful interface:
-
-        TCP/10888
-
-They also need to following ports open to all other Ralf nodes:
+The Vellum nodes need the following ports open to all other Vellum nodes:
 
 * Chronos:
 
@@ -180,7 +152,26 @@ They also need to following ports open to all other Ralf nodes:
 * Memcached:
 
         TCP/11211
+
+* Cassandra:
+
+        TCP/7000
+
+They also need the following ports open to all Sprout and Dime nodes:
+
+* Chronos:
+
+        TCP/7253
+
+* Astaire:
+
         TCP/11311
+
+They also need the following ports open to all Homer and Dime nodes (and all Sprout nodes, if including a Memento AS):
+
+* Cassandra:
+
+        TCP/9160
 
 ## Standalone Application Servers
 
@@ -189,19 +180,6 @@ Standalone Project Clearwater application servers (e.g. Memento and Gemini) need
 * SIP signaling:
 
         TCP/5054
-
-They also need the following ports open to all other standalone application servers (if they include a Memento AS):
-
-* Cassandra:
-
-        TCP/7000
-        TCP/9160
-
-They also need the following ports open to all Homestead nodes (if they include a Memento AS):
-
-* RESTful interface:
-
-        TCP/11888
 
 They also need the following ports opened to the world (if they include a Memento AS):
 

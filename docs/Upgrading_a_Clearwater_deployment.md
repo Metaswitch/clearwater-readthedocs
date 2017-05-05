@@ -37,14 +37,16 @@ is possible to perform a *seamless upgrade* that does not result in any loss of
 service.
 
 To achieve this the nodes must be upgraded one at a time and in a specific
-order: first all Ralf nodes (if present), then Homestead, Homer, Sprout, Memento
+order: first all Vellum nodes, then Dime nodes (if present), Homer, Sprout, Memento
 (if present), Gemini (if present), Bono, and finally Ellis.
 
-For example if your deployment has two Homesteads, two Homers, two Sprouts, two
+For example if your deployment has two Dimes, two Vellums, two Homers, two Sprouts, two
 Bonos, and one Ellis, you should upgrade them in the following order:
 
-* Homestead-1
-* Homestead-2
+* Vellum-1
+* Vellum-2
+* Dime-1
+* Dime-1
 * Homer-1
 * Homer-2
 * Sprout-1
