@@ -16,11 +16,9 @@ Architecture
 The architecture of a geographically-redundant system is as follows.
 
 .. figure:: img/Geographic_redundancy_diagram.png
-   :alt: Simplified diagram of the GR architecture, showing how data is
-   replicated between the two sites
+   :alt: Simplified GR Architecture
 
-   Simplified diagram of the GR architecture, showing how data is
-   replicated between the two sites
+   Simplified GR Architecture
 Each site has its own, separate, etcd cluster. This means that
 Clearwater's `automatic configuration
 sharing <Automatic_Clustering_Config_Sharing.html>`__ only applies within
