@@ -63,15 +63,15 @@ Clearwater requires the following DNS records to be configured.
     *   `bono-1.<zone>`, `bono-2.<zone>`... (A and/or AAAA) - per-node records for bono
     *   `<zone>` (A and/or AAAA) - cluster record for bono, resolving to all bono nodes - used by UEs that don't support RFC 3263 (NAPTR/SRV)
     *   `<zone>` (NAPTR, optional) - specifies transport requirements for accessing bono - service `SIP+D2T` maps to `_sip._tcp.<zone>` and `SIP+D2U` maps to `_sip._udp.<zone>`
-    *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV) - cluster SRV records for bono, resolving to port 5060 on each of the per-node records
+    *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV) - cluster SRV records for bono, resolving to port 5060 for all of the per-node records
 *   Sprout
     *   `sprout-1.<zone>`, `sprout-2.<zone>`... (A and/or AAAA) - per-node records for sprout
     *   `scscf.sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
     *   `scscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.<zone>`
-    *   `_sip._tcp.scscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5054 on each of the per-node records
+    *   `_sip._tcp.scscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5054 for all of the per-node records
     *   `icscf.sprout.<zone>` (A and/or AAAA) - cluster record for sprout, resolving to all sprout nodes that provide I-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
     *   `icscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing sprout - service `SIP+D2T` maps to `_sip._tcp.icscf.sprout.<zone>`
-    *   `_sip._tcp.icscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5052 on each of the per-node records
+    *   `_sip._tcp.icscf.sprout.<zone>` (SRV) - cluster SRV record for sprout, resolving to port 5052 for all of the per-node records
 *   Dime
     *   `dime-1.<zone>`, `dime-2.<zone>`... (A and/or AAAA) - per-node records for dime
     *   `hs.<zone>` (A and/or AAAA) - cluster record for homestead, resolving to all dime nodes
@@ -119,17 +119,17 @@ Bono needs to be able to contact the Sprout nodes in each site, so it needs to h
     *   `bono-1.<zone>`, `bono-2.<zone>`... (A and/or AAAA) - per-node records for Bono (one record for each node in each site)
     *   `<zone>` (A and/or AAAA) - cluster record for Bono, resolving to all bono nodes in all sites - used by UEs that don't support RFC 3263 (NAPTR/SRV)
     *   `<zone>` (NAPTR, optional) - specifies transport requirements for accessing Bono - service `SIP+D2T` maps to `_sip._tcp.<zone>` and `SIP+D2U` maps to `_sip._udp.<zone>`
-    *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV) - cluster SRV records for Bono, resolving to port 5060 on each of the per-node records
+    *   `_sip._tcp.<zone>` and `_sip._udp.<zone>` (SRV) - cluster SRV records for Bono, resolving to port 5060 for all of the per-node records
     *   `sprout-1.<zone>`, `sprout-2.<zone>`... (A and/or AAAA) - per-node records for Sprout (one record for each node in each site)
     *   `scscf.sprout.<zone>` (A and/or AAAA) - cluster record for Sprout, resolving to all Sprout nodes in all sites that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
     *   `scscf.sprout.<zone>` (NAPTR, optional) - specifies transport requirements for accessing Sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.<zone>`
-    *   `_sip._tcp.scscf.sprout.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 on each of the per-node records
+    *   `_sip._tcp.scscf.sprout.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 for all of the per-node records
     *   `scscf.sprout.siteA.<zone>` (A and/or AAAA) - cluster record for Sprout, resolving to all Sprout nodes in siteA that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
     *   `scscf.sprout.siteA.<zone>` (NAPTR, optional) - specifies transport requirements for accessing Sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.siteA.<zone>`
-    *   `_sip._tcp.scscf.sprout.siteA.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 on each of the per-node records in siteA
+    *   `_sip._tcp.scscf.sprout.siteA.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 for all of the per-node records in siteA
     *   `scscf.sprout.siteB.<zone>` (A and/or AAAA) - cluster record for Sprout, resolving to all Sprout nodes in siteB that provide S-CSCF function - used by P-CSCFs that don't support RFC 3263 (NAPTR/SRV)
     *   `scscf.sprout.siteB.<zone>` (NAPTR, optional) - specifies transport requirements for accessing Sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.siteB.<zone>`
-    *   `_sip._tcp.scscf.sprout.siteB.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 on each of the per-node records in siteB
+    *   `_sip._tcp.scscf.sprout.siteB.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 for all of the per-node records in siteB
 
  
 ## Configuration

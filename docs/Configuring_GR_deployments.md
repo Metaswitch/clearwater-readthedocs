@@ -16,7 +16,7 @@ The process for setting up a geographically-redundant deployment is as follows.
 2. Then add your second site, again following the instructions [here](http://clearwater.readthedocs.io/en/latest/Manual_Install.html), and again making sure you add the extra configuration options/Chronos configuration/DNS records for GR.
 3. And that's it! Your two sites are ready to handle calls and can replicate data between themselves.
 
-You can also use Chef to try GR function, by setting `"gr" => true` in the environment, as described in [the automated install docs](Automated_Install.md).
+You can also use Chef to try GR function, by setting `"num_gr_sites" => 2` in the environment, as described in [the automated install docs](Automated_Install.md).
 
 ## Adding a site to a non-GR deployment
 
