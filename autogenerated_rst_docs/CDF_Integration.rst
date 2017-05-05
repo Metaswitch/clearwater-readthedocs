@@ -1,12 +1,12 @@
 CDF Integration
 ===============
 
-Project Clearwater deployments include a cluster of
-`Ralf <https://github.com/Metaswitch/ralf>`__ nodes. The nodes provide
-an HTTP interface to Sprout and Bono on which they can report billable
-events. Ralf then acts as a CTF (Charging Triggering Function) and may
-pass these events on to a configured CDF (Charging Data Function) over
-the `Rf interface <http://www.3gpp.org/DynaReport/32299.htm>`__.
+Project Clearwater deployments include a cluster of Dime nodes running
+`Ralf <https://github.com/Metaswitch/ralf>`__. The nodes provide an HTTP
+interface to Sprout and Bono on which they can report billable events.
+Ralf then acts as a CTF (Charging Triggering Function) and may pass
+these events on to a configured CDF (Charging Data Function) over the
+`Rf interface <http://www.3gpp.org/DynaReport/32299.htm>`__.
 
 By default, having spun up a Clearwater deployment, either manually or
 through the automated Chef install process, your deployment is not
@@ -19,7 +19,7 @@ How it works
 ------------
 
 When Sprout or Bono have handled an item of work for a given subscriber,
-they generate a record of that work and transmit it to the Ralf cluster
+they generate a record of that work and transmit it to the Dime cluster
 for billing to the CDF. This record will be used by Ralf to generate an
 Rf billing ACR (Accounting-Request) message.
 
@@ -47,7 +47,7 @@ Before connecting your deployment to a CDF, you must
 -  install an external CDF - details for this will vary depending on
    which CDF you are using.
 -  ensure your CDF's firewall allows incoming connections from the nodes
-   in the Ralf cluster on the DIAMETER port (default 3868).
+   in the Dime cluster on the DIAMETER port (default 3868).
 
 Setting up DNS
 ~~~~~~~~~~~~~~

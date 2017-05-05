@@ -65,84 +65,75 @@ To examine Ellis' database, run ``mysql`` (as root), then type
 SQL queries on the users and numbers tables, e.g.
 ``SELECT * FROM users WHERE email = '<email address>'``.
 
-Homer and Homestead
--------------------
+Vellum
+------
 
-The most common problem on Homer and Homestead is failing to read or
-write to the Cassandra database.
+Problems on Vellum may include:
 
--  Check that Cassandra is running (``sudo monit status``). If not,
-   check its ``/var/log/cassandra/*.log`` files.
+-  Failing to read or write to the Cassandra database:
 
--  Check that Cassandra is configured correctly. First access the
-   command-line CQL interface by running ``cqlsh``.
+   -  Check that Cassandra is running (``sudo monit status``). If not,
+      check its ``/var/log/cassandra/*.log`` files.
+   -  Check that Cassandra is configured correctly. First access the
+      command-line CQL interface by running ``cqlsh``. There are 3
+      databases:
 
-   -  If you're on Homer, type ``use homer;`` to set the correct
-      database and then ``describe tables;`` - this should report
-      ``simservs``. If this is missing, recreate it by running
-      ``/usr/share/clearwater/cassandra-schemas/homer.sh``.
+      -  Type ``use homestead_provisioning;`` to set the provisioning
+         database and then ``describe tables;`` - this should report
+         ``service_profiles``, ``public``,
+         ``implicit_registration_sets`` and ``private``.
+      -  Type ``use homestead_cache;`` to set the cache database and
+         then ``describe tables;`` - this should report ``impi``,
+         ``impi_mapping`` and ``impu``.
+      -  Type ``use homer;`` to set the homer database and then
+         ``describe tables;`` - this should report ``simservs``.
+      -  If any of these are missing, recreate them by running
 
-   -  If you're on Homestead, there are 2 databases.
-   -  Type ``use homestead_provisioning;`` to set the provisioning
-      database and then ``describe tables;`` - this should report
-      ``service_profiles``, ``public``, ``implicit_registration_sets``
-      and ``private``.
-   -  Type ``use homestead_cache;`` to set the cache database and then
-      ``describe tables;`` as before - this should report ``impi``,
-      ``impi_mapping`` and ``impu``.
-   -  If any of these are missing, recreate them by running
-      ``/usr/share/clearwater/cassandra-schemas/homestead_cache.sh`` and
-      ``/usr/share/clearwater/cassandra-schemas/homestead_provisioning.sh``.
+         -  ``/usr/share/clearwater/cassandra-schemas/homestead_cache.sh``
+         -  ``/usr/share/clearwater/cassandra-schemas/homestead_provisioning.sh``
+         -  ``/usr/share/clearwater/cassandra-schemas/homer.sh``
 
--  Check that Cassandra is clustered correctly (if running a multi-node
-   system). ``nodetool status`` tells you which nodes are in the
-   cluster, and how the keyspace is distributed among them.
+   -  Check that Cassandra is clustered correctly (if running a
+      multi-node system). ``nodetool status`` tells you which nodes are
+      in the cluster, and how the keyspace is distributed among them.
+   -  To examine Vellum's database, run ``cqlsh`` and then type
+      ``use homer;``, ``use homestead_provisioning;`` or
+      ``use homestead_cache`` to set the correct database. You can then
+      issue CQL queries such as
+      ``SELECT * FROM impi WHERE private_id = '<private user ID>'``.
 
--  If this doesn't help, Homer logs to ``/var/log/homer/homer-*.log``
-   and Homestead logs to ``/var/log/homestead/homestead-*.log`` and
-   ``/var/log/homestead-prov/homestead-*.log``. To turn on debug logging
-   for Homer, Homestead or Homestead-prov write ``log_level=5`` to
-   ``/etc/clearwater/user_settings`` (creating it if it doesn't exist
-   already), then restart Homer/Homestead/Homestead-prov
-   (``sudo service <homer|homestead|homestead-prov> stop`` - it will be
-   restarted by monit).
+-  Problems with the memcaced cluster:
 
-To examine Homer or Homestead's database, run ``cqlsh`` and then type
-``use homer;``, ``use homestead_provisioning;`` or
-``use homestead_cache`` to set the correct database. You can then issue
-CQL queries such as
-``SELECT * FROM impi WHERE private_id = '<private user ID>'``.
+   -  It's a little clunky to examine this data but you can get some
+      basic information out by running
+      ``. /etc/clearwater/config ; telnet $local_ip 11211`` to connect
+      to memcached, issuing ``stats items``. This returns a list of
+      entries of the form ``STAT items:<slab ID>:...``. You can then
+      query the keys in each of the slabs with
+      ``stats cachedump <slab ID> 0``.
+   -  Memcached logs to ``/var/log/memcached.log``. It logs very little
+      by default, but it is possible to make it more verbose by editing
+      ``/etc/memcached_11211.conf``, uncommenting the ``-vv`` line, and
+      then restarting memcached
+
+-  Problems with the `Chronos <https://github.com/Metaswitch/chronos>`__
+   cluster.
+
+   -  Chronos logs to ``/var/log/chronos/chronos*``.
+   -  Details of how to edit the Chronos configuration are
+      `here <https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md>`__.
 
 Sprout
 ------
 
 The most common problem on Sprout is lack of communication with other
 nodes and processes, causing registration or calls to fail. Check that
-Homer, Homestead and memcached are reachable and responding.
-
-Sprout maintains registration state in a memcached cluster. It's a
-little clunky to examine this data but you can get some basic
-information out by running
-``. /etc/clearwater/config ; telnet $local_ip 11211`` to connect to
-memcached, issuing ``stats items``. This returns a list of entries of
-the form ``STAT items:<slab ID>:...``. You can then query the keys in
-each of the slabs with ``stats cachedump <slab ID> 0``.
-
-Memcached logs to ``/var/log/memcached.log``. It logs very little by
-default, but it is possible to make it more verbose by editing
-``/etc/memcached_11211.conf``, uncommenting the ``-vv`` line, and then
-restarting memcached.
+Vellum is reachable and responding.
 
 To turn on debug logging for Sprout write ``log_level=5`` to
 ``/etc/clearwater/user_settings`` (creating it if it doesn't exist
 already), then restart Sprout (``sudo service sprout stop`` - it will be
 restarted by monit).
-
-Sprout also uses `Chronos <https://github.com/Metaswitch/chronos>`__ to
-track registration, subscription and authorization timeouts. Chronos
-logs to ``/var/log/chronos/chronos*``. Details of how to edit the
-Chronos configuration are
-`here <https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md>`__.
 
 If you see Sprout dying/restarting with no apparent cause in
 ``/var/log/sprout/sprout*.txt``, check ``/var/log/monit.log`` and
@@ -165,27 +156,27 @@ If you see Bono dying/restarting with no apparent cause in
 ``/var/log/syslog`` around that time - these can sometimes give clues as
 to the cause.
 
-Ralf
+Dime
 ----
 
-The most common problem on Ralf is lack of communication with a CCF.
-Check that your CCF is reachable and responding (if you don't have a
-CCF, you don't need a Ralf).
+The most common problems on Dime are:
 
-To turn on debug logging for Ralf write ``log_level=5`` to
-``/etc/clearwater/user_settings`` (creating it if it doesn't exist
-already), then restart Ralf (``sudo service ralf stop`` - it will be
+-  Lack of communication with Vellum. Check that Vellum is reachable and
+   responding.
+-  (If using Ralf) Lack of communication with a CCF. Check that your CCF
+   is reachable and responding (if you don't have a CCF, you don't need
+   Ralf).
+
+To turn on debug logging for Ralf, Homestead or Homestead-prov write
+``log_level=5`` to ``/etc/clearwater/user_settings`` (creating it if it
+doesn't exist already), then restart the service
+(``sudo service <ralf|homestead|homestead-prov> stop`` - it will be
 restarted by monit).
 
-Ralf also uses `Chronos <https://github.com/Metaswitch/chronos>`__ to
-track call timeouts. Chronos logs to ``/var/log/chronos/chronos*``.
-Details of how to edit the Chronos configuration are
-`here <https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md>`__.
-
-If you see Ralf dying/restarting with no apparent cause in
-``/var/log/ralf/ralf*.txt``, check ``/var/log/monit.log`` and
-``/var/log/syslog`` around that time - these can sometimes give clues as
-to the cause.
+If you see Ralf, Homestead or Homestead-prov dying/restarting with no
+apparent cause in ``/var/log/<service>/<service>*.txt``, check
+``/var/log/monit.log`` and ``/var/log/syslog`` around that time - these
+can sometimes give clues as to the cause.
 
 Deployment Management
 ---------------------

@@ -5,14 +5,14 @@ Clearwater provides the Ellis web UI for easy provisioning of
 subscribers. However, sometimes a more programmatic interface is
 desirable.
 
-Homestead provides a `provisioning
+Homestead-Prov provides a `provisioning
 API <https://github.com/Metaswitch/crest/blob/dev/docs/homestead_prov_api.md>`__
 but, for convenience, Clearwater also provides some command-line
 provisioning tools.
 
-By default, the tools are installed on the Homestead servers only (as
-part of the clearwater-prov-tools package), in the
-``/usr/share/clearwater/bin`` directory.
+By default, the tools are installed on the Dime nodes only (as part of
+the clearwater-prov-tools package), in the ``/usr/share/clearwater/bin``
+directory.
 
 There are 5 tools.
 
@@ -136,8 +136,8 @@ decreases the performance of the tool (by more than an order of
 magnitude).
 
 The ``--pace`` parameter's default values should ensure that this does
-not use more than 10% of the homestead cluster's CPU - that is 5 users
-per second if ``--force`` is set and 500 if not. If you set the "--pace"
+not use more than 10% of the Dime cluster's CPU - that is 5 users per
+second if ``--force`` is set and 500 if not. If you set the "--pace"
 parameter to more than the default, you'll be prompted to confirm (or
 specify the ``--force`` parameter).
 

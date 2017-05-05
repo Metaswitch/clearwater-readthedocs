@@ -35,12 +35,12 @@ config" or "User settings" you should:
 
    -  Sprout - ``sudo service sprout quiesce``
    -  Bono - ``sudo service bono quiesce``
-   -  Homestead -
-      ``sudo service homestead stop && sudo service homestead-prov stop``
+   -  Dime -
+      ``sudo service homestead stop && sudo service homestead-prov stop && sudo service ralf stop``
    -  Homer - ``sudo service homer stop``
-   -  Ralf -``sudo service ralf stop``
    -  Ellis - ``sudo service ellis stop``
    -  Memento - ``sudo service memento stop``
+   -  Vellum - ``sudo service astaire stop``
 
 Local Config
 ------------
@@ -68,19 +68,35 @@ settings, you should destroy and recreate then node instead.
 -  ``node_idx`` - an index number used to distinguish this node from
    others of the same type in the cluster (for example, sprout-1 and
    sprout-2). Optional.
--  ``etcd_cluster`` - this is a comma separated list of IP addresses,
-   for example ``etcd_cluster=10.0.0.1,10.0.0.2``. It should be set on
-   one of two ways:
--  If the node is forming a new deployment, it should contain the IP
-   addresses of all the nodes that are forming the new deployment
-   (including this node).
--  If the node is joining an existing deployment, it should contain the
-   IP addresses of all the nodes that are currently in the deployment.
+-  ``etcd_cluster`` - this is either blank or a comma separated list of
+   IP addresses, for example ``etcd_cluster=10.0.0.1,10.0.0.2``. The
+   setting depends on the node's role:
+
+   -  If this node is an etcd master, then it should be set in one of
+      two ways:
+
+      -  If the node is forming a new etcd cluster, it should contain
+         the IP addresses of all the nodes that are forming the new
+         cluster as etcd masters (including this node).
+      -  If the node is joining an existing etcd cluster, it should
+         contain the IP addresses of all the nodes that are currently
+         etcd masters in the cluster.
+
+   -  If this node is an etcd proxy, it should be left blank
+
+-  ``etcd_proxy`` - this is either blank or a comma separated list of IP
+   addresses, for example ``etcd_proxy=10.0.0.1,10.0.0.2``. The setting
+   depends on the node's role:
+
+   -  If this node is an etcd master, this should be left blank
+   -  If this node is an etcd proxy, it should contain the IP addresses
+      of all the nodes that are currently etcd masters in the cluster.
+
 -  ``etcd_cluster_key`` - this is the name of the etcd datastore
    clusters that this node should join. It defaults to the function of
-   the node (e.g. a Homestead node defaults to using 'homestead' as its
-   etcd datastore cluster name when it joins the Cassandra cluster).
-   This must be set explicitly on nodes that colocate function.
+   the node (e.g. a Vellum node defaults to using 'vellum' as its etcd
+   datastore cluster name when it joins the Cassandra cluster). This
+   must be set explicitly on nodes that colocate function.
 -  ``scscf_node_uri`` - this can be optionally set, and only applies to
    nodes running an S-CSCF. If it is configured, it almost certainly
    needs configuring on each S-CSCF node in the deployment.
@@ -133,22 +149,24 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    the HTTP API exposed on this interface, see
    https://github.com/Metaswitch/sprout/blob/dev/docs/ManagementHttpAPI.md.
 -  ``hs_hostname`` - a hostname that resolves by DNS round-robin to the
-   signaling interface of all Homesteads in the cluster. Should include
+   signaling interface of all Dime nodes in the cluster. Should include
    the HTTP port (always 8888). This is also used (without the port) as
-   the Origin-Realm of the Diameter messages Homestead sends.
+   the Origin-Realm of the Diameter messages the homestead process on
+   Dime sends.
 -  ``hs_hostname_mgmt`` - a hostname that resolves by DNS round-robin to
-   the management interface of all Homestead nodes in the cluster.
-   Should include the HTTP port (always 8886). For details on the HTTP
-   API exposed on this interface, see
+   the management interface of all Dime nodes in the cluster. Should
+   include the HTTP port (always 8886). For details on the HTTP API
+   exposed on this interface, see
    https://github.com/Metaswitch/homestead/blob/dev/docs/ManagementHttpAPI.md.
 -  ``hs_provisioning_hostname`` - a hostname that resolves by DNS
-   round-robin to all Homesteads in the cluster. Should include the HTTP
-   provisioning port (usually 8889). Not needed when using an external
-   HSS.
+   round-robin to the signaling interface of all Dime nodes in the
+   cluster. Should include the HTTP provisioning port (usually 8889).
+   Not needed when using an external HSS.
 -  ``ralf_hostname`` - a hostname that resolves by DNS round-robin to
-   all Ralf nodes in the cluster. Should include the port (usually
-   9888). This is also used (without the port) as the Origin-Realm of
-   the Diameter messages Ralf sends. Optional if no Ralf nodes exist.
+   the signaling interface of all Dime nodes in the cluster. Should
+   include the port (usually 9888). This is also used (without the port)
+   as the Origin-Realm of the Diameter messages the ralf process on Dime
+   sends. Optional if ralf is not being used.
 -  ``cdf_identity`` - a Diameter identity that represents the address of
    an online Charging Function. Subscribers provisioned through Ellis
    will have this set as their Primary Charging Collection Function on
@@ -159,12 +177,13 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    all Homer nodes in the cluster. Should include the port (usually
    7888).
 -  ``hss_realm`` - this sets the Destination-Realm of your external HSS.
-   When this field is set, Homestead will then attempt to set up
-   multiple Diameter connections using an SRV lookup on this realm.
+   When this field is set, the homestead process on Dime will then
+   attempt to set up multiple Diameter connections using an SRV lookup
+   on this realm.
 -  ``hss_hostname`` - this sets the Destination-Host of your external
-   HSS, if you have one. Homestead will also try and establish a
-   Diameter connection to this host (on port 3868) if no SRV-discovered
-   peers exist.
+   HSS, if you have one. The homestead process on Dime will also try and
+   establish a Diameter connection to this host (on port 3868) if no
+   SRV-discovered peers exist.
 -  ``signup_key`` - this sets the password which Ellis will require
    before allowing self-sign-up.
 -  ``turn_workaround`` - if your STUN/TURN clients are not able to
@@ -190,28 +209,34 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    ``memento.<home_domain>``). This should match Memento's SSL
    certificate, if you are using one.
 -  ``sprout_registation_store`` - this is the locations of Sprout's
-   registration stores. It has the format =[:][,=[:],...]. In a non-GR
-   deployment, only one domain is provided (and the site name is
-   optional). For a GR deployment, each domain is identified by the site
-   name, and one of the domains must relate to the local site.
--  ``ralf_session_store`` - this is the locations of Ralf's session
-   stores. It has the format =[:][,=[:],...]. In a non-GR deployment,
-   only one domain is provided (and the site name is optional). For a GR
-   deployment, each domain is identified by the site name, and one of
-   the domains must relate to the local site.
+   registration stores. It has the format
+   ``<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>]]``. In
+   a non-GR deployment, only one domain is provided (and the site name
+   is optional). For a GR deployment, each domain is identified by the
+   site name, and one of the domains must relate to the local site.
+-  ``ralf_session_store`` - this is the locations of ralf's session
+   stores. It has the format
+   ``<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>]]``. In
+   a non-GR deployment, only one domain is provided (and the site name
+   is optional). For a GR deployment, each domain is identified by the
+   site name, and one of the domains must relate to the local site.
 -  ``memento_auth_store`` - this is the location of Memento's
-   authorization vector store. It just has the format [:port]. If not
-   present, defaults to the loopback IP.
+   authorization vector store. It just has the format
+   ``<domain>[:port]``. If not present, defaults to the loopback IP.
 -  ``sprout_chronos_callback_uri`` - the callback hostname used on
    Sprout's Chronos timers. If not present, defaults to the host
    specified in ``sprout-hostname``. In a GR deployment, should be set
    to a deployment-wide Sprout hostname (that will be resolved by using
    static DNS records in ``/etc/clearwater/dns_config``).
--  ``ralf_chronos_callback_uri`` - the callback hostname used on Ralf's
+-  ``ralf_chronos_callback_uri`` - the callback hostname used on ralf's
    Chronos timers. If not present, defaults to the host specified in
    ``ralf-hostname``. In a GR deployment, should be set to a
-   deployment-wide Ralf hostname (that will be resolved by using static
+   deployment-wide Dime hostname (that will be resolved by using static
    DNS records in ``/etc/clearwater/dns_config``).
+-  ``cassandra_hostname`` - a hostname that resolves by DNS round-robin
+   to the signaling interface of all Vellum nodes in the local site.
+-  ``chronos_hostname`` - a hostname that resolves by DNS round-robin to
+   the signaling interface of all Vellum nodes in the local site.
 
 Sproutlet options
 ~~~~~~~~~~~~~~~~~
@@ -281,9 +306,9 @@ and non-Clearwater I-CSCFs. These options should be set in the
 ``/etc/clearwater/shared_config`` file (in the format ``name=value``,
 e.g. ``icscf=5052``).
 
--  ``homestead_provisioning_port`` - the HTTP port the Homestead
-   provisioning interface listens on. Defaults to 8889. Not needed when
-   using an external HSS.
+-  ``homestead_provisioning_port`` - the HTTP port the homestead
+   provisioning interface on Dime listens on. Defaults to 8889. Not
+   needed when using an external HSS.
 -  ``sas_server`` - the IP address or hostname of your Metaswitch
    Service Assurance Server for call logging and troubleshooting.
    Optional.
@@ -317,12 +342,12 @@ e.g. ``icscf=5052``).
       end of terminating handling, and between each application server
       invoked
 
--  ``force_hss_peer`` - when set to an IP address or hostname, Homestead
-   will create a connection to the HSS using this value, but will still
-   use the ``hss_realm`` and ``hss_hostname`` settings for the
-   Destination-Host and Destination-Realm Diameter AVPs. This is useful
-   when your HSS's Diameter configuration does not match the DNS
-   records.
+-  ``force_hss_peer`` - when set to an IP address or hostname, the
+   homestead process on Dime will create a connection to the HSS using
+   this value, but will still use the ``hss_realm`` and ``hss_hostname``
+   settings for the Destination-Host and Destination-Realm Diameter
+   AVPs. This is useful when your HSS's Diameter configuration does not
+   match the DNS records.
 -  ``hss_mar_scheme_unknown`` - if Clearwater cannot tell what
    authentication type a subscriber is trying to use, this field
    determines what authentication scheme it requests in the
@@ -355,10 +380,11 @@ e.g. ``icscf=5052``).
    defined in RFC 3966). When this option is set to ‘Y’, Clearwater will
    only do ENUM lookups for SIP and Tel URIs that contain global
    numbers.
--  ``hs_listen_port`` - the Diameter port which Homestead listens on.
-   Defaults to 3868.
--  ``ralf_listen_port`` - the Diameter port which Ralf listens on.
-   Defaults to 3869 to avoid clashes when colocated with Homestead.
+-  ``hs_listen_port`` - the Diameter port on which the homestead process
+   on Dime listens. Defaults to 3868.
+-  ``ralf_listen_port`` - the Diameter port on which the ralf process on
+   Dime listens. Defaults to 3869 to avoid clashes with the homestead
+   process.
 -  ``alias_list`` - this defines additional hostnames and IP addresses
    which Sprout or Bono will treat as local for the purposes of SIP
    routing (e.g. when removing Route headers).
@@ -395,26 +421,27 @@ e.g. ``icscf=5052``).
    but on configuration at the P-CSCF (which sets the
    P-Charging-Function-Addresses header).
 -  ``diameter_timeout_ms`` - determines the number of milliseconds
-   Homestead will wait for a response from the HSS before failing a
+   homestead will wait for a response from the HSS before failing a
    request. Defaults to 200.
--  ``max_peers`` - determines the maximum number of Diameter peers which
-   Ralf or Homestead can have open connections to at the same time.
--  ``num_http_threads`` (Ralf/Memento) - determines the number of
-   threads that will be used to process HTTP requests. For Memento this
-   defaults to the number of CPU cores on the system. For Ralf it
-   defaults to 50 times the number of CPU cores (Memento and Ralf use
+-  ``max_peers`` - determines the maximum number of Diameter peers to
+   which the ralf or homestead processes on Dime can have open
+   connections at the same time.
+-  ``num_http_threads`` (ralf/memento) - determines the number of
+   threads that will be used to process HTTP requests. For memento this
+   defaults to the number of CPU cores on the system. For ralf it
+   defaults to 50 times the number of CPU cores (memento and ralf use
    different threading models, hence the different defaults). Note that
-   for Homestead, this can only be set in
+   for homestead, this can only be set in
    /etc/clearwater/user\_settings.
 -  ``num_http_worker_threads`` - determines the number of threads that
    will be used to process HTTP requests once they have been parsed.
    Only used by Memento.
 -  ``ralf_diameteridentity`` - determines the Origin-Host that will be
-   set on the Diameter messages Ralf sends. Defaults to public\_hostname
+   set on the Diameter messages ralf sends. Defaults to public\_hostname
    (with some formatting changes if public\_hostname is an IPv6
    address).
 -  ``hs_diameteridentity`` - determines the Origin-Host that will be set
-   on the Diameter messages Homestead sends. Defaults to
+   on the Diameter messages homestead sends. Defaults to
    public\_hostname (with some formatting changes if public\_hostname is
    an IPv6 address).
 -  ``max_call_list_length`` - determines the maximum number of complete
@@ -483,17 +510,16 @@ e.g. ``icscf=5052``).
    Diameter peers are blacklisted when they are unresponsive (defaults
    to 30 seconds).
 -  ``snmp_ip`` - the IP address to send alarms to (defaults to being
-   unset). If this is set then Sprout, Ralf, Homestead and Chronos will
-   send alarms - more details on the alarms are
-   `here <SNMP_Alarms.html>`__. This can be a single IP address, or a
-   comma-separated list of IP addresses.
+   unset). If this is set then Sprout, Dime and Vellum will send alarms
+   - more details on the alarms are `here <SNMP_Alarms.html>`__. This can
+   be a single IP address, or a comma-separated list of IP addresses.
 -  ``snmp_notification_types`` - this determines what format SNMP alarms
    are sent in, and is a comma-separated list of SNMP alarm formats.
    Valid alarm formats are ``rfc3877`` and ``enterprise`` - if both are
    set, every alarm generates two SNMP INFORMs, one in each format . See
    the `SNMP alarms documentation <SNMP_Alarms.html>`__ for information
    about the difference between the formats.
--  ``impu_cache_ttl`` - the number of seconds for which Homestead will
+-  ``impu_cache_ttl`` - the number of seconds for which homestead will
    cache the SIP Digest from a Multimedia-Auth-Request. Defaults to 0,
    as Sprout does enough caching to ensure that it can handle an
    authenticated REGISTER after a challenge, and subsequent challenges
@@ -542,7 +568,7 @@ e.g. ``icscf=5052``).
    ``if_proxy_authorization_present`` (meaning Sprout will only
    challenge requests that have a Proxy-Authorization header).
 -  ``ralf_threads`` - used on Sprout nodes, this determines how many
-   worker threads should be started to do Ralf request processing
+   worker threads should be started to do ralf request processing
    (defaults to 25).
 -  ``impi_store_mode`` - used to control how Sprout stores
    authentication challenges. The default is ``impi`` which means that
@@ -577,15 +603,12 @@ This section describes optional configuration options which may be
 useful, but are not heavily-used or well-tested by the main Clearwater
 development team. These options should be set in the
 ``/etc/clearwater/shared_config`` file (in the format ``name=value``,
-e.g. ``cassandra_hostname=db.example.com``).
+e.g. ``ralf_secure_listen_port=12345``).
 
--  ``cassandra_hostname`` - if using an external Cassandra cluster
-   (which is a fairly uncommon configuration), a hostname that resolves
-   to one or more Cassandra nodes.
--  ``ralf_secure_listen_port`` - this determines the port Ralf listens
-   on for TLS-secured Diameter connections.
--  ``hs_secure_listen_port`` - this determines the port Homestead
-   listens on for TLS-secured Diameter connections.
+-  ``ralf_secure_listen_port`` - this determines the port the ralf
+   process on Dime listens on for TLS-secured Diameter connections.
+-  ``hs_secure_listen_port`` - this determines the port the homestead
+   process on Dime listens on for TLS-secured Diameter connections.
 -  ``ellis_cookie_key`` - an arbitrary string that enables Ellis nodes
    to determine whether they should be in the same cluster. This
    function is not presently used.
@@ -597,12 +620,12 @@ e.g. ``cassandra_hostname=db.example.com``).
    the option should be set to 'cluster.example.com' instead of the
    hostnames or IP addresses of individual servers.
 -  ``hss_reregistration_time`` - determines how many seconds should pass
-   before Homestead sends a Server-Assignment-Request with type
+   before homestead sends a Server-Assignment-Request with type
    RE\_REGISTRATION to the HSS. (On first registration, it will always
    send a SAR with type REGISTRATION). This determines a minimum value -
-   after this many seconds have passed, Homestead will send the
+   after this many seconds have passed, homestead will send the
    Server-Assignment-Request when the next REGISTER is received. Note
-   that Homestead invalidates its cache of the registration and iFCs
+   that homestead invalidates its cache of the registration and iFCs
    after twice this many seconds have passed, so it is not safe to set
    this to less than half of ``reg_max_expires``. The default value of
    this option is whichever is the greater of the following.
@@ -650,7 +673,7 @@ the format ``name=value``, e.g. ``log_level=5``).
    challenges (SIP Digest or IMS AKA depending on HSS configuration).
    When this is set to 'Y', it simply accepts all REGISTERs - obviously
    this is very insecure and should not be used in production.
--  ``num_http_threads`` (Homestead) - determines the number of HTTP
+-  ``num_http_threads`` (homestead) - determines the number of HTTP
    worker threads that will be used to process requests. Defaults to 50
    times the number of CPU cores on the system.
 
@@ -660,7 +683,8 @@ DNS Config
 This section describes the static DNS config which can be used to
 override DNS results. This is set in ``/etc/clearwater/dns_config``.
 Currently, the only supported record type is CNAME and the only
-component which uses this is Chronos. The file has the format:
+component which uses this is Chronos and the I-CSCF. The file has the
+format:
 
 ::
 

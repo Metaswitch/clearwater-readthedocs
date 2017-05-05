@@ -3,7 +3,7 @@ SNMP Statistics
 
 Clearwater provides a set of statistics about the performance of each
 Clearwater nodes over SNMP. Currently, this is available on Bono,
-Sprout, Ralf and Homestead nodes, and the MMTel, Call Diversion, Memento
+Sprout, Vellum and Dime nodes, and the MMTel, Call Diversion, Memento
 and Gemini Application Server nodes. A number of the statistics we offer
 detail the current state of the system in use, and as such are termed
 'Stateful' statistics. These statistics will be marked as '(stateful)'
@@ -17,7 +17,7 @@ These SNMP statistics require:
 
 -  the clearwater-snmpd package to be installed for all node types
 -  the clearwater-snmp-handler-astaire package to be installed for
-   Sprout and Ralf nodes
+   Vellum nodes
 
 These packages will be automatically installed when installing through
 the Chef automation system; for a manual install, you will need to
@@ -59,28 +59,28 @@ covering:
 
 All latency values are in microseconds.
 
-| Many of the statistics listed below are stored in SNMP tables
-(although the MIB file should be examined to determine exactly which
-ones). The full table can be retrieved by using the ``snmptable``
-command. For example, the Initial Registrations table for Sprout can be
-retrieved by running:
-| ``snmptable -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationTable``
+Many of the statistics listed below are stored in SNMP tables (although
+the MIB file should be examined to determine exactly which ones). The
+full table can be retrieved by using the ``snmptable`` command. For
+example, the Initial Registrations table for Sprout can be retrieved by
+running:
+``snmptable -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationTable``
 
 The individual table elements can be accessed using:
 ``snmpget -v2c -c clearwater <ip> <table OID>.1.<column>.<row>``
 
-| For example, the Initial Registration Stats table has an OID of
+For example, the Initial Registration Stats table has an OID of
 ``.1.2.826.0.1.1578918.9.3.9``, so the number of initial registration
 attempts in the current five-minute period can be retrieved by:
-| ``snmpget -v2c -c clearwater <ip> .1.2.826.0.1.1578918.9.3.9.1.2.2``
-or by:
-| ``snmpget -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationAttempts.scopeCurrent5MinutePeriod``
+``snmpget -v2c -c clearwater <ip> .1.2.826.0.1.1578918.9.3.9.1.2.2`` or
+by:
+``snmpget -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationAttempts.scopeCurrent5MinutePeriod``
 
-| The ``snmpwalk`` command can be used to discover the list of queryable
+The ``snmpwalk`` command can be used to discover the list of queryable
 OIDs beneath a certain point in the MIB tree. For example, you can
 retrieve all of the entries in the Sprout Initial Registrations table
 using:
-| ``snmpwalk -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationTable``
+``snmpwalk -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::sproutInitialRegistrationTable``
 
 Running
 ``snmpwalk -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::projectClearwater``
@@ -176,29 +176,13 @@ Sprout nodes provide the following statistics:
    de-registrations that were successful.
 -  The number of requests routed by the S-CSCF according to a route
    pre-loaded by an app server, indexed by time period.
--  The number of parallel TCP connections to each Homestead node.
+-  The number of parallel TCP connections to each Homestead service.
 -  The number of parallel TCP connections to each Homer node.
 -  The number of incoming SIP requests, indexed by time period.
 -  The number of requests rejected due to overload, indexed by time
    period.
 -  The average request queue size, variance, highest queue size and
    lowest queue size, indexed by time period.
--  The number of Memcached buckets needing to be synchronized and
-   buckets already resynchronized during the current Astaire
-   resynchronization operation (overall, and for each peer).
--  The number of Memcached entries, and amount of data (in bytes)
-   already resynchronized during the current Astaire resynchronization
-   operation.
--  The transfer rate (in bytes/second) of data during this
-   resynchronization, over the last 5 seconds (overall, and per bucket).
--  The number of remaining nodes to query during the current Chronos
-   scaling operation.
--  The number of timers, and number of invalid timers, processed over
-   the last 5 seconds.
--  The total number of timers being managed by a Chronos node at the
-   current time.
--  The weighted average of total timer count, variance, highest timer
-   count, lowest timer count, indexed by time period.
 -  The number of attempts, successes and failures for incoming SIP
    transactions for the ICSCF, indexed by time period and request type.
    Also (for convenience) the percentage of such transactions that were
@@ -261,21 +245,6 @@ Sprout nodes provide the following statistics:
    issues and never got through in the first place).
 -  The number of additional INVITEs sent due to public identities having
    multiple registered bindings.
--  The average count, variance, and high and low watermarks for the
-   number of registrations, indexed by time period.
-   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
--  The average count, variance, and high and low watermarks for the
-   number of bindings, indexed by time period.
-   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
--  The average count, variance, and high and low watermarks for the
-   number of subscriptions, indexed by time period.
-   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
--  The number of registrations active at the time queried.
-   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
--  The number of bindings active at the time queried.
-   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
--  The number of subscriptions active at the time queried.
-   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
 -  The count, average, variance, and high and low watermarks for
    originating audio session setup time at the S-CSCF, indexed by time
    period. For the purposes of these stats a call is considered to be an
@@ -291,10 +260,10 @@ Sprout nodes provide the following statistics:
    originating INVITE and sending the first successful response (e.g.
    180 RINGING or 200 OK).
 
-Ralf statistics
-~~~~~~~~~~~~~~~
+Vellum statistics
+~~~~~~~~~~~~~~~~~
 
-Ralf nodes provide the following statistics:
+Vellum nodes provide the following statistics:
 
 -  The standard SNMP CPU and memory usage statistics (see
    http://net-snmp.sourceforge.net/docs/mibs/ucdavis.html for details).
@@ -310,16 +279,35 @@ Ralf nodes provide the following statistics:
    scaling operation.
 -  The number of timers, and number of invalid timers, processed over
    the last 5 seconds.
+-  The total number of timers being managed by a Chronos node at the
+   current time.
+-  The weighted average of total timer count, variance, highest timer
+   count, lowest timer count, indexed by time period.
+-  The average count, variance, and high and low watermarks for the
+   number of registrations, indexed by time period.
+   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
+-  The average count, variance, and high and low watermarks for the
+   number of bindings, indexed by time period.
+   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
+-  The average count, variance, and high and low watermarks for the
+   number of subscriptions, indexed by time period.
+   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
+-  The number of registrations active at the time queried.
+   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
+-  The number of bindings active at the time queried.
+   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
+-  The number of subscriptions active at the time queried.
+   (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
 -  The average count, variance, and high and low watermarks for the
    number of calls, indexed by time period.
    (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
 -  The number of calls active at the time queried.
    (`stateful <https://clearwater.readthedocs.io/en/stable/Clearwater_Stateful_Statistics/index.html>`__)
 
-Homestead Statistics
-~~~~~~~~~~~~~~~~~~~~
+Dime Statistics
+~~~~~~~~~~~~~~~
 
-Homestead nodes provide the following statistics:
+Dime nodes provide the following statistics:
 
 -  The standard SNMP CPU and memory usage statistics (see
    http://net-snmp.sourceforge.net/docs/mibs/ucdavis.html for details)

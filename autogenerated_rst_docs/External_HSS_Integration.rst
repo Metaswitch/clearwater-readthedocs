@@ -1,13 +1,13 @@
 External HSS Integration
 ========================
 
-All Clearwater deployments include a
-`Homestead <https://github.com/Metaswitch/crest>`__ cluster. Homestead
-presents an HTTP RESTful
+All Clearwater deployments include a cluster of Dime nodes that run the
+`Homestead <https://github.com/Metaswitch/homestead>`__ service.
+Homestead presents an HTTP RESTful
 `interface <https://github.com/Metaswitch/homestead/blob/dev/docs/homestead_api.md>`__
 to HSS data. This HSS data can be stored in either
 
--  a Cassandra database located on the Homestead cluster
+-  a Cassandra database located on the Vellum cluster
 -  an external HSS, accessible over a standard IMS
    `Cx/Diameter <http://www.3gpp.org/ftp/Specs/html-info/29228.htm>`__
    interface.
@@ -22,7 +22,7 @@ How It Works
 ------------
 
 When Clearwater is deployed without an external HSS, all HSS data is
-mastered in Homestead's own Cassandra database.
+mastered in Vellum's Cassandra database.
 
 When Clearwater is deployed with an external HSS, HSS data is queried
 from the external HSS via its Cx/Diameter interface and is then cached

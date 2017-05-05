@@ -105,12 +105,12 @@ six machines will take on which of the Clearwater roles.
 
 The six roles are:
 
--  ellis
--  bono - This role also hosts a restund STUN server
--  sprout
--  homer
--  homestead
--  ralf
+-  Ellis
+-  Bono
+-  Sprout
+-  Homer
+-  Dime
+-  Vellum
 
 Firewall configuration
 ----------------------
@@ -148,41 +148,15 @@ deployment <Geographic_redundancy.html>`__, then:
 
 -  ``etcd_cluster`` should contain the IP addresses of nodes only in the
    local site
--  you should set ``local_site_name`` and ``remote_site_names`` in
-   ``/etc/clearwater/local_config``
-
-   -  These names are arbitrary, but should reflect the node's location
-      (e.g. a node in site A should have ``local_site_name=siteA`` and
-      ``remote_site_names=siteB``, whereas a node in site B should have
-      ``local_site_name=siteB`` and ``remote_site_names=siteA``):
-
--  on the first Homestead, Homer and Memento node in the second site,
-   you should set ``remote_cassandra_seeds`` to the IP address of a node
-   of that type in the first site
-
-   -  e.g. on the first Homestead node in site ``siteB``, set
-      ``remote_cassandra_seeds`` to the IP address of a Hometead node in
-      site ``siteA``
-
-If this machine will be a Sprout or Ralf node create the file
-``/etc/chronos/chronos.conf`` with the following contents:
-
-::
-
-    [http]
-    bind-address = <privateIP>
-    bind-port = 7253
-    threads = 50
-
-    [logging]
-    folder = /var/log/chronos
-    level = 2
-
-    [alarms]
-    enabled = true
-
-    [exceptions]
-    max_ttl = 600
+-  You should set ``local_site_name`` in
+   ``/etc/clearwater/local_config``. The name you choose is arbitrary,
+   but must be the same for every node in the site. This name will also
+   be used in the ``remote_site_names``, ``sprout_registration_store``
+   and ``ralf_session_store`` configuration options set in shared config
+   (desscribed below).
+-  On the first Vellum node in the second site, you should set
+   ``remote_cassandra_seeds`` to the IP address of a Vellum node in the
+   first site.
 
 Install Node-Specific Software
 ------------------------------
@@ -197,7 +171,7 @@ Install the Ellis package with:
 
 ::
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install ellis-node --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install ellis --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 Bono
@@ -207,7 +181,7 @@ Install the Bono and Restund packages with:
 
 ::
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install bono-node restund --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install bono restund --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 Sprout
@@ -217,7 +191,7 @@ Install the Sprout package with:
 
 ::
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install sprout-node --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install sprout --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
 If you want the Sprout nodes to include a Memento Application server,
@@ -225,7 +199,7 @@ then install the Memento packages with:
 
 ::
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install memento-node --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install memento-as memento-nginx --yes
 
 Homer
 ~~~~~
@@ -234,33 +208,40 @@ Install the Homer packages with:
 
 ::
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install homer-node --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install homer --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
 
-Homestead
-~~~~~~~~~
-
-Install the Homestead packages with:
-
-::
-
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install homestead-node clearwater-prov-tools --yes
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
-
-Ralf
+Dime
 ~~~~
 
-Install the Ralf package with:
+Install the Dime package with:
 
 ::
 
-    sudo DEBIAN_FRONTEND=noninteractive apt-get install ralf-node --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install dime clearwater-prov-tools --yes
     sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
+
+Vellum
+~~~~~~
+
+Install the Vellum packages with:
+
+::
+
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install vellum --yes
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install clearwater-management --yes
+
+If you included the Memento Application server on your Sprout nodes,
+then also install the required packages on Vellum with:
+
+::
+
+    sudo DEBIAN_FRONTEND=noninteractive apt-get install memento-cassandra --yes
 
 SNMP statistics
 ---------------
 
-Sprout, Bono and Homestead nodes expose statistics over SNMP. This
+Sprout, Bono, Vellum and Dime nodes expose statistics over SNMP. This
 function is not installed by default. If you want to enable it follow
 the instruction in `our SNMP
 documentation <Clearwater_SNMP_Statistics.html>`__.
@@ -269,19 +250,24 @@ Provide Shared Configuration
 ----------------------------
 
 Log onto any node in the deployment and create the file
-``/etc/clearwater/shared_config`` with the following contents:
+``/etc/clearwater/shared_config`` with the following contents. The
+``site_name`` should match the value of ``local_site_name`` in
+``local_config``; if your deployment is not geographically redundant
+then you don't need to include it.
 
 ::
 
     # Deployment definitions
     home_domain=<zone>
-    sprout_hostname=sprout.<zone>
-    sprout_registration_store=sprout.<zone>
-    hs_hostname=hs.<zone>:8888
-    hs_provisioning_hostname=hs.<zone>:8889
-    ralf_hostname=ralf.<zone>:10888
-    ralf_session_store=ralf.<zone>
-    xdms_hostname=homer.<zone>:7888
+    sprout_hostname=sprout.<site_name>.<zone>
+    sprout_registration_store=vellum.<site_name>.<zone>
+    hs_hostname=hs.<site_name>.<zone>:8888
+    hs_provisioning_hostname=hs.<site_name>.<zone>:8889
+    ralf_hostname=ralf.<site_name>.<zone>:10888
+    ralf_session_store=vellum.<zone>
+    xdms_hostname=homer.<site_name>.<zone>:7888
+    chronos_hostname=vellum.<site_name>.<zone>
+    cassandra_hostname=vellum.<site_name>.<zone>
 
     # Email server configuration
     smtp_smarthost=<smtp server>
@@ -321,6 +307,7 @@ Servers add the following:
     # Application Servers
     gemini=<gemini port>
     memento=<memento port>
+    memento_auth_store=vellum.<site_name>.<zone>
 
 See the `Chef
 instructions <Installing_a_Chef_workstation.html#add-deployment-specific-configuration>`__
@@ -332,16 +319,23 @@ instructions <Modifying_Clearwater_settings.html>`__.
 
 If you are creating a `geographically redundant
 deployment <Geographic_redundancy.html>`__, some of the options require
-information about all sites to be specified. You should replace the
+information about all sites to be specified. You need to set the
+``remote_site_names`` configuration option to include the
+``local_site_name`` of each site, replace the
 ``sprout_registration_store`` and ``ralf_session_store`` with the values
 as described in `Clearwater Configuration Options
-Referece <Clearwater_Configuration_Options_Reference.html>`__, e.g. for
-sites named ``siteA`` and ``siteB``:
+Reference <Clearwater_Configuration_Options_Reference.html>`__, and set
+the ``sprout_chronos_callback_uri`` and ``ralf_chronos_callback_uri`` to
+deployment wide hostnames. For example, for sites named ``siteA`` and
+``siteB``:
 
 ::
 
+    remote_site_names=siteA,siteB
     sprout_registration_store="siteA=sprout-siteA.<zone>,siteB=sprout-siteB.<zone>"
     ralf_session_store="siteA=ralf-siteA.<zone>,siteB=ralf-siteB.<zone>"
+    sprout_chronos_callback_uri=sprout.<zone>
+    ralf_chronos_callback_uri=ralf.<zone>
 
 Now run the following to upload the configuration to a shared database
 and propagate it around the cluster (see `Modifying Clearwater
@@ -400,6 +394,63 @@ check whether your newly configured records have propagated successfully
 by running ``dig <record>`` on each Clearwater machine and checking that
 the correct IP address is returned.*
 
+If you are creating a `geographically redundant
+deployment <Geographic_redundancy.html>`__, you will also need to set up
+some DNS overrides. This allow a single hostname to be used across the
+deployment which can then be resolved to a site specific hostname at the
+point of use. This is necessary for Chronos and I-CSCF processing:
+
+-  Chronos: When a client sets a timer on Chronos, it provides a URI
+   that Chronos can use to inform the client that the timer has popped.
+   This URI should resolve to the clients in the same site as where the
+   timer popped, but the timer could pop in any site.
+-  I-CSCF: The HSS stores the S-CSCF name. When the I-CSCF learns the
+   S-CSCF name it wants to contact the S-CSCF in the local site, but the
+   HSS will return the same S-CSCF name to the I-CSCFs in different
+   sites.
+
+Details for how to set up this DNS override are detailed
+`here <Modifying_Clearwater_settings.html>`__, and an example of the JSON
+file (for siteA) required for a GR deployment with two sites (siteA and
+siteB) is below:
+
+::
+
+    {
+      "hostnames": [
+        {
+          "name": "sprout.<zone>",
+          "records": [{"rrtype": "CNAME", "target": "sprout.siteA.<zone>"}]
+        },
+        {
+          "name": "scscf.sprout.<zone>",
+          "records": [{"rrtype": "CNAME", "target": "scscf.sprout.siteA.<zone>"}]
+        },
+        {
+          "name": "ralf.<zone>",
+          "records": [{"rrtype": "CNAME", "target": "ralf.siteA.<zone>"}]
+        }
+      ]
+    }
+
+Chronos configuration
+---------------------
+
+Vellum nodes run the Chronos process, which is our distributed,
+redundant, reliable timer service (more information
+`here <https://github.com/Metaswitch/chronos/tree/stable>`__). Chronos
+has three types of configuration; configuration that is local to an
+individual Chronos proces, configuration that covers how a Chronos
+process clusters with other Chronos processes in the same site, and
+configuration that covers how a Chronos cluster connects to Chronos
+clusters in different sites. You don't typically need to set up the
+first two types of configuration, this is handled automatically. If you
+are creating a `geographically redundant
+deployment <Geographic_redundancy.html>`__, you do need to add the GR
+configuration for Chronos on each Vellum node - details of how to do
+this are
+`here <https://github.com/Metaswitch/chronos/blob/stable/doc/configuration.md>`__.
+
 Where next?
 -----------
 
@@ -434,22 +485,8 @@ cluster. \* Enable/disable the sproutlets you want to run on this node -
 see
 `here <http://clearwater.readthedocs.io/en/latest/Clearwater_Configuration_Options_Reference.html#sproutlet-options>`__
 for more details on this. In particular, you should set the ports and
-the URIs of the sproutlets. \* Choose whether the Sprout node should
-join the clustered data stores. Some sproutlets (e.g. the S-CSCF,
-memento) do need to do so (e.g. they need access to the common Chronos,
-Memcached and Cassandra clusters). Others (e.g. the I-CSCF, gemini), do
-not. \* To join a data store cluster, add
-``etcd_cluster_key=<node type>`` to ``/etc/clearwater/local_config`` on
-each joining node. \* For sproutlets that don't take part in the
-clustered data stores set ``etcd_cluster_key=DO_NOT_CLUSTER`` in
-``/etc/clearwater/local_config``. \* If you have a node that's a member
-of the wrong data store (e.g. an I-CSCF node has joined the S-CSCF data
-cluster), then you can remove it using the
-```cw-mark_node_failed`` <http://clearwater.readthedocs.io/en/latest/Handling_Failed_Nodes.html#removing-a-node-from-a-data-store>`__
-script, e.g.
-``sudo cw-mark_node_failed <incorrect cluster key> <data store type> <node IP>``.
-\* Once the node is fully installed and a member of the correct data
-stores, add it to the relevant DNS records.
+the URIs of the sproutlets. \* Once the node is fully installed, add it
+to the relevant DNS records.
 
 I-CSCF configuration
 ~~~~~~~~~~~~~~~~~~~~

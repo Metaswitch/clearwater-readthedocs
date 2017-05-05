@@ -38,16 +38,16 @@ your Sprout cluster. There are two kinds of stress available:
 Deploying a stress node
 -----------------------
 
-These instructions assume you'[ve already `installed a Clearwater
+These instructions assume you've already `installed a Clearwater
 deployment <Installation_Instructions.html>`__, either manually or through
 Chef.
 
 Follow `this
 process <https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md>`__
 to bulk provision the number of subscribers you want. As a general
-guideline, we'd expect a small deployment (with one Sprout, Homestead
-and optionally a Ralf node, each with one full CPU core) to handle at
-least 30,000 subscribers.
+guideline, we'd expect a small deployment (with one Sprout, Vellum and
+Dime, each with one full CPU core) to handle at least 30,000
+subscribers.
 
 You should also ensure that the ``reg_max_expires`` setting is set to
 1800 rather than the default of 300 - see our `configuration

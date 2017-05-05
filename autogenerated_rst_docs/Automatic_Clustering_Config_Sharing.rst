@@ -19,16 +19,20 @@ decentralized data store, a ``clearwater-cluster-manager`` service to
 handle automatic clustering, and a ``clearwater-config-manager`` to
 handle configuration sharing.
 
-Is my Deployment Using Automatic Clustering and Configuration Sharing?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Etcd masters and proxies
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-To tell if your deployment is using this feature, log onto one of the
-nodes in your deployment and run ``dpkg --list | grep clearwater-etcd``.
-If this does not give any output the feature is not in use.
+Clearwater nodes can run either as an etcd master or an etcd proxy. When
+deploying a node, you can chose whether it acts as a master or proxy by
+filling in either the ``etcd_cluster`` or ``etcd_proxy`` config option
+in ``/etc/clearwater/local_config`` (see the `configuration options
+reference <Clearwater_Configuration_Options_Reference.html>`__ for more
+details).
 
-Migrating to Automatic Clustering and Configuration Sharing
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+There are some restrictions on which nodes can be masters or proxies: \*
+There must always be at least 3 etcd masters in the cluster \* The first
+node to be deployed in a site must be an etcd master
 
-Deployments that are not using the feature may be migrated so they start
-using it. To perform this migration, follow these
-`instructions <Migrating_To_etcd.html>`__.
+The `automated <Automated_Install.html>`__ and
+`manual <Manual_Install.html>`__ install instructions will both create a
+deployment with all nodes running as etcd masters.
