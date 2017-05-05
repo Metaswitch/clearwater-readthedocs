@@ -52,12 +52,12 @@ At this point, you should decide (if you haven't already) which of the six machi
 
 The six roles are:
 
-* ellis
-* bono - This role also hosts a restund STUN server
-* sprout
-* homer
-* dime
-* vellum
+* Ellis
+* Bono
+* Sprout
+* Homer
+* Dime
+* Vellum
 
 ## Firewall configuration
 
@@ -72,32 +72,13 @@ On each machine create the file `/etc/clearwater/local_config` with the followin
     public_hostname=<hostname>
     etcd_cluster="<comma separated list of private IPs>"
 
-
 Note that the `etcd_cluster` variable should be set to a comma separated list that contains the private IP address of the nodes you created above. For example if the nodes had addresses 10.0.0.1 to 10.0.0.6, `etcd_cluster` should be set to `"10.0.0.1,10.0.0.2,10.0.0.3,10.0.0.4,10.0.0.5,10.0.0.6"`
 
 If you are creating a [geographically redundant deployment](Geographic_redundancy.md), then:
 
 * `etcd_cluster` should contain the IP addresses of nodes only in the local site
-*  you should set `local_site_name` and `remote_site_names` in `/etc/clearwater/local_config`
-     *   These names are arbitrary, but should reflect the node's location (e.g. a node in site A should have `local_site_name=siteA` and `remote_site_names=siteB`, whereas a node in site B should have `local_site_name=siteB` and `remote_site_names=siteA`):
-*  on the first Vellum node in the second site, you should set `remote_cassandra_seeds` to the IP address of a Vellum node in the first site
-
-If this machine will be a Vellum node create the file `/etc/chronos/chronos.conf` with the following contents:
-
-    [http]
-    bind-address = <privateIP>
-    bind-port = 7253
-    threads = 50
-
-    [logging]
-    folder = /var/log/chronos
-    level = 2
-
-    [alarms]
-    enabled = true
-
-    [exceptions]
-    max_ttl = 600
+*  You should set `local_site_name` in `/etc/clearwater/local_config`. The name you choose is arbitrary, but must be the same for every node in the site. This name will also be used in the `remote_site_names`, `sprout_registration_store` and `ralf_session_store` configuration options set in shared config (desscribed below).
+*  On the first Vellum node in the second site, you should set `remote_cassandra_seeds` to the IP address of a Vellum node in the first site.
 
 ## Install Node-Specific Software
 
@@ -160,19 +141,19 @@ Sprout, Bono, Vellum and Dime nodes expose statistics over SNMP. This function i
 
 ## Provide Shared Configuration
 
-Log onto any node in the deployment and create the file `/etc/clearwater/shared_config` with the following contents:
+Log onto any node in the deployment and create the file `/etc/clearwater/shared_config` with the following contents. The `site_name` should match the value of `local_site_name` in `local_config`; if your deployment is not geographically redundant then you don't need to include it.
 
     # Deployment definitions
     home_domain=<zone>
-    sprout_hostname=sprout.<zone>
-    sprout_registration_store=vellum.<zone>
-    hs_hostname=hs.<zone>:8888
-    hs_provisioning_hostname=hs.<zone>:8889
-    ralf_hostname=ralf.<zone>:10888
+    sprout_hostname=sprout.<site_name>.<zone>
+    sprout_registration_store=vellum.<site_name>.<zone>
+    hs_hostname=hs.<site_name>.<zone>:8888
+    hs_provisioning_hostname=hs.<site_name>.<zone>:8889
+    ralf_hostname=ralf.<site_name>.<zone>:10888
     ralf_session_store=vellum.<zone>
-    xdms_hostname=homer.<zone>:7888
-    chronos_hostname=vellum.<zone>
-    cassandra_hostname=vellum.<zone>
+    xdms_hostname=homer.<site_name>.<zone>:7888
+    chronos_hostname=vellum.<site_name>.<zone>
+    cassandra_hostname=vellum.<site_name>.<zone>
 
     # Email server configuration
     smtp_smarthost=<smtp server>
@@ -202,14 +183,17 @@ If you want your Sprout nodes to include Gemini/Memento Application Servers add 
     # Application Servers
     gemini=<gemini port>
     memento=<memento port>
-    memento_auth_store=vellum.<zone>
+    memento_auth_store=vellum.<site_name>.<zone>
 
 See the [Chef instructions](Installing_a_Chef_workstation.md#add-deployment-specific-configuration) for more information on how to fill these in. The values marked `<secret>` **must** be set to secure values to protect your deployment from unauthorized access. To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings.md).
 
-If you are creating a [geographically redundant deployment](Geographic_redundancy.md), some of the options require information about all sites to be specified. You should replace the `sprout_registration_store` and `ralf_session_store` with the values as described in [Clearwater Configuration Options Referece](Clearwater_Configuration_Options_Reference.md), e.g. for sites named `siteA` and `siteB`:
+If you are creating a [geographically redundant deployment](Geographic_redundancy.md), some of the options require information about all sites to be specified. You need to set the `remote_site_names` configuration option to include the `local_site_name` of each site, replace the `sprout_registration_store` and `ralf_session_store` with the values as described in [Clearwater Configuration Options Reference](Clearwater_Configuration_Options_Reference.md), and set the `sprout_chronos_callback_uri` and `ralf_chronos_callback_uri` to deployment wide hostnames. For example, for sites named `siteA` and `siteB`:
 
+    remote_site_names=siteA,siteB
     sprout_registration_store="siteA=sprout-siteA.<zone>,siteB=sprout-siteB.<zone>"
     ralf_session_store="siteA=ralf-siteA.<zone>,siteB=ralf-siteB.<zone>"
+    sprout_chronos_callback_uri=sprout.<zone>
+    ralf_chronos_callback_uri=ralf.<zone>
 
 Now run the following to upload the configuration to a shared database and propagate it around the cluster (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this).
 
@@ -238,6 +222,36 @@ Clearwater uses DNS records to allow each node to find the others it needs to ta
 Although not required, we also suggest that you configure individual DNS records for each of the machines in your deployment to allow easy access to them if needed.
 
 _Be aware that DNS record creation can take time to propagate, you can check whether your newly configured records have propagated successfully by running `dig <record>` on each Clearwater machine and checking that the correct IP address is returned._
+
+If you are creating a [geographically redundant deployment](Geographic_redundancy.md), you will also need to set up some DNS overrides. This allow a single hostname to be used across the deployment which can then be resolved to a site specific hostname at the point of use. This is necessary for Chronos and I-CSCF processing:
+
+* Chronos: When a client sets a timer on Chronos, it provides a URI that Chronos can use to inform the client that the timer has popped. This URI should resolve to the clients in the same site as where the timer popped, but the timer could pop in any site.
+* I-CSCF: The HSS stores the S-CSCF name. When the I-CSCF learns the S-CSCF name it wants to contact the S-CSCF in the local site, but the HSS will return the same S-CSCF name to the I-CSCFs in different sites.
+
+Details for how to set up this DNS override are detailed [here](Modifying_Clearwater_settings.md), and an example of the JSON file (for siteA) required for a GR deployment with two sites (siteA and siteB) is below:
+
+```
+{
+  "hostnames": [
+    {
+      "name": "sprout.<zone>",
+      "records": [{"rrtype": "CNAME", "target": "sprout.siteA.<zone>"}]
+    },
+    {
+      "name": "scscf.sprout.<zone>",
+      "records": [{"rrtype": "CNAME", "target": "scscf.sprout.siteA.<zone>"}]
+    },
+    {
+      "name": "ralf.<zone>",
+      "records": [{"rrtype": "CNAME", "target": "ralf.siteA.<zone>"}]
+    }
+  ]
+}
+```
+
+## Chronos configuration
+
+Vellum nodes run the Chronos process, which is our distributed, redundant, reliable timer service (more information [here](https://github.com/Metaswitch/chronos/tree/stable)). Chronos has three types of configuration; configuration that is local to an individual Chronos proces, configuration that covers how a Chronos process clusters with other Chronos processes in the same site, and configuration that covers how a Chronos cluster connects to Chronos clusters in different sites. You don't typically need to set up the first two types of configuration, this is handled automatically. If you are creating a [geographically redundant deployment](Geographic_redundancy.md), you do need to add the GR configuration for Chronos on each Vellum node - details of how to do this are [here](https://github.com/Metaswitch/chronos/blob/stable/doc/configuration.md).
 
 ## Where next?
 

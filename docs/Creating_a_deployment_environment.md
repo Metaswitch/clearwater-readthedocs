@@ -29,7 +29,6 @@ Before creating an environment, choose a name (e.g. "clearwater") which will be 
       "keypair" => "<keypair_name>",
       "keypair_dir" => "~/.chef/",
       "pstn_number_count" => 0,
-      "gr" => false,
 
       # Signup key. Anyone with this key can create accounts
       # on the deployment. Set to a secure value.
@@ -95,10 +94,7 @@ These fields override attributes defined and documented in the [chef-base role](
 
 If you want to use a different SIP registration period from the default (which is 5 minutes) add a line like `"reg_max_expires" => <timeout_in_secs>,` to the `override_attributes "clearwater"` block.
 
-If you want to test [geographic redundancy function](Geographic_redundancy.md), use `"gr" => true` instead of `"gr" => false`.
-This will cause odd-numbered and even-numbered nodes to be treated as separate logical "sites" -
-they are not actually in different EC2 regions (cross-region security group rules make that
-difficult), but does allow you to see and test GR function.
+If you want to test [geographic redundancy function](Geographic_redundancy.md), add `"num_gr_sites" => 2` to the environment file. This will create two logical 'sites' - they are not actually in different EC2 regions (cross-region security group rules make that difficult), but does allow you to see and test GR function.
 
 To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings.md).
 
