@@ -8,7 +8,7 @@ Details on how to configure a geographically redundant deployment are available 
 
 The architecture of a geographically-redundant system is as follows.
 
-![Simplified diagram of the GR architecture, showing how data is replicated between the two sites](img/Geographic_redundancy_diagram.png)
+![Simplified GR Architecture](img/Geographic_redundancy_diagram.png)
 
 Each site has its own, separate, etcd cluster. This means that Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) only applies within a site, not between sites. Data is shared between the sites primarily by Vellum.
 
