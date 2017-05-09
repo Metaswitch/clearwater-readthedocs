@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Durin](http://lotr.wikia.com/wiki/Durin)".
+The latest stable release of Clearwater is "[Ecthelion](http://lotr.wikia.com/wiki/Ecthelion_I)".
 
 ## Architecture
 
