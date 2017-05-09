@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Durin <http://lotr.wikia.com/wiki/Durin>`__\ ".
+"`Ecthelion <http://lotr.wikia.com/wiki/Ecthelion_I>`__\ ".
 
 Architecture
 ------------
