@@ -25,8 +25,8 @@ To change one of these settings:
    changes to the shared configuration are logged to ``/var/log/syslog``
    and to the console. Each node in the site picks up the changed shared
    configuration (using Clearwater's `automatic configuration
-   sharing <Automatic_Clustering_Config_Sharing>`__ functionality) and
-   safely restarts itself to use it.
+   sharing <Automatic_Clustering_Config_Sharing.html>`__ functionality)
+   and safely restarts itself to use it.
 -  You can check which nodes are using the new shared config by running
    ``cw-check_restart_queue_state``. If this command shows that there's
    been an error (i.e. a node wasn't able to restart after picking up
@@ -56,8 +56,8 @@ To change one of these files:
    which file you modified.
 -  The change will be automatically propagated around the site (by
    Clearwater's `automatic configuration
-   sharing <Automatic_Clustering_Config_Sharing>`__ functionality) and
-   will start being used.
+   sharing <Automatic_Clustering_Config_Sharing.html>`__ functionality)
+   and will start being used.
 
 Modifying DNS Config
 --------------------
@@ -76,8 +76,8 @@ To change this file:
    ``sudo /usr/share/clearwater/clearwater-config-manager/scripts/upload_dns_config``.
 -  The change will be automatically propagated around the site (using
    Clearwater's `automatic configuration
-   sharing <Automatic_Clustering_Config_Sharing>`__ functionality) and
-   will start being used.
+   sharing <Automatic_Clustering_Config_Sharing.html>`__ functionality)
+   and will start being used.
 
 Starting from scratch
 ---------------------
