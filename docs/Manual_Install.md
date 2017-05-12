@@ -335,14 +335,14 @@ This file stores the iFCs in each Shared iFC set. The format of the file is as f
      </SharedIFCsSet>
    </SharedIFCsSets>
 
-The set id is a integer, and each Shared iFCs set must have a unique set id.
+The set id is an integer, and each Shared iFCs set must have a unique set id.
 The iFC is an iFC, in XML format.
 
 To change the Shared iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_shared_ifcs`.
 
 ### Default iFC configuration
 
-If you wish to apply iFCs by default to any subscribers who have no iFCs triggered on a request, these iFCs must be configured onto the S-CSCF, and the configuration option `apply_shared_ifcs` set to 'Y'.
+If you wish to apply iFCs by default to any subscribers who have no iFCs triggered on a request, these iFCs must be configured onto the S-CSCF, and the configuration option `apply_default_ifcs` set to 'Y'.
 
 You can configure Default iFCs onto the S-CSCF by editing the `/etc/clearwater/default_ifcs.xml` file.
 
@@ -355,7 +355,7 @@ This file stores a list of Default iFCs. The format of the file is as follows:
      </InitialFilterCriteria>
    </DefaultIFCsSet>
 
-The iFC an an iFC, in XML format.
+The iFC is an iFC, in XML format.
 
-To change the Default iFC configuration, edit this fle on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_default_ifcs`.
+To change the Default iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_default_ifcs`.
 

@@ -79,7 +79,7 @@ Check the XML configuration files on all Sprout nodes in the affected site:
 * Verify that the `/etc/clearwater/shared_ifcs.xml` file is correct, fixing it up if it's not.
 * verify that the `/etc/clearwater/default_ifcs.xml` file is correct, fixing it  up if it's not.
 
-Running the command `sudo cw-validate_{shared|default}_ifcs can be run to check if the file is syntactically correct.
+Running one of the commands `sudo cw-validate_{shared|default}_ifcs` will check if the specified file is syntactically correct.
 
 ### Recreate the etcd cluster
 
