@@ -313,3 +313,49 @@ As an example, say you have one S-CSCF that supports billing, and one that doesn
 Then when you configure a subscriber in the HSS, you can set up what capabilities they require in an S-CSCF. These will also be integers, and you should make sure this matches with how you've set up the s-cscf.json file. In this example, if you wanted your subscriber to be billed, you would configure the user data in the HSS to make it mandatory for your subscriber to have an S-CSCF that supports capability 1.
 
 To change the I-CSCF configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_scscf_json`.
+
+### Shared iFC configuration
+
+If the configuration option `request_shared_ifcs` is set to 'Y', the S-CSCF must be configured with any Shared iFCs that may be sent to it by the HSS.
+
+You can configure Shared iFCs onto the S-CSCF by editing the `/etc/clearwater/shared_ifcs.xml` file.
+
+This file stores the iFCs in each Shared iFC set. The format of the file is as follows:
+
+   <?xml version=1.0 encoding=UTF-8?>
+   <SharedIFCsSets>
+     <SharedIFCsSet>
+       <SetID>  <set id>  </SetID>
+       <InitialFilterCriteria>
+         <iFC>
+       </InitialFilterCriteria>
+       <InitialFilterCriteria>
+         <iFC>
+       </InitialFilterCriteria>
+     </SharedIFCsSet>
+   </SharedIFCsSets>
+
+The set id is a integer, and each Shared iFCs set must have a unique set id.
+The iFC is an iFC, in XML format.
+
+To change the Shared iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_shared_ifcs`.
+
+### Default iFC configuration
+
+If you wish to apply iFCs by default to any subscribers who have no iFCs triggered on a request, these iFCs must be configured onto the S-CSCF, and the configuration option `apply_shared_ifcs` set to 'Y'.
+
+You can configure Default iFCs onto the S-CSCF by editing the `/etc/clearwater/default_ifcs.xml` file.
+
+This file stores a list of Default iFCs. The format of the file is as follows:
+
+   <?xml version=1.0 encoding=UTF-8?>
+   <DefaultIFCsSet>
+     <InitialFilterCriteria>
+       <iFC>
+     </InitialFilterCriteria>
+   </DefaultIFCsSet>
+
+The iFC an an iFC, in XML format.
+
+To change the Default iFC configuration, edit this fle on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_default_ifcs`.
+

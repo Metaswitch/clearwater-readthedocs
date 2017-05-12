@@ -30,6 +30,21 @@ To change one of these files:
 * Run one of `sudo cw-upload_{scscf|bgcf|enum}_json` depending on which file you modified.
 * The change will be automatically propagated around the site (by Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and will start being used.
 
+## Modifying Sprout XML Configuration
+
+*This configuration can be freely modified without impacting service.*
+
+Some of the more complex sprout-specific configuration is stored in XML files.
+
+* `/etc/clearwater/shared_ifcs.xml` - contains information about all Shared iFC sets for the Sprout S-CSCF to use.
+* `/etc/clearwater/default_ifcs.xml` - contains information about all the Default iFCs for the Sprout S-CSCF to apply.
+
+To change one of these files:
+
+* Edit the file on *one* of your sprout nodes in each site.
+* Run on of `sudo cw-upload_{shared|default}_ifcs` depending on which file you modified.
+* The change will be automatically propogated around the site (by Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and will start being used.
+
 ## Modifying DNS Config
 
 *This configuration can be freely modified without impacting service*

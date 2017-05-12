@@ -68,9 +68,18 @@ If the Cassandra cluster isn't healthy, you must fix this up before continuing, 
 
 Check the JSON configuration files on all Sprout nodes in the affected site:
 
-* Verify that `/etc/clearwater/enum.json` file is correct, fixing it up if is not.
-* Verify that `/etc/clearwater/s-cscf.json` file is correct, fixing it up if is not.
-* Verify that `/etc/clearwater/bgcf.json` file is correct, fixing it up if is not.
+* Verify that the `/etc/clearwater/enum.json` file is correct, fixing it up if it's not.
+* Verify that the `/etc/clearwater/s-cscf.json` file is correct, fixing it up if it's not.
+* Verify that the `/etc/clearwater/bgcf.json` file is correct, fixing it up if it's not.
+
+### Sprout - XML configuration
+
+Check the XML configuration files on all Sprout nodes in the affected site:
+
+* Verify that the `/etc/clearwater/shared_ifcs.xml` file is correct, fixing it up if it's not.
+* verify that the `/etc/clearwater/default_ifcs.xml` file is correct, fixing it  up if it's not.
+
+Running the command `sudo cw-validate_{shared|default}_ifcs can be run to check if the file is syntactically correct.
 
 ### Recreate the etcd cluster
 

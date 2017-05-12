@@ -201,6 +201,10 @@ This section describes optional configuration options, particularly for ensuring
     * Without an I-CSCF there is no way to prevent it from registering as different user accounts.
 * `disable_tcp_switch` - when set to 'Y', Clearwater disables UDP-to-TCP uplift on SIP messages.  This is useful when creating a deployment where all SIP is sent over UDP.  This option only affects Sprout nodes.
 * `sprout_impi_store` - this is the location of Sprout's authorization vector store. It just has the format <domain>[:port]. If not provided, Sprout uses the local site's registration store.
+* `request_shared_ifcs` - when set to 'Y' Clearwater requests Shared iFCs from the HSS. This option is enabled by default. Shared iFCs can be configured on Clearwater in the `/etc/clearwater/shared_ifcs.xml` file.
+* `apply_default_ifcs` - this is set to 'N' by default. When set to 'Y' Clearwater will apply any default iFCs specified by the user in the `/etc/clearwater/default_ifcs.xml` file to users who have no applicable iFCs associated with them.
+* `reject_if_no_matching_ifcs` - this is set to 'N' by default. When set to 'Y' Clearwater will reject any messages where a subscriber has no iFCs applied to them.
+* `dummy_app_server` - this field allows the name of a dummy application server to be specified. If an iFC contains this dummy application server, then no application server will be invoked when this iFC is triggered.
 
 ### Experimental options
 

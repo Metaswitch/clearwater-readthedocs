@@ -251,15 +251,19 @@ To backup the shared configuration:
     /etc/clearwater/bgcf.json
     /etc/clearwater/enum.json
     /etc/clearwater/s-cscf.json
+    /etc/clearwater/shared_ifcs.xml
+    /etc/clearwater/default_ifcs.xml
     ```
 
 ### Restoring Configuration
 
-To restore a previous backup, copy the four files listed above to `/etc/clearwater` on one of your sprout nodes. Then run the following commands on that node:
+To restore a previous backup, copy the six files listed above to `/etc/clearwater` on one of your sprout nodes. Then run the following commands on that node:
 
     cw-upload_shared_config
     cw-upload_bgcf_json
     cw-upload_enum_json
     cw-upload_scscf_json
+    cw-upload_shared_ifcs
+    cw-upload_default_ifcs
 
 See [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this.
