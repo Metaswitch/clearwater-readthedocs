@@ -227,12 +227,12 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    Sprout's Chronos timers. If not present, defaults to the host
    specified in ``sprout-hostname``. In a GR deployment, should be set
    to a deployment-wide Sprout hostname (that will be resolved by using
-   static DNS records in ``/etc/clearwater/dns_config``).
+   static DNS records in ``/etc/clearwater/dns.json``).
 -  ``ralf_chronos_callback_uri`` - the callback hostname used on ralf's
    Chronos timers. If not present, defaults to the host specified in
    ``ralf-hostname``. In a GR deployment, should be set to a
    deployment-wide Dime hostname (that will be resolved by using static
-   DNS records in ``/etc/clearwater/dns_config``).
+   DNS records in ``/etc/clearwater/dns.json``).
 -  ``cassandra_hostname`` - a hostname that resolves by DNS round-robin
    to the signaling interface of all Vellum nodes in the local site.
 -  ``chronos_hostname`` - a hostname that resolves by DNS round-robin to
@@ -681,7 +681,7 @@ DNS Config
 ----------
 
 This section describes the static DNS config which can be used to
-override DNS results. This is set in ``/etc/clearwater/dns_config``.
+override DNS results. This is set in ``/etc/clearwater/dns.json``.
 Currently, the only supported record type is CNAME and the only
 component which uses this is Chronos and the I-CSCF. The file has the
 format:
