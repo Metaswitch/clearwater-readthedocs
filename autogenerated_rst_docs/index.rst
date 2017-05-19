@@ -127,6 +127,7 @@ It uses other open-source components as acknowledged in
    Making your first call <Making_your_first_call.rst>
    Configuring the native Android SIP client <Configuring_the_native_Android_SIP_client.rst>
    Configuring Zoiper Android/iOS Client <Configuring_Zoiper_Android_iOS_Client.rst>
+   Configuring Geographic redundancy <Configuring_GR_deployments.rst>
 
 
 .. _3:
