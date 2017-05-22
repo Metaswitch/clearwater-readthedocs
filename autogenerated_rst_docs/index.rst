@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Ecthelion <http://lotr.wikia.com/wiki/Ecthelion_I>`__\ ".
+"`Fingolfin <http://lotr.wikia.com/wiki/Fingolfin>`__\ ".
 
 Architecture
 ------------
