@@ -43,12 +43,15 @@ of the etcd masters in a given site have failed then you will need to
 first follow the process `here <Handling_Multiple_Failed_Nodes.html>`__.
 
 For each failed node, log into a healthy etcd master in the same site as
-the failed node and run the following steps. \* Run
-``clearwater-etcdctl cluster-health`` and make a note of the ID of the
-failed node. \* Run ``clearwater-etcdctl member list`` to check that the
-failed node reported is the one you were expecting (by looking at its IP
-address). \* Run ``clearwater-etcdctl member remove <ID>``, replacing
-``<ID>`` with the ID learned above.
+the failed node and run the following steps:
+
+-  Run ``clearwater-etcdctl cluster-health`` and make a note of the ID
+   of the failed node.
+-  Run ``clearwater-etcdctl member list`` to check that the failed node
+   reported is the one you were expecting (by looking at its IP
+   address).
+-  Run ``clearwater-etcdctl member remove <ID>``, replacing ``<ID>``
+   with the ID learned above.
 
 Removing a failed Vellum node from the data store clusters
 ----------------------------------------------------------
