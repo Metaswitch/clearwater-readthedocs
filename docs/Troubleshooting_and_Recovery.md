@@ -51,7 +51,7 @@ Problems on Vellum may include:
 
 ## Sprout
 
-The most common problem on Sprout is lack of communication with other nodes and processes, causing registration or calls to fail. Check that Vellum is reachable and responding.
+The most common problem on Sprout is lack of communication with other nodes and processes, causing registration or calls to fail. Check that Vellum and Dime are reachable and responding.
 
 To turn on debug logging for Sprout write `log_level=5` to `/etc/clearwater/user_settings` (creating it if it doesn't exist already), then restart Sprout (`sudo service sprout stop` - it will be restarted by monit).
 
