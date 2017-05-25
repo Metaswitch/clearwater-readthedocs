@@ -25,7 +25,6 @@ pages:
   - Upgrading a Clearwater deployment: Upgrading_a_Clearwater_deployment.md
   - Modifying Clearwater settings: Modifying_Clearwater_settings.md
   - Clearwater Configuration Options Reference: Clearwater_Configuration_Options_Reference.md
-  - Migrating to Automatic Clustering and Config Sharing: Migrating_To_etcd.md
 - Integration:
   - Configuring an Application Server: Configuring_an_Application_Server.md
   - External HSS Integration: External_HSS_Integration.md
