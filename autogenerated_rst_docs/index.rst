@@ -139,7 +139,6 @@ It uses other open-source components as acknowledged in
    Upgrading a Clearwater deployment <Upgrading_a_Clearwater_deployment.rst>
    Modifying Clearwater settings <Modifying_Clearwater_settings.rst>
    Clearwater Configuration Options Reference <Clearwater_Configuration_Options_Reference.rst>
-   Migrating to Automatic Clustering and Config Sharing <Migrating_To_etcd.rst>
 
 
 .. _4:
