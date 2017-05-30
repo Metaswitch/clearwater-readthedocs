@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Ecthelion <http://lotr.wikia.com/wiki/Ecthelion_I>`__\ ".
+"`Fingolfin <http://lotr.wikia.com/wiki/Fingolfin>`__\ ".
 
 Architecture
 ------------
@@ -127,6 +127,7 @@ It uses other open-source components as acknowledged in
    Making your first call <Making_your_first_call.rst>
    Configuring the native Android SIP client <Configuring_the_native_Android_SIP_client.rst>
    Configuring Zoiper Android/iOS Client <Configuring_Zoiper_Android_iOS_Client.rst>
+   Configuring Geographic redundancy <Configuring_GR_deployments.rst>
 
 
 .. _3:
@@ -138,7 +139,6 @@ It uses other open-source components as acknowledged in
    Upgrading a Clearwater deployment <Upgrading_a_Clearwater_deployment.rst>
    Modifying Clearwater settings <Modifying_Clearwater_settings.rst>
    Clearwater Configuration Options Reference <Clearwater_Configuration_Options_Reference.rst>
-   Migrating to Automatic Clustering and Config Sharing <Migrating_To_etcd.rst>
 
 
 .. _4:

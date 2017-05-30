@@ -208,14 +208,14 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    all Mementos in the cluster (the default is
    ``memento.<home_domain>``). This should match Memento's SSL
    certificate, if you are using one.
--  ``sprout_registation_store`` - this is the locations of Sprout's
-   registration stores. It has the format
+-  ``sprout_registration_store`` - this is the location of Sprout's
+   registration store. It has the format
    ``<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>]]``. In
    a non-GR deployment, only one domain is provided (and the site name
    is optional). For a GR deployment, each domain is identified by the
    site name, and one of the domains must relate to the local site.
--  ``ralf_session_store`` - this is the locations of ralf's session
-   stores. It has the format
+-  ``ralf_session_store`` - this is the location of ralf's session
+   store. It has the format
    ``<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>]]``. In
    a non-GR deployment, only one domain is provided (and the site name
    is optional). For a GR deployment, each domain is identified by the
@@ -227,12 +227,12 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    Sprout's Chronos timers. If not present, defaults to the host
    specified in ``sprout-hostname``. In a GR deployment, should be set
    to a deployment-wide Sprout hostname (that will be resolved by using
-   static DNS records in ``/etc/clearwater/dns_config``).
+   static DNS records in ``/etc/clearwater/dns.json``).
 -  ``ralf_chronos_callback_uri`` - the callback hostname used on ralf's
    Chronos timers. If not present, defaults to the host specified in
    ``ralf-hostname``. In a GR deployment, should be set to a
    deployment-wide Dime hostname (that will be resolved by using static
-   DNS records in ``/etc/clearwater/dns_config``).
+   DNS records in ``/etc/clearwater/dns.json``).
 -  ``cassandra_hostname`` - a hostname that resolves by DNS round-robin
    to the signaling interface of all Vellum nodes in the local site.
 -  ``chronos_hostname`` - a hostname that resolves by DNS round-robin to
@@ -563,10 +563,14 @@ e.g. ``icscf=5052``).
       ``sip:sprout.example.com:5054;transport=tcp;lr;orig;auto-reg``
 
 -  ``non_register_authentication`` - controls when Sprout will challenge
-   a non-REGISTER request using SIP Proxy-Authentication. Possible
-   values are ``never`` (meaning Sprout will never challenge) or
-   ``if_proxy_authorization_present`` (meaning Sprout will only
-   challenge requests that have a Proxy-Authorization header).
+   a non-REGISTER request using SIP Proxy-Authentication. This option is
+   a comma separated list that may contain the values listed below (e.g.
+   ``non_register_authentication=if_proxy_authorization_present,initial_req_from_req_digest_endpoint``):
+-  ``if_proxy_authorization_present``: Sprout will authenticate requests
+   that have a Proxy-Authorization header.
+-  ``initial_req_from_reg_digest_endpoint``: Sprout will authenticate
+   requests from registered endpoints that use the SIP digest
+   authentication scheme.
 -  ``ralf_threads`` - used on Sprout nodes, this determines how many
    worker threads should be started to do ralf request processing
    (defaults to 25).
@@ -592,9 +596,10 @@ e.g. ``icscf=5052``).
    UDP-to-TCP uplift on SIP messages. This is useful when creating a
    deployment where all SIP is sent over UDP. This option only affects
    Sprout nodes.
--  ``sprout_impi_store`` - this is the location of Sprout's
-   authorization vector store. It just has the format [:port]. If not
-   provided, Sprout uses the local site's registration store.
+-  ``sprout_impi_store`` - this is the location of Sprout's IMPI store.
+   It has the same format as ``sprout_registration_store``. If not
+   provided, Sprout uses the same value configured in
+   ``sprout_registration_store``.
 
 Experimental options
 ~~~~~~~~~~~~~~~~~~~~
@@ -681,7 +686,7 @@ DNS Config
 ----------
 
 This section describes the static DNS config which can be used to
-override DNS results. This is set in ``/etc/clearwater/dns_config``.
+override DNS results. This is set in ``/etc/clearwater/dns.json``.
 Currently, the only supported record type is CNAME and the only
 component which uses this is Chronos and the I-CSCF. The file has the
 format:

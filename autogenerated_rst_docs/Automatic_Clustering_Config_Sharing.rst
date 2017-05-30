@@ -29,9 +29,10 @@ in ``/etc/clearwater/local_config`` (see the `configuration options
 reference <Clearwater_Configuration_Options_Reference.html>`__ for more
 details).
 
-There are some restrictions on which nodes can be masters or proxies: \*
-There must always be at least 3 etcd masters in the cluster \* The first
-node to be deployed in a site must be an etcd master
+There are some restrictions on which nodes can be masters or proxies:
+
+-  There must always be at least 3 etcd masters in the cluster
+-  The first node to be deployed in a site must be an etcd master
 
 The `automated <Automated_Install.html>`__ and
 `manual <Manual_Install.html>`__ install instructions will both create a

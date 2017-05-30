@@ -11,9 +11,9 @@ article covers:
 
 More information about Clearwater's geographic redundancy support is
 available
-`here <http://clearwater.readthedocs.io/en/latest/docs/Geographic_redundancy.html>`__
-and informaion on how to configure a geographically redundant deployment
-is available
+`here <http://clearwater.readthedocs.io/en/latest/Geographic_redundancy.html>`__
+and information on how to configure a geographically redundant
+deployment is available
 `here <http://clearwater.readthedocs.io/en/latest/Configuring_GR_deployments.html>`__.
 
 Recovery
@@ -24,8 +24,7 @@ Vellum nodes from Cassandra cluster.
 
 ::
 
-    * Determine the site ID of the failed site (this would be ). You can also find this by running `cw-run-in-signaling-namespace nodetool status`, and 
-    * Then from any Vellum node in the remaining site, run `cw-remove_site_from_cassandra <site ID>`
+    * From any Vellum node in the remaining site, run `cw-remove_site_from_cassandra <site ID - the name of the failed site>`
 
 You should now have a working single-site cluster, which can continue to
 run as a single site, or be safely paired with a new remote site

@@ -20,11 +20,11 @@ pages:
   - Making your first call: Making_your_first_call.md
   - Configuring the native Android SIP client: Configuring_the_native_Android_SIP_client.md
   - Configuring Zoiper Android/iOS Client: Configuring_Zoiper_Android_iOS_Client.md
+  - Configuring Geographic redundancy: Configuring_GR_deployments.md
 - Upgrading and Modifying:
   - Upgrading a Clearwater deployment: Upgrading_a_Clearwater_deployment.md
   - Modifying Clearwater settings: Modifying_Clearwater_settings.md
   - Clearwater Configuration Options Reference: Clearwater_Configuration_Options_Reference.md
-  - Migrating to Automatic Clustering and Config Sharing: Migrating_To_etcd.md
 - Integration:
   - Configuring an Application Server: Configuring_an_Application_Server.md
   - External HSS Integration: External_HSS_Integration.md

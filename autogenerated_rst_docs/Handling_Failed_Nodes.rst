@@ -3,24 +3,28 @@ Dealing with Failed Nodes
 
 Nodes can be easily removed from a Clearwater deployment by following
 the instructions for `elastic
-scaling <Clearwater_Elastic_Scaling.html>`__. However sometimes a node or
+scaling <Clearwater_Elastic_Scaling.html>`__. However, sometimes a node or
 nodes may fail unexpectedly. If the nodes cannot be recovered, then you
-should do the following (in the order specified). \* If one or more
-nodes have failed that were acting as etcd masters (see
-`configuration <Clearwater_Configuration_Options_Reference.html>`__) and
-as a result you have lost 50% (or more) of your etcd master nodes in any
-one site then the etcd cluster for that site will have lost "quorum" and
-have become read-only. To recover the etcd cluster you will need to
-follow the process `here <Handling_Multiple_Failed_Nodes.html>`__. \* If
-one or more nodes have failed that were acting as etcd masters but
-*more* than half of your etcd cluster remains operational then you must
-first follow the steps below: “removing a failed node from an etcd
-cluster” \* If a Vellum node has failed then you should follow the
-instructions below: “removing a failed Vellum node from the data store
-clusters” \* You can now spin up a new node to replace the lost
-capacity. If you are replacing a node that had been acting as an etcd
-master then you should typically configure the new node to also be an
-etcd master in order to retain your original etcd cluster size.
+should do the following (in the order specified):
+
+-  If one or more nodes have failed that were acting as etcd masters
+   (see
+   `configuration <Clearwater_Configuration_Options_Reference.html>`__)
+   and as a result you have lost 50% (or more) of your etcd master nodes
+   in any one site then the etcd cluster for that site will have lost
+   "quorum" and have become read-only. To recover the etcd cluster you
+   will need to follow the process
+   `here <Handling_Multiple_Failed_Nodes.html>`__.
+-  If one or more nodes have failed that were acting as etcd masters but
+   *more* than half of your etcd cluster remains operational then you
+   must first follow the steps below: "Removing a failed node from an
+   etcd cluster"
+-  If a Vellum node has failed then you should follow the instructions
+   below: "Removing a failed Vellum node from the data store clusters"
+-  You can now spin up a new node to replace the lost capacity. If you
+   are replacing a node that had been acting as an etcd master then you
+   should typically configure the new node to also be an etcd master in
+   order to retain your original etcd cluster size.
 
 The processes described below do not affect call processing and can be
 run on a system handling call traffic.
@@ -29,22 +33,25 @@ Removing a failed node from an etcd cluster
 -------------------------------------------
 
 If a node fails that was acting as an etcd master then it must be
-manually removed from the site’s etcd cluster. Failure to do so may
+manually removed from the site's etcd cluster. Failure to do so may
 leave the site in a state where future scaling operations do not work,
 or where in-progress scaling operations fail to complete.
 
-This process assumes that more than half of the site’s etcd cluster is
+This process assumes that more than half of the site's etcd cluster is
 still healthy and so the etcd cluster still has quorum. If 50% or more
 of the etcd masters in a given site have failed then you will need to
 first follow the process `here <Handling_Multiple_Failed_Nodes.html>`__.
 
 For each failed node, log into a healthy etcd master in the same site as
-the failed node and run the following steps. \* Run
-``clearwater-etcdctl cluster-health`` and make a note of the ID of the
-failed node. \* Run ``clearwater-etcdctl member list`` to check that the
-failed node reported is the one you were expecting (by looking at its IP
-address). \* Run ``clearwater-etcdctl member remove <ID>``, replacing
-``<ID>`` with the ID learned above.
+the failed node and run the following steps:
+
+-  Run ``clearwater-etcdctl cluster-health`` and make a note of the ID
+   of the failed node.
+-  Run ``clearwater-etcdctl member list`` to check that the failed node
+   reported is the one you were expecting (by looking at its IP
+   address).
+-  Run ``clearwater-etcdctl member remove <ID>``, replacing ``<ID>``
+   with the ID learned above.
 
 Removing a failed Vellum node from the data store clusters
 ----------------------------------------------------------
