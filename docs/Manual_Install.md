@@ -316,13 +316,13 @@ To change the I-CSCF configuration, edit this file on any Sprout node, then uplo
 
 ### Shared iFC configuration
 
-If the configuration option `request_shared_ifcs` is set to 'Y', the S-CSCF must be configured with any Shared iFCs that may be sent to it by the HSS.
+If the configuration option `request_shared_ifcs` is set to 'Y', the S-CSCF must be configured with any Shared iFC sets that may be sent to it by the HSS.
 
-You can configure Shared iFCs onto the S-CSCF by editing the `/etc/clearwater/shared_ifcs.xml` file.
+You can configure Shared iFC sets on the S-CSCF by editing the `/etc/clearwater/shared_ifcs.xml` file.
 
 This file stores the iFCs in each Shared iFC set. The format of the file is as follows:
 
-   <?xml version=1.0 encoding=UTF-8?>
+   <?xml version="1.0" encoding="UTF-8"?>
    <SharedIFCsSets>
      <SharedIFCsSet>
        <SetID>  <set id>  </SetID>
@@ -335,27 +335,34 @@ This file stores the iFCs in each Shared iFC set. The format of the file is as f
      </SharedIFCsSet>
    </SharedIFCsSets>
 
-The set id is an integer, and each Shared iFCs set must have a unique set id.
-The iFC is an iFC, in XML format.
+The `set id` is an integer, and each Shared iFCs set must have a unique `set id`.
+The `iFC` is an iFC, in XML format.
 
-To change the Shared iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_shared_ifcs`.
+There must be exactly one `SharedIFCsSets` element, which can contain multiple `SharedIFCsSet` elements (the minimum number of `SharedIFCsSet` elements is zero).
+Each `SharedIFCsSet` element can contain multiple `InitialFilterCriteria` elements (the minimum number of `InitialFilterCriteria` elements is zero), and must contain exactly one unique `SetID` element.
+
+To change the Shared iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_shared_ifcs_xml`.
+To validate the Shared iFC configuration file before uploading it, run the command `sudo cw-validate_shared_ifcs_xml <file_location>` on the Sprout node the file is present on.
+To remove the Shared iFC configuration, run the command `sudo cw-remove_shared_ifcs_xml` on any Sprout node.
 
 ### Default iFC configuration
 
-If you wish to apply iFCs by default to any subscribers who have no iFCs triggered on a request, these iFCs must be configured onto the S-CSCF, and the configuration option `apply_default_ifcs` set to 'Y'.
+If you wish to apply iFCs by default to any subscribers who have no iFCs triggered on a request, these iFCs must be configured on the S-CSCF, and the configuration option `apply_default_ifcs` set to 'Y'.
 
-You can configure Default iFCs onto the S-CSCF by editing the `/etc/clearwater/default_ifcs.xml` file.
+You can configure Default iFCs on the S-CSCF by editing the `/etc/clearwater/default_ifcs.xml` file.
 
 This file stores a list of Default iFCs. The format of the file is as follows:
 
-   <?xml version=1.0 encoding=UTF-8?>
+   <?xml version="1.0" encoding="UTF-8"?>
    <DefaultIFCsSet>
      <InitialFilterCriteria>
        <iFC>
      </InitialFilterCriteria>
    </DefaultIFCsSet>
 
-The iFC is an iFC, in XML format.
+The `iFC` is an iFC, in XML format.
+There must be exactly one `DefaultIFCsSet` element, which can can contain multiple `InitialFilterCriteria` elements (the minimum number of `InitialFilterCriteria` elements is zero).
 
-To change the Default iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_default_ifcs`.
-
+To change the Default iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_default_ifcs_xml`.
+To validate the Default iFC configuration file before uploading it, run the command `sudo cw-validate_default_ifcs_xml <file_location>` on the Sprout node the file is present on.
+To remove the Default iFC configuration, run the command `sudo cw-remove_default_ifcs_xml` on any Sprout node.
