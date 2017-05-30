@@ -259,6 +259,12 @@ Sprout nodes provide the following statistics:
    The session setup time is measured as the time between receiving the
    originating INVITE and sending the first successful response (e.g.
    180 RINGING or 200 OK).
+-  The number of Shared iFC set IDs retrieved from the HSS where the
+   S-CSCF has no matching set of iFCs, indexed by time period.
+-  The number of initial requests that had no matching iFCs to apply,
+   indexed by time period.
+-  The number of initial requests that attempted to use Default iFCs but
+   had no matching ones, indexed by time period.
 
 Vellum statistics
 ~~~~~~~~~~~~~~~~~
