@@ -107,6 +107,9 @@ Sprout nodes provide the following statistics:
 * The number of additional INVITEs sent due to public identities having multiple registered bindings.
 * The count, average, variance, and high and low watermarks for originating audio session setup time at the S-CSCF, indexed by time period.   For the purposes of these stats a call is considered to be an audio call if video is not specified in the SDP on the initial INVITE.  The session setup time is measured as the time between receiving the originating INVITE and sending the first successful response (e.g. 180 RINGING or 200 OK).
 * The count, average, variance, and high and low watermarks for originating video session setup time at the S-CSCF, indexed by time period.   For the purposes of these stats a call is considered to be a video call if video is specified in the SDP on the initial INVITE.  The session setup time is measured as the time between receiving the originating INVITE and sending the first successful response (e.g. 180 RINGING or 200 OK).
+* The number of Shared iFC set IDs retrieved from the HSS where the S-CSCF has no matching set of iFCs, indexed by time period.
+* The number of initial requests that had no matching iFCs to apply, indexed by time period.
+* The number of initial requests that attempted to use Default iFCs but had no matching ones, indexed by time period.
 
 ### Vellum statistics
 Vellum nodes provide the following statistics:
