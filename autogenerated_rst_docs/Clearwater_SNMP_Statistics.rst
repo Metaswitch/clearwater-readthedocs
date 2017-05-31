@@ -265,6 +265,7 @@ Sprout nodes provide the following statistics:
    indexed by time period.
 -  The number of initial requests that attempted to use Default iFCs but
    had no matching ones, indexed by time period.
+-  The number of requests rejected because an identity was barred.
 
 Vellum statistics
 ~~~~~~~~~~~~~~~~~
