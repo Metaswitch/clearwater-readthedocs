@@ -336,6 +336,7 @@ This file stores the iFCs in each Shared iFC set. The format of the file is as f
     </SharedIFCsSets>
 
 The `set id` is an integer, and each Shared iFCs set must have a unique `set id`.
+
 The `iFC` is an iFC, in XML format.
 
 There must be exactly one `SharedIFCsSets` element, which can contain multiple `SharedIFCsSet` elements (the minimum number of `SharedIFCsSet` elements is zero).
@@ -361,6 +362,7 @@ This file stores a list of Default iFCs. The format of the file is as follows:
     </DefaultIFCsSet>
 
 The `iFC` is an iFC, in XML format.
+
 There must be exactly one `DefaultIFCsSet` element, which can can contain multiple `InitialFilterCriteria` elements (the minimum number of `InitialFilterCriteria` elements is zero).
 
 To change the Default iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_default_ifcs_xml`.
