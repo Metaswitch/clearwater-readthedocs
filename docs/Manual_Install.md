@@ -322,18 +322,18 @@ You can configure Shared iFC sets on the S-CSCF by editing the `/etc/clearwater/
 
 This file stores the iFCs in each Shared iFC set. The format of the file is as follows:
 
-   <?xml version="1.0" encoding="UTF-8"?>
-   <SharedIFCsSets>
-     <SharedIFCsSet>
-       <SetID>  <set id>  </SetID>
-       <InitialFilterCriteria>
-         <iFC>
-       </InitialFilterCriteria>
-       <InitialFilterCriteria>
-         <iFC>
-       </InitialFilterCriteria>
-     </SharedIFCsSet>
-   </SharedIFCsSets>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <SharedIFCsSets>
+      <SharedIFCsSet>
+        <SetID>  <set id>  </SetID>
+        <InitialFilterCriteria>
+          <iFC>
+        </InitialFilterCriteria>
+        <InitialFilterCriteria>
+          <iFC>
+        </InitialFilterCriteria>
+      </SharedIFCsSet>
+    </SharedIFCsSets>
 
 The `set id` is an integer, and each Shared iFCs set must have a unique `set id`.
 The `iFC` is an iFC, in XML format.
