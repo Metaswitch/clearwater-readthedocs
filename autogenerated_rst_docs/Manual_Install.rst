@@ -581,22 +581,29 @@ is as follows:
     </SharedIFCsSets>
 
 The ``set id`` is an integer, and each Shared iFCs set must have a
-unique ``set id``. The ``iFC`` is an iFC, in XML format.
+unique ``set id``.
+
+The ``iFC`` is an iFC, in XML format.
 
 There must be exactly one ``SharedIFCsSets`` element, which can contain
 multiple ``SharedIFCsSet`` elements (the minimum number of
-``SharedIFCsSet`` elements is zero). Each ``SharedIFCsSet`` element can
-contain multiple ``InitialFilterCriteria`` elements (the minimum number
-of ``InitialFilterCriteria`` elements is zero), and must contain exactly
+``SharedIFCsSet`` elements is zero).
+
+Each ``SharedIFCsSet`` element can contain multiple
+``InitialFilterCriteria`` elements (the minimum number of
+``InitialFilterCriteria`` elements is zero), and must contain exactly
 one unique ``SetID`` element.
 
 To change the Shared iFC configuration, edit this file on any Sprout
 node, then upload it to the shared configuration database by running
-``sudo cw-upload_shared_ifcs_xml``. To validate the Shared iFC
-configuration file before uploading it, run the command
-``sudo cw-validate_shared_ifcs_xml <file_location>`` on the Sprout node
-the file is present on. To remove the Shared iFC configuration, run the
-command ``sudo cw-remove_shared_ifcs_xml`` on any Sprout node.
+``sudo cw-upload_shared_ifcs_xml``.
+
+To validate the Shared iFC configuration file before uploading it, run
+the command ``sudo cw-validate_shared_ifcs_xml <file_location>`` on the
+Sprout node the file is present on.
+
+To remove the Shared iFC configuration, run the command
+``sudo cw-remove_shared_ifcs_xml`` on any Sprout node.
 
 Default iFC configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -611,15 +618,28 @@ You can configure Default iFCs on the S-CSCF by editing the
 This file stores a list of Default iFCs. The format of the file is as
 follows:
 
-The ``iFC`` is an iFC, in XML format. There must be exactly one
-``DefaultIFCsSet`` element, which can can contain multiple
-``InitialFilterCriteria`` elements (the minimum number of
-``InitialFilterCriteria`` elements is zero).
+::
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <DefaultIFCsSet>
+      <InitialFilterCriteria>
+        <iFC>
+      </InitialFilterCriteria>
+    </DefaultIFCsSet>
+
+The ``iFC`` is an iFC, in XML format.
+
+There must be exactly one ``DefaultIFCsSet`` element, which can can
+contain multiple ``InitialFilterCriteria`` elements (the minimum number
+of ``InitialFilterCriteria`` elements is zero).
 
 To change the Default iFC configuration, edit this file on any Sprout
 node, then upload it to the shared configuration database by running
-``sudo cw-upload_default_ifcs_xml``. To validate the Default iFC
-configuration file before uploading it, run the command
-``sudo cw-validate_default_ifcs_xml <file_location>`` on the Sprout node
-the file is present on. To remove the Default iFC configuration, run the
-command ``sudo cw-remove_default_ifcs_xml`` on any Sprout node.
+``sudo cw-upload_default_ifcs_xml``.
+
+To validate the Default iFC configuration file before uploading it, run
+the command ``sudo cw-validate_default_ifcs_xml <file_location>`` on the
+Sprout node the file is present on.
+
+To remove the Default iFC configuration, run the command
+``sudo cw-remove_default_ifcs_xml`` on any Sprout node.
