@@ -353,12 +353,12 @@ You can configure Default iFCs on the S-CSCF by editing the `/etc/clearwater/def
 
 This file stores a list of Default iFCs. The format of the file is as follows:
 
-   <?xml version="1.0" encoding="UTF-8"?>
-   <DefaultIFCsSet>
-     <InitialFilterCriteria>
-       <iFC>
-     </InitialFilterCriteria>
-   </DefaultIFCsSet>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <DefaultIFCsSet>
+      <InitialFilterCriteria>
+        <iFC>
+      </InitialFilterCriteria>
+    </DefaultIFCsSet>
 
 The `iFC` is an iFC, in XML format.
 There must be exactly one `DefaultIFCsSet` element, which can can contain multiple `InitialFilterCriteria` elements (the minimum number of `InitialFilterCriteria` elements is zero).
