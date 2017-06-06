@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Fingolfin <http://lotr.wikia.com/wiki/Fingolfin>`__\ ".
+"`Galadriel <http://lotr.wikia.com/wiki/Galadriel>`__\ ".
 
 Architecture
 ------------
