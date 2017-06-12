@@ -604,9 +604,9 @@ e.g. ``icscf=5052``).
    iFC sets from the HSS. This option is enabled by default. Shared iFC
    sets can be configured on Clearwater in the
    ``/etc/clearwater/shared_ifcs.xml`` file.
--  ``apply_default_ifcs`` - when set to 'Y' Clearwater will apply any
-   default iFCs specified by the operator in the
-   ``/etc/clearwater/default_ifcs.xml`` file to initial requests who
+-  ``apply_fallback_ifcs`` - when set to 'Y' Clearwater will apply any
+   fallback iFCs specified by the operator in the
+   ``/etc/clearwater/fallback_ifcs.xml`` file to initial requests who
    have no applicable iFCs associated with them. This option is not
    enabled by default.
 -  ``reject_if_no_matching_ifcs`` - when set to 'Y' Clearwater will

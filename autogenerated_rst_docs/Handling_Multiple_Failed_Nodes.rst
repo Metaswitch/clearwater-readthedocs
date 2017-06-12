@@ -143,11 +143,11 @@ site:
 
 -  Verify that the ``/etc/clearwater/shared_ifcs.xml`` file is correct,
    fixing it up if it's not.
--  verify that the ``/etc/clearwater/default_ifcs.xml`` file is correct,
-   fixing it up if it's not.
+-  Verify that the ``/etc/clearwater/fallback_ifcs.xml`` file is
+   correct, fixing it up if it's not.
 
 Running one of the commands
-``sudo cw-validate_{shared|default}_ifcs_xml`` will check if the
+``sudo cw-validate_{shared|fallback}_ifcs_xml`` will check if the
 specified file is syntactically correct.
 
 Recreate the etcd cluster

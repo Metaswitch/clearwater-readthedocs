@@ -345,7 +345,7 @@ To backup the shared configuration:
        /etc/clearwater/enum.json
        /etc/clearwater/s-cscf.json
        /etc/clearwater/shared_ifcs.xml
-       /etc/clearwater/default_ifcs.xml
+       /etc/clearwater/fallback_ifcs.xml
 
 Restoring Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -361,7 +361,7 @@ commands on that node:
     cw-upload_enum_json
     cw-upload_scscf_json
     cw-upload_shared_ifcs_xml
-    cw-upload_default_ifcs_xml
+    cw-upload_fallback_ifcs_xml
 
 See `Modifying Clearwater settings <Modifying_Clearwater_settings.html>`__
 for more details on this.

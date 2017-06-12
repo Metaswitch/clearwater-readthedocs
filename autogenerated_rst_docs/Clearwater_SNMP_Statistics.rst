@@ -263,8 +263,8 @@ Sprout nodes provide the following statistics:
    S-CSCF has no matching set of iFCs, indexed by time period.
 -  The number of initial requests that had no matching iFCs to apply,
    indexed by time period.
--  The number of initial requests that attempted to use Default iFCs but
-   had no matching ones, indexed by time period.
+-  The number of initial requests that attempted to use fallback iFCs
+   but had no matching ones, indexed by time period.
 -  The number of requests rejected because an identity was barred.
 
 Vellum statistics
