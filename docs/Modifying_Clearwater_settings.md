@@ -37,12 +37,12 @@ To change one of these files:
 Some of the more complex sprout-specific configuration is stored in XML files.
 
 * `/etc/clearwater/shared_ifcs.xml` - contains information about all Shared iFC sets for the Sprout S-CSCF to use.
-* `/etc/clearwater/default_ifcs.xml` - contains information about all the Default iFCs for the Sprout S-CSCF to apply.
+* `/etc/clearwater/fallback_ifcs.xml` - contains information about all the fallback iFCs for the Sprout S-CSCF to apply.
 
 To change one of these files:
 
 * Edit the file on *one* of your sprout nodes in each site.
-* Run one of `sudo cw-upload_{shared|default}_ifcs_xml` depending on which file you modified.
+* Run one of `sudo cw-upload_{shared|fallback}_ifcs_xml` depending on which file you modified.
 * The change will be automatically propogated around the site (by Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and will start being used.
 
 ## Modifying DNS Config
