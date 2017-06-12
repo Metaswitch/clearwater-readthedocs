@@ -349,27 +349,27 @@ To validate the Shared iFC configuration file before uploading it, run the comma
 
 To remove the Shared iFC configuration, run the command `sudo cw-remove_shared_ifcs_xml` on any Sprout node.
 
-### Default iFC configuration
+### Fallback iFC configuration
 
-If you wish to apply iFCs by default to any subscribers who have no iFCs triggered on a request, these iFCs must be configured on the S-CSCF, and the configuration option `apply_default_ifcs` set to 'Y'.
+If you wish to apply iFCs to any subscribers who have no iFCs triggered on a request (e.g. as a fallback to catch misconfigured subscribers), these iFCs must be configured on the S-CSCF, and the configuration option `apply_fallback_ifcs` set to 'Y'.
 
-You can configure Default iFCs on the S-CSCF by editing the `/etc/clearwater/default_ifcs.xml` file.
+You can configure fallback iFCs on the S-CSCF by editing the `/etc/clearwater/fallback_ifcs.xml` file.
 
-This file stores a list of Default iFCs. The format of the file is as follows:
+This file stores a list of fallback iFCs. The format of the file is as follows:
 
     <?xml version="1.0" encoding="UTF-8"?>
-    <DefaultIFCsSet>
+    <FallbackIFCsSet>
       <InitialFilterCriteria>
         <iFC>
       </InitialFilterCriteria>
-    </DefaultIFCsSet>
+    </FallbackIFCsSet>
 
 The `iFC` is an iFC, in XML format.
 
-There must be exactly one `DefaultIFCsSet` element, which can can contain multiple `InitialFilterCriteria` elements (the minimum number of `InitialFilterCriteria` elements is zero).
+There must be exactly one `FallbackIFCsSet` element, which can can contain multiple `InitialFilterCriteria` elements (the minimum number of `InitialFilterCriteria` elements is zero).
 
-To change the Default iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_default_ifcs_xml`.
+To change the fallback iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_fallback_ifcs_xml`.
 
-To validate the Default iFC configuration file before uploading it, run the command `sudo cw-validate_default_ifcs_xml <file_location>` on the Sprout node the file is present on.
+To validate the fallback iFC configuration file before uploading it, run the command `sudo cw-validate_fallback_ifcs_xml <file_location>` on the Sprout node the file is present on.
 
-To remove the Default iFC configuration, run the command `sudo cw-remove_default_ifcs_xml` on any Sprout node.
+To remove the fallback iFC configuration, run the command `sudo cw-remove_fallback_ifcs_xml` on any Sprout node.
