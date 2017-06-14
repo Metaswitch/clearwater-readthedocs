@@ -616,6 +616,9 @@ e.g. ``icscf=5052``).
    application server to be specified. If an iFC contains this dummy
    application server, then no application server will be invoked when
    this iFC is triggered.
+-  ``http_acr_logging`` when set to 'Y', Clearwater will log the bodies
+   of HTTP requests made to Ralf. This provides additional diagnostics,
+   but increases the volume of data sent to SAS.
 
 Experimental options
 ~~~~~~~~~~~~~~~~~~~~
