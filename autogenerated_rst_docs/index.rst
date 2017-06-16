@@ -10,8 +10,8 @@ website <http://www.projectclearwater.org/>`__.
 Latest Release
 --------------
 
-The latest stable release of Clearwater is
-"`Galadriel <http://lotr.wikia.com/wiki/Galadriel>`__\ ".
+The latest stable release of Clearwater is "`Helm
+Hammerhand <http://lotr.wikia.com/wiki/Helm>`__\ ".
 
 Architecture
 ------------
