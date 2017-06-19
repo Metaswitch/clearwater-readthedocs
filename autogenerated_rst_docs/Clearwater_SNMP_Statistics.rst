@@ -27,9 +27,13 @@ Usage
 -----
 
 Clearwater nodes provide SNMP statistics over port 161 using SNMP v2c
-and community ``clearwater``. The MIB definition file can be downloaded
-from
-`here <https://github.com/Metaswitch/clearwater-snmp-handlers/blob/master/PROJECT-CLEARWATER-MIB>`__.
+and community ``clearwater``. The MIB definition file is included in the
+clearwater-snmp-alarm-agent package, copied to
+``/usr/share/clearwater/mibs/PROJECT-CLEARWATER-MIB`` on installation.
+Alternatively, the MIB can be built from a checkout of the
+`clearwater-snmp-handlers
+repository <https://github.com/Metaswitch/clearwater-snmp-handlers/>`__
+- see the repo readme for details.
 
 Our SNMP statistics are provided through plugins or subagents to the
 standard SNMPd packaged with Ubuntu, so querying port 161 (the standard
