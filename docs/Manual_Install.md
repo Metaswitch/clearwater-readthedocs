@@ -349,6 +349,8 @@ To validate the Shared iFC configuration file before uploading it, run the comma
 
 To remove the Shared iFC configuration, run the command `sudo cw-remove_shared_ifcs_xml` on any Sprout node.
 
+To view the Shared iFCs being used on any Sprout node, run the command `sudo cw-display_shared_ifcs` on that Sprout node.
+
 ### Fallback iFC configuration
 
 If you wish to apply iFCs to any subscribers who have no iFCs triggered on a request (e.g. as a fallback to catch misconfigured subscribers), these iFCs must be configured on the S-CSCF, and the configuration option `apply_fallback_ifcs` set to 'Y'.
@@ -373,3 +375,5 @@ To change the fallback iFC configuration, edit this file on any Sprout node, the
 To validate the fallback iFC configuration file before uploading it, run the command `sudo cw-validate_fallback_ifcs_xml <file_location>` on the Sprout node the file is present on.
 
 To remove the fallback iFC configuration, run the command `sudo cw-remove_fallback_ifcs_xml` on any Sprout node.
+
+To view the Fallback iFCs being used on any Sprout node, run the command `sudo cw-display_fallback_ifcs` on that Sprout node.
