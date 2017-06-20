@@ -605,6 +605,9 @@ Sprout node the file is present on.
 To remove the Shared iFC configuration, run the command
 ``sudo cw-remove_shared_ifcs_xml`` on any Sprout node.
 
+To view the Shared iFCs being used on any Sprout node, run the command
+``sudo cw-display_shared_ifcs`` on that Sprout node.
+
 Fallback iFC configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -644,3 +647,6 @@ the Sprout node the file is present on.
 
 To remove the fallback iFC configuration, run the command
 ``sudo cw-remove_fallback_ifcs_xml`` on any Sprout node.
+
+To view the Fallback iFCs being used on any Sprout node, run the command
+``sudo cw-display_fallback_ifcs`` on that Sprout node.
