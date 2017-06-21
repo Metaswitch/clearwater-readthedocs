@@ -263,7 +263,7 @@ To restore a previous backup, copy the six files listed above to `/etc/clearwate
     cw-upload_bgcf_json
     cw-upload_enum_json
     cw-upload_scscf_json
-    cw-upload_shared_ifcs_xml
-    cw-upload_fallback_ifcs_xml
+    sudo cw-upload_shared_ifcs_xml
+    sudo cw-upload_fallback_ifcs_xml
 
 See [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this.
