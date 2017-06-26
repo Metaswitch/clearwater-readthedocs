@@ -11,8 +11,8 @@ Settings in `/etc/clearwater/shared_config` can be safely changed without entire
 To change one of these settings:
 
 *   Edit `/etc/clearwater/shared_config` on *one* node in each site and change to the new value.
-*   Run `cw-upload_shared_config` to upload the new config to etcd. The changes to the shared configuration are logged to `/var/log/syslog` and to the console. Each node in the site picks up the changed shared configuration (using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and safely restarts itself to use it.
-*   You can check which nodes are using the new shared config by running `cw-check_restart_queue_state`. If this command shows that there's been an error (i.e. a node wasn't able to restart after picking up the new config), simply fix the `/etc/clearwater/shared_config` and run the `cw-upload_shared_config` script again.
+*   Run `sudo cw-upload_shared_config` to upload the new config to etcd. The changes to the shared configuration are logged to `/var/log/syslog` and to the console. Each node in the site picks up the changed shared configuration (using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and safely restarts itself to use it.
+*   You can check which nodes are using the new shared config by running `cw-check_restart_queue_state`. If this command shows that there's been an error (i.e. a node wasn't able to restart after picking up the new config), simply fix the `/etc/clearwater/shared_config` and run the `sudo cw-upload_shared_config` script again.
 
 ## Modifying Sprout JSON Configuration
 

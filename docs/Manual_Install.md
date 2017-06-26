@@ -197,7 +197,7 @@ If you are creating a [geographically redundant deployment](Geographic_redundanc
 
 Now run the following to upload the configuration to a shared database and propagate it around the cluster (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this).
 
-    cw-upload_shared_config
+    sudo cw-upload_shared_config
 
 ## Provision Telephone Numbers in Ellis
 
@@ -312,7 +312,7 @@ As an example, say you have one S-CSCF that supports billing, and one that doesn
 
 Then when you configure a subscriber in the HSS, you can set up what capabilities they require in an S-CSCF. These will also be integers, and you should make sure this matches with how you've set up the s-cscf.json file. In this example, if you wanted your subscriber to be billed, you would configure the user data in the HSS to make it mandatory for your subscriber to have an S-CSCF that supports capability 1.
 
-To change the I-CSCF configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_scscf_json`.
+To change the I-CSCF configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `cw-upload_scscf_json`.
 
 ### Shared iFC configuration
 

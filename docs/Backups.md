@@ -259,7 +259,7 @@ To backup the shared configuration:
 
 To restore a previous backup, copy the six files listed above to `/etc/clearwater` on one of your sprout nodes. Then run the following commands on that node:
 
-    cw-upload_shared_config
+    sudo cw-upload_shared_config
     cw-upload_bgcf_json
     cw-upload_enum_json
     cw-upload_scscf_json
