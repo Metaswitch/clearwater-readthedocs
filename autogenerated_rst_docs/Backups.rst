@@ -356,12 +356,12 @@ commands on that node:
 
 ::
 
-    cw-upload_shared_config
-    cw-upload_bgcf_json
-    cw-upload_enum_json
-    cw-upload_scscf_json
-    cw-upload_shared_ifcs_xml
-    cw-upload_fallback_ifcs_xml
+    sudo cw-upload_shared_config
+    sudo cw-upload_bgcf_json
+    sudo cw-upload_enum_json
+    sudo cw-upload_scscf_json
+    sudo cw-upload_shared_ifcs_xml
+    sudo cw-upload_fallback_ifcs_xml
 
 See `Modifying Clearwater settings <Modifying_Clearwater_settings.html>`__
 for more details on this.

@@ -344,7 +344,7 @@ this).
 
 ::
 
-    cw-upload_shared_config
+    sudo cw-upload_shared_config
 
 Provision Telephone Numbers in Ellis
 ------------------------------------
@@ -599,14 +599,14 @@ node, then upload it to the shared configuration database by running
 ``sudo cw-upload_shared_ifcs_xml``.
 
 To validate the Shared iFC configuration file before uploading it, run
-the command ``sudo cw-validate_shared_ifcs_xml <file_location>`` on the
+the command ``cw-validate_shared_ifcs_xml <file_location>`` on the
 Sprout node the file is present on.
 
 To remove the Shared iFC configuration, run the command
 ``sudo cw-remove_shared_ifcs_xml`` on any Sprout node.
 
 To view the Shared iFCs being used on any Sprout node, run the command
-``sudo cw-display_shared_ifcs`` on that Sprout node.
+``cw-display_shared_ifcs`` on that Sprout node.
 
 Fallback iFC configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -642,11 +642,11 @@ node, then upload it to the shared configuration database by running
 ``sudo cw-upload_fallback_ifcs_xml``.
 
 To validate the fallback iFC configuration file before uploading it, run
-the command ``sudo cw-validate_fallback_ifcs_xml <file_location>`` on
-the Sprout node the file is present on.
+the command ``cw-validate_fallback_ifcs_xml <file_location>`` on the
+Sprout node the file is present on.
 
 To remove the fallback iFC configuration, run the command
 ``sudo cw-remove_fallback_ifcs_xml`` on any Sprout node.
 
 To view the Fallback iFCs being used on any Sprout node, run the command
-``sudo cw-display_fallback_ifcs`` on that Sprout node.
+``cw-display_fallback_ifcs`` on that Sprout node.
