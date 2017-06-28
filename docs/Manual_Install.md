@@ -197,7 +197,7 @@ If you are creating a [geographically redundant deployment](Geographic_redundanc
 
 Now run the following to upload the configuration to a shared database and propagate it around the cluster (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this).
 
-    cw-upload_shared_config
+    sudo cw-upload_shared_config
 
 ## Provision Telephone Numbers in Ellis
 
@@ -345,11 +345,11 @@ Each `SharedIFCsSet` element can contain multiple `InitialFilterCriteria` elemen
 
 To change the Shared iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_shared_ifcs_xml`.
 
-To validate the Shared iFC configuration file before uploading it, run the command `sudo cw-validate_shared_ifcs_xml <file_location>` on the Sprout node the file is present on.
+To validate the Shared iFC configuration file before uploading it, run the command `cw-validate_shared_ifcs_xml <file_location>` on the Sprout node the file is present on.
 
 To remove the Shared iFC configuration, run the command `sudo cw-remove_shared_ifcs_xml` on any Sprout node.
 
-To view the Shared iFCs being used on any Sprout node, run the command `sudo cw-display_shared_ifcs` on that Sprout node.
+To view the Shared iFCs being used on any Sprout node, run the command `cw-display_shared_ifcs` on that Sprout node.
 
 ### Fallback iFC configuration
 
@@ -372,8 +372,8 @@ There must be exactly one `FallbackIFCsSet` element, which can can contain multi
 
 To change the fallback iFC configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_fallback_ifcs_xml`.
 
-To validate the fallback iFC configuration file before uploading it, run the command `sudo cw-validate_fallback_ifcs_xml <file_location>` on the Sprout node the file is present on.
+To validate the fallback iFC configuration file before uploading it, run the command `cw-validate_fallback_ifcs_xml <file_location>` on the Sprout node the file is present on.
 
 To remove the fallback iFC configuration, run the command `sudo cw-remove_fallback_ifcs_xml` on any Sprout node.
 
-To view the Fallback iFCs being used on any Sprout node, run the command `sudo cw-display_fallback_ifcs` on that Sprout node.
+To view the Fallback iFCs being used on any Sprout node, run the command `cw-display_fallback_ifcs` on that Sprout node.
