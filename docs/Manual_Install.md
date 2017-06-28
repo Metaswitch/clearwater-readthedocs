@@ -312,7 +312,7 @@ As an example, say you have one S-CSCF that supports billing, and one that doesn
 
 Then when you configure a subscriber in the HSS, you can set up what capabilities they require in an S-CSCF. These will also be integers, and you should make sure this matches with how you've set up the s-cscf.json file. In this example, if you wanted your subscriber to be billed, you would configure the user data in the HSS to make it mandatory for your subscriber to have an S-CSCF that supports capability 1.
 
-To change the I-CSCF configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `cw-upload_scscf_json`.
+To change the I-CSCF configuration, edit this file on any Sprout node, then upload it to the shared configuration database by running `sudo cw-upload_scscf_json`.
 
 ### Shared iFC configuration
 
