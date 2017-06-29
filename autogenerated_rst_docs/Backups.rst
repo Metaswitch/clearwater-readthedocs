@@ -311,10 +311,10 @@ This will:
    stored in Ellis. If successful, it will verify that a digest exists
    in Vellum for that private identity. If either of these checks fail,
    the line is considered lost and is removed from Ellis. If both checks
-   pass, it will check that there is a valid IFC - if this is missing,
-   it will be replaced with the default IFC.
+   pass, it will check that there is a valid iFC - if this is missing,
+   it will be replaced with the default iFC.
 -  Run through all the lines on Ellis without an owner and make sure
-   there is no orphaned data in Vellum, i.e. deleting the simservs, IFC
+   there is no orphaned data in Vellum, i.e. deleting the simservs, iFC
    and digest for those lines.
 
 Shared Configuration
