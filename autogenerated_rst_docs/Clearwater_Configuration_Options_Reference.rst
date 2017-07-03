@@ -601,9 +601,9 @@ e.g. ``icscf=5052``).
    provided, Sprout uses the same value configured in
    ``sprout_registration_store``.
 -  ``request_shared_ifcs`` - when set to 'Y' Clearwater requests Shared
-   iFC sets from the HSS. This option is enabled by default. Shared iFC
-   sets can be configured on Clearwater in the
-   ``/etc/clearwater/shared_ifcs.xml`` file.
+   iFC sets from the HSS. Shared iFC sets can be configured on
+   Clearwater in the ``/etc/clearwater/shared_ifcs.xml`` file. This
+   option is not enabled by default.
 -  ``apply_fallback_ifcs`` - when set to 'Y' Clearwater will apply any
    fallback iFCs specified by the operator in the
    ``/etc/clearwater/fallback_ifcs.xml`` file to initial requests who
