@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Helm Hammerhand](http://lotr.wikia.com/wiki/Helm)".
+The latest stable release of Clearwater is "[Ilúvatar](http://lotr.wikia.com/wiki/Eru_Ilúvatar)".
 
 ## Architecture
 
