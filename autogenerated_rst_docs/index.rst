@@ -10,8 +10,8 @@ website <http://www.projectclearwater.org/>`__.
 Latest Release
 --------------
 
-The latest stable release of Clearwater is "`Helm
-Hammerhand <http://lotr.wikia.com/wiki/Helm>`__\ ".
+The latest stable release of Clearwater is
+"`Ilúvatar <http://lotr.wikia.com/wiki/Eru_Ilúvatar>`__\ ".
 
 Architecture
 ------------
