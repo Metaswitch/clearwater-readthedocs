@@ -619,6 +619,8 @@ e.g. ``icscf=5052``).
 -  ``http_acr_logging`` when set to 'Y', Clearwater will log the bodies
    of HTTP requests made to Ralf. This provides additional diagnostics,
    but increases the volume of data sent to SAS.
+-  ``dns_timeout`` - The time in milliseconds that Clearwater will wait
+   for a response from the DNS server (defaults to 200 milliseconds).
 
 Experimental options
 ~~~~~~~~~~~~~~~~~~~~
