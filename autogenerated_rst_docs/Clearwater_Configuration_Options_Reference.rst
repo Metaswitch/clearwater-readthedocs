@@ -416,10 +416,17 @@ e.g. ``icscf=5052``).
    domains which Sprout and Bono will regard as locally hosted (i.e.
    allowing users to register, not routing calls via an external trunk).
    It is a comma-separated list.
--  ``billing_realm`` - this sets the Destination-Realm on Diameter
-   messages to your external CDR. CDR connections are not based on this
-   but on configuration at the P-CSCF (which sets the
-   P-Charging-Function-Addresses header).
+-  ``billing_realm`` - when this field is set, the ralf process on Dime
+   will attempt to set up multiple Diameter connections using an SRV
+   lookup on this realm. Messages sent on these connections will have:
+
+   -  Destination-Realm set to the ``billing_realm`` value
+   -  Destination-Host set to the value of the ``ccf`` parameter in the
+      P-Charging-Function-Addresses SIP header received from the P-CSCF,
+      or from the
+      Primary-Charging-Collection-Function-Name/Secondary-Charging-Collection-Function-Name
+      AVPs received over the Cx interface from the HSS.
+
 -  ``diameter_timeout_ms`` - determines the number of milliseconds
    homestead will wait for a response from the HSS before failing a
    request. Defaults to 200.
