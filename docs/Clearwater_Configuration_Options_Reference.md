@@ -151,7 +151,9 @@ This section describes optional configuration options, particularly for ensuring
 * `enum_file` - if set (to a file path), and if `enum_server` is not set, Sprout will use this local JSON file for ENUM lookups rather than a DNS server. An example file is [on our ENUM page](ENUM.md#deciding-on-enum-rules).
 * `external_icscf_uri` - the SIP address of the external I-CSCF integrated with your Sprout node (if you have one).
 * `additional_home_domains` - this option defines a set of home domains which Sprout and Bono will regard as locally hosted (i.e. allowing users to register, not routing calls via an external trunk). It is a comma-separated list.
-* `billing_realm` - this sets the Destination-Realm on Diameter messages to your external CDR. CDR connections are not based on this but on configuration at the P-CSCF (which sets the P-Charging-Function-Addresses header).
+* `billing_realm` - when this field is set, the ralf process on Dime will attempt to set up multiple Diameter connections using an SRV lookup on this realm.  Messages sent on these connections will have:
+    * Destination-Realm set to the `billing_realm` value
+    * Destination-Host set to the value of the `ccf` parameter in the P-Charging-Function-Addresses SIP header received from the P-CSCF, or from the Primary-Charging-Collection-Function-Name/Secondary-Charging-Collection-Function-Name AVPs received over the Cx interface from the HSS.
 * `diameter_timeout_ms` - determines the number of milliseconds homestead will wait for a response from the HSS before failing a request. Defaults to 200.
 * `max_peers` - determines the maximum number of Diameter peers to which the ralf or homestead processes on Dime can have open connections at the same time.
 * `num_http_threads` (ralf/memento) - determines the number of threads that will be used to process HTTP requests. For memento this defaults to the number of CPU cores on the system. For ralf it defaults to 50 times the number of CPU cores (memento and ralf use different threading models, hence the different defaults). Note that for homestead, this can only be set in /etc/clearwater/user_settings.
