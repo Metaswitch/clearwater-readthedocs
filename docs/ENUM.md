@@ -100,7 +100,7 @@ from an example deployment might form a reasonable basis:
             },
             {   "name" : "Clearwater internal numbers dialled with +1 prefix",
                 "prefix" : "+1650555",
-                "regex" : "!+1(^.*$)!sip:\\1@ngv.example.com!"
+                "regex" : "!^+1(.*$)!sip:\\1@ngv.example.com!"
             },
             {   "name" : "NANP => SIP trunk",
                 "prefix" : "",
@@ -231,7 +231,7 @@ translate to the following entries in /etc/bind/e164.arpa.db.
     ; Note that we can't define a domain name containing + so we must define a
     ; domain without it and then match a telephone number starting with a + (if
     ; present) or (if not) use the default route via the SIP trunk.
-    *.5.5.5.0.5.6.1 IN NAPTR 1 1 "u" "E2U+sip" "!\+1(^.*$)!sip:\\1@ngv.example.com!" .
+    *.5.5.5.0.5.6.1 IN NAPTR 1 1 "u" "E2U+sip" "!^\+1(.*$)!sip:\\1@ngv.example.com!" .
     *.5.5.5.0.5.6.1 IN NAPTR 2 1 "u" "E2U+sip" "!(^.*$)!sip:\\1@10.147.226.2!" .
 
     ; NANP => SIP trunk.
@@ -369,7 +369,7 @@ translate to the following entries in /etc/dnsmasq.d/enum.
     # Note that we can't define a domain name containing + so we must define a
     # domain without it and then match a telephone number starting with a + (if
     # present) or (if not) use the default route via the SIP trunk.
-    naptr-record=5.5.5.0.5.6.1.e164.arpa,1,1,U,E2U+SIP,!\+1(^.*$)!sip:\1@ngv.example.com!
+    naptr-record=5.5.5.0.5.6.1.e164.arpa,1,1,U,E2U+SIP,!^\+1(.*$)!sip:\1@ngv.example.com!
     naptr-record=5.5.5.0.5.6.1.e164.arpa,2,1,U,E2U+SIP,!(^.*$)!sip:\1@10.147.226.2!
 
     # NANP => SIP trunk
