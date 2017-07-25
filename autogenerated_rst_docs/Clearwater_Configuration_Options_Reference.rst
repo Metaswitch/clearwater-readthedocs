@@ -97,6 +97,12 @@ settings, you should destroy and recreate then node instead.
    the node (e.g. a Vellum node defaults to using 'vellum' as its etcd
    datastore cluster name when it joins the Cassandra cluster). This
    must be set explicitly on nodes that colocate function.
+-  ``remote_cassandra_seeds`` - this is used to connect the Cassandra
+   cluster in your second site to the Cassandra cluster in your first
+   site; this is only necessary in a geographically redundant
+   deployment. It should be set to an IP address of a Vellum node in
+   your first site, and it should only be set on the first Vellum node
+   in your second site.
 -  ``scscf_node_uri`` - this can be optionally set, and only applies to
    nodes running an S-CSCF. If it is configured, it almost certainly
    needs configuring on each S-CSCF node in the deployment.
