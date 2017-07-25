@@ -39,6 +39,7 @@ This section describes settings that are specific to a single node and are not a
     * If this node is an etcd master, this should be left blank
     * If this node is an etcd proxy, it should contain the IP addresses of all the nodes that are currently etcd masters in the cluster.
 * `etcd_cluster_key` - this is the name of the etcd datastore clusters that this node should join. It defaults to the function of the node (e.g. a Vellum node defaults to using 'vellum' as its etcd datastore cluster name when it joins the Cassandra cluster). This must be set explicitly on nodes that colocate function.
+* `remote_cassandra_seeds` - this is used to connect the Cassandra cluster in your second site to the Cassandra cluster in your first site; this is only necessary in a geographically redundant deployment. It should be set to an IP address of a Vellum node in your first site, and it should only be set on the first Vellum node in your second site.
 * `scscf_node_uri` - this can be optionally set, and only applies to nodes running an S-CSCF. If it is configured, it almost certainly needs configuring on each S-CSCF node in the deployment.
 
     If set, this is used by the node to advertise the URI to which requests to this node should be routed. It should be formatted as a SIP URI.
