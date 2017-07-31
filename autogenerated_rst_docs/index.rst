@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Ilúvatar <http://lotr.wikia.com/wiki/Eru_Ilúvatar>`__\ ".
+"`Kíli <http://lotr.wikia.com/wiki/Fíli_and_Kíli>`__\ ".
 
 Architecture
 ------------
