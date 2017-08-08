@@ -165,7 +165,7 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    exposed on this interface, see
    https://github.com/Metaswitch/homestead/blob/dev/docs/ManagementHttpAPI.md.
 -  ``hs_provisioning_hostname`` - a hostname that resolves by DNS
-   round-robin to the signaling interface of all Dime nodes in the
+   round-robin to the management interface of all Dime nodes in the
    cluster. Should include the HTTP provisioning port (usually 8889).
    Not needed when using an external HSS.
 -  ``ralf_hostname`` - a hostname that resolves by DNS round-robin to
