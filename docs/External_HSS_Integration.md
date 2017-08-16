@@ -15,7 +15,7 @@ This page describes
 
 When Clearwater is deployed without an external HSS, all HSS data is mastered in Vellum's Cassandra database.
 
-When Clearwater is deployed with an external HSS, HSS data is queried from the external HSS via its Cx/Diameter interface and is then cached in the Cassandra database.
+When Clearwater is deployed with an external HSS, HSS data is queried from the external HSS via its Cx/Diameter interface and is then cached in Memcached on Vellum.
 
 Clearwater uses the following Cx message types.
 

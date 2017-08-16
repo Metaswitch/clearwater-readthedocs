@@ -28,7 +28,7 @@ To examine Ellis' database, run `mysql` (as root), then type `use ellis;` to set
 
 Problems on Vellum may include:
 
-* Failing to read or write to the Cassandra database:
+* Failing to read or write to the Cassandra database (only relevant if you deployment is using Homestead-Prov, Homer or Memento):
     * Check that Cassandra is running (`sudo monit status`). If not, check its `/var/log/cassandra/*.log` files.
     * Check that Cassandra is configured correctly. First access the command-line CQL interface by running `cqlsh`. There are 3 databases:
         * Type `use homestead_provisioning;` to set the provisioning database and then `describe tables;` - this should report `service_profiles`, `public`, `implicit_registration_sets` and `private`.

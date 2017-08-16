@@ -26,7 +26,8 @@ Adding a site to a non-GR deployment follows the same basic process as described
 2. Now you need to update the shared configuration on your first site so that it will communicate with your second site
     * Update the shared configuration on your first site to use the GR options - follow the GR parts of setting up shared config [here](http://clearwater.readthedocs.io/en/latest/Manual_Install.html#provide-shared-configuration).
     * Update the Chronos configuration on your Vellum nodes on your first site to add the GR configuration file - instructions [here](http://clearwater.readthedocs.io/en/latest/Manual_Install.html#chronos-configuration).
-    * Update Cassandra's strategy by running `cw-update_cassandra_strategy` on any Vellum node in your entire deployment.
+    * If you are using any of Homestead-Prov, Homer or Memento:
+        * Update Cassandra's strategy by running `cw-update_cassandra_strategy` on any Vellum node in your entire deployment.
     * At this point, your first and second sites are replicating data between themselves, but no external traffic is going to your second site.
 3. Change DNS so that your external nodes (e.g. the HSS, the P-CSCF) will send traffic to your new site. Now you have a GR deployment.
 
