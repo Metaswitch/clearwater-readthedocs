@@ -213,6 +213,7 @@ This section describes optional configuration options, particularly for ensuring
 * `dummy_app_server` - this field allows the name of a dummy application server to be specified. If an iFC contains this dummy application server, then no application server will be invoked when this iFC is triggered.
 * `http_acr_logging` when set to 'Y', Clearwater will log the bodies of HTTP requests made to Ralf.  This provides additional diagnostics, but increases the volume of data sent to SAS.
 * `dns_timeout` - The time in milliseconds that Clearwater will wait for a response from the DNS server (defaults to 200 milliseconds).
+* `homestead_cache_threads` - The number of threads used by Homestead for accessing it's subscriber data cache. Defaults to 50x the number of CPU cores.
 
 ### Experimental options
 
