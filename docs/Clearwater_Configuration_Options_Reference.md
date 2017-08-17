@@ -241,7 +241,7 @@ This section describes settings that may vary between systems in the same deploy
 * `ibcf_domain` - For Bono IBCF nodes, allows for a domain alias to be specified for the IBCF to allow for including IBCFs in routes as domains instead of IPs.
 * `upstream_recycle_connections` - the average number of seconds before Bono will destroy and re-create a connection to Sprout. A higher value means slightly less work, but means that DNS changes will not take effect as quickly (as new Sprout nodes added to DNS will only start to receive messages when Bono creates a new connection and does a fresh DNS lookup).
 * `authentication` - by default, Clearwater performs authentication challenges (SIP Digest or IMS AKA depending on HSS configuration). When this is set to 'Y', it simply accepts all REGISTERs - obviously this is very insecure and should not be used in production.
-* `num_http_threads` (homestead) - determines the number of HTTP worker threads that will be used to process requests. Defaults to 50 times the number of CPU cores on the system.
+* `num_http_threads` (homestead) - determines the number of HTTP worker threads that will be used to process requests. Defaults to 4 times the number of CPU cores on the system.
 
 ## DNS Config
 
