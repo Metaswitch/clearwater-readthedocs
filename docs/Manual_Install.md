@@ -78,7 +78,8 @@ If you are creating a [geographically redundant deployment](Geographic_redundanc
 
 * `etcd_cluster` should contain the IP addresses of nodes only in the local site
 *  You should set `local_site_name` in `/etc/clearwater/local_config`. The name you choose is arbitrary, but must be the same for every node in the site. This name will also be used in the `remote_site_names`, `sprout_registration_store`, `homestead_impu_store` and `ralf_session_store` configuration options set in shared config (desscribed below).
-*  On the first Vellum node in the second site, you should set `remote_cassandra_seeds` to the IP address of a Vellum node in the first site.
+*  If your deployment uses Homestead-Prov, Homer or Memento:
+    * on the first Vellum node in the second site, you should set `remote_cassandra_seeds` to the IP address of a Vellum node in the first site.
 
 ## Install Node-Specific Software
 
