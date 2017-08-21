@@ -35,7 +35,7 @@ Dime nodes run Clearwater's Homestead and Ralf components.
 
 #### Homestead (HSS Cache)
 
-Homestead provides a web services interface to Sprout for retrieving authentication credentials and user profile information.  It can either master the data (in which case it exposes a web services provisioning interface) or can pull the data from an IMS compliant HSS over the Cx interface.  The Homestead nodes themselves are stateless - the mastered / cached subscriber data is all stored on Vellum (Cassandra for the mastered data, and Memcached for the cached data).
+Homestead provides a web services interface to Sprout for retrieving authentication credentials and user profile information.  It can either master the data (in which case it exposes a web services provisioning interface) or can pull the data from an IMS compliant HSS over the Cx interface.  The Homestead nodes themselves are stateless - the mastered / cached subscriber data is all stored on Vellum (Cassandra for the mastered data, and Astaire/Memcached for the cached data).
 
 In the IMS architecture, the HSS mirror function is considered to be part of the I-CSCF and S-CSCF components, so in Clearwater I-CSCF and S-CSCF function is implemented with a combination of Sprout and Dime clusters.
 

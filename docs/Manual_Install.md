@@ -192,9 +192,9 @@ See the [Chef instructions](Installing_a_Chef_workstation.md#add-deployment-spec
 If you are creating a [geographically redundant deployment](Geographic_redundancy.md), some of the options require information about all sites to be specified. You need to set the `remote_site_names` configuration option to include the `local_site_name` of each site, replace the `sprout_registration_store`, `homestead_impu_store` and `ralf_session_store` with the values as described in [Clearwater Configuration Options Reference](Clearwater_Configuration_Options_Reference.md), and set the `sprout_chronos_callback_uri` and `ralf_chronos_callback_uri` to deployment wide hostnames. For example, for sites named `siteA` and `siteB`:
 
     remote_site_names=siteA,siteB
-    sprout_registration_store="siteA=sprout-siteA.<zone>,siteB=sprout-siteB.<zone>"
-    homestead_impu_store="siteA=sprout-siteA.<zone>,siteB=sprout-siteB.<zone>"
-    ralf_session_store="siteA=ralf-siteA.<zone>,siteB=ralf-siteB.<zone>"
+    sprout_registration_store="siteA=vellum-siteA.<zone>,siteB=vellum-siteB.<zone>"
+    homestead_impu_store="siteA=vellum-siteA.<zone>,siteB=vellum-siteB.<zone>"
+    ralf_session_store="siteA=vellum-siteA.<zone>,siteB=vellum-siteB.<zone>"
     sprout_chronos_callback_uri=sprout.<zone>
     ralf_chronos_callback_uri=ralf.<zone>
 
