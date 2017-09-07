@@ -27,9 +27,9 @@ Vellum.
 
 Vellum has 3 databases, which support Geographic Redundancy differently:
 
--  The Homestead, Homer and Memento databases are backed by Cassandra,
-   which is aware of local and remote peers, so these are a single
-   cluster split across the two geographic regions.
+-  The Homestead-Prov, Homer and Memento databases are backed by
+   Cassandra, which is aware of local and remote peers, so these are a
+   single cluster split across the two geographic regions.
 -  Chronos is aware of local peers and the remote cluster, and handles
    replicating timers across the two sites itself.
 -  There is one memcached cluster per geographic region. Although
@@ -42,9 +42,10 @@ Vellum has 3 databases, which support Geographic Redundancy differently:
 Sprout nodes use the local Vellum cluster for Chronos and both local and
 remote Vellum clusters for memcached (via Astaire). If the Sprout node
 includes Memento, then it also uses the local Vellum cluster for
-Cassandra. Dime nodes use the local Vellum cluster for Chronos and
-Cassandra, and both local and remote Vellum clusters for memcached (via
-Astaire).
+Cassandra. Dime nodes use the local Vellum cluster for Chronos and both
+local and remote Vellum clusters for memcached (via Astaire). If
+Homestead-Prov is in use, then it also uses the local Vellum cluster for
+Cassandra.
 
 Communications between nodes in different sites should be secure - for
 example, if it is going over the public internet rather than a private

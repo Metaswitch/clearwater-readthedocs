@@ -99,10 +99,11 @@ settings, you should destroy and recreate then node instead.
    must be set explicitly on nodes that colocate function.
 -  ``remote_cassandra_seeds`` - this is used to connect the Cassandra
    cluster in your second site to the Cassandra cluster in your first
-   site; this is only necessary in a geographically redundant
-   deployment. It should be set to an IP address of a Vellum node in
-   your first site, and it should only be set on the first Vellum node
-   in your second site.
+   site; this is only necessary in a geographically redundant deployment
+   which is using at least one of Homestead-Prov, Homer or Memento. It
+   should be set to an IP address of a Vellum node in your first site,
+   and it should only be set on the first Vellum node in your second
+   site.
 -  ``scscf_node_uri`` - this can be optionally set, and only applies to
    nodes running an S-CSCF. If it is configured, it almost certainly
    needs configuring on each S-CSCF node in the deployment.
@@ -221,6 +222,12 @@ file (in the format ``name=value``, e.g. ``home_domain=example.com``).
    is optional). For a GR deployment, each domain is identified by the
    site name, and one of the domains must relate to the local site.
 -  ``ralf_session_store`` - this is the location of ralf's session
+   store. It has the format
+   ``<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>]]``. In
+   a non-GR deployment, only one domain is provided (and the site name
+   is optional). For a GR deployment, each domain is identified by the
+   site name, and one of the domains must relate to the local site.
+-  ``homestead_impu_store`` - this is the location of homestead's IMPU
    store. It has the format
    ``<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>]]``. In
    a non-GR deployment, only one domain is provided (and the site name
@@ -634,6 +641,9 @@ e.g. ``icscf=5052``).
    but increases the volume of data sent to SAS.
 -  ``dns_timeout`` - The time in milliseconds that Clearwater will wait
    for a response from the DNS server (defaults to 200 milliseconds).
+-  ``homestead_cache_threads`` - The number of threads used by Homestead
+   for accessing it's subscriber data cache. Defaults to 50x the number
+   of CPU cores.
 
 Experimental options
 ~~~~~~~~~~~~~~~~~~~~
@@ -713,7 +723,7 @@ the format ``name=value``, e.g. ``log_level=5``).
    When this is set to 'Y', it simply accepts all REGISTERs - obviously
    this is very insecure and should not be used in production.
 -  ``num_http_threads`` (homestead) - determines the number of HTTP
-   worker threads that will be used to process requests. Defaults to 50
+   worker threads that will be used to process requests. Defaults to 4
    times the number of CPU cores on the system.
 
 DNS Config

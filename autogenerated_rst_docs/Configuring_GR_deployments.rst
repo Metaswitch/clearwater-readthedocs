@@ -61,9 +61,12 @@ created, or it's ``site1``.
    -  Update the Chronos configuration on your Vellum nodes on your
       first site to add the GR configuration file - instructions
       `here <http://clearwater.readthedocs.io/en/latest/Manual_Install.html#chronos-configuration>`__.
-   -  Update Cassandra's strategy by running
-      ``cw-update_cassandra_strategy`` on any Vellum node in your entire
-      deployment.
+   -  If you are using any of Homestead-Prov, Homer or Memento:
+
+      -  Update Cassandra's strategy by running
+         ``cw-update_cassandra_strategy`` on any Vellum node in your
+         entire deployment.
+
    -  At this point, your first and second sites are replicating data
       between themselves, but no external traffic is going to your
       second site.

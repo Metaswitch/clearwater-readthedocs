@@ -19,12 +19,16 @@ deployment is available
 Recovery
 ~~~~~~~~
 
-To recover from this situation, all you need to do is remove the failed
-Vellum nodes from Cassandra cluster.
+If you are using any of Homestead-Prov, Homer or Memento, to recover
+from this situation all you need to do is remove the failed Vellum nodes
+from Cassandra cluster.
 
 ::
 
     * From any Vellum node in the remaining site, run `cw-remove_site_from_cassandra <site ID - the name of the failed site>`
+
+If you are not using any of Homestead-Prov, Homer or Memento, you do not
+need to do anything to recover the single remaining site.
 
 You should now have a working single-site cluster, which can continue to
 run as a single site, or be safely paired with a new remote site

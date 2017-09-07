@@ -72,5 +72,6 @@ session for each node that has failed.
 
 -  ``sudo cw-mark_node_failed "vellum" "memcached" <failed node IP>``
 -  ``sudo cw-mark_node_failed "vellum" "chronos" <failed node IP>``
--  ``sudo cw-mark_node_failed "vellum" "cassandra" <failed node IP>``
 
+If you are using any of Homestead-Prov, Homer or Memento, also run: \*
+``sudo cw-mark_node_failed "vellum" "cassandra" <failed node IP>``

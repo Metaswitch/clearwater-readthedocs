@@ -82,8 +82,8 @@ authentication credentials and user profile information. It can either
 master the data (in which case it exposes a web services provisioning
 interface) or can pull the data from an IMS compliant HSS over the Cx
 interface. The Homestead nodes themselves are stateless - the mastered /
-cached subscriber data is all stored on Vellum (via Cassandra's Thrift
-interface).
+cached subscriber data is all stored on Vellum (Cassandra for the
+mastered data, and Astaire/Memcached for the cached data).
 
 In the IMS architecture, the HSS mirror function is considered to be
 part of the I-CSCF and S-CSCF components, so in Clearwater I-CSCF and
@@ -106,23 +106,24 @@ As described above, Vellum is used to maintain all long-lived state in
 the dedployment. It does this by running a number of cloud optimized,
 distributed storage clusters. -
 `Cassandra <http://cassandra.apache.org/>`__. Cassandra is used by
-Homestead to store authentication credentials and profile information,
-and is used by Homer to store MMTEL service settings. Vellum exposes
-Cassandra's Thrift API. - `etcd <https://github.com/coreos/etcd>`__.
-etcd is used by Vellum itself to share clustering information between
-Vellum nodes and by other nodes in the deployment for shared
-configuration. - `Chronos <https://github.com/Metaswitch/chronos>`__.
-Chronos is a distributed, redundant, reliable timer service developed by
-Clearwater. It is used by Sprout and Ralf nodes to enable timers to be
-run (e.g. for SIP Registration expiry) without pinning operations to a
-specific node (one node can set the timer and another act on it when it
-pops). Chronos is accessed via an HTTP API. -
-`Memcached <https://memcached.org/>`__ /
+Homestead to store authentication credentials and profile information
+when an HSS is not in use, and is used by Homer to store MMTEL service
+settings. Vellum exposes Cassandra's Thrift API. -
+`etcd <https://github.com/coreos/etcd>`__. etcd is used by Vellum itself
+to share clustering information between Vellum nodes and by other nodes
+in the deployment for shared configuration. -
+`Chronos <https://github.com/Metaswitch/chronos>`__. Chronos is a
+distributed, redundant, reliable timer service developed by Clearwater.
+It is used by Sprout and Ralf nodes to enable timers to be run (e.g. for
+SIP Registration expiry) without pinning operations to a specific node
+(one node can set the timer and another act on it when it pops). Chronos
+is accessed via an HTTP API. - `Memcached <https://memcached.org/>`__ /
 `Astaire <https://github.com/Metaswitch/astaire>`__. Vellum also runs a
 Memcached cluster fronted by Astaire. Astaire is a service developed by
 Clearwater that enabled more rapid scale up and scale down of memcached
-clusters. This cluster is used by Sprout and Ralf for storing
-registration and session state.
+clusters. This cluster is used by Sprout for storing registration state,
+Ralf for storing session state and Homestead for storing cached
+subscriber data.
 
 Homer (XDMS)
 ~~~~~~~~~~~~
