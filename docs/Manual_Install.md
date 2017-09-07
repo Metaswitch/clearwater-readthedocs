@@ -77,8 +77,9 @@ Note that the `etcd_cluster` variable should be set to a comma separated list th
 If you are creating a [geographically redundant deployment](Geographic_redundancy.md), then:
 
 * `etcd_cluster` should contain the IP addresses of nodes only in the local site
-*  You should set `local_site_name` in `/etc/clearwater/local_config`. The name you choose is arbitrary, but must be the same for every node in the site. This name will also be used in the `remote_site_names`, `sprout_registration_store` and `ralf_session_store` configuration options set in shared config (desscribed below).
-*  On the first Vellum node in the second site, you should set `remote_cassandra_seeds` to the IP address of a Vellum node in the first site.
+*  You should set `local_site_name` in `/etc/clearwater/local_config`. The name you choose is arbitrary, but must be the same for every node in the site. This name will also be used in the `remote_site_names`, `sprout_registration_store`, `homestead_impu_store` and `ralf_session_store` configuration options set in shared config (desscribed below).
+*  If your deployment uses Homestead-Prov, Homer or Memento:
+    * on the first Vellum node in the second site, you should set `remote_cassandra_seeds` to the IP address of a Vellum node in the first site.
 
 ## Install Node-Specific Software
 
@@ -149,6 +150,7 @@ Log onto any node in the deployment and create the file `/etc/clearwater/shared_
     sprout_registration_store=vellum.<site_name>.<zone>
     hs_hostname=hs.<site_name>.<zone>:8888
     hs_provisioning_hostname=hs.<site_name>.<zone>:8889
+    homestead_impu_store=vellum.<zone>
     ralf_hostname=ralf.<site_name>.<zone>:10888
     ralf_session_store=vellum.<zone>
     xdms_hostname=homer.<site_name>.<zone>:7888
@@ -187,11 +189,12 @@ If you want your Sprout nodes to include Gemini/Memento Application Servers add 
 
 See the [Chef instructions](Installing_a_Chef_workstation.md#add-deployment-specific-configuration) for more information on how to fill these in. The values marked `<secret>` **must** be set to secure values to protect your deployment from unauthorized access. To modify these settings after the deployment is created, follow [these instructions](Modifying_Clearwater_settings.md).
 
-If you are creating a [geographically redundant deployment](Geographic_redundancy.md), some of the options require information about all sites to be specified. You need to set the `remote_site_names` configuration option to include the `local_site_name` of each site, replace the `sprout_registration_store` and `ralf_session_store` with the values as described in [Clearwater Configuration Options Reference](Clearwater_Configuration_Options_Reference.md), and set the `sprout_chronos_callback_uri` and `ralf_chronos_callback_uri` to deployment wide hostnames. For example, for sites named `siteA` and `siteB`:
+If you are creating a [geographically redundant deployment](Geographic_redundancy.md), some of the options require information about all sites to be specified. You need to set the `remote_site_names` configuration option to include the `local_site_name` of each site, replace the `sprout_registration_store`, `homestead_impu_store` and `ralf_session_store` with the values as described in [Clearwater Configuration Options Reference](Clearwater_Configuration_Options_Reference.md), and set the `sprout_chronos_callback_uri` and `ralf_chronos_callback_uri` to deployment wide hostnames. For example, for sites named `siteA` and `siteB`:
 
     remote_site_names=siteA,siteB
-    sprout_registration_store="siteA=sprout-siteA.<zone>,siteB=sprout-siteB.<zone>"
-    ralf_session_store="siteA=ralf-siteA.<zone>,siteB=ralf-siteB.<zone>"
+    sprout_registration_store="siteA=vellum-siteA.<zone>,siteB=vellum-siteB.<zone>"
+    homestead_impu_store="siteA=vellum-siteA.<zone>,siteB=vellum-siteB.<zone>"
+    ralf_session_store="siteA=vellum-siteA.<zone>,siteB=vellum-siteB.<zone>"
     sprout_chronos_callback_uri=sprout.<zone>
     ralf_chronos_callback_uri=ralf.<zone>
 

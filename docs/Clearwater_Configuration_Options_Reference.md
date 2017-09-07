@@ -39,7 +39,7 @@ This section describes settings that are specific to a single node and are not a
     * If this node is an etcd master, this should be left blank
     * If this node is an etcd proxy, it should contain the IP addresses of all the nodes that are currently etcd masters in the cluster.
 * `etcd_cluster_key` - this is the name of the etcd datastore clusters that this node should join. It defaults to the function of the node (e.g. a Vellum node defaults to using 'vellum' as its etcd datastore cluster name when it joins the Cassandra cluster). This must be set explicitly on nodes that colocate function.
-* `remote_cassandra_seeds` - this is used to connect the Cassandra cluster in your second site to the Cassandra cluster in your first site; this is only necessary in a geographically redundant deployment. It should be set to an IP address of a Vellum node in your first site, and it should only be set on the first Vellum node in your second site.
+* `remote_cassandra_seeds` - this is used to connect the Cassandra cluster in your second site to the Cassandra cluster in your first site; this is only necessary in a geographically redundant deployment which is using at least one of Homestead-Prov, Homer or Memento. It should be set to an IP address of a Vellum node in your first site, and it should only be set on the first Vellum node in your second site.
 * `scscf_node_uri` - this can be optionally set, and only applies to nodes running an S-CSCF. If it is configured, it almost certainly needs configuring on each S-CSCF node in the deployment.
 
     If set, this is used by the node to advertise the URI to which requests to this node should be routed. It should be formatted as a SIP URI.
@@ -80,6 +80,7 @@ This section describes options for the basic configuration of a Clearwater deplo
 * `memento_hostname` - a hostname that resolves by DNS round-robin to all Mementos in the cluster (the default is `memento.<home_domain>`).  This should match Memento's SSL certificate, if you are using one.
 * `sprout_registration_store` - this is the location of Sprout's registration store. It has the format `<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>]]`. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
 * `ralf_session_store` - this is the location of ralf's session store. It has the format `<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>]]`. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
+* `homestead_impu_store` - this is the location of homestead's IMPU store. It has the format `<site_name>=<domain>[:<port>][,<site_name>=<domain>[:<port>]]`. In a non-GR deployment, only one domain is provided (and the site name is optional). For a GR deployment, each domain is identified by the site name, and one of the domains must relate to the local site.
 * `memento_auth_store` - this is the location of Memento's authorization vector store. It just has the format `<domain>[:port]`. If not present, defaults to the loopback IP.
 * `sprout_chronos_callback_uri` - the callback hostname used on Sprout's Chronos timers. If not present, defaults to the host specified in `sprout-hostname`. In a GR deployment, should be set to a deployment-wide Sprout hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns.json`).
 * `ralf_chronos_callback_uri` - the callback hostname used on ralf's Chronos timers. If not present, defaults to the host specified in `ralf-hostname`. In a GR deployment, should be set to a deployment-wide Dime hostname (that will be resolved by using static DNS records in `/etc/clearwater/dns.json`).
@@ -212,6 +213,7 @@ This section describes optional configuration options, particularly for ensuring
 * `dummy_app_server` - this field allows the name of a dummy application server to be specified. If an iFC contains this dummy application server, then no application server will be invoked when this iFC is triggered.
 * `http_acr_logging` when set to 'Y', Clearwater will log the bodies of HTTP requests made to Ralf.  This provides additional diagnostics, but increases the volume of data sent to SAS.
 * `dns_timeout` - The time in milliseconds that Clearwater will wait for a response from the DNS server (defaults to 200 milliseconds).
+* `homestead_cache_threads` - The number of threads used by Homestead for accessing it's subscriber data cache. Defaults to 50x the number of CPU cores.
 
 ### Experimental options
 
@@ -239,7 +241,7 @@ This section describes settings that may vary between systems in the same deploy
 * `ibcf_domain` - For Bono IBCF nodes, allows for a domain alias to be specified for the IBCF to allow for including IBCFs in routes as domains instead of IPs.
 * `upstream_recycle_connections` - the average number of seconds before Bono will destroy and re-create a connection to Sprout. A higher value means slightly less work, but means that DNS changes will not take effect as quickly (as new Sprout nodes added to DNS will only start to receive messages when Bono creates a new connection and does a fresh DNS lookup).
 * `authentication` - by default, Clearwater performs authentication challenges (SIP Digest or IMS AKA depending on HSS configuration). When this is set to 'Y', it simply accepts all REGISTERs - obviously this is very insecure and should not be used in production.
-* `num_http_threads` (homestead) - determines the number of HTTP worker threads that will be used to process requests. Defaults to 50 times the number of CPU cores on the system.
+* `num_http_threads` (homestead) - determines the number of HTTP worker threads that will be used to process requests. Defaults to 4 times the number of CPU cores on the system.
 
 ## DNS Config
 

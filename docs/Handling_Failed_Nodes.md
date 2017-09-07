@@ -29,5 +29,7 @@ For each site that contains one or more failed Vellum nodes, log into a healthy 
 
 * `sudo cw-mark_node_failed "vellum" "memcached" <failed node IP>`
 * `sudo cw-mark_node_failed "vellum" "chronos" <failed node IP>`
+
+If you are using any of Homestead-Prov, Homer or Memento, also run:
 * `sudo cw-mark_node_failed "vellum" "cassandra" <failed node IP>`
 
