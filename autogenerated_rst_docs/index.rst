@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Kíli <http://lotr.wikia.com/wiki/Fíli_and_Kíli>`__\ ".
+"`Nazgûl <http://lotr.wikia.com/wiki/Nazgûl>`__\ ".
 
 Architecture
 ------------
