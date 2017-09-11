@@ -4,7 +4,7 @@ Project Clearwater is an open-source IMS core, developed by [Metaswitch Networks
 
 ## Latest Release
 
-The latest stable release of Clearwater is "[Kíli](http://lotr.wikia.com/wiki/Fíli_and_Kíli)".
+The latest stable release of Clearwater is "[Nazgûl](http://lotr.wikia.com/wiki/Nazgûl)".
 
 ## Architecture
 
