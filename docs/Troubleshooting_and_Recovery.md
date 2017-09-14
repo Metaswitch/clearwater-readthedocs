@@ -41,7 +41,7 @@ Problems on Vellum may include:
     * Check that Cassandra is clustered correctly (if running a multi-node system). `nodetool status` tells you which nodes are in the cluster, and how the keyspace is distributed among them.
     * To examine Vellum's database, run `cqlsh` and then type `use homer;`, `use homestead_provisioning;` or `use homestead_cache` to set the correct database.  You can then issue CQL queries such as `SELECT * FROM impi WHERE private_id = '<private user ID>'`.
 
-* Problems with the memcaced cluster:
+* Problems with the memcached cluster:
     * It's a little clunky to examine this data but you can get some basic information out by running `. /etc/clearwater/config ; telnet $local_ip 11211` to connect to memcached, issuing `stats items`.  This returns a list of entries of the form `STAT items:<slab ID>:...`.  You can then query the keys in each of the slabs with `stats cachedump <slab ID> 0`.
     * Memcached logs to `/var/log/memcached.log`. It logs very little by default, but it is possible to make it more verbose by editing `/etc/memcached_11211.conf`, uncommenting the `-vv` line, and then restarting memcached
 
