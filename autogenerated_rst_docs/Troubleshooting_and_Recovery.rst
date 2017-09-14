@@ -103,7 +103,7 @@ Problems on Vellum may include:
       issue CQL queries such as
       ``SELECT * FROM impi WHERE private_id = '<private user ID>'``.
 
--  Problems with the memcaced cluster:
+-  Problems with the memcached cluster:
 
    -  It's a little clunky to examine this data but you can get some
       basic information out by running
