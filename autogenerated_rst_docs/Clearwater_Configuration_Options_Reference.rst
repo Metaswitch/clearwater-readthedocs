@@ -443,6 +443,9 @@ e.g. ``icscf=5052``).
 -  ``diameter_timeout_ms`` - determines the number of milliseconds
    homestead will wait for a response from the HSS before failing a
    request. Defaults to 200.
+-  ``sprout_homestead_timeout_ms`` - determines the timeout in
+   milliseconds for which Sprout will wait for Homestead to respond to
+   HTTP requests. Defaults to 550ms + twice the diameter timeout.
 -  ``max_peers`` - determines the maximum number of Diameter peers to
    which the ralf or homestead processes on Dime can have open
    connections at the same time.
