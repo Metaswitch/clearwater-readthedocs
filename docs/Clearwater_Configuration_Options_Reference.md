@@ -157,6 +157,7 @@ This section describes optional configuration options, particularly for ensuring
     * Destination-Realm set to the `billing_realm` value
     * Destination-Host set to the value of the `ccf` parameter in the P-Charging-Function-Addresses SIP header received from the P-CSCF, or from the Primary-Charging-Collection-Function-Name/Secondary-Charging-Collection-Function-Name AVPs received over the Cx interface from the HSS.
 * `diameter_timeout_ms` - determines the number of milliseconds homestead will wait for a response from the HSS before failing a request. Defaults to 200.
+* `sprout_homestead_timeout_ms` - determines the timeout in milliseconds for which Sprout will wait for Homestead to respond to HTTP requests. Defaults to 550ms + the diameter timeout.
 * `max_peers` - determines the maximum number of Diameter peers to which the ralf or homestead processes on Dime can have open connections at the same time.
 * `num_http_threads` (ralf/memento) - determines the number of threads that will be used to process HTTP requests. For memento this defaults to the number of CPU cores on the system. For ralf it defaults to 50 times the number of CPU cores (memento and ralf use different threading models, hence the different defaults). Note that for homestead, this can only be set in /etc/clearwater/user_settings.
 * `num_http_worker_threads` - determines the number of threads that will be used to process HTTP requests once they have been parsed. Only used by Memento.
