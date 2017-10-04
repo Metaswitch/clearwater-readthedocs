@@ -400,11 +400,11 @@ e.g. ``icscf=5052``).
    process.
 -  ``homestead_diameter_watchdog_timer`` - the delay in seconds before a
    device watchdog message is sent on an unresponsive Diameter
-   connection by the homestead process. Defaults to 30 and must be set
-   to an integer that is at least 6.
+   connection by the homestead process. Defaults to 6 and must be set to
+   an integer that is at least 6.
 -  ``ralf_diameter_watchdog_timer`` - the delay in seconds before a
    device watchdog message is sent on an unresponsive Diameter
-   connection by the ralf process. Defaults to 30 and must be set to an
+   connection by the ralf process. Defaults to 6 and must be set to an
    integer that is at least 6.
 -  ``alias_list`` - this defines additional hostnames and IP addresses
    which Sprout or Bono will treat as local for the purposes of SIP
