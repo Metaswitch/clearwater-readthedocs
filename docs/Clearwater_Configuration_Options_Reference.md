@@ -161,10 +161,14 @@ This section describes optional configuration options, particularly for ensuring
 * `diameter_timeout_ms` - determines the number of milliseconds homestead will wait for a response from the HSS before failing a request. Defaults to 200.
 * `sprout_homestead_timeout_ms` - determines the timeout in milliseconds for which Sprout will wait for Homestead to respond to HTTP requests. Defaults to 550ms + twice the diameter timeout.
 * `max_peers` - determines the maximum number of Diameter peers to which the ralf or homestead processes on Dime can have open connections at the same time.
-* `num_http_threads` (ralf/memento) - determines the number of threads that will be used to process HTTP requests. For memento this defaults to the number of CPU cores on the system. For ralf it defaults to 50 times the number of CPU cores (memento and ralf use different threading models, hence the different defaults). Note that for homestead, this can only be set in /etc/clearwater/user_settings.
+* `num_http_threads` (sprout/homestead/ralf/memento) - determines the number of threads that will be used to process HTTP requests. For Homestead and Memento this defaults to the number of CPU cores on the system. For Sprout and Ralf it defaults to 50 times the number of CPU cores. This is because there are two different threading models, hence the different defaults. On Sprout and Homestead, this can be overriden using the more specific option detailed below.
 * `num_http_worker_threads` - determines the number of threads that will be used to process HTTP requests once they have been parsed. Only used by Memento.
-* `ralf_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages ralf sends. Defaults to public_hostname (with some formatting changes if public_hostname is an IPv6 address).
-* `hs_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages homestead sends. Defaults to public_hostname (with some formatting changes if public_hostname is an IPv6 address).
+* `sprout_http_threads` - determines the number of HTTP threads that will be used to process HTTP requests on Sprout. Defaults to `num_http_threads`.
+* `homestead_http_threads` - determeines the number of HTTP threads that will be used to process HTTP requests on Homestead. Defaults to `num_http_threads`.
+* `num_worker_threads` - The default number of worker threads that should be started to do SIP/IMS processing on Sprout and Bono. Defaults to 50 times the number of CPU cores on the system.
+* `sprout_worker_threads` - The number of worker threeads Sprout will start. Defaults to `num_worker_threads`
+* `ralf_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages ralf sends. Defaults to `public_hostname` (with some formatting changes if public_hostname is an IPv6 address).
+* `hs_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages homestead sends. Defaults to `public_hostname` (with some formatting changes if public_hostname is an IPv6 address).
 * `max_call_list_length` - determines the maximum number of complete calls a subscriber can have in the call list store. This defaults to no limit. This is only relevant if the node includes a Memento AS.
 * `call_list_store_ttl` - determines how long each call list fragment should be kept in the call list store. This defaults to 604800 seconds (1 week). This is only relevant if the node includes a Memento AS.
 * `memento_disk_limit` - determines the maximum size that the call lists database may occupy. This defaults to 20% of disk space. This is only relevant if the node includes a Memento AS. Can be specified in Bytes, Kilobytes, Megabytes, Gigabytes, or a percentage of the available disk. For example:
@@ -238,13 +242,11 @@ This section describes settings that may vary between systems in the same deploy
 * `log_level` - determines how verbose Clearwater's logging is, from 1 (error logs only) to 5 (debug-level logs). Defaults to 2.
 * `log_directory` - determines which folder the logs are created in. This folder must exist, and be owned by the service. Defaults to /var/log/<service> (this folder is created and has the correct permissions set for it by the install scripts of the service).
 * `max_log_directory_size` - determines the maximum size of each Clearwater process's log_directory in bytes. Defaults to 1GB. If you are co-locating multiple Clearwater processes, you'll need to reduce this value proportionally.
-* `num_worker_threads` - for Sprout and Bono nodes, determines how many worker threads should be started to do SIP/IMS processing. Defaults to 50 times the number of CPU cores on the system.
 * `upstream_connections` - determines the maximum number of TCP connections which Bono will open to the I-CSCF(s). Defaults to 50.
 * `trusted_peers` - For Bono IBCF nodes, determines the peers which Bono will accept connections to and from.
 * `ibcf_domain` - For Bono IBCF nodes, allows for a domain alias to be specified for the IBCF to allow for including IBCFs in routes as domains instead of IPs.
 * `upstream_recycle_connections` - the average number of seconds before Bono will destroy and re-create a connection to Sprout. A higher value means slightly less work, but means that DNS changes will not take effect as quickly (as new Sprout nodes added to DNS will only start to receive messages when Bono creates a new connection and does a fresh DNS lookup).
 * `authentication` - by default, Clearwater performs authentication challenges (SIP Digest or IMS AKA depending on HSS configuration). When this is set to 'Y', it simply accepts all REGISTERs - obviously this is very insecure and should not be used in production.
-* `num_http_threads` (homestead) - determines the number of HTTP worker threads that will be used to process requests. Defaults to 4 times the number of CPU cores on the system.
 
 ## DNS Config
 
