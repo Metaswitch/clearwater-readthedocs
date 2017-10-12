@@ -457,24 +457,35 @@ e.g. ``icscf=5052``).
 -  ``max_peers`` - determines the maximum number of Diameter peers to
    which the ralf or homestead processes on Dime can have open
    connections at the same time.
--  ``num_http_threads`` (ralf/memento) - determines the number of
-   threads that will be used to process HTTP requests. For memento this
-   defaults to the number of CPU cores on the system. For ralf it
-   defaults to 50 times the number of CPU cores (memento and ralf use
-   different threading models, hence the different defaults). Note that
-   for homestead, this can only be set in
-   /etc/clearwater/user\_settings.
+-  ``num_http_threads`` (sprout/homestead/ralf/memento) - determines the
+   number of threads that will be used to process HTTP requests. For
+   Homestead and Memento this defaults to the number of CPU cores on the
+   system. For Sprout and Ralf it defaults to 50 times the number of CPU
+   cores. This is because there are two different threading models,
+   hence the different defaults. On Sprout and Homestead, this can be
+   overriden using the more specific option detailed below.
 -  ``num_http_worker_threads`` - determines the number of threads that
    will be used to process HTTP requests once they have been parsed.
    Only used by Memento.
+-  ``sprout_http_threads`` - determines the number of HTTP threads that
+   will be used to process HTTP requests on Sprout. Defaults to
+   ``num_http_threads``.
+-  ``homestead_http_threads`` - determines the number of HTTP threads
+   that will be used to process HTTP requests on Homestead. Defaults to
+   ``num_http_threads``.
+-  ``num_worker_threads`` - The default number of worker threads that
+   should be started to do SIP/IMS processing on Sprout and Bono.
+   Defaults to 50 times the number of CPU cores on the system.
+-  ``sprout_worker_threads`` - The number of worker threads Sprout will
+   start. Defaults to ``num_worker_threads``
 -  ``ralf_diameteridentity`` - determines the Origin-Host that will be
-   set on the Diameter messages ralf sends. Defaults to public\_hostname
-   (with some formatting changes if public\_hostname is an IPv6
-   address).
+   set on the Diameter messages ralf sends. Defaults to
+   ``public_hostname`` (with some formatting changes if public\_hostname
+   is an IPv6 address).
 -  ``hs_diameteridentity`` - determines the Origin-Host that will be set
    on the Diameter messages homestead sends. Defaults to
-   public\_hostname (with some formatting changes if public\_hostname is
-   an IPv6 address).
+   ``public_hostname`` (with some formatting changes if public\_hostname
+   is an IPv6 address).
 -  ``max_call_list_length`` - determines the maximum number of complete
    calls a subscriber can have in the call list store. This defaults to
    no limit. This is only relevant if the node includes a Memento AS.
@@ -713,9 +724,6 @@ the format ``name=value``, e.g. ``log_level=5``).
    Clearwater process's log\_directory in bytes. Defaults to 1GB. If you
    are co-locating multiple Clearwater processes, you'll need to reduce
    this value proportionally.
--  ``num_worker_threads`` - for Sprout and Bono nodes, determines how
-   many worker threads should be started to do SIP/IMS processing.
-   Defaults to 50 times the number of CPU cores on the system.
 -  ``upstream_connections`` - determines the maximum number of TCP
    connections which Bono will open to the I-CSCF(s). Defaults to 50.
 -  ``trusted_peers`` - For Bono IBCF nodes, determines the peers which
@@ -733,9 +741,6 @@ the format ``name=value``, e.g. ``log_level=5``).
    challenges (SIP Digest or IMS AKA depending on HSS configuration).
    When this is set to 'Y', it simply accepts all REGISTERs - obviously
    this is very insecure and should not be used in production.
--  ``num_http_threads`` (homestead) - determines the number of HTTP
-   worker threads that will be used to process requests. Defaults to 4
-   times the number of CPU cores on the system.
 
 DNS Config
 ----------
