@@ -164,9 +164,9 @@ This section describes optional configuration options, particularly for ensuring
 * `num_http_threads` (sprout/homestead/ralf/memento) - determines the number of threads that will be used to process HTTP requests. For Homestead and Memento this defaults to the number of CPU cores on the system. For Sprout and Ralf it defaults to 50 times the number of CPU cores. This is because there are two different threading models, hence the different defaults. On Sprout and Homestead, this can be overriden using the more specific option detailed below.
 * `num_http_worker_threads` - determines the number of threads that will be used to process HTTP requests once they have been parsed. Only used by Memento.
 * `sprout_http_threads` - determines the number of HTTP threads that will be used to process HTTP requests on Sprout. Defaults to `num_http_threads`.
-* `homestead_http_threads` - determeines the number of HTTP threads that will be used to process HTTP requests on Homestead. Defaults to `num_http_threads`.
+* `homestead_http_threads` - determines the number of HTTP threads that will be used to process HTTP requests on Homestead. Defaults to `num_http_threads`.
 * `num_worker_threads` - The default number of worker threads that should be started to do SIP/IMS processing on Sprout and Bono. Defaults to 50 times the number of CPU cores on the system.
-* `sprout_worker_threads` - The number of worker threeads Sprout will start. Defaults to `num_worker_threads`
+* `sprout_worker_threads` - The number of worker threads Sprout will start. Defaults to `num_worker_threads`
 * `ralf_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages ralf sends. Defaults to `public_hostname` (with some formatting changes if public_hostname is an IPv6 address).
 * `hs_diameteridentity` - determines the Origin-Host that will be set on the Diameter messages homestead sends. Defaults to `public_hostname` (with some formatting changes if public_hostname is an IPv6 address).
 * `max_call_list_length` - determines the maximum number of complete calls a subscriber can have in the call list store. This defaults to no limit. This is only relevant if the node includes a Memento AS.
