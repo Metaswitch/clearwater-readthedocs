@@ -200,7 +200,7 @@ If you are creating a [geographically redundant deployment](Geographic_redundanc
 
 Now run the following to upload the configuration to a shared database and propagate it around the cluster (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this).
 
-    sudo cw-config upload shared_config
+    `cw-config upload shared_config`
 
 ## Provision Telephone Numbers in Ellis
 
