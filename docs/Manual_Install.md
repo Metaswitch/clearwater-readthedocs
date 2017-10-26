@@ -142,7 +142,7 @@ Sprout, Bono, Vellum and Dime nodes expose statistics over SNMP. This function i
 
 ## Provide Shared Configuration
 
-Log onto any node in the deployment and create the file `/etc/clearwater/shared_config` with the following contents. The `site_name` should match the value of `local_site_name` in `local_config`; if your deployment is not geographically redundant then you don't need to include it.
+Log onto any node in the deployment and run `cw-config download shared_config`. This will download the current `shared_config` in use by your deployment. Edit the downloaded file to add the following contents. The `site_name` should match the value of `local_site_name` in `local_config`; if your deployment is not geographically redundant then you don't need to include it.
 
     # Deployment definitions
     home_domain=<zone>
@@ -200,7 +200,7 @@ If you are creating a [geographically redundant deployment](Geographic_redundanc
 
 Now run the following to upload the configuration to a shared database and propagate it around the cluster (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md) for more details on this).
 
-    sudo cw-upload_shared_config
+    sudo cw-config upload shared_config
 
 ## Provision Telephone Numbers in Ellis
 
