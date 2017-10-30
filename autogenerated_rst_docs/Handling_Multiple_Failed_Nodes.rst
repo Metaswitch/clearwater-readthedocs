@@ -208,17 +208,17 @@ Run these commands on one Vellum node in the affected site:
 
 ::
 
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/load_from_chronos_cluster vellum
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/load_from_memcached_cluster vellum
+    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/load_from_chronos_cluster vellum
+    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/load_from_memcached_cluster vellum
 
 If you are using any of Homestead-Prov, Homer or Memento, also run:
 
 ::
 
-    /usr/share/clearwater/clearwater-cluster-manager/scripts/load_from_cassandra_cluster vellum
+    sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/load_from_cassandra_cluster vellum
 
-Verify the cluster state is correct in etcd by running sudo
-``/usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_state``
+Verify the cluster state is correct in etcd by running
+``sudo /usr/share/clearwater/clearwater-cluster-manager/scripts/check_cluster_state``
 
 Start the cluster manager on all nodes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
