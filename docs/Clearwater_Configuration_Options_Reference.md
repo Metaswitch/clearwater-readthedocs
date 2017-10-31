@@ -20,7 +20,7 @@ You should follow [this process](Modifying_Clearwater_settings.md) when changing
     *   Homer - `sudo service homer stop`
     *   Ellis - `sudo service ellis stop`
     *   Memento - `sudo service memento stop`
-    *   Vellum - `sudo service astaire stop`
+    *   Vellum - `sudo service astaire stop && sudo service rogers stop`
 
 ## Local Config
 
