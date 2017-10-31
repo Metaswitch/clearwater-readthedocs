@@ -251,11 +251,12 @@ documentation <Clearwater_SNMP_Statistics.html>`__.
 Provide Shared Configuration
 ----------------------------
 
-Log onto any node in the deployment and create the file
-``/etc/clearwater/shared_config`` with the following contents. The
-``site_name`` should match the value of ``local_site_name`` in
-``local_config``; if your deployment is not geographically redundant
-then you don't need to include it.
+Log onto any node in the deployment and run
+``cw-config download shared_config``. This will download the current
+``shared_config`` in use by your deployment. Edit the downloaded file to
+add the following contents. The ``site_name`` should match the value of
+``local_site_name`` in ``local_config``; if your deployment is not
+geographically redundant then you don't need to include it.
 
 ::
 
@@ -349,7 +350,7 @@ this).
 
 ::
 
-    sudo cw-upload_shared_config
+    `cw-config upload shared_config`
 
 Provision Telephone Numbers in Ellis
 ------------------------------------
