@@ -10,10 +10,17 @@ Settings in `/etc/clearwater/shared_config` can be safely changed without entire
 
 To change one of these settings:
 
+<<<<<<< HEAD
 *   Run `cw-config download shared_config` on *one* node in each site.
 *   Change the downloaded version of `shared_config` to the new value, the file location will be displayed on download.
 *   Run `cw-config upload shared_config` to upload the new config to etcd. The changes to the shared configuration are logged to `/var/log/syslog` and to the console. Each node in the site picks up the changed shared configuration (using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and safely restarts itself to use it.
 *   You can check which nodes are using the new shared config by running `cw-check_restart_queue_state`. If this command shows that there's been an error (i.e. a node wasn't able to restart after picking up the new config), simply fix the `shared_config` in the download location and run `cw-config upload shared_config` script again.
+=======
+*   On one node of your deployment, run `cw-config download shared_config`. This will download the current version of `shared_config` to `~/clearwater-config-manager/[username]/shared_config`.
+*   Edit `~/clearwater-config-manager/[username]/shared_config` to make changes as desired.
+*   Run `cw-config upload shared_config` to upload the modified config to etcd. The changes to the shared configuration are logged to `/var/log/syslog` and to the console. Each node in the site picks up the changed shared configuration (using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and safely restarts itself to use it.
+*   You can check which nodes are using the new shared config by running `cw-check_restart_queue_state`. If this command shows that there's been an error (i.e. a node wasn't able to restart after picking up the new config), simply fix the downloaded `shared_config` file and run `cw-config upload shared_config` again.
+>>>>>>> origin/master
 
 ## Modifying Sprout JSON Configuration
 
