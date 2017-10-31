@@ -10,11 +10,7 @@ This document describes how to troubleshoot some common problems, and associated
 
 *  By default each component logs to `/var/log/<service>/`, at log level 2 (which only includes errors and very high level events). To see more detailed logs you can enable debug logging; details for how to do this for each component are below. Note that if you want to run stress through your deployment, you should revert the log levels back to the default level.
 
-<<<<<<< HEAD
-* Changes to `shared_config` are detected each time `cw-config upload shared_config` is run (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md)), and logged to `/var/log/syslog` on the node from which the configuration was changed.
-=======
 * Changes to `shared_config` are detected each time `cw-config` is run (see [Modifying Clearwater settings](Modifying_Clearwater_settings.md)), and logged to `/var/log/syslog` on the node from which the configuration was changed.
->>>>>>> origin/master
 
 ## Ellis
 
