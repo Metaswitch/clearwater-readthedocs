@@ -29,7 +29,7 @@ By default, Clearwater routes all DNS requests through an instance of [dnsmasq](
 > equal: it picks the one to use using an algorithm designed to avoid
 > nameservers which aren't responding.
 
-If the `signaling_dns_server` option is set in `/etc/clearwater/shared_config` (which is mandatory when using [traffic separation](Multiple_Network_Support.md)), Clearwater will not use dnsmasq. Instead, resiliency is achieved by being able to specify up to three servers in a comma-separated list (e.g. `signaling_dns_server=1.2.3.4,10.0.0.1,192.168.1.1`), and Clearwater will fail over between them as follows:
+If the `signaling_dns_server` option is set in `shared_config` (which is mandatory when using [traffic separation](Multiple_Network_Support.md)), Clearwater will not use dnsmasq. Instead, resiliency is achieved by being able to specify up to three servers in a comma-separated list (e.g. `signaling_dns_server=1.2.3.4,10.0.0.1,192.168.1.1`), and Clearwater will fail over between them as follows:
 
 * It will always query the first server in the list first
 * If this returns SERVFAIL or times out (which happens after a randomised 500ms-1000ms period), it will resend the query to the second server
@@ -131,7 +131,7 @@ Bono needs to be able to contact the Sprout nodes in each site, so it needs to h
     *   `scscf.sprout.siteB.<zone>` (NAPTR, optional) - specifies transport requirements for accessing Sprout - service `SIP+D2T` maps to `_sip._tcp.scscf.sprout.siteB.<zone>`
     *   `_sip._tcp.scscf.sprout.siteB.<zone>` (SRV) - cluster SRV record for Sprout, resolving to port 5054 for all of the per-node records in siteB
 
- 
+
 ## Configuration
 
 Clearwater can work with any DNS server that meets the [requirements above](#dns-server).  However, most of our testing has been performed with

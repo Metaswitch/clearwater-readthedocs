@@ -36,7 +36,7 @@ The next step is to ensure that the configuration files on each node are correct
 
 #### Any of the master nodes - Shared configuration
 
-The shared configuration is at `/etc/clearwater/shared_config`. Verify that this is correct, then copy this file onto every other master node. Please see the [configuration options reference](http://clearwater.readthedocs.io/en/latest/Clearwater_Configuration_Options_Reference.html) for more details on how to set the configuration values.
+The shared configuration is at `/etc/clearwater/shared_config`. Verify that this is correct, then copy this file onto every other master node by using `cw-config`. Please see the [configuration options reference](http://clearwater.readthedocs.io/en/latest/Clearwater_Configuration_Options_Reference.html) for more details on how to set the configuration values.
 
 #### Vellum - Chronos configuration
 
@@ -68,16 +68,16 @@ If the Cassandra cluster isn't healthy, you must fix this up before continuing, 
 
 Check the JSON configuration files on all Sprout nodes in the affected site:
 
-* Verify that the `/etc/clearwater/enum.json` file is correct, fixing it up if it's not.
-* Verify that the `/etc/clearwater/s-cscf.json` file is correct, fixing it up if it's not.
-* Verify that the `/etc/clearwater/bgcf.json` file is correct, fixing it up if it's not.
+* Verify that the `/etc/clearwater/enum.json` file is correct, fixing it up if it's not using `cw-config`.
+* Verify that the `/etc/clearwater/s-cscf.json` file is correct, fixing it up if it's not using `cw-config`.
+* Verify that the `/etc/clearwater/bgcf.json` file is correct, fixing it up if it's not using `cw-config`.
 
 ### Sprout - XML configuration
 
 Check the XML configuration files on all Sprout nodes in the affected site:
 
-* Verify that the `/etc/clearwater/shared_ifcs.xml` file is correct, fixing it up if it's not.
-* Verify that the `/etc/clearwater/fallback_ifcs.xml` file is correct, fixing it up if it's not.
+* Verify that the `/etc/clearwater/shared_ifcs.xml` file is correct, fixing it up if it's not using `cw-config`.
+* Verify that the `/etc/clearwater/fallback_ifcs.xml` file is correct, fixing it up if it's not using `cw-config`.
 
 Running one of the commands `sudo cw-validate_{shared|fallback}_ifcs_xml` will check if the specified file is syntactically correct.
 
