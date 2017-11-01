@@ -231,7 +231,7 @@ They also need the following ports open to all Sprout and Dime nodes:
 
        TCP/7253
 
--  Astaire:
+-  Rogers:
 
    ::
 

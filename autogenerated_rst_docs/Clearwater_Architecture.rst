@@ -79,16 +79,22 @@ Homestead (HSS Cache)
 
 Homestead provides a web services interface to Sprout for retrieving
 authentication credentials and user profile information. It can either
-master the data (in which case it exposes a web services provisioning
-interface) or can pull the data from an IMS compliant HSS over the Cx
-interface. The Homestead nodes themselves are stateless - the mastered /
-cached subscriber data is all stored on Vellum (Cassandra for the
-mastered data, and Astaire/Memcached for the cached data).
+use a local master of the data, provisioned by Homestead Prov, or it can
+pull the data from an IMS compliant HSS over the Cx interface. The
+Homestead processes themselves are stateless - the subscriber data is
+all stored on Vellum (Cassandra for the mastered data, and
+Astaire/Rogers/Memcached for the cached data).
 
 In the IMS architecture, the HSS mirror function is considered to be
 part of the I-CSCF and S-CSCF components, so in Clearwater I-CSCF and
 S-CSCF function is implemented with a combination of Sprout and Dime
 clusters.
+
+Homestead Prov (Local Subscriber Store Provisioning API)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Homestead Prov exposes exposes a web services provisioning interface to
+allow provisioning of subscriber data in Cassandra on Vellum
 
 Ralf (CTF)
 ^^^^^^^^^^
@@ -118,12 +124,17 @@ It is used by Sprout and Ralf nodes to enable timers to be run (e.g. for
 SIP Registration expiry) without pinning operations to a specific node
 (one node can set the timer and another act on it when it pops). Chronos
 is accessed via an HTTP API. - `Memcached <https://memcached.org/>`__ /
-`Astaire <https://github.com/Metaswitch/astaire>`__. Vellum also runs a
-Memcached cluster fronted by Astaire. Astaire is a service developed by
+`Astaire and Rogers <https://github.com/Metaswitch/astaire>`__. Vellum
+also runs a Memcached cluster fronted by Rogers, with synchronization
+provided by Astaire. This cluster is used by Sprout for storing
+registration state, Ralf for storing session state and Homestead for
+storing cached subscriber data. Astaire is a service developed by
 Clearwater that enabled more rapid scale up and scale down of memcached
-clusters. This cluster is used by Sprout for storing registration state,
-Ralf for storing session state and Homestead for storing cached
-subscriber data.
+clusters. Rogers is a proxy which sits in front of a cluster of
+memcached instances to provide replication of data and topology hiding.
+Astaire and Rogers work together to ensure that all data is duplicated
+across multiple nodes, to protect against data loss during a memcached
+instance failuue
 
 Homer (XDMS)
 ~~~~~~~~~~~~

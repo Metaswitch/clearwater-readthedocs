@@ -34,16 +34,16 @@ Vellum has 3 databases, which support Geographic Redundancy differently:
    replicating timers across the two sites itself.
 -  There is one memcached cluster per geographic region. Although
    memcached itself does not support the concept of local and remote
-   peers, Vellum runs Astaire as a memcached proxy which allows Sprout
+   peers, Vellum runs Rogers as a memcached proxy which allows Sprout
    and Dime nodes to build geographic redundancy on top - writing to
    both local and remote clusters, and reading from the local but
    falling back to the remote.
 
 Sprout nodes use the local Vellum cluster for Chronos and both local and
-remote Vellum clusters for memcached (via Astaire). If the Sprout node
+remote Vellum clusters for memcached (via Rogers). If the Sprout node
 includes Memento, then it also uses the local Vellum cluster for
 Cassandra. Dime nodes use the local Vellum cluster for Chronos and both
-local and remote Vellum clusters for memcached (via Astaire). If
+local and remote Vellum clusters for memcached (via Rogers). If
 Homestead-Prov is in use, then it also uses the local Vellum cluster for
 Cassandra.
 

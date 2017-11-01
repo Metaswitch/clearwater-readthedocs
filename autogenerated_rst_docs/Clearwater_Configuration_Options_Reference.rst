@@ -40,7 +40,7 @@ config" or "User settings" you should:
    -  Homer - ``sudo service homer stop``
    -  Ellis - ``sudo service ellis stop``
    -  Memento - ``sudo service memento stop``
-   -  Vellum - ``sudo service astaire stop``
+   -  Vellum - ``sudo service astaire stop && sudo service rogers stop``
 
 Local Config
 ------------
