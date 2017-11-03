@@ -48,11 +48,11 @@ FAQ <http://www.thekelleys.org.uk/dnsmasq/docs/FAQ>`__:
     equal: it picks the one to use using an algorithm designed to avoid
     nameservers which aren't responding.
 
-If the ``signaling_dns_server`` option is set in
-``/etc/clearwater/shared_config`` (which is mandatory when using
-`traffic separation <Multiple_Network_Support.html>`__), Clearwater will
-not use dnsmasq. Instead, resiliency is achieved by being able to
-specify up to three servers in a comma-separated list (e.g.
+If the ``signaling_dns_server`` option is set in ``shared_config``
+(which is mandatory when using `traffic
+separation <Multiple_Network_Support.html>`__), Clearwater will not use
+dnsmasq. Instead, resiliency is achieved by being able to specify up to
+three servers in a comma-separated list (e.g.
 ``signaling_dns_server=1.2.3.4,10.0.0.1,192.168.1.1``), and Clearwater
 will fail over between them as follows:
 

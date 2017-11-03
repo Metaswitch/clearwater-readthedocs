@@ -504,7 +504,8 @@ to selecting the Clearwater S-CSCF (as configured in ``scscf_uri`` in
 ``/etc/clearwater/shared/config``).
 
 You can configure what S-CSCFs are available to the I-CSCF by editing
-the ``/etc/clearwater/s-cscf.json`` file.
+the ``s-cscf.json`` file, this is done using ``cw-config`` - see
+`here <http://clearwater.readthedocs.io/en/latest/Modifying_Clearwater_settings.html#modifying-sprout-json-configuration>`__.
 
 This file stores the configuration of each S-CSCF, their capabilities,
 and their relative weighting and priorities. The format of the file is
@@ -554,9 +555,11 @@ file. In this example, if you wanted your subscriber to be billed, you
 would configure the user data in the HSS to make it mandatory for your
 subscriber to have an S-CSCF that supports capability 1.
 
-To change the I-CSCF configuration, edit this file on any Sprout node,
-then upload it to the shared configuration database by running
-``sudo cw-upload_scscf_json``.
+To change the I-CSCF configuration, download this file by running
+``cw-config download scscf_json`` on any sprout node, make changes
+locally at ``~/clearwater-config-manager/[username]/scscf.json``, then
+upload it to the shared configuration database by running
+``cw-config upload scscf_json``.
 
 Shared iFC configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -566,7 +569,7 @@ S-CSCF must be configured with any Shared iFC sets that may be sent to
 it by the HSS.
 
 You can configure Shared iFC sets on the S-CSCF by editing the
-``/etc/clearwater/shared_ifcs.xml`` file.
+``shared_ifcs.xml`` file.
 
 This file stores the iFCs in each Shared iFC set. The format of the file
 is as follows:
@@ -600,13 +603,16 @@ Each ``SharedIFCsSet`` element can contain multiple
 ``InitialFilterCriteria`` elements is zero), and must contain exactly
 one unique ``SetID`` element.
 
-To change the Shared iFC configuration, edit this file on any Sprout
-node, then upload it to the shared configuration database by running
-``sudo cw-upload_shared_ifcs_xml``.
+To change the Shared iFC configuration, download this file on any Sprout
+node by running ``cw-config download shared_ifcs``, make changes locally
+at ``~/clearwater-config-manager/[username]/shared_ifcs.xml``, then
+upload it to the shared configuration database by running
+``cw-config upload shared_ifcs``.
 
 To validate the Shared iFC configuration file before uploading it, run
 the command ``cw-validate_shared_ifcs_xml <file_location>`` on the
-Sprout node the file is present on.
+Sprout node the file is present on, this is also done during the upload
+step.
 
 To remove the Shared iFC configuration, run the command
 ``sudo cw-remove_shared_ifcs_xml`` on any Sprout node.
@@ -623,7 +629,7 @@ these iFCs must be configured on the S-CSCF, and the configuration
 option ``apply_fallback_ifcs`` set to 'Y'.
 
 You can configure fallback iFCs on the S-CSCF by editing the
-``/etc/clearwater/fallback_ifcs.xml`` file.
+``fallback_ifcs.xml`` file.
 
 This file stores a list of fallback iFCs. The format of the file is as
 follows:
@@ -643,13 +649,16 @@ There must be exactly one ``FallbackIFCsSet`` element, which can can
 contain multiple ``InitialFilterCriteria`` elements (the minimum number
 of ``InitialFilterCriteria`` elements is zero).
 
-To change the fallback iFC configuration, edit this file on any Sprout
-node, then upload it to the shared configuration database by running
-``sudo cw-upload_fallback_ifcs_xml``.
+To change the fallback iFC configuration, download this file on any
+Sprout node by running ``cw-config download fallback_ifcs``, make
+changes locally at where the terminal output tells you the file is
+downloaded to, then upload it to the shared configuration database by
+running ``cw-config upload fallback_ifcs``.
 
 To validate the fallback iFC configuration file before uploading it, run
 the command ``cw-validate_fallback_ifcs_xml <file_location>`` on the
-Sprout node the file is present on.
+Sprout node the file is present on, this is also done during the upload
+step.
 
 To remove the fallback iFC configuration, run the command
 ``sudo cw-remove_fallback_ifcs_xml`` on any Sprout node.

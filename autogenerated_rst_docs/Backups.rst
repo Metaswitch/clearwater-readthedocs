@@ -352,19 +352,11 @@ Restoring Configuration
 
 To restore a previous backup, follow these steps:
 
--  Copy all the files listed above except ``shared_config`` to
-   ``/etc/clearwater`` on one of your sprout nodes.
--  Run the following commands on that node:
-
-   ``sudo cw-upload_bgcf_json`` ``sudo cw-upload_enum_json``
-   ``sudo cw-upload_scscf_json`` ``sudo cw-upload_shared_ifcs_xml``
-   ``sudo cw-upload_fallback_ifcs_xml``
-
--  Run ``cw-config download shared_config`` to download a copy of the
-   current ``shared_config``.
--  Copy the backed up version of ``shared_config`` over the top of the
+-  Run ``cw-config download {config type}`` to download a copy of the
+   current ``{config type}``.
+-  Copy the backed up version of ``{config type}`` over the top of the
    downloaded copy.
--  Run ``cw-config upload shared_config`` to push the config to all the
+-  Run ``cw-config upload {config type}`` to push the config to all the
    nodes in the cluster.
 
 See `Modifying Clearwater settings <Modifying_Clearwater_settings.html>`__

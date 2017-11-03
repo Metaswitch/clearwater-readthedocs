@@ -188,7 +188,7 @@ The stress test logs to
 
 There is some extra configuration needed in this mode, so you should:
 
--  set the following properties in ``/etc/clearwater/shared_config``:
+-  set the following properties in ``shared_config``:
 
    -  (required) ``home_domain`` - the home domain of the deployment
       under test

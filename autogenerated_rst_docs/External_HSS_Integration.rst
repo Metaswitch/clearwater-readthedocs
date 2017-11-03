@@ -68,7 +68,7 @@ Enabling external HSS support on an existing deployment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To enable external HSS support, you will need to modify the contents of
-``/etc/clearwater/shared_config`` so that the block that reads
+``shared_config`` so that the block that reads
 
 ::
 

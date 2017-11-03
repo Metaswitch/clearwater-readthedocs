@@ -139,8 +139,10 @@ Core options
 This section describes options for the basic configuration of a
 Clearwater deployment - such as the hostnames of the six node types and
 external services such as email servers or the Home Subscriber Server.
-These options should be set in the ``/etc/clearwater/shared_config``
-file (in the format ``name=value``, e.g. ``home_domain=example.com``).
+These options should be set in a local copy (in the format
+``name=value``, e.g. ``home_domain=example.com``) by running
+``cw-config download shared_config``, editing this downloaded copy and
+then running ``cw-config upload shared_config`` when finished.
 
 -  ``home_domain`` - this is the main SIP domain of the deployment, and
    determines which SIP URIs Clearwater will treat as local. It will
@@ -315,9 +317,10 @@ Advanced options
 This section describes optional configuration options, particularly for
 ensuring conformance with other IMS devices such as HSSes, ENUM servers,
 application servers with strict requirements on Record-Route headers,
-and non-Clearwater I-CSCFs. These options should be set in the
-``/etc/clearwater/shared_config`` file (in the format ``name=value``,
-e.g. ``icscf=5052``).
+and non-Clearwater I-CSCFs. These options should be set in a local copy
+(in the format ``name=value``, e.g. ``icscf=5052``) by running
+``cw-config download shared_config``, editing this downloaded copy and
+then running ``cw-config upload shared_config`` when finished.
 
 -  ``homestead_provisioning_port`` - the HTTP port the homestead
    provisioning interface on Dime listens on. Defaults to 8889. Not
@@ -672,9 +675,10 @@ Experimental options
 
 This section describes optional configuration options which may be
 useful, but are not heavily-used or well-tested by the main Clearwater
-development team. These options should be set in the
-``/etc/clearwater/shared_config`` file (in the format ``name=value``,
-e.g. ``ralf_secure_listen_port=12345``).
+development team. These options should be set in a local copy (in the
+format ``name=value``, e.g. ``ralf_secure_listen_port=12345``) by
+running ``cw-config download shared_config``, editing this downloaded
+copy and then running ``cw-config upload shared_config`` when finished.
 
 -  ``ralf_secure_listen_port`` - this determines the port the ralf
    process on Dime listens on for TLS-secured Diameter connections.
@@ -746,10 +750,11 @@ DNS Config
 ----------
 
 This section describes the static DNS config which can be used to
-override DNS results. This is set in ``/etc/clearwater/dns.json``.
-Currently, the only supported record type is CNAME and the only
-component which uses this is Chronos and the I-CSCF. The file has the
-format:
+override DNS results. These options should be set in a local copy by
+running ``cw-config download dns_json``, editing this downloaded copy
+and then running ``cw-config upload dns_json`` when finished. Currently,
+the only supported record type is CNAME and the only component which
+uses this is Chronos and the I-CSCF. The file has the format:
 
 ::
 

@@ -50,8 +50,8 @@ Work out your signup code
 
 The tests need your signup code to create a test user. You set this as
 ``signup_key`` during install: `manually in
-/etc/clearwater/shared\_config <Manual_Install.html>`__ or `automatically
-in knife.rb <Installing_a_Chef_workstation.html>`__. For the rest of these
+shared\_config <Manual_Install.html>`__ or `automatically in
+knife.rb <Installing_a_Chef_workstation.html>`__. For the rest of these
 instructions, the signup code will be referred to as ``<code>``.
 
 Running the tests against an All-in-One node

@@ -83,7 +83,9 @@ BGCF Configuration
 
 BGCF (Border Gateway Control Function) configuration is stored in the
 ``bgcf.json`` file in ``/etc/clearwater`` on each Sprout node (both I-
-and S-CSCF). The ``bgcf.json`` file stores two types of mappings.
+and S-CSCF). The ``bgcf.json`` file stores two types of mappings. To
+edit a copy of ``bgcf.json`` you must download a local copy using
+``cw-config download bgcf_json``.
 
 -  The first maps from SIP trunk IP addresses and/or domain names to
    IBCF SIP URIs
@@ -137,5 +139,5 @@ telephone number and there's no explicit match for the number in the
 configuration.
 
 After making a change to this file you should run
-``sudo cw-upload_bgcf_json`` to ensure the change is synchronized to
+``cw-config upload bgcf_json`` to ensure the change is synchronized to
 other Sprout nodes on your system (including nodes added in the future).

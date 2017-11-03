@@ -185,7 +185,7 @@ Configuration
 To enable SIP-over-UDP, you will need to set the following configuration
 options.
 
-In ``/etc/clearwater/shared_config`` set or update the fields:
+In ``shared_config`` set or update the fields:
 
 ::
 

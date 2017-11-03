@@ -40,8 +40,8 @@ multiple realms.
 Configuring the Clearwater Deployment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ``/etc/clearwater/shared_config`` file can contain two properties
-that are relevant to this function.
+The ``shared_config`` file can contain two properties that are relevant
+to this function.
 
 -  ``home_domain`` - defines the "default" home domain and must always
    be set
