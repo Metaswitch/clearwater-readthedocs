@@ -280,7 +280,7 @@ To install a standalone IMS component/application server, you need to:
 
 The I-CSCF is responsible for sending requests to the correct S-CSCF. It queries the HSS, but if the HSS doesn't have a configured S-CSCF for the subscriber then it needs to select an S-CSCF itself. The I-CSCF defaults to selecting the Clearwater S-CSCF (as configured in `scscf_uri` in `/etc/clearwater/shared/config`).
 
-You can configure what S-CSCFs are available to the I-CSCF by editing the `s-cscf.json` file.
+You can configure what S-CSCFs are available to the I-CSCF by editing the `s-cscf.json` file, this is done using `cw-config` - see [here](http://clearwater.readthedocs.io/en/latest/Modifying_Clearwater_settings.html#modifying-sprout-json-configuration).
 
 This file stores the configuration of each S-CSCF, their capabilities, and their relative weighting and priorities. The format of the file is as follows:
 
@@ -373,7 +373,7 @@ The `iFC` is an iFC, in XML format.
 
 There must be exactly one `FallbackIFCsSet` element, which can can contain multiple `InitialFilterCriteria` elements (the minimum number of `InitialFilterCriteria` elements is zero).
 
-To change the fallback iFC configuration, download this file on any Sprout node by running `cw-config download fallback_ifcs`, make changes locally at `~/clearwater-config-manager/[username]/fallback_ifcs.xml`, then upload it to the shared configuration database by running `cw-config upload fallback_ifcs`.
+To change the fallback iFC configuration, download this file on any Sprout node by running `cw-config download fallback_ifcs`, make changes locally at where the terminal output tells you the file is downloaded to, then upload it to the shared configuration database by running `cw-config upload fallback_ifcs`.
 
 To validate the fallback iFC configuration file before uploading it, run the command `cw-validate_fallback_ifcs_xml <file_location>` on the Sprout node the file is present on, this is also done during the upload step.
 
