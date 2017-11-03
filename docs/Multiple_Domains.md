@@ -24,7 +24,7 @@ There are three steps to configuring multiple home domains and/or multiple realm
 
 ### Configuring the Clearwater Deployment
 
-The `/etc/clearwater/shared_config` file can contain two properties that are relevant to this function.
+The `shared_config` file can contain two properties that are relevant to this function.
 
 *   `home_domain` - defines the "default" home domain and must always be set
 *   `additional_home_domains` - optionally defines additional home domains

@@ -44,7 +44,7 @@ Do not configure any Clearwater subscribers via Ellis!
 
 ### Enabling external HSS support on an existing deployment
 
-To enable external HSS support, you will need to modify the contents of `/etc/clearwater/shared_config` so that the block that reads
+To enable external HSS support, you will need to modify the contents of `shared_config` so that the block that reads
 
     # HSS configuration
     hss_hostname=0.0.0.0

@@ -10,8 +10,8 @@ Settings in `/etc/clearwater/shared_config` can be safely changed without entire
 
 To change one of these settings:
 
-*   On one node of your deployment, run `cw-config download shared_config`. This will download the current version of `shared_config` to `~/clearwater-config-manager/[username]/shared_config`.
-*   Edit `~/clearwater-config-manager/[username]/shared_config` to make changes as desired.
+*   On one node of your deployment, run `cw-config download shared_config`. This will download the current version of `shared_config` and specify where it has been downloaded to.
+*   Edit the downloaded file to make changes as desired.
 *   Run `cw-config upload shared_config` to upload the modified config to etcd. The changes to the shared configuration are logged to `/var/log/syslog` and to the console. Each node in the site picks up the changed shared configuration (using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and safely restarts itself to use it.
 *   You can check which nodes are using the new shared config by running `cw-check_restart_queue_state`. If this command shows that there's been an error (i.e. a node wasn't able to restart after picking up the new config), simply fix the downloaded `shared_config` file and run `cw-config upload shared_config` again.
 
@@ -27,9 +27,9 @@ Some of the more complex sprout-specific configuration is stored in JSON files
 
 To change one of these files:
 
-* Edit the file on *one* of your sprout nodes in each site.
-* Run one of `sudo cw-upload_{scscf|bgcf|enum}_json` depending on which file you modified.
-* The change will be automatically propagated around the site (by Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and will start being used.
+*   Run `cw-config download {scscf|bgcf|enum}_json` on *one* node in each site. This will download the current version of `{scscf|bgcf|enum}_json` and will specify where it has been downloaded to.
+*   Edit the downloaded file to make changes as desired.
+*   Run `cw-config upload {scscf|bgcf|enum}_json` to upload the new config to etcd. The changes to the shared configuration are logged to `/var/log/syslog` and to the console. Each node in the site picks up the changed shared configuration (using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and will start being used.
 
 ## Modifying Sprout XML Configuration
 
@@ -42,9 +42,9 @@ Some of the more complex sprout-specific configuration is stored in XML files.
 
 To change one of these files:
 
-* Edit the file on *one* of your sprout nodes in each site.
-* Run one of `sudo cw-upload_{shared|fallback}_ifcs_xml` depending on which file you modified.
-* The change will be automatically propogated around the site (by Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and will start being used.
+*   Run `cw-config download {shared|fallback}_ifcs` on *one* node in each site. This will download the current version of `{shared|fallback}_ifcs` and will specify where it has been downloaded to.
+*   Edit the downloaded file to make changes as desired.
+*   Run `cw-config upload {shared|fallback}_ifcs` to upload the new config to etcd. The changes to the shared configuration are logged to `/var/log/syslog` and to the console. Each node in the site picks up the changed shared configuration (using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and will start being used.
 
 ## Modifying DNS Config
 
@@ -54,9 +54,9 @@ It's possible to add static overrides to DNS to a clearwater node. This is done 
 
 To change this file:
 
-* Edit the file on one of your nodes in each site.
-* Run `sudo cw-upload_dns_json`.
-* The change will be automatically propagated around the site (using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and will start being used.
+*   Run `cw-config download dns_json` on *one* node in each site. This will download the current version of `dns_json` and will specify where it has been downloaded to.
+*   Edit the downloaded file to make changes as desired.
+*   Run `cw-config upload dns_json` to upload the new config to etcd. The changes to the shared configuration are logged to `/var/log/syslog` and to the console. Each node in the site picks up the changed shared configuration (using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and will start being used.
 
 ## Starting from scratch
 

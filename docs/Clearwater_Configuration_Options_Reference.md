@@ -56,7 +56,7 @@ This section describes settings that are common across the entire deployment.
 
 ### Core options
 
-This section describes options for the basic configuration of a Clearwater deployment - such as the hostnames of the six node types and external services such as email servers or the Home Subscriber Server. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `home_domain=example.com`).
+This section describes options for the basic configuration of a Clearwater deployment - such as the hostnames of the six node types and external services such as email servers or the Home Subscriber Server. These options should be set in a local copy (in the format `name=value`, e.g. `home_domain=example.com`) by running `cw-config download shared_config`, editing this downloaded copy and then running `cw-config upload shared_config` when finished.
 
 * `home_domain` - this is the main SIP domain of the deployment, and determines which SIP URIs Clearwater will treat as local. It will usually be a hostname resolving to all the P-CSCFs (e.g. the Bono nodes). Other domains can be specified through additional_home_domains, but Clearwater will treat this one as the default (for example, when handling `tel:` URIs).
 * `sprout_hostname` - a hostname that resolves by DNS round-robin to the signaling interface of all Sprout nodes in the cluster.
@@ -122,7 +122,7 @@ As a concrete example, below are the S-CSCF options and the default values.
 
 ### Advanced options
 
-This section describes optional configuration options, particularly for ensuring conformance with other IMS devices such as HSSes, ENUM servers, application servers with strict requirements on Record-Route headers, and non-Clearwater I-CSCFs. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `icscf=5052`).
+This section describes optional configuration options, particularly for ensuring conformance with other IMS devices such as HSSes, ENUM servers, application servers with strict requirements on Record-Route headers, and non-Clearwater I-CSCFs. These options should be set in a local copy (in the format `name=value`, e.g. `icscf=5052`) by running `cw-config download shared_config`, editing this downloaded copy and then running `cw-config upload shared_config` when finished.
 
 * `homestead_provisioning_port` - the HTTP port the homestead provisioning interface on Dime listens on. Defaults to 8889. Not needed when using an external HSS.
 * `sas_server` - the IP address or hostname of your Metaswitch Service Assurance Server for call logging and troubleshooting. Optional.
@@ -224,7 +224,7 @@ This section describes optional configuration options, particularly for ensuring
 
 ### Experimental options
 
-This section describes optional configuration options which may be useful, but are not heavily-used or well-tested by the main Clearwater development team. These options should be set in the `/etc/clearwater/shared_config` file (in the format `name=value`, e.g. `ralf_secure_listen_port=12345`).
+This section describes optional configuration options which may be useful, but are not heavily-used or well-tested by the main Clearwater development team. These options should be set in a local copy (in the format `name=value`, e.g. `ralf_secure_listen_port=12345`) by running `cw-config download shared_config`, editing this downloaded copy and then running `cw-config upload shared_config` when finished.
 
 * `ralf_secure_listen_port` - this determines the port the ralf process on Dime listens on for TLS-secured Diameter connections.
 * `hs_secure_listen_port` - this determines the port the homestead process on Dime listens on for TLS-secured Diameter connections.
@@ -250,7 +250,7 @@ This section describes settings that may vary between systems in the same deploy
 
 ## DNS Config
 
-This section describes the static DNS config which can be used to override DNS results. This is set in `/etc/clearwater/dns.json`. Currently, the only supported record type is CNAME and the only component which uses this is Chronos and the I-CSCF. The file has the format:
+This section describes the static DNS config which can be used to override DNS results. These options should be set in a local copy by running `cw-config download dns_json`, editing this downloaded copy and then running `cw-config upload dns_json` when finished. Currently, the only supported record type is CNAME and the only component which uses this is Chronos and the I-CSCF. The file has the format:
 
     {
       "hostnames": [

@@ -112,7 +112,7 @@ The stress test logs to `/var/log/clearwater-sip-stress/sipp.<index>.out`.
 
 There is some extra configuration needed in this mode, so you should:
 
-* set the following properties in `/etc/clearwater/shared_config`:
+* set the following properties in `shared_config`:
     * (required) `home_domain` - the home domain of the deployment under test
     * (optional) `bono_servers` - a list of bono servers in this deployment
     * (optional) `stress_target` - the target host (defaults to the `node_idx`-th entry in `bono_servers` or, if there are no `bono_servers`, defaults to `home_domain`)

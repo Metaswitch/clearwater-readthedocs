@@ -46,7 +46,7 @@ Refer to the [ENUM guide](ENUM.md) for more about how to configure ENUM.
 
 ## BGCF Configuration
 
-BGCF (Border Gateway Control Function) configuration is stored in the `bgcf.json` file in `/etc/clearwater` on each Sprout node (both I- and S-CSCF).  The `bgcf.json` file stores two types of mappings.
+BGCF (Border Gateway Control Function) configuration is stored in the `bgcf.json` file in `/etc/clearwater` on each Sprout node (both I- and S-CSCF).  The `bgcf.json` file stores two types of mappings. To edit a copy of `bgcf.json` you must download a local copy using `cw-config download bgcf_json`.
 
 - The first maps from SIP trunk IP addresses and/or domain  names to IBCF SIP URIs
 - The second maps from a telephone number (contained in the `rn` parameter of a Tel URI, the `rn` parameter in a SIP URI, a TEL URI or the user part of a SIP URI with a user=phone parameter) to an IBCF SIP URI using prefix matching on the number.
@@ -78,4 +78,4 @@ There can be only one route set for any given SIP trunk IP address or domain nam
 
 A default route set can be configured by having an entry where the domain is set to `"*"`. This will be used by the BGCF if it is trying to route based on the the domain and there's no explicit match for the domain in the configuration, or if it is trying to route based on a telephone number and there's no explicit match for the number in the configuration.
 
-After making a change to this file you should run `sudo cw-upload_bgcf_json` to ensure the change is synchronized to other Sprout nodes on your system (including nodes added in the future).
+After making a change to this file you should run `cw-config upload bgcf_json` to ensure the change is synchronized to other Sprout nodes on your system (including nodes added in the future).
