@@ -182,10 +182,14 @@ This section describes optional configuration options, particularly for ensuring
 * `memento_threads` - determines the number of threads dedicated to adding call list fragments to the call list store. This defaults to 25 threads. This is only relevant if the node includes a Memento AS.
 * `memento_notify_url` - If set to an HTTP URL, memento will make a POST request to this URL whenever a subscriber's call list changes.  The body of the POST request will be a JSON document with the subscriber's IMPU in a field named `impu`.  This is only relevant if the node includes a Memento AS.  If empty, no notifications will be sent.  Defaults to empty.
 * `signaling_dns_server` - a comma-separated list of DNS servers for non-ENUM queries. Defaults to 127.0.0.1 (i.e. uses `dnsmasq`)
-* `target_latency_us` - Target latency (in microsecs) for requests above which [throttling](http://www.projectclearwater.org/clearwater-performance-and-our-load-monitor/) applies. This defaults to 100000 microsecs
-* `max_tokens` - Maximum number of tokens allowed in the token bucket (used by the throttling code). This defaults to 1000 tokens
-* `init_token_rate` - Initial token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 250 tokens per second per core
-* `min_token_rate` - Minimum token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 10.0
+* Throttling options:
+    * These options are used as part of the throttling code that allows Clearwater to cope with overload situations. The throttling options are specific to each individual process, e.g. sprout, ralf, homestead, ...
+    * `<process>_target_latency_us` - Target latency (in microsecs) for requests above which [throttling](http://www.projectclearwater.org/clearwater-performance-and-our-load-monitor/) applies. This defaults to 100000 microsecs
+    * `<process>_max_tokens` - Maximum number of tokens allowed in the token bucket (used by the throttling code). This defaults to 1000 tokens
+    * `<process>_init_token_rate` - Initial token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 250 tokens per second per core
+    * `<process>_min_token_rate` - Minimum token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 10.0
+    * `<process>_max_token_rate` - Maximum token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 0.0 (no maximum)
+    * `<process>_request_queue_timeout` - Maximum time a request can be waiting to be processed before it is rejected (used by the throttling code). This defaults to 4000ms
 * `override_npdi` - Whether the I-CSCF, S-CSCF and BGCF should check for number portability data on requests that already have the 'npdi' indicator. This defaults to false
 * `exception_max_ttl` - determines the maximum time before a process exits if it crashes. This defaults to 600 seconds
 * `check_destination_host` - determines whether the node checks the Destination-Host on a Diameter request when deciding whether it should process the request. This defaults to true.
