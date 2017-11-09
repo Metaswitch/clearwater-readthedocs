@@ -55,7 +55,7 @@ Content-Length:  0
 ### Node local URIs
 To determine if a URI is 'node local' Sprout compares it to the list of
 identities we associate with the node when creating the stack at start of day.
-To see what your Sprout process considers it's local identities to be, you can
+To see what your Sprout process considers its local identities to be, you can
 check the beginning of your sprout logs, under the log line `Local host
 aliases:`. As an example, on an EC2 based Sprout node, you will see something
 like the following:
