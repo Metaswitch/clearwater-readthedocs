@@ -521,17 +521,32 @@ then running ``cw-config upload shared_config`` when finished.
    sent. Defaults to empty.
 -  ``signaling_dns_server`` - a comma-separated list of DNS servers for
    non-ENUM queries. Defaults to 127.0.0.1 (i.e. uses ``dnsmasq``)
--  ``target_latency_us`` - Target latency (in microsecs) for requests
-   above which
-   `throttling <http://www.projectclearwater.org/clearwater-performance-and-our-load-monitor/>`__
-   applies. This defaults to 100000 microsecs
--  ``max_tokens`` - Maximum number of tokens allowed in the token bucket
-   (used by the throttling code). This defaults to 1000 tokens
--  ``init_token_rate`` - Initial token refill rate of tokens in the
-   token bucket (used by the throttling code). This defaults to 250
-   tokens per second per core
--  ``min_token_rate`` - Minimum token refill rate of tokens in the token
-   bucket (used by the throttling code). This defaults to 10.0
+-  Throttling options:
+
+   -  These options are used as part of the throttling code that allows
+      Clearwater to cope with overload situations. The throttling
+      options are specific to each individual process, e.g. sprout,
+      ralf, homestead, ...
+   -  ``<process>_target_latency_us`` - Target latency (in microsecs)
+      for requests above which
+      `throttling <http://www.projectclearwater.org/clearwater-performance-and-our-load-monitor/>`__
+      applies. This defaults to 100000 microsecs
+   -  ``<process>_max_tokens`` - Maximum number of tokens allowed in the
+      token bucket (used by the throttling code). This defaults to 1000
+      tokens
+   -  ``<process>_init_token_rate`` - Initial token refill rate of
+      tokens in the token bucket (used by the throttling code). This
+      defaults to 250 tokens per second per core
+   -  ``<process>_min_token_rate`` - Minimum token refill rate of tokens
+      in the token bucket (used by the throttling code). This defaults
+      to 10.0
+   -  ``<process>_max_token_rate`` - Maximum token refill rate of tokens
+      in the token bucket (used by the throttling code). This defaults
+      to 0.0 (no maximum)
+   -  ``<process>_request_queue_timeout`` - Maximum time a request can
+      be waiting to be processed before it is rejected (used by the
+      throttling code). This defaults to 4000 millisecs
+
 -  ``override_npdi`` - Whether the I-CSCF, S-CSCF and BGCF should check
    for number portability data on requests that already have the 'npdi'
    indicator. This defaults to false
