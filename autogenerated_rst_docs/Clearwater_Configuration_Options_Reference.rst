@@ -530,7 +530,10 @@ then running ``cw-config upload shared_config`` when finished.
    -  ``<process>_target_latency_us`` - Target latency (in microsecs)
       for requests above which
       `throttling <http://www.projectclearwater.org/clearwater-performance-and-our-load-monitor/>`__
-      applies. This defaults to 100000 microsecs
+      applies. This defaults to 10000 microsecs for sprout and 100000
+      microsecs for other processes. The difference is due to the fact
+      that sprout ignores latency of network requests when calculating
+      message latency.
    -  ``<process>_max_tokens`` - Maximum number of tokens allowed in the
       token bucket (used by the throttling code). This defaults to 1000
       tokens
