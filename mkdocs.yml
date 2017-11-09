@@ -53,6 +53,7 @@ pages:
   - Geographic redundancy: Geographic_redundancy.md
   - IPv6: IPv6.md
   - SIP Interface Specifications: SIP_Interface_Specifications.md
+  - SIP OPTIONS poll support: OPTIONS_poll_support.md
   - Automatic Clustering and Configuration Sharing: Automatic_Clustering_Config_Sharing.md
   - Provisioning Subscribers: Provisioning_Subscribers.md
 - Failure Recovery:
