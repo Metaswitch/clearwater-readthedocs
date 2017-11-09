@@ -184,7 +184,7 @@ This section describes optional configuration options, particularly for ensuring
 * `signaling_dns_server` - a comma-separated list of DNS servers for non-ENUM queries. Defaults to 127.0.0.1 (i.e. uses `dnsmasq`)
 * Throttling options:
     * These options are used as part of the throttling code that allows Clearwater to cope with overload situations. The throttling options are specific to each individual process, e.g. sprout, ralf, homestead, ...
-    * `<process>_target_latency_us` - Target latency (in microsecs) for requests above which [throttling](http://www.projectclearwater.org/clearwater-performance-and-our-load-monitor/) applies. This defaults to 100000 microsecs
+    * `<process>_target_latency_us` - Target latency (in microsecs) for requests above which [throttling](http://www.projectclearwater.org/clearwater-performance-and-our-load-monitor/) applies. This defaults to 10000 microsecs for sprout and 100000 microsecs for other processes. The difference is due to the fact that sprout ignores latency of network requests when calculating message latency. 
     * `<process>_max_tokens` - Maximum number of tokens allowed in the token bucket (used by the throttling code). This defaults to 1000 tokens
     * `<process>_init_token_rate` - Initial token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 250 tokens per second per core
     * `<process>_min_token_rate` - Minimum token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 10.0
