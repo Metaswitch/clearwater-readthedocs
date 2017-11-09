@@ -24,7 +24,7 @@ Some of the more complex sprout-specific configuration is stored in JSON files
 * `/etc/clearwater/s-cscf.json` - contains information to allow the Sprout I-CSCF to select an appropriate S-CSCF to handle some requests.
 * `/etc/clearwater/bgcf.json` - contains routing rules for the Sprout BGCF.
 * `/etc/clearwater/enum.json` - contains ENUM rules when using file-based ENUM instead of an external ENUM server.
-* `/etc/clearwater/rph.json` - contains which priority to give to different Resource Priority header values.
+* `/etc/clearwater/rph.json` - contains which priority to give to different Resource Priority Header values.
 
 To change one of these files:
 
