@@ -24,12 +24,13 @@ Some of the more complex sprout-specific configuration is stored in JSON files
 * `/etc/clearwater/s-cscf.json` - contains information to allow the Sprout I-CSCF to select an appropriate S-CSCF to handle some requests.
 * `/etc/clearwater/bgcf.json` - contains routing rules for the Sprout BGCF.
 * `/etc/clearwater/enum.json` - contains ENUM rules when using file-based ENUM instead of an external ENUM server.
+* `/etc/clearwater/rph.json` - contains which priority to give to different Resource Priority header values.
 
 To change one of these files:
 
-*   Run `cw-config download {scscf|bgcf|enum}_json` on *one* node in each site. This will download the current version of `{scscf|bgcf|enum}_json` and will specify where it has been downloaded to.
+*   Run `cw-config download {scscf|bgcf|enum|rph}_json` on *one* node in each site. This will download the current version of `{scscf|bgcf|enum|rph}_json` and will specify where it has been downloaded to.
 *   Edit the downloaded file to make changes as desired.
-*   Run `cw-config upload {scscf|bgcf|enum}_json` to upload the new config to etcd. The changes to the shared configuration are logged to `/var/log/syslog` and to the console. Each node in the site picks up the changed shared configuration (using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and will start being used.
+*   Run `cw-config upload {scscf|bgcf|enum|rph}_json` to upload the new config to etcd. The changes to the shared configuration are logged to `/var/log/syslog` and to the console. Each node in the site picks up the changed shared configuration (using Clearwater's [automatic configuration sharing](Automatic_Clustering_Config_Sharing.md) functionality) and will start being used.
 
 ## Modifying Sprout XML Configuration
 

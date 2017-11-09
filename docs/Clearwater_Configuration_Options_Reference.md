@@ -265,6 +265,26 @@ This section describes the static DNS config which can be used to override DNS r
       ]
     }
 
+## RPH Config
+
+This section describes how to configure the priorities that should be given to different Resource Priority Header values. These options should be set in a local copy by running `cw-config download rph_json`, editing this downloaded copy and then running `cw-config upload rph_json` when finished. Currently, only the Namespaces and Priority-Valuess mentioned in RFC 4412 are supported as Resource Priority Header values. This file has the format:
+
+    {
+      "priority_blocks": [
+        {
+          "priority": 1,
+          "rph_values": []
+        },
+
+        ...
+
+        {
+          "priority": 15,
+          "rph_values": []
+        }
+      ]
+    }
+
 ## Other configuration options
 
 There is further documentation for Chronos configuration [here](https://github.com/Metaswitch/chronos/blob/dev/doc/configuration.md) and Homer/Homestead-prov configuration [here](https://github.com/Metaswitch/crest/blob/master/docs/development.md#local-settings).
