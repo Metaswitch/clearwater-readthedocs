@@ -181,6 +181,7 @@ It uses other open-source components as acknowledged in
    Geographic redundancy <Geographic_redundancy.rst>
    IPv6 <IPv6.rst>
    SIP Interface Specifications <SIP_Interface_Specifications.rst>
+   SIP OPTIONS poll support <OPTIONS_poll_support.rst>
    Automatic Clustering and Configuration Sharing <Automatic_Clustering_Config_Sharing.rst>
    Provisioning Subscribers <Provisioning_Subscribers.rst>
 
