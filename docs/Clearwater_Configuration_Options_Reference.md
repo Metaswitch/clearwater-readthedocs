@@ -189,7 +189,7 @@ This section describes optional configuration options, particularly for ensuring
     * `<process>_init_token_rate` - Initial token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 250 tokens per second per core
     * `<process>_min_token_rate` - Minimum token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 10.0
     * `<process>_max_token_rate` - Maximum token refill rate of tokens in the token bucket (used by the throttling code). This defaults to 0.0 (no maximum)
-    * `<process>_request_queue_timeout` - Maximum time a request can be waiting to be processed before it is rejected (used by the throttling code). This defaults to 4000ms
+    * `<process>_request_queue_timeout` - Maximum time a request can be waiting to be processed before it is rejected (used by the throttling code). This defaults to 4000 millisecs
 * `override_npdi` - Whether the I-CSCF, S-CSCF and BGCF should check for number portability data on requests that already have the 'npdi' indicator. This defaults to false
 * `exception_max_ttl` - determines the maximum time before a process exits if it crashes. This defaults to 600 seconds
 * `check_destination_host` - determines whether the node checks the Destination-Host on a Diameter request when deciding whether it should process the request. This defaults to true.
