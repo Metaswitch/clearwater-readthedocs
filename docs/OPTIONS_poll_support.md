@@ -11,25 +11,26 @@ registration state etc.
 
 ## Correctly forming OPTIONS polls
 The Sprout process will handle certain OPTIONS messages statelessly, without the
-need to send any requests off to subscriber state stores, based on the URI they
-are sent to (detail on this below). This is for use by health checking and
-monitoring tools, so that they do not need to REGISTER with the system. Sprout
-will handle an OPTIONS message in this way if:
+need to send any requests off to subscriber state stores; the decision of when
+to do this is based on the URI they are sent to (detail on this below). This is
+for use by health checking and monitoring tools, so that they do not need to
+act as a full SIP endpoint and register with the system. Sprout will handle an
+OPTIONS message in this way if:
 
 -   the req_uri is classified as 'node local'
 -   the message contains either
     -   no route headers
     -   a single route header, also classified as 'node local'
 
-So, to poll Sprout with a SIP OPTIONS message, you simply need to route make
-sure you're confirming to the two points above. We are already using this for
-our monit health checking. An example of these poll messages looks like:
+So, to poll Sprout with a SIP OPTIONS message, you simply need to make sure you
+are in line with the two points above. We are already using this for our Monit
+based health checking. An example of these poll messages looks like:
 
 ```
-OPTIONS sip:poll-sip@10.0.10.1:5053 SIP/2.0
+OPTIONS sip:poll-sip@10.0.10.1:5054 SIP/2.0
 Via: SIP/2.0/TCP 10.0.10.1;rport;branch=z9hG4bK-1234
 Max-Forwards: 2
-To: <sip:poll-sip@10.0.10.1:5053>
+To: <sip:poll-sip@10.0.10.1:5054>
 From: poll-sip <sip:poll-sip@10.0.10.1>;tag=1234
 Call-ID: poll-sip-1234
 CSeq: 1234 OPTIONS
@@ -52,7 +53,7 @@ Content-Length:  0
 ```
 
 ### Node local URIs
-To determine if a URI is 'node local', Sprout compares it to the list of
+To determine if a URI is 'node local' Sprout compares it to the list of
 identities we associate with the node when creating the stack at start of day.
 To see what your Sprout process considers it's local identities to be, you can
 check the beginning of your sprout logs, under the log line `Local host
