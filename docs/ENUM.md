@@ -100,7 +100,7 @@ from an example deployment might form a reasonable basis:
             },
             {   "name" : "Clearwater internal numbers dialled with +1 prefix",
                 "prefix" : "+1650555",
-                "regex" : "!^+1(.*$)!sip:\\1@ngv.example.com!"
+                "regex" : "!^\\+1(.*$)!sip:\\1@ngv.example.com!"
             },
             {   "name" : "NANP => SIP trunk",
                 "prefix" : "",
