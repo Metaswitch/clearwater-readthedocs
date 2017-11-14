@@ -19,7 +19,7 @@ ports <Clearwater_IP_Port_Usage.html>`__.
 To launch the node
 
 -  From the EC2 console, make sure you're in the US East region, then
-   select "Instances", "Launch instance" and then "Classic Wizard"
+   select "Instances" and then "Launch instance"
 -  Select the "Community AMIs" tab, and search for "Clearwater"
 -  Press "Select" for the Clearwater all-in-one AMI. Take the most
    recent version unless you have a good reason not to.
