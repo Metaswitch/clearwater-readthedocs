@@ -30,6 +30,7 @@ positional arguments:
   <directory-number>[..<directory-number>]
   <domain>
   <password>
+The public id will be sip:<directory-number>@domain.
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -42,12 +43,13 @@ optional arguments:
 
 ## Update users
 
-Existing users' passwords can be updated with the `cw-update_user` tool.
+Existing users can be updated with the `cw-update_user` tool.
 
 ```
 usage: update_user.py [-h] [-k] [-q] [--hsprov IP:PORT] [--plaintext]
+                      [--ifc iFC-FILE] [--prefix TWIN_PREFIX]
+                      [--password PASSWORD]
                       <directory-number>[..<directory-number>] <domain>
-                      <password>
 
 Update user
 
