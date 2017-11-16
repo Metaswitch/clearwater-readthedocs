@@ -100,7 +100,7 @@ from an example deployment might form a reasonable basis:
             },
             {   "name" : "Clearwater internal numbers dialled with +1 prefix",
                 "prefix" : "+1650555",
-                "regex" : "!^+1(.*$)!sip:\\1@ngv.example.com!"
+                "regex" : "!^\\+1(.*$)!sip:\\1@ngv.example.com!"
             },
             {   "name" : "NANP => SIP trunk",
                 "prefix" : "",
@@ -108,6 +108,10 @@ from an example deployment might form a reasonable basis:
             }
         ]
     }
+
+NB: The first part of the regex matches on the entire number and takes out the
+bit inside the bracket, to replace \\\\1 in second expression. Eg. The second last 
+rule will replace `+166655500` with `sip:66655500@ngv.example.com`.
 
 ## Configuring ENUM rules
 
