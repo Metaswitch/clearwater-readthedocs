@@ -106,11 +106,13 @@ Clearwater.
 
 *Extra configuration to use an All-in-One node*
 
-If you are using an All-in-One node, you will also need to configure an
-outbound proxy at your client.
+If you are using an All-in-One node, you will also need to configure the
+following at your client.
 
+-  Outbound Proxy
 -  Outbound Proxy address: ``<aio-identity>``
 -  Port: 5060 (or 8060 if installed in VirtualBox)
+-  DNS record for ``<aio-identity>``
 
 Once these settings have been applied, your client will register with
 Clearwater. Note that X-Lite may need to be restarted before it will set
