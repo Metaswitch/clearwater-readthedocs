@@ -109,6 +109,10 @@ from an example deployment might form a reasonable basis:
         ]
     }
 
+NB: The first part of the regex matches on the entire number and takes out the
+bit inside the bracket, to replace \\\\1 in second expression. Eg. The second last 
+rule will replace `+166655500` with `sip:66655500@ngv.example.com`.
+
 ## Configuring ENUM rules
 
 Normally, the ENUM server would be an existing part of the customer's
