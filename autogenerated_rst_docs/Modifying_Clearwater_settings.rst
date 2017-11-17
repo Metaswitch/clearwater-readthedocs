@@ -51,15 +51,17 @@ files
    BGCF.
 -  ``/etc/clearwater/enum.json`` - contains ENUM rules when using
    file-based ENUM instead of an external ENUM server.
+-  ``/etc/clearwater/rph.json`` - contains which priority to give to
+   different Resource Priority Header values.
 
 To change one of these files:
 
--  Run ``cw-config download {scscf|bgcf|enum}_json`` on *one* node in
-   each site. This will download the current version of
-   ``{scscf|bgcf|enum}_json`` and will specify where it has been
+-  Run ``cw-config download {scscf|bgcf|enum|rph}_json`` on *one* node
+   in each site. This will download the current version of
+   ``{scscf|bgcf|enum|rph}_json`` and will specify where it has been
    downloaded to.
 -  Edit the downloaded file to make changes as desired.
--  Run ``cw-config upload {scscf|bgcf|enum}_json`` to upload the new
+-  Run ``cw-config upload {scscf|bgcf|enum|rph}_json`` to upload the new
    config to etcd. The changes to the shared configuration are logged to
    ``/var/log/syslog`` and to the console. Each node in the site picks
    up the changed shared configuration (using Clearwater's `automatic
