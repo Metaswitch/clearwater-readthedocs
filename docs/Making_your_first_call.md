@@ -60,10 +60,10 @@ Client configuration methods vary by client, but the following information shoul
 * Authorization Name: `<username>@<domain>`
 * Transport: `TCP`
 * STUN/TURN/ICE:
- * Enabled: `true`
- * Server: `<domain>` (or `<aio-identity>` on an All-in-One node)
- * Username: `<username>@<domain>`
- * Password: `<password>`
+  * Enabled: `true`
+  * Server: `<domain>` (or `<aio-identity>` on an All-in-One node)
+  * Username: `<username>@<domain>`
+  * Password: `<password>`
 * Use rport: `true` (this is required if your SIP client is behind a NAT when contacting your deployment).
 
 *Extra configuration to use an All-in-One node*
@@ -71,8 +71,8 @@ Client configuration methods vary by client, but the following information shoul
 If you are using an All-in-One node, you will also need to configure the following at your client.
 
 * Outbound Proxy
- * Outbound Proxy address: `<aio-identity>`
- * Port: 5060 (or 8060 if installed in VirtualBox)
+  * Outbound Proxy address: `<aio-identity>`
+  * Port: 5060 (or 8060 if installed in VirtualBox)
 * DNS record for `<aio-identity>`
 
 Once these settings have been applied, your client will register with Clearwater. Note that X-Lite may need to be restarted before it will set up a STUN connection.
