@@ -251,6 +251,7 @@ This section describes settings that may vary between systems in the same deploy
 ## DNS Config
 
 This section describes the static DNS config which can be used to override DNS results.
+
 The configuration can be set or changed by downloading the current version of `dns.json` by running `cw-config download dns_json`, editing this downloaded copy, and then running `cw-config upload dns_json` when finished. Currently, the only supported record type is CNAME and the only component which uses this is Chronos and the I-CSCF. The file has the format:
 
     {
@@ -269,6 +270,7 @@ The configuration can be set or changed by downloading the current version of `d
 ## RPH Config
 
 This section describes how to configure the priorities that should be given to different Resource Priority Header values.
+
 The configuration can be set or changed by downloading the current version of `rph.json` by running `cw-config download rph_json`, editing this downloaded copy, and then running `cw-config upload rph_json` when finished. Currently, only the Namespaces and Priority-Values mentioned in [RFC 4412](https://tools.ietf.org/html/rfc4412) are supported as Resource Priority Header values. This file has the format:
 
     {
