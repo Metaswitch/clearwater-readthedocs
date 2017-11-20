@@ -801,10 +801,10 @@ given to different Resource Priority Header values.
 The configuration can be set or changed by downloading the current
 version of ``rph.json`` by running ``cw-config download rph_json``,
 editing this downloaded copy, and then running
-``cw-config upload rph_json`` when finished. Currently, only the
-Namespaces and Priority-Values mentioned in `RFC
-4412 <https://tools.ietf.org/html/rfc4412>`__ are supported as Resource
-Priority Header values. This file has the format:
+``cw-config upload rph_json`` when finished. Both the Namespaces and
+Priority-Values mentioned in `RFC
+4412 <https://tools.ietf.org/html/rfc4412>`__, and custom values, are
+supported as Resource Priority Header values. This file has the format:
 
 ::
 
