@@ -150,6 +150,7 @@ Dime nodes provide the following statistics:
 * The number of Location-Information-Answers with a given result-code received over the Cx interface, indexed by time period.
 * The number of Push-Profile-Answers with a given result-code sent over the Cx interface, indexed by time period.
 * The number of Registration-Termination-Answers with a given result-code sent over the Cx interface, indexed by time period.
+* The average size, variance, highest size and lowest size of Homestead's cache queue, indexed by time period.
 
 ### Call Diversion App Server Statistics
 
