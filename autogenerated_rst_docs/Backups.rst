@@ -227,22 +227,11 @@ complete, scale down your deployment to the desired size.
 Running the Restore Backup Script
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To actually restore from the backup file, run:
+Ellis
+^^^^^
 
--  On Ellis:
-
-   -  ``sudo /usr/share/clearwater/ellis/backup/restore_backup.sh <snapshot>``
-
--  On Vellum:
-
-   -  ``sudo /usr/share/clearwater/bin/restore_backup.sh homestead_provisioning <hs-prov-snapshot> <backup directory>``
-   -  ``sudo /usr/share/clearwater/bin/restore_backup.sh homestead_cache <hs-cache-snapshot> <backup directory>``
-   -  ``sudo /usr/share/clearwater/bin/restore_backup.sh homer <homer-snapshot> <backup directory>``
-   -  ``sudo /usr/share/clearwater/bin/restore_backup.sh memento <memento-snapshot> <backup directory>``
-
-Note that, because the 4 Vellum databases are saved to different
-backups, the name of the snapshot used to restore each of the databases
-will be different.
+To restore a backup on Ellis, run the following command \*
+``sudo /usr/share/clearwater/ellis/backup/restore_backup.sh <snapshot>``
 
 Ellis will produce output of the following form.
 
@@ -261,33 +250,63 @@ Ellis will produce output of the following form.
     /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */
     --------------
 
-Vellum will produce output of the following form.
+Vellum
+^^^^^^
 
-::
+To restore a backup on Vellum, you must perform the following steps.
+Note that this stops the Cassandra processes on every Vellum node, so
+Cassandra will be unavailable for the duration.
 
-    Will attempt to backup from backup 1372336442947
-    Will attempt to backup from directory /home/ubuntu/bkp_test/
-    Found backup directory /home/ubuntu/bkp_test//1372336442947
-    Restoring backup for keyspace homestead_provisioning...
-    xss =  -ea -javaagent:/usr/share/cassandra/lib/jamm-0.2.5.jar -XX:+UseThreadPriorities -XX:ThreadPriorityPolicy=42 -Xm
-    s826M -Xmx826M -Xmn100M -XX:+HeapDumpOnOutOfMemoryError -Xss180k
-    Clearing commitlog...
-    filter_criteria: Deleting old .db files...
-    filter_criteria: Restoring from backup: 1372336442947
-    private_ids: Deleting old .db files...
-    private_ids: Restoring from backup: 1372336442947
-    public_ids: Deleting old .db files...
-    public_ids: Restoring from backup: 1372336442947
-    sip_digests: Deleting old .db files...
-    sip_digests: Restoring from backup: 1372336442947
+1. On every Vellum node in turn, across all GR sites, stop Cassandra
+   using the following command:
 
-For Vellum, after restoring the backups you must also do the following:
-- wait until the Cassandra process has restarted by running
-``sudo monit summary`` and verifying that the ``cassandra_process`` is
-marked as ``Running`` - run
-``sudo cw-run_in_signaling_namespace nodetool repair``
+   -  ``sudo monit stop -g cassandra``
 
-At this point, this node has been restored.
+2. On every Vellum node on which you want to restore a backup, run the
+   restore backup script for each keyspace using the following commands:
+
+   -  ``sudo /usr/share/clearwater/bin/restore_backup.sh homestead_provisioning <hs-prov-snapshot> <backup directory>``
+   -  ``sudo /usr/share/clearwater/bin/restore_backup.sh homestead_cache <hs-cache-snapshot> <backup directory>``
+   -  ``sudo /usr/share/clearwater/bin/restore_backup.sh homer <homer-snapshot> <backup directory>``
+   -  ``sudo /usr/share/clearwater/bin/restore_backup.sh memento <memento-snapshot> <backup directory>``
+
+   Note that, because the 4 Vellum databases are saved to different
+   backups, the name of the snapshot used to restore each of the
+   databases will be different.
+
+   Vellum will produce output of the following form.
+
+   ::
+
+       Will attempt to backup from backup 1372336442947
+       Will attempt to backup from directory /home/ubuntu/bkp_test/
+       Found backup directory /home/ubuntu/bkp_test//1372336442947
+       Restoring backup for keyspace homestead_provisioning...
+       xss =  -ea -javaagent:/usr/share/cassandra/lib/jamm-0.2.5.jar -XX:+UseThreadPriorities -XX:ThreadPriorityPolicy=42 -Xm
+       s826M -Xmx826M -Xmn100M -XX:+HeapDumpOnOutOfMemoryError -Xss180k
+       Clearing commitlog...
+       filter_criteria: Deleting old .db files...
+       filter_criteria: Restoring from backup: 1372336442947
+       private_ids: Deleting old .db files...
+       private_ids: Restoring from backup: 1372336442947
+       public_ids: Deleting old .db files...
+       public_ids: Restoring from backup: 1372336442947
+       sip_digests: Deleting old .db files...
+       sip_digests: Restoring from backup: 1372336442947
+
+3. On every Vellum node in turn, across all GR sites, restart Cassandra
+   using the following command:
+
+   -  ``sudo monit monitor -g cassandra``
+
+4. On every Vellum node in turn, across all GR sites:
+
+   -  Wait until the Cassandra process has restarted by running
+      ``sudo monit summary`` and verifying that the
+      ``cassandra_process`` is marked as ``Running``
+   -  run ``sudo cw-run_in_signaling_namespace nodetool repair -par``
+
+At this point, the backups have been restored.
 
 Synchronization
 ~~~~~~~~~~~~~~~
