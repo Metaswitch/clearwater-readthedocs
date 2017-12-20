@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Nazgûl <http://lotr.wikia.com/wiki/Nazgûl>`__\ ".
+"`Ulmo <http://http://lotr.wikia.com/wiki/Ulmo>`__\ ".
 
 Architecture
 ------------
