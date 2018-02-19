@@ -350,7 +350,7 @@ this).
 
 ::
 
-    `cw-config upload shared_config`
+    cw-config upload shared_config
 
 Provision Telephone Numbers in Ellis
 ------------------------------------
