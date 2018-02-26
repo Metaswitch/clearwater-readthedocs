@@ -29,11 +29,12 @@ For a deployment which contains more that one site, the statistics must be summe
 
 e.g. Consider a deployment with two sites, each of which contains three Vellum nodes. If ten registrations are set up in Site 1, and 8 in Site 2, the nodes could report the following statistics:
 
-Site 1
+Site 1:
 * Node 1 :- 6 Registrations
 * Node 2 :- 7 Registrations
 * Node 3 :- 7 Registrations
-Site 2
+
+Site 2:
 * Node 1 :- 6 Registrations
 * Node 2 :- 6 Registrations
 * Node 3 :- 4 Registrations
