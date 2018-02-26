@@ -39,7 +39,7 @@ Site 2:
 * Node 2 :- 6 Registrations
 * Node 3 :- 4 Registrations
 
-To calculate the number of registrations actually active in the deployement, the total in each site should be divided by the replication factor, and then the registrations for each site should be summed.
+To calculate the number of registrations actually active in the deployment, the total in each site should be divided by the replication factor, and then the registrations for each site should be summed.
 
 > ((6 + 7 + 7) / 2 ) + ((6 + 6 + 4) /  2) = 10 + 8 = 18 Active registrations
 
