@@ -33,6 +33,7 @@ Site 1
 * Node 1 :- 6 Registrations
 * Node 2 :- 7 Registrations
 * Node 3 :- 7 Registrations
+
 Site 2
 * Node 1 :- 6 Registrations
 * Node 2 :- 6 Registrations
