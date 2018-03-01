@@ -409,7 +409,8 @@ point of use. This is necessary for Chronos and I-CSCF processing:
 -  Chronos: When a client sets a timer on Chronos, it provides a URI
    that Chronos can use to inform the client that the timer has popped.
    This URI should resolve to the clients in the same site as where the
-   timer popped, but the timer could pop in any site.
+   timer popped, but the timer could pop in any site if GR is enabled in
+   Chronos.
 -  I-CSCF: The HSS stores the S-CSCF name. When the I-CSCF learns the
    S-CSCF name it wants to contact the S-CSCF in the local site, but the
    HSS will return the same S-CSCF name to the I-CSCFs in different

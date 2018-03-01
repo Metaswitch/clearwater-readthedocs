@@ -30,8 +30,12 @@ Vellum has 3 databases, which support Geographic Redundancy differently:
 -  The Homestead-Prov, Homer and Memento databases are backed by
    Cassandra, which is aware of local and remote peers, so these are a
    single cluster split across the two geographic regions.
--  Chronos is aware of local peers and the remote cluster, and handles
-   replicating timers across the two sites itself.
+-  There is one Chronos cluster per geographic region. By default
+   Chronos does not replicate timers to remote clusters, as timers are
+   not sufficiently critical to require that level of redundancy. If
+   desired, Chronos can be made aware of remote clusters and will handle
+   replicating timers to the remote sites itself (details
+   `here <https://github.com/Metaswitch/chronos/blob/dev/doc/gr.md>`__).
 -  There is one memcached cluster per geographic region. Although
    memcached itself does not support the concept of local and remote
    peers, Vellum runs Rogers as a memcached proxy which allows Sprout
