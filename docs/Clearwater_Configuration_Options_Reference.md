@@ -125,7 +125,6 @@ As a concrete example, below are the S-CSCF options and the default values.
 This section describes optional configuration options, particularly for ensuring conformance with other IMS devices such as HSSes, ENUM servers, application servers with strict requirements on Record-Route headers, and non-Clearwater I-CSCFs. These options should be set in a local copy (in the format `name=value`, e.g. `icscf=5052`) by running `cw-config download shared_config`, editing this downloaded copy and then running `cw-config upload shared_config` when finished.
 
 * `homestead_provisioning_port` - the HTTP port the homestead provisioning interface on Dime listens on. Defaults to 8889. Not needed when using an external HSS.
-* `sas_server` - the IP address or hostname of your Metaswitch Service Assurance Server for call logging and troubleshooting. Optional.
 * `reg_max_expires` - determines the maximum expires= parameter Sprout will set on Contact headers at registrations, and therefore the amount of time before a UE has to re-register - must be less than 2^31 ms (approximately 25 days). Default is 300 (seconds).
 * `sub_max_expires` - determines the maximum Expires header Sprout will set in subscription responses, and therefore the amount of time before a UE has to re-subscribe - must be less than 2^31 ms (approximately 25 days).
 * `upstream_hostname` - the I-CSCF which Bono should pass requests to. Defaults to `icscf.<sprout_hostname>`.
@@ -294,6 +293,15 @@ The configuration can be set or changed by downloading the current version of `r
     }
 
 It is worth noting that 15 is high priority, and 1 is low priority.
+
+## SAS Server Config
+
+This section describes how to configure a Metaswitch Service Assurance Server, used for call logging and troubleshooting.
+
+The configuration can be set or changed by downloading the current version of `sas.json` by running `cw-config download sas_json`, editing this downloaded copy, and then running `cw-config upload sas_json` when finished. You should specify the IPv4 address of your SAS in this file. Only one SAS may be configured. Should multiple IP addresses be uploaded then only the first entry will be read and used.
+
+
+
 
 ## Other configuration options
 
