@@ -300,8 +300,13 @@ This section describes how to configure a Metaswitch Service Assurance Server, u
 
 The configuration can be set or changed by downloading the current version of `sas.json` by running `cw-config download sas_json`, editing this downloaded copy, and then running `cw-config upload sas_json` when finished. You should specify the IPv4 address of your SAS in this file. Only one SAS may be configured. Should multiple IP addresses be uploaded then only the first entry will be read and used.
 
-
-
+    {
+      "sas_servers": [
+        {
+            "ip": "1.1.1.1"
+        }
+      ]
+    }
 
 ## Other configuration options
 
