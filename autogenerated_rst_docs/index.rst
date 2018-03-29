@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest stable release of Clearwater is
-"`Ulmo <http://lotr.wikia.com/wiki/Ulmo>`__\ ".
+"`Zamîn <http://lotr.wikia.com/wiki/Zamin>`__\ ".
 
 Architecture
 ------------
