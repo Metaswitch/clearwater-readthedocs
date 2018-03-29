@@ -10,8 +10,8 @@ website <http://www.projectclearwater.org/>`__.
 Latest Release
 --------------
 
-The latest stable release of Clearwater is
-"`Zamîn <http://lotr.wikia.com/wiki/Zamin>`__\ ".
+The latest release of Clearwater is
+"`Zamîn\_stable <http://lotr.wikia.com/wiki/Zamin>`__\ ".
 
 Architecture
 ------------
