@@ -325,9 +325,6 @@ then running ``cw-config upload shared_config`` when finished.
 -  ``homestead_provisioning_port`` - the HTTP port the homestead
    provisioning interface on Dime listens on. Defaults to 8889. Not
    needed when using an external HSS.
--  ``sas_server`` - the IP address or hostname of your Metaswitch
-   Service Assurance Server for call logging and troubleshooting.
-   Optional.
 -  ``reg_max_expires`` - determines the maximum expires= parameter
    Sprout will set on Contact headers at registrations, and therefore
    the amount of time before a UE has to re-register - must be less than
@@ -825,6 +822,30 @@ supported as Resource Priority Header values. This file has the format:
     }
 
 It is worth noting that 15 is high priority, and 1 is low priority.
+
+SAS Server Config
+-----------------
+
+This section describes how to configure a Metaswitch Service Assurance
+Server, used for call logging and troubleshooting.
+
+The configuration can be set or changed by downloading the current
+version of ``sas.json`` by running ``cw-config download sas_json``,
+editing this downloaded copy, and then running
+``cw-config upload sas_json`` when finished. You should specify the IPv4
+address of your SAS in this file. Only one SAS may be configured. Should
+multiple IP addresses be uploaded then only the first entry will be read
+and used.
+
+::
+
+    {
+      "sas_servers": [
+        {
+            "ip": "1.1.1.1"
+        }
+      ]
+    }
 
 Other configuration options
 ---------------------------
