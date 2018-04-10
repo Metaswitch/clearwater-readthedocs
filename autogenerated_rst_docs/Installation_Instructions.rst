@@ -42,7 +42,7 @@ What are my choices?
    Route53.
 
    This install can be performed on any collection of machines (at least
-   5 are needed) running Ubuntu 14.04 as it makes no assumptions about
+   6 are needed) running Ubuntu 14.04 as it makes no assumptions about
    the environment in which the machines are running. On the other hand,
    it requires manually configuring every machine, firewalls and DNS
    entries, meaning it is not a good choice for spinning up a
