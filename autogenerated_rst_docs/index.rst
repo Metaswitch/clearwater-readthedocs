@@ -11,7 +11,7 @@ Latest Release
 --------------
 
 The latest release of Clearwater is
-"`Zamîn\_stable <http://lotr.wikia.com/wiki/Zamin>`__\ ".
+"`Zamîn <http://lotr.wikia.com/wiki/Zamin>`__\ ".
 
 Architecture
 ------------
