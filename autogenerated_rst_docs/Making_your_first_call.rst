@@ -74,9 +74,11 @@ Create a number for your client
 
 In your browser, navigate to the Ellis URL you worked out above.
 
-Sign up as a new user, using the signup code you set as ``signup_key``
+Sign up as a new user. If you installed Clearwater manually or using the
+automated install process, use the signup code you set as ``signup_key``
 when `configuring your
 deployment <Installing_a_Chef_workstation.html#add-deployment-specific-configuration>`__.
+If you installed an All-in-One node, use ``secret`` as the signup key.
 
 Ellis will automatically allocate you a new number and display its
 password to you. Remember this password as it will only be displayed
