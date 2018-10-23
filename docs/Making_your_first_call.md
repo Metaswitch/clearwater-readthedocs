@@ -6,16 +6,16 @@ These instructions will take you through the process of making a call on a Clear
 
 * You've [installed Clearwater](Installation_Instructions.md)
 * You have access to two SIP clients.
-  - If you have installed Clearwater on VirtualBox using the All-In-One image you must use [Zoiper](http://www.zoiper.com/en) as one of your clients.  For the other client (or for other install modes) you may use any standard SIP client, we've tested with the following:
-    - [X-Lite](http://www.counterpath.com/x-lite.html)
-    - [Bria](http://www.counterpath.com/bria/)
-    - [Jitsi](https://jitsi.org/)
-    - [Blink](http://icanblink.com/)
-    - [Stock Android SIP client](Configuring_the_native_Android_SIP_client.md)
-    - [Zoiper Android/iOS SIP client](Configuring_Zoiper_Android_iOS_Client.md)
-    - Media5-fone iOS SIP client (on iPhone 4 and 4S)
+    - If you have installed Clearwater on VirtualBox using the All-In-One image you must use [Zoiper](http://www.zoiper.com/en) as one of your clients.  For the other client (or for other install modes) you may use any standard SIP client, we've tested with the following:
+        - [X-Lite](http://www.counterpath.com/x-lite.html)
+        - [Bria](http://www.counterpath.com/bria/)
+        - [Jitsi](https://jitsi.org/)
+        - [Blink](http://icanblink.com/)
+        - [Stock Android SIP client](Configuring_the_native_Android_SIP_client.md)
+        - [Zoiper Android/iOS SIP client](Configuring_Zoiper_Android_iOS_Client.md)
+        - Media5-fone iOS SIP client (on iPhone 4 and 4S)
 * You have access to a web-browser.  We've tested with:
-  - Google Chrome
+    - Google Chrome
 
 ## Work out your base domain
 
@@ -62,10 +62,10 @@ Client configuration methods vary by client, but the following information shoul
 * Authorization Name: `<username>@<domain>`
 * Transport: `TCP`
 * STUN/TURN/ICE:
-  * Enabled: `true`
-  * Server: `<domain>` (or `<aio-identity>` on an All-in-One node)
-  * Username: `<username>@<domain>`
-  * Password: `<password>`
+    * Enabled: `true`
+    * Server: `<domain>` (or `<aio-identity>` on an All-in-One node)
+    * Username: `<username>@<domain>`
+    * Password: `<password>`
 * Use rport: `true` (this is required if your SIP client is behind a NAT when contacting your deployment).
 
 *Extra configuration to use an All-in-One node*
@@ -73,8 +73,8 @@ Client configuration methods vary by client, but the following information shoul
 If you are using an All-in-One node, you will also need to configure the following at your client.
 
 * Outbound Proxy
-  * Outbound Proxy address: `<aio-identity>`
-  * Port: 5060 (or 8060 if installed in VirtualBox)
+    * Outbound Proxy address: `<aio-identity>`
+    * Port: 5060 (or 8060 if installed in VirtualBox)
 * DNS record for `<aio-identity>`
 
 Once these settings have been applied, your client will register with Clearwater. Note that X-Lite may need to be restarted before it will set up a STUN connection.
