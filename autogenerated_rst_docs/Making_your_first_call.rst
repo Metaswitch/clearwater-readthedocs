@@ -9,23 +9,26 @@ Prerequisites
 
 -  You've `installed Clearwater <Installation_Instructions.html>`__
 -  You have access to two SIP clients.
--  If you have installed Clearwater on VirtualBox using the All-In-One
-   image you must use `Zoiper <http://www.zoiper.com/en>`__ as one of
-   your clients. For the other client (or for other install modes) you
-   may use any standard SIP client, we've tested with the following:
 
-   -  `X-Lite <http://www.counterpath.com/x-lite.html>`__
-   -  `Bria <http://www.counterpath.com/bria/>`__
-   -  `Jitsi <https://jitsi.org/>`__
-   -  `Blink <http://icanblink.com/>`__
-   -  `Stock Android SIP
-      client <Configuring_the_native_Android_SIP_client.html>`__
-   -  `Zoiper Android/iOS SIP
-      client <Configuring_Zoiper_Android_iOS_Client.html>`__
-   -  Media5-fone iOS SIP client (on iPhone 4 and 4S)
+   -  If you have installed Clearwater on VirtualBox using the
+      All-In-One image you must use
+      `Zoiper <http://www.zoiper.com/en>`__ as one of your clients. For
+      the other client (or for other install modes) you may use any
+      standard SIP client, we've tested with the following:
+
+      -  `X-Lite <http://www.counterpath.com/x-lite.html>`__
+      -  `Bria <http://www.counterpath.com/bria/>`__
+      -  `Jitsi <https://jitsi.org/>`__
+      -  `Blink <http://icanblink.com/>`__
+      -  `Stock Android SIP
+         client <Configuring_the_native_Android_SIP_client.html>`__
+      -  `Zoiper Android/iOS SIP
+         client <Configuring_Zoiper_Android_iOS_Client.html>`__
+      -  Media5-fone iOS SIP client (on iPhone 4 and 4S)
 
 -  You have access to a web-browser. We've tested with:
--  Google Chrome
+
+   -  Google Chrome
 
 Work out your base domain
 -------------------------
@@ -99,10 +102,12 @@ Clearwater.
 -  Authorization Name: ``<username>@<domain>``
 -  Transport: ``TCP``
 -  STUN/TURN/ICE:
--  Enabled: ``true``
--  Server: ``<domain>`` (or ``<aio-identity>`` on an All-in-One node)
--  Username: ``<username>@<domain>``
--  Password: ``<password>``
+
+   -  Enabled: ``true``
+   -  Server: ``<domain>`` (or ``<aio-identity>`` on an All-in-One node)
+   -  Username: ``<username>@<domain>``
+   -  Password: ``<password>``
+
 -  Use rport: ``true`` (this is required if your SIP client is behind a
    NAT when contacting your deployment).
 
@@ -112,8 +117,10 @@ If you are using an All-in-One node, you will also need to configure the
 following at your client.
 
 -  Outbound Proxy
--  Outbound Proxy address: ``<aio-identity>``
--  Port: 5060 (or 8060 if installed in VirtualBox)
+
+   -  Outbound Proxy address: ``<aio-identity>``
+   -  Port: 5060 (or 8060 if installed in VirtualBox)
+
 -  DNS record for ``<aio-identity>``
 
 Once these settings have been applied, your client will register with
